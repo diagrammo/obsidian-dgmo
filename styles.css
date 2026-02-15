@@ -7,6 +7,14 @@
   width: 100%;
 }
 
+.dgmo-settings-about {
+  margin-bottom: 16px;
+}
+
+.dgmo-settings-about p {
+  margin: 6px 0;
+}
+
 .dgmo-error {
   padding: 12px 16px;
   border-radius: 6px;
