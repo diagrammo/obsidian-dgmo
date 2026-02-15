@@ -26,6 +26,21 @@ export class DgmoSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
+    // Diagrammo app link
+    const descEl = containerEl.createEl('p', {
+      cls: 'setting-item-description',
+    });
+    descEl.appendText('Use ');
+    descEl.createEl('code', { text: '```dgmo' });
+    descEl.appendText(
+      ' code fences to render diagrams inline. For the full editor experience, visit ',
+    );
+    descEl.createEl('a', {
+      text: 'diagrammo.app',
+      href: 'https://diagrammo.app',
+    });
+    descEl.appendText('.');
+
     // Palette dropdown
     const palettes = getAvailablePalettes();
     new Setting(containerEl)
