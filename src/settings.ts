@@ -26,20 +26,37 @@ export class DgmoSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    // Diagrammo app link
-    const descEl = containerEl.createEl('p', {
-      cls: 'setting-item-description',
-    });
-    descEl.appendText('Use ');
-    descEl.createEl('code', { text: '```dgmo' });
-    descEl.appendText(
-      ' code fences to render diagrams inline. For the full editor experience, visit ',
+    // About section
+    const aboutEl = containerEl.createDiv({ cls: 'dgmo-settings-about' });
+
+    const introEl = aboutEl.createEl('p', { cls: 'setting-item-description' });
+    introEl.appendText(
+      'Diagrammo turns plain-text markup into beautiful charts and diagrams — bar, line, pie, sequence, arc, timeline, and more. Just write a ',
     );
-    descEl.createEl('a', {
+    introEl.createEl('code', { text: '```dgmo' });
+    introEl.appendText(' code fence and it renders inline in your notes.');
+
+    const linksEl = aboutEl.createEl('p', { cls: 'setting-item-description' });
+    linksEl.createEl('a', {
       text: 'diagrammo.app',
       href: 'https://diagrammo.app',
     });
-    descEl.appendText('.');
+    linksEl.appendText(
+      ' — A dedicated desktop editor with live preview, export to PNG/SVG, and all the palettes and chart types in one place. Great for when you want to go beyond what a code fence can do.',
+    );
+
+    const cliEl = aboutEl.createEl('p', { cls: 'setting-item-description' });
+    cliEl.appendText('You can also use dgmo from the terminal: ');
+    cliEl.createEl('a', {
+      text: 'brew tap diagrammo/dgmo',
+      href: 'https://github.com/diagrammo/homebrew-dgmo',
+    });
+    cliEl.appendText(' or ');
+    cliEl.createEl('a', {
+      text: 'npm install @diagrammo/dgmo',
+      href: 'https://www.npmjs.com/package/@diagrammo/dgmo',
+    });
+    cliEl.appendText('.');
 
     // Palette dropdown
     const palettes = getAvailablePalettes();
