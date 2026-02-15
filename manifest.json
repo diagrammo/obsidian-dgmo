@@ -1,9 +1,9 @@
 {
   "id": "obsidian-dgmo",
   "name": "Diagrammo Diagrams",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "minAppVersion": "1.5.0",
-  "description": "Render Diagrammo diagram markup (bar, line, pie, sequence, arc, timeline, etc.) inline in your notes.",
+  "description": "Render bar, line, pie, sequence, arc, timeline, and other diagrams from plain-text dgmo code fences.",
   "author": "Diagrammo",
   "isDesktopOnly": false
 }
