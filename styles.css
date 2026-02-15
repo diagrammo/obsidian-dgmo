@@ -1,0 +1,28 @@
+.dgmo-container {
+  width: 100%;
+  overflow: auto;
+}
+
+.dgmo-container-echarts {
+  width: 100%;
+}
+
+.dgmo-error {
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-error);
+  background-color: var(--background-modifier-error-hover);
+}
+
+.dgmo-error-title {
+  font-weight: 600;
+  font-size: var(--font-ui-small);
+  color: var(--text-error);
+  margin: 0 0 4px 0;
+}
+
+.dgmo-error-message {
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+  margin: 0;
+}
