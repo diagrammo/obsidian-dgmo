@@ -10,7 +10,7 @@ All chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) are 
 
 | Framework | Types |
 |-----------|-------|
-| **ECharts** | bar, line, multi-line, area, pie, doughnut, radar, polar-area, bar-stacked, scatter, sankey, chord, function, heatmap, funnel |
+| **ECharts** | bar, bar-stacked, line, multi-line, area, pie, doughnut, radar, polar-area, scatter, sankey, chord, function, heatmap, funnel |
 | **D3** | slope, wordcloud, arc, timeline, venn, quadrant |
 | **Sequence** | sequence (with participant type inference) |
 
