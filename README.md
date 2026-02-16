@@ -64,18 +64,58 @@ This generates a `Diagrammo Examples.md` file in your vault with working example
 
 ## Development
 
+### Prerequisites
+
+- Node.js 18+
+
+### Setup
+
 ```bash
-# Install dependencies
 npm install
-
-# Build (one-shot)
-npm run build
-
-# Watch mode (rebuilds on save)
-npm run dev
 ```
 
-The build produces `main.js` in the repo root, which Obsidian loads directly.
+### Commands
+
+```bash
+npm run build     # One-shot build → main.js
+npm run dev       # Watch mode (rebuilds on save)
+```
+
+The build (esbuild) produces `main.js` in the repo root, which Obsidian loads directly.
+
+### Project structure
+
+```
+src/
+├── main.ts       # Plugin lifecycle, markdown processor, example note command
+├── render.ts     # Core rendering logic (ECharts + D3 charts)
+├── settings.ts   # Settings UI (palette, theme, chart height)
+└── examples.ts   # Full example note with all chart types
+```
+
+### Testing locally
+
+1. Run `npm run dev` (watch mode)
+2. Symlink or copy the repo into your vault's `.obsidian/plugins/dgmo/` folder
+3. Enable the plugin in Obsidian settings
+4. Edit a note with a ` ```dgmo ` code fence — changes rebuild automatically
+
+## Releasing
+
+### GitHub release
+
+1. Bump `version` in both `package.json` and `manifest.json` (must match)
+2. Build: `npm run build`
+3. Commit and push
+4. Create a GitHub release with tag `<version>` (e.g., `1.0.0`)
+5. Attach these files to the release:
+   - `main.js`
+   - `manifest.json`
+   - `styles.css`
+
+### Obsidian Community Plugins
+
+The plugin is submitted to the [Obsidian Community Plugins](https://github.com/obsidianmd/obsidian-releases) registry. New versions are picked up automatically from GitHub releases — just publish a new release with the required files.
 
 ## Links
 
