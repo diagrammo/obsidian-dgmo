@@ -35,7 +35,7 @@ export default class DgmoPlugin extends Plugin {
     }
     const file = await this.app.vault.create(path, EXAMPLE_NOTE);
     await this.app.workspace.getLeaf().openFile(file);
-    new Notice('Created Diagrammo examples note.');
+    new Notice('Diagrammo examples note created.');
   }
 
   onunload() {
