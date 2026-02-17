@@ -3,7 +3,7 @@
   "name": "Diagrammo Diagrams",
   "version": "1.0.0",
   "minAppVersion": "1.5.0",
-  "description": "Render bar, line, pie, sequence, arc, timeline, and other diagrams from plain-text dgmo code fences.",
+  "description": "Render bar, line, pie, sequence, arc, timeline, and other chart diagrams from plain-text dgmo code fences.",
   "author": "Diagrammo",
   "isDesktopOnly": false
 }

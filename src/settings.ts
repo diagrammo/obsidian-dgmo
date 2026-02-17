@@ -38,7 +38,7 @@ export class DgmoSettingTab extends PluginSettingTab {
 
     const linksEl = aboutEl.createEl('p', { cls: 'setting-item-description' });
     linksEl.createEl('a', {
-      text: 'diagrammo.app',
+      text: 'Diagrammo.app',
       href: 'https://diagrammo.app',
     });
     linksEl.appendText(
@@ -48,7 +48,7 @@ export class DgmoSettingTab extends PluginSettingTab {
     const cliEl = aboutEl.createEl('p', { cls: 'setting-item-description' });
     cliEl.appendText('You can also use dgmo from the terminal: ');
     cliEl.createEl('a', {
-      text: 'brew tap diagrammo/dgmo',
+      text: 'Homebrew tap',
       href: 'https://github.com/diagrammo/homebrew-dgmo',
     });
     cliEl.appendText(' or ');
@@ -92,7 +92,7 @@ export class DgmoSettingTab extends PluginSettingTab {
     // Chart height
     new Setting(containerEl)
       .setName('Chart height')
-      .setDesc('Height in pixels for ECharts-based diagrams (bar, line, pie, etc.).')
+      .setDesc('Height in pixels for chart diagrams (bar, line, pie, etc.).')
       .addText((text) => {
         text.setPlaceholder('400');
         text.setValue(String(this.plugin.settings.chartHeight));
