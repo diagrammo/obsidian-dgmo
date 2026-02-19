@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@diagrammo/dgmo':
-        specifier: ^0.2.8
-        version: 0.2.8
+        specifier: ^0.2.10
+        version: 0.2.10
       echarts:
         specifier: ^5.6.0
         version: 5.6.0
@@ -73,8 +73,8 @@ packages:
   '@dagrejs/graphlib@3.0.4':
     resolution: {integrity: sha512-HxZ7fCvAwTLCWCO0WjDkzAFQze8LdC6iOpKbetDKHIuDfIgMlIzYzqZ4nxwLlclQX+3ZVeZ1K2OuaOE2WWcyOg==}
 
-  '@diagrammo/dgmo@0.2.8':
-    resolution: {integrity: sha512-EBLJkNyGZemFATe68/93r7z9dLDRHp0cdAdTP2nuiFjKJPrwJvo7bOkOLnqZs8IV1hk8oHA2ctW2kF47IySiEw==}
+  '@diagrammo/dgmo@0.2.10':
+    resolution: {integrity: sha512-FitGc7akc1qHf+sO+TtG1vS5lwgBcnLS443fOdj7x3gopheAwfJE22v6ZuHsM8nuZODDZMEpyghd2BTwPdiiVA==}
     hasBin: true
 
   '@esbuild/aix-ppc64@0.24.2':
@@ -595,7 +595,7 @@ snapshots:
 
   '@dagrejs/graphlib@3.0.4': {}
 
-  '@diagrammo/dgmo@0.2.8':
+  '@diagrammo/dgmo@0.2.10':
     dependencies:
       '@dagrejs/dagre': 2.0.4
       '@resvg/resvg-js': 2.6.2
