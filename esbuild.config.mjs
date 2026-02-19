@@ -10,7 +10,7 @@ const config = {
   entryPoints: ['src/main.ts'],
   bundle: true,
   outfile: 'main.js',
-  external: ['obsidian', 'electron', '@codemirror/*', '@lezer/*'],
+  external: ['obsidian', 'electron', '@codemirror/*', '@lezer/*', 'jsdom'],
   format: 'cjs',
   target: 'es2020',
   platform: 'browser',

@@ -9,7 +9,7 @@
     "dev": "node esbuild.config.mjs --watch"
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.2.8",
+    "@diagrammo/dgmo": "^0.2.10",
     "echarts": "^5.6.0"
   },
   "devDependencies": {
