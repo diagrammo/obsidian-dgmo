@@ -326,4 +326,118 @@ SSO Integration: 0.75, 0.7
 Export CSV: 0.3, 0.6
 Mobile App: 0.9, 0.95
 \`\`\`
+
+---
+
+## Flowchart
+
+\`\`\`dgmo
+chart: flowchart
+title: Ship Battle Decision
+
+Spot Enemy? {diamond}
+Spot Enemy? -- yes --> Raise Colors
+Spot Enemy? -- no --> Keep Sailing
+
+Raise Colors --> Check Cannons {diamond}
+Check Cannons -- loaded --> Fire Broadside!
+Check Cannons -- empty --> Reload
+
+Reload --> Fire Broadside!
+Fire Broadside! --> Board Enemy (green)
+Keep Sailing --> Scan Horizon
+\`\`\`
+
+---
+
+## Class Diagram
+
+\`\`\`dgmo
+chart: class
+title: Ship Class Hierarchy
+
+Vessel [interface]
+  + sail(): void
+  + anchor(): void
+
+Ship [abstract]
+  # name: string
+  # crew: number
+  + getName(): string
+
+Galleon
+  - cannons: number
+  + fire(): void
+
+Sloop
+  - speed: number
+  + flee(): void
+
+Galleon extends Ship
+Sloop extends Ship
+Ship implements Vessel
+\`\`\`
+
+---
+
+## Entity Relationship
+
+\`\`\`dgmo
+chart: er
+title: Pirate Fleet
+
+ships
+  id: int [pk]
+  name: varchar
+  ship_type: varchar
+  cannons: int
+
+captains
+  id: int [pk]
+  name: varchar
+  ship_id: int [fk]
+  bounty: int
+
+crew_members
+  id: int [pk]
+  name: varchar
+  ship_id: int [fk]
+  role: varchar [nullable]
+
+treasure
+  id: int [pk]
+  name: varchar
+  value: int
+  ship_id: int [fk, nullable]
+
+ports
+  id: int [pk]
+  name: varchar
+  region: varchar [unique]
+
+ships 1--* crew_members : aboard
+ships 1-1 captains : commanded by
+ships one-to-many treasure : carries
+ports one to many ships : home of
+captains ? to 1 ports : frequents
+\`\`\`
+
+---
+
+## Org Chart
+
+\`\`\`dgmo
+chart: org
+title: Pirate Crew
+
+Captain Blackbeard
+  First Mate Anne
+    Bosun Jim
+      Deckhand Pete
+      Deckhand Sally
+    Gunner Tom
+  Quartermaster Silver
+    Cook Ben
+    Navigator Mary
+\`\`\`
 `;

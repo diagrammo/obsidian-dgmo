@@ -11,8 +11,8 @@ All chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) are 
 | Framework | Types |
 |-----------|-------|
 | **ECharts** | bar, bar-stacked, line, multi-line, area, pie, doughnut, radar, polar-area, scatter, sankey, chord, function, heatmap, funnel |
-| **D3** | slope, wordcloud, arc, timeline, venn, quadrant |
-| **Sequence** | sequence (with participant type inference) |
+| **D3** | slope, wordcloud, arc, timeline, venn, quadrant, flowchart, class, er, org |
+| **Sequence** | sequence (with participant type inference, collapsible sections, activation bars) |
 
 Mermaid-backed chart types (quadrant via Mermaid) are not yet supported in the plugin.
 
