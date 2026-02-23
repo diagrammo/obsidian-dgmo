@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@diagrammo/dgmo':
-        specifier: ^0.2.13
-        version: 0.2.13
+        specifier: ^0.2.17
+        version: 0.2.17
       echarts:
         specifier: ^5.6.0
         version: 5.6.0
@@ -73,8 +73,8 @@ packages:
   '@dagrejs/graphlib@3.0.4':
     resolution: {integrity: sha512-HxZ7fCvAwTLCWCO0WjDkzAFQze8LdC6iOpKbetDKHIuDfIgMlIzYzqZ4nxwLlclQX+3ZVeZ1K2OuaOE2WWcyOg==}
 
-  '@diagrammo/dgmo@0.2.13':
-    resolution: {integrity: sha512-PnwDB8bfnflnvOU2dSRJB4FU9RipS/D0m7L5whWl9OB0Ocb0yaoZbrLcZcjximPLbtIJyaPXO6IrXBJQCzm61A==}
+  '@diagrammo/dgmo@0.2.17':
+    resolution: {integrity: sha512-AykRF7oUPLL+33xU2QuJD1XGFWyE5WF03VF8+NKzIlMx5BFqz30TQWjJf4W4zIow7stTJRMk19cpKc4iKiYnhQ==}
     hasBin: true
 
   '@esbuild/aix-ppc64@0.24.2':
@@ -347,6 +347,10 @@ packages:
     resolution: {integrity: sha512-AJDdYOdnyRDV5b6ArilzCPPwc1ejkHcoyFarqlPqT7zRYjhavcT3uSrqcMvsgh2CgoPbK3RCwyHaVyxYcP2Arg==}
     engines: {node: '>=12'}
 
+  d3-hierarchy@3.1.2:
+    resolution: {integrity: sha512-FX/9frcub54beBdugHjDCdikxThEqjnR93Qt7PvQTOHxyiNCAlvMrHhclk3cD5VeAaq9fxmfRp+CnWw9rEMBuA==}
+    engines: {node: '>=12'}
+
   d3-interpolate@3.0.1:
     resolution: {integrity: sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==}
     engines: {node: '>=12'}
@@ -437,6 +441,10 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
+
+  lz-string@1.5.0:
+    resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
+    hasBin: true
 
   moment@2.29.4:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
@@ -601,16 +609,18 @@ snapshots:
 
   '@dagrejs/graphlib@3.0.4': {}
 
-  '@diagrammo/dgmo@0.2.13':
+  '@diagrammo/dgmo@0.2.17':
     dependencies:
       '@dagrejs/dagre': 2.0.4
       '@resvg/resvg-js': 2.6.2
       d3-array: 3.2.4
       d3-cloud: 1.2.8
+      d3-hierarchy: 3.1.2
       d3-scale: 4.0.2
       d3-selection: 3.0.0
       d3-shape: 3.2.0
       echarts: 5.6.0
+      lz-string: 1.5.0
     optionalDependencies:
       jsdom: 26.1.0
     transitivePeerDependencies:
@@ -786,6 +796,8 @@ snapshots:
 
   d3-format@3.1.2: {}
 
+  d3-hierarchy@3.1.2: {}
+
   d3-interpolate@3.0.1:
     dependencies:
       d3-color: 3.1.0
@@ -925,6 +937,8 @@ snapshots:
 
   lru-cache@10.4.3:
     optional: true
+
+  lz-string@1.5.0: {}
 
   moment@2.29.4: {}
 
