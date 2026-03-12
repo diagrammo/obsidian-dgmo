@@ -1,8 +1,8 @@
 import * as echarts from 'echarts';
 import {
   parseDgmoChartType,
-  getDgmoFramework,
-  parseD3,
+  getRenderCategory,
+  parseVisualization,
   parseSequenceDgmo,
   renderSlopeChart,
   renderArcDiagram,
@@ -12,25 +12,13 @@ import {
   renderQuadrant,
   renderSequenceDiagram,
   parseChart,
-  parseEChart,
-  buildEChartsOption,
-  buildEChartsOptionFromChart,
+  parseExtendedChart,
+  buildExtendedChartOption,
+  buildSimpleChartOption,
+  isExtendedChartType,
   getPalette,
   type PaletteColors,
 } from '@diagrammo/dgmo';
-
-// Standard chart types that use parseChart + buildEChartsOptionFromChart
-const STANDARD_CHART_TYPES = new Set([
-  'bar',
-  'line',
-  'multi-line',
-  'area',
-  'pie',
-  'doughnut',
-  'radar',
-  'polar-area',
-  'bar-stacked',
-]);
 
 /**
  * Track active ECharts instances so we can dispose them on unload.
@@ -64,7 +52,7 @@ function renderD3Chart(
   palette: PaletteColors,
   isDark: boolean,
 ): void {
-  const parsed = parseD3(source, palette);
+  const parsed = parseVisualization(source, palette);
 
   if (parsed.error) {
     showError(container, parsed.error);
@@ -108,22 +96,22 @@ function renderEChartsChart(
   chartHeight: number,
 ): void {
   const chartType = parseDgmoChartType(source);
-  const isStandard = chartType !== null && STANDARD_CHART_TYPES.has(chartType);
+  const isExtended = chartType !== null && isExtendedChartType(chartType);
 
   let option: echarts.EChartsOption;
   let error: string | undefined;
 
-  if (isStandard) {
+  if (!isExtended) {
     const parsed = parseChart(source, palette);
     error = parsed.error;
     if (!error) {
-      option = buildEChartsOptionFromChart(parsed, palette, isDark);
+      option = buildSimpleChartOption(parsed, palette, isDark);
     }
   } else {
-    const parsed = parseEChart(source, palette);
+    const parsed = parseExtendedChart(source, palette);
     error = parsed.error;
     if (!error) {
-      option = buildEChartsOption(parsed, palette, isDark);
+      option = buildExtendedChartOption(parsed, palette, isDark);
     }
   }
 
@@ -163,22 +151,19 @@ export function renderDgmo(
     return;
   }
 
-  const framework = getDgmoFramework(chartType);
+  const category = getRenderCategory(chartType);
 
-  if (!framework) {
+  if (!category) {
     showError(container, `Unknown chart type: ${chartType}`);
     return;
   }
 
   const palette = resolvePalette(isDark, paletteId);
 
-  if (framework === 'echart') {
+  if (category === 'data-chart') {
     renderEChartsChart(source, container, palette, isDark, chartHeight);
-  } else if (framework === 'd3') {
-    renderD3Chart(source, container, palette, isDark);
   } else {
-    // Mermaid — skip for scaffold
-    showError(container, `Mermaid-backed charts are not yet supported in Obsidian.`);
+    renderD3Chart(source, container, palette, isDark);
   }
 }
 
