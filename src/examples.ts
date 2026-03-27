@@ -12,17 +12,16 @@ export const EXAMPLE_NOTE = `# Diagrammo Chart Examples
 ## Bar Chart
 
 \`\`\`dgmo
-chart: bar
-title: Monthly Revenue by Product Line
-xlabel: Product
-ylabel: Revenue ($K)
+bar Monthly Revenue by Product Line
+xlabel Product
+ylabel Revenue ($K)
 
-Enterprise: 245
-Professional: 182
-Starter: 97
-Free Trial: 43
-Add-ons: 61
-Consulting: 128
+Enterprise 245
+Professional 182
+Starter 97
+Free Trial 43
+Add-ons 61
+Consulting 128
 \`\`\`
 
 ---
@@ -30,23 +29,22 @@ Consulting: 128
 ## Line Chart
 
 \`\`\`dgmo
-chart: line
-title: Daily Active Users (Q1)
-xlabel: Week
-ylabel: Users (thousands)
+line Daily Active Users (Q1)
+xlabel Week
+ylabel Users (thousands)
 
-Week 1: 12.4
-Week 2: 13.1
-Week 3: 14.8
-Week 4: 13.9
-Week 5: 16.2
-Week 6: 17.5
-Week 7: 18.1
-Week 8: 19.3
-Week 9: 21.0
-Week 10: 22.4
-Week 11: 24.1
-Week 12: 23.8
+Week 1 12.4
+Week 2 13.1
+Week 3 14.8
+Week 4 13.9
+Week 5 16.2
+Week 6 17.5
+Week 7 18.1
+Week 8 19.3
+Week 9 21.0
+Week 10 22.4
+Week 11 24.1
+Week 12 23.8
 \`\`\`
 
 ---
@@ -54,18 +52,17 @@ Week 12: 23.8
 ## Multi-Line Chart
 
 \`\`\`dgmo
-chart: multi-line
-title: Quarterly Revenue vs Operating Cost
-xlabel: Quarter
-ylabel: Amount ($M)
+multi-line Quarterly Revenue vs Operating Cost
+xlabel Quarter
+ylabel Amount ($M)
 
-series: Revenue (blue), Operating Cost (red), Net Profit (green)
-Q1 2023: 4.2, 3.1, 1.1
-Q2 2023: 4.8, 3.3, 1.5
-Q3 2023: 5.1, 3.5, 1.6
-Q4 2023: 5.9, 3.7, 2.2
-Q1 2024: 6.3, 3.9, 2.4
-Q2 2024: 7.1, 4.2, 2.9
+series Revenue (blue), Operating Cost (red), Net Profit (green)
+Q1 2023 4.2, 3.1, 1.1
+Q2 2023 4.8, 3.3, 1.5
+Q3 2023 5.1, 3.5, 1.6
+Q4 2023 5.9, 3.7, 2.2
+Q1 2024 6.3, 3.9, 2.4
+Q2 2024 7.1, 4.2, 2.9
 \`\`\`
 
 ---
@@ -73,22 +70,21 @@ Q2 2024: 7.1, 4.2, 2.9
 ## Area Chart
 
 \`\`\`dgmo
-chart: area
-title: Memory Usage Over Time
-xlabel: Hour
-ylabel: GB
+area Memory Usage Over Time
+xlabel Hour
+ylabel GB
 
-12am: 2.1
-3am: 1.8
-6am: 2.4
-9am: 5.7
-10am: 6.3
-12pm: 7.1
-2pm: 6.8
-4pm: 5.9
-6pm: 4.2
-9pm: 3.1
-11pm: 2.5
+12am 2.1
+3am 1.8
+6am 2.4
+9am 5.7
+10am 6.3
+12pm 7.1
+2pm 6.8
+4pm 5.9
+6pm 4.2
+9pm 3.1
+11pm 2.5
 \`\`\`
 
 ---
@@ -96,16 +92,15 @@ ylabel: GB
 ## Pie Chart
 
 \`\`\`dgmo
-chart: pie
-title: Browser Market Share
+pie Browser Market Share
 
-Chrome: 63.5
-Safari: 19.8
-Firefox: 6.2
-Edge: 5.1
-Samsung Internet: 2.8
-Opera: 1.4
-Other: 1.2
+Chrome 63.5
+Safari 19.8
+Firefox 6.2
+Edge 5.1
+Samsung Internet 2.8
+Opera 1.4
+Other 1.2
 \`\`\`
 
 ---
@@ -113,15 +108,14 @@ Other: 1.2
 ## Doughnut Chart
 
 \`\`\`dgmo
-chart: doughnut
-title: Cloud Spending by Service
+doughnut Cloud Spending by Service
 
-Compute (blue): 34
-Storage (cyan): 22
-Database (green): 18
-Networking (orange): 12
-AI/ML (purple): 8
-Other (gray): 6
+Compute (blue) 34
+Storage (cyan) 22
+Database (green) 18
+Networking (orange) 12
+AI/ML (purple) 8
+Other (gray) 6
 \`\`\`
 
 ---
@@ -129,15 +123,14 @@ Other (gray): 6
 ## Radar Chart
 
 \`\`\`dgmo
-chart: radar
-title: Engineering Team Skills
+radar Engineering Team Skills
 
-Frontend: 85
-Backend: 72
-DevOps: 68
-Testing: 90
-Documentation: 55
-Architecture: 78
+Frontend 85
+Backend 72
+DevOps 68
+Testing 90
+Documentation 55
+Architecture 78
 \`\`\`
 
 ---
@@ -145,15 +138,14 @@ Architecture: 78
 ## Polar Area Chart
 
 \`\`\`dgmo
-chart: polar-area
-title: Incident Categories (Last 30 Days)
+polar-area Incident Categories (Last 30 Days)
 
-Security: 12
-Performance: 28
-Availability: 8
-Data Loss: 3
-Configuration: 19
-Network: 15
+Security 12
+Performance 28
+Availability 8
+Data Loss 3
+Configuration 19
+Network 15
 \`\`\`
 
 ---
@@ -161,17 +153,16 @@ Network: 15
 ## Stacked Bar Chart
 
 \`\`\`dgmo
-chart: bar-stacked
-title: Support Tickets by Priority
-xlabel: Month
-ylabel: Tickets
+bar-stacked Support Tickets by Priority
+xlabel Month
+ylabel Tickets
 
-series: Critical (red), High (orange), Medium (yellow), Low (green)
-January: 8, 24, 45, 62
-February: 12, 19, 51, 58
-March: 6, 22, 38, 71
-April: 10, 28, 42, 65
-May: 5, 15, 48, 70
+series Critical (red), High (orange), Medium (yellow), Low (green)
+January 8, 24, 45, 62
+February 12, 19, 51, 58
+March 6, 22, 38, 71
+April 10, 28, 42, 65
+May 5, 15, 48, 70
 \`\`\`
 
 ---
@@ -179,8 +170,7 @@ May: 5, 15, 48, 70
 ## Sequence Diagram
 
 \`\`\`dgmo
-chart: sequence
-title: API Request Flow
+sequence API Request Flow
 
 User is an actor
 App is a frontend
@@ -199,15 +189,14 @@ App -> User: show confirmation
 ## Slope Chart
 
 \`\`\`dgmo
-chart: slope
-title: Programming Language Popularity
+slope Programming Language Popularity
 
 2020, 2022, 2025
-Python (blue): 3, 1, 1
-JavaScript (yellow): 1, 2, 2
-TypeScript (cyan): 7, 4, 3
-Rust (orange): 18, 12, 5
-Go (green): 10, 8, 7
+Python (blue) 3, 1, 1
+JavaScript (yellow) 1, 2, 2
+TypeScript (cyan) 7, 4, 3
+Rust (orange) 18, 12, 5
+Go (green) 10, 8, 7
 \`\`\`
 
 ---
@@ -215,23 +204,22 @@ Go (green): 10, 8, 7
 ## Word Cloud
 
 \`\`\`dgmo
-chart: wordcloud
-title: Tech Conference Topics
+wordcloud Tech Conference Topics
 
-Kubernetes: 95
-Machine Learning: 88
-Microservices: 72
-DevOps: 68
-Serverless: 55
-GraphQL: 48
-TypeScript: 82
-Rust: 62
-WebAssembly: 45
-Edge Computing: 38
-Observability: 52
-Platform Engineering: 60
-AI Agents: 90
-LLM: 85
+Kubernetes 95
+Machine Learning 88
+Microservices 72
+DevOps 68
+Serverless 55
+GraphQL 48
+TypeScript 82
+Rust 62
+WebAssembly 45
+Edge Computing 38
+Observability 52
+Platform Engineering 60
+AI Agents 90
+LLM 85
 \`\`\`
 
 ---
@@ -239,9 +227,8 @@ LLM: 85
 ## Arc Diagram
 
 \`\`\`dgmo
-chart: arc
-title: Microservice Dependencies
-order: group
+arc Microservice Dependencies
+order group
 
 ## Frontend
 WebApp -> API Gateway: 5
@@ -265,25 +252,24 @@ AuthService -> OAuth: 3
 ## Timeline
 
 \`\`\`dgmo
-chart: timeline
-title: Product Roadmap
+timeline Product Roadmap
 
-era 2024-01 -> 2024-06: Phase 1 - Foundation
-era 2024-07 -> 2024-12: Phase 2 - Growth
+era 2024-01 -> 2024-06 Phase 1 - Foundation
+era 2024-07 -> 2024-12 Phase 2 - Growth
 
-marker 2024-03: Beta Launch
-marker 2024-09: GA Release
+marker 2024-03 Beta Launch
+marker 2024-09 GA Release
 
 ## Engineering
-2024-01->2024-03: Core API Development
-2024-02->2024-05: Auth & Permissions
-2024-04->2024-07: Real-time Features
-2024-08->2024-11: Performance Optimization
+2024-01->2024-03 Core API Development
+2024-02->2024-05 Auth & Permissions
+2024-04->2024-07 Real-time Features
+2024-08->2024-11 Performance Optimization
 
 ## Design
-2024-01->2024-02: Design System v1
-2024-03->2024-05: User Research
-2024-06->2024-08: Design System v2
+2024-01->2024-02 Design System v1
+2024-03->2024-05 User Research
+2024-06->2024-08 Design System v2
 \`\`\`
 
 ---
@@ -291,16 +277,15 @@ marker 2024-09: GA Release
 ## Venn Diagram
 
 \`\`\`dgmo
-chart: venn
-title: Full-Stack Developer Skills
+venn Full-Stack Developer Skills
 
-Frontend (blue): 120
-Backend (green): 95
-DevOps (orange): 60
-Frontend & Backend: 45
-Backend & DevOps: 25
-Frontend & DevOps: 15
-Frontend & Backend & DevOps: 10
+Frontend (blue) 120
+Backend (green) 95
+DevOps (orange) 60
+Frontend & Backend 45
+Backend & DevOps 25
+Frontend & DevOps 15
+Frontend & Backend & DevOps 10
 \`\`\`
 
 ---
@@ -308,23 +293,22 @@ Frontend & Backend & DevOps: 10
 ## Quadrant Chart
 
 \`\`\`dgmo
-chart: quadrant
-title: Feature Prioritization Matrix
+quadrant Feature Prioritization Matrix
 
-x-axis: Low Effort, High Effort
-y-axis: Low Impact, High Impact
+x-axis Low Effort, High Effort
+y-axis Low Impact, High Impact
 
-top-left: Quick Wins
-top-right: Major Projects
-bottom-left: Fill-ins
-bottom-right: Avoid
+top-left Quick Wins
+top-right Major Projects
+bottom-left Fill-ins
+bottom-right Avoid
 
-Dark Mode (blue): 0.25, 0.85
-API v2 (red): 0.8, 0.9
-Fix Typos: 0.1, 0.15
-SSO Integration: 0.75, 0.7
-Export CSV: 0.3, 0.6
-Mobile App: 0.9, 0.95
+Dark Mode (blue) 0.25, 0.85
+API v2 (red) 0.8, 0.9
+Fix Typos 0.1, 0.15
+SSO Integration 0.75, 0.7
+Export CSV 0.3, 0.6
+Mobile App 0.9, 0.95
 \`\`\`
 
 ---
@@ -332,8 +316,7 @@ Mobile App: 0.9, 0.95
 ## Flowchart
 
 \`\`\`dgmo
-chart: flowchart
-title: Ship Battle Decision
+flowchart Ship Battle Decision
 
 Spot Enemy? {diamond}
 Spot Enemy? -- yes --> Raise Colors
@@ -353,8 +336,7 @@ Keep Sailing --> Scan Horizon
 ## Class Diagram
 
 \`\`\`dgmo
-chart: class
-title: Ship Class Hierarchy
+class Ship Class Hierarchy
 
 Vessel [interface]
   + sail(): void
@@ -383,43 +365,41 @@ Ship implements Vessel
 ## Entity Relationship
 
 \`\`\`dgmo
-chart: er
-title: Pirate Fleet
+er Pirate Fleet
 
 ships
-  id: int [pk]
-  name: varchar
-  ship_type: varchar
-  cannons: int
+  id int pk
+  name varchar
+  ship_type varchar
+  cannons int
+  1-aboard-* crew_members
+  1-1 captains
+  1-carries-* treasure
 
 captains
-  id: int [pk]
-  name: varchar
-  ship_id: int [fk]
-  bounty: int
+  id int pk
+  name varchar
+  ship_id int fk
+  bounty int
+  ?-frequents-1 ports
 
 crew_members
-  id: int [pk]
-  name: varchar
-  ship_id: int [fk]
-  role: varchar [nullable]
+  id int pk
+  name varchar
+  ship_id int fk
+  role varchar nullable
 
 treasure
-  id: int [pk]
-  name: varchar
-  value: int
-  ship_id: int [fk, nullable]
+  id int pk
+  name varchar
+  value int
+  ship_id int fk, nullable
 
 ports
-  id: int [pk]
-  name: varchar
-  region: varchar [unique]
-
-ships 1--* crew_members : aboard
-ships 1-1 captains : commanded by
-ships one-to-many treasure : carries
-ports one to many ships : home of
-captains ? to 1 ports : frequents
+  id int pk
+  name varchar
+  region varchar unique
+  1-docks-* ships
 \`\`\`
 
 ---
@@ -427,8 +407,7 @@ captains ? to 1 ports : frequents
 ## Org Chart
 
 \`\`\`dgmo
-chart: org
-title: Pirate Crew
+org Pirate Crew
 
 Captain Blackbeard
   First Mate Anne
