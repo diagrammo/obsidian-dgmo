@@ -22,15 +22,14 @@ Write a fenced code block with the `dgmo` language tag:
 
 ````markdown
 ```dgmo
-chart: bar
-title: Quarterly Revenue
-xlabel: Quarter
-ylabel: Revenue ($M)
+bar Quarterly Revenue
+xlabel Quarter
+ylabel Revenue ($M)
 
-Q1: 4.2
-Q2: 4.8
-Q3: 5.1
-Q4: 5.9
+Q1 4.2
+Q2 4.8
+Q3 5.1
+Q4 5.9
 ```
 ````
 
