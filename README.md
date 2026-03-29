@@ -23,8 +23,8 @@ Write a fenced code block with the `dgmo` language tag:
 ````markdown
 ```dgmo
 bar Quarterly Revenue
-xlabel Quarter
-ylabel Revenue ($M)
+x-label Quarter
+y-label Revenue ($M)
 
 Q1 4.2
 Q2 4.8
