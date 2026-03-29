@@ -13,8 +13,8 @@ export const EXAMPLE_NOTE = `# Diagrammo Chart Examples
 
 \`\`\`dgmo
 bar Monthly Revenue by Product Line
-xlabel Product
-ylabel Revenue ($K)
+x-label Product
+y-label Revenue ($K)
 
 Enterprise 245
 Professional 182
@@ -30,8 +30,8 @@ Consulting 128
 
 \`\`\`dgmo
 line Daily Active Users (Q1)
-xlabel Week
-ylabel Users (thousands)
+x-label Week
+y-label Users (thousands)
 
 Week 1 12.4
 Week 2 13.1
@@ -53,8 +53,8 @@ Week 12 23.8
 
 \`\`\`dgmo
 multi-line Quarterly Revenue vs Operating Cost
-xlabel Quarter
-ylabel Amount ($M)
+x-label Quarter
+y-label Amount ($M)
 
 series Revenue (blue), Operating Cost (red), Net Profit (green)
 Q1 2023 4.2, 3.1, 1.1
@@ -71,8 +71,8 @@ Q2 2024 7.1, 4.2, 2.9
 
 \`\`\`dgmo
 area Memory Usage Over Time
-xlabel Hour
-ylabel GB
+x-label Hour
+y-label GB
 
 12am 2.1
 3am 1.8
@@ -154,8 +154,8 @@ Network 15
 
 \`\`\`dgmo
 bar-stacked Support Tickets by Priority
-xlabel Month
-ylabel Tickets
+x-label Month
+y-label Tickets
 
 series Critical (red), High (orange), Medium (yellow), Low (green)
 January 8, 24, 45, 62
@@ -231,20 +231,20 @@ arc Microservice Dependencies
 order group
 
 ## Frontend
-WebApp -> API Gateway: 5
-MobileApp -> API Gateway: 3
+WebApp -> API Gateway 5
+MobileApp -> API Gateway 3
 
 ## Core Services
-API Gateway -> AuthService: 4
-API Gateway -> UserService: 5
-API Gateway -> OrderService: 3
-UserService -> Database: 4
-OrderService -> Database: 3
-OrderService -> PaymentService: 2
+API Gateway -> AuthService 4
+API Gateway -> UserService 5
+API Gateway -> OrderService 3
+UserService -> Database 4
+OrderService -> Database 3
+OrderService -> PaymentService 2
 
 ## External
-PaymentService -> Stripe: 2
-AuthService -> OAuth: 3
+PaymentService -> Stripe 2
+AuthService -> OAuth 3
 \`\`\`
 
 ---
@@ -295,8 +295,8 @@ Frontend & Backend & DevOps 10
 \`\`\`dgmo
 quadrant Feature Prioritization Matrix
 
-x-axis Low Effort, High Effort
-y-axis Low Impact, High Impact
+x-label Low Effort, High Effort
+y-label Low Impact, High Impact
 
 top-left Quick Wins
 top-right Major Projects
