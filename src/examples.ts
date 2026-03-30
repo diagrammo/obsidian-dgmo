@@ -191,12 +191,13 @@ App -> User: show confirmation
 \`\`\`dgmo
 slope Programming Language Popularity
 
-2020, 2022, 2025
-Python (blue) 3, 1, 1
-JavaScript (yellow) 1, 2, 2
-TypeScript (cyan) 7, 4, 3
-Rust (orange) 18, 12, 5
-Go (green) 10, 8, 7
+period 2020 2022 2025
+
+Python (blue) 3 1 1
+JavaScript (yellow) 1 2 2
+TypeScript (cyan) 7 4 3
+Rust (orange) 18 12 5
+Go (green) 10 8 7
 \`\`\`
 
 ---
