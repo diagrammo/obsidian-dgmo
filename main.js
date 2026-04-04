@@ -117626,6 +117626,7 @@ function renderEChartsChart(source, container, palette, isDark, chartHeight) {
   let option;
   let error2;
   let legendGroups = [];
+  let extendedParsed = null;
   const colors = getSeriesColors(palette);
   if (!isExtended) {
     const parsed = parseChart(source, palette);
@@ -117640,6 +117641,7 @@ function renderEChartsChart(source, container, palette, isDark, chartHeight) {
     if (!error2) {
       option = buildExtendedChartOption(parsed, palette, isDark);
       legendGroups = getExtendedChartLegendGroups(parsed, colors);
+      extendedParsed = parsed;
     }
   }
   if (error2) {
@@ -117662,12 +117664,61 @@ function renderEChartsChart(source, container, palette, isDark, chartHeight) {
       legendDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="${legendResult.width}" height="${LEGEND_HEIGHT}">` + legendResult.svg + "</svg>";
     }
   }
+  const isScatter = extendedParsed?.type === "scatter" && extendedParsed.showLabels !== false && (extendedParsed.scatterPoints?.length ?? 0) > 0;
+  if (isScatter) {
+    option = { ...option, graphic: void 0 };
+  }
   const wrapper = container.createDiv({ cls: "dgmo-container-echarts" });
   wrapper.style.minHeight = `${chartHeight}px`;
   wrapper.style.height = `${chartHeight}px`;
   const chart = init2(wrapper);
   chart.setOption(option, true);
   activeCharts.add(chart);
+  if (isScatter && extendedParsed) {
+    const applyScatterLabels = () => {
+      const points4 = extendedParsed.scatterPoints;
+      const hasCategories = points4.some((p2) => p2.category !== void 0);
+      const categories = hasCategories ? [...new Set(points4.map((p2) => p2.category).filter(Boolean))] : [];
+      const defaultSize = 15;
+      const labelPoints = [];
+      for (const [i, pt] of points4.entries()) {
+        const pixel = chart.convertToPixel("grid", [pt.x, pt.y]);
+        if (!pixel) continue;
+        let color4;
+        if (hasCategories && pt.category) {
+          const catIndex = categories.indexOf(pt.category);
+          color4 = pt.color ?? extendedParsed.categoryColors?.[pt.category] ?? colors[catIndex % colors.length] ?? "#888";
+        } else {
+          color4 = pt.color ?? colors[i % colors.length] ?? "#888";
+        }
+        labelPoints.push({
+          name: pt.name,
+          px: pixel[0] ?? 0,
+          py: pixel[1] ?? 0,
+          color: color4,
+          size: pt.size
+        });
+      }
+      if (labelPoints.length === 0) return;
+      const h = chart.getHeight();
+      const graphic = computeScatterLabelGraphics(
+        labelPoints,
+        { top: 20, bottom: h - 20 },
+        11,
+        defaultSize,
+        palette.bg
+      );
+      chart.setOption(
+        { graphic },
+        { replaceMerge: ["graphic"] }
+      );
+    };
+    setTimeout(applyScatterLabels, 50);
+    const labelResizeObserver = new ResizeObserver(() => {
+      setTimeout(applyScatterLabels, 200);
+    });
+    labelResizeObserver.observe(wrapper);
+  }
   if (legendDiv) {
     legendDiv.addEventListener("mouseover", (e3) => {
       let el = e3.target;

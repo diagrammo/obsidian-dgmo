@@ -22,9 +22,12 @@ import {
   getSimpleChartLegendGroups,
   getExtendedChartLegendGroups,
   getSeriesColors,
+  computeScatterLabelGraphics,
   LEGEND_HEIGHT,
   type PaletteColors,
   type LegendGroupData,
+  type ScatterLabelPoint,
+  type ParsedExtendedChart,
 } from '@diagrammo/dgmo';
 
 /**
@@ -173,6 +176,7 @@ function renderEChartsChart(
   let option: echarts.EChartsOption;
   let error: string | null | undefined;
   let legendGroups: LegendGroupData[] = [];
+  let extendedParsed: ParsedExtendedChart | null = null;
   const colors = getSeriesColors(palette);
 
   if (!isExtended) {
@@ -188,6 +192,7 @@ function renderEChartsChart(
     if (!error) {
       option = buildExtendedChartOption(parsed, palette, isDark);
       legendGroups = getExtendedChartLegendGroups(parsed, colors);
+      extendedParsed = parsed;
     }
   }
 
@@ -220,12 +225,82 @@ function renderEChartsChart(
     }
   }
 
+  // Strip SSR-computed scatter labels — we'll recompute at runtime with actual dimensions
+  const isScatter =
+    extendedParsed?.type === 'scatter' &&
+    extendedParsed.showLabels !== false &&
+    (extendedParsed.scatterPoints?.length ?? 0) > 0;
+
+  if (isScatter) {
+    option = { ...option!, graphic: undefined };
+  }
+
   const wrapper = container.createDiv({ cls: 'dgmo-container-echarts' });
   wrapper.style.minHeight = `${chartHeight}px`;
   wrapper.style.height = `${chartHeight}px`;
   const chart = echarts.init(wrapper);
   chart.setOption(option!, true);
   activeCharts.add(chart);
+
+  // Compute scatter labels at runtime using actual pixel positions
+  if (isScatter && extendedParsed) {
+    const applyScatterLabels = () => {
+      const points = extendedParsed!.scatterPoints!;
+      const hasCategories = points.some((p) => p.category !== undefined);
+      const categories = hasCategories
+        ? ([...new Set(points.map((p) => p.category).filter(Boolean))] as string[])
+        : [];
+      const defaultSize = 15;
+
+      const labelPoints: ScatterLabelPoint[] = [];
+      for (const [i, pt] of points.entries()) {
+        const pixel = chart.convertToPixel('grid', [pt.x, pt.y]);
+        if (!pixel) continue;
+
+        let color: string;
+        if (hasCategories && pt.category) {
+          const catIndex = categories.indexOf(pt.category);
+          color =
+            pt.color ??
+            extendedParsed!.categoryColors?.[pt.category] ??
+            colors[catIndex % colors.length] ??
+            '#888';
+        } else {
+          color = pt.color ?? colors[i % colors.length] ?? '#888';
+        }
+
+        labelPoints.push({
+          name: pt.name,
+          px: pixel[0] ?? 0,
+          py: pixel[1] ?? 0,
+          color,
+          size: pt.size,
+        });
+      }
+
+      if (labelPoints.length === 0) return;
+
+      const h = chart.getHeight();
+      const graphic = computeScatterLabelGraphics(
+        labelPoints,
+        { top: 20, bottom: h - 20 },
+        11,
+        defaultSize,
+        palette.bg,
+      );
+      chart.setOption(
+        { graphic } as echarts.EChartsOption,
+        { replaceMerge: ['graphic'] } as echarts.SetOptionOpts,
+      );
+    };
+
+    // Apply after layout settles, then re-apply on resize
+    setTimeout(applyScatterLabels, 50);
+    const labelResizeObserver = new ResizeObserver(() => {
+      setTimeout(applyScatterLabels, 200);
+    });
+    labelResizeObserver.observe(wrapper);
+  }
 
   // Wire hover interactivity on legend
   if (legendDiv) {
