@@ -420,4 +420,35 @@ Captain Blackbeard
     Cook Ben
     Navigator Mary
 \`\`\`
+
+---
+
+## Boxes and Lines
+
+\`\`\`dgmo
+boxes-and-lines Pirate Software
+
+tag Status s
+  Done(green)
+  Doing(yellow)
+  Todo(red)
+  NA(gray) default
+
+active-tag Status
+
+MobileApp | s:Todo
+  -> API
+
+WebSite | s:Doing
+  -> [Backend]
+
+[Backend]
+  API | s:Doing
+    -> DB
+    -> AuthVendor
+
+  DB | s:Done
+
+AuthVendor
+\`\`\`
 `;
