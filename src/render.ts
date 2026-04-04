@@ -99,7 +99,7 @@ function renderEChartsChart(
   const isExtended = chartType !== null && isExtendedChartType(chartType);
 
   let option: echarts.EChartsOption;
-  let error: string | undefined;
+  let error: string | null | undefined;
 
   if (!isExtended) {
     const parsed = parseChart(source, palette);
