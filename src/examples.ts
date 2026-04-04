@@ -167,6 +167,127 @@ May 5, 15, 48, 70
 
 ---
 
+## Scatter Plot
+
+\`\`\`dgmo
+scatter Startup Funding vs Revenue
+x-label Funding ($M)
+y-label Annual Revenue ($M)
+
+[SaaS](blue)
+  Acme Cloud 12, 8.5
+  DataSync 5.2, 3.1
+  CloudOps 25, 18.4
+  PlatformX 8, 5.7
+
+[Fintech](green)
+  PayFlow 45, 32
+  LendTech 18, 12.5
+  QuickPay 9, 6.8
+
+[HealthTech](red)
+  MediScan 15, 7.2
+  HealthAI 22, 14.1
+  CareLink 7, 3.8
+\`\`\`
+
+---
+
+## Sankey Diagram
+
+\`\`\`dgmo
+sankey Website Traffic Flow
+
+Organic Search (green)
+  Landing Page 450
+Paid Ads (orange)
+  Landing Page 280
+Social Media (blue)
+  Landing Page 180
+
+Landing Page
+  Sign Up 340
+  Browse Products 520
+  Bounce 260 (red)
+
+Sign Up
+  Free Trial 240
+  Paid Plan 100
+
+Browse Products
+  Add to Cart 310
+  Exit 210 (red)
+
+Add to Cart
+  Purchase (green) 220
+  Abandon 90 (red)
+\`\`\`
+
+---
+
+## Chord Diagram
+
+\`\`\`dgmo
+chord Inter-Department Collaboration
+
+Engineering -> Design 85
+Engineering -> Product 72
+Engineering -> QA 95
+Design -> Product 68
+Design -> Marketing 45
+Product -> Marketing 58
+Product -> Sales 42
+Marketing -> Sales 65
+QA -> Engineering 88
+Sales -> Product 30
+\`\`\`
+
+---
+
+## Function Plot
+
+\`\`\`dgmo
+function Mathematical Functions
+x-label x
+y-label f(x)
+
+x -6 to 6
+f(x) (blue) sin(x)
+g(x) (red) x^2 / 10
+h(x) (green) cos(x) * 2
+\`\`\`
+
+---
+
+## Heatmap
+
+\`\`\`dgmo
+heatmap Deploy Frequency by Day and Hour
+
+columns Mon, Tue, Wed, Thu, Fri
+6 AM 1, 2, 0, 1, 0
+9 AM 5, 8, 6, 7, 4
+12 PM 3, 4, 5, 3, 2
+3 PM 8, 12, 9, 10, 6
+6 PM 2, 3, 1, 2, 1
+\`\`\`
+
+---
+
+## Funnel Chart
+
+\`\`\`dgmo
+funnel Sales Pipeline Conversion
+
+Website Visitors 12000
+Product Page Views 5400
+Free Trial Signups 2100
+Onboarding Complete 890
+Paid Conversion 340
+\`\`\`
+
+---
+
 ## Sequence Diagram
 
 \`\`\`dgmo
@@ -280,13 +401,14 @@ marker 2024-09 GA Release
 \`\`\`dgmo
 venn Full-Stack Developer Skills
 
-Frontend (blue) 120
-Backend (green) 95
-DevOps (orange) 60
-Frontend & Backend 45
-Backend & DevOps 25
-Frontend & DevOps 15
-Frontend & Backend & DevOps 10
+Frontend (blue)
+Backend (green)
+DevOps (orange)
+
+Frontend + Backend Web Apps
+Backend + DevOps Infrastructure
+Frontend + DevOps CI/CD
+Frontend + Backend + DevOps Unicorns
 \`\`\`
 
 ---
@@ -450,5 +572,178 @@ WebSite | s:Doing
   DB | s:Done
 
 AuthVendor
+\`\`\`
+
+---
+
+## Kanban Board
+
+\`\`\`dgmo
+kanban Sprint 7
+
+tag Priority
+  Low(green)
+  Urgent(red)
+  High(orange)
+
+[To Do](red)
+  Recruit new hires | priority: High
+  Chart release plan | priority: Urgent
+  Update documentation | priority: Low
+
+[In Progress](orange) | wip: 2
+  Forge API contracts | priority: High
+  Refactor auth module | priority: Urgent
+
+[Done](green)
+  Deploy staging build | priority: High
+  Fix login regression | priority: Low
+\`\`\`
+
+---
+
+## C4 Architecture Diagram
+
+\`\`\`dgmo
+c4 Internet Banking System
+
+Customer is a person
+  description: A customer of the bank
+
+Banking is a system
+  description: Core internet banking system
+  containers
+    WebApp is a container | tech: React
+    API is a container | tech: Node.js
+    DB is a container is a database | tech: PostgreSQL
+
+Email is a system
+  description: External email delivery service
+
+Customer -Uses-> Banking
+Banking -Sends emails via-> Email
+\`\`\`
+
+---
+
+## Sitemap
+
+\`\`\`dgmo
+sitemap Simple Website
+
+Home
+  -about-> About
+  -blog-> Blog
+
+[Content]
+  About
+  Blog
+    -read-> Post
+
+  Post
+\`\`\`
+
+---
+
+## State Diagram
+
+\`\`\`dgmo
+state Order Lifecycle
+
+[*] -> Pending
+
+Pending
+  -submit-> Validating
+
+Validating
+  -approved-> Processing
+  -rejected-> Cancelled
+
+[Fulfillment]
+  Processing
+    -pack-> Shipping
+    -out of stock-> Cancelled
+
+  Shipping
+    -delivered-> Delivered
+    -lost-> Refunded
+
+[Resolution]
+  Delivered
+    -return request-> Returning
+
+  Returning
+    -received-> Refunded
+
+Cancelled -> [*]
+Refunded -> [*]
+Delivered -> [*]
+\`\`\`
+
+---
+
+## Gantt Chart
+
+\`\`\`dgmo
+gantt Product Launch Plan
+start 2024-01-15
+dependencies
+
+tag Team alias t
+  Engineering(blue)
+  Design(purple)
+  QA(orange)
+
+parallel
+  [Backend] | t: Engineering
+    30bd Database Layer | 80%
+    10bd? Auth Module | 100%
+    parallel
+      5bd Load Testing | t: QA
+      5bd Security Audit | t: QA
+
+  [Frontend] | t: Design
+    15bd Component Library
+    10bd API Integration | t: Engineering
+    5bd Polish | 30%
+
+[Integration] | t: QA
+  10bd E2E Testing
+  0d Release Candidate
+\`\`\`
+
+---
+
+## Infrastructure Diagram
+
+\`\`\`dgmo
+infra Production Traffic Flow
+
+tag Team alias t
+  Backend(blue)
+  Platform(teal)
+
+edge
+  rps: 10000
+  -> CloudFront
+
+CloudFront is a network | t: Platform
+  cache-hit: 80%
+  -> ALB
+
+ALB is a gateway | t: Platform
+  -/api-> APIServer | split: 70%
+  -/static-> StaticServer | split: 30%
+
+APIServer is a service | t: Backend
+  instances: 3
+  max-rps: 500
+  latency-ms: 45
+  ~events~> MessageQueue
+
+MessageQueue is a queue | t: Platform
+
+StaticServer is a storage | t: Platform
+  latency-ms: 5
 \`\`\`
 `;

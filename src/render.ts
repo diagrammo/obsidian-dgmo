@@ -17,6 +17,7 @@ import {
   buildSimpleChartOption,
   isExtendedChartType,
   getPalette,
+  render,
   type PaletteColors,
 } from '@diagrammo/dgmo';
 
@@ -41,6 +42,26 @@ function showError(container: HTMLElement, message: string): void {
   const wrapper = container.createDiv({ cls: 'dgmo-error' });
   wrapper.createEl('p', { cls: 'dgmo-error-title', text: 'Parse error' });
   wrapper.createEl('p', { cls: 'dgmo-error-message', text: message });
+}
+
+/**
+ * Make an SVG element scale to fill its container width.
+ */
+function scaleSvgToFit(container: HTMLElement): void {
+  const svgEl = container.querySelector('svg');
+  if (!svgEl) return;
+
+  const viewBox = svgEl.getAttribute('viewBox');
+  svgEl.setAttribute('width', '100%');
+  svgEl.removeAttribute('height');
+  if (viewBox) {
+    const parts = viewBox.split(/[\s,]+/).map(Number);
+    const vbW = parts[2];
+    const vbH = parts[3];
+    if (vbW && vbH) {
+      svgEl.style.aspectRatio = `${vbW} / ${vbH}`;
+    }
+  }
 }
 
 /**
@@ -83,6 +104,8 @@ function renderD3Chart(
     // Default: slope chart
     renderSlopeChart(el, parsed, palette, isDark);
   }
+
+  scaleSvgToFit(el);
 }
 
 /**
@@ -135,15 +158,40 @@ function renderEChartsChart(
 }
 
 /**
+ * Render a diagram type (flowchart, class, er, org, kanban, c4, etc.)
+ * using the unified render() API which returns an SVG string.
+ */
+async function renderDiagramSvg(
+  source: string,
+  container: HTMLElement,
+  isDark: boolean,
+  paletteId: string,
+): Promise<void> {
+  const svg = await render(source, {
+    theme: isDark ? 'dark' : 'light',
+    palette: paletteId,
+  });
+
+  if (!svg) {
+    showError(container, 'Failed to render diagram');
+    return;
+  }
+
+  const wrapper = container.createDiv({ cls: 'dgmo-container' });
+  wrapper.innerHTML = svg;
+  scaleSvgToFit(wrapper);
+}
+
+/**
  * Main entry point: render dgmo source into a container element.
  */
-export function renderDgmo(
+export async function renderDgmo(
   source: string,
   container: HTMLElement,
   isDark: boolean,
   paletteId = 'nord',
   chartHeight = 400,
-): void {
+): Promise<void> {
   const chartType = parseDgmoChartType(source);
 
   if (!chartType) {
@@ -162,8 +210,10 @@ export function renderDgmo(
 
   if (category === 'data-chart') {
     renderEChartsChart(source, container, palette, isDark, chartHeight);
-  } else {
+  } else if (category === 'visualization' || chartType === 'sequence') {
     renderD3Chart(source, container, palette, isDark);
+  } else {
+    await renderDiagramSvg(source, container, isDark, paletteId);
   }
 }
 

@@ -14,9 +14,9 @@ export default class DgmoPlugin extends Plugin {
     await this.loadSettings();
     this.addSettingTab(new DgmoSettingTab(this.app, this));
 
-    this.registerMarkdownCodeBlockProcessor('dgmo', (source, el) => {
+    this.registerMarkdownCodeBlockProcessor('dgmo', async (source, el) => {
       const isDark = this.resolveIsDark();
-      renderDgmo(source, el, isDark, this.settings.palette, this.settings.chartHeight);
+      await renderDgmo(source, el, isDark, this.settings.palette, this.settings.chartHeight);
     });
 
     this.addCommand({
