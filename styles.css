@@ -9,6 +9,17 @@
   max-width: 100%;
 }
 
+.dgmo-echarts-legend {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.dgmo-echarts-legend svg {
+  max-width: 100%;
+}
+
 .dgmo-settings-about {
   margin-bottom: 16px;
 }

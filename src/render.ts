@@ -18,7 +18,13 @@ import {
   isExtendedChartType,
   getPalette,
   render,
+  renderLegendSvg,
+  getSimpleChartLegendGroups,
+  getExtendedChartLegendGroups,
+  getSeriesColors,
+  LEGEND_HEIGHT,
   type PaletteColors,
+  type LegendGroupData,
 } from '@diagrammo/dgmo';
 
 /**
@@ -51,7 +57,18 @@ function scaleSvgToFit(container: HTMLElement): void {
   const svgEl = container.querySelector('svg');
   if (!svgEl) return;
 
-  const viewBox = svgEl.getAttribute('viewBox');
+  // If no viewBox exists, create one from the original width/height so
+  // the SVG content scales properly when we set width to 100%.
+  let viewBox = svgEl.getAttribute('viewBox');
+  if (!viewBox) {
+    const origW = parseFloat(svgEl.getAttribute('width') ?? '0');
+    const origH = parseFloat(svgEl.getAttribute('height') ?? '0');
+    if (origW > 0 && origH > 0) {
+      viewBox = `0 0 ${origW} ${origH}`;
+      svgEl.setAttribute('viewBox', viewBox);
+    }
+  }
+
   svgEl.setAttribute('width', '100%');
   svgEl.removeAttribute('height');
   if (viewBox) {
@@ -83,26 +100,58 @@ function renderD3Chart(
   const wrapper = container.createDiv({ cls: 'dgmo-container' });
   const el = wrapper.createDiv();
 
-  if (parsed.type === 'sequence') {
-    const seqParsed = parseSequenceDgmo(source);
-    if (seqParsed.error) {
-      showError(container, seqParsed.error);
-      return;
+  // D3 renderers read clientWidth/clientHeight to size the SVG, but in
+  // Obsidian the element has zero dimensions at render time (not laid out yet).
+  // Pass explicit exportDims to bypass the container measurement.
+  const dims = { width: 800, height: 500 };
+
+  try {
+    if (parsed.type === 'sequence') {
+      const seqParsed = parseSequenceDgmo(source);
+      if (seqParsed.error) {
+        showError(container, seqParsed.error);
+        return;
+      }
+      renderSequenceDiagram(el, seqParsed, palette, isDark, undefined, { exportWidth: dims.width });
+    } else if (parsed.type === 'wordcloud') {
+      renderWordCloud(el, parsed, palette, isDark, undefined, dims);
+    } else if (parsed.type === 'arc') {
+      renderArcDiagram(el, parsed, palette, isDark, undefined, dims);
+    } else if (parsed.type === 'timeline') {
+      renderTimeline(el, parsed, palette, isDark, undefined, dims);
+    } else if (parsed.type === 'venn') {
+      renderVenn(el, parsed, palette, isDark, undefined, dims);
+    } else if (parsed.type === 'quadrant') {
+      renderQuadrant(el, parsed, palette, isDark, undefined, dims);
+    } else {
+      // Default: slope chart
+      renderSlopeChart(el, parsed, palette, isDark, undefined, dims);
     }
-    renderSequenceDiagram(el, seqParsed, palette, isDark);
-  } else if (parsed.type === 'wordcloud') {
-    renderWordCloud(el, parsed, palette, isDark);
-  } else if (parsed.type === 'arc') {
-    renderArcDiagram(el, parsed, palette, isDark);
-  } else if (parsed.type === 'timeline') {
-    renderTimeline(el, parsed, palette, isDark);
-  } else if (parsed.type === 'venn') {
-    renderVenn(el, parsed, palette, isDark);
-  } else if (parsed.type === 'quadrant') {
-    renderQuadrant(el, parsed, palette, isDark);
-  } else {
-    // Default: slope chart
-    renderSlopeChart(el, parsed, palette, isDark);
+  } catch (err) {
+    showError(
+      container,
+      `Render error (${parsed.type}): ${err instanceof Error ? err.message : String(err)}`
+    );
+    return;
+  }
+
+  // Check if the renderer produced any visible output
+  if (!el.querySelector('svg')) {
+    const details = [
+      `type: ${parsed.type}`,
+      `links: ${parsed.links?.length ?? 0}`,
+      `items: ${parsed.items?.length ?? 0}`,
+      `el size: ${el.clientWidth}x${el.clientHeight}`,
+      `wrapper size: ${wrapper.clientWidth}x${wrapper.clientHeight}`,
+      `container size: ${container.clientWidth}x${container.clientHeight}`,
+      `el.children: ${el.children.length}`,
+      `el.innerHTML length: ${el.innerHTML.length}`,
+    ];
+    showError(
+      container,
+      `No SVG output from ${parsed.type} renderer.\n${details.join('\n')}`
+    );
+    return;
   }
 
   scaleSvgToFit(el);
@@ -123,18 +172,22 @@ function renderEChartsChart(
 
   let option: echarts.EChartsOption;
   let error: string | null | undefined;
+  let legendGroups: LegendGroupData[] = [];
+  const colors = getSeriesColors(palette);
 
   if (!isExtended) {
     const parsed = parseChart(source, palette);
     error = parsed.error;
     if (!error) {
       option = buildSimpleChartOption(parsed, palette, isDark);
+      legendGroups = getSimpleChartLegendGroups(parsed, colors);
     }
   } else {
     const parsed = parseExtendedChart(source, palette);
     error = parsed.error;
     if (!error) {
       option = buildExtendedChartOption(parsed, palette, isDark);
+      legendGroups = getExtendedChartLegendGroups(parsed, colors);
     }
   }
 
@@ -143,12 +196,61 @@ function renderEChartsChart(
     return;
   }
 
+  // Render custom legend above chart if legend data exists
+  const firstGroup = legendGroups[0];
+  let legendDiv: HTMLElement | null = null;
+
+  if (firstGroup) {
+    const legendResult = renderLegendSvg(legendGroups, {
+      palette,
+      isDark,
+      containerWidth: 0,
+      activeGroup: firstGroup.name,
+    });
+
+    if (legendResult.svg) {
+      option = { ...option!, legend: undefined };
+
+      legendDiv = container.createDiv({ cls: 'dgmo-echarts-legend' });
+      legendDiv.style.height = LEGEND_HEIGHT + 'px';
+      legendDiv.innerHTML =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${legendResult.width}" height="${LEGEND_HEIGHT}">` +
+        legendResult.svg +
+        '</svg>';
+    }
+  }
+
   const wrapper = container.createDiv({ cls: 'dgmo-container-echarts' });
   wrapper.style.minHeight = `${chartHeight}px`;
   wrapper.style.height = `${chartHeight}px`;
   const chart = echarts.init(wrapper);
   chart.setOption(option!, true);
   activeCharts.add(chart);
+
+  // Wire hover interactivity on legend
+  if (legendDiv) {
+    legendDiv.addEventListener('mouseover', (e) => {
+      let el = e.target as HTMLElement | null;
+      while (el && el !== legendDiv) {
+        const seriesName = el.getAttribute?.('data-series-name');
+        if (seriesName) {
+          chart.dispatchAction({ type: 'highlight', seriesName });
+          return;
+        }
+        el = el.parentElement;
+      }
+    });
+    legendDiv.addEventListener('mouseout', (e) => {
+      let el = e.target as HTMLElement | null;
+      while (el && el !== legendDiv) {
+        if (el.getAttribute?.('data-series-name')) {
+          chart.dispatchAction({ type: 'downplay' });
+          return;
+        }
+        el = el.parentElement;
+      }
+    });
+  }
 
   // Resize when the container becomes visible / changes size
   const resizeObserver = new ResizeObserver(() => {
@@ -167,13 +269,23 @@ async function renderDiagramSvg(
   isDark: boolean,
   paletteId: string,
 ): Promise<void> {
-  const svg = await render(source, {
-    theme: isDark ? 'dark' : 'light',
-    palette: paletteId,
-  });
+  let svg: string;
+  try {
+    svg = await render(source, {
+      theme: isDark ? 'dark' : 'light',
+      palette: paletteId,
+    });
+  } catch (err) {
+    showError(
+      container,
+      `Render error: ${err instanceof Error ? err.message : String(err)}`
+    );
+    return;
+  }
 
   if (!svg) {
-    showError(container, 'Failed to render diagram');
+    const chartType = parseDgmoChartType(source);
+    showError(container, `No output from render() for type "${chartType}"`);
     return;
   }
 
