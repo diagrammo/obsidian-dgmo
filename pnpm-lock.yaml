@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@diagrammo/dgmo':
-        specifier: ^0.7.3
-        version: 0.7.3
+        specifier: ^0.8.10
+        version: 0.8.10
       echarts:
-        specifier: ^5.6.0
-        version: 5.6.0
+        specifier: ^6.0.0
+        version: 6.0.0
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -29,7 +29,7 @@ importers:
         version: 10.2.0
       obsidian:
         specifier: ^1.12.3
-        version: 1.12.3(@codemirror/state@6.5.0)(@codemirror/view@6.38.6)
+        version: 1.12.3(@codemirror/view@6.38.6)
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
@@ -107,9 +107,26 @@ packages:
   '@dagrejs/graphlib@3.0.4':
     resolution: {integrity: sha512-HxZ7fCvAwTLCWCO0WjDkzAFQze8LdC6iOpKbetDKHIuDfIgMlIzYzqZ4nxwLlclQX+3ZVeZ1K2OuaOE2WWcyOg==}
 
-  '@diagrammo/dgmo@0.7.3':
-    resolution: {integrity: sha512-BGasnZpYFuFyAiv3p4ptEWbz6PNwe+DRMoZ22nHVoi49HLfgjldBk5CD0MTbmPCeG6cCYwHe+GNNFAyZh7ajNg==}
+  '@diagrammo/dgmo@0.8.10':
+    resolution: {integrity: sha512-8lAYf8zpxZE3nk8HYjqZ4jqgU1s4bFLB3IC/Mm+l24TPAxlSDGuJEAiNfNjSDayII/2fQNZZd8DlIdJeOinpGw==}
     hasBin: true
+    peerDependencies:
+      '@codemirror/language': ^6.12.3
+      '@codemirror/state': ^6.6.0
+      '@lezer/common': ^1.5.1
+      '@lezer/highlight': ^1.2.3
+      '@lezer/lr': ^1.4.8
+    peerDependenciesMeta:
+      '@codemirror/language':
+        optional: true
+      '@codemirror/state':
+        optional: true
+      '@lezer/common':
+        optional: true
+      '@lezer/highlight':
+        optional: true
+      '@lezer/lr':
+        optional: true
 
   '@esbuild/aix-ppc64@0.24.2':
     resolution: {integrity: sha512-thpVCb/rhxE/BnMLQ7GReQLLN8q9qbHmI55F4489/ByVg2aQaQ6kbcLb6FHkocZzQhxc4gx0sCk0tJkKBFzDhA==}
@@ -593,9 +610,6 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  echarts@5.6.0:
-    resolution: {integrity: sha512-oTbVTsXfKuEhxftHqL5xprgLoc0k7uScAwtryCgWF6hPYFLRwOUHiFmHGCBKP5NPFNkDVopOieyUqYGH8Fa3kA==}
-
   echarts@6.0.0:
     resolution: {integrity: sha512-Tte/grDQRiETQP4xz3iZWSvoHrkCQtwqd6hs+mifXcjrCuo2iKWbajFObuLJVBlDIJlOzgQPd1hsaKt/3+OMkQ==}
 
@@ -956,9 +970,6 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zrender@5.6.1:
-    resolution: {integrity: sha512-OFXkDJKcrlx5su2XbzJvj/34Q3m6PvyCZkVPHGYpcCJ52ek4U/ymZyfuV1nKE23AyBJ51E/6Yr0mhZ7xGTO4ag==}
-
   zrender@6.0.0:
     resolution: {integrity: sha512-41dFXEEXuJpNecuUQq6JlbybmnHaqqpGlbH1yxnA5V9MMP4SbohSVZsJIwz+zdjQXSSlR1Vc34EgH1zxyTDvhg==}
 
@@ -1040,7 +1051,7 @@ snapshots:
 
   '@dagrejs/graphlib@3.0.4': {}
 
-  '@diagrammo/dgmo@0.7.3':
+  '@diagrammo/dgmo@0.8.10':
     dependencies:
       '@dagrejs/dagre': 2.0.4
       '@resvg/resvg-js': 2.6.2
@@ -1454,11 +1465,6 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  echarts@5.6.0:
-    dependencies:
-      tslib: 2.3.0
-      zrender: 5.6.1
-
   echarts@6.0.0:
     dependencies:
       tslib: 2.3.0
@@ -1698,9 +1704,8 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  obsidian@1.12.3(@codemirror/state@6.5.0)(@codemirror/view@6.38.6):
+  obsidian@1.12.3(@codemirror/view@6.38.6):
     dependencies:
-      '@codemirror/state': 6.5.0
       '@codemirror/view': 6.38.6
       '@types/codemirror': 5.60.8
       moment: 2.29.4
@@ -1853,10 +1858,6 @@ snapshots:
     optional: true
 
   yocto-queue@0.1.0: {}
-
-  zrender@5.6.1:
-    dependencies:
-      tslib: 2.3.0
 
   zrender@6.0.0:
     dependencies:
