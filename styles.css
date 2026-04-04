@@ -1,10 +1,12 @@
-.dgmo-container {
+.dgmo-container,
+.dgmo-container-echarts {
   width: 100%;
   overflow: auto;
 }
 
-.dgmo-container-echarts {
-  width: 100%;
+.dgmo-container svg {
+  display: block;
+  max-width: 100%;
 }
 
 .dgmo-settings-about {

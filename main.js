@@ -88611,7 +88611,7 @@ function renderLegendD3(container, config, state, palette, isDark, callbacks, co
   let currentState = { ...state };
   let currentLayout;
   const legendG = container.append("g").attr("class", "dgmo-legend");
-  function render2() {
+  function render22() {
     currentLayout = computeLegendLayout(config, currentState, width);
     legendG.selectAll("*").remove();
     if (currentLayout.height === 0) return;
@@ -88651,11 +88651,11 @@ function renderLegendD3(container, config, state, palette, isDark, callbacks, co
       );
     }
   }
-  render2();
+  render22();
   return {
     setState(newState) {
       currentState = { ...newState };
-      render2();
+      render22();
     },
     destroy() {
       legendG.remove();
@@ -91710,6 +91710,84 @@ var init_chart = __esm({
     KNOWN_BOOLEANS = /* @__PURE__ */ new Set(["orientation-horizontal"]);
   }
 });
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function pillWidth2(name) {
+  return measureLegendText(name, LEGEND_PILL_FONT_SIZE) + LEGEND_PILL_PAD;
+}
+function entriesWidth2(entries) {
+  let w = 0;
+  for (const e3 of entries) {
+    w += LEGEND_DOT_R * 2 + LEGEND_ENTRY_DOT_GAP + measureLegendText(e3.value, LEGEND_ENTRY_FONT_SIZE) + LEGEND_ENTRY_TRAIL;
+  }
+  return w;
+}
+function groupTotalWidth(name, entries, isActive) {
+  const pw = pillWidth2(name);
+  if (!isActive) return pw;
+  return LEGEND_CAPSULE_PAD * 2 + pw + 4 + entriesWidth2(entries);
+}
+function renderLegendSvg(groups, options) {
+  if (groups.length === 0) return { svg: "", height: 0, width: 0 };
+  const { palette, isDark, containerWidth, activeGroup, className } = options;
+  const groupBg = isDark ? mix(palette.surface, palette.bg, 50) : mix(palette.surface, palette.bg, 30);
+  const items = groups.filter((g) => g.entries.length > 0).map((g) => {
+    const isActive = !!activeGroup && g.name.toLowerCase() === activeGroup.toLowerCase();
+    const pw = pillWidth2(g.name);
+    const tw = groupTotalWidth(g.name, g.entries, isActive);
+    return { group: g, isActive, pillWidth: pw, totalWidth: tw };
+  });
+  if (items.length === 0) return { svg: "", height: 0, width: 0 };
+  const totalWidth = items.reduce((s, it2) => s + it2.totalWidth, 0) + (items.length - 1) * LEGEND_GROUP_GAP;
+  const plotLeft = options.gridLeftPct ? containerWidth * options.gridLeftPct / 100 : 0;
+  const plotRight = options.gridRightPct ? containerWidth - containerWidth * options.gridRightPct / 100 : containerWidth;
+  const plotWidth = plotRight - plotLeft;
+  let x2 = Math.max(0, plotLeft + (plotWidth - totalWidth) / 2);
+  const parts = [];
+  const pillH = LEGEND_HEIGHT - LEGEND_CAPSULE_PAD * 2;
+  for (const item of items) {
+    const groupKey = item.group.name.toLowerCase();
+    const inner25 = [];
+    if (item.isActive) {
+      inner25.push(
+        `<rect width="${item.totalWidth}" height="${LEGEND_HEIGHT}" rx="${LEGEND_HEIGHT / 2}" fill="${esc(groupBg)}"/>`
+      );
+    }
+    const pillXOff = item.isActive ? LEGEND_CAPSULE_PAD : 0;
+    const pillYOff = LEGEND_CAPSULE_PAD;
+    const h = pillH;
+    inner25.push(
+      `<rect x="${pillXOff}" y="${pillYOff}" width="${item.pillWidth}" height="${h}" rx="${h / 2}" fill="${esc(item.isActive ? palette.bg : groupBg)}"/>`
+    );
+    if (item.isActive) {
+      inner25.push(
+        `<rect x="${pillXOff}" y="${pillYOff}" width="${item.pillWidth}" height="${h}" rx="${h / 2}" fill="none" stroke="${esc(mix(palette.textMuted, palette.bg, 50))}" stroke-width="0.75"/>`
+      );
+    }
+    inner25.push(
+      `<text x="${pillXOff + item.pillWidth / 2}" y="${LEGEND_HEIGHT / 2 + LEGEND_PILL_FONT_SIZE / 2 - 2}" font-size="${LEGEND_PILL_FONT_SIZE}" font-weight="500" fill="${esc(item.isActive ? palette.text : palette.textMuted)}" text-anchor="middle" font-family="${esc(FONT_FAMILY)}">${esc(item.group.name)}</text>`
+    );
+    if (item.isActive) {
+      let entryX = pillXOff + item.pillWidth + 4;
+      for (const entry of item.group.entries) {
+        const textX = entryX + LEGEND_DOT_R * 2 + LEGEND_ENTRY_DOT_GAP;
+        inner25.push(
+          `<g data-legend-entry="${esc(entry.value.toLowerCase())}" data-series-name="${esc(entry.value)}" style="cursor:pointer"><circle cx="${entryX + LEGEND_DOT_R}" cy="${LEGEND_HEIGHT / 2}" r="${LEGEND_DOT_R}" fill="${esc(entry.color)}"/><text x="${textX}" y="${LEGEND_HEIGHT / 2 + LEGEND_ENTRY_FONT_SIZE / 2 - 1}" font-size="${LEGEND_ENTRY_FONT_SIZE}" fill="${esc(palette.textMuted)}" font-family="${esc(FONT_FAMILY)}">${esc(entry.value)}</text></g>`
+        );
+        entryX = textX + measureLegendText(entry.value, LEGEND_ENTRY_FONT_SIZE) + LEGEND_ENTRY_TRAIL;
+      }
+    }
+    parts.push(
+      `<g transform="translate(${x2},0)" data-legend-group="${esc(groupKey)}" style="cursor:pointer">${inner25.join("")}</g>`
+    );
+    x2 += item.totalWidth + LEGEND_GROUP_GAP;
+  }
+  const classAttr = className ? ` class="${esc(className)}"` : "";
+  const activeAttr = activeGroup ? ` data-legend-active="${esc(activeGroup.toLowerCase())}"` : "";
+  const svg = `<g${classAttr}${activeAttr}>${parts.join("")}</g>`;
+  return { svg, height: LEGEND_HEIGHT, width: totalWidth };
+}
 var init_legend_svg = __esm({
   "src/utils/legend-svg.ts"() {
     "use strict";
@@ -92446,6 +92524,50 @@ function buildFunctionOption(parsed, palette, textColor, axisLineColor, gridOpac
     },
     series
   };
+}
+function getSimpleChartLegendGroups(parsed, colors) {
+  if (!parsed.seriesNames || parsed.seriesNames.length <= 1) return [];
+  return [
+    {
+      name: "Series",
+      entries: parsed.seriesNames.map((name, i) => ({
+        value: name,
+        color: parsed.seriesNameColors?.[i] ?? colors[i % colors.length]
+      }))
+    }
+  ];
+}
+function getExtendedChartLegendGroups(parsed, colors) {
+  if (parsed.type === "scatter") {
+    const points4 = parsed.scatterPoints ?? [];
+    const categories = [
+      ...new Set(points4.map((p) => p.category).filter(Boolean))
+    ];
+    if (categories.length === 0) return [];
+    return [
+      {
+        name: "Group",
+        entries: categories.map((cat, i) => ({
+          value: cat,
+          color: parsed.categoryColors?.[cat] ?? colors[i % colors.length]
+        }))
+      }
+    ];
+  }
+  if (parsed.type === "function") {
+    const fns = parsed.functions ?? [];
+    if (fns.length === 0) return [];
+    return [
+      {
+        name: "Function",
+        entries: fns.map((fn, i) => ({
+          value: fn.name,
+          color: fn.color ?? colors[i % colors.length]
+        }))
+      }
+    ];
+  }
+  return [];
 }
 function rectsOverlap(a, b) {
   return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
@@ -93673,6 +93795,86 @@ function buildBarStackedOption(parsed, textColor, axisLineColor, splitLineColor,
     yAxis: isHorizontal ? { ...categoryAxis2, inverse: true } : valueAxis2,
     series
   };
+}
+async function renderExtendedChartForExport(content, theme2, palette, options) {
+  const isDark = theme2 === "dark";
+  const { getPalette: getPalette2 } = await Promise.resolve().then(() => (init_palettes(), palettes_exports));
+  const effectivePalette = palette ?? (isDark ? getPalette2("nord").dark : getPalette2("nord").light);
+  let chartType;
+  for (const rawLine of content.split("\n")) {
+    const t = rawLine.trim();
+    if (!t || t.startsWith("//")) continue;
+    const fl = parseFirstLine(t);
+    if (fl) chartType = fl.chartType.toLowerCase();
+    break;
+  }
+  if (!chartType) return "";
+  let option;
+  let legendGroups = [];
+  const colors = getSeriesColors(effectivePalette);
+  if (STANDARD_CHART_TYPES.has(chartType)) {
+    const parsed = parseChart(content, effectivePalette);
+    if (parsed.error) return "";
+    option = buildSimpleChartOption(
+      parsed,
+      effectivePalette,
+      isDark,
+      ECHART_EXPORT_WIDTH
+    );
+    legendGroups = getSimpleChartLegendGroups(parsed, colors);
+  } else {
+    const parsed = parseExtendedChart(content, effectivePalette);
+    if (parsed.error) return "";
+    option = buildExtendedChartOption(parsed, effectivePalette, isDark);
+    legendGroups = getExtendedChartLegendGroups(parsed, colors);
+  }
+  if (!option || Object.keys(option).length === 0) return "";
+  if (legendGroups.length > 0) {
+    option = { ...option, legend: void 0 };
+  }
+  const chart = init2(null, null, {
+    renderer: "svg",
+    ssr: true,
+    width: ECHART_EXPORT_WIDTH,
+    height: ECHART_EXPORT_HEIGHT
+  });
+  try {
+    chart.setOption(option);
+    const svgString = chart.renderToSVGString();
+    if (!svgString) return "";
+    const bgStyle = theme2 !== "transparent" ? `background: ${effectivePalette.bg}; ` : "";
+    let result = svgString.replace(
+      /^<svg /,
+      `<svg style="${bgStyle}font-family: ${FONT_FAMILY}" `
+    );
+    if (legendGroups.length > 0) {
+      const titleHeight = option.title && option.title.text ? 40 : 0;
+      const legendY = 8 + titleHeight;
+      const grid = option.grid;
+      const gridLeftPct = grid?.left ? parseFloat(String(grid.left)) : void 0;
+      const gridRightPct = grid?.right ? parseFloat(String(grid.right)) : void 0;
+      const { svg: legendSvgStr } = renderLegendSvg(legendGroups, {
+        palette: effectivePalette,
+        isDark,
+        containerWidth: ECHART_EXPORT_WIDTH,
+        gridLeftPct,
+        gridRightPct,
+        activeGroup: legendGroups[0].name,
+        className: "chart-legend"
+      });
+      result = result.replace(
+        /(<svg[^>]*>)/,
+        `$1<g transform="translate(0,${legendY})">${legendSvgStr}</g>`
+      );
+    }
+    if (options?.branding !== false) {
+      const brandColor = theme2 === "transparent" ? "#888" : effectivePalette.textMuted;
+      result = injectBranding(result, brandColor);
+    }
+    return result;
+  } finally {
+    chart.dispose();
+  }
 }
 var EMPHASIS_SELF;
 var EMPHASIS_SERIES;
@@ -115180,6 +115382,50 @@ function renderWordCloud(container, parsed, palette, _isDark, onClickItem, expor
     });
   }).start();
 }
+function renderWordCloudAsync(container, parsed, palette, _isDark, exportDims) {
+  return new Promise((resolve) => {
+    select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
+    const { words, title, cloudOptions } = parsed;
+    if (words.length === 0) {
+      resolve();
+      return;
+    }
+    const width = exportDims?.width ?? container.clientWidth;
+    const height = exportDims?.height ?? container.clientHeight;
+    if (width <= 0 || height <= 0) {
+      resolve();
+      return;
+    }
+    const titleHeight = title ? 40 : 0;
+    const cloudHeight = height - titleHeight;
+    const textColor = palette.text;
+    const bgColor = palette.bg;
+    const colors = getSeriesColors(palette);
+    const { minSize, maxSize } = cloudOptions;
+    const weights = words.map((w) => w.weight);
+    const minWeight = Math.min(...weights);
+    const maxWeight = Math.max(...weights);
+    const range2 = maxWeight - minWeight || 1;
+    const fontSize = (weight) => {
+      const t = (weight - minWeight) / range2;
+      return minSize + Math.sqrt(t) * (maxSize - minSize);
+    };
+    const rotateFn = getRotateFn(cloudOptions.rotate);
+    const svg = select_default2(container).append("svg").attr("width", width).attr("height", height).style("background", bgColor);
+    renderChartTitle(svg, title, parsed.titleLineNumber, width, textColor);
+    const g = svg.append("g").attr(
+      "transform",
+      `translate(${width / 2},${titleHeight + cloudHeight / 2})`
+    );
+    (0, import_d3_cloud.default)().size([width, cloudHeight]).words(words.map((w) => ({ ...w, size: fontSize(w.weight) }))).padding(2).rotate(rotateFn).fontSize((d) => d.size).font(FONT_FAMILY).on("end", (layoutWords) => {
+      g.selectAll("text").data(layoutWords).join("text").style("font-size", (d) => `${d.size}px`).style("font-family", FONT_FAMILY).style("font-weight", "600").style("fill", (_d2, i) => colors[i % colors.length]).attr("text-anchor", "middle").attr(
+        "transform",
+        (d) => `translate(${d.x},${d.y}) rotate(${d.rotate})`
+      ).text((d) => d.text);
+      resolve();
+    }).start();
+  });
+}
 function fitCirclesToContainerAsymmetric(circles, w, h, mLeft, mRight, mTop, mBottom) {
   if (circles.length === 0) return [];
   let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
@@ -115857,6 +116103,438 @@ function renderQuadrant(container, parsed, palette, isDark, onClickItem, exportD
     }
   });
 }
+async function resolveExportPalette(theme2, palette) {
+  if (palette) return palette;
+  const { getPalette: getPalette2 } = await Promise.resolve().then(() => (init_palettes(), palettes_exports));
+  return theme2 === "dark" ? getPalette2("nord").dark : getPalette2("nord").light;
+}
+function createExportContainer(width, height) {
+  const container = document.createElement("div");
+  container.style.width = `${width}px`;
+  container.style.height = `${height}px`;
+  container.style.position = "absolute";
+  container.style.left = "-9999px";
+  document.body.appendChild(container);
+  return container;
+}
+function finalizeSvgExport(container, theme2, palette, options) {
+  const svgEl = container.querySelector("svg");
+  if (!svgEl) return "";
+  if (theme2 === "transparent") {
+    svgEl.style.background = "none";
+  } else if (!svgEl.style.background) {
+    svgEl.style.background = palette.bg;
+  }
+  svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  svgEl.style.fontFamily = FONT_FAMILY;
+  svgEl.querySelectorAll("[data-export-ignore]").forEach((el) => el.remove());
+  const svgHtml = svgEl.outerHTML;
+  document.body.removeChild(container);
+  if (options?.branding !== false) {
+    const brandColor = theme2 === "transparent" ? "#888" : palette.textMuted;
+    return injectBranding(svgHtml, brandColor);
+  }
+  return svgHtml;
+}
+async function renderForExport(content, theme2, palette, orgExportState, options) {
+  const { parseDgmoChartType: parseDgmoChartType2 } = await Promise.resolve().then(() => (init_dgmo_router(), dgmo_router_exports));
+  const detectedType = parseDgmoChartType2(content);
+  if (detectedType === "org") {
+    const { parseOrg: parseOrg2 } = await Promise.resolve().then(() => (init_parser4(), parser_exports4));
+    const { layoutOrg: layoutOrg2 } = await Promise.resolve().then(() => (init_layout(), layout_exports2));
+    const { collapseOrgTree: collapseOrgTree2 } = await Promise.resolve().then(() => (init_collapse(), collapse_exports));
+    const { renderOrg: renderOrg2 } = await Promise.resolve().then(() => (init_renderer(), renderer_exports));
+    const isDark2 = theme2 === "dark";
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const orgParsed = parseOrg2(content, effectivePalette2);
+    if (orgParsed.error) return "";
+    const collapsedNodes = orgExportState?.collapsedNodes;
+    const activeTagGroup = orgExportState?.activeTagGroup ?? options?.tagGroup ?? null;
+    const hiddenAttributes = orgExportState?.hiddenAttributes;
+    const { parsed: effectiveParsed, hiddenCounts } = collapsedNodes && collapsedNodes.size > 0 ? collapseOrgTree2(orgParsed, collapsedNodes) : { parsed: orgParsed, hiddenCounts: /* @__PURE__ */ new Map() };
+    const orgLayout = layoutOrg2(
+      effectiveParsed,
+      hiddenCounts.size > 0 ? hiddenCounts : void 0,
+      activeTagGroup,
+      hiddenAttributes,
+      true
+      // expandAllLegend — show all tag groups expanded in export
+    );
+    const PADDING = 20;
+    const titleOffset = effectiveParsed.title ? 30 : 0;
+    const exportWidth = orgLayout.width + PADDING * 2;
+    const exportHeight = orgLayout.height + PADDING * 2 + titleOffset;
+    const container2 = createExportContainer(exportWidth, exportHeight);
+    renderOrg2(
+      container2,
+      effectiveParsed,
+      orgLayout,
+      effectivePalette2,
+      isDark2,
+      void 0,
+      { width: exportWidth, height: exportHeight },
+      activeTagGroup,
+      hiddenAttributes
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "sitemap") {
+    const { parseSitemap: parseSitemap2 } = await Promise.resolve().then(() => (init_parser7(), parser_exports7));
+    const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout2(), layout_exports22));
+    const { collapseSitemapTree: collapseSitemapTree2 } = await Promise.resolve().then(() => (init_collapse2(), collapse_exports2));
+    const { renderSitemap: renderSitemap2 } = await Promise.resolve().then(() => (init_renderer2(), renderer_exports2));
+    const isDark2 = theme2 === "dark";
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const sitemapParsed = parseSitemap2(content, effectivePalette2);
+    if (sitemapParsed.error || sitemapParsed.roots.length === 0) return "";
+    const collapsedNodes = orgExportState?.collapsedNodes;
+    const activeTagGroup = orgExportState?.activeTagGroup ?? options?.tagGroup ?? null;
+    const hiddenAttributes = orgExportState?.hiddenAttributes;
+    const { parsed: effectiveParsed, hiddenCounts } = collapsedNodes && collapsedNodes.size > 0 ? collapseSitemapTree2(sitemapParsed, collapsedNodes) : { parsed: sitemapParsed, hiddenCounts: /* @__PURE__ */ new Map() };
+    const sitemapLayout = layoutSitemap2(
+      effectiveParsed,
+      hiddenCounts.size > 0 ? hiddenCounts : void 0,
+      activeTagGroup,
+      hiddenAttributes,
+      true
+    );
+    const PADDING = 20;
+    const titleOffset = effectiveParsed.title ? 30 : 0;
+    const exportWidth = sitemapLayout.width + PADDING * 2;
+    const exportHeight = sitemapLayout.height + PADDING * 2 + titleOffset;
+    const container2 = createExportContainer(exportWidth, exportHeight);
+    renderSitemap2(
+      container2,
+      effectiveParsed,
+      sitemapLayout,
+      effectivePalette2,
+      isDark2,
+      void 0,
+      { width: exportWidth, height: exportHeight },
+      activeTagGroup,
+      hiddenAttributes
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "kanban") {
+    const { parseKanban: parseKanban2 } = await Promise.resolve().then(() => (init_parser5(), parser_exports5));
+    const { renderKanban: renderKanban2 } = await Promise.resolve().then(() => (init_renderer3(), renderer_exports3));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const kanbanParsed = parseKanban2(content, effectivePalette2);
+    if (kanbanParsed.error || kanbanParsed.columns.length === 0) return "";
+    const container2 = document.createElement("div");
+    container2.style.position = "absolute";
+    container2.style.left = "-9999px";
+    document.body.appendChild(container2);
+    renderKanban2(
+      container2,
+      kanbanParsed,
+      effectivePalette2,
+      theme2 === "dark",
+      void 0,
+      void 0,
+      options?.tagGroup
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "class") {
+    const { parseClassDiagram: parseClassDiagram2 } = await Promise.resolve().then(() => (init_parser2(), parser_exports2));
+    const { layoutClassDiagram: layoutClassDiagram2 } = await Promise.resolve().then(() => (init_layout3(), layout_exports3));
+    const { renderClassDiagram: renderClassDiagram2 } = await Promise.resolve().then(() => (init_renderer4(), renderer_exports4));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const classParsed = parseClassDiagram2(content, effectivePalette2);
+    if (classParsed.error || classParsed.classes.length === 0) return "";
+    const classLayout = layoutClassDiagram2(classParsed);
+    const PADDING = 20;
+    const titleOffset = classParsed.title ? 40 : 0;
+    const exportWidth = classLayout.width + PADDING * 2;
+    const exportHeight = classLayout.height + PADDING * 2 + titleOffset;
+    const container2 = createExportContainer(exportWidth, exportHeight);
+    renderClassDiagram2(
+      container2,
+      classParsed,
+      classLayout,
+      effectivePalette2,
+      theme2 === "dark",
+      void 0,
+      { width: exportWidth, height: exportHeight }
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "er") {
+    const { parseERDiagram: parseERDiagram2 } = await Promise.resolve().then(() => (init_parser3(), parser_exports3));
+    const { layoutERDiagram: layoutERDiagram2 } = await Promise.resolve().then(() => (init_layout4(), layout_exports4));
+    const { renderERDiagram: renderERDiagram2 } = await Promise.resolve().then(() => (init_renderer5(), renderer_exports5));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const erParsed = parseERDiagram2(content, effectivePalette2);
+    if (erParsed.error || erParsed.tables.length === 0) return "";
+    const erLayout = layoutERDiagram2(erParsed);
+    const PADDING = 20;
+    const titleOffset = erParsed.title ? 40 : 0;
+    const exportWidth = erLayout.width + PADDING * 2;
+    const exportHeight = erLayout.height + PADDING * 2 + titleOffset;
+    const container2 = createExportContainer(exportWidth, exportHeight);
+    renderERDiagram2(
+      container2,
+      erParsed,
+      erLayout,
+      effectivePalette2,
+      theme2 === "dark",
+      void 0,
+      { width: exportWidth, height: exportHeight },
+      options?.tagGroup
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "boxes-and-lines") {
+    const { parseBoxesAndLines: parseBoxesAndLines2 } = await Promise.resolve().then(() => (init_parser10(), parser_exports10));
+    const { layoutBoxesAndLines: layoutBoxesAndLines2 } = await Promise.resolve().then(() => (init_layout5(), layout_exports5));
+    const { renderBoxesAndLinesForExport: renderBoxesAndLinesForExport2 } = await Promise.resolve().then(() => (init_renderer6(), renderer_exports6));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const blParsed = parseBoxesAndLines2(content);
+    if (blParsed.error || blParsed.nodes.length === 0) return "";
+    const blLayout = layoutBoxesAndLines2(blParsed);
+    const PADDING = 20;
+    const titleOffset = blParsed.title ? 40 : 0;
+    const exportWidth = blLayout.width + PADDING * 2;
+    const exportHeight = blLayout.height + PADDING * 2 + titleOffset;
+    const container2 = createExportContainer(exportWidth, exportHeight);
+    renderBoxesAndLinesForExport2(
+      container2,
+      blParsed,
+      blLayout,
+      effectivePalette2,
+      theme2 === "dark",
+      { exportDims: { width: exportWidth, height: exportHeight } }
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "c4") {
+    const { parseC4: parseC42 } = await Promise.resolve().then(() => (init_parser6(), parser_exports6));
+    const {
+      layoutC4Context: layoutC4Context2,
+      layoutC4Containers: layoutC4Containers2,
+      layoutC4Components: layoutC4Components2,
+      layoutC4Deployment: layoutC4Deployment2
+    } = await Promise.resolve().then(() => (init_layout6(), layout_exports6));
+    const { renderC4Context: renderC4Context2, renderC4Containers: renderC4Containers2 } = await Promise.resolve().then(() => (init_renderer7(), renderer_exports7));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const c4Parsed = parseC42(content, effectivePalette2);
+    if (c4Parsed.error || c4Parsed.elements.length === 0) return "";
+    const c4Level = options?.c4Level ?? "context";
+    const c4System = options?.c4System;
+    const c4Container = options?.c4Container;
+    const c4Layout = c4Level === "deployment" ? layoutC4Deployment2(c4Parsed) : c4Level === "components" && c4System && c4Container ? layoutC4Components2(c4Parsed, c4System, c4Container) : c4Level === "containers" && c4System ? layoutC4Containers2(c4Parsed, c4System) : layoutC4Context2(c4Parsed);
+    if (c4Layout.nodes.length === 0) return "";
+    const PADDING = 20;
+    const titleOffset = c4Parsed.title ? 40 : 0;
+    const exportWidth = c4Layout.width + PADDING * 2;
+    const exportHeight = c4Layout.height + PADDING * 2 + titleOffset;
+    const container2 = createExportContainer(exportWidth, exportHeight);
+    const renderFn = c4Level === "deployment" || c4Level === "components" && c4System && c4Container || c4Level === "containers" && c4System ? renderC4Containers2 : renderC4Context2;
+    renderFn(
+      container2,
+      c4Parsed,
+      c4Layout,
+      effectivePalette2,
+      theme2 === "dark",
+      void 0,
+      { width: exportWidth, height: exportHeight },
+      options?.tagGroup
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "flowchart") {
+    const { parseFlowchart: parseFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_parser(), flowchart_parser_exports));
+    const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout7(), layout_exports7));
+    const { renderFlowchart: renderFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_renderer(), flowchart_renderer_exports));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const fcParsed = parseFlowchart2(content, effectivePalette2);
+    if (fcParsed.error || fcParsed.nodes.length === 0) return "";
+    const layout4 = layoutGraph2(fcParsed);
+    const container2 = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
+    renderFlowchart2(
+      container2,
+      fcParsed,
+      layout4,
+      effectivePalette2,
+      theme2 === "dark",
+      void 0,
+      { width: EXPORT_WIDTH, height: EXPORT_HEIGHT }
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "infra") {
+    const { parseInfra: parseInfra2 } = await Promise.resolve().then(() => (init_parser8(), parser_exports8));
+    const { computeInfra: computeInfra2 } = await Promise.resolve().then(() => (init_compute(), compute_exports));
+    const { layoutInfra: layoutInfra2 } = await Promise.resolve().then(() => (init_layout8(), layout_exports8));
+    const { renderInfra: renderInfra2, computeInfraLegendGroups: computeInfraLegendGroups2 } = await Promise.resolve().then(() => (init_renderer8(), renderer_exports8));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const infraParsed = parseInfra2(content);
+    if (infraParsed.error || infraParsed.nodes.length === 0) return "";
+    const infraComputed = computeInfra2(infraParsed);
+    const infraLayout = layoutInfra2(infraComputed);
+    const activeTagGroup = options?.tagGroup ?? null;
+    const titleOffset = infraParsed.title ? 40 : 0;
+    const legendGroups = computeInfraLegendGroups2(
+      infraLayout.nodes,
+      infraParsed.tagGroups,
+      effectivePalette2
+    );
+    const legendOffset = legendGroups.length > 0 ? 28 : 0;
+    const exportWidth = infraLayout.width;
+    const exportHeight = infraLayout.height + titleOffset + legendOffset;
+    const container2 = createExportContainer(exportWidth, exportHeight);
+    renderInfra2(
+      container2,
+      infraLayout,
+      effectivePalette2,
+      theme2 === "dark",
+      infraParsed.title,
+      infraParsed.titleLineNumber,
+      infraParsed.tagGroups,
+      activeTagGroup,
+      false,
+      null,
+      null,
+      true
+    );
+    const infraSvg = container2.querySelector("svg");
+    if (infraSvg) {
+      infraSvg.setAttribute("width", String(exportWidth));
+      infraSvg.setAttribute("height", String(exportHeight));
+    }
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "gantt") {
+    const { parseGantt: parseGantt2 } = await Promise.resolve().then(() => (init_parser9(), parser_exports9));
+    const { calculateSchedule: calculateSchedule2 } = await Promise.resolve().then(() => (init_calculator(), calculator_exports));
+    const { renderGantt: renderGantt2 } = await Promise.resolve().then(() => (init_renderer9(), renderer_exports9));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const ganttParsed = parseGantt2(content, effectivePalette2);
+    const resolved = calculateSchedule2(ganttParsed);
+    if (resolved.tasks.length === 0) return "";
+    const EXPORT_W = 1200;
+    const EXPORT_H = 800;
+    const container2 = createExportContainer(EXPORT_W, EXPORT_H);
+    renderGantt2(
+      container2,
+      resolved,
+      effectivePalette2,
+      theme2 === "dark",
+      void 0,
+      { width: EXPORT_W, height: EXPORT_H }
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  if (detectedType === "state") {
+    const { parseState: parseState2 } = await Promise.resolve().then(() => (init_state_parser(), state_parser_exports));
+    const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout7(), layout_exports7));
+    const { renderState: renderState2 } = await Promise.resolve().then(() => (init_state_renderer(), state_renderer_exports));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const stateParsed = parseState2(content, effectivePalette2);
+    if (stateParsed.error || stateParsed.nodes.length === 0) return "";
+    const layout4 = layoutGraph2(stateParsed);
+    const container2 = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
+    renderState2(
+      container2,
+      stateParsed,
+      layout4,
+      effectivePalette2,
+      theme2 === "dark",
+      void 0,
+      { width: EXPORT_WIDTH, height: EXPORT_HEIGHT }
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2, options);
+  }
+  const parsed = parseVisualization(content, palette);
+  if (parsed.error && parsed.type !== "sequence") {
+    const looksLikeSequence2 = /->|~>|<-/.test(content);
+    if (!looksLikeSequence2) return "";
+    parsed.type = "sequence";
+  }
+  if (parsed.type === "wordcloud" && parsed.words.length === 0) return "";
+  if (parsed.type === "slope" && parsed.data.length === 0) return "";
+  if (parsed.type === "arc" && parsed.links.length === 0) return "";
+  if (parsed.type === "timeline" && parsed.timelineEvents.length === 0)
+    return "";
+  if (parsed.type === "venn" && parsed.vennSets.length < 2) return "";
+  if (parsed.type === "quadrant" && parsed.quadrantPoints.length === 0)
+    return "";
+  const effectivePalette = await resolveExportPalette(theme2, palette);
+  const isDark = theme2 === "dark";
+  const container = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
+  const dims = {
+    width: EXPORT_WIDTH,
+    height: EXPORT_HEIGHT
+  };
+  if (parsed.type === "sequence") {
+    const { parseSequenceDgmo: parseSequenceDgmo2 } = await Promise.resolve().then(() => (init_parser(), parser_exports));
+    const { renderSequenceDiagram: renderSequenceDiagram2 } = await Promise.resolve().then(() => (init_renderer10(), renderer_exports10));
+    const seqParsed = parseSequenceDgmo2(content);
+    if (seqParsed.error || seqParsed.participants.length === 0) return "";
+    renderSequenceDiagram2(
+      container,
+      seqParsed,
+      effectivePalette,
+      isDark,
+      void 0,
+      {
+        exportWidth: EXPORT_WIDTH,
+        activeTagGroup: options?.tagGroup
+      }
+    );
+  } else if (parsed.type === "wordcloud") {
+    await renderWordCloudAsync(
+      container,
+      parsed,
+      effectivePalette,
+      isDark,
+      dims
+    );
+  } else if (parsed.type === "arc") {
+    renderArcDiagram(
+      container,
+      parsed,
+      effectivePalette,
+      isDark,
+      void 0,
+      dims
+    );
+  } else if (parsed.type === "timeline") {
+    renderTimeline(
+      container,
+      parsed,
+      effectivePalette,
+      isDark,
+      void 0,
+      dims,
+      orgExportState?.activeTagGroup ?? options?.tagGroup,
+      orgExportState?.swimlaneTagGroup
+    );
+  } else if (parsed.type === "venn") {
+    renderVenn(container, parsed, effectivePalette, isDark, void 0, dims);
+  } else if (parsed.type === "quadrant") {
+    renderQuadrant(
+      container,
+      parsed,
+      effectivePalette,
+      isDark,
+      void 0,
+      dims
+    );
+  } else {
+    renderSlopeChart(
+      container,
+      parsed,
+      effectivePalette,
+      isDark,
+      void 0,
+      dims
+    );
+  }
+  return finalizeSvgExport(container, theme2, effectivePalette, options);
+}
 var DEFAULT_CLOUD_OPTIONS;
 var STOP_WORDS;
 var SLOPE_MARGIN;
@@ -116024,6 +116702,57 @@ init_d3();
 init_echarts();
 init_dgmo_router();
 init_registry();
+async function ensureDom() {
+  if (typeof document !== "undefined") return;
+  const { JSDOM } = await import("jsdom");
+  const dom = new JSDOM("<!DOCTYPE html><html><body></body></html>");
+  const win = dom.window;
+  Object.defineProperty(globalThis, "document", {
+    value: win.document,
+    configurable: true
+  });
+  Object.defineProperty(globalThis, "window", {
+    value: win,
+    configurable: true
+  });
+  Object.defineProperty(globalThis, "navigator", {
+    value: win.navigator,
+    configurable: true
+  });
+  Object.defineProperty(globalThis, "HTMLElement", {
+    value: win.HTMLElement,
+    configurable: true
+  });
+  Object.defineProperty(globalThis, "SVGElement", {
+    value: win.SVGElement,
+    configurable: true
+  });
+}
+async function render2(content, options) {
+  const theme2 = options?.theme ?? "light";
+  const paletteName = options?.palette ?? "nord";
+  const branding = options?.branding ?? false;
+  const paletteColors = getPalette(paletteName)[theme2 === "dark" ? "dark" : "light"];
+  const chartType = parseDgmoChartType(content);
+  const category = chartType ? getRenderCategory(chartType) : null;
+  const legendExportState = options?.legendState ? {
+    activeTagGroup: options.legendState.activeGroup ?? null,
+    hiddenAttributes: options.legendState.hiddenAttributes ? new Set(options.legendState.hiddenAttributes) : void 0
+  } : void 0;
+  if (category === "data-chart") {
+    return renderExtendedChartForExport(content, theme2, paletteColors, {
+      branding
+    });
+  }
+  await ensureDom();
+  return renderForExport(content, theme2, paletteColors, legendExportState, {
+    branding,
+    c4Level: options?.c4Level,
+    c4System: options?.c4System,
+    c4Container: options?.c4Container,
+    tagGroup: options?.tagGroup
+  });
+}
 init_dgmo_router();
 init_chart();
 init_echarts();
@@ -116668,6 +117397,21 @@ function showError(container, message) {
   wrapper.createEl("p", { cls: "dgmo-error-title", text: "Parse error" });
   wrapper.createEl("p", { cls: "dgmo-error-message", text: message });
 }
+function scaleSvgToFit(container) {
+  const svgEl = container.querySelector("svg");
+  if (!svgEl) return;
+  const viewBox = svgEl.getAttribute("viewBox");
+  svgEl.setAttribute("width", "100%");
+  svgEl.removeAttribute("height");
+  if (viewBox) {
+    const parts = viewBox.split(/[\s,]+/).map(Number);
+    const vbW = parts[2];
+    const vbH = parts[3];
+    if (vbW && vbH) {
+      svgEl.style.aspectRatio = `${vbW} / ${vbH}`;
+    }
+  }
+}
 function renderD3Chart(source, container, palette, isDark) {
   const parsed = parseVisualization(source, palette);
   if (parsed.error) {
@@ -116696,6 +117440,7 @@ function renderD3Chart(source, container, palette, isDark) {
   } else {
     renderSlopeChart(el, parsed, palette, isDark);
   }
+  scaleSvgToFit(el);
 }
 function renderEChartsChart(source, container, palette, isDark, chartHeight) {
   const chartType = parseDgmoChartType(source);
@@ -116730,7 +117475,20 @@ function renderEChartsChart(source, container, palette, isDark, chartHeight) {
   });
   resizeObserver.observe(wrapper);
 }
-function renderDgmo(source, container, isDark, paletteId = "nord", chartHeight = 400) {
+async function renderDiagramSvg(source, container, isDark, paletteId) {
+  const svg = await render2(source, {
+    theme: isDark ? "dark" : "light",
+    palette: paletteId
+  });
+  if (!svg) {
+    showError(container, "Failed to render diagram");
+    return;
+  }
+  const wrapper = container.createDiv({ cls: "dgmo-container" });
+  wrapper.innerHTML = svg;
+  scaleSvgToFit(wrapper);
+}
+async function renderDgmo(source, container, isDark, paletteId = "nord", chartHeight = 400) {
   const chartType = parseDgmoChartType(source);
   if (!chartType) {
     showError(container, "Missing chart type. Add a line like: chart: bar");
@@ -116744,8 +117502,10 @@ function renderDgmo(source, container, isDark, paletteId = "nord", chartHeight =
   const palette = resolvePalette(isDark, paletteId);
   if (category === "data-chart") {
     renderEChartsChart(source, container, palette, isDark, chartHeight);
-  } else {
+  } else if (category === "visualization" || chartType === "sequence") {
     renderD3Chart(source, container, palette, isDark);
+  } else {
+    await renderDiagramSvg(source, container, isDark, paletteId);
   }
 }
 function disposeAllCharts() {
@@ -116921,6 +117681,127 @@ May 5, 15, 48, 70
 
 ---
 
+## Scatter Plot
+
+\`\`\`dgmo
+scatter Startup Funding vs Revenue
+x-label Funding ($M)
+y-label Annual Revenue ($M)
+
+[SaaS](blue)
+  Acme Cloud 12, 8.5
+  DataSync 5.2, 3.1
+  CloudOps 25, 18.4
+  PlatformX 8, 5.7
+
+[Fintech](green)
+  PayFlow 45, 32
+  LendTech 18, 12.5
+  QuickPay 9, 6.8
+
+[HealthTech](red)
+  MediScan 15, 7.2
+  HealthAI 22, 14.1
+  CareLink 7, 3.8
+\`\`\`
+
+---
+
+## Sankey Diagram
+
+\`\`\`dgmo
+sankey Website Traffic Flow
+
+Organic Search (green)
+  Landing Page 450
+Paid Ads (orange)
+  Landing Page 280
+Social Media (blue)
+  Landing Page 180
+
+Landing Page
+  Sign Up 340
+  Browse Products 520
+  Bounce 260 (red)
+
+Sign Up
+  Free Trial 240
+  Paid Plan 100
+
+Browse Products
+  Add to Cart 310
+  Exit 210 (red)
+
+Add to Cart
+  Purchase (green) 220
+  Abandon 90 (red)
+\`\`\`
+
+---
+
+## Chord Diagram
+
+\`\`\`dgmo
+chord Inter-Department Collaboration
+
+Engineering -> Design 85
+Engineering -> Product 72
+Engineering -> QA 95
+Design -> Product 68
+Design -> Marketing 45
+Product -> Marketing 58
+Product -> Sales 42
+Marketing -> Sales 65
+QA -> Engineering 88
+Sales -> Product 30
+\`\`\`
+
+---
+
+## Function Plot
+
+\`\`\`dgmo
+function Mathematical Functions
+x-label x
+y-label f(x)
+
+x -6 to 6
+f(x) (blue) sin(x)
+g(x) (red) x^2 / 10
+h(x) (green) cos(x) * 2
+\`\`\`
+
+---
+
+## Heatmap
+
+\`\`\`dgmo
+heatmap Deploy Frequency by Day and Hour
+
+columns Mon, Tue, Wed, Thu, Fri
+6 AM 1, 2, 0, 1, 0
+9 AM 5, 8, 6, 7, 4
+12 PM 3, 4, 5, 3, 2
+3 PM 8, 12, 9, 10, 6
+6 PM 2, 3, 1, 2, 1
+\`\`\`
+
+---
+
+## Funnel Chart
+
+\`\`\`dgmo
+funnel Sales Pipeline Conversion
+
+Website Visitors 12000
+Product Page Views 5400
+Free Trial Signups 2100
+Onboarding Complete 890
+Paid Conversion 340
+\`\`\`
+
+---
+
 ## Sequence Diagram
 
 \`\`\`dgmo
@@ -117034,13 +117915,14 @@ marker 2024-09 GA Release
 \`\`\`dgmo
 venn Full-Stack Developer Skills
 
-Frontend (blue) 120
-Backend (green) 95
-DevOps (orange) 60
-Frontend & Backend 45
-Backend & DevOps 25
-Frontend & DevOps 15
-Frontend & Backend & DevOps 10
+Frontend (blue)
+Backend (green)
+DevOps (orange)
+
+Frontend + Backend Web Apps
+Backend + DevOps Infrastructure
+Frontend + DevOps CI/CD
+Frontend + Backend + DevOps Unicorns
 \`\`\`
 
 ---
@@ -117205,6 +118087,179 @@ WebSite | s:Doing
 
 AuthVendor
 \`\`\`
+
+---
+
+## Kanban Board
+
+\`\`\`dgmo
+kanban Sprint 7
+
+tag Priority
+  Low(green)
+  Urgent(red)
+  High(orange)
+
+[To Do](red)
+  Recruit new hires | priority: High
+  Chart release plan | priority: Urgent
+  Update documentation | priority: Low
+
+[In Progress](orange) | wip: 2
+  Forge API contracts | priority: High
+  Refactor auth module | priority: Urgent
+
+[Done](green)
+  Deploy staging build | priority: High
+  Fix login regression | priority: Low
+\`\`\`
+
+---
+
+## C4 Architecture Diagram
+
+\`\`\`dgmo
+c4 Internet Banking System
+
+Customer is a person
+  description: A customer of the bank
+
+Banking is a system
+  description: Core internet banking system
+  containers
+    WebApp is a container | tech: React
+    API is a container | tech: Node.js
+    DB is a container is a database | tech: PostgreSQL
+
+Email is a system
+  description: External email delivery service
+
+Customer -Uses-> Banking
+Banking -Sends emails via-> Email
+\`\`\`
+
+---
+
+## Sitemap
+
+\`\`\`dgmo
+sitemap Simple Website
+
+Home
+  -about-> About
+  -blog-> Blog
+
+[Content]
+  About
+  Blog
+    -read-> Post
+
+  Post
+\`\`\`
+
+---
+
+## State Diagram
+
+\`\`\`dgmo
+state Order Lifecycle
+
+[*] -> Pending
+
+Pending
+  -submit-> Validating
+
+Validating
+  -approved-> Processing
+  -rejected-> Cancelled
+
+[Fulfillment]
+  Processing
+    -pack-> Shipping
+    -out of stock-> Cancelled
+
+  Shipping
+    -delivered-> Delivered
+    -lost-> Refunded
+
+[Resolution]
+  Delivered
+    -return request-> Returning
+
+  Returning
+    -received-> Refunded
+
+Cancelled -> [*]
+Refunded -> [*]
+Delivered -> [*]
+\`\`\`
+
+---
+
+## Gantt Chart
+
+\`\`\`dgmo
+gantt Product Launch Plan
+start 2024-01-15
+dependencies
+
+tag Team alias t
+  Engineering(blue)
+  Design(purple)
+  QA(orange)
+
+parallel
+  [Backend] | t: Engineering
+    30bd Database Layer | 80%
+    10bd? Auth Module | 100%
+    parallel
+      5bd Load Testing | t: QA
+      5bd Security Audit | t: QA
+
+  [Frontend] | t: Design
+    15bd Component Library
+    10bd API Integration | t: Engineering
+    5bd Polish | 30%
+
+[Integration] | t: QA
+  10bd E2E Testing
+  0d Release Candidate
+\`\`\`
+
+---
+
+## Infrastructure Diagram
+
+\`\`\`dgmo
+infra Production Traffic Flow
+
+tag Team alias t
+  Backend(blue)
+  Platform(teal)
+
+edge
+  rps: 10000
+  -> CloudFront
+
+CloudFront is a network | t: Platform
+  cache-hit: 80%
+  -> ALB
+
+ALB is a gateway | t: Platform
+  -/api-> APIServer | split: 70%
+  -/static-> StaticServer | split: 30%
+
+APIServer is a service | t: Backend
+  instances: 3
+  max-rps: 500
+  latency-ms: 45
+  ~events~> MessageQueue
+
+MessageQueue is a queue | t: Platform
+
+StaticServer is a storage | t: Platform
+  latency-ms: 5
+\`\`\`
 `;
 
 // src/settings.ts
@@ -117293,9 +118348,9 @@ var DgmoPlugin = class extends import_obsidian2.Plugin {
   async onload() {
     await this.loadSettings();
     this.addSettingTab(new DgmoSettingTab(this.app, this));
-    this.registerMarkdownCodeBlockProcessor("dgmo", (source, el) => {
+    this.registerMarkdownCodeBlockProcessor("dgmo", async (source, el) => {
       const isDark = this.resolveIsDark();
-      renderDgmo(source, el, isDark, this.settings.palette, this.settings.chartHeight);
+      await renderDgmo(source, el, isDark, this.settings.palette, this.settings.chartHeight);
     });
     this.addCommand({
       id: "insert-example-note",
