@@ -252,9 +252,9 @@ x-label x
 y-label f(x)
 
 x -6 to 6
-f(x) (blue) sin(x)
-g(x) (red) x^2 / 10
-h(x) (green) cos(x) * 2
+f(x) (blue): sin(x)
+g(x) (red): x^2 / 10
+h(x) (green): cos(x) * 2
 \`\`\`
 
 ---
@@ -298,11 +298,11 @@ App is a frontend
 API is a gateway
 DB is a database
 
-User -> App: click submit
-App -> API: POST /data <- 201 Created
-API -> DB: INSERT record <- ok
-API -> App: response
-App -> User: show confirmation
+User -click submit-> App
+App -POST /data-> API <- 201 Created
+API -INSERT record-> DB <- ok
+API -response-> App
+App -show confirmation-> User
 \`\`\`
 
 ---
@@ -352,11 +352,11 @@ LLM 85
 arc Microservice Dependencies
 order group
 
-## Frontend
+[Frontend]
 WebApp -> API Gateway 5
 MobileApp -> API Gateway 3
 
-## Core Services
+[Core Services]
 API Gateway -> AuthService 4
 API Gateway -> UserService 5
 API Gateway -> OrderService 3
@@ -364,7 +364,7 @@ UserService -> Database 4
 OrderService -> Database 3
 OrderService -> PaymentService 2
 
-## External
+[External]
 PaymentService -> Stripe 2
 AuthService -> OAuth 3
 \`\`\`
@@ -439,19 +439,12 @@ Mobile App 0.9, 0.95
 ## Flowchart
 
 \`\`\`dgmo
-flowchart Ship Battle Decision
+flowchart Pirate's Code
 
-Spot Enemy? {diamond}
-Spot Enemy? -- yes --> Raise Colors
-Spot Enemy? -- no --> Keep Sailing
-
-Raise Colors --> Check Cannons {diamond}
-Check Cannons -- loaded --> Fire Broadside!
-Check Cannons -- empty --> Reload
-
-Reload --> Fire Broadside!
-Fire Broadside! --> Board Enemy (green)
-Keep Sailing --> Scan Horizon
+(Sail Ho!) -> <Friend or Foe?>
+  -friend-> [Check Logs~] -> /Trade Rum/ -> [Celebrate]
+  -foe-> [Fire Cannons] -> [[Claim Loot]] -> [Celebrate]
+[Celebrate] -> (Sail On)
 \`\`\`
 
 ---
@@ -609,19 +602,14 @@ c4 Internet Banking System
 
 Customer is a person
   description: A customer of the bank
+  -Uses-> Banking
 
 Banking is a system
   description: Core internet banking system
-  containers
-    WebApp is a container | tech: React
-    API is a container | tech: Node.js
-    DB is a container is a database | tech: PostgreSQL
+  -Sends emails via-> Email
 
 Email is a system
   description: External email delivery service
-
-Customer -Uses-> Banking
-Banking -Sends emails via-> Email
 \`\`\`
 
 ---
