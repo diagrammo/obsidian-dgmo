@@ -216,6 +216,21 @@ function renderEChartsChart(
     if (legendResult.svg) {
       option = { ...option!, legend: undefined };
 
+      // When there's a custom legend, extract the ECharts title and render it
+      // as a separate div so the DOM order is: title → legend → chart.
+      // Without this, the legend div appears above the ECharts-internal title.
+      const titleObj = option!.title as { text?: string } | undefined;
+      if (titleObj?.text) {
+        const titleDiv = container.createDiv({ cls: 'dgmo-echarts-title' });
+        titleDiv.style.textAlign = 'center';
+        titleDiv.style.fontSize = '20px';
+        titleDiv.style.fontWeight = 'bold';
+        titleDiv.style.color = palette.text;
+        titleDiv.style.padding = '8px 0 0';
+        titleDiv.textContent = titleObj.text;
+        option = { ...option!, title: undefined };
+      }
+
       legendDiv = container.createDiv({ cls: 'dgmo-echarts-legend' });
       legendDiv.style.height = LEGEND_HEIGHT + 'px';
       legendDiv.innerHTML =
