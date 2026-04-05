@@ -13,7 +13,7 @@
     "format:check": "prettier --check src/"
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.8.10",
+    "@diagrammo/dgmo": "^0.8.11",
     "echarts": "^6.0.0"
   },
   "devDependencies": {
