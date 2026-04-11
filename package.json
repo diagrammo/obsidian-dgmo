@@ -13,17 +13,17 @@
     "format:check": "prettier --check src/"
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.8.11",
+    "@diagrammo/dgmo": "link:../dgmo",
     "echarts": "^6.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^22.19.17",
-    "esbuild": "^0.24.2",
+    "@types/node": "^25.6.0",
+    "esbuild": "^0.28.0",
     "eslint": "^10.2.0",
     "obsidian": "^1.12.3",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.0"
+    "typescript-eslint": "^8.58.1"
   }
 }
