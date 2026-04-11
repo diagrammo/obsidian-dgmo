@@ -11,7 +11,7 @@ All chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) are 
 | Framework | Types |
 |-----------|-------|
 | **ECharts** | bar, bar-stacked, line, multi-line, area, pie, doughnut, radar, polar-area, scatter, sankey, chord, function, heatmap, funnel |
-| **D3** | slope, wordcloud, arc, timeline, venn, quadrant, flowchart, class, er, org |
+| **D3** | slope, wordcloud, arc, timeline, venn, quadrant, flowchart, class, er, org, infra, kanban, sitemap, c4 |
 | **Sequence** | sequence (with participant type inference, collapsible sections, activation bars) |
 
 Mermaid-backed chart types (quadrant via Mermaid) are not yet supported in the plugin.
@@ -47,7 +47,7 @@ This creates a `Diagrammo Examples.md` file in your vault with working examples 
 
 | Setting | Description | Default |
 |---------|-------------|---------|
-| **Palette** | Color palette for all diagrams — all 8 dgmo palettes available (nord, solarized, catppuccin, rose-pine, gruvbox, tokyo-night, one-dark, bold) | `nord` |
+| **Palette** | Color palette for all diagrams — all 10 dgmo palettes available (nord, solarized, catppuccin, dracula, rose-pine, gruvbox, monokai, tokyo-night, one-dark, bold) | `nord` |
 | **Theme** | Light, dark, or auto (follows Obsidian's theme) | `auto` |
 | **Chart height** | Height in pixels for ECharts-based diagrams (100–2000) | `400` |
 
@@ -99,9 +99,9 @@ src/
 
 ### Dependencies
 
-- `@diagrammo/dgmo` `^0.2.6` — diagram parsing and rendering (npm dependency, bundled by esbuild)
-- `echarts` `^5.6.0` — chart rendering for ECharts-backed types
-- `obsidian` `^1.7.2` — Obsidian plugin API (dev only, externalized)
+- `@diagrammo/dgmo` `^0.8.19` — diagram parsing and rendering (bundled by esbuild)
+- `echarts` `^6.0.0` — chart rendering for ECharts-backed types
+- `obsidian` `^1.12.3` — Obsidian plugin API (dev only, externalized)
 
 ### Testing locally
 
