@@ -361,10 +361,10 @@ async function renderDiagramSvg(
 ): Promise<void> {
   let svg: string;
   try {
-    svg = await render(source, {
+    ({ svg } = await render(source, {
       theme: isDark ? 'dark' : 'light',
       palette: paletteId,
-    });
+    }));
   } catch (err) {
     showError(
       container,
