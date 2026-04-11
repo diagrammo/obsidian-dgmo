@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
-    "check:deps": "depcheck",
+    "check:deps": "depcheck --ignores='obsidian,esbuild'",
     "check:security": "pnpm audit --prod"
   },
   "dependencies": {
@@ -20,7 +20,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^25.6.0",
     "depcheck": "^1.4.7",
     "esbuild": "^0.28.0",
     "eslint": "^10.2.0",
