@@ -1,7 +1,13 @@
-.dgmo-container,
+.dgmo-container {
+  width: 100%;
+  overflow: auto;
+}
+
 .dgmo-container-echarts {
   width: 100%;
   overflow: auto;
+  min-height: var(--dgmo-chart-height, 400px);
+  height: var(--dgmo-chart-height, 400px);
 }
 
 .dgmo-container svg {
@@ -9,11 +15,20 @@
   max-width: 100%;
 }
 
+.dgmo-echarts-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--dgmo-title-color, var(--text-normal));
+  padding: 8px 0 0;
+}
+
 .dgmo-echarts-legend {
   display: flex;
   justify-content: center;
   margin-bottom: 8px;
   overflow: hidden;
+  height: var(--dgmo-legend-height, auto);
 }
 
 .dgmo-echarts-legend svg {

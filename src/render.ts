@@ -27,7 +27,6 @@ import {
   type PaletteColors,
   type LegendGroupData,
   type ScatterLabelPoint,
-  type ParsedExtendedChart,
 } from '@diagrammo/dgmo';
 
 /**
@@ -176,7 +175,7 @@ function renderEChartsChart(
   let option: echarts.EChartsOption;
   let error: string | null | undefined;
   let legendGroups: LegendGroupData[] = [];
-  let extendedParsed: ParsedExtendedChart | null = null;
+  let extendedParsed: ReturnType<typeof parseExtendedChart> | null = null;
   const colors = getSeriesColors(palette);
 
   if (!isExtended) {
@@ -222,21 +221,20 @@ function renderEChartsChart(
       const titleObj = option!.title as { text?: string } | undefined;
       if (titleObj?.text) {
         const titleDiv = container.createDiv({ cls: 'dgmo-echarts-title' });
-        titleDiv.style.textAlign = 'center';
-        titleDiv.style.fontSize = '20px';
-        titleDiv.style.fontWeight = 'bold';
-        titleDiv.style.color = palette.text;
-        titleDiv.style.padding = '8px 0 0';
+        titleDiv.setCssProps({ '--dgmo-title-color': palette.text });
         titleDiv.textContent = titleObj.text;
         option = { ...option!, title: undefined };
       }
 
       legendDiv = container.createDiv({ cls: 'dgmo-echarts-legend' });
-      legendDiv.style.height = LEGEND_HEIGHT + 'px';
-      legendDiv.innerHTML =
+      legendDiv.setCssProps({ '--dgmo-legend-height': LEGEND_HEIGHT + 'px' });
+      const legendSvgMarkup =
         `<svg xmlns="http://www.w3.org/2000/svg" width="${legendResult.width}" height="${LEGEND_HEIGHT}">` +
         legendResult.svg +
         '</svg>';
+      const legendDoc = new DOMParser().parseFromString(legendSvgMarkup, 'image/svg+xml');
+      const legendSvgEl = legendDoc.documentElement;
+      if (legendSvgEl) legendDiv.appendChild(legendDiv.doc.importNode(legendSvgEl, true));
     }
   }
 
@@ -251,8 +249,7 @@ function renderEChartsChart(
   }
 
   const wrapper = container.createDiv({ cls: 'dgmo-container-echarts' });
-  wrapper.style.minHeight = `${chartHeight}px`;
-  wrapper.style.height = `${chartHeight}px`;
+  wrapper.setCssProps({ '--dgmo-chart-height': `${chartHeight}px` });
   const chart = echarts.init(wrapper);
   chart.setOption(option!, true);
   activeCharts.add(chart);
@@ -380,7 +377,9 @@ async function renderDiagramSvg(
   }
 
   const wrapper = container.createDiv({ cls: 'dgmo-container' });
-  wrapper.innerHTML = svg;
+  const svgDoc = new DOMParser().parseFromString(svg, 'image/svg+xml');
+  const svgNode = svgDoc.documentElement;
+  if (svgNode) wrapper.appendChild(wrapper.doc.importNode(svgNode, true));
   scaleSvgToFit(wrapper);
 }
 
