@@ -175,7 +175,11 @@ function renderEChartsChart(
   let option: echarts.EChartsOption;
   let error: string | null | undefined;
   let legendGroups: LegendGroupData[] = [];
-  let extendedParsed: ReturnType<typeof parseExtendedChart> | null = null;
+  let scatterData: {
+    scatterPoints: { x: number; y: number; name: string; color?: string; size?: number; category?: string }[];
+    categoryColors?: Record<string, string>;
+    showLabels?: boolean;
+  } | null = null;
   const colors = getSeriesColors(palette);
 
   if (!isExtended) {
@@ -191,7 +195,13 @@ function renderEChartsChart(
     if (!error) {
       option = buildExtendedChartOption(parsed, palette, isDark);
       legendGroups = getExtendedChartLegendGroups(parsed, colors);
-      extendedParsed = parsed;
+      if (parsed.type === 'scatter' && parsed.scatterPoints) {
+        scatterData = {
+          scatterPoints: parsed.scatterPoints,
+          categoryColors: parsed.categoryColors,
+          showLabels: parsed.showLabels,
+        };
+      }
     }
   }
 
@@ -240,9 +250,9 @@ function renderEChartsChart(
 
   // Strip SSR-computed scatter labels — we'll recompute at runtime with actual dimensions
   const isScatter =
-    extendedParsed?.type === 'scatter' &&
-    extendedParsed.showLabels !== false &&
-    (extendedParsed.scatterPoints?.length ?? 0) > 0;
+    scatterData !== null &&
+    scatterData.showLabels !== false &&
+    scatterData.scatterPoints.length > 0;
 
   if (isScatter) {
     option = { ...option!, graphic: undefined };
@@ -255,9 +265,9 @@ function renderEChartsChart(
   activeCharts.add(chart);
 
   // Compute scatter labels at runtime using actual pixel positions
-  if (isScatter && extendedParsed) {
+  if (isScatter && scatterData) {
     const applyScatterLabels = () => {
-      const points = extendedParsed!.scatterPoints!;
+      const points = scatterData!.scatterPoints;
       const hasCategories = points.some((p) => p.category !== undefined);
       const categories = hasCategories
         ? ([...new Set(points.map((p) => p.category).filter(Boolean))] as string[])
@@ -274,7 +284,7 @@ function renderEChartsChart(
           const catIndex = categories.indexOf(pt.category);
           color =
             pt.color ??
-            extendedParsed!.categoryColors?.[pt.category] ??
+            scatterData!.categoryColors?.[pt.category] ??
             colors[catIndex % colors.length] ??
             '#888';
         } else {
