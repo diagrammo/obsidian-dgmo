@@ -267,7 +267,7 @@ function renderEChartsChart(
   // Compute scatter labels at runtime using actual pixel positions
   if (isScatter && scatterData) {
     const applyScatterLabels = () => {
-      const points = scatterData!.scatterPoints;
+      const points = scatterData.scatterPoints;
       const hasCategories = points.some((p) => p.category !== undefined);
       const categories = hasCategories
         ? ([...new Set(points.map((p) => p.category).filter(Boolean))] as string[])
@@ -284,7 +284,7 @@ function renderEChartsChart(
           const catIndex = categories.indexOf(pt.category);
           color =
             pt.color ??
-            scatterData!.categoryColors?.[pt.category] ??
+            scatterData.categoryColors?.[pt.category] ??
             colors[catIndex % colors.length] ??
             '#888';
         } else {
