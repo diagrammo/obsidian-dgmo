@@ -734,4 +734,38 @@ MessageQueue is a queue | t: Platform
 StaticServer is a storage | t: Platform
   latency-ms: 5
 \`\`\`
+
+---
+
+## Technology Radar
+
+\`\`\`dgmo
+tech-radar Product Strategy Radar
+
+rings
+  Invest
+  Pilot
+  Evaluate
+  Phase Out
+
+Growth Channels | quadrant: top-right
+  Content Marketing | ring: Invest, trend: stable
+  Community-Led Growth | ring: Pilot, trend: up
+  Influencer Partnerships | ring: Evaluate, trend: new
+
+Revenue Models | quadrant: top-left
+  Usage-Based Pricing | ring: Invest, trend: up
+  Annual Contracts | ring: Invest, trend: stable
+  Freemium Tier | ring: Pilot, trend: new
+
+Market Segments | quadrant: bottom-left
+  Mid-Market SaaS | ring: Invest, trend: stable
+  Enterprise | ring: Pilot, trend: up
+  SMB Self-Serve | ring: Phase Out, trend: down
+
+Customer Experience | quadrant: bottom-right
+  In-App Onboarding | ring: Invest, trend: stable
+  AI-Powered Support | ring: Evaluate, trend: new
+  NPS Surveys | ring: Evaluate, trend: stable
+\`\`\`
 `;
