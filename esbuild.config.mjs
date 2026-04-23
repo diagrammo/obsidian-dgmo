@@ -18,6 +18,9 @@ const config = {
   logLevel: 'info',
   treeShaking: true,
   absWorkingDir: __dirname,
+  loader: {
+    '.ttf': 'dataurl',
+  },
 };
 
 if (isWatch) {
