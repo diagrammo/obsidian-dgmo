@@ -1,0 +1,55 @@
+name: Release
+
+# Obsidian plugin discovery requires the GitHub release tag to match
+# manifest.json#version EXACTLY (no `v` prefix). The community plugin
+# store and BRAT installer both read the manifest from the GH release
+# at tag <version>.
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Verify tag matches manifest.json + package.json
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME}"
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          MANIFEST_VERSION=$(node -p "require('./manifest.json').version")
+          echo "tag=$TAG_VERSION pkg=$PKG_VERSION manifest=$MANIFEST_VERSION"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ] || [ "$MANIFEST_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Version mismatch — bump package.json + manifest.json to $TAG_VERSION before tagging."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            manifest.json
+            main.js
+            styles.css
+          fail_on_unmatched_files: true
+          generate_release_notes: true
