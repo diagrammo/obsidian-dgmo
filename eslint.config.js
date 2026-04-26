@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default [
@@ -15,5 +16,9 @@ export default [
       '@typescript-eslint/no-explicit-any': 'warn',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
+  },
+  {
+    files: ['*.mjs', 'scripts/**/*.mjs'],
+    languageOptions: { globals: globals.node },
   },
 ];

@@ -796,4 +796,149 @@ Powder Monkeys | color: orange
   Ferry shot and charges to the guns
   during a broadside.
 \`\`\`
+
+---
+
+## Cycle Diagram
+
+\`\`\`dgmo
+cycle The Pirate Raid Cycle
+
+circle-nodes
+
+Scout | color: blue
+  Scan the **horizon** for merchant vessels
+  - Listen for harbor gossip
+  - Watch for signal flags
+  -Spotted prey-> | color: blue, width: 5
+
+Pursue | color: green
+  Trim sails for **maximum speed**
+  - Close distance on windward side
+  - Cut off escape routes
+  -Alongside!-> | color: green, width: 5
+
+Board | color: orange
+  Swing across on grappling lines
+  - Secure the helm
+  - Round up prisoners
+  -Plunder secured-> | color: orange, width: 5
+
+Celebrate | color: red
+  Divide the spoils per the _Pirate Code_
+  - Repair hull damage
+  - Toast to fortune
+  -Thirst for more-> | color: red, width: 5
+\`\`\`
+
+---
+
+## Mindmap
+
+\`\`\`dgmo
+mindmap Pirate Captain's Playbook
+
+Tactics
+  Ambush
+    Fog Cover | description: Strike under low visibility
+    False Colors | description: Fly a merchant flag until in range
+  Naval Combat
+    Broadside Volley
+    Boarding Action
+  Retreat
+    Shallow Waters | description: Use draft advantage over warships
+    Smoke Screen
+Crew Management
+  Recruitment
+    Tavern Press-Gang
+    Captured Sailors
+  Morale
+    Fair Shares | description: Equal division of plunder
+    Music and Rum
+  Discipline | collapsed: true
+    The Plank
+    Marooning
+Navigation
+  Dead Reckoning
+  Star Charts | description: Celestial navigation for open ocean
+  Stolen Maps
+    Spanish Galleon Routes
+    Hidden Cove Locations
+\`\`\`
+
+---
+
+## Journey Map
+
+\`\`\`dgmo
+journey-map Stealing a Royal Navy Frigate
+
+persona Blackbeard | color: red
+  Edward Teach, the most feared pirate in the Caribbean
+
+tag Method m
+  Cunning(purple)
+  Force(red)
+  Diplomacy(green)
+  Gold(yellow)
+
+[Intelligence]
+  Hear tavern rumors of a frigate | 2, m: Cunning
+    thought: Every drunk sailor exaggerates — need to verify
+  Bribe the harbormaster | 1 Nervous, m: Gold
+    pain: Harbormaster demands triple the usual rate
+  Send a spy disguised as a carpenter | 4 Hopeful, m: Cunning
+    opportunity: Our spy could sabotage the ship's defenses
+
+[The Heist]
+  Create a diversion at the fort | 4 Excited, m: Force
+    description: A fire ship drifts into the harbor mouth at 2 AM
+  Storm the gangway | 2 Terrified, m: Force
+    pain: The duty officer sounds an alarm before being subdued
+  Cut the anchor cables | 5 Triumphant, m: Force
+    thought: The tide is with us — she slips free like a dream
+
+[Refit]
+  Rename her Queen Anne's Revenge | 5 Proud, m: Diplomacy
+    description: The crew cheers as the new flag rises at dawn
+  Paint the hull pitch black | 4, m: Force
+    thought: Fear is our greatest weapon
+\`\`\`
+
+---
+
+## Wireframe
+
+\`\`\`dgmo
+wireframe Pirate Crew Portal
+
+[Header]
+  The Jolly Roger Crew Hub
+  nav
+    Dashboard | active
+    Treasure Map
+    Ship Log
+    Crew Roster
+
+[Main]
+  # Ahoy, Captain!
+
+  Next Raid Target  [Port Royal]
+  Estimated Loot  [5000 doubloons] | readonly
+
+  {The Revenge | The Serpent | The Phantom}
+
+  <x> Load extra cannons
+  < > Fly false colors
+
+  (*) Full crew
+  ( ) Skeleton crew
+
+  (Set Sail!)
+  (Abort Mission) | ghost
+
+  ---
+
+  New to piracy? (Read the Code) | ghost
+\`\`\`
 `;

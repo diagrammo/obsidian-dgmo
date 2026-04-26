@@ -15,7 +15,7 @@
     "check:security": "pnpm audit --prod"
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.8.25",
+    "@diagrammo/dgmo": "^0.8.26",
     "echarts": "^6.0.0"
   },
   "devDependencies": {
@@ -23,9 +23,11 @@
     "depcheck": "^1.4.7",
     "esbuild": "^0.28.0",
     "eslint": "^10.2.0",
+    "globals": "^17.5.0",
     "obsidian": "^1.12.3",
     "prettier": "^3.8.2",
     "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.2"
+    "typescript-eslint": "^8.58.2",
+    "wawoff2": "^2.0.1"
   }
 }

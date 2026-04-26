@@ -1,8 +1,10 @@
-// esbuild's dataurl loader converts these imports to base64 data URLs at build time
-// @ts-expect-error — .ttf imports handled by esbuild dataurl loader
-import interRegularUrl from '@diagrammo/dgmo/fonts/Inter-Regular.ttf';
-// @ts-expect-error — .ttf imports handled by esbuild dataurl loader
-import interBoldUrl from '@diagrammo/dgmo/fonts/Inter-Bold.ttf';
+// esbuild's dataurl loader converts these imports to base64 data URLs at build time.
+// Source TTFs from @diagrammo/dgmo are pre-converted to woff2 (~65% smaller) and
+// committed under assets/ — see scripts/build-fonts.mjs to regenerate.
+// @ts-expect-error — .woff2 imports handled by esbuild dataurl loader
+import interRegularUrl from '../assets/Inter-Regular.woff2';
+// @ts-expect-error — .woff2 imports handled by esbuild dataurl loader
+import interBoldUrl from '../assets/Inter-Bold.woff2';
 
 let loaded = false;
 
