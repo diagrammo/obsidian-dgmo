@@ -19,7 +19,7 @@ const config = {
   treeShaking: true,
   absWorkingDir: __dirname,
   loader: {
-    '.ttf': 'dataurl',
+    '.woff2': 'dataurl',
   },
 };
 
