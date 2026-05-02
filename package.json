@@ -15,7 +15,7 @@
     "check:security": "pnpm audit --prod"
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.8.26",
+    "@diagrammo/dgmo": "link:../dgmo",
     "echarts": "^6.0.0"
   },
   "devDependencies": {
