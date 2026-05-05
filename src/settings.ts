@@ -5,13 +5,11 @@ import type DgmoPlugin from './main';
 export interface DgmoSettings {
   palette: string;
   theme: 'auto' | 'light' | 'dark';
-  chartHeight: number;
 }
 
 export const DEFAULT_SETTINGS: DgmoSettings = {
   palette: 'nord',
   theme: 'auto',
-  chartHeight: 400,
 };
 
 export class DgmoSettingTab extends PluginSettingTab {
@@ -89,20 +87,5 @@ export class DgmoSettingTab extends PluginSettingTab {
         });
       });
 
-    // Chart height
-    new Setting(containerEl)
-      .setName('Chart height')
-      .setDesc('Height in pixels for chart diagrams (bar, line, pie, etc.).')
-      .addText((text) => {
-        text.setPlaceholder('400');
-        text.setValue(String(this.plugin.settings.chartHeight));
-        text.onChange(async (value) => {
-          const num = parseInt(value, 10);
-          if (!isNaN(num) && num >= 100 && num <= 2000) {
-            this.plugin.settings.chartHeight = num;
-            await this.plugin.saveSettings();
-          }
-        });
-      });
   }
 }

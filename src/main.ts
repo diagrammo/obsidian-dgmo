@@ -1,5 +1,5 @@
 import { Notice, Plugin } from 'obsidian';
-import { renderDgmo, disposeAllCharts } from './render';
+import { renderDgmo } from './render';
 import { ensureInterFonts } from './fonts';
 import { EXAMPLE_NOTE } from './examples';
 import {
@@ -18,7 +18,7 @@ export default class DgmoPlugin extends Plugin {
     this.registerMarkdownCodeBlockProcessor('dgmo', async (source, el) => {
       await ensureInterFonts();
       const isDark = this.resolveIsDark();
-      await renderDgmo(source, el, isDark, this.settings.palette, this.settings.chartHeight);
+      await renderDgmo(source, el, isDark, this.settings.palette);
     });
 
     this.addCommand({
@@ -38,10 +38,6 @@ export default class DgmoPlugin extends Plugin {
     const file = await this.app.vault.create(path, EXAMPLE_NOTE);
     await this.app.workspace.getLeaf().openFile(file);
     new Notice('Diagrammo examples note created.');
-  }
-
-  onunload() {
-    disposeAllCharts();
   }
 
   async loadSettings() {
