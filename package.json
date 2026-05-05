@@ -15,8 +15,7 @@
     "check:security": "pnpm audit --prod"
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.10.1",
-    "echarts": "^6.0.0"
+    "@diagrammo/dgmo": "^0.10.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
