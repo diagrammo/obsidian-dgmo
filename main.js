@@ -100506,6 +100506,34 @@ Powder Monkeys | color: orange
 
 ---
 
+## Ring Diagram
+
+\`\`\`dgmo
+ring Captain's Sphere of Influence
+
+solid-fill
+
+Captain | color: purple
+  Final word on heading and plunder,
+  keeper of the ship's charter.
+
+Quartermaster | Second-in-command, arbitrates disputes and divvies the booty
+
+Crew | color: green
+  Deckhands, gunners, and powder
+  monkeys aboard the ship.
+
+Allied Crews | color: orange
+  Loose alliances kept by oath
+  or shared bounty in fair seas.
+
+The Open Sea | color: cyan
+  Weather, currents, and rival
+  flags beyond any captain's reach.
+\`\`\`
+
+---
+
 ## Cycle Diagram
 
 \`\`\`dgmo

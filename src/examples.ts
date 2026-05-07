@@ -543,7 +543,7 @@ Captain Blackbeard
 \`\`\`dgmo
 boxes-and-lines Pirate Software
 
-tag Status s
+tag Status as s
   Done(green)
   Doing(yellow)
   Todo(red)
@@ -677,7 +677,7 @@ gantt Product Launch Plan
 start 2024-01-15
 dependencies
 
-tag Team alias t
+tag Team as t
   Engineering(blue)
   Design(purple)
   QA(orange)
@@ -707,7 +707,7 @@ parallel
 \`\`\`dgmo
 infra Production Traffic Flow
 
-tag Team alias t
+tag Team as t
   Backend(blue)
   Platform(teal)
 
@@ -904,7 +904,7 @@ journey-map Stealing a Royal Navy Frigate
 persona Blackbeard | color: red
   Edward Teach, the most feared pirate in the Caribbean
 
-tag Method m
+tag Method as m
   Cunning(purple)
   Force(red)
   Diplomacy(green)
