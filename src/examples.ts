@@ -969,4 +969,41 @@ wireframe Pirate Crew Portal
 
   New to piracy? (Read the Code) | ghost
 \`\`\`
+
+---
+
+## RACI Matrix
+
+\`\`\`dgmo
+raci Voyage Operations
+roles
+  Cap  | color: red
+  QM   | color: orange
+  Bos  | color: yellow
+  Nav  | color: blue
+  Crew | color: gray
+
+[Departure] | color: teal
+  Plot the course
+    Cap: A
+    Nav: R
+    QM: C
+  Provision the hold
+    QM: A R
+    Cap: C
+    Crew: I
+
+[At Sea] | color: purple
+  Stand the watch
+    Bos: A
+    Crew: R
+  Mend sail damage
+    Bos: A
+    Crew: R
+
+[Landfall] | color: green
+  Negotiate with port
+    Cap: A R
+    QM: C
+\`\`\`
 `;

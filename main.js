@@ -20666,13 +20666,13 @@ function defaultSeriesFormatTooltip(opt) {
   var tooltipDimLen = tooltipDims.length;
   var value = series.getRawValue(dataIndex);
   var isValueArr = isArray(value);
-  var markerColor = retrieveVisualColorForTooltipMarker(series, dataIndex);
+  var markerColor2 = retrieveVisualColorForTooltipMarker(series, dataIndex);
   var inlineValue;
   var inlineValueType;
   var subBlocks;
   var sortParam;
   if (tooltipDimLen > 1 || isValueArr && !tooltipDimLen) {
-    var formatArrResult = formatTooltipArrayValue(value, series, dataIndex, tooltipDims, markerColor);
+    var formatArrResult = formatTooltipArrayValue(value, series, dataIndex, tooltipDims, markerColor2);
     inlineValue = formatArrResult.inlineValues;
     inlineValueType = formatArrResult.inlineValueTypes;
     subBlocks = formatArrResult.blocks;
@@ -20696,7 +20696,7 @@ function defaultSeriesFormatTooltip(opt) {
     sortParam,
     blocks: [createTooltipMarkup("nameValue", {
       markerType: "item",
-      markerColor,
+      markerColor: markerColor2,
       // Do not mix display seriesName and itemName in one tooltip,
       // which might confuses users.
       name: inlineName,
@@ -37922,7 +37922,7 @@ var RadarSeriesModel = (
       var indicatorAxes = coordSys.getIndicatorAxes();
       var name = this.getData().getName(dataIndex);
       var nameToDisplay = name === "" ? this.name : name;
-      var markerColor = retrieveVisualColorForTooltipMarker(this, dataIndex);
+      var markerColor2 = retrieveVisualColorForTooltipMarker(this, dataIndex);
       return createTooltipMarkup("section", {
         header: nameToDisplay,
         sortBlocks: true,
@@ -37930,7 +37930,7 @@ var RadarSeriesModel = (
           var val = data.get(data.mapDimension(axis.dim), dataIndex);
           return createTooltipMarkup("nameValue", {
             markerType: "subItem",
-            markerColor,
+            markerColor: markerColor2,
             name: axis.name,
             value: val,
             sortParam: val
@@ -56749,9 +56749,74 @@ function suggest(input, candidates) {
   }
   return best ? `Did you mean '${best}'?` : null;
 }
+function nameMergedMessage(args) {
+  return `merged '${args.incomingDisplay}' (line ${args.incomingLine}) into '${args.existingDisplay}' (line ${args.existingLine}) \u2014 names differ only in case/whitespace`;
+}
+function akaRemovedMessage() {
+  return `'aka' is no longer supported \u2014 use the participant name directly`;
+}
+function tagShorthandRemovedMessage(args) {
+  return `Bare tag shorthand 'tag ${args.name} ${args.alias}' was removed. Use 'tag ${args.name} as ${args.alias}' instead.`;
+}
+function vennAliasKeywordRemovedMessage(args) {
+  return `Venn 'alias' keyword was removed. Use 'as' instead \u2014 '${args.name} as ${args.alias}'.`;
+}
+var NAME_DIAGNOSTIC_CODES;
+var ALIAS_DIAGNOSTIC_CODES;
 var init_diagnostics = __esm({
   "src/diagnostics.ts"() {
     "use strict";
+    NAME_DIAGNOSTIC_CODES = {
+      /**
+       * Warning: two source-distinct names normalized to the same key
+       * (case- or whitespace-only difference). The first occurrence wins
+       * for display; subsequent occurrences fold into it. Suppressible
+       * per-line via `# allow-merge` annotation when intentional.
+       *
+       * Note: the `I_` prefix is intentionally preserved for stability —
+       * callers may have pinned this string. The diagnostic emits at
+       * `warning` severity (no `info` severity exists in DgmoError).
+       */
+      NAME_MERGED: "I_NAME_MERGED",
+      /**
+       * Error: a name contains a reserved character (`|`, `:`, edge
+       * sigils `-> <- ~> <~ -- ..`, shape brackets `[] () {} <>`,
+       * leading/trailing whitespace) without being wrapped in `"..."`.
+       */
+      NAME_RESERVED_CHAR: "E_NAME_RESERVED_CHAR",
+      /**
+       * Error: the removed `aka` keyword was used in a sequence
+       * participant declaration. Forgiving normalization makes aliasing
+       * unnecessary; the diagnostic directs users to the new syntax.
+       */
+      AKA_REMOVED: "E_AKA_REMOVED"
+    };
+    ALIAS_DIAGNOSTIC_CODES = {
+      /** Alias token used before its declaration (strict-ordering rule). */
+      ALIAS_BEFORE_DECL: "E_ALIAS_BEFORE_DECL",
+      /** Same alias bound to two different canonicals. */
+      ALIAS_COLLISION: "E_ALIAS_COLLISION",
+      /** Alias literal matches an existing canonical name. */
+      ALIAS_SHADOWS_NAME: "E_ALIAS_SHADOWS_NAME",
+      /** Same canonical re-declared with a different alias. */
+      ALIAS_REBINDING: "E_ALIAS_REBINDING",
+      /** `pm as p` where `pm` is itself an alias — must alias the canonical. */
+      ALIAS_OF_ALIAS: "E_ALIAS_OF_ALIAS",
+      /** Alias matches a reserved keyword (`as`, `is`, chart-type tokens, etc.). */
+      ALIAS_RESERVED_KEYWORD: "E_ALIAS_RESERVED_KEYWORD",
+      /** `as` matched but token doesn't fit `[A-Za-z][A-Za-z0-9_]{0,11}`. */
+      ALIAS_INVALID_FORMAT: "E_ALIAS_INVALID_FORMAT",
+      /** Canonical name was used plainly before its alias declaration. */
+      ALIAS_AFTER_CANONICAL: "E_ALIAS_AFTER_CANONICAL",
+      /** Legacy `tag Name x` shorthand encountered — use `tag Name as x`. */
+      TAG_SHORTHAND_REMOVED: "E_TAG_SHORTHAND_REMOVED",
+      /** Legacy venn `Name(color) alias X` encountered — use `as`. */
+      VENN_ALIAS_KEYWORD_REMOVED: "E_VENN_ALIAS_KEYWORD_REMOVED",
+      /** Reference token differs from a declared alias only in case. */
+      ALIAS_CASE_NEAR_MATCH: "W_ALIAS_CASE_NEAR_MATCH",
+      /** Alias declared but referenced ≤1 time. */
+      ALIAS_UNDERUSED: "W_ALIAS_UNDERUSED"
+    };
   }
 });
 function isRecognizedColorName(name) {
@@ -57486,8 +57551,30 @@ function relativeLuminance(hex2) {
   ].map((c) => c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
   return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
 }
+function contrastRatio(a, b) {
+  const la = relativeLuminance(a);
+  const lb2 = relativeLuminance(b);
+  const lighter = Math.max(la, lb2);
+  const darker2 = Math.min(la, lb2);
+  return (lighter + 0.05) / (darker2 + 0.05);
+}
 function contrastText(bg, lightText, darkText) {
-  return relativeLuminance(bg) > 0.179 ? darkText : lightText;
+  const L2 = relativeLuminance(bg);
+  if (L2 > 0.55) return darkText;
+  const raw = bg.replace("#", "");
+  const full = raw.length === 3 ? raw[0] + raw[0] + raw[1] + raw[1] + raw[2] + raw[2] : raw;
+  const r = parseInt(full.substring(0, 2), 16);
+  const g = parseInt(full.substring(2, 4), 16);
+  const b = parseInt(full.substring(4, 6), 16);
+  const minRgb = Math.min(r, g, b);
+  if (minRgb >= 100) {
+    return contrastRatio(bg, darkText) > contrastRatio(bg, lightText) ? darkText : lightText;
+  }
+  return lightText;
+}
+function shapeFill(palette, intent, isDark, opts) {
+  if (opts?.solid) return intent;
+  return mix(intent, isDark ? palette.surface : palette.bg, 25);
 }
 function getSeriesColors(palette) {
   const c = palette.colors;
@@ -57526,6 +57613,8 @@ var init_bold = __esm({
         border: "#cccccc",
         text: "#000000",
         textMuted: "#666666",
+        textOnFillLight: "#ffffff",
+        textOnFillDark: "#000000",
         primary: "#0000ff",
         secondary: "#ff00ff",
         accent: "#00cccc",
@@ -57551,6 +57640,8 @@ var init_bold = __esm({
         border: "#333333",
         text: "#ffffff",
         textMuted: "#aaaaaa",
+        textOnFillLight: "#ffffff",
+        textOnFillDark: "#000000",
         primary: "#00ccff",
         secondary: "#ff00ff",
         accent: "#ffff00",
@@ -57594,6 +57685,10 @@ var init_catppuccin = __esm({
         // Latte Text
         textMuted: "#5c5f77",
         // Latte Subtext1
+        textOnFillLight: "#eff1f5",
+        // Latte Base
+        textOnFillDark: "#11111b",
+        // Mocha Crust (Latte Text #4c4f69 fails 3:1 on saturated mid-luminance intents — orange/green/teal/cyan)
         primary: "#1e66f5",
         // Latte Blue
         secondary: "#7287fd",
@@ -57630,6 +57725,10 @@ var init_catppuccin = __esm({
         // Mocha Text
         textMuted: "#bac2de",
         // Mocha Subtext1
+        textOnFillLight: "#f5e0dc",
+        // Mocha Rosewater (highest-luminance accent)
+        textOnFillDark: "#11111b",
+        // Mocha Crust (low luminance)
         primary: "#89b4fa",
         // Mocha Blue
         secondary: "#b4befe",
@@ -57678,6 +57777,10 @@ var init_gruvbox = __esm({
         // dark1
         textMuted: "#7c6f64",
         // dark4
+        textOnFillLight: "#fbf1c7",
+        // light0
+        textOnFillDark: "#282828",
+        // dark0
         primary: "#076678",
         // faded blue
         secondary: "#427b58",
@@ -57721,6 +57824,10 @@ var init_gruvbox = __esm({
         // light1
         textMuted: "#a89984",
         // light4
+        textOnFillLight: "#fbf1c7",
+        // light0
+        textOnFillDark: "#282828",
+        // dark0
         primary: "#83a598",
         // bright blue
         secondary: "#8ec07c",
@@ -57776,6 +57883,10 @@ var init_nord = __esm({
         // nord0
         textMuted: "#4c566a",
         // nord3
+        textOnFillLight: "#eceff4",
+        // nord6
+        textOnFillDark: "#2e3440",
+        // nord0
         primary: "#5e81ac",
         // nord10
         secondary: "#81a1c1",
@@ -57820,6 +57931,10 @@ var init_nord = __esm({
         // nord6
         textMuted: "#d8dee9",
         // nord4
+        textOnFillLight: "#eceff4",
+        // nord6
+        textOnFillDark: "#2e3440",
+        // nord0
         primary: "#88c0d0",
         // nord8 (different from light's nord10)
         secondary: "#81a1c1",
@@ -57871,6 +57986,9 @@ var init_one_dark = __esm({
         border: "#d0d0d0",
         text: "#383a42",
         textMuted: "#696c77",
+        textOnFillLight: "#fafafa",
+        textOnFillDark: "#181a1f",
+        // Tightened from #383a42 — the light Text token fails 3:1 on saturated blue/teal
         primary: "#4078f2",
         secondary: "#a626a4",
         accent: "#0184bc",
@@ -57897,6 +58015,8 @@ var init_one_dark = __esm({
         border: "#3e4451",
         text: "#abb2bf",
         textMuted: "#5c6370",
+        textOnFillLight: "#fafafa",
+        textOnFillDark: "#21252b",
         primary: "#61afef",
         secondary: "#c678dd",
         accent: "#56b6c2",
@@ -57940,6 +58060,10 @@ var init_rose_pine = __esm({
         // Dawn Text
         textMuted: "#9893a5",
         // Dawn Muted
+        textOnFillLight: "#faf4ed",
+        // Dawn Base
+        textOnFillDark: "#191724",
+        // Rosé Pine Main Base (deep dark)
         primary: "#286983",
         // Dawn Pine
         secondary: "#56949f",
@@ -57984,6 +58108,10 @@ var init_rose_pine = __esm({
         // Moon Text
         textMuted: "#908caa",
         // Moon Subtle
+        textOnFillLight: "#e0def4",
+        // Moon Text
+        textOnFillDark: "#191724",
+        // Rosé Pine Main Base
         primary: "#3e8fb0",
         // Moon Pine
         secondary: "#9ccfd8",
@@ -58040,6 +58168,10 @@ var init_solarized = __esm({
         // base00
         textMuted: "#93a1a1",
         // base1
+        textOnFillLight: "#fdf6e3",
+        // base3
+        textOnFillDark: "#002b36",
+        // base03
         primary: "#268bd2",
         // blue
         secondary: "#2aa198",
@@ -58077,6 +58209,10 @@ var init_solarized = __esm({
         // base0
         textMuted: "#586e75",
         // base01
+        textOnFillLight: "#fdf6e3",
+        // base3
+        textOnFillDark: "#002b36",
+        // base03
         primary: "#268bd2",
         // blue
         secondary: "#2aa198",
@@ -58125,6 +58261,10 @@ var init_tokyo_night = __esm({
         // Day fg
         textMuted: "#6172b0",
         // Day fg_dark
+        textOnFillLight: "#e1e2e7",
+        // Day bg
+        textOnFillDark: "#1a1b26",
+        // Night bg (deep dark)
         primary: "#2e7de9",
         // Day blue
         secondary: "#007197",
@@ -58161,6 +58301,10 @@ var init_tokyo_night = __esm({
         // Night fg
         textMuted: "#a9b1d6",
         // Night fg_dark
+        textOnFillLight: "#c0caf5",
+        // Night fg
+        textOnFillDark: "#1a1b26",
+        // Night bg
         primary: "#7aa2f7",
         // Night blue
         secondary: "#7dcfff",
@@ -58206,6 +58350,8 @@ var init_dracula = __esm({
         // background as light text
         textMuted: "#44475a",
         // current line
+        textOnFillLight: "#f8f8f2",
+        textOnFillDark: "#282a36",
         primary: "#6272a4",
         // comment
         secondary: "#bd93f9",
@@ -58243,6 +58389,8 @@ var init_dracula = __esm({
         // foreground
         textMuted: "#bcc2d4",
         // muted foreground
+        textOnFillLight: "#f8f8f2",
+        textOnFillDark: "#282a36",
         primary: "#bd93f9",
         // purple (Dracula's signature)
         secondary: "#8be9fd",
@@ -58288,6 +58436,8 @@ var init_monokai = __esm({
         // classic Monokai bg as text
         textMuted: "#75715e",
         // comment
+        textOnFillLight: "#fafaf8",
+        textOnFillDark: "#272822",
         primary: "#49483e",
         // line highlight
         secondary: "#f92672",
@@ -58325,6 +58475,8 @@ var init_monokai = __esm({
         // foreground
         textMuted: "#a6a28c",
         // brightened comment
+        textOnFillLight: "#f8f8f2",
+        textOnFillDark: "#272822",
         primary: "#a6e22e",
         // green
         secondary: "#66d9ef",
@@ -58375,6 +58527,7 @@ __export2(palettes_exports, {
   registerPalette: () => registerPalette,
   rosePinePalette: () => rosePinePalette,
   shade: () => shade,
+  shapeFill: () => shapeFill,
   solarizedPalette: () => solarizedPalette,
   tint: () => tint,
   tokyoNightPalette: () => tokyoNightPalette
@@ -58419,6 +58572,13 @@ function extractColor(label, palette, diagnostics, line11) {
     label: label.substring(0, m2.index).trim(),
     color: color4
   };
+}
+function tryParseSharedOption(line11, options) {
+  if (/^solid-fill$/i.test(line11.trim())) {
+    options["solid-fill"] = "on";
+    return true;
+  }
+  return false;
 }
 function parseFirstLine(line11) {
   const trimmed = line11.trim();
@@ -58567,6 +58727,8 @@ function parsePipeMetadata(segments, aliasMap = /* @__PURE__ */ new Map(), error
   return metadata;
 }
 var ALL_CHART_TYPES;
+var PIPE_KEY_VALUE_PREFIX_RE;
+var PIPE_LIKELY_STRUCTURED_TAIL_RE;
 var COLOR_SUFFIX_RE;
 var OPTION_NOCOLON_RE;
 var MULTIPLE_PIPE_ERROR;
@@ -58616,8 +58778,18 @@ var init_parsing = __esm({
       "tech-radar",
       "cycle",
       "journey-map",
-      "pyramid"
+      "pyramid",
+      "ring",
+      "raci"
+      // Note: `rasci` and `daci` are NOT first-line keywords. The `raci` parser
+      // covers all three variants — variant is inferred from markers (D → daci,
+      // S → rasci, else raci) or locked via the `variant-rasci`/`variant-daci`
+      // directive. They remain registered in `chart-types.ts` for AI suggestion
+      // (so "rasci matrix" prompts still resolve), but are intentionally absent
+      // here so first-line dispatch rejects them.
     ]);
+    PIPE_KEY_VALUE_PREFIX_RE = /^\s*[A-Za-z][A-Za-z0-9_-]*\s*:/;
+    PIPE_LIKELY_STRUCTURED_TAIL_RE = /,\s*[A-Za-z][A-Za-z0-9_-]*\s*:/;
     COLOR_SUFFIX_RE = /\(([^)]+)\)\s*$/;
     OPTION_NOCOLON_RE = /^([a-z][a-z0-9-]*)\s+(.+)$/i;
     MULTIPLE_PIPE_ERROR = 'Use a single "|" to start metadata, then separate items with commas.';
@@ -58630,7 +58802,7 @@ function stripDefaultModifier(text) {
   return { text, isDefault: false };
 }
 function isAliasToken(token) {
-  return /^[a-z]{1,4}$/.test(token);
+  return /^[A-Za-z][A-Za-z0-9_]{0,11}$/.test(token);
 }
 function isTagBlockHeading(trimmed) {
   return TAG_BLOCK_NOCOLON_RE.test(trimmed);
@@ -58645,40 +58817,56 @@ function parseTagDeclaration(line11) {
   let alias;
   let inlineValues;
   let colorHint;
+  let legacyForm;
   let restStartIdx = 1;
-  if (tokens2[0][0] === '"' || tokens2[0][0] === "'") {
-    if (tokens2.length > 1 && isAliasToken(tokens2[1])) {
-      alias = tokens2[1];
-      restStartIdx = 2;
+  let valueStart = tokens2.length;
+  for (let i = 1; i < tokens2.length; i++) {
+    if (tokens2[i].includes("(")) {
+      valueStart = i;
+      break;
+    }
+  }
+  let keywordIdx = -1;
+  let keywordKind = null;
+  for (let i = 1; i < valueStart; i++) {
+    const t = tokens2[i].toLowerCase();
+    if (t === "as") {
+      keywordIdx = i;
+      keywordKind = "as";
+      break;
+    }
+    if (t === "alias") {
+      keywordIdx = i;
+      keywordKind = "alias";
+      break;
+    }
+  }
+  if (keywordIdx > 0 && keywordIdx + 1 < tokens2.length) {
+    const candidate = tokens2[keywordIdx + 1];
+    if (isAliasToken(candidate)) {
+      name = tokens2.slice(0, keywordIdx).map((t) => stripQuotes(t)).join(" ");
+      alias = candidate;
+      if (keywordKind === "alias") legacyForm = "alias-keyword";
+      restStartIdx = keywordIdx + 2;
+    } else {
+      name = tokens2.slice(0, valueStart).map((t) => stripQuotes(t)).join(" ");
+      restStartIdx = valueStart;
     }
   } else {
-    const remainingText = tokens2.slice(1).join(" ");
-    const commaInRemaining = remainingText.includes(",");
-    if (tokens2.length === 1) {
-    } else if (tokens2.length === 2 && isAliasToken(tokens2[1]) && !commaInRemaining) {
-      alias = tokens2[1];
-      restStartIdx = 2;
-    } else if (tokens2.length >= 2) {
-      if (isAliasToken(tokens2[1])) {
+    if (tokens2[0][0] === '"' || tokens2[0][0] === "'") {
+      if (tokens2.length > 1 && isAliasToken(tokens2[1]) && valueStart > 1) {
         alias = tokens2[1];
+        legacyForm = "bare-shorthand";
         restStartIdx = 2;
-      } else {
-        let valueStart = tokens2.length;
-        for (let i = 1; i < tokens2.length; i++) {
-          if (tokens2[i].includes("(")) {
-            valueStart = i;
-            break;
-          }
-        }
-        if (valueStart > 1 && isAliasToken(tokens2[valueStart - 1])) {
-          alias = tokens2[valueStart - 1];
-          name = tokens2.slice(0, valueStart - 1).map((t) => stripQuotes(t)).join(" ");
-          restStartIdx = valueStart;
-        } else {
-          name = tokens2.slice(0, valueStart).map((t) => stripQuotes(t)).join(" ");
-          restStartIdx = valueStart;
-        }
       }
+    } else if (valueStart > 1 && isAliasToken(tokens2[valueStart - 1])) {
+      alias = tokens2[valueStart - 1];
+      legacyForm = "bare-shorthand";
+      name = tokens2.slice(0, valueStart - 1).map((t) => stripQuotes(t)).join(" ");
+      restStartIdx = valueStart;
+    } else {
+      name = tokens2.slice(0, valueStart).map((t) => stripQuotes(t)).join(" ");
+      restStartIdx = valueStart;
     }
   }
   if (restStartIdx < tokens2.length) {
@@ -58696,7 +58884,8 @@ function parseTagDeclaration(line11) {
     name,
     alias,
     colorHint,
-    inlineValues: inlineValues && inlineValues.length > 0 ? inlineValues : void 0
+    inlineValues: inlineValues && inlineValues.length > 0 ? inlineValues : void 0,
+    legacyForm
   };
 }
 function resolveTagColor(metadata, tagGroups, activeGroupName, isContainer) {
@@ -58799,12 +58988,24 @@ function resolveActiveTagGroup(tagGroups, explicitActiveTag, programmaticOverrid
 function matchTagBlockHeading(trimmed) {
   return parseTagDeclaration(trimmed);
 }
+function emitTagLegacyDiagnostic(match, lineNumber, diagnostics) {
+  if (!match.legacyForm || !match.alias) return;
+  diagnostics.push(
+    makeDgmoError(
+      lineNumber,
+      tagShorthandRemovedMessage({ name: match.name, alias: match.alias }),
+      "error",
+      ALIAS_DIAGNOSTIC_CODES.TAG_SHORTHAND_REMOVED
+    )
+  );
+}
 var TAG_BLOCK_NOCOLON_RE;
 var VALID_TAG_IDENT_RE;
 var init_tag_groups = __esm({
   "src/utils/tag-groups.ts"() {
     "use strict";
     init_parsing();
+    init_diagnostics();
     TAG_BLOCK_NOCOLON_RE = /^tag\s+/i;
     VALID_TAG_IDENT_RE = /^[A-Za-z_][A-Za-z0-9_-]*$/;
   }
@@ -59881,6 +60082,19 @@ var init_participant_inference = __esm({
     RULE_COUNT = PARTICIPANT_RULES.length;
   }
 });
+function normalizeName(input) {
+  return input.normalize("NFC").replace(WHITESPACE_RUN_RE, " ").trim().toLocaleLowerCase("en-US");
+}
+function displayName(input) {
+  return input.normalize("NFC").trim();
+}
+var WHITESPACE_RUN_RE;
+var init_name_normalize = __esm({
+  "src/utils/name-normalize.ts"() {
+    "use strict";
+    WHITESPACE_RUN_RE = /\s+/gu;
+  }
+});
 var parser_exports = {};
 __export2(parser_exports, {
   isSequenceBlock: () => isSequenceBlock,
@@ -59889,6 +60103,16 @@ __export2(parser_exports, {
   looksLikeSequence: () => looksLikeSequence,
   parseSequenceDgmo: () => parseSequenceDgmo
 });
+function isHardRemovedToken(remainder) {
+  if (/\baka\b/i.test(remainder)) {
+    return {
+      removed: true,
+      code: NAME_DIAGNOSTIC_CODES.AKA_REMOVED,
+      message: akaRemovedMessage()
+    };
+  }
+  return { removed: false };
+}
 function isSequenceBlock(el) {
   return "kind" in el && el.kind === "block";
 }
@@ -59910,8 +60134,14 @@ function parseNoteLine(trimmed, participants, participantIds, sortedParticipants
       if (!lastMsgFrom) return { kind: "skip" };
       participantId = lastMsgFrom;
     }
-    if (participantIds.has(participantId)) {
-      return { kind: "multi-head", position, participantId };
+    const lookupKey = normalizeName(participantId);
+    if (participantIds.has(lookupKey)) {
+      const found = participants.find((p2) => normalizeName(p2.id) === lookupKey);
+      return {
+        kind: "multi-head",
+        position,
+        participantId: found?.id ?? participantId
+      };
     }
   }
   const bareMatch = trimmed.match(NOTE_BARE);
@@ -59929,7 +60159,8 @@ function parseNoteLine(trimmed, participants, participantIds, sortedParticipants
       }
       if (!afterPos) {
         if (!lastMsgFrom) return { kind: "skip" };
-        if (!participantIds.has(lastMsgFrom)) return { kind: "skip" };
+        if (!participantIds.has(normalizeName(lastMsgFrom)))
+          return { kind: "skip" };
         return { kind: "multi-head", position, participantId: lastMsgFrom };
       }
       const resolved = resolveParticipantAndText(
@@ -59956,7 +60187,8 @@ function parseNoteLine(trimmed, participants, participantIds, sortedParticipants
       }
       if (hadOf) return { kind: "skip" };
       if (!lastMsgFrom) return { kind: "skip" };
-      if (!participantIds.has(lastMsgFrom)) return { kind: "skip" };
+      if (!participantIds.has(normalizeName(lastMsgFrom)))
+        return { kind: "skip" };
       return {
         kind: "single",
         position,
@@ -59965,7 +60197,8 @@ function parseNoteLine(trimmed, participants, participantIds, sortedParticipants
       };
     }
     if (!lastMsgFrom) return { kind: "skip" };
-    if (!participantIds.has(lastMsgFrom)) return { kind: "skip" };
+    if (!participantIds.has(normalizeName(lastMsgFrom)))
+      return { kind: "skip" };
     return {
       kind: "single",
       position: "right",
@@ -59981,20 +60214,24 @@ function resolveParticipantAndText(input, participants, participantIds, sortedPa
     const endQuote = input.indexOf(quote, 1);
     if (endQuote > 0) {
       const name = input.substring(1, endQuote);
-      if (participantIds.has(name)) {
+      const key = normalizeName(name);
+      if (participantIds.has(key)) {
         const text = input.substring(endQuote + 1).trim();
-        return { participantId: name, text };
+        const found = participants.find((p2) => normalizeName(p2.id) === key);
+        return { participantId: found?.id ?? name, text };
       }
     }
     return null;
   }
   const sorted = sortedParticipantsCache;
   for (const p2 of sorted) {
-    if (input.startsWith(p2.id)) {
-      const remaining = input.substring(p2.id.length);
-      if (remaining === "" || remaining[0] === " " || remaining[0] === "	") {
-        return { participantId: p2.id, text: remaining.trim() };
-      }
+    const idLen = p2.id.length;
+    if (input.length < idLen) continue;
+    const candidate = input.substring(0, idLen);
+    if (normalizeName(candidate) !== normalizeName(p2.id)) continue;
+    const remaining = input.substring(idLen);
+    if (remaining === "" || remaining[0] === " " || remaining[0] === "	") {
+      return { participantId: p2.id, text: remaining.trim() };
     }
   }
   return null;
@@ -60012,6 +60249,11 @@ function parseSequenceDgmo(content) {
     options: {},
     diagnostics: [],
     error: null
+  };
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  const resolveAlias = (token) => {
+    const trimmed = token.trim();
+    return nameAliasMap.get(trimmed) ?? trimmed;
   };
   const fail = (line11, message) => {
     const diag = makeDgmoError(line11, message);
@@ -60050,12 +60292,54 @@ function parseSequenceDgmo(content) {
   }
   let activeGroup = null;
   const participantIds = /* @__PURE__ */ new Set();
+  const idByKey = /* @__PURE__ */ new Map();
+  const addParticipant = (name, lineNumber, extras) => {
+    const key = normalizeName(name);
+    const trimmed = name.trim();
+    const incomingLabel = extras?.label ?? trimmed;
+    if (participantIds.has(key)) {
+      const existing = result.participants.find(
+        (p2) => normalizeName(p2.id) === key
+      );
+      if (existing) {
+        if (displayName(existing.label) !== displayName(incomingLabel) || displayName(existing.id) !== displayName(trimmed)) {
+          result.diagnostics.push(
+            makeDgmoError(
+              lineNumber,
+              nameMergedMessage({
+                incomingDisplay: trimmed,
+                incomingLine: lineNumber,
+                existingDisplay: existing.id,
+                existingLine: existing.lineNumber
+              }),
+              "warning",
+              NAME_DIAGNOSTIC_CODES.NAME_MERGED
+            )
+          );
+        }
+        return existing.id;
+      }
+      return idByKey.get(key) ?? trimmed;
+    }
+    participantIds.add(key);
+    idByKey.set(key, trimmed);
+    sortedCacheDirty = true;
+    result.participants.push({
+      id: trimmed,
+      label: incomingLabel,
+      type: extras?.type ?? inferParticipantType(name),
+      lineNumber,
+      ...extras?.position !== void 0 ? { position: extras.position } : {},
+      ...extras?.metadata ? { metadata: extras.metadata } : {}
+    });
+    return trimmed;
+  };
   let sortedParticipantsCache = [];
   let sortedCacheDirty = true;
   const getSortedParticipants = () => {
     if (sortedCacheDirty) {
       sortedParticipantsCache = [...result.participants].sort(
-        (a, b) => b.id.length - a.id.length
+        (a, b) => b.label.length - a.label.length
       );
       sortedCacheDirty = false;
     }
@@ -60164,6 +60448,7 @@ function parseSequenceDgmo(content) {
     }
     const tagBlockMatch = matchTagBlockHeading(trimmed);
     if (tagBlockMatch) {
+      emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
       if (contentStarted) {
         pushError(lineNumber, "Tag groups must appear before sequence content");
         continue;
@@ -60289,6 +60574,17 @@ function parseSequenceDgmo(content) {
           continue;
         }
       }
+      if (KNOWN_SEQ_BOOLEANS.has(optLower) && optLower === "solid-fill") {
+        if (contentStarted) {
+          pushError(
+            lineNumber,
+            `Options like '${trimmed}' must appear before the first message or declaration`
+          );
+          continue;
+        }
+        result.options["solid-fill"] = "on";
+        continue;
+      }
     }
     const { core: isACore, meta: isAMeta } = splitPipe(trimmed, lineNumber);
     const isAMatch = !/^note(\s|$)/i.test(trimmed) ? isACore.match(IS_A_PATTERN) : null;
@@ -60296,38 +60592,41 @@ function parseSequenceDgmo(content) {
       contentStarted = true;
       const id = isAMatch[1];
       const typeStr = isAMatch[2].toLowerCase();
-      const remainder = isAMatch[3]?.trim() || "";
+      let remainder = isAMatch[3]?.trim() || "";
       const participantType = VALID_PARTICIPANT_TYPES.has(
         typeStr
       ) ? typeStr : "default";
-      const akaMatch = remainder.match(
-        /\baka\s+(.+?)(?:\s+position\s+-?\d+\s*$|$)/i
-      );
-      const posMatch = remainder.match(/\bposition\s+(-?\d+)/i);
-      const alias = akaMatch ? akaMatch[1].trim() : null;
-      const position = posMatch ? parseInt(posMatch[1], 10) : void 0;
-      if (!participantIds.has(id)) {
-        participantIds.add(id);
-        sortedCacheDirty = true;
-        result.participants.push({
-          id,
-          label: alias || id,
-          type: participantType,
-          lineNumber,
-          ...position !== void 0 ? { position } : {},
-          ...isAMeta ? { metadata: isAMeta } : {}
-        });
+      const removed = isHardRemovedToken(remainder);
+      if (removed.removed) {
+        result.diagnostics.push(
+          makeDgmoError(lineNumber, removed.message, "error", removed.code)
+        );
+        continue;
       }
-      if (activeGroup && !activeGroup.participantIds.includes(id)) {
-        const existingGroup = participantGroupMap.get(id);
+      const asInRemainder = remainder.match(
+        /^(.*?)\s*\bas\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
+      );
+      if (asInRemainder) {
+        nameAliasMap.set(normalizeName(asInRemainder[2]), id);
+        remainder = asInRemainder[1].trim();
+      }
+      const posMatch = remainder.match(/\bposition\s+(-?\d+)/i);
+      const position = posMatch ? parseInt(posMatch[1], 10) : void 0;
+      const key = addParticipant(id, lineNumber, {
+        type: participantType,
+        position,
+        metadata: isAMeta
+      });
+      if (activeGroup && !activeGroup.participantIds.includes(key)) {
+        const existingGroup = participantGroupMap.get(key);
         if (existingGroup) {
           pushError(
             lineNumber,
             `Participant '${id}' is already in group '${existingGroup}' \u2014 participants can only belong to one group`
           );
         } else {
-          activeGroup.participantIds.push(id);
-          participantGroupMap.set(id, activeGroup.name);
+          activeGroup.participantIds.push(key);
+          participantGroupMap.set(key, activeGroup.name);
         }
       }
       continue;
@@ -60338,28 +60637,20 @@ function parseSequenceDgmo(content) {
       contentStarted = true;
       const id = posOnlyMatch[1];
       const position = parseInt(posOnlyMatch[2], 10);
-      if (!participantIds.has(id)) {
-        participantIds.add(id);
-        sortedCacheDirty = true;
-        result.participants.push({
-          id,
-          label: id,
-          type: inferParticipantType(id),
-          lineNumber,
-          position,
-          ...posMeta ? { metadata: posMeta } : {}
-        });
-      }
-      if (activeGroup && !activeGroup.participantIds.includes(id)) {
-        const existingGroup = participantGroupMap.get(id);
+      const key = addParticipant(id, lineNumber, {
+        position,
+        metadata: posMeta
+      });
+      if (activeGroup && !activeGroup.participantIds.includes(key)) {
+        const existingGroup = participantGroupMap.get(key);
         if (existingGroup) {
           pushError(
             lineNumber,
             `Participant '${id}' is already in group '${existingGroup}' \u2014 participants can only belong to one group`
           );
         } else {
-          activeGroup.participantIds.push(id);
-          participantGroupMap.set(id, activeGroup.name);
+          activeGroup.participantIds.push(key);
+          participantGroupMap.set(key, activeGroup.name);
         }
       }
       continue;
@@ -60374,27 +60665,17 @@ function parseSequenceDgmo(content) {
         `'${id}(${color4})' syntax is no longer supported \u2014 use 'tag:' groups for coloring`
       );
       contentStarted = true;
-      if (!participantIds.has(id)) {
-        participantIds.add(id);
-        sortedCacheDirty = true;
-        result.participants.push({
-          id,
-          label: id,
-          type: inferParticipantType(id),
-          lineNumber,
-          ...colorMeta ? { metadata: colorMeta } : {}
-        });
-      }
-      if (activeGroup && !activeGroup.participantIds.includes(id)) {
-        const existingGroup = participantGroupMap.get(id);
+      const key = addParticipant(id, lineNumber, { metadata: colorMeta });
+      if (activeGroup && !activeGroup.participantIds.includes(key)) {
+        const existingGroup = participantGroupMap.get(key);
         if (existingGroup) {
           pushError(
             lineNumber,
             `Participant '${id}' is already in group '${existingGroup}' \u2014 participants can only belong to one group`
           );
         } else {
-          activeGroup.participantIds.push(id);
-          participantGroupMap.set(id, activeGroup.name);
+          activeGroup.participantIds.push(key);
+          participantGroupMap.set(key, activeGroup.name);
         }
       }
       continue;
@@ -60405,26 +60686,17 @@ function parseSequenceDgmo(content) {
       if (/^\S+$/.test(bareCore) && !ARROW_PATTERN.test(bareCore) && (inGroup || !contentStarted || bareMeta)) {
         contentStarted = true;
         const id = bareCore;
-        if (!participantIds.has(id)) {
-          participantIds.add(id);
-          result.participants.push({
-            id,
-            label: id,
-            type: inferParticipantType(id),
-            lineNumber,
-            ...bareMeta ? { metadata: bareMeta } : {}
-          });
-        }
-        if (activeGroup && !activeGroup.participantIds.includes(id)) {
-          const existingGroup = participantGroupMap.get(id);
+        const key = addParticipant(id, lineNumber, { metadata: bareMeta });
+        if (activeGroup && !activeGroup.participantIds.includes(key)) {
+          const existingGroup = participantGroupMap.get(key);
           if (existingGroup) {
             pushError(
               lineNumber,
               `Participant '${id}' is already in group '${existingGroup}' \u2014 participants can only belong to one group`
             );
           } else {
-            activeGroup.participantIds.push(id);
-            participantGroupMap.set(id, activeGroup.name);
+            activeGroup.participantIds.push(key);
+            participantGroupMap.set(key, activeGroup.name);
           }
         }
         continue;
@@ -60454,13 +60726,15 @@ function parseSequenceDgmo(content) {
     if (labeledArrow) {
       contentStarted = true;
       const { from, to, label: rawLabel, async: isAsync } = labeledArrow;
-      lastMsgFrom = from;
+      const fromKey = addParticipant(resolveAlias(from), lineNumber);
+      const toKey = addParticipant(resolveAlias(to), lineNumber);
+      lastMsgFrom = fromKey;
       const labelResult = parseInArrowLabel(rawLabel, lineNumber);
       labelResult.diagnostics.forEach((d) => result.diagnostics.push(d));
       const label = labelResult.label ?? rawLabel;
       const msg = {
-        from,
-        to,
+        from: fromKey,
+        to: toKey,
         label,
         lineNumber,
         ...isAsync ? { async: true } : {},
@@ -60468,26 +60742,6 @@ function parseSequenceDgmo(content) {
       };
       result.messages.push(msg);
       currentContainer().push(msg);
-      if (!participantIds.has(from)) {
-        participantIds.add(from);
-        sortedCacheDirty = true;
-        result.participants.push({
-          id: from,
-          label: from,
-          type: inferParticipantType(from),
-          lineNumber
-        });
-      }
-      if (!participantIds.has(to)) {
-        participantIds.add(to);
-        sortedCacheDirty = true;
-        result.participants.push({
-          id: to,
-          label: to,
-          type: inferParticipantType(to),
-          lineNumber
-        });
-      }
       continue;
     }
     const colonPostfixSync = arrowCore.match(
@@ -60536,10 +60790,12 @@ function parseSequenceDgmo(content) {
       contentStarted = true;
       const from = bareCall[1];
       const to = bareCall[2];
-      lastMsgFrom = from;
+      const fromKey = addParticipant(resolveAlias(from), lineNumber);
+      const toKey = addParticipant(resolveAlias(to), lineNumber);
+      lastMsgFrom = fromKey;
       const msg = {
-        from,
-        to,
+        from: fromKey,
+        to: toKey,
         label: "",
         lineNumber,
         ...bareCallAsync ? { async: true } : {},
@@ -60547,26 +60803,6 @@ function parseSequenceDgmo(content) {
       };
       result.messages.push(msg);
       currentContainer().push(msg);
-      if (!participantIds.has(from)) {
-        participantIds.add(from);
-        sortedCacheDirty = true;
-        result.participants.push({
-          id: from,
-          label: from,
-          type: inferParticipantType(from),
-          lineNumber
-        });
-      }
-      if (!participantIds.has(to)) {
-        participantIds.add(to);
-        sortedCacheDirty = true;
-        result.participants.push({
-          id: to,
-          label: to,
-          type: inferParticipantType(to),
-          lineNumber
-        });
-      }
       continue;
     }
     const ifMatch = trimmed.match(/^if\s+(.+)$/i);
@@ -60798,11 +61034,12 @@ var init_parser = __esm({
     "use strict";
     init_participant_inference();
     init_diagnostics();
+    init_name_normalize();
     init_arrows();
     init_parsing();
     init_tag_groups();
     KNOWN_SEQ_OPTIONS = /* @__PURE__ */ new Set(["active-tag"]);
-    KNOWN_SEQ_BOOLEANS = /* @__PURE__ */ new Set(["activations"]);
+    KNOWN_SEQ_BOOLEANS = /* @__PURE__ */ new Set(["activations", "solid-fill"]);
     VALID_PARTICIPANT_TYPES = /* @__PURE__ */ new Set([
       "service",
       "database",
@@ -60833,7 +61070,7 @@ __export2(flowchart_parser_exports, {
   parseFlowchart: () => parseFlowchart
 });
 function nodeId(shape, label) {
-  return `${shape}:${label.toLowerCase().trim()}`;
+  return `${shape}:${normalizeName(label)}`;
 }
 function parseNodeRef(text) {
   const t = text.trim();
@@ -61001,17 +61238,44 @@ function parseFlowchart(content, palette) {
   const indentStack = [];
   let contentStarted = false;
   let firstLineParsed = false;
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias(seg) {
+    const trimmed = seg.trim();
+    const m2 = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m2) return { seg: trimmed };
+    return { seg: m2[1].trim(), alias: m2[2] };
+  }
   function getOrCreateNode(ref, lineNumber) {
-    const existing = nodeMap.get(ref.id);
-    if (existing) return existing;
+    const key = ref.id;
+    const existing = nodeMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(ref.label);
+      const existingDisplay = displayName(existing.label);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
     const node = {
-      id: ref.id,
+      id: key,
       label: ref.label,
       shape: ref.shape,
       lineNumber,
       ...ref.color && { color: ref.color }
     };
-    nodeMap.set(ref.id, node);
+    nodeMap.set(key, node);
     result.nodes.push(node);
     return node;
   }
@@ -61038,11 +61302,19 @@ function parseFlowchart(content, palette) {
     const implicitSourceId = indentStack.length > 0 ? indentStack[indentStack.length - 1].nodeId : null;
     const segments = splitArrows(trimmed);
     if (segments.length === 1) {
-      const ref = parseNodeRef(segments[0]);
+      const peeled = peelAlias(segments[0]);
+      const ref = parseNodeRef(peeled.seg);
       if (ref) {
         const node = getOrCreateNode(ref, lineNumber);
+        if (peeled.alias)
+          nameAliasMap.set(normalizeName(peeled.alias), node.id);
         indentStack.push({ nodeId: node.id, indent });
         return node.id;
+      }
+      const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+      if (aliasResolved !== void 0) {
+        indentStack.push({ nodeId: aliasResolved, indent });
+        return aliasResolved;
       }
       return null;
     }
@@ -61059,9 +61331,24 @@ function parseFlowchart(content, palette) {
         );
         continue;
       }
-      const ref = parseNodeRef(seg);
+      const peeled = peelAlias(seg);
+      let ref = parseNodeRef(peeled.seg);
+      if (!ref) {
+        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+        if (aliasResolved !== void 0) {
+          const existing = nodeMap.get(aliasResolved);
+          if (existing) {
+            ref = {
+              id: aliasResolved,
+              label: existing.label,
+              shape: existing.shape
+            };
+          }
+        }
+      }
       if (!ref) continue;
       const node = getOrCreateNode(ref, lineNumber);
+      if (peeled.alias) nameAliasMap.set(normalizeName(peeled.alias), node.id);
       if (pendingArrow !== null) {
         const sourceId = lastNodeId ?? implicitSourceId;
         if (sourceId) {
@@ -61115,6 +61402,14 @@ function parseFlowchart(content, palette) {
     if (!contentStarted) {
       if (/^direction-lr$/i.test(trimmed)) {
         result.direction = "LR";
+        continue;
+      }
+      if (/^solid-fill$/i.test(trimmed)) {
+        result.options["solid-fill"] = "on";
+        continue;
+      }
+      if (/^no-color$/i.test(trimmed)) {
+        result.options["color"] = "off";
         continue;
       }
       const optMatch = trimmed.match(OPTION_NOCOLON_RE);
@@ -61189,6 +61484,7 @@ var init_flowchart_parser = __esm({
     init_diagnostics();
     init_arrows();
     init_parsing();
+    init_name_normalize();
     NODE_ID_RE = /^([a-zA-Z_][\w-]*)[\s([</{]/;
   }
 });
@@ -61304,7 +61600,7 @@ function parseStateNodeRef(text) {
   const label = t;
   if (!label) return null;
   return {
-    id: `state:${label.toLowerCase().trim()}`,
+    id: `state:${normalizeName(label)}`,
     label,
     shape: "state"
   };
@@ -61333,21 +61629,48 @@ function parseState(content, palette) {
   const groups = [];
   let contentStarted = false;
   let firstLineParsed = false;
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias(seg) {
+    const trimmed = seg.trim();
+    const m2 = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m2) return { seg: trimmed };
+    return { seg: m2[1].trim(), alias: m2[2] };
+  }
   function getOrCreateNode(ref, lineNumber) {
-    const existing = nodeMap.get(ref.id);
-    if (existing) return existing;
+    const key = ref.id;
+    const existing = nodeMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(ref.label);
+      const existingDisplay = displayName(existing.label);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
     const node = {
-      id: ref.id,
+      id: key,
       label: ref.label,
       shape: ref.shape,
       lineNumber,
       ...ref.color && { color: ref.color },
       ...currentGroup && { group: currentGroup.id }
     };
-    nodeMap.set(ref.id, node);
+    nodeMap.set(key, node);
     result.nodes.push(node);
-    if (currentGroup && !currentGroup.nodeIds.includes(ref.id)) {
-      currentGroup.nodeIds.push(ref.id);
+    if (currentGroup && !currentGroup.nodeIds.includes(key)) {
+      currentGroup.nodeIds.push(key);
     }
     return node;
   }
@@ -61411,6 +61734,14 @@ function parseState(content, palette) {
         result.direction = "TB";
         continue;
       }
+      if (/^solid-fill$/i.test(trimmed)) {
+        result.options["solid-fill"] = "on";
+        continue;
+      }
+      if (/^no-color$/i.test(trimmed)) {
+        result.options["color"] = "off";
+        continue;
+      }
       const optMatch = trimmed.match(OPTION_NOCOLON_RE);
       if (optMatch && !trimmed.includes("->")) {
         const key = optMatch[1].toLowerCase();
@@ -61439,11 +61770,19 @@ function parseState(content, palette) {
     const implicitSourceId = indentStack.length > 0 ? indentStack[indentStack.length - 1].nodeId : null;
     const segments = splitArrows2(trimmed);
     if (segments.length === 1) {
-      const ref = parseStateNodeRef(segments[0]);
+      const peeled = peelAlias(segments[0]);
+      const ref = parseStateNodeRef(peeled.seg);
       if (ref) {
         const node = getOrCreateNode(ref, lineNumber);
+        if (peeled.alias)
+          nameAliasMap.set(normalizeName(peeled.alias), node.id);
         node.lineNumber = lineNumber;
         indentStack.push({ nodeId: node.id, indent });
+      } else {
+        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+        if (aliasResolved !== void 0) {
+          indentStack.push({ nodeId: aliasResolved, indent });
+        }
       }
       continue;
     }
@@ -61460,9 +61799,25 @@ function parseState(content, palette) {
         );
         continue;
       }
-      const ref = parseStateNodeRef(seg);
+      const peeled = peelAlias(seg);
+      let ref = parseStateNodeRef(peeled.seg);
+      if (!ref) {
+        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+        if (aliasResolved !== void 0) {
+          const existing = nodeMap.get(aliasResolved);
+          if (existing) {
+            const shape = existing.shape;
+            ref = {
+              id: aliasResolved,
+              label: existing.label,
+              shape
+            };
+          }
+        }
+      }
       if (!ref) continue;
       const node = getOrCreateNode(ref, lineNumber);
+      if (peeled.alias) nameAliasMap.set(normalizeName(peeled.alias), node.id);
       if (pendingArrow !== null) {
         const sourceId = lastNodeId ?? implicitSourceId;
         if (sourceId) {
@@ -61524,6 +61879,7 @@ var init_state_parser = __esm({
     init_diagnostics();
     init_arrows();
     init_parsing();
+    init_name_normalize();
     PSEUDOSTATE_ID = "pseudostate:[*]";
     PSEUDOSTATE_LABEL = "[*]";
     GROUP_BRACKET_RE = /^\[([^\]]+)\](?:\(([^)]+)\))?\s*$/;
@@ -61536,7 +61892,7 @@ __export2(parser_exports2, {
   parseClassDiagram: () => parseClassDiagram
 });
 function classId(name) {
-  return name.toLowerCase().trim();
+  return normalizeName(name);
 }
 function parseVisibility(prefix) {
   switch (prefix) {
@@ -61619,19 +61975,50 @@ function parseClassDiagram(content, palette) {
     return result;
   };
   const classMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function resolveAliasName(token) {
+    if (!token) return token;
+    const trimmed = token.trim();
+    const hit = nameAliasMap.get(trimmed);
+    if (hit !== void 0) {
+      for (const [, node] of classMap) {
+        if (classId(node.name) === hit) return node.name;
+      }
+    }
+    return token;
+  }
   let currentClass = null;
   let contentStarted = false;
   function getOrCreateClass(name, lineNumber) {
-    const id = classId(name);
-    const existing = classMap.get(id);
-    if (existing) return existing;
+    const key = classId(name);
+    const existing = classMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(name);
+      const existingDisplay = displayName(existing.name);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
     const node = {
-      id,
+      id: key,
       name,
       members: [],
       lineNumber
     };
-    classMap.set(id, node);
+    classMap.set(key, node);
     result.classes.push(node);
     return node;
   }
@@ -61660,6 +62047,9 @@ function parseClassDiagram(content, palette) {
         result.options["no-auto-color"] = "on";
         continue;
       }
+      if (tryParseSharedOption(trimmed, result.options)) {
+        continue;
+      }
       const optMatch = trimmed.match(OPTION_NOCOLON_RE);
       if (optMatch) {
         const key = optMatch[1].toLowerCase();
@@ -61674,8 +62064,9 @@ function parseClassDiagram(content, palette) {
       const indentRel = trimmed.match(INDENT_REL_ARROW_RE);
       if (indentRel) {
         const arrow = indentRel[1];
-        const targetName = indentRel[2];
-        const label = indentRel[3]?.trim();
+        const rawTarget = (indentRel[2] ?? indentRel[3] ?? "").trim();
+        const targetName = resolveAliasName(rawTarget) ?? rawTarget;
+        const label = indentRel[4]?.trim();
         getOrCreateClass(targetName, lineNumber);
         if (label) {
           result.diagnostics.push(
@@ -61705,9 +62096,9 @@ function parseClassDiagram(content, palette) {
     contentStarted = true;
     const relArrow = trimmed.match(REL_ARROW_RE);
     if (relArrow) {
-      const sourceName = relArrow[1];
-      const arrow = relArrow[2];
-      const targetName = relArrow[3];
+      const sourceName = (relArrow[1] ?? relArrow[2] ?? "").trim();
+      const arrow = relArrow[3];
+      const targetName = (relArrow[4] ?? relArrow[5] ?? "").trim();
       result.diagnostics.push(
         makeDgmoError(
           lineNumber,
@@ -61720,36 +62111,43 @@ function parseClassDiagram(content, palette) {
     const classDecl = trimmed.match(CLASS_DECL_RE);
     if (classDecl) {
       const prefixModifier = classDecl[1];
-      const name = classDecl[2];
-      const extendsParent = classDecl[3];
-      const implementsInterface = classDecl[4];
-      const bracketModifier = classDecl[5];
+      const name = (classDecl[2] ?? classDecl[3] ?? "").trim();
+      const extendsRaw = classDecl[4] ?? classDecl[5];
+      const extendsParent = extendsRaw ? extendsRaw.trim() : void 0;
+      const implementsRaw = classDecl[6] ?? classDecl[7];
+      const implementsInterface = implementsRaw ? implementsRaw.trim() : void 0;
+      const bracketModifier = classDecl[8];
       const modifier = prefixModifier ?? bracketModifier;
-      const colorName = classDecl[6]?.trim();
+      const colorName = classDecl[9]?.trim();
       const color4 = colorName ? resolveColorWithDiagnostic(
         colorName,
         lineNumber,
         result.diagnostics,
         palette
       ) : void 0;
+      const aliasLiteral = classDecl[10];
       const node = getOrCreateClass(name, lineNumber);
       if (modifier) node.modifier = modifier;
       if (color4) node.color = color4;
+      if (aliasLiteral)
+        nameAliasMap.set(normalizeName(aliasLiteral), classId(name));
       node.lineNumber = lineNumber;
       if (extendsParent) {
-        getOrCreateClass(extendsParent, lineNumber);
+        const ext = resolveAliasName(extendsParent) ?? extendsParent;
+        getOrCreateClass(ext, lineNumber);
         result.relationships.push({
           source: classId(name),
-          target: classId(extendsParent),
+          target: classId(ext),
           type: "extends",
           lineNumber
         });
       }
       if (implementsInterface) {
-        getOrCreateClass(implementsInterface, lineNumber);
+        const impl = resolveAliasName(implementsInterface) ?? implementsInterface;
+        getOrCreateClass(impl, lineNumber);
         result.relationships.push({
           source: classId(name),
-          target: classId(implementsInterface),
+          target: classId(impl),
           type: "implements",
           lineNumber
         });
@@ -61849,8 +62247,8 @@ function extractSymbols2(docText) {
     if (line11.length === 0 || /^\s/.test(rawLine)) continue;
     const m2 = CLASS_DECL_RE.exec(line11);
     if (m2) {
-      const name = m2[2];
-      if (!entities.includes(name)) entities.push(name);
+      const name = (m2[2] ?? m2[3] ?? "").trim();
+      if (name && !entities.includes(name)) entities.push(name);
     }
   }
   return {
@@ -61874,9 +62272,10 @@ var init_parser2 = __esm({
     init_diagnostics();
     init_arrows();
     init_parsing();
-    CLASS_DECL_RE = /^(?:(abstract|interface|enum)\s+)?([A-Z][A-Za-z0-9_]*)(?:\s+extends\s+([A-Z][A-Za-z0-9_]*))?(?:\s+implements\s+([A-Z][A-Za-z0-9_]*))?(?:\s+\[(abstract|interface|enum)\])?(?:\s+\(([^)]+)\))?\s*$/;
-    INDENT_REL_ARROW_RE = /^(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*([A-Z][A-Za-z0-9_]*)(?:\s+:?\s*(.+))?$/;
-    REL_ARROW_RE = /^([A-Z][A-Za-z0-9_]*)\s*(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*([A-Z][A-Za-z0-9_]*)(?:\s+:?\s*(.+))?$/;
+    init_name_normalize();
+    CLASS_DECL_RE = /^(?:(abstract|interface|enum)\s+)?(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+extends\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+implements\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+\[(abstract|interface|enum)\])?(?:\s+\(([^)]+)\))?(?:\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11}))?\s*$/;
+    INDENT_REL_ARROW_RE = /^(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Za-z][^":]*?))(?:\s+:?\s*(.+))?$/;
+    REL_ARROW_RE = /^(?:"([^"]+)"|([A-Z][^":]*?))\s*(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+:?\s*(.+))?$/;
     VISIBILITY_RE = /^([+\-#])\s*/;
     STATIC_SUFFIX_RE = /\{static\}\s*$/;
     METHOD_RE = /^(.+?)\(([^)]*)\)(?:\s*:\s*(.+))?$/;
@@ -61898,7 +62297,7 @@ __export2(parser_exports3, {
   parseERDiagram: () => parseERDiagram
 });
 function tableId(name) {
-  return name.toLowerCase().trim();
+  return normalizeName(name);
 }
 function parseCardSide(token) {
   if (token === "1" || token === "*" || token === "?") return token;
@@ -61907,18 +62306,20 @@ function parseCardSide(token) {
 function parseRelationship(trimmed, lineNumber, pushError) {
   const sym = trimmed.match(REL_SYMBOLIC_RE);
   if (sym) {
-    const fromCard = parseCardSide(sym[2]);
-    const toCard = parseCardSide(sym[3]);
+    const fromCard = parseCardSide(sym[3]);
+    const toCard = parseCardSide(sym[4]);
     if (fromCard && toCard) {
-      const label = sym[5]?.trim();
+      const sourceName = (sym[1] ?? sym[2] ?? "").trim();
+      const targetName = (sym[5] ?? sym[6] ?? "").trim();
+      const label = sym[7]?.trim();
       if (label) {
         validateLabelCharacters(label, lineNumber).forEach(
           (d) => pushError(d.line, d.message)
         );
       }
       return {
-        source: sym[1],
-        target: sym[4],
+        source: tableId(sourceName),
+        target: tableId(targetName),
         from: fromCard,
         to: toCard,
         label
@@ -61927,30 +62328,35 @@ function parseRelationship(trimmed, lineNumber, pushError) {
   }
   const kw = trimmed.match(REL_KEYWORD_RE);
   if (kw) {
-    const fromSym = KEYWORD_TO_SYMBOL[kw[2].toLowerCase()] ?? kw[2];
-    const toSym = KEYWORD_TO_SYMBOL[kw[3].toLowerCase()] ?? kw[3];
+    const sourceName = (kw[1] ?? kw[2] ?? "").trim();
+    const targetName = (kw[5] ?? kw[6] ?? "").trim();
+    const fromSym = KEYWORD_TO_SYMBOL[kw[3].toLowerCase()] ?? kw[3];
+    const toSym = KEYWORD_TO_SYMBOL[kw[4].toLowerCase()] ?? kw[4];
     pushError(
       lineNumber,
-      `Use symbolic cardinality (1--*, ?--1, *--*) instead of "${kw[2]}-to-${kw[3]}". Example: ${kw[1]} ${fromSym}--${toSym} ${kw[4]}`
+      `Use symbolic cardinality (1--*, ?--1, *--*) instead of "${kw[3]}-to-${kw[4]}". Example: ${sourceName} ${fromSym}--${toSym} ${targetName}`
     );
     return null;
   }
   return null;
 }
 function parseColumn(trimmed) {
-  const tokens2 = trimmed.split(/\s+/);
-  if (tokens2.length === 0) return null;
-  const name = tokens2[0];
-  if (!/^\w+$/.test(name)) return null;
+  const rawTokens = tokenizeQuoteAware(trimmed);
+  if (rawTokens.length === 0) return null;
+  const firstRaw = rawTokens[0];
+  const wasQuoted = firstRaw.startsWith('"') || firstRaw.startsWith("'");
+  const name = stripQuotes(firstRaw);
+  if (!wasQuoted && !/^\w+$/.test(name)) return null;
   const constraints = [];
   let type;
-  for (let i = 1; i < tokens2.length; i++) {
-    const lower2 = tokens2[i].toLowerCase();
+  for (let i = 1; i < rawTokens.length; i++) {
+    const tok = stripQuotes(rawTokens[i]);
+    const lower2 = tok.toLowerCase();
     const constraint = CONSTRAINT_MAP[lower2];
     if (constraint) {
       constraints.push(constraint);
     } else if (type === void 0) {
-      type = tokens2[i];
+      type = tok;
     } else {
       return null;
     }
@@ -61983,20 +62389,49 @@ function parseERDiagram(content, palette) {
   let currentTable = null;
   let contentStarted = false;
   let currentTagGroup = null;
-  const aliasMap = /* @__PURE__ */ new Map();
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias(label) {
+    const trimmed = label.trim();
+    const m2 = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m2) return { label: trimmed };
+    return { label: m2[1].trim(), alias: m2[2] };
+  }
+  function resolveAliasName(token) {
+    return nameAliasMap.get(token.trim()) ?? token;
+  }
   let firstLineParsed = false;
   function getOrCreateTable(name, lineNumber) {
-    const id = tableId(name);
-    const existing = tableMap.get(id);
-    if (existing) return existing;
+    const key = tableId(name);
+    const existing = tableMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(name);
+      const existingDisplay = displayName(existing.name);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
     const table = {
-      id,
+      id: key,
       name,
       columns: [],
       metadata: {},
       lineNumber
     };
-    tableMap.set(id, table);
+    tableMap.set(key, table);
     result.tables.push(table);
     return table;
   }
@@ -62025,6 +62460,7 @@ function parseERDiagram(content, palette) {
     if (!contentStarted && indent === 0) {
       const tagBlockMatch = matchTagBlockHeading(trimmed);
       if (tagBlockMatch) {
+        emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
         currentTagGroup = {
           name: tagBlockMatch.name,
           alias: tagBlockMatch.alias,
@@ -62032,8 +62468,8 @@ function parseERDiagram(content, palette) {
           lineNumber
         };
         if (tagBlockMatch.alias) {
-          aliasMap.set(
-            tagBlockMatch.alias.toLowerCase(),
+          metaAliasMap.set(
+            normalizeName(tagBlockMatch.alias),
             tagBlockMatch.name.toLowerCase()
           );
         }
@@ -62075,6 +62511,9 @@ function parseERDiagram(content, palette) {
           continue;
         }
       }
+      if (tryParseSharedOption(trimmed, result.options)) {
+        continue;
+      }
     }
     if (indent > 0 && currentTable) {
       const indentRel = trimmed.match(INDENT_REL_RE);
@@ -62082,7 +62521,8 @@ function parseERDiagram(content, palette) {
         const fromCard = parseCardSide(indentRel[1]);
         const toCard = parseCardSide(indentRel[3]);
         if (fromCard && toCard) {
-          const targetName = indentRel[4];
+          const rawTarget = (indentRel[4] ?? indentRel[5] ?? "").trim();
+          const targetName = resolveAliasName(rawTarget);
           getOrCreateTable(targetName, lineNumber);
           const rawLabel = indentRel[2]?.trim();
           if (rawLabel) {
@@ -62126,8 +62566,11 @@ function parseERDiagram(content, palette) {
     }
     const tableDecl = trimmed.match(TABLE_DECL_RE);
     if (tableDecl) {
-      const name = tableDecl[1];
-      const colorName = tableDecl[2]?.trim();
+      const rawName = (tableDecl[1] ?? tableDecl[2] ?? "").trim();
+      const peeled = peelAlias(rawName);
+      const name = peeled.label;
+      if (peeled.alias) nameAliasMap.set(normalizeName(peeled.alias), name);
+      const colorName = tableDecl[3]?.trim();
       const color4 = colorName ? resolveColorWithDiagnostic(
         colorName,
         lineNumber,
@@ -62137,10 +62580,10 @@ function parseERDiagram(content, palette) {
       const table = getOrCreateTable(name, lineNumber);
       if (color4) table.color = color4;
       table.lineNumber = lineNumber;
-      const pipeStr = tableDecl[3]?.trim();
+      const pipeStr = tableDecl[4]?.trim();
       if (pipeStr) {
         const pipeSegments = pipeStr.split("|");
-        const meta = parsePipeMetadata(["", ...pipeSegments], aliasMap);
+        const meta = parsePipeMetadata(["", ...pipeSegments], metaAliasMap);
         Object.assign(table.metadata, meta);
       }
       currentTable = table;
@@ -62244,7 +62687,10 @@ function extractSymbols3(docText) {
     if (line11.length === 0) continue;
     if (/^\s/.test(rawLine)) continue;
     const m2 = TABLE_DECL_RE.exec(line11);
-    if (m2) entities.push(m2[1]);
+    if (m2) {
+      const name = (m2[1] ?? m2[2] ?? "").trim();
+      if (name) entities.push(name);
+    }
   }
   return {
     kind: "er",
@@ -62266,10 +62712,11 @@ var init_parser3 = __esm({
     init_colors();
     init_diagnostics();
     init_arrows();
+    init_name_normalize();
     init_parsing();
     init_tag_groups();
-    TABLE_DECL_RE = /^([a-zA-Z_]\w*)(?:\s*\(([^)]+)\))?(?:\s*\|(.+))?$/;
-    INDENT_REL_RE = /^([1*?])-{1,2}(?:(.+?)-{1,2})?([1*?])\s+([a-zA-Z_]\w*)\s*$/;
+    TABLE_DECL_RE = /^(?:"([^"]+)"|([a-zA-Z_][^|":(]*?))(?:\s*\(([^)]+)\))?(?:\s*\|(.+))?$/;
+    INDENT_REL_RE = /^([1*?])-{1,2}(?:(.+?)-{1,2})?([1*?])\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s*$/;
     CONSTRAINT_MAP = {
       pk: "pk",
       fk: "fk",
@@ -62277,8 +62724,8 @@ var init_parser3 = __esm({
       nullable: "nullable"
     };
     KNOWN_OPTIONS = /* @__PURE__ */ new Set(["notation", "active-tag"]);
-    REL_SYMBOLIC_RE = /^([a-zA-Z_]\w*)\s+([1*?])\s*-{1,2}\s*([1*?])\s+([a-zA-Z_]\w*)(?:\s+(.+))?$/;
-    REL_KEYWORD_RE = /^([a-zA-Z_]\w*)\s+(one|many|zero)[- ]to[- ](one|many|zero)\s+([a-zA-Z_]\w*)(?:\s+(.+))?$/i;
+    REL_SYMBOLIC_RE = /^(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s+([1*?])\s*-{1,2}\s*([1*?])\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))(?:\s+(.+))?$/;
+    REL_KEYWORD_RE = /^(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s+(one|many|zero)[- ]to[- ](one|many|zero)\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))(?:\s+(.+))?$/i;
     KEYWORD_TO_SYMBOL = {
       one: "1",
       many: "*",
@@ -62372,6 +62819,8 @@ function parseChart(content, palette) {
     if (KNOWN_BOOLEANS.has(firstToken) && spaceIdx < 0) {
       if (firstToken === "orientation-horizontal") {
         result.orientation = "horizontal";
+      } else if (firstToken === "solid-fill") {
+        result.solidFill = true;
       }
       continue;
     }
@@ -62670,7 +63119,7 @@ var init_chart = __esm({
       "no-percent",
       "color"
     ]);
-    KNOWN_BOOLEANS = /* @__PURE__ */ new Set(["orientation-horizontal"]);
+    KNOWN_BOOLEANS = /* @__PURE__ */ new Set(["orientation-horizontal", "solid-fill"]);
   }
 });
 function esc(s) {
@@ -62787,6 +63236,18 @@ function parseExtendedChart(content, palette) {
   let currentCategory = "Default";
   const sankeyStack = [];
   let firstLineParsed = false;
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function resolveSlot(raw) {
+    const trimmed = raw.trim();
+    const m2 = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (m2) {
+      const canonical = m2[1].trim();
+      nameAliasMap.set(m2[2], canonical);
+      return canonical;
+    }
+    const aliased = nameAliasMap.get(trimmed);
+    return aliased !== void 0 ? aliased : trimmed;
+  }
   for (let i = 0; i < lines.length; i++) {
     const trimmed = lines[i].trim();
     const lineNumber = i + 1;
@@ -62860,12 +63321,14 @@ function parseExtendedChart(content, palette) {
     if (arrowMatch) {
       const [, rawSource, arrow, rawTarget, rawVal, rawLinkColor] = arrowMatch;
       const val = normalizeNumericToken(rawVal) ?? rawVal;
+      const sourceResolved = resolveSlot(rawSource);
+      const targetResolved = resolveSlot(rawTarget);
       const { label: source, color: sourceColor } = extractColor(
-        rawSource.trim(),
+        sourceResolved,
         palette
       );
       const { label: target, color: targetColor } = extractColor(
-        rawTarget.trim(),
+        targetResolved,
         palette
       );
       if (sourceColor || targetColor) {
@@ -62910,8 +63373,9 @@ function parseExtendedChart(content, palette) {
               result.diagnostics,
               palette
             ) : void 0;
+            const targetResolved = resolveSlot(dataRow2.label);
             const { label: target, color: targetColor } = extractColor(
-              dataRow2.label,
+              targetResolved,
               palette
             );
             if (targetColor) {
@@ -62934,12 +63398,14 @@ function parseExtendedChart(content, palette) {
       const spaceIdx2 = trimmed.indexOf(" ");
       const lastTok = trimmed.substring(trimmed.lastIndexOf(" ") + 1);
       const hasNumericSuffix = spaceIdx2 >= 0 && !isNaN(parseFloat(normalizeNumericToken(lastTok) ?? lastTok));
-      if (!hasNumericSuffix) {
+      const isBareKeywordOption = spaceIdx2 < 0 && /^(solid-fill|no-name|no-value|no-percent|shade)$/i.test(trimmed);
+      if (!hasNumericSuffix && !isBareKeywordOption) {
         while (sankeyStack.length && sankeyStack.at(-1).indent >= indent) {
           sankeyStack.pop();
         }
+        const trimmedResolved = resolveSlot(trimmed);
         const { label: nodeName, color: nodeColor2 } = extractColor(
-          trimmed,
+          trimmedResolved,
           palette
         );
         if (nodeColor2) {
@@ -63047,6 +63513,10 @@ function parseExtendedChart(content, palette) {
     }
     if (firstToken === "shade") {
       result.shade = true;
+      continue;
+    }
+    if (firstToken === "solid-fill") {
+      result.solidFill = true;
       continue;
     }
     if (firstToken.startsWith("no-") && spaceIdx < 0) {
@@ -63225,12 +63695,21 @@ function buildExtendedChartOption(parsed, palette, isDark) {
   }
   if (parsed.type === "chord") {
     const bg = isDark ? palette.surface : palette.bg;
-    return buildChordOption(parsed, textColor, colors, bg, titleConfig);
+    return buildChordOption(
+      parsed,
+      palette,
+      isDark,
+      textColor,
+      colors,
+      bg,
+      titleConfig
+    );
   }
   if (parsed.type === "function") {
     return buildFunctionOption(
       parsed,
       palette,
+      isDark,
       textColor,
       axisLineColor,
       gridOpacity,
@@ -63243,6 +63722,7 @@ function buildExtendedChartOption(parsed, palette, isDark) {
     return buildScatterOption(
       parsed,
       palette,
+      isDark,
       textColor,
       axisLineColor,
       gridOpacity,
@@ -63253,7 +63733,15 @@ function buildExtendedChartOption(parsed, palette, isDark) {
   }
   if (parsed.type === "funnel") {
     const bg = isDark ? palette.surface : palette.bg;
-    return buildFunnelOption(parsed, textColor, colors, bg, titleConfig);
+    return buildFunnelOption(
+      parsed,
+      palette,
+      isDark,
+      textColor,
+      colors,
+      bg,
+      titleConfig
+    );
   }
   return buildHeatmapOption(
     parsed,
@@ -63272,8 +63760,9 @@ function buildSankeyOption(parsed, textColor, colors, bg, titleConfig) {
       nodeSet.add(link.target);
     }
   }
-  const tintNode = (c) => mix(c, bg, 75);
-  const tintLink = (c) => mix(c, bg, 45);
+  const solid = parsed.solidFill === true;
+  const tintNode = (c) => solid ? c : mix(c, bg, 75);
+  const tintLink = (c) => solid ? c : mix(c, bg, 45);
   const nodeColorMap = /* @__PURE__ */ new Map();
   const nodes = Array.from(nodeSet).map((name, index) => {
     const raw = parsed.nodeColors?.[name] ?? colors[index % colors.length];
@@ -63319,7 +63808,7 @@ function buildSankeyOption(parsed, textColor, colors, bg, titleConfig) {
     ]
   };
 }
-function buildChordOption(parsed, textColor, colors, bg, titleConfig) {
+function buildChordOption(parsed, palette, isDark, textColor, colors, bg, titleConfig) {
   const nodeSet = /* @__PURE__ */ new Set();
   if (parsed.links) {
     for (const link of parsed.links) {
@@ -63344,7 +63833,9 @@ function buildChordOption(parsed, textColor, colors, bg, titleConfig) {
     return {
       name,
       itemStyle: {
-        color: mix(stroke2, bg, 30),
+        color: shapeFill(palette, stroke2, isDark, {
+          solid: parsed.solidFill === true
+        }),
         borderColor: stroke2,
         borderWidth: CHART_BORDER_WIDTH
       }
@@ -63431,7 +63922,7 @@ function evaluateExpression(expr, x3) {
     return NaN;
   }
 }
-function buildFunctionOption(parsed, palette, textColor, axisLineColor, gridOpacity, colors, titleConfig) {
+function buildFunctionOption(parsed, palette, isDark, textColor, axisLineColor, gridOpacity, colors, titleConfig) {
   const xRange = parsed.xRange ?? { min: -10, max: 10 };
   const samples = 200;
   const step = (xRange.max - xRange.min) / samples;
@@ -63687,6 +64178,11 @@ function computeScatterLabelGraphics(points2, chartBounds, fontSize, symbolSize,
       style: {
         text: pt.name,
         fill: pt.color,
+        ...bg && {
+          stroke: bg,
+          lineWidth: 3,
+          paintOrder: "stroke"
+        },
         fontSize,
         fontFamily: FONT_FAMILY,
         textAlign: "center",
@@ -63709,7 +64205,7 @@ function dataToPixel(dataX, dataY, xMin, xMax, yMin, yMax, gridLeftPct, gridRigh
   const py = gridTopPx + (yMax - dataY) / (yMax - yMin) * plotHeight;
   return { px, py };
 }
-function buildScatterOption(parsed, palette, textColor, axisLineColor, gridOpacity, colors, bg, titleConfig) {
+function buildScatterOption(parsed, palette, isDark, textColor, axisLineColor, gridOpacity, colors, bg, titleConfig) {
   const points2 = parsed.scatterPoints ?? [];
   const defaultSize = 15;
   const hasCategories = points2.some((p2) => p2.category !== void 0);
@@ -63741,7 +64237,9 @@ function buildScatterOption(parsed, palette, textColor, axisLineColor, gridOpaci
         value: hasSize ? [p2.x, p2.y, p2.size ?? 0] : [p2.x, p2.y],
         ...p2.color && {
           itemStyle: {
-            color: mix(p2.color, bg, 30),
+            color: shapeFill(palette, p2.color, isDark, {
+              solid: parsed.solidFill === true
+            }),
             borderColor: p2.color,
             borderWidth: CHART_BORDER_WIDTH
           }
@@ -63753,7 +64251,9 @@ function buildScatterOption(parsed, palette, textColor, axisLineColor, gridOpaci
         data,
         ...hasSize ? { symbolSize: (val) => val[2] } : { symbolSize: defaultSize },
         itemStyle: {
-          color: mix(catColor, bg, 30),
+          color: shapeFill(palette, catColor, isDark, {
+            solid: parsed.solidFill === true
+          }),
           borderColor: catColor,
           borderWidth: CHART_BORDER_WIDTH
         },
@@ -63770,7 +64270,9 @@ function buildScatterOption(parsed, palette, textColor, axisLineColor, gridOpaci
         value: hasSize ? [p2.x, p2.y, p2.size ?? 0] : [p2.x, p2.y],
         ...hasSize ? { symbolSize: p2.size ?? defaultSize } : { symbolSize: defaultSize },
         itemStyle: {
-          color: mix(stroke2, bg, 30),
+          color: shapeFill(palette, stroke2, isDark, {
+            solid: parsed.solidFill === true
+          }),
           borderColor: stroke2,
           borderWidth: CHART_BORDER_WIDTH
         }
@@ -63998,12 +64500,16 @@ function buildHeatmapOption(parsed, palette, isDark, textColor, axisLineColor, t
       show: false,
       min: minValue,
       max: maxValue,
+      // Heatmap INTENTIONALLY ignores `solid-fill`. The cell color IS the
+      // value gradient — solid mode collapses each color into its full
+      // intent and ECharts interpolates between them, producing high-saturation
+      // cells where text is unreadable. Same opt-out as gantt and infra.
       inRange: {
         color: [
-          mix(palette.primary, bg, 30),
-          mix(palette.colors.cyan, bg, 30),
-          mix(palette.colors.yellow, bg, 30),
-          mix(palette.colors.orange, bg, 30)
+          shapeFill(palette, palette.primary, isDark),
+          shapeFill(palette, palette.colors.cyan, isDark),
+          shapeFill(palette, palette.colors.yellow, isDark),
+          shapeFill(palette, palette.colors.orange, isDark)
         ]
       }
     },
@@ -64028,7 +64534,7 @@ function buildHeatmapOption(parsed, palette, isDark, textColor, axisLineColor, t
     ]
   };
 }
-function buildFunnelOption(parsed, textColor, colors, bg, titleConfig) {
+function buildFunnelOption(parsed, palette, isDark, textColor, colors, bg, titleConfig) {
   const sorted = [...parsed.data].sort((a, b) => b.value - a.value);
   const data = sorted.map((d) => {
     const stroke2 = d.color ?? colors[parsed.data.indexOf(d) % colors.length];
@@ -64036,7 +64542,9 @@ function buildFunnelOption(parsed, textColor, colors, bg, titleConfig) {
       name: d.label,
       value: d.value,
       itemStyle: {
-        color: mix(stroke2, bg, 30),
+        color: shapeFill(palette, stroke2, isDark, {
+          solid: parsed.solidFill === true
+        }),
         borderColor: stroke2,
         borderWidth: CHART_BORDER_WIDTH
       }
@@ -64184,6 +64692,8 @@ function buildSimpleChartOption(parsed, palette, isDark, chartWidth) {
     case "bar":
       return buildBarOption(
         parsed,
+        palette,
+        isDark,
         textColor,
         axisLineColor,
         splitLineColor,
@@ -64196,6 +64706,8 @@ function buildSimpleChartOption(parsed, palette, isDark, chartWidth) {
     case "bar-stacked":
       return buildBarStackedOption(
         parsed,
+        palette,
+        isDark,
         textColor,
         axisLineColor,
         splitLineColor,
@@ -64240,6 +64752,8 @@ function buildSimpleChartOption(parsed, palette, isDark, chartWidth) {
     case "pie":
       return buildPieOption(
         parsed,
+        palette,
+        isDark,
         textColor,
         getSegmentColors(palette, parsed.data.length),
         bg,
@@ -64249,6 +64763,8 @@ function buildSimpleChartOption(parsed, palette, isDark, chartWidth) {
     case "doughnut":
       return buildPieOption(
         parsed,
+        palette,
+        isDark,
         textColor,
         getSegmentColors(palette, parsed.data.length),
         bg,
@@ -64267,6 +64783,8 @@ function buildSimpleChartOption(parsed, palette, isDark, chartWidth) {
     case "polar-area":
       return buildPolarAreaOption(
         parsed,
+        palette,
+        isDark,
         textColor,
         getSegmentColors(palette, parsed.data.length),
         bg,
@@ -64299,7 +64817,7 @@ function wrapLabel(text, maxChars) {
   if (current) lines.push(current);
   return lines.join("\n");
 }
-function buildBarOption(parsed, textColor, axisLineColor, splitLineColor, gridOpacity, colors, bg, titleConfig, chartWidth) {
+function buildBarOption(parsed, palette, isDark, textColor, axisLineColor, splitLineColor, gridOpacity, colors, bg, titleConfig, chartWidth) {
   const { xLabel, yLabel } = resolveAxisLabels(parsed);
   const isHorizontal = parsed.orientation === "horizontal";
   const labels = parsed.data.map((d) => d.label);
@@ -64308,7 +64826,9 @@ function buildBarOption(parsed, textColor, axisLineColor, splitLineColor, gridOp
     return {
       value: d.value,
       itemStyle: {
-        color: mix(stroke2, bg, 30),
+        color: shapeFill(palette, stroke2, isDark, {
+          solid: parsed.solidFill === true
+        }),
         borderColor: stroke2,
         borderWidth: CHART_BORDER_WIDTH
       }
@@ -64616,7 +65136,7 @@ function pieLabelLayout2(parsed) {
   if (maxLen > 18) return { outerRadius: 55, fontSize: 13 };
   return { outerRadius: 70, fontSize: 14 };
 }
-function buildPieOption(parsed, textColor, colors, bg, titleConfig, isDoughnut) {
+function buildPieOption(parsed, palette, isDark, textColor, colors, bg, titleConfig, isDoughnut) {
   const HIDE_AXES = { xAxis: { show: false }, yAxis: { show: false } };
   const data = parsed.data.map((d, i) => {
     const stroke2 = d.color ?? colors[i % colors.length];
@@ -64624,7 +65144,9 @@ function buildPieOption(parsed, textColor, colors, bg, titleConfig, isDoughnut) 
       name: d.label,
       value: d.value,
       itemStyle: {
-        color: mix(stroke2, bg, 30),
+        color: shapeFill(palette, stroke2, isDark, {
+          solid: parsed.solidFill === true
+        }),
         borderColor: stroke2,
         borderWidth: CHART_BORDER_WIDTH
       }
@@ -64655,7 +65177,6 @@ function buildPieOption(parsed, textColor, colors, bg, titleConfig, isDoughnut) 
   };
 }
 function buildRadarOption(parsed, palette, isDark, textColor, gridOpacity, titleConfig) {
-  const bg = isDark ? palette.surface : palette.bg;
   const radarColor = parsed.color ?? parsed.seriesNameColors?.[0] ?? palette.primary;
   const values = parsed.data.map((d) => d.value);
   const maxValue = Math.max(...values) * 1.15;
@@ -64690,7 +65211,11 @@ function buildRadarOption(parsed, palette, isDark, textColor, gridOpacity, title
           {
             value: values,
             name: parsed.series ?? "Value",
-            areaStyle: { color: mix(radarColor, bg, 30) },
+            areaStyle: {
+              color: shapeFill(palette, radarColor, isDark, {
+                solid: parsed.solidFill === true
+              })
+            },
             lineStyle: { color: radarColor },
             itemStyle: { color: radarColor },
             symbol: "circle",
@@ -64710,14 +65235,16 @@ function buildRadarOption(parsed, palette, isDark, textColor, gridOpacity, title
     ]
   };
 }
-function buildPolarAreaOption(parsed, textColor, colors, bg, titleConfig) {
+function buildPolarAreaOption(parsed, palette, isDark, textColor, colors, bg, titleConfig) {
   const data = parsed.data.map((d, i) => {
     const stroke2 = d.color ?? colors[i % colors.length];
     return {
       name: d.label,
       value: d.value,
       itemStyle: {
-        color: mix(stroke2, bg, 30),
+        color: shapeFill(palette, stroke2, isDark, {
+          solid: parsed.solidFill === true
+        }),
         borderColor: stroke2,
         borderWidth: CHART_BORDER_WIDTH
       }
@@ -64751,13 +65278,16 @@ function buildPolarAreaOption(parsed, textColor, colors, bg, titleConfig) {
     ]
   };
 }
-function buildBarStackedOption(parsed, textColor, axisLineColor, splitLineColor, gridOpacity, colors, bg, titleConfig, chartWidth) {
+function buildBarStackedOption(parsed, palette, isDark, textColor, axisLineColor, splitLineColor, gridOpacity, colors, bg, titleConfig, chartWidth) {
   const { xLabel, yLabel } = resolveAxisLabels(parsed);
   const isHorizontal = parsed.orientation === "horizontal";
   const seriesNames = parsed.seriesNames ?? [];
   const labels = parsed.data.map((d) => d.label);
   const series = seriesNames.map((name, idx) => {
     const color4 = parsed.seriesNameColors?.[idx] ?? colors[idx % colors.length];
+    const segmentFill = shapeFill(palette, color4, isDark, {
+      solid: parsed.solidFill === true
+    });
     const data = parsed.data.map(
       (dp) => idx === 0 ? dp.value : dp.extraValues?.[idx - 1] ?? 0
     );
@@ -64767,7 +65297,7 @@ function buildBarStackedOption(parsed, textColor, axisLineColor, splitLineColor,
       stack: "total",
       data,
       itemStyle: {
-        color: mix(color4, bg, 30),
+        color: segmentFill,
         borderColor: color4,
         borderWidth: CHART_BORDER_WIDTH
       },
@@ -64775,7 +65305,14 @@ function buildBarStackedOption(parsed, textColor, axisLineColor, splitLineColor,
         show: !parsed.noValue,
         position: "inside",
         formatter: "{c}",
-        color: textColor,
+        // Inside-segment label must contrast against the segment fill, not
+        // against the chart bg — `textColor` (= palette.text) is illegible
+        // on saturated solid fills.
+        color: contrastText(
+          segmentFill,
+          palette.textOnFillLight,
+          palette.textOnFillDark
+        ),
         fontSize: 14,
         fontWeight: "bold",
         fontFamily: FONT_FAMILY
@@ -65045,7 +65582,8 @@ function parseOrg(content, palette) {
   let nodeCounter = 0;
   let containerCounter = 0;
   let currentTagGroup = null;
-  const aliasMap = /* @__PURE__ */ new Map();
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
   const indentStack = [];
   for (let i = 0; i < lines.length; i++) {
     const line11 = lines[i];
@@ -65092,6 +65630,7 @@ function parseOrg(content, palette) {
     }
     const tagBlockMatch = matchTagBlockHeading(trimmed);
     if (tagBlockMatch) {
+      emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
       if (contentStarted) {
         pushError(lineNumber, "Tag groups must appear before org content");
         continue;
@@ -65103,8 +65642,8 @@ function parseOrg(content, palette) {
         lineNumber
       };
       if (tagBlockMatch.alias) {
-        aliasMap.set(
-          tagBlockMatch.alias.toLowerCase(),
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.alias),
           tagBlockMatch.name.toLowerCase()
         );
       }
@@ -65157,10 +65696,16 @@ function parseOrg(content, palette) {
     const containerMatch = trimmed.match(CONTAINER_RE);
     const metadataMatch = trimmed.includes("|") ? null : trimmed.match(METADATA_RE);
     if (containerMatch) {
-      const label = containerMatch[1].trim();
+      const rawLabel = containerMatch[1].trim();
+      const asMatch = rawLabel.match(
+        /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
+      );
+      const label = asMatch ? asMatch[1].trim() : rawLabel;
       containerCounter++;
+      const containerId = `container-${containerCounter}`;
+      if (asMatch) nameAliasMap.set(normalizeName(asMatch[2]), containerId);
       const node = {
-        id: `container-${containerCounter}`,
+        id: containerId,
         label,
         metadata: {},
         children: [],
@@ -65171,7 +65716,7 @@ function parseOrg(content, palette) {
       attachNode(node, indent, indentStack, result);
     } else if (metadataMatch && indentStack.length > 0) {
       const rawKey = metadataMatch[1].trim().toLowerCase();
-      const key = aliasMap.get(rawKey) ?? rawKey;
+      const key = metaAliasMap.get(rawKey) ?? rawKey;
       const value = metadataMatch[2].trim();
       const parent = findMetadataParent(indent, indentStack);
       if (!parent) {
@@ -65187,8 +65732,9 @@ function parseOrg(content, palette) {
           lineNumber,
           palette,
           ++nodeCounter,
-          aliasMap,
-          pushWarning
+          metaAliasMap,
+          pushWarning,
+          nameAliasMap
         );
         attachNode(node, indent, indentStack, result);
       } else {
@@ -65201,8 +65747,9 @@ function parseOrg(content, palette) {
         lineNumber,
         palette,
         ++nodeCounter,
-        aliasMap,
-        pushWarning
+        metaAliasMap,
+        pushWarning,
+        nameAliasMap
       );
       attachNode(node, indent, indentStack, result);
     }
@@ -65226,16 +65773,22 @@ function parseOrg(content, palette) {
   }
   return result;
 }
-function parseNodeLabel(trimmed, _indent, lineNumber, palette, counter, aliasMap = /* @__PURE__ */ new Map(), warnFn) {
+function parseNodeLabel(trimmed, _indent, lineNumber, palette, counter, metaAliasMap = /* @__PURE__ */ new Map(), warnFn, nameAliasMap) {
   const segments = trimmed.split("|").map((s) => s.trim());
-  const label = segments[0];
+  let label = segments[0];
+  const asMatch = label.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+  const id = `node-${counter}`;
+  if (asMatch) {
+    label = asMatch[1].trim();
+    nameAliasMap?.set(normalizeName(asMatch[2]), id);
+  }
   const metadata = parsePipeMetadata(
     segments,
-    aliasMap,
+    metaAliasMap,
     warnFn ? () => warnFn(lineNumber, MULTIPLE_PIPE_ERROR) : void 0
   );
   return {
-    id: `node-${counter}`,
+    id,
     label,
     metadata,
     children: [],
@@ -65280,6 +65833,7 @@ var init_parser4 = __esm({
     init_diagnostics();
     init_tag_groups();
     init_parsing();
+    init_name_normalize();
     CONTAINER_RE = /^\[([^\]]+)\]$/;
     METADATA_RE = /^([^:]+):\s*(.+)$/;
     KNOWN_OPTIONS3 = /* @__PURE__ */ new Set([
@@ -65288,7 +65842,11 @@ var init_parser4 = __esm({
       "show-sub-node-count",
       "active-tag"
     ]);
-    KNOWN_BOOLEANS2 = /* @__PURE__ */ new Set(["show-sub-node-count", "direction-tb"]);
+    KNOWN_BOOLEANS2 = /* @__PURE__ */ new Set([
+      "show-sub-node-count",
+      "direction-tb",
+      "solid-fill"
+    ]);
   }
 });
 var parser_exports5 = {};
@@ -65324,7 +65882,8 @@ function parseKanban(content, palette) {
   let cardBaseIndent = 0;
   let columnCounter = 0;
   let cardCounter = 0;
-  const aliasMap = /* @__PURE__ */ new Map();
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
   const tagValueSets = /* @__PURE__ */ new Map();
   for (let i = 0; i < lines.length; i++) {
     const line11 = lines[i];
@@ -65365,6 +65924,7 @@ function parseKanban(content, palette) {
     if (!contentStarted) {
       const tagBlockMatch = matchTagBlockHeading(trimmed);
       if (tagBlockMatch) {
+        emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
         currentTagGroup = {
           name: tagBlockMatch.name,
           alias: tagBlockMatch.alias,
@@ -65372,8 +65932,8 @@ function parseKanban(content, palette) {
           lineNumber
         };
         if (tagBlockMatch.alias) {
-          aliasMap.set(
-            tagBlockMatch.alias.toLowerCase(),
+          metaAliasMap.set(
+            normalizeName(tagBlockMatch.alias),
             tagBlockMatch.name.toLowerCase()
           );
         }
@@ -65452,14 +66012,15 @@ function parseKanban(content, palette) {
         result.diagnostics,
         palette
       ) : void 0;
+      const colAlias = columnMatch[3];
       let wipLimit;
       const columnMetadata = {};
-      const pipeStr = columnMatch[3];
+      const pipeStr = columnMatch[4];
       if (pipeStr) {
         const pipeSegments = ["", pipeStr];
         Object.assign(
           columnMetadata,
-          parsePipeMetadata(pipeSegments, aliasMap)
+          parsePipeMetadata(pipeSegments, metaAliasMap)
         );
         if (columnMetadata.wip) {
           const wipVal = parseInt(columnMetadata.wip, 10);
@@ -65468,8 +66029,10 @@ function parseKanban(content, palette) {
           }
         }
       }
+      const colId = `col-${columnCounter}`;
+      if (colAlias) nameAliasMap.set(normalizeName(colAlias), colId);
       currentColumn = {
-        id: `col-${columnCounter}`,
+        id: colId,
         name: colName,
         wipLimit,
         color: colColor,
@@ -65498,7 +66061,7 @@ function parseKanban(content, palette) {
         trimmed,
         lineNumber,
         cardCounter,
-        aliasMap,
+        metaAliasMap,
         palette,
         result.diagnostics
       );
@@ -65534,7 +66097,7 @@ function parseKanban(content, palette) {
   for (const col of result.columns) {
     for (const card of col.cards) {
       for (const [tagKey, tagValue] of Object.entries(card.tags)) {
-        const groupKey = aliasMap.get(tagKey.toLowerCase()) ?? tagKey.toLowerCase();
+        const groupKey = metaAliasMap.get(tagKey.toLowerCase()) ?? tagKey.toLowerCase();
         const validValues = tagValueSets.get(groupKey);
         if (validValues && !validValues.has(tagValue.toLowerCase())) {
           const entries = result.tagGroups.find((g) => g.name.toLowerCase() === groupKey)?.entries.map((e3) => e3.value);
@@ -65558,7 +66121,7 @@ function parseKanban(content, palette) {
   });
   return result;
 }
-function parseCardLine(trimmed, lineNumber, counter, aliasMap, _palette, _diagnostics) {
+function parseCardLine(trimmed, lineNumber, counter, metaAliasMap, _palette, _diagnostics) {
   const pipeIdx = trimmed.indexOf("|");
   let rawTitle;
   let tagsStr = null;
@@ -65575,7 +66138,7 @@ function parseCardLine(trimmed, lineNumber, counter, aliasMap, _palette, _diagno
       const colonIdx = part.indexOf(":");
       if (colonIdx > 0) {
         const rawKey = part.substring(0, colonIdx).trim().toLowerCase();
-        const key = aliasMap.get(rawKey) ?? rawKey;
+        const key = metaAliasMap.get(rawKey) ?? rawKey;
         const value = part.substring(colonIdx + 1).trim();
         tags[key] = value;
       }
@@ -65601,10 +66164,11 @@ var init_parser5 = __esm({
     init_colors();
     init_tag_groups();
     init_parsing();
-    COLUMN_RE = /^\[(.+?)\](?:\s*\(([^)]+)\))?\s*(?:\|\s*(.+))?$/;
+    init_name_normalize();
+    COLUMN_RE = /^\[(.+?)\](?:\s*\(([^)]+)\))?(?:\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11}))?\s*(?:\|\s*(.+))?$/;
     LEGACY_COLUMN_RE = /^==\s+(.+?)\s*(?:\[wip:\s*(\d+)\])?\s*==$/;
     KNOWN_OPTIONS4 = /* @__PURE__ */ new Set(["hide", "active-tag"]);
-    KNOWN_BOOLEANS3 = /* @__PURE__ */ new Set(["no-auto-color"]);
+    KNOWN_BOOLEANS3 = /* @__PURE__ */ new Set(["no-auto-color", "solid-fill"]);
   }
 });
 function tryStripDescriptionKeyword(line11) {
@@ -65698,7 +66262,11 @@ function parseC4(content, palette) {
   let sawChartType = false;
   let inDeployment = false;
   let currentTagGroup = null;
-  const aliasMap = /* @__PURE__ */ new Map();
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function resolveNameRef(rawName) {
+    return nameAliasMap.get(rawName.trim()) ?? rawName;
+  }
   const knownNames = /* @__PURE__ */ new Map();
   const stack = [];
   const deployStack = [];
@@ -65730,6 +66298,7 @@ function parseC4(content, palette) {
     }
     const tagBlockMatch = matchTagBlockHeading(trimmed);
     if (tagBlockMatch) {
+      emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
       if (contentStarted) {
         pushError(lineNumber, "Tag groups must appear before content");
         continue;
@@ -65741,8 +66310,8 @@ function parseC4(content, palette) {
         lineNumber
       };
       if (tagBlockMatch.alias) {
-        aliasMap.set(
-          tagBlockMatch.alias.toLowerCase(),
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.alias),
           tagBlockMatch.name.toLowerCase()
         );
       }
@@ -65823,7 +66392,7 @@ function parseC4(content, palette) {
         const nodeName = segments[0];
         const metadata = parsePipeMetadata(
           segments,
-          aliasMap,
+          metaAliasMap,
           () => pushError(lineNumber, MULTIPLE_PIPE_ERROR)
         );
         const shape = inferC4Shape(
@@ -65930,7 +66499,7 @@ function parseC4(content, palette) {
         if (pipeIdx !== -1) {
           target = targetBody.substring(0, pipeIdx).trim();
           const metaPart = targetBody.substring(pipeIdx + 1).trim();
-          const meta = parsePipeMetadata(["", metaPart], aliasMap);
+          const meta = parsePipeMetadata(["", metaPart], metaAliasMap);
           if (meta.tech) {
             technology = meta.tech;
           }
@@ -65939,7 +66508,7 @@ function parseC4(content, palette) {
           }
         }
         const rel = {
-          target,
+          target: resolveNameRef(target),
           label,
           technology,
           arrowType,
@@ -65974,7 +66543,7 @@ function parseC4(content, palette) {
         }
         const target = relMatch[2].trim();
         const rel = {
-          target,
+          target: resolveNameRef(target),
           arrowType,
           lineNumber
         };
@@ -65991,7 +66560,22 @@ function parseC4(content, palette) {
     if (isATypeMatch) {
       let namePart = isATypeMatch[1].trim();
       const rawType = isATypeMatch[2].toLowerCase();
-      const remainder = isATypeMatch[3];
+      let remainder = isATypeMatch[3];
+      const asPostfix = remainder.match(
+        /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*(\|.*)?$/
+      );
+      if (asPostfix) {
+        nameAliasMap.set(normalizeName(asPostfix[2]), namePart);
+        remainder = (asPostfix[1] + (asPostfix[3] ?? "")).trim();
+      } else {
+        const asInName = namePart.match(
+          /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
+        );
+        if (asInName) {
+          namePart = asInName[1].trim();
+          nameAliasMap.set(normalizeName(asInName[2]), namePart);
+        }
+      }
       let elementType;
       let explicitShape = null;
       if (rawType === "external") {
@@ -66051,7 +66635,7 @@ function parseC4(content, palette) {
       }
       const metadata = parsePipeMetadata(
         segments,
-        aliasMap,
+        metaAliasMap,
         () => pushError(lineNumber, MULTIPLE_PIPE_ERROR)
       );
       const shape = explicitShape ?? inferC4Shape(namePart, metadata.tech ?? metadata.technology);
@@ -66072,14 +66656,15 @@ function parseC4(content, palette) {
         relationships: [],
         lineNumber
       };
-      const existingLine = knownNames.get(namePart.toLowerCase());
+      const key = normalizeName(namePart);
+      const existingLine = knownNames.get(key);
       if (existingLine !== void 0) {
         pushError(
           lineNumber,
           `Duplicate element name "${namePart}" (first defined on line ${existingLine})`
         );
       } else {
-        knownNames.set(namePart.toLowerCase(), lineNumber);
+        knownNames.set(key, lineNumber);
       }
       attachElement(element, indent, stack, result);
       continue;
@@ -66110,7 +66695,7 @@ function parseC4(content, palette) {
       );
       const metadata = parsePipeMetadata(
         segments,
-        aliasMap,
+        metaAliasMap,
         () => pushError(lineNumber, MULTIPLE_PIPE_ERROR)
       );
       const shape = explicitShape ?? inferC4Shape(namePart, metadata.tech ?? metadata.technology);
@@ -66131,14 +66716,15 @@ function parseC4(content, palette) {
         relationships: [],
         lineNumber
       };
-      const existingLine = knownNames.get(namePart.toLowerCase());
+      const key = normalizeName(namePart);
+      const existingLine = knownNames.get(key);
       if (existingLine !== void 0) {
         pushError(
           lineNumber,
           `Duplicate element name "${namePart}" (first defined on line ${existingLine})`
         );
       } else {
-        knownNames.set(namePart.toLowerCase(), lineNumber);
+        knownNames.set(key, lineNumber);
       }
       attachElement(element, indent, stack, result);
       continue;
@@ -66152,7 +66738,7 @@ function parseC4(content, palette) {
           parentEntry.element.importPath = metadataMatch[2].trim();
           continue;
         }
-        const key = aliasMap.get(rawKey) ?? rawKey;
+        const key = metaAliasMap.get(rawKey) ?? rawKey;
         const value = metadataMatch[2].trim();
         if (key === "description") {
           if (!parentEntry.element.description)
@@ -66238,7 +66824,7 @@ function validateRelationshipTargets(result, knownNames, pushWarning) {
   function walkRels(elements) {
     for (const el of elements) {
       for (const rel of el.relationships) {
-        if (!knownNames.has(rel.target.toLowerCase())) {
+        if (!knownNames.has(normalizeName(rel.target))) {
           pushWarning(
             rel.lineNumber,
             `Relationship target "${rel.target}" not found`,
@@ -66254,7 +66840,7 @@ function validateRelationshipTargets(result, knownNames, pushWarning) {
   }
   walkRels(result.elements);
   for (const rel of result.relationships) {
-    if (!knownNames.has(rel.target.toLowerCase())) {
+    if (!knownNames.has(normalizeName(rel.target))) {
       pushWarning(
         rel.lineNumber,
         `Relationship target "${rel.target}" not found`,
@@ -66267,7 +66853,7 @@ function validateDeploymentRefs(result, knownNames, pushWarning) {
   function walkDeploy(nodes) {
     for (const node of nodes) {
       for (const ref of node.containerRefs) {
-        if (!knownNames.has(ref.toLowerCase())) {
+        if (!knownNames.has(normalizeName(ref))) {
           pushWarning(
             node.lineNumber,
             `Deployment reference "container ${ref}" not found`,
@@ -66302,6 +66888,7 @@ var init_parser6 = __esm({
     "use strict";
     init_diagnostics();
     init_arrows();
+    init_name_normalize();
     init_tag_groups();
     init_participant_inference();
     init_parsing();
@@ -66333,7 +66920,7 @@ var init_parser6 = __esm({
       "external"
     ]);
     KNOWN_C4_OPTIONS = /* @__PURE__ */ new Set(["layout", "active-tag"]);
-    KNOWN_C4_BOOLEANS = /* @__PURE__ */ new Set(["direction-tb"]);
+    KNOWN_C4_BOOLEANS = /* @__PURE__ */ new Set(["direction-tb", "solid-fill"]);
     ALL_CHART_TYPES2 = [
       "c4",
       "org",
@@ -66454,7 +67041,8 @@ function parseSitemap(content, palette) {
   let containerCounter = 0;
   let firstLineParsed = false;
   let currentTagGroup = null;
-  const aliasMap = /* @__PURE__ */ new Map();
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
   const indentStack = [];
   const labelToNode = /* @__PURE__ */ new Map();
   const labelToContainer = /* @__PURE__ */ new Map();
@@ -66490,6 +67078,7 @@ function parseSitemap(content, palette) {
     }
     const tagBlockMatch = matchTagBlockHeading(trimmed);
     if (tagBlockMatch) {
+      emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
       if (contentStarted) {
         pushError(lineNumber, "Tag groups must appear before sitemap content");
         continue;
@@ -66501,8 +67090,8 @@ function parseSitemap(content, palette) {
         lineNumber
       };
       if (tagBlockMatch.alias) {
-        aliasMap.set(
-          tagBlockMatch.alias.toLowerCase(),
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.alias),
           tagBlockMatch.name.toLowerCase()
         );
       }
@@ -66512,6 +67101,9 @@ function parseSitemap(content, palette) {
     if (!contentStarted && !currentTagGroup && measureIndent(line11) === 0 && !trimmed.includes("|") && !trimmed.includes("->")) {
       if (/^direction-tb$/i.test(trimmed)) {
         result.direction = "TB";
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, result.options)) {
         continue;
       }
       const optMatch = trimmed.match(OPTION_NOCOLON_RE);
@@ -66575,19 +67167,25 @@ function parseSitemap(content, palette) {
     const containerMatch = trimmed.match(CONTAINER_RE3);
     const metadataMatch = trimmed.includes("|") ? null : trimmed.match(METADATA_RE3);
     if (containerMatch) {
-      const label = containerMatch[1].trim();
+      const rawLabel = containerMatch[1].trim();
+      const asMatch = rawLabel.match(
+        /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
+      );
+      const label = asMatch ? asMatch[1].trim() : rawLabel;
       const pipeStr = containerMatch[2];
       const containerMetadata = {};
       if (pipeStr) {
         const pipeSegments = ["", pipeStr];
         Object.assign(
           containerMetadata,
-          parsePipeMetadata(pipeSegments, aliasMap)
+          parsePipeMetadata(pipeSegments, metaAliasMap)
         );
       }
       containerCounter++;
+      const containerId = `container-${containerCounter}`;
+      if (asMatch) nameAliasMap.set(normalizeName(asMatch[2]), containerId);
       const node = {
-        id: `container-${containerCounter}`,
+        id: containerId,
         label,
         metadata: containerMetadata,
         children: [],
@@ -66596,10 +67194,11 @@ function parseSitemap(content, palette) {
         lineNumber
       };
       attachNode2(node, indent, indentStack, result);
-      labelToContainer.set(label.toLowerCase(), node);
+      const key = normalizeName(label);
+      labelToContainer.set(key, node);
     } else if (metadataMatch && indentStack.length > 0) {
       const rawKey = metadataMatch[1].trim().toLowerCase();
-      const key = aliasMap.get(rawKey) ?? rawKey;
+      const key = metaAliasMap.get(rawKey) ?? rawKey;
       const value = metadataMatch[2].trim();
       const parent = findParentNode(indent, indentStack);
       if (!parent) {
@@ -66614,12 +67213,14 @@ function parseSitemap(content, palette) {
           lineNumber,
           palette,
           ++nodeCounter,
-          aliasMap,
+          metaAliasMap,
           pushWarning,
-          result.diagnostics
+          result.diagnostics,
+          nameAliasMap
         );
         attachNode2(node, indent, indentStack, result);
-        labelToNode.set(node.label.toLowerCase(), node);
+        const key = normalizeName(node.label);
+        labelToNode.set(key, node);
       } else {
         pushError(lineNumber, "Metadata has no parent node");
       }
@@ -66638,16 +67239,29 @@ function parseSitemap(content, palette) {
         lineNumber,
         palette,
         ++nodeCounter,
-        aliasMap,
+        metaAliasMap,
         pushWarning,
-        result.diagnostics
+        result.diagnostics,
+        nameAliasMap
       );
       attachNode2(node, indent, indentStack, result);
-      labelToNode.set(node.label.toLowerCase(), node);
+      const key = normalizeName(node.label);
+      labelToNode.set(key, node);
     }
   }
   for (const arrow of deferredArrows) {
-    const targetKey = arrow.targetLabel.toLowerCase();
+    const aliasHit = nameAliasMap.get(arrow.targetLabel.trim());
+    if (aliasHit !== void 0) {
+      result.edges.push({
+        sourceId: arrow.sourceNode.id,
+        targetId: aliasHit,
+        label: arrow.label,
+        color: arrow.color,
+        lineNumber: arrow.lineNumber
+      });
+      continue;
+    }
+    const targetKey = normalizeName(arrow.targetLabel);
     if (arrow.targetIsGroup) {
       const targetContainer = labelToContainer.get(targetKey);
       if (!targetContainer) {
@@ -66703,12 +67317,18 @@ function parseSitemap(content, palette) {
   }
   return result;
 }
-function parseNodeLabel2(trimmed, lineNumber, palette, counter, aliasMap = /* @__PURE__ */ new Map(), warnFn, _diagnostics) {
+function parseNodeLabel2(trimmed, lineNumber, palette, counter, metaAliasMap = /* @__PURE__ */ new Map(), warnFn, _diagnostics, nameAliasMap) {
   const segments = trimmed.split("|").map((s) => s.trim());
-  const label = segments[0];
+  let label = segments[0];
+  const asMatch = label.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+  const id = `node-${counter}`;
+  if (asMatch) {
+    label = asMatch[1].trim();
+    nameAliasMap?.set(normalizeName(asMatch[2]), id);
+  }
   const metadata = parsePipeMetadata(
     segments,
-    aliasMap,
+    metaAliasMap,
     warnFn ? () => warnFn(lineNumber, MULTIPLE_PIPE_ERROR) : void 0
   );
   let description;
@@ -66720,7 +67340,7 @@ function parseNodeLabel2(trimmed, lineNumber, palette, counter, aliasMap = /* @_
     delete metadata["description"];
   }
   return {
-    id: `node-${counter}`,
+    id,
     label,
     metadata,
     description,
@@ -66768,6 +67388,7 @@ var init_parser7 = __esm({
     "use strict";
     init_colors();
     init_diagnostics();
+    init_name_normalize();
     init_tag_groups();
     init_parsing();
     init_description_helpers();
@@ -66812,10 +67433,10 @@ __export2(parser_exports8, {
   parseInfra: () => parseInfra
 });
 function nodeId2(name) {
-  return name.trim();
+  return normalizeName(name);
 }
 function groupId(name) {
-  return `[${name.trim()}]`;
+  return `[${normalizeName(name)}]`;
 }
 function parsePropertyValue(raw) {
   const pct = raw.match(PERCENT_RE);
@@ -66866,6 +67487,22 @@ function parseInfra(content) {
     error: null
   };
   const nodeMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias(label) {
+    const trimmed = label.trim();
+    const m2 = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m2) return { label: trimmed };
+    return { label: m2[1].trim(), alias: m2[2] };
+  }
+  function resolveTargetId(rawName) {
+    const aliasResolved = nameAliasMap.get(rawName.trim());
+    if (aliasResolved !== void 0) return aliasResolved;
+    return nodeId2(rawName);
+  }
+  const targetDisplays = /* @__PURE__ */ new Map();
+  const rememberTargetDisplay = (key, display) => {
+    if (!targetDisplays.has(key)) targetDisplays.set(key, display.trim());
+  };
   const setError = (line11, message) => {
     const diag = makeDgmoError(line11, message);
     result.diagnostics.push(diag);
@@ -66879,27 +67516,49 @@ function parseInfra(content) {
   let currentTagGroup = null;
   let baseIndent = 0;
   function finishCurrentNode() {
-    if (currentNode && !nodeMap.has(currentNode.id)) {
-      const keys2 = new Set(currentNode.properties.map((p2) => p2.key));
-      if (keys2.has("concurrency") && (keys2.has("instances") || keys2.has("max-rps"))) {
-        const conflicting = [
-          keys2.has("instances") ? "instances" : "",
-          keys2.has("max-rps") ? "max-rps" : ""
-        ].filter(Boolean).join(", ");
-        warn2(
-          currentNode.lineNumber,
-          `'concurrency' (serverless) is mutually exclusive with ${conflicting}. Serverless nodes scale via concurrency, not instances.`
+    if (!currentNode) return;
+    const key = currentNode.id;
+    const existing = nodeMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(currentNode.label);
+      const existingDisplay = displayName(existing.label);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            currentNode.lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: currentNode.lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
         );
       }
-      if (keys2.has("buffer") && keys2.has("max-rps")) {
-        warn2(
-          currentNode.lineNumber,
-          `'buffer' (queue) and 'max-rps' (service) represent different capacity models. A queue buffers messages; a service processes them.`
-        );
-      }
-      nodeMap.set(currentNode.id, currentNode);
-      result.nodes.push(currentNode);
+      currentNode = null;
+      return;
     }
+    const keys2 = new Set(currentNode.properties.map((p2) => p2.key));
+    if (keys2.has("concurrency") && (keys2.has("instances") || keys2.has("max-rps"))) {
+      const conflicting = [
+        keys2.has("instances") ? "instances" : "",
+        keys2.has("max-rps") ? "max-rps" : ""
+      ].filter(Boolean).join(", ");
+      warn2(
+        currentNode.lineNumber,
+        `'concurrency' (serverless) is mutually exclusive with ${conflicting}. Serverless nodes scale via concurrency, not instances.`
+      );
+    }
+    if (keys2.has("buffer") && keys2.has("max-rps")) {
+      warn2(
+        currentNode.lineNumber,
+        `'buffer' (queue) and 'max-rps' (service) represent different capacity models. A queue buffers messages; a service processes them.`
+      );
+    }
+    nodeMap.set(key, currentNode);
+    result.nodes.push(currentNode);
     currentNode = null;
   }
   function finishCurrentTagGroup() {
@@ -66945,6 +67604,9 @@ function parseInfra(content) {
         result.options.animate = "off";
         continue;
       }
+      if (tryParseSharedOption(trimmed, result.options)) {
+        continue;
+      }
       const optMatch = trimmed.match(OPTION_NOCOLON_RE);
       if (optMatch && TOP_LEVEL_OPTIONS.has(optMatch[1].toLowerCase())) {
         result.options[optMatch[1].toLowerCase()] = optMatch[2].trim();
@@ -66952,6 +67614,7 @@ function parseInfra(content) {
       }
       const tagMatch = matchTagBlockHeading(trimmed);
       if (tagMatch) {
+        emitTagLegacyDiagnostic(tagMatch, lineNumber, result.diagnostics);
         finishCurrentNode();
         finishCurrentTagGroup();
         currentTagGroup = {
@@ -66967,8 +67630,10 @@ function parseInfra(content) {
         finishCurrentNode();
         finishCurrentTagGroup();
         const gLabel = groupMatch[1].trim();
+        const groupAlias = groupMatch[2];
         const gId = groupId(gLabel);
-        const groupMeta = groupMatch[2] ? extractPipeMetadata("|" + groupMatch[2]).tags : void 0;
+        if (groupAlias) nameAliasMap.set(normalizeName(groupAlias), gId);
+        const groupMeta = groupMatch[3] ? extractPipeMetadata("|" + groupMatch[3]).tags : void 0;
         currentGroup = {
           id: gId,
           label: gLabel,
@@ -66982,10 +67647,13 @@ function parseInfra(content) {
       if (compMatch) {
         finishCurrentNode();
         finishCurrentTagGroup();
-        const name = compMatch[1];
-        const rest = compMatch[2] || "";
+        const rawName = (compMatch[1] ?? compMatch[2] ?? "").trim();
+        const peeled = peelAlias(rawName);
+        const name = peeled.label;
+        const rest = compMatch[3] || "";
         const { tags } = extractPipeMetadata(rest);
         const id = nodeId2(name);
+        if (peeled.alias) nameAliasMap.set(normalizeName(peeled.alias), id);
         const isEdge = EDGE_NODE_NAMES.has(id.toLowerCase());
         currentNode = {
           id,
@@ -67050,10 +67718,13 @@ function parseInfra(content) {
       const compMatch = trimmed.match(COMPONENT_RE);
       if (compMatch) {
         finishCurrentTagGroup();
-        const name = compMatch[1];
-        const rest = compMatch[2] || "";
+        const rawName = (compMatch[1] ?? compMatch[2] ?? "").trim();
+        const peeled = peelAlias(rawName);
+        const name = peeled.label;
+        const rest = compMatch[3] || "";
         const { tags: nodeTags } = extractPipeMetadata(rest);
         const id = nodeId2(name);
+        if (peeled.alias) nameAliasMap.set(normalizeName(peeled.alias), id);
         const tags = currentGroup.metadata ? { ...currentGroup.metadata, ...nodeTags } : nodeTags;
         currentNode = {
           id,
@@ -67093,9 +67764,11 @@ function parseInfra(content) {
           );
         }
         const fanout = fanoutRaw !== null && fanoutRaw >= 1 ? fanoutRaw : null;
+        const targetIdAsync = resolveTargetId(targetName);
+        rememberTargetDisplay(targetIdAsync, targetName);
         result.edges.push({
           sourceId: currentNode.id,
-          targetId: nodeId2(targetName),
+          targetId: targetIdAsync,
           label: "",
           async: true,
           split,
@@ -67127,8 +67800,10 @@ function parseInfra(content) {
         const targetGroupMatch = targetName.match(/^\[([^\]]+)\]/);
         if (targetGroupMatch) {
           targetId = groupId(targetGroupMatch[1]);
+          rememberTargetDisplay(targetId, `[${targetGroupMatch[1]}]`);
         } else {
-          targetId = nodeId2(targetName);
+          targetId = resolveTargetId(targetName);
+          rememberTargetDisplay(targetId, targetName);
         }
         result.edges.push({
           sourceId: currentNode.id,
@@ -67156,9 +67831,11 @@ function parseInfra(content) {
           );
         }
         const fanout = fanoutRaw !== null && fanoutRaw >= 1 ? fanoutRaw : null;
+        const targetIdSimple = resolveTargetId(targetName);
+        rememberTargetDisplay(targetIdSimple, targetName);
         result.edges.push({
           sourceId: currentNode.id,
-          targetId: nodeId2(targetName),
+          targetId: targetIdSimple,
           label: "",
           async: false,
           split,
@@ -67190,8 +67867,10 @@ function parseInfra(content) {
         const targetGroupMatch = targetName.match(/^\[([^\]]+)\]/);
         if (targetGroupMatch) {
           targetId = groupId(targetGroupMatch[1]);
+          rememberTargetDisplay(targetId, `[${targetGroupMatch[1]}]`);
         } else {
-          targetId = nodeId2(targetName);
+          targetId = resolveTargetId(targetName);
+          rememberTargetDisplay(targetId, targetName);
         }
         result.edges.push({
           sourceId: currentNode.id,
@@ -67258,10 +67937,13 @@ function parseInfra(content) {
       finishCurrentNode();
       const compMatch = trimmed.match(COMPONENT_RE);
       if (compMatch) {
-        const name = compMatch[1];
-        const rest = compMatch[2] || "";
+        const rawName = (compMatch[1] ?? compMatch[2] ?? "").trim();
+        const peeled = peelAlias(rawName);
+        const name = peeled.label;
+        const rest = compMatch[3] || "";
         const { tags: nodeTags } = extractPipeMetadata(rest);
         const id = nodeId2(name);
+        if (peeled.alias) nameAliasMap.set(normalizeName(peeled.alias), id);
         const tags = currentGroup.metadata ? { ...currentGroup.metadata, ...nodeTags } : nodeTags;
         currentNode = {
           id,
@@ -67282,8 +67964,8 @@ function parseInfra(content) {
         finishCurrentNode();
         finishCurrentTagGroup();
         currentGroup = null;
-        const name = compMatch[1];
-        const rest = compMatch[2] || "";
+        const name = (compMatch[1] ?? compMatch[2] ?? "").trim();
+        const rest = compMatch[3] || "";
         const { tags } = extractPipeMetadata(rest);
         const id = nodeId2(name);
         currentNode = {
@@ -67307,9 +67989,10 @@ function parseInfra(content) {
     if (!nodeMap.has(edge.targetId)) {
       const isGroup = result.groups.some((g) => g.id === edge.targetId);
       if (!isGroup) {
+        const stubDisplay = targetDisplays.get(edge.targetId) ?? edge.targetId;
         const stub = {
           id: edge.targetId,
-          label: edge.targetId,
+          label: stubDisplay,
           properties: [],
           groupId: null,
           tags: {},
@@ -67366,7 +68049,10 @@ function extractSymbols4(docText) {
       inTagGroup = false;
       if (/^\[/.test(line11)) continue;
       const m2 = COMPONENT_RE.exec(line11);
-      if (m2 && !entities.includes(m2[1])) entities.push(m2[1]);
+      if (m2) {
+        const name = (m2[1] ?? m2[2] ?? "").trim();
+        if (name && !entities.includes(name)) entities.push(name);
+      }
     } else {
       if (inTagGroup) continue;
       if (/^->/.test(line11)) continue;
@@ -67378,7 +68064,10 @@ function extractSymbols4(docText) {
       if ((INFRA_BEHAVIOR_KEYS.has(firstToken) || EDGE_ONLY_KEYS.has(firstToken) || firstToken === "description" || firstToken === "instances" || firstToken === "collapsed") && /\s/.test(line11))
         continue;
       const m2 = COMPONENT_RE.exec(line11);
-      if (m2 && !entities.includes(m2[1])) entities.push(m2[1]);
+      if (m2) {
+        const name = (m2[1] ?? m2[2] ?? "").trim();
+        if (name && !entities.includes(name)) entities.push(name);
+      }
     }
   }
   return { kind: "infra", entities, keywords: [] };
@@ -67406,6 +68095,7 @@ var init_parser8 = __esm({
     init_colors();
     init_arrows();
     init_parsing();
+    init_name_normalize();
     init_tag_groups();
     init_types();
     CONNECTION_RE = /^-(?:([^-].*?))?->\s*(.+?)\s*$/;
@@ -67413,9 +68103,9 @@ var init_parser8 = __esm({
     ASYNC_CONNECTION_RE = /^~(?:([^~].*?))?~>\s*(.+?)\s*$/;
     ASYNC_SIMPLE_CONNECTION_RE = /^~>\s*(.+?)\s*$/;
     DEPRECATED_FANOUT_RE = /\bx(\d+)\s*$/;
-    GROUP_RE = /^\[([^\]]+)\]\s*(?:\|\s*(.+))?$/;
+    GROUP_RE = /^\[([^\]]+)\]\s*(?:as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*)?(?:\|\s*(.+))?$/;
     TAG_VALUE_RE = /^(\w[\w\s]*?)(?:\(([^)]+)\))?\s*$/;
-    COMPONENT_RE = /^([a-zA-Z_][\w-]*)(.*)$/;
+    COMPONENT_RE = /^(?:"([^"]+)"|([a-zA-Z_][^|":]*?))\s*(\|.*)?$/;
     PIPE_META_RE = /[|,]\s*(\w+)\s*:\s*([^|,]+)/g;
     PROPERTY_RE = /^([\w-]+)\s+(.+)$/;
     PERCENT_RE = /^([\d.]+)%$/;
@@ -67643,7 +68333,8 @@ function parseGantt(content, palette) {
       sprintLength: null,
       sprintNumber: null,
       sprintStart: null,
-      sprintMode: null
+      sprintMode: null,
+      solidFill: false
     },
     diagnostics,
     error: null
@@ -67660,7 +68351,17 @@ function parseGantt(content, palette) {
   const softError = (line11, message) => {
     diagnostics.push(makeDgmoError(line11, message, "error"));
   };
-  const aliasMap = /* @__PURE__ */ new Map();
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias(label) {
+    const trimmed = label.trim();
+    const m2 = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m2) return { label: trimmed };
+    return { label: m2[1].trim(), alias: m2[2] };
+  }
+  function resolveAliasTarget(token) {
+    return nameAliasMap.get(token.trim()) ?? token;
+  }
   const blockStack = [];
   const currentContainer = () => {
     if (blockStack.length === 0) return result.nodes;
@@ -67852,12 +68553,12 @@ function parseGantt(content, palette) {
       if (depMatch2) {
         const label = depMatch2[1]?.trim() || void 0;
         const depParts = depMatch2[2].split("|");
-        const targetName = depParts[0].trim();
+        const targetName = resolveAliasTarget(depParts[0].trim());
         let offset;
         if (depParts.length > 1) {
           const meta = parsePipeMetadata(
             ["", ...depParts.slice(1)],
-            aliasMap,
+            metaAliasMap,
             () => warn2(lineNumber, MULTIPLE_PIPE_ERROR)
           );
           if (meta.lag || meta.lead) {
@@ -67920,6 +68621,7 @@ function parseGantt(content, palette) {
     }
     const tagMatch = matchTagBlockHeading(line11);
     if (tagMatch) {
+      emitTagLegacyDiagnostic(tagMatch, lineNumber, result.diagnostics);
       inTagBlock = true;
       tagBlockIndent = indent;
       currentTagGroup = {
@@ -67929,7 +68631,10 @@ function parseGantt(content, palette) {
         lineNumber
       };
       if (tagMatch.alias) {
-        aliasMap.set(tagMatch.alias.toLowerCase(), tagMatch.name.toLowerCase());
+        metaAliasMap.set(
+          normalizeName(tagMatch.alias),
+          tagMatch.name.toLowerCase()
+        );
       }
       continue;
     }
@@ -67992,6 +68697,9 @@ function parseGantt(content, palette) {
           break;
         case "today-marker":
           result.options.todayMarker = "on";
+          break;
+        case "solid-fill":
+          result.options.solidFill = true;
           break;
       }
       continue;
@@ -68137,16 +68845,19 @@ function parseGantt(content, palette) {
       const color4 = null;
       const pipeWarn = () => warn2(lineNumber, MULTIPLE_PIPE_ERROR);
       if (segments.length > 0 && segments[0].trim()) {
-        metadata = parsePipeMetadata(["", ...segments], aliasMap, pipeWarn);
+        metadata = parsePipeMetadata(["", ...segments], metaAliasMap, pipeWarn);
       } else if (segments.length > 1) {
         metadata = parsePipeMetadata(
           ["", ...segments.slice(1)],
-          aliasMap,
+          metaAliasMap,
           pipeWarn
         );
       }
+      const groupPeeled = peelAlias(groupMatch[1]);
+      if (groupPeeled.alias)
+        nameAliasMap.set(normalizeName(groupPeeled.alias), groupPeeled.label);
       const group = {
-        name: groupMatch[1],
+        name: groupPeeled.label,
         color: color4,
         metadata,
         lineNumber,
@@ -68234,12 +68945,12 @@ function parseGantt(content, palette) {
       }
       const label = depMatch[1]?.trim() || void 0;
       const depParts = depMatch[2].split("|");
-      const targetName = depParts[0].trim();
+      const targetName = resolveAliasTarget(depParts[0].trim());
       let offset;
       if (depParts.length > 1) {
         const meta = parsePipeMetadata(
           ["", ...depParts.slice(1)],
-          aliasMap,
+          metaAliasMap,
           () => warn2(lineNumber, MULTIPLE_PIPE_ERROR)
         );
         if (meta.lag || meta.lead) {
@@ -68306,7 +69017,9 @@ function parseGantt(content, palette) {
   return result;
   function makeTask(labelRaw, duration, uncertain, ln2, explicitStart) {
     const segments = labelRaw.split("|");
-    const label = segments[0].trim();
+    const peeled = peelAlias(segments[0]);
+    const label = peeled.label;
+    if (peeled.alias) nameAliasMap.set(normalizeName(peeled.alias), label);
     if (label.toLowerCase() === "parallel") {
       softError(
         ln2,
@@ -68315,7 +69028,7 @@ function parseGantt(content, palette) {
     }
     const metadata = segments.length > 1 ? parsePipeMetadata(
       segments,
-      aliasMap,
+      metaAliasMap,
       () => warn2(ln2, MULTIPLE_PIPE_ERROR)
     ) : {};
     let progress = null;
@@ -68453,6 +69166,7 @@ var init_parser9 = __esm({
     init_tag_groups();
     init_parsing();
     init_duration();
+    init_name_normalize();
     init_palettes();
     DURATION_RE = /^(\d+(?:\.\d+)?)(min|bd|d|w|m|q|y|h|s)(\?)?\s+(.+)$/;
     EXPLICIT_DATE_RE = /^(\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2})?)\s+(.+)$/;
@@ -68499,7 +69213,8 @@ var init_parser9 = __esm({
     KNOWN_BOOLEANS4 = /* @__PURE__ */ new Set([
       "critical-path",
       "today-marker",
-      "dependencies"
+      "dependencies",
+      "solid-fill"
     ]);
   }
 });
@@ -68520,7 +69235,7 @@ function measureIndent2(line11) {
   }
   return count2;
 }
-function parsePipeMetadata2(segment, aliasMap) {
+function parsePipeMetadata2(segment, metaAliasMap) {
   const metadata = {};
   let description;
   const items = segment.split(",");
@@ -68534,7 +69249,7 @@ function parsePipeMetadata2(segment, aliasMap) {
       if (rawKey === "description") {
         description = [value];
       } else {
-        const resolvedKey = aliasMap.get(rawKey) ?? rawKey;
+        const resolvedKey = metaAliasMap.get(rawKey) ?? rawKey;
         metadata[resolvedKey] = value;
       }
     }
@@ -68579,7 +69294,14 @@ function parseBoxesAndLines(content) {
   const groupStack = [];
   let contentStarted = false;
   let currentTagGroup = null;
-  const aliasMap = /* @__PURE__ */ new Map();
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias(label) {
+    const trimmed = label.trim();
+    const m2 = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m2) return { label: trimmed };
+    return { label: m2[1].trim(), alias: m2[2] };
+  }
   const pushWarning = (lineNumber, message) => {
     result.diagnostics.push(makeDgmoError(lineNumber, message, "warning"));
   };
@@ -68593,13 +69315,14 @@ function parseBoxesAndLines(content) {
     }
   }
   function ensureNode(label, lineNum) {
-    if (!nodeLabels.has(label)) {
+    const key = normalizeName(label);
+    if (!nodeLabels.has(key)) {
       result.nodes.push({
         label,
         lineNumber: lineNum,
         metadata: {}
       });
-      nodeLabels.add(label);
+      nodeLabels.add(key);
     }
   }
   for (let i = 0; i < lines.length; i++) {
@@ -68652,17 +69375,21 @@ function parseBoxesAndLines(content) {
       if (!contentStarted) {
         const optMatch = trimmed.match(OPTION_NOCOLON_RE);
         if (optMatch) {
-          const key = optMatch[1].toLowerCase();
+          const key2 = optMatch[1].toLowerCase();
           const value = optMatch[2].trim();
-          if (key === "active-tag") {
-            result.options[key] = value;
+          if (key2 === "active-tag") {
+            result.options[key2] = value;
             continue;
           }
+        }
+        if (tryParseSharedOption(trimmed, result.options)) {
+          continue;
         }
       }
     }
     const tagBlockMatch = matchTagBlockHeading(trimmed);
     if (tagBlockMatch && indent === 0) {
+      emitTagLegacyDiagnostic(tagBlockMatch, lineNum, result.diagnostics);
       if (contentStarted) {
         result.diagnostics.push(
           makeDgmoError(
@@ -68680,8 +69407,8 @@ function parseBoxesAndLines(content) {
         lineNumber: lineNum
       };
       if (tagBlockMatch.alias) {
-        aliasMap.set(
-          tagBlockMatch.alias.toLowerCase(),
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.alias),
           tagBlockMatch.name.toLowerCase()
         );
       }
@@ -68769,7 +69496,7 @@ function parseBoxesAndLines(content) {
       const metaSeg = groupEdgeMatch[4];
       let edgeMeta = {};
       if (metaSeg) {
-        const parsed = parsePipeMetadata2(metaSeg, aliasMap);
+        const parsed = parsePipeMetadata2(metaSeg, metaAliasMap);
         edgeMeta = parsed.metadata;
       }
       result.edges.push({
@@ -68795,7 +69522,7 @@ function parseBoxesAndLines(content) {
       const metaSeg = labeledGroupEdgeMatch[5];
       let edgeMeta = {};
       if (metaSeg) {
-        const parsed = parsePipeMetadata2(metaSeg, aliasMap);
+        const parsed = parsePipeMetadata2(metaSeg, metaAliasMap);
         edgeMeta = parsed.metadata;
       }
       result.edges.push({
@@ -68813,7 +69540,10 @@ function parseBoxesAndLines(content) {
       contentStarted = true;
       currentTagGroup = null;
       flushDescription();
-      const label = groupMatch[1];
+      const groupPeeled = peelAlias(groupMatch[1]);
+      const label = groupPeeled.label;
+      if (groupPeeled.alias)
+        nameAliasMap.set(normalizeName(groupPeeled.alias), groupId2(label));
       const currentDepth = groupStack.length + 1;
       if (currentDepth > MAX_GROUP_DEPTH) {
         result.diagnostics.push(
@@ -68833,7 +69563,7 @@ function parseBoxesAndLines(content) {
           if (ci >= 0) {
             const rawKey = item.slice(0, ci).trim().toLowerCase();
             const value = item.slice(ci + 1).trim();
-            const resolvedKey = aliasMap.get(rawKey) ?? rawKey;
+            const resolvedKey = metaAliasMap.get(rawKey) ?? rawKey;
             groupMeta[resolvedKey] = value;
           }
         }
@@ -68849,7 +69579,7 @@ function parseBoxesAndLines(content) {
       if (parentGs && indent > parentGs.indent) {
         parentGs.group.children.push(label);
       }
-      groupLabels.add(label);
+      groupLabels.add(normalizeName(label));
       groupStack.push({ group, indent, depth: currentDepth });
       lastNodeLabel = label;
       lastSourceIsGroup = true;
@@ -68883,8 +69613,9 @@ function parseBoxesAndLines(content) {
       const edge = parseEdgeLine(
         edgeText,
         lineNum,
-        aliasMap,
-        result.diagnostics
+        metaAliasMap,
+        result.diagnostics,
+        nameAliasMap
       );
       if (edge) {
         result.edges.push(edge);
@@ -68894,7 +69625,13 @@ function parseBoxesAndLines(content) {
     contentStarted = true;
     currentTagGroup = null;
     flushDescription();
-    const node = parseNodeLine(trimmed, lineNum, aliasMap, result.diagnostics);
+    const node = parseNodeLine(
+      trimmed,
+      lineNum,
+      metaAliasMap,
+      result.diagnostics,
+      nameAliasMap
+    );
     if (!node) {
       result.diagnostics.push(
         makeDgmoError(lineNum, `Unexpected line: '${trimmed}'.`, "warning")
@@ -68906,7 +69643,8 @@ function parseBoxesAndLines(content) {
     lastNodeIndent = indent;
     const gs = currentGroupState();
     const isGroupChild = gs && indent > gs.indent;
-    if (nodeLabels.has(node.label)) {
+    const key = normalizeName(node.label);
+    if (nodeLabels.has(key)) {
       if (isGroupChild) {
         gs.group.children.push(node.label);
         continue;
@@ -68915,12 +69653,12 @@ function parseBoxesAndLines(content) {
         makeDgmoError(lineNum, `Duplicate node "${node.label}"`, "warning")
       );
     } else {
-      nodeLabels.add(node.label);
+      nodeLabels.add(key);
     }
     if (isGroupChild) {
-      for (const [key, val] of Object.entries(gs.group.metadata)) {
-        if (!(key in node.metadata)) {
-          node.metadata[key] = val;
+      for (const [key2, val] of Object.entries(gs.group.metadata)) {
+        if (!(key2 in node.metadata)) {
+          node.metadata[key2] = val;
         }
       }
       gs.group.children.push(node.label);
@@ -68938,9 +69676,7 @@ function parseBoxesAndLines(content) {
     let valid = true;
     if (edge.source.startsWith("__group_")) {
       const label = edge.source.slice("__group_".length);
-      const found = [...groupLabels].some(
-        (g) => g.toLowerCase() === label.toLowerCase()
-      );
+      const found = groupLabels.has(normalizeName(label));
       if (!found) {
         result.diagnostics.push(
           makeDgmoError(edge.lineNumber, `Group '[${label}]' not found`)
@@ -68952,9 +69688,7 @@ function parseBoxesAndLines(content) {
     }
     if (edge.target.startsWith("__group_")) {
       const label = edge.target.slice("__group_".length);
-      const found = [...groupLabels].some(
-        (g) => g.toLowerCase() === label.toLowerCase()
-      );
+      const found = groupLabels.has(normalizeName(label));
       if (!found) {
         result.diagnostics.push(
           makeDgmoError(edge.lineNumber, `Group '[${label}]' not found`)
@@ -68980,7 +69714,7 @@ function parseBoxesAndLines(content) {
   }
   return result;
 }
-function parseNodeLine(trimmed, lineNum, aliasMap, _diagnostics) {
+function parseNodeLine(trimmed, lineNum, metaAliasMap, _diagnostics, nameAliasMap) {
   let metadata = {};
   let description;
   const pipeIdx = trimmed.indexOf("|");
@@ -68988,11 +69722,16 @@ function parseNodeLine(trimmed, lineNum, aliasMap, _diagnostics) {
   if (pipeIdx >= 0) {
     label = trimmed.slice(0, pipeIdx).trim();
     const metaSegment = trimmed.slice(pipeIdx + 1).trim();
-    const parsed = parsePipeMetadata2(metaSegment, aliasMap);
+    const parsed = parsePipeMetadata2(metaSegment, metaAliasMap);
     metadata = parsed.metadata;
     description = parsed.description;
   } else {
     label = trimmed;
+  }
+  const asMatch = label.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+  if (asMatch) {
+    label = asMatch[1].trim();
+    nameAliasMap?.set(normalizeName(asMatch[2]), label);
   }
   if (!label) return null;
   return {
@@ -69002,14 +69741,19 @@ function parseNodeLine(trimmed, lineNum, aliasMap, _diagnostics) {
     description
   };
 }
-function resolveEndpoint(name) {
+function resolveEndpoint(name, nameAliasMap) {
   const m2 = name.match(/^\[(.+)\]$/);
-  return m2 ? groupId2(m2[1].trim()) : name;
+  if (m2) return groupId2(m2[1].trim());
+  if (nameAliasMap) {
+    const aliased = nameAliasMap.get(name.trim());
+    if (aliased !== void 0) return aliased;
+  }
+  return name;
 }
-function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
+function parseEdgeLine(trimmed, lineNum, metaAliasMap, diagnostics, nameAliasMap) {
   const biLabeledMatch = trimmed.match(/^(.+?)\s*<-(.+)->\s*(.+)$/);
   if (biLabeledMatch) {
-    const source2 = resolveEndpoint(biLabeledMatch[1].trim());
+    const source2 = resolveEndpoint(biLabeledMatch[1].trim(), nameAliasMap);
     const labelResult = parseInArrowLabel(biLabeledMatch[2], lineNum);
     diagnostics.push(...labelResult.diagnostics);
     const label = labelResult.label;
@@ -69019,7 +69763,7 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
     if (pipeIdx2 >= 0) {
       const parsed = parsePipeMetadata2(
         rest2.slice(pipeIdx2 + 1).trim(),
-        aliasMap
+        metaAliasMap
       );
       metadata2 = parsed.metadata;
       rest2 = rest2.slice(0, pipeIdx2).trim();
@@ -69032,7 +69776,7 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
     }
     return {
       source: source2,
-      target: resolveEndpoint(rest2),
+      target: resolveEndpoint(rest2, nameAliasMap),
       label,
       bidirectional: true,
       lineNumber: lineNum,
@@ -69041,14 +69785,17 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
   }
   const biIdx = trimmed.indexOf("<->");
   if (biIdx >= 0) {
-    const source2 = resolveEndpoint(trimmed.slice(0, biIdx).trim());
+    const source2 = resolveEndpoint(
+      trimmed.slice(0, biIdx).trim(),
+      nameAliasMap
+    );
     let rest2 = trimmed.slice(biIdx + 3).trim();
     let metadata2 = {};
     const pipeIdx2 = rest2.indexOf("|");
     if (pipeIdx2 >= 0) {
       const parsed = parsePipeMetadata2(
         rest2.slice(pipeIdx2 + 1).trim(),
-        aliasMap
+        metaAliasMap
       );
       metadata2 = parsed.metadata;
       rest2 = rest2.slice(0, pipeIdx2).trim();
@@ -69061,7 +69808,7 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
     }
     return {
       source: source2,
-      target: resolveEndpoint(rest2),
+      target: resolveEndpoint(rest2, nameAliasMap),
       bidirectional: true,
       lineNumber: lineNum,
       metadata: metadata2
@@ -69069,7 +69816,7 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
   }
   const labeledMatch = trimmed.match(/^(.+?)\s+-(.+)->\s*(.+)$/);
   if (labeledMatch) {
-    const source2 = resolveEndpoint(labeledMatch[1].trim());
+    const source2 = resolveEndpoint(labeledMatch[1].trim(), nameAliasMap);
     const labelResult = parseInArrowLabel(labeledMatch[2], lineNum);
     diagnostics.push(...labelResult.diagnostics);
     const label = labelResult.label;
@@ -69080,7 +69827,7 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
       if (pipeIdx2 >= 0) {
         const parsed = parsePipeMetadata2(
           rest2.slice(pipeIdx2 + 1).trim(),
-          aliasMap
+          metaAliasMap
         );
         metadata2 = parsed.metadata;
         rest2 = rest2.slice(0, pipeIdx2).trim();
@@ -69093,7 +69840,7 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
       }
       return {
         source: source2,
-        target: resolveEndpoint(rest2),
+        target: resolveEndpoint(rest2, nameAliasMap),
         label,
         bidirectional: false,
         lineNumber: lineNum,
@@ -69103,7 +69850,10 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
   }
   const arrowIdx = trimmed.indexOf("->");
   if (arrowIdx < 0) return null;
-  const source = resolveEndpoint(trimmed.slice(0, arrowIdx).trim());
+  const source = resolveEndpoint(
+    trimmed.slice(0, arrowIdx).trim(),
+    nameAliasMap
+  );
   let rest = trimmed.slice(arrowIdx + 2).trim();
   if (!source || !rest) {
     diagnostics.push(
@@ -69114,7 +69864,10 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
   let metadata = {};
   const pipeIdx = rest.indexOf("|");
   if (pipeIdx >= 0) {
-    const parsed = parsePipeMetadata2(rest.slice(pipeIdx + 1).trim(), aliasMap);
+    const parsed = parsePipeMetadata2(
+      rest.slice(pipeIdx + 1).trim(),
+      metaAliasMap
+    );
     metadata = parsed.metadata;
     rest = rest.slice(0, pipeIdx).trim();
   }
@@ -69124,7 +69877,7 @@ function parseEdgeLine(trimmed, lineNum, aliasMap, diagnostics) {
   }
   return {
     source,
-    target: resolveEndpoint(rest),
+    target: resolveEndpoint(rest, nameAliasMap),
     bidirectional: false,
     lineNumber: lineNum,
     metadata
@@ -69136,6 +69889,7 @@ var init_parser10 = __esm({
     "use strict";
     init_diagnostics();
     init_arrows();
+    init_name_normalize();
     init_tag_groups();
     init_parsing();
     MAX_GROUP_DEPTH = 2;
@@ -69221,6 +69975,7 @@ function parseMindmap(content, palette) {
     }
     const tagBlockMatch = matchTagBlockHeading(trimmed);
     if (tagBlockMatch) {
+      emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
       if (contentStarted) {
         pushError(lineNumber, "Tag groups must appear before mindmap content");
         continue;
@@ -69252,6 +70007,9 @@ function parseMindmap(content, palette) {
       const lower2 = trimmed.toLowerCase();
       if (lower2 === "no-descriptions") {
         result.options["no-descriptions"] = "true";
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, result.options)) {
         continue;
       }
     }
@@ -69716,6 +70474,7 @@ function parseWireframe(content) {
   function makeTagGroup(trimmed, lineNumber) {
     const match = matchTagBlockHeading(trimmed);
     if (!match) return null;
+    emitTagLegacyDiagnostic(match, lineNumber, diagnostics);
     return {
       name: match.name,
       alias: match.alias,
@@ -69799,6 +70558,9 @@ function parseWireframe(content) {
       }
       if (trimmed === "mobile") {
         formFactor = "mobile";
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) {
         continue;
       }
       const optMatch = trimmed.match(OPTION_NOCOLON_RE);
@@ -70366,7 +71128,7 @@ var init_parser13 = __esm({
       "bottom-left"
     ];
     KNOWN_OPTIONS8 = /* @__PURE__ */ new Set([]);
-    KNOWN_BOOLEANS5 = /* @__PURE__ */ new Set(["show-blip-legend"]);
+    KNOWN_BOOLEANS5 = /* @__PURE__ */ new Set(["show-blip-legend", "solid-fill"]);
   }
 });
 var parser_exports14 = {};
@@ -70441,6 +71203,9 @@ function parseCycle(content) {
     }
     if (indent === 0 && trimmed.toLowerCase() === "circle-nodes") {
       result.options["circle-nodes"] = "true";
+      continue;
+    }
+    if (indent === 0 && tryParseSharedOption(trimmed, result.options)) {
       continue;
     }
     if (indent === 0) {
@@ -70730,6 +71495,7 @@ function parseJourneyMap(content, palette) {
     if (!contentStarted) {
       const tagBlockMatch = matchTagBlockHeading(trimmed);
       if (tagBlockMatch) {
+        emitTagLegacyDiagnostic(tagBlockMatch, lineNumber, result.diagnostics);
         currentTagGroup = {
           name: tagBlockMatch.name,
           alias: tagBlockMatch.alias,
@@ -71008,7 +71774,7 @@ var init_parser15 = __esm({
     SCORE_RE = /^(\d+(?:\.\d+)?)(?:\s+([A-Za-z]\w*))?$/;
     ANNOTATION_RE = /^(pain|opportunity|thought)\s*:\s*(.+)$/i;
     KNOWN_OPTIONS9 = /* @__PURE__ */ new Set(["active-tag"]);
-    KNOWN_BOOLEANS6 = /* @__PURE__ */ new Set(["no-legend"]);
+    KNOWN_BOOLEANS6 = /* @__PURE__ */ new Set(["no-legend", "solid-fill"]);
   }
 });
 var parser_exports16 = {};
@@ -71064,6 +71830,9 @@ function parsePyramid(content) {
       result.inverted = true;
       continue;
     }
+    if (indent === 0 && tryParseSharedOption(trimmed, result.options)) {
+      continue;
+    }
     if (indent === 0) {
       flushLayer();
       const pipeIdx = trimmed.indexOf("|");
@@ -71116,15 +71885,952 @@ function parsePyramid(content) {
       "pyramid requires at least 2 layers."
     );
   }
+  if (result.layers.length > MAX_LAYERS) {
+    return fail(
+      result.titleLineNumber || 1,
+      `pyramid supports at most ${MAX_LAYERS} layers; got ${result.layers.length}.`
+    );
+  }
   return result;
 }
 var KEY_VALUE_PREFIX_RE;
+var MAX_LAYERS;
 var init_parser16 = __esm({
   "src/pyramid/parser.ts"() {
     "use strict";
     init_diagnostics();
     init_parsing();
     KEY_VALUE_PREFIX_RE = /^\s*[A-Za-z][A-Za-z0-9_-]*\s*:/;
+    MAX_LAYERS = 15;
+  }
+});
+var parser_exports17 = {};
+__export2(parser_exports17, {
+  parseRing: () => parseRing
+});
+function parseRing(content) {
+  const result = {
+    type: "ring",
+    title: "",
+    titleLineNumber: 0,
+    layers: [],
+    options: {},
+    diagnostics: [],
+    error: null
+  };
+  const lines = content.split("\n");
+  let headerParsed = false;
+  let currentLayer = null;
+  const fail = (line11, message) => {
+    const diag = makeDgmoError(line11, message);
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+    return result;
+  };
+  const warn2 = (line11, message, severity = "warning") => {
+    result.diagnostics.push(makeDgmoError(line11, message, severity));
+  };
+  const flushLayer = () => {
+    if (currentLayer) {
+      result.layers.push(currentLayer);
+      currentLayer = null;
+    }
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const lineNum = i + 1;
+    const raw = lines[i];
+    const trimmed = raw.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    const indent = measureIndent(raw);
+    if (!headerParsed) {
+      const firstLineResult = parseFirstLine(trimmed);
+      if (firstLineResult && firstLineResult.chartType === "ring") {
+        result.title = firstLineResult.title ?? "";
+        result.titleLineNumber = lineNum;
+        headerParsed = true;
+        continue;
+      }
+      return fail(lineNum, 'Expected "ring [Title]" as the first line.');
+    }
+    if (indent === 0 && trimmed.toLowerCase() === "inverted") {
+      warn2(
+        lineNum,
+        '"inverted" is not supported on ring diagrams; this directive is from pyramid syntax',
+        "error"
+      );
+      continue;
+    }
+    if (indent === 0 && tryParseSharedOption(trimmed, result.options)) {
+      continue;
+    }
+    if (indent === 0) {
+      flushLayer();
+      const pipeIdx = trimmed.indexOf("|");
+      let label;
+      const description = [];
+      let color4;
+      let restMeta = {};
+      if (pipeIdx < 0) {
+        label = trimmed;
+      } else {
+        label = trimmed.substring(0, pipeIdx).trim();
+        const after = trimmed.substring(pipeIdx + 1).trim();
+        if (!after) {
+        } else if (PIPE_KEY_VALUE_PREFIX_RE.test(after)) {
+          const metadata = parsePipeMetadata([label, after]);
+          const rawColor = metadata["color"];
+          if (rawColor !== void 0) {
+            const resolved = resolveColor(rawColor);
+            if (resolved === null) {
+              const hint = suggest(
+                rawColor,
+                RECOGNIZED_COLOR_NAMES
+              );
+              const suggestion = hint ? ` ${hint}` : "";
+              warn2(
+                lineNum,
+                `Unknown color "${rawColor}". Allowed: ${RECOGNIZED_COLOR_NAMES.join(", ")}.${suggestion}`,
+                "error"
+              );
+              color4 = void 0;
+            } else {
+              color4 = rawColor.toLowerCase();
+            }
+          }
+          const descFromPipe = metadata["description"];
+          if (descFromPipe) description.push(descFromPipe);
+          restMeta = { ...metadata };
+          delete restMeta["color"];
+          delete restMeta["description"];
+          for (const key of Object.keys(restMeta)) {
+            if (!KNOWN_PIPE_KEYS.has(key)) {
+              warn2(
+                lineNum,
+                `Unknown pipe key "${key}" on ring layer; allowed keys are: ${[...KNOWN_PIPE_KEYS].join(", ")}.`
+              );
+            }
+          }
+        } else {
+          if (PIPE_LIKELY_STRUCTURED_TAIL_RE.test(after)) {
+            warn2(
+              lineNum,
+              "Mixed shorthand and structured pipe metadata \u2014 wrap the description in `description:` or move it to an indented body line."
+            );
+          }
+          description.push(after);
+        }
+      }
+      if (!label) {
+        warn2(lineNum, "Empty layer label.");
+        continue;
+      }
+      currentLayer = {
+        label,
+        lineNumber: lineNum,
+        color: color4,
+        description,
+        metadata: restMeta
+      };
+      continue;
+    }
+    if (!currentLayer) {
+      warn2(lineNum, `Unexpected indented line: "${trimmed}".`);
+      continue;
+    }
+    const descLine = trimmed.startsWith("- ") ? `\u2022 ${trimmed.substring(2)}` : trimmed;
+    currentLayer.description.push(descLine);
+  }
+  flushLayer();
+  if (!headerParsed) {
+    return fail(1, 'Expected "ring [Title]" as the first line.');
+  }
+  if (result.layers.length < 2) {
+    return fail(
+      result.titleLineNumber || 1,
+      "ring requires at least 2 layers."
+    );
+  }
+  if (result.layers.length > MAX_LAYERS2) {
+    return fail(
+      result.titleLineNumber || 1,
+      `ring supports at most ${MAX_LAYERS2} layers; got ${result.layers.length}.`
+    );
+  }
+  return result;
+}
+var MAX_LAYERS2;
+var KNOWN_PIPE_KEYS;
+var init_parser17 = __esm({
+  "src/ring/parser.ts"() {
+    "use strict";
+    init_diagnostics();
+    init_colors();
+    init_parsing();
+    MAX_LAYERS2 = 15;
+    KNOWN_PIPE_KEYS = /* @__PURE__ */ new Set(["color", "description"]);
+  }
+});
+function inferVariant(markers) {
+  let hasD = false;
+  let hasS = false;
+  for (const m2 of markers) {
+    if (m2 === "D") hasD = true;
+    else if (m2 === "S") hasS = true;
+  }
+  if (hasD && hasS) return null;
+  if (hasD) return "daci";
+  if (hasS) return "rasci";
+  return "raci";
+}
+function countMarker(task, marker) {
+  let count2 = 0;
+  for (const assignment of task.roleAssignments) {
+    for (const m2 of assignment.markers) if (m2 === marker) count2++;
+  }
+  return count2;
+}
+function totalMarkerCount(task) {
+  let n = 0;
+  for (const a of task.roleAssignments) n += a.markers.length;
+  return n;
+}
+function findFirstAssignmentLineWithMarker(task, marker, skipFirst) {
+  let seen = 0;
+  for (const assignment of task.roleAssignments) {
+    if (assignment.markers.includes(marker)) {
+      seen++;
+      if (skipFirst && seen === 1) continue;
+      return assignment.lineNumber;
+    }
+  }
+  return task.lineNumber;
+}
+var RACI_ERROR_CODES;
+var ALL_MARKERS;
+var RACI_WARNING_CODES;
+var TOO_MANY_RESPONSIBLE_THRESHOLD;
+var multiAccountableRule;
+var daciMultiDriverRule;
+var daciMultiAccountableRule;
+var emptyTaskRule;
+var missingAccountableRule;
+var missingResponsibleRule;
+var daciMissingDriverRule;
+var daciMissingAccountableRule;
+var ACTIVE_MARKERS;
+var PASSIVE_MARKERS;
+var conflictingMarkersRule;
+var tooManyResponsibleRule;
+var VARIANTS;
+var init_variants = __esm({
+  "src/raci/variants.ts"() {
+    "use strict";
+    init_diagnostics();
+    RACI_ERROR_CODES = {
+      MULTI_ACCOUNTABLE: "E_RACI_MULTI_ACCOUNTABLE",
+      DACI_MULTI_DRIVER: "E_DACI_MULTI_DRIVER",
+      DACI_MULTI_ACCOUNTABLE: "E_DACI_MULTI_ACCOUNTABLE",
+      INVALID_MARKER: "E_RACI_INVALID_MARKER",
+      UNEXPECTED_LINE: "E_RACI_UNEXPECTED_LINE",
+      MIXED_VARIANTS: "E_RACI_MIXED_VARIANTS",
+      DUPLICATE_VARIANT: "E_RACI_DUPLICATE_VARIANT"
+    };
+    ALL_MARKERS = /* @__PURE__ */ new Set([
+      "R",
+      "A",
+      "S",
+      "C",
+      "I",
+      "D"
+    ]);
+    RACI_WARNING_CODES = {
+      MISSING_ACCOUNTABLE: "W_RACI_MISSING_ACCOUNTABLE",
+      MISSING_RESPONSIBLE: "W_RACI_MISSING_RESPONSIBLE",
+      DACI_MISSING_DRIVER: "W_DACI_MISSING_DRIVER",
+      DACI_MISSING_ACCOUNTABLE: "W_DACI_MISSING_ACCOUNTABLE",
+      UNKNOWN_ROLE: "W_RACI_UNKNOWN_ROLE",
+      EMPTY_TASK: "W_RACI_EMPTY_TASK",
+      CONFLICTING_MARKERS: "W_RACI_CONFLICTING_MARKERS",
+      TOO_MANY_RESPONSIBLE: "W_RACI_TOO_MANY_RESPONSIBLE",
+      ORPHAN_ROLE: "W_RACI_ORPHAN_ROLE"
+    };
+    TOO_MANY_RESPONSIBLE_THRESHOLD = 3;
+    multiAccountableRule = (task) => {
+      if (countMarker(task, "A") > 1) {
+        return [
+          makeDgmoError(
+            findFirstAssignmentLineWithMarker(task, "A", true),
+            `Task '${task.displayName}' has more than one Accountable \u2014 RACI requires exactly one.`,
+            "error",
+            RACI_ERROR_CODES.MULTI_ACCOUNTABLE
+          )
+        ];
+      }
+      return [];
+    };
+    daciMultiDriverRule = (task) => {
+      if (countMarker(task, "D") > 1) {
+        return [
+          makeDgmoError(
+            findFirstAssignmentLineWithMarker(task, "D", true),
+            `Task '${task.displayName}' has more than one Driver \u2014 DACI requires exactly one.`,
+            "error",
+            RACI_ERROR_CODES.DACI_MULTI_DRIVER
+          )
+        ];
+      }
+      return [];
+    };
+    daciMultiAccountableRule = (task) => {
+      if (countMarker(task, "A") > 1) {
+        return [
+          makeDgmoError(
+            findFirstAssignmentLineWithMarker(task, "A", true),
+            `Task '${task.displayName}' has more than one Approver \u2014 DACI requires exactly one.`,
+            "error",
+            RACI_ERROR_CODES.DACI_MULTI_ACCOUNTABLE
+          )
+        ];
+      }
+      return [];
+    };
+    emptyTaskRule = (task) => {
+      if (totalMarkerCount(task) === 0) {
+        return [
+          makeDgmoError(
+            task.lineNumber,
+            `Task '${task.displayName}' has no role assignments.`,
+            "warning",
+            RACI_WARNING_CODES.EMPTY_TASK
+          )
+        ];
+      }
+      return [];
+    };
+    missingAccountableRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "A") === 0) {
+        return [
+          makeDgmoError(
+            task.lineNumber,
+            `Task '${task.displayName}' has no Accountable assigned.`,
+            "warning",
+            RACI_WARNING_CODES.MISSING_ACCOUNTABLE
+          )
+        ];
+      }
+      return [];
+    };
+    missingResponsibleRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "R") === 0) {
+        return [
+          makeDgmoError(
+            task.lineNumber,
+            `Task '${task.displayName}' has no Responsible assigned.`,
+            "warning",
+            RACI_WARNING_CODES.MISSING_RESPONSIBLE
+          )
+        ];
+      }
+      return [];
+    };
+    daciMissingDriverRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "D") === 0) {
+        return [
+          makeDgmoError(
+            task.lineNumber,
+            `Task '${task.displayName}' has no Driver assigned.`,
+            "warning",
+            RACI_WARNING_CODES.DACI_MISSING_DRIVER
+          )
+        ];
+      }
+      return [];
+    };
+    daciMissingAccountableRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "A") === 0) {
+        return [
+          makeDgmoError(
+            task.lineNumber,
+            `Task '${task.displayName}' has no Approver assigned.`,
+            "warning",
+            RACI_WARNING_CODES.DACI_MISSING_ACCOUNTABLE
+          )
+        ];
+      }
+      return [];
+    };
+    ACTIVE_MARKERS = /* @__PURE__ */ new Set(["R", "A", "D"]);
+    PASSIVE_MARKERS = /* @__PURE__ */ new Set(["C", "I"]);
+    conflictingMarkersRule = (task) => {
+      const out2 = [];
+      for (const a of task.roleAssignments) {
+        let hasActive = false;
+        let hasPassive = false;
+        for (const m2 of a.markers) {
+          if (ACTIVE_MARKERS.has(m2)) hasActive = true;
+          if (PASSIVE_MARKERS.has(m2)) hasPassive = true;
+        }
+        if (hasActive && hasPassive) {
+          out2.push(
+            makeDgmoError(
+              a.lineNumber,
+              `Role '${a.displayName}' on task '${task.displayName}' has conflicting markers (${a.markers.join(" ")}). A role can be either active (R/A/D) or passive (C/I), not both.`,
+              "warning",
+              RACI_WARNING_CODES.CONFLICTING_MARKERS
+            )
+          );
+        }
+      }
+      return out2;
+    };
+    tooManyResponsibleRule = (task) => {
+      const n = countMarker(task, "R");
+      if (n > TOO_MANY_RESPONSIBLE_THRESHOLD) {
+        return [
+          makeDgmoError(
+            task.lineNumber,
+            `Task '${task.displayName}' has ${n} Responsibles \u2014 more than ${TOO_MANY_RESPONSIBLE_THRESHOLD} dilutes ownership. Consider splitting the task or marking some as Consulted.`,
+            "warning",
+            RACI_WARNING_CODES.TOO_MANY_RESPONSIBLE
+          )
+        ];
+      }
+      return [];
+    };
+    VARIANTS = {
+      raci: {
+        alphabet: ["R", "A", "C", "I"],
+        errorRules: [multiAccountableRule],
+        warningRules: [
+          emptyTaskRule,
+          missingAccountableRule,
+          missingResponsibleRule,
+          conflictingMarkersRule,
+          tooManyResponsibleRule
+        ]
+      },
+      rasci: {
+        alphabet: ["R", "A", "S", "C", "I"],
+        errorRules: [multiAccountableRule],
+        warningRules: [
+          emptyTaskRule,
+          missingAccountableRule,
+          missingResponsibleRule,
+          conflictingMarkersRule,
+          tooManyResponsibleRule
+        ]
+      },
+      daci: {
+        alphabet: ["D", "A", "C", "I"],
+        errorRules: [daciMultiDriverRule, daciMultiAccountableRule],
+        warningRules: [
+          emptyTaskRule,
+          daciMissingDriverRule,
+          daciMissingAccountableRule,
+          conflictingMarkersRule
+        ]
+      }
+    };
+  }
+});
+var parser_exports18 = {};
+__export2(parser_exports18, {
+  allTasks: () => allTasks,
+  parseRaci: () => parseRaci
+});
+function parseRoleAssignmentLine(trimmed) {
+  const colonMatch = trimmed.match(ROLE_ASSIGNMENT_RE);
+  if (colonMatch) {
+    return {
+      rawRole: colonMatch[1].trim(),
+      markersBlob: colonMatch[2].trim()
+    };
+  }
+  const tokens2 = trimmed.split(/\s+/).filter((t) => t.length > 0);
+  if (tokens2.length < 2) return null;
+  const isAllMarkers = (tok) => {
+    if (tok.length === 0) return false;
+    for (const ch of tok) {
+      if (!ALL_MARKERS.has(ch)) return false;
+    }
+    return true;
+  };
+  let firstMarkerIdx = -1;
+  for (let j2 = 0; j2 < tokens2.length; j2++) {
+    if (isAllMarkers(tokens2[j2])) {
+      firstMarkerIdx = j2;
+      break;
+    }
+  }
+  if (firstMarkerIdx <= 0) return null;
+  return {
+    rawRole: tokens2.slice(0, firstMarkerIdx).join(" "),
+    markersBlob: tokens2.slice(firstMarkerIdx).join(" ")
+  };
+}
+function parseRaci(content, palette) {
+  const result = {
+    type: "raci",
+    variant: "raci",
+    roles: [],
+    roleDisplayNames: [],
+    roleColors: [],
+    phases: [],
+    tasksWithoutPhase: [],
+    options: {},
+    diagnostics: [],
+    error: null
+  };
+  const fail = (line11, message) => {
+    const diag = makeDgmoError(line11, message);
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+    return result;
+  };
+  const warn2 = (line11, message, code) => {
+    result.diagnostics.push(makeDgmoError(line11, message, "warning", code));
+  };
+  const errorAt = (line11, message, code) => {
+    result.diagnostics.push(makeDgmoError(line11, message, "error", code));
+  };
+  if (!content || !content.trim()) {
+    return fail(0, "No content provided");
+  }
+  const lines = content.split("\n");
+  let i = 0;
+  for (; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    const firstLine = parseFirstLine(trimmed);
+    if (!firstLine) {
+      return fail(i + 1, 'Expected chart type "raci" on the first line.');
+    }
+    if (!RACI_CHART_TYPE_IDS.has(firstLine.chartType)) {
+      let msg = `Expected chart type "raci", got "${firstLine.chartType}"`;
+      const hint = suggest(firstLine.chartType, ["raci"]);
+      if (hint) msg += `. ${hint}`;
+      return fail(i + 1, msg);
+    }
+    if (firstLine.title) {
+      result.title = firstLine.title;
+      result.titleLineNumber = i + 1;
+    }
+    i++;
+    break;
+  }
+  let lockedVariant = null;
+  let lockedVariantLine = 0;
+  let bodyStarted = false;
+  const roleStore = /* @__PURE__ */ new Map();
+  const taskStore = /* @__PURE__ */ new Map();
+  let rolesExplicit = false;
+  let currentPhase = null;
+  let currentTask = null;
+  let taskIndent = 0;
+  let taskHasRoleAssignment = false;
+  const getOrAddRole = (label, line11, color4) => {
+    const display = displayName(label);
+    if (!display) {
+      errorAt(line11, "Role name is empty.");
+      return null;
+    }
+    const key = normalizeName(display);
+    const existing = roleStore.get(key);
+    if (existing) {
+      if (existing.displayName !== display) {
+        warn2(
+          line11,
+          nameMergedMessage({
+            incomingDisplay: display,
+            incomingLine: line11,
+            existingDisplay: existing.displayName,
+            existingLine: existing.declaredLine
+          }),
+          NAME_DIAGNOSTIC_CODES.NAME_MERGED
+        );
+      }
+      if (color4 !== void 0) {
+        const idx = result.roles.indexOf(key);
+        if (idx >= 0) result.roleColors[idx] = color4;
+      }
+      return key;
+    }
+    roleStore.set(key, { displayName: display, declaredLine: line11 });
+    result.roles.push(key);
+    result.roleDisplayNames.push(display);
+    result.roleColors.push(color4);
+    return key;
+  };
+  const registerTask = (display, line11) => {
+    const key = normalizeName(display);
+    const existing = taskStore.get(key);
+    if (existing) {
+      if (existing.displayName !== display) {
+        warn2(
+          line11,
+          nameMergedMessage({
+            incomingDisplay: display,
+            incomingLine: line11,
+            existingDisplay: existing.displayName,
+            existingLine: existing.declaredLine
+          }),
+          NAME_DIAGNOSTIC_CODES.NAME_MERGED
+        );
+      }
+    } else {
+      taskStore.set(key, { displayName: display, declaredLine: line11 });
+    }
+    return key;
+  };
+  const finalizeTask = (uptoLineExclusive) => {
+    if (!currentTask) return;
+    let end2 = uptoLineExclusive - 1;
+    while (end2 > currentTask.lineNumber && !lines[end2 - 1].trim()) end2--;
+    currentTask.endLineNumber = end2;
+    if (currentPhase) currentPhase.endLineNumber = end2;
+    currentTask = null;
+    taskHasRoleAssignment = false;
+  };
+  const finalizePhase = (uptoLineExclusive) => {
+    if (currentTask) finalizeTask(uptoLineExclusive);
+    if (currentPhase) {
+      let end2 = uptoLineExclusive - 1;
+      while (end2 > currentPhase.lineNumber && !lines[end2 - 1].trim()) end2--;
+      currentPhase.endLineNumber = Math.max(currentPhase.endLineNumber, end2);
+      currentPhase = null;
+    }
+  };
+  for (; i < lines.length; i++) {
+    const raw = lines[i];
+    const lineNumber = i + 1;
+    const trimmed = raw.trim();
+    const indent = measureIndent(raw);
+    if (!trimmed) continue;
+    if (trimmed.startsWith("//")) continue;
+    if (!bodyStarted && indent === 0 && !PHASE_RE2.test(trimmed)) {
+      if (trimmed.toLowerCase() === "roles") {
+        rolesExplicit = true;
+        let j2 = i + 1;
+        for (; j2 < lines.length; j2++) {
+          const next = lines[j2];
+          const nextTrim = next.trim();
+          if (!nextTrim) continue;
+          if (nextTrim.startsWith("//")) continue;
+          if (next.length > 0 && next[0] !== " " && next[0] !== "	") break;
+          const stripped = nextTrim.replace(/,\s*$/, "");
+          const segments = stripped.split("|").map((s) => s.trim());
+          const roleLabel = segments[0] ?? "";
+          let roleColor;
+          if (segments.length > 1) {
+            const meta = parsePipeMetadata(segments);
+            if (meta.color) {
+              roleColor = resolveColorWithDiagnostic(
+                meta.color,
+                j2 + 1,
+                result.diagnostics,
+                palette
+              );
+            }
+          }
+          if (roleLabel) getOrAddRole(roleLabel, j2 + 1, roleColor);
+        }
+        i = j2 - 1;
+        continue;
+      }
+      const lower2 = trimmed.toLowerCase();
+      if (KNOWN_BOOLEANS7.has(lower2)) {
+        if (lower2 in VARIANT_LOCK_DIRECTIVES) {
+          const v4 = VARIANT_LOCK_DIRECTIVES[lower2];
+          if (lockedVariant !== null) {
+            errorAt(
+              lineNumber,
+              `Duplicate variant directive '${lower2}'. A chart may declare at most one variant-* directive (previous lock was on line ${lockedVariantLine}).`,
+              RACI_ERROR_CODES.DUPLICATE_VARIANT
+            );
+          } else {
+            lockedVariant = v4;
+            lockedVariantLine = lineNumber;
+          }
+          result.options[lower2] = "on";
+          continue;
+        }
+        result.options[lower2] = "on";
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, result.options)) continue;
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch) {
+        const key = optMatch[1].trim().toLowerCase();
+        if (KNOWN_OPTIONS10.has(key)) {
+          const value = optMatch[2].trim();
+          if (key === "roles") {
+            rolesExplicit = true;
+            const declared = value.split(",").map((s) => s.trim()).filter((s) => s.length > 0);
+            for (const rawRole of declared) {
+              getOrAddRole(rawRole, lineNumber);
+            }
+          } else {
+            result.options[key] = value;
+          }
+          continue;
+        }
+      }
+    }
+    if (indent === 0) {
+      const phaseMatch = trimmed.match(PHASE_RE2);
+      if (phaseMatch) {
+        bodyStarted = true;
+        finalizePhase(lineNumber);
+        const label = phaseMatch[1].trim();
+        const display = displayName(label);
+        if (!display) {
+          errorAt(lineNumber, "Phase label is empty.");
+          continue;
+        }
+        let phaseColor;
+        if (phaseMatch[2]) {
+          const meta = parsePipeMetadata(["", phaseMatch[2]]);
+          if (meta.color) {
+            phaseColor = resolveColorWithDiagnostic(
+              meta.color,
+              lineNumber,
+              result.diagnostics,
+              palette
+            );
+          }
+        }
+        currentPhase = {
+          id: normalizeName(display),
+          displayName: display,
+          color: phaseColor,
+          tasks: [],
+          lineNumber,
+          endLineNumber: lineNumber
+        };
+        result.phases.push(currentPhase);
+        continue;
+      }
+    }
+    const startTask = () => {
+      const display = displayName(trimmed);
+      if (!display) {
+        errorAt(lineNumber, "Task name is empty.");
+        return;
+      }
+      const taskId = registerTask(display, lineNumber);
+      const task = {
+        id: taskId,
+        displayName: display,
+        description: "",
+        roleAssignments: [],
+        lineNumber,
+        endLineNumber: lineNumber
+      };
+      if (currentPhase) {
+        currentPhase.tasks.push(task);
+      } else {
+        result.tasksWithoutPhase.push(task);
+      }
+      currentTask = task;
+      taskIndent = indent;
+      taskHasRoleAssignment = false;
+    };
+    if (indent === 0 && !currentPhase) {
+      bodyStarted = true;
+      finalizeTask(lineNumber);
+      startTask();
+      continue;
+    }
+    if (indent === 0 && currentPhase) {
+      bodyStarted = true;
+      finalizePhase(lineNumber);
+      startTask();
+      continue;
+    }
+    if (currentPhase && indent > 0 && (!currentTask || indent <= taskIndent)) {
+      bodyStarted = true;
+      finalizeTask(lineNumber);
+      startTask();
+      continue;
+    }
+    if (currentTask && indent > taskIndent) {
+      const task = currentTask;
+      const parsedAssign = parseRoleAssignmentLine(trimmed);
+      if (parsedAssign) {
+        const { rawRole, markersBlob } = parsedAssign;
+        const markers = [];
+        const tokens2 = [];
+        for (const tok of markersBlob.split(/\s+/)) {
+          if (!tok) continue;
+          for (const ch of tok) tokens2.push(ch);
+        }
+        for (const tok of tokens2) {
+          if (ALL_MARKERS.has(tok)) {
+            markers.push(tok);
+          } else {
+            errorAt(
+              lineNumber,
+              `Marker '${tok}' is not a recognized RACI marker (R A S C I D).`,
+              RACI_ERROR_CODES.INVALID_MARKER
+            );
+          }
+        }
+        const roleId = getOrAddRole(rawRole, lineNumber);
+        if (roleId === null) continue;
+        if (rolesExplicit) {
+          const entry = roleStore.get(roleId);
+          if (entry && entry.declaredLine === lineNumber) {
+            const candidates = result.roleDisplayNames.filter(
+              (n) => n !== entry.displayName
+            );
+            const hint = suggest(rawRole, candidates);
+            const msg = `Role '${rawRole}' is not declared in the 'roles:' directive.${hint ? " " + hint : ""}`;
+            warn2(lineNumber, msg, RACI_WARNING_CODES.UNKNOWN_ROLE);
+          }
+        }
+        const assignment = {
+          id: roleId,
+          displayName: roleStore.get(roleId).displayName,
+          markers,
+          lineNumber,
+          endLineNumber: lineNumber
+        };
+        task.roleAssignments.push(assignment);
+        task.endLineNumber = lineNumber;
+        taskHasRoleAssignment = true;
+        continue;
+      }
+      if (!taskHasRoleAssignment) {
+        task.description = task.description ? task.description + "\n" + trimmed : trimmed;
+        task.endLineNumber = lineNumber;
+        continue;
+      }
+      errorAt(
+        lineNumber,
+        `Unexpected line after role assignments under task '${task.displayName}'. Lines under a task must be either a description (before the first 'Role: markers' line) or another role assignment.`,
+        RACI_ERROR_CODES.UNEXPECTED_LINE
+      );
+      continue;
+    }
+    if (bodyStarted) {
+      errorAt(lineNumber, `Unexpected line: '${trimmed}'.`);
+    } else {
+      warn2(lineNumber, `Unrecognized directive: '${trimmed}'.`);
+    }
+  }
+  finalizePhase(lines.length + 1);
+  const usedMarkers = [];
+  for (const task of allTasks(result)) {
+    for (const a of task.roleAssignments) {
+      for (const m2 of a.markers) usedMarkers.push(m2);
+    }
+  }
+  if (lockedVariant !== null) {
+    result.variant = lockedVariant;
+  } else {
+    const inferred = inferVariant(usedMarkers);
+    if (inferred === null) {
+      const titleLine = result.titleLineNumber ?? 1;
+      errorAt(
+        titleLine,
+        `Chart uses both 'D' and 'S' markers but neither RASCI nor DACI covers both. Add a 'variant-rasci' or 'variant-daci' directive to lock the variant explicitly.`,
+        RACI_ERROR_CODES.MIXED_VARIANTS
+      );
+      result.variant = "rasci";
+    } else {
+      result.variant = inferred;
+    }
+  }
+  const resolvedAlphabet = VARIANTS[result.variant].alphabet;
+  for (const task of allTasks(result)) {
+    for (const a of task.roleAssignments) {
+      const kept = [];
+      for (const m2 of a.markers) {
+        if (resolvedAlphabet.includes(m2)) {
+          kept.push(m2);
+        } else {
+          errorAt(
+            a.lineNumber,
+            `Marker '${m2}' is not in the ${result.variant.toUpperCase()} alphabet (${resolvedAlphabet.join(" ")}).`,
+            RACI_ERROR_CODES.INVALID_MARKER
+          );
+        }
+      }
+      a.markers = kept;
+    }
+  }
+  const noRuleEnforcement = result.options["no-rule-enforcement"] === "on";
+  const variantRules = VARIANTS[result.variant];
+  if (!noRuleEnforcement) {
+    for (const task of allTasks(result)) {
+      for (const rule of variantRules.errorRules) {
+        result.diagnostics.push(...rule(task));
+      }
+      for (const rule of variantRules.warningRules) {
+        result.diagnostics.push(...rule(task));
+      }
+    }
+    const usedRoleIds = /* @__PURE__ */ new Set();
+    for (const task of allTasks(result)) {
+      for (const a of task.roleAssignments) {
+        if (a.markers.length > 0) usedRoleIds.add(a.id);
+      }
+    }
+    for (let i2 = 0; i2 < result.roles.length; i2++) {
+      const roleId = result.roles[i2];
+      if (usedRoleIds.has(roleId)) continue;
+      const declared = roleStore.get(roleId);
+      const displayName2 = result.roleDisplayNames[i2] ?? roleId;
+      result.diagnostics.push(
+        makeDgmoError(
+          declared?.declaredLine ?? 1,
+          `Role '${displayName2}' is declared but never assigned to any task.`,
+          "warning",
+          RACI_WARNING_CODES.ORPHAN_ROLE
+        )
+      );
+    }
+  }
+  return result;
+}
+function* allTasks(parsed) {
+  for (const t of parsed.tasksWithoutPhase) yield t;
+  for (const phase of parsed.phases) {
+    for (const t of phase.tasks) yield t;
+  }
+}
+var RACI_CHART_TYPE_IDS;
+var VARIANT_LOCK_DIRECTIVES;
+var KNOWN_OPTIONS10;
+var KNOWN_BOOLEANS7;
+var PHASE_RE2;
+var ROLE_ASSIGNMENT_RE;
+var init_parser18 = __esm({
+  "src/raci/parser.ts"() {
+    "use strict";
+    init_diagnostics();
+    init_colors();
+    init_parsing();
+    init_name_normalize();
+    init_diagnostics();
+    init_variants();
+    RACI_CHART_TYPE_IDS = /* @__PURE__ */ new Set(["raci"]);
+    VARIANT_LOCK_DIRECTIVES = {
+      "variant-raci": "raci",
+      "variant-rasci": "rasci",
+      "variant-daci": "daci"
+    };
+    KNOWN_OPTIONS10 = /* @__PURE__ */ new Set(["roles", "palette", "theme", "active-tag"]);
+    KNOWN_BOOLEANS7 = /* @__PURE__ */ new Set([
+      "no-rule-enforcement",
+      ...Object.keys(VARIANT_LOCK_DIRECTIVES)
+    ]);
+    PHASE_RE2 = /^\[(.+?)\]\s*(?:\|\s*(.+))?\s*$/;
+    ROLE_ASSIGNMENT_RE = /^([^:]+):\s*(.*)$/;
   }
 });
 var chartTypes;
@@ -71282,6 +72988,34 @@ var init_chart_types = __esm({
         ]
       },
       {
+        id: "raci",
+        description: "Tasks \xD7 roles responsibility matrix with constraint linting",
+        triggers: [
+          "raci",
+          "raci matrix",
+          "responsibility matrix",
+          "responsibility assignment",
+          "who does what",
+          "accountability matrix"
+        ]
+      },
+      {
+        id: "rasci",
+        description: "RACI variant adding Support (R A S C I)",
+        triggers: ["rasci", "rasci matrix", "support roles matrix"]
+      },
+      {
+        id: "daci",
+        description: "Decision matrix with Driver, Approver, Contributor, Informed",
+        triggers: [
+          "daci",
+          "daci matrix",
+          "decision matrix",
+          "decision tracking",
+          "driver approver"
+        ]
+      },
+      {
         id: "tech-radar",
         description: "Technology adoption quadrants (adopt/trial/assess/hold)",
         triggers: [
@@ -71335,6 +73069,17 @@ var init_chart_types = __esm({
           "maslow hierarchy",
           "dikw pyramid",
           "layered model"
+        ]
+      },
+      {
+        id: "ring",
+        description: "Concentric rings showing nested or hierarchical categories (read core-out)",
+        triggers: [
+          "ring diagram",
+          "concentric rings",
+          "circle hierarchy",
+          "circles of influence",
+          "nested circles"
         ]
       },
       // ── Tier 3 — Specialized analytical charts ────────────────
@@ -71708,6 +73453,8 @@ var init_dgmo_router = __esm({
     init_parser14();
     init_parser15();
     init_parser16();
+    init_parser17();
+    init_parser18();
     init_parsing();
     init_diagnostics();
     init_chart_types();
@@ -71740,7 +73487,8 @@ var init_dgmo_router = __esm({
       "quadrant",
       "tech-radar",
       "cycle",
-      "pyramid"
+      "pyramid",
+      "ring"
     ]);
     DIAGRAM_TYPES = /* @__PURE__ */ new Set([
       "sequence",
@@ -71757,7 +73505,11 @@ var init_dgmo_router = __esm({
       "boxes-and-lines",
       "mindmap",
       "wireframe",
-      "journey-map"
+      "journey-map",
+      "raci"
+      // `rasci` and `daci` aren't first-line keywords — the raci parser handles
+      // all three variants. Suggestion entries in `chart-types.ts` map them back
+      // to raci with a `variant-*` directive; lookup APIs treat them as unknown.
     ]);
     EXTENDED_CHART_TYPES = /* @__PURE__ */ new Set([
       "scatter",
@@ -71788,6 +73540,10 @@ var init_dgmo_router = __esm({
       ["cycle", parseCycle],
       ["journey-map", parseJourneyMap],
       ["pyramid", parsePyramid],
+      ["ring", parseRing],
+      ["raci", parseRaci],
+      ["rasci", parseRaci],
+      ["daci", parseRaci],
       // Standard ECharts charts (parseChart)
       ["bar", parseChart],
       ["line", parseChart],
@@ -72779,9 +74535,9 @@ __export2(renderer_exports, {
   renderOrg: () => renderOrg,
   renderOrgForExport: () => renderOrgForExport
 });
-function nodeFill(palette, isDark, nodeColor2) {
+function nodeFill(palette, isDark, nodeColor2, solid) {
   const color4 = nodeColor2 ?? palette.primary;
-  return mix(color4, isDark ? palette.surface : palette.bg, 25);
+  return shapeFill(palette, color4, isDark, { solid });
 }
 function nodeStroke(palette, nodeColor2) {
   return nodeColor2 ?? palette.primary;
@@ -72937,16 +74693,27 @@ function renderOrg(container, parsed, layout3, palette, isDark, onClickItem, exp
         onClickItem(node.lineNumber);
       });
     }
-    const fill2 = nodeFill(palette, isDark, colorOff ? void 0 : node.color);
+    const solid = parsed.options["solid-fill"] === "on";
+    const fill2 = nodeFill(
+      palette,
+      isDark,
+      colorOff ? void 0 : node.color,
+      solid
+    );
     const stroke2 = nodeStroke(palette, colorOff ? void 0 : node.color);
     const rect = nodeG.append("rect").attr("x", 0).attr("y", 0).attr("width", node.width).attr("height", node.height).attr("rx", CARD_RADIUS).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", NODE_STROKE_WIDTH);
     if (node.isContainer) {
       rect.attr("stroke-dasharray", "6 3");
     }
-    nodeG.append("text").attr("x", node.width / 2).attr("y", HEADER_HEIGHT2 / 2 + LABEL_FONT_SIZE / 2 - 2).attr("text-anchor", "middle").attr("fill", palette.text).attr("font-size", LABEL_FONT_SIZE).attr("font-weight", "bold").text(node.label);
+    const labelColor = contrastText(
+      fill2,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
+    nodeG.append("text").attr("x", node.width / 2).attr("y", HEADER_HEIGHT2 / 2 + LABEL_FONT_SIZE / 2 - 2).attr("text-anchor", "middle").attr("fill", labelColor).attr("font-size", LABEL_FONT_SIZE).attr("font-weight", "bold").text(node.label);
     const metaEntries = Object.entries(node.metadata);
     if (metaEntries.length > 0) {
-      nodeG.append("line").attr("x1", 0).attr("y1", HEADER_HEIGHT2).attr("x2", node.width).attr("y2", HEADER_HEIGHT2).attr("stroke", stroke2).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
+      nodeG.append("line").attr("x1", 0).attr("y1", HEADER_HEIGHT2).attr("x2", node.width).attr("y2", HEADER_HEIGHT2).attr("stroke", solid ? labelColor : stroke2).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
       const metaDisplayKeys = metaEntries.map(
         ([k2]) => displayNames.get(k2) ?? k2
       );
@@ -72957,14 +74724,17 @@ function renderOrg(container, parsed, layout3, palette, isDark, onClickItem, exp
         const [, value] = metaEntries[i];
         const displayKey = metaDisplayKeys[i];
         const rowY = metaStartY + i * META_LINE_HEIGHT2;
-        nodeG.append("text").attr("x", 10).attr("y", rowY).attr("fill", palette.textMuted).attr("font-size", META_FONT_SIZE).text(`${displayKey}: `);
-        nodeG.append("text").attr("x", valueX).attr("y", rowY).attr("fill", palette.text).attr("font-size", META_FONT_SIZE).text(value);
+        nodeG.append("text").attr("x", 10).attr("y", rowY).attr("fill", labelColor).attr("font-size", META_FONT_SIZE).text(`${displayKey}: `);
+        nodeG.append("text").attr("x", valueX).attr("y", rowY).attr("fill", labelColor).attr("font-size", META_FONT_SIZE).text(value);
       }
     }
     if (!exportDims && node.hiddenCount && node.hiddenCount > 0) {
       const clipId = `clip-${node.id}`;
       nodeG.append("clipPath").attr("id", clipId).append("rect").attr("width", node.width).attr("height", node.height).attr("rx", CARD_RADIUS);
-      nodeG.append("rect").attr("x", COLLAPSE_BAR_INSET).attr("y", node.height - COLLAPSE_BAR_HEIGHT).attr("width", node.width - COLLAPSE_BAR_INSET * 2).attr("height", COLLAPSE_BAR_HEIGHT).attr("fill", nodeStroke(palette, colorOff ? void 0 : node.color)).attr("clip-path", `url(#${clipId})`).attr("class", "org-collapse-bar");
+      nodeG.append("rect").attr("x", COLLAPSE_BAR_INSET).attr("y", node.height - COLLAPSE_BAR_HEIGHT).attr("width", node.width - COLLAPSE_BAR_INSET * 2).attr("height", COLLAPSE_BAR_HEIGHT).attr(
+        "fill",
+        solid ? labelColor : nodeStroke(palette, colorOff ? void 0 : node.color)
+      ).attr("clip-path", `url(#${clipId})`).attr("class", "org-collapse-bar");
     }
     if (!exportDims && node.hasChildren && !rootNodeIds.has(node.id)) {
       const iconSize = 14;
@@ -74001,9 +75771,9 @@ __export2(renderer_exports2, {
   renderSitemap: () => renderSitemap,
   renderSitemapForExport: () => renderSitemapForExport
 });
-function nodeFill2(palette, isDark, nodeColor2) {
+function nodeFill2(palette, isDark, nodeColor2, solid) {
   const color4 = nodeColor2 ?? palette.primary;
-  return mix(color4, isDark ? palette.surface : palette.bg, 25);
+  return shapeFill(palette, color4, isDark, { solid });
 }
 function nodeStroke2(_palette, nodeColor2) {
   return nodeColor2 ?? _palette.primary;
@@ -74156,13 +75926,19 @@ function renderSitemap(container, parsed, layout3, palette, isDark, onClickItem,
       const tagVal = node.tagMetadata[tagKey];
       if (tagVal) nodeG.attr(`data-tag-${tagKey}`, tagVal.toLowerCase());
     }
-    const fill2 = nodeFill2(palette, isDark, node.color);
+    const solid = parsed.options["solid-fill"] === "on";
+    const fill2 = nodeFill2(palette, isDark, node.color, solid);
     const stroke2 = nodeStroke2(palette, node.color);
     nodeG.append("rect").attr("x", 0).attr("y", 0).attr("width", node.width).attr("height", node.height).attr("rx", CARD_RADIUS2).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", NODE_STROKE_WIDTH2);
-    nodeG.append("text").attr("x", node.width / 2).attr("y", HEADER_HEIGHT4 / 2 + LABEL_FONT_SIZE2 / 2 - 2).attr("text-anchor", "middle").attr("fill", palette.text).attr("font-size", LABEL_FONT_SIZE2).attr("font-weight", "bold").text(node.label);
+    const labelColor = contrastText(
+      fill2,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
+    nodeG.append("text").attr("x", node.width / 2).attr("y", HEADER_HEIGHT4 / 2 + LABEL_FONT_SIZE2 / 2 - 2).attr("text-anchor", "middle").attr("fill", labelColor).attr("font-size", LABEL_FONT_SIZE2).attr("font-weight", "bold").text(node.label);
     const metaEntries = Object.entries(node.metadata);
     if (metaEntries.length > 0) {
-      nodeG.append("line").attr("x1", 0).attr("y1", HEADER_HEIGHT4).attr("x2", node.width).attr("y2", HEADER_HEIGHT4).attr("stroke", stroke2).attr("stroke-opacity", 0.3);
+      nodeG.append("line").attr("x1", 0).attr("y1", HEADER_HEIGHT4).attr("x2", node.width).attr("y2", HEADER_HEIGHT4).attr("stroke", solid ? labelColor : stroke2).attr("stroke-opacity", 0.3);
       const metaDisplayKeys = metaEntries.map(
         ([k2]) => displayNames.get(k2) ?? k2
       );
@@ -74172,27 +75948,28 @@ function renderSitemap(container, parsed, layout3, palette, isDark, onClickItem,
         const [key, value] = metaEntries[i];
         const displayKey = metaDisplayKeys[i];
         const rowY = HEADER_HEIGHT4 + SEPARATOR_GAP4 + (i + 1) * META_LINE_HEIGHT4 - 4;
-        const valColor = tagColors.get(`${key}:${value.toLowerCase()}`) ?? palette.text;
-        nodeG.append("text").attr("x", 10).attr("y", rowY).attr("fill", palette.textMuted).attr("font-size", META_FONT_SIZE2).text(`${displayKey}:`);
+        const tagColor = tagColors.get(`${key}:${value.toLowerCase()}`);
+        const valColor = solid ? labelColor : tagColor ?? labelColor;
+        nodeG.append("text").attr("x", 10).attr("y", rowY).attr("fill", labelColor).attr("font-size", META_FONT_SIZE2).text(`${displayKey}:`);
         nodeG.append("text").attr("x", valueX).attr("y", rowY).attr("fill", valColor).attr("font-size", META_FONT_SIZE2).text(value);
       }
     }
     if (node.description && node.description.length > 0) {
       const metaCount = Object.keys(node.metadata).length;
       const sepY = metaCount > 0 ? HEADER_HEIGHT4 + SEPARATOR_GAP4 + metaCount * META_LINE_HEIGHT4 : HEADER_HEIGHT4;
-      nodeG.append("line").attr("x1", 0).attr("y1", sepY).attr("x2", node.width).attr("y2", sepY).attr("stroke", stroke2).attr("stroke-opacity", 0.3);
+      nodeG.append("line").attr("x1", 0).attr("y1", sepY).attr("x2", node.width).attr("y2", sepY).attr("stroke", solid ? labelColor : stroke2).attr("stroke-opacity", 0.3);
       const descStartY = HEADER_HEIGHT4 + SEPARATOR_GAP4 + metaCount * META_LINE_HEIGHT4;
       for (let di = 0; di < node.description.length; di++) {
         const processed = preprocessDescriptionLine(node.description[di]);
         const rowY = descStartY + (di + 1) * META_LINE_HEIGHT4 - 4;
-        const textEl = nodeG.append("text").attr("x", 10).attr("y", rowY).attr("fill", palette.textMuted).attr("font-size", META_FONT_SIZE2);
+        const textEl = nodeG.append("text").attr("x", 10).attr("y", rowY).attr("fill", labelColor).attr("font-size", META_FONT_SIZE2);
         renderInlineText(textEl, processed, palette, META_FONT_SIZE2);
       }
     }
     if (!exportDims && node.hiddenCount && node.hiddenCount > 0) {
       const clipId = `clip-${node.id}`;
       nodeG.append("clipPath").attr("id", clipId).append("rect").attr("width", node.width).attr("height", node.height).attr("rx", CARD_RADIUS2);
-      nodeG.append("rect").attr("y", node.height - COLLAPSE_BAR_HEIGHT2).attr("width", node.width).attr("height", COLLAPSE_BAR_HEIGHT2).attr("fill", node.color ?? palette.primary).attr("opacity", 0.5).attr("clip-path", `url(#${clipId})`);
+      nodeG.append("rect").attr("y", node.height - COLLAPSE_BAR_HEIGHT2).attr("width", node.width).attr("height", COLLAPSE_BAR_HEIGHT2).attr("fill", solid ? labelColor : node.color ?? palette.primary).attr("opacity", 0.5).attr("clip-path", `url(#${clipId})`);
     }
   }
   if (exportDims && hasLegend) {
@@ -74512,6 +76289,7 @@ function renderKanban(container, parsed, palette, isDark, options) {
   const collapsedLanes = options?.collapsedLanes;
   const collapsedColumns = options?.collapsedColumns;
   const compactMeta = options?.compactMeta ?? false;
+  const solid = parsed.options["solid-fill"] === "on";
   const requestedSwimlane = options?.currentSwimlaneGroup ?? null;
   const swimlaneGroup = requestedSwimlane ? parsed.tagGroups.find(
     (g) => g.name.toLowerCase() === requestedSwimlane.toLowerCase()
@@ -74594,20 +76372,24 @@ function renderKanban(container, parsed, palette, isDark, options) {
   }
   const defaultColBg = isDark ? mix(palette.surface, palette.bg, 50) : mix(palette.surface, palette.bg, 30);
   const defaultColHeaderBg = isDark ? mix(palette.surface, palette.bg, 70) : mix(palette.surface, palette.bg, 50);
-  const cardBaseBg = isDark ? palette.surface : palette.bg;
   for (const colLayout of layout3.columns) {
     const col = colLayout.column;
     const isColCollapsed = collapsedColumns?.has(col.id) ?? false;
     const g = svg.append("g").attr("class", "kanban-column").attr("data-column-id", col.id).attr("data-line-number", col.lineNumber);
     const thisColBg = defaultColBg;
-    const thisColHeaderBg = col.color ? mix(col.color, palette.bg, 25) : defaultColHeaderBg;
+    const thisColHeaderBg = col.color ? shapeFill(palette, col.color, isDark, { solid }) : defaultColHeaderBg;
+    const onHeaderText = col.color ? contrastText(
+      thisColHeaderBg,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    ) : palette.text;
     if (isColCollapsed) {
       g.append("rect").attr("x", colLayout.x).attr("y", colLayout.y).attr("width", COLLAPSED_COLUMN_WIDTH).attr("height", colLayout.height).attr("rx", COLUMN_RADIUS).attr("fill", thisColBg);
       g.append("rect").attr("x", colLayout.x).attr("y", colLayout.y).attr("width", COLLAPSED_COLUMN_WIDTH).attr("height", COLUMN_HEADER_HEIGHT).attr("rx", COLUMN_HEADER_RADIUS).attr("fill", thisColHeaderBg);
       g.append("text").attr("x", colLayout.x + COLLAPSED_COLUMN_WIDTH / 2).attr(
         "y",
         colLayout.y + COLUMN_HEADER_HEIGHT / 2 + WIP_FONT_SIZE / 2 - 1
-      ).attr("font-size", WIP_FONT_SIZE).attr("font-weight", "bold").attr("fill", palette.textMuted).attr("text-anchor", "middle").text(String(col.cards.length));
+      ).attr("font-size", WIP_FONT_SIZE).attr("font-weight", "bold").attr("fill", col.color ? onHeaderText : palette.textMuted).attr("text-anchor", "middle").text(String(col.cards.length));
       g.append("text").attr("x", colLayout.x + COLLAPSED_COLUMN_WIDTH / 2).attr("y", colLayout.y + COLUMN_HEADER_HEIGHT + COLUMN_PADDING).attr("font-size", CARD_TITLE_FONT_SIZE).attr("font-weight", "bold").attr("fill", palette.text).attr("text-anchor", "middle").attr("writing-mode", "tb").text(col.name);
       continue;
     }
@@ -74616,14 +76398,17 @@ function renderKanban(container, parsed, palette, isDark, options) {
     g.append("text").attr("x", colLayout.x + COLUMN_PADDING).attr(
       "y",
       colLayout.y + COLUMN_HEADER_HEIGHT / 2 + COLUMN_HEADER_FONT_SIZE / 2 - 2
-    ).attr("font-size", COLUMN_HEADER_FONT_SIZE).attr("font-weight", "bold").attr("fill", palette.text).text(col.name);
+    ).attr("font-size", COLUMN_HEADER_FONT_SIZE).attr("font-weight", "bold").attr("fill", onHeaderText).text(col.name);
     {
       const wipExceeded = col.wipLimit != null && col.cards.length > col.wipLimit;
       const badgeText = col.wipLimit != null ? `${col.cards.length}/${col.wipLimit}` : String(col.cards.length);
       g.append("text").attr("x", colLayout.x + colLayout.width - COLUMN_PADDING).attr(
         "y",
         colLayout.y + COLUMN_HEADER_HEIGHT / 2 + WIP_FONT_SIZE / 2 - 1
-      ).attr("text-anchor", "end").attr("font-size", WIP_FONT_SIZE).attr("fill", wipExceeded ? palette.colors.red : palette.textMuted).attr("font-weight", wipExceeded ? "bold" : "normal").text(badgeText);
+      ).attr("text-anchor", "end").attr("font-size", WIP_FONT_SIZE).attr(
+        "fill",
+        wipExceeded ? palette.colors.red : col.color ? onHeaderText : palette.textMuted
+      ).attr("font-weight", wipExceeded ? "bold" : "normal").text(badgeText);
     }
     for (const cardLayout of colLayout.cardLayouts) {
       const card = cardLayout.card;
@@ -74638,8 +76423,18 @@ function renderKanban(container, parsed, palette, isDark, options) {
         hiddenMetaGroups
       );
       const hasMeta = tagMeta.length > 0 || card.details.length > 0;
-      const cardFill = resolvedColor ? mix(resolvedColor, cardBaseBg, 15) : mix(palette.primary, cardBaseBg, 15);
+      const cardFill = shapeFill(
+        palette,
+        resolvedColor ?? palette.primary,
+        isDark,
+        { solid }
+      );
       const cardStroke = resolvedColor ?? palette.textMuted;
+      const onCardText = contrastText(
+        cardFill,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      );
       const cg = g.append("g").attr("class", "kanban-card").attr("data-card-id", card.id).attr("data-line-number", card.lineNumber);
       if (activeTagGroup) {
         const tagKey = activeTagGroup.toLowerCase();
@@ -74655,20 +76450,20 @@ function renderKanban(container, parsed, palette, isDark, options) {
       const cx = colLayout.x + cardLayout.x;
       const cy = colLayout.y + cardLayout.y;
       cg.append("rect").attr("x", cx).attr("y", cy).attr("width", cardLayout.width).attr("height", cardLayout.height).attr("rx", CARD_RADIUS3).attr("fill", cardFill).attr("stroke", cardStroke).attr("stroke-width", CARD_STROKE_WIDTH);
-      const titleEl = cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", cy + CARD_PADDING_Y + CARD_TITLE_FONT_SIZE).attr("font-size", CARD_TITLE_FONT_SIZE).attr("font-weight", "500").attr("fill", palette.text);
+      const titleEl = cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", cy + CARD_PADDING_Y + CARD_TITLE_FONT_SIZE).attr("font-size", CARD_TITLE_FONT_SIZE).attr("font-weight", "500").attr("fill", onCardText);
       renderInlineText(titleEl, card.title, palette, CARD_TITLE_FONT_SIZE);
       if (hasMeta) {
         const separatorY = cy + CARD_HEADER_HEIGHT;
-        cg.append("line").attr("x1", cx).attr("y1", separatorY).attr("x2", cx + cardLayout.width).attr("y2", separatorY).attr("stroke", cardStroke).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
+        cg.append("line").attr("x1", cx).attr("y1", separatorY).attr("x2", cx + cardLayout.width).attr("y2", separatorY).attr("stroke", solid ? onCardText : cardStroke).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
         let metaY = separatorY + CARD_SEPARATOR_GAP + CARD_META_FONT_SIZE;
         for (const meta of tagMeta) {
-          cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", palette.textMuted).text(`${meta.label}: `);
+          cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", onCardText).text(`${meta.label}: `);
           const labelWidth = (meta.label.length + 2) * CARD_META_FONT_SIZE * 0.6;
-          cg.append("text").attr("x", cx + CARD_PADDING_X + labelWidth).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", palette.text).text(meta.value);
+          cg.append("text").attr("x", cx + CARD_PADDING_X + labelWidth).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", onCardText).text(meta.value);
           metaY += CARD_META_LINE_HEIGHT;
         }
         for (const detail of card.details) {
-          const detailEl = cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", palette.textMuted);
+          const detailEl = cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", onCardText);
           renderInlineText(detailEl, detail, palette, CARD_META_FONT_SIZE);
           metaY += CARD_META_LINE_HEIGHT;
         }
@@ -74830,12 +76625,13 @@ function renderSwimlaneBoard(svg, parsed, baseLayout, swimlaneGroup, palette, is
   if (grid.totalHeight > currentH) svg.attr("height", grid.totalHeight);
   const defaultColBg = isDark ? mix(palette.surface, palette.bg, 50) : mix(palette.surface, palette.bg, 30);
   const defaultColHeaderBg = isDark ? mix(palette.surface, palette.bg, 70) : mix(palette.surface, palette.bg, 50);
-  const cardBaseBg = isDark ? palette.surface : palette.bg;
   for (const colInfo of grid.columnXs) {
     const col = colInfo.column;
     const isColCollapsed = collapsedColumns?.has(col.id) ?? false;
     const headerG = svg.append("g").attr("class", "kanban-column kanban-column-header").attr("data-column-id", col.id).attr("data-line-number", col.lineNumber);
-    const colHeaderBg = col.color ? mix(col.color, palette.bg, 25) : defaultColHeaderBg;
+    const colHeaderBg = col.color ? shapeFill(palette, col.color, isDark, {
+      solid: parsed.options["solid-fill"] === "on"
+    }) : defaultColHeaderBg;
     headerG.append("rect").attr("x", colInfo.x).attr("y", grid.startY).attr("width", colInfo.width).attr("height", COLUMN_HEADER_HEIGHT).attr("rx", COLUMN_HEADER_RADIUS).attr("fill", colHeaderBg);
     if (isColCollapsed) {
       headerG.append("text").attr("x", colInfo.x + colInfo.width / 2).attr(
@@ -74914,21 +76710,34 @@ function renderSwimlaneBoard(svg, parsed, baseLayout, swimlaneGroup, palette, is
             parsed.tagGroups,
             activeTagGroup,
             palette,
-            cardBaseBg,
-            hiddenMetaGroups
+            isDark,
+            hiddenMetaGroups,
+            parsed.options["solid-fill"] === "on"
           );
         }
       }
     }
   }
 }
-function renderSwimlaneCard(parent, cardLayout, tagGroups, activeTagGroup, palette, cardBaseBg, hiddenMetaGroups) {
+function renderSwimlaneCard(parent, cardLayout, tagGroups, activeTagGroup, palette, isDark, hiddenMetaGroups, solid) {
   const card = cardLayout.card;
   const resolvedColor = resolveCardTagColor(card, tagGroups, activeTagGroup);
   const tagMeta = resolveCardTagMeta(card, tagGroups, hiddenMetaGroups);
   const hasMeta = tagMeta.length > 0 || card.details.length > 0;
-  const cardFill = resolvedColor ? mix(resolvedColor, cardBaseBg, 15) : mix(palette.primary, cardBaseBg, 15);
+  const cardFill = shapeFill(
+    palette,
+    resolvedColor ?? palette.primary,
+    isDark,
+    {
+      solid
+    }
+  );
   const cardStroke = resolvedColor ?? palette.textMuted;
+  const onCardText = contrastText(
+    cardFill,
+    palette.textOnFillLight,
+    palette.textOnFillDark
+  );
   const cg = parent.append("g").attr("class", "kanban-card").attr("data-card-id", card.id).attr("data-line-number", card.lineNumber);
   if (activeTagGroup) {
     const tagKey = activeTagGroup.toLowerCase();
@@ -74941,7 +76750,7 @@ function renderSwimlaneCard(parent, cardLayout, tagGroups, activeTagGroup, palet
   const cx = cardLayout.x;
   const cy = cardLayout.y;
   cg.append("rect").attr("x", cx).attr("y", cy).attr("width", cardLayout.width).attr("height", cardLayout.height).attr("rx", CARD_RADIUS3).attr("fill", cardFill).attr("stroke", cardStroke).attr("stroke-width", CARD_STROKE_WIDTH);
-  const titleEl = cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", cy + CARD_PADDING_Y + CARD_TITLE_FONT_SIZE).attr("font-size", CARD_TITLE_FONT_SIZE).attr("font-weight", "500").attr("fill", palette.text);
+  const titleEl = cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", cy + CARD_PADDING_Y + CARD_TITLE_FONT_SIZE).attr("font-size", CARD_TITLE_FONT_SIZE).attr("font-weight", "500").attr("fill", onCardText);
   renderInlineText(titleEl, card.title, palette, CARD_TITLE_FONT_SIZE);
   if (hasMeta) {
     const separatorY = cy + CARD_HEADER_HEIGHT;
@@ -74950,7 +76759,7 @@ function renderSwimlaneCard(parent, cardLayout, tagGroups, activeTagGroup, palet
     for (const meta of tagMeta) {
       cg.append("text").attr("x", cx + CARD_PADDING_X).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", palette.textMuted).text(`${meta.label}: `);
       const labelWidth = (meta.label.length + 2) * CARD_META_FONT_SIZE * 0.6;
-      cg.append("text").attr("x", cx + CARD_PADDING_X + labelWidth).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", palette.text).text(meta.value);
+      cg.append("text").attr("x", cx + CARD_PADDING_X + labelWidth).attr("y", metaY).attr("font-size", CARD_META_FONT_SIZE).attr("fill", onCardText).text(meta.value);
       metaY += CARD_META_LINE_HEIGHT;
     }
     for (const detail of card.details) {
@@ -75179,9 +76988,9 @@ function modifierColor(modifier, palette, colorOff) {
       return palette.colors.teal;
   }
 }
-function nodeFill3(palette, isDark, modifier, nodeColor2, colorOff) {
+function nodeFill3(palette, isDark, modifier, nodeColor2, colorOff, solid) {
   const color4 = nodeColor2 ?? modifierColor(modifier, palette, colorOff);
-  return mix(color4, isDark ? palette.surface : palette.bg, 25);
+  return shapeFill(palette, color4, isDark, { solid });
 }
 function nodeStroke3(palette, modifier, nodeColor2, colorOff) {
   return nodeColor2 ?? modifierColor(modifier, palette, colorOff);
@@ -75351,44 +77160,51 @@ function renderClassDiagram(container, parsed, layout3, palette, isDark, onClick
     const colorOff = !!parsed.options?.["no-auto-color"];
     const neutralize = hasLegend && !isLegendExpanded && !node.color;
     const effectiveColor = neutralize ? palette.primary : node.color;
+    const solid = parsed.options?.["solid-fill"] === "on";
     const fill2 = nodeFill3(
       palette,
       isDark,
       node.modifier,
       effectiveColor,
-      colorOff
+      colorOff,
+      solid
     );
     const stroke2 = nodeStroke3(palette, node.modifier, effectiveColor, colorOff);
+    const onFillText = contrastText(
+      fill2,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     nodeG.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", 3).attr("ry", 3).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", NODE_STROKE_WIDTH3);
     let yPos = -h / 2;
     const headerCenterY = yPos + node.headerHeight / 2;
     if (node.modifier) {
       const badgeText = `\xAB${node.modifier}\xBB`;
-      nodeG.append("text").attr("x", 0).attr("y", headerCenterY - 6).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", MEMBER_FONT_SIZE).attr("font-style", "italic").text(badgeText);
-      nodeG.append("text").attr("x", 0).attr("y", headerCenterY + 10).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", CLASS_FONT_SIZE).attr("font-weight", "bold").attr("font-style", node.modifier === "abstract" ? "italic" : "normal").text(node.name);
+      nodeG.append("text").attr("x", 0).attr("y", headerCenterY - 6).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", MEMBER_FONT_SIZE).attr("font-style", "italic").text(badgeText);
+      nodeG.append("text").attr("x", 0).attr("y", headerCenterY + 10).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", CLASS_FONT_SIZE).attr("font-weight", "bold").attr("font-style", node.modifier === "abstract" ? "italic" : "normal").text(node.name);
     } else {
-      nodeG.append("text").attr("x", 0).attr("y", headerCenterY).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", CLASS_FONT_SIZE).attr("font-weight", "bold").text(node.name);
+      nodeG.append("text").attr("x", 0).attr("y", headerCenterY).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", CLASS_FONT_SIZE).attr("font-weight", "bold").text(node.name);
     }
     yPos += node.headerHeight;
     const isEnum = node.modifier === "enum";
     const fields = node.members.filter((m2) => !m2.isMethod);
     const methods = node.members.filter((m2) => m2.isMethod);
     if (isEnum) {
-      nodeG.append("line").attr("x1", -w2 / 2).attr("y1", yPos).attr("x2", w2 / 2).attr("y2", yPos).attr("stroke", stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.5);
+      nodeG.append("line").attr("x1", -w2 / 2).attr("y1", yPos).attr("x2", w2 / 2).attr("y2", yPos).attr("stroke", solid ? onFillText : stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.5);
       let memberY = yPos + COMPARTMENT_PADDING_Y2;
       for (const member of node.members) {
-        nodeG.append("text").attr("x", -w2 / 2 + MEMBER_PADDING_X).attr("y", memberY + MEMBER_LINE_HEIGHT2 / 2).attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", MEMBER_FONT_SIZE).text(member.name);
+        nodeG.append("text").attr("x", -w2 / 2 + MEMBER_PADDING_X).attr("y", memberY + MEMBER_LINE_HEIGHT2 / 2).attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", MEMBER_FONT_SIZE).text(member.name);
         memberY += MEMBER_LINE_HEIGHT2;
       }
     } else {
-      nodeG.append("line").attr("x1", -w2 / 2).attr("y1", yPos).attr("x2", w2 / 2).attr("y2", yPos).attr("stroke", stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.5);
+      nodeG.append("line").attr("x1", -w2 / 2).attr("y1", yPos).attr("x2", w2 / 2).attr("y2", yPos).attr("stroke", solid ? onFillText : stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.5);
       if (fields.length > 0) {
         let memberY = yPos + COMPARTMENT_PADDING_Y2;
         for (const field of fields) {
           const vis = visibilitySymbol(field.visibility);
           let text = `${vis} ${field.name}`;
           if (field.type) text += `: ${field.type}`;
-          const textEl = nodeG.append("text").attr("x", -w2 / 2 + MEMBER_PADDING_X).attr("y", memberY + MEMBER_LINE_HEIGHT2 / 2).attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", MEMBER_FONT_SIZE);
+          const textEl = nodeG.append("text").attr("x", -w2 / 2 + MEMBER_PADDING_X).attr("y", memberY + MEMBER_LINE_HEIGHT2 / 2).attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", MEMBER_FONT_SIZE);
           if (field.isStatic) {
             textEl.attr("text-decoration", "underline");
           }
@@ -75397,14 +77213,14 @@ function renderClassDiagram(container, parsed, layout3, palette, isDark, onClick
         }
       }
       yPos += node.fieldsHeight;
-      nodeG.append("line").attr("x1", -w2 / 2).attr("y1", yPos).attr("x2", w2 / 2).attr("y2", yPos).attr("stroke", stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.5);
+      nodeG.append("line").attr("x1", -w2 / 2).attr("y1", yPos).attr("x2", w2 / 2).attr("y2", yPos).attr("stroke", solid ? onFillText : stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.5);
       if (methods.length > 0) {
         let memberY = yPos + COMPARTMENT_PADDING_Y2;
         for (const method of methods) {
           const vis = visibilitySymbol(method.visibility);
           let text = `${vis} ${method.name}(${method.params ?? ""})`;
           if (method.type) text += `: ${method.type}`;
-          const textEl = nodeG.append("text").attr("x", -w2 / 2 + MEMBER_PADDING_X).attr("y", memberY + MEMBER_LINE_HEIGHT2 / 2).attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", MEMBER_FONT_SIZE);
+          const textEl = nodeG.append("text").attr("x", -w2 / 2 + MEMBER_PADDING_X).attr("y", memberY + MEMBER_LINE_HEIGHT2 / 2).attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", MEMBER_FONT_SIZE);
           if (method.isStatic) {
             textEl.attr("text-decoration", "underline");
           }
@@ -76039,12 +77855,19 @@ function renderERDiagram(container, parsed, layout3, palette, isDark, onClickIte
     }
     const w2 = node.width;
     const h = node.height;
-    const fill2 = mix(nodeColor2, isDark ? palette.surface : palette.bg, 25);
+    const fill2 = shapeFill(palette, nodeColor2, isDark, {
+      solid: parsed.options["solid-fill"] === "on"
+    });
     const stroke2 = nodeColor2;
+    const onFillText = contrastText(
+      fill2,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     nodeG.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", 3).attr("ry", 3).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", NODE_STROKE_WIDTH4);
     let yPos = -h / 2;
     const headerCenterY = yPos + node.headerHeight / 2;
-    nodeG.append("text").attr("x", 0).attr("y", headerCenterY).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", TABLE_FONT_SIZE).attr("font-weight", "bold").text(node.name);
+    nodeG.append("text").attr("x", 0).attr("y", headerCenterY).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", TABLE_FONT_SIZE).attr("font-weight", "bold").text(node.name);
     yPos += node.headerHeight;
     if (node.columns.length > 0) {
       nodeG.append("line").attr("x1", -w2 / 2).attr("y1", yPos).attr("x2", w2 / 2).attr("y2", yPos).attr("stroke", stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.5);
@@ -76053,12 +77876,12 @@ function renderERDiagram(container, parsed, layout3, palette, isDark, onClickIte
         const iconX = -w2 / 2 + MEMBER_PADDING_X2;
         const primaryConstraint = col.constraints[0];
         if (primaryConstraint) {
-          nodeG.append("text").attr("x", iconX).attr("y", memberY + MEMBER_LINE_HEIGHT4 / 2).attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", COLUMN_FONT_SIZE).text(constraintIcon(primaryConstraint));
+          nodeG.append("text").attr("x", iconX).attr("y", memberY + MEMBER_LINE_HEIGHT4 / 2).attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", COLUMN_FONT_SIZE).text(constraintIcon(primaryConstraint));
         }
         const textX = -w2 / 2 + MEMBER_PADDING_X2 + (primaryConstraint ? 16 : 0);
         let colText = col.name;
         if (col.type) colText += `: ${col.type}`;
-        nodeG.append("text").attr("x", textX).attr("y", memberY + MEMBER_LINE_HEIGHT4 / 2).attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", COLUMN_FONT_SIZE).text(colText);
+        nodeG.append("text").attr("x", textX).attr("y", memberY + MEMBER_LINE_HEIGHT4 / 2).attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", COLUMN_FONT_SIZE).text(colText);
         memberY += MEMBER_LINE_HEIGHT4;
       }
     }
@@ -76806,12 +78629,16 @@ function fitLabelToHeader(label, nodeWidth2, maxLines) {
   const truncated = label.length > maxChars ? label.slice(0, maxChars - 1) + "\u2026" : label;
   return { lines: [truncated], fontSize: MIN_NODE_FONT_SIZE };
 }
-function nodeColors(node, tagGroups, activeGroupName, palette, isDark) {
+function nodeColors(node, tagGroups, activeGroupName, palette, isDark, solid) {
   const tagColor = resolveTagColor(node.metadata, tagGroups, activeGroupName);
   if (tagColor) {
-    const fill3 = mix(tagColor, isDark ? palette.surface : palette.bg, 30);
+    const fill3 = shapeFill(palette, tagColor, isDark, { solid });
     const stroke3 = tagColor;
-    const text2 = contrastText(fill3, "#eceff4", "#2e3440");
+    const text2 = contrastText(
+      fill3,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     return { fill: fill3, stroke: stroke3, text: text2 };
   }
   const fill2 = mix(palette.bg, palette.text, isDark ? 90 : 95);
@@ -77102,7 +78929,8 @@ function renderBoxesAndLines(container, parsed, layout3, palette, isDark, option
       parsed.tagGroups,
       activeGroup,
       palette,
-      isDark
+      isDark,
+      parsed.options["solid-fill"] === "on"
     );
     const nodeG = diagramG.append("g").attr("class", "bl-node").attr("transform", `translate(${ln2.x},${ln2.y})`).attr("data-line-number", node.lineNumber).attr("data-node-id", node.label).style("cursor", onClickItem ? "pointer" : "default").style("--bl-node-stroke", colors.stroke);
     for (const [key, val] of Object.entries(node.metadata)) {
@@ -77898,9 +79726,9 @@ __export2(renderer_exports7, {
   renderMindmap: () => renderMindmap,
   renderMindmapForExport: () => renderMindmapForExport
 });
-function nodeFill4(palette, isDark, nodeColor2) {
+function nodeFill4(palette, isDark, nodeColor2, solid) {
   const color4 = nodeColor2 ?? palette.primary;
-  return mix(color4, isDark ? palette.surface : palette.bg, 25);
+  return shapeFill(palette, color4, isDark, { solid });
 }
 function nodeStroke4(palette, nodeColor2) {
   return nodeColor2 ?? palette.primary;
@@ -78037,8 +79865,18 @@ function renderMindmap(container, parsed, layout3, palette, isDark, onClickItem,
     const isRoot = node.radius === 0 && layout3.nodes.indexOf(node) === 0;
     const strokeW = isRoot ? ROOT_STROKE_WIDTH : NODE_STROKE_WIDTH6;
     const effectiveColor = options?.colorByDepth ? depthColor(node.depth, palette) : node.color;
-    const fill2 = nodeFill4(palette, isDark, effectiveColor);
+    const fill2 = nodeFill4(
+      palette,
+      isDark,
+      effectiveColor,
+      parsed.options["solid-fill"] === "on"
+    );
     const stroke2 = nodeStroke4(palette, effectiveColor);
+    const onFillText = contrastText(
+      fill2,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     const nodeG = mainG.append("g").attr("class", "mindmap-node").attr("data-line-number", node.lineNumber);
     if (activeTagGroup) {
       const tagKey = activeTagGroup.toLowerCase();
@@ -78075,11 +79913,11 @@ function renderMindmap(container, parsed, layout3, palette, isDark, onClickItem,
     const centerX = node.x + node.width / 2;
     if (labelLineCount <= 1) {
       const labelY = node.y + labelZoneHeight / 2 + fontSize * 0.35;
-      nodeG.append("text").attr("x", centerX).attr("y", labelY).attr("text-anchor", "middle").attr("font-size", fontSize).attr("font-weight", isRoot ? "bold" : "normal").attr("fill", palette.text).text(labelLines[0]);
+      nodeG.append("text").attr("x", centerX).attr("y", labelY).attr("text-anchor", "middle").attr("font-size", fontSize).attr("font-weight", isRoot ? "bold" : "normal").attr("fill", onFillText).text(labelLines[0]);
     } else {
       const blockH = LABEL_LINE_HEIGHT3 * (labelLineCount - 1);
       const firstBaselineY = node.y + labelZoneHeight / 2 - blockH / 2 + fontSize * 0.35;
-      const textEl = nodeG.append("text").attr("x", centerX).attr("text-anchor", "middle").attr("font-size", fontSize).attr("font-weight", isRoot ? "bold" : "normal").attr("fill", palette.text);
+      const textEl = nodeG.append("text").attr("x", centerX).attr("text-anchor", "middle").attr("font-size", fontSize).attr("font-weight", isRoot ? "bold" : "normal").attr("fill", onFillText);
       for (let i = 0; i < labelLines.length; i++) {
         textEl.append("tspan").attr("x", centerX).attr("y", firstBaselineY + i * LABEL_LINE_HEIGHT3).text(labelLines[i]);
       }
@@ -78093,13 +79931,13 @@ function renderMindmap(container, parsed, layout3, palette, isDark, onClickItem,
       if (descLines.length <= 1) {
         const descY = separatorY + 4 + descFontSize;
         const processed = preprocessDescriptionLine(descLines[0]);
-        const textEl = nodeG.append("text").attr("x", centerX).attr("y", descY).attr("text-anchor", "middle").attr("font-size", descFontSize).attr("fill", palette.textMuted);
+        const textEl = nodeG.append("text").attr("x", centerX).attr("y", descY).attr("text-anchor", "middle").attr("font-size", descFontSize).attr("fill", onFillText);
         renderInlineText(textEl, processed, palette, descFontSize);
       } else {
         const descStartY = separatorY + 4 + descFontSize;
         for (let i = 0; i < descLines.length; i++) {
           const processed = preprocessDescriptionLine(descLines[i]);
-          const textEl = nodeG.append("text").attr("x", centerX).attr("y", descStartY + i * DESC_LINE_HEIGHT4).attr("text-anchor", "middle").attr("font-size", descFontSize).attr("fill", palette.textMuted);
+          const textEl = nodeG.append("text").attr("x", centerX).attr("y", descStartY + i * DESC_LINE_HEIGHT4).attr("text-anchor", "middle").attr("font-size", descFontSize).attr("fill", onFillText);
           renderInlineText(textEl, processed, palette, descFontSize);
         }
       }
@@ -78554,7 +80392,8 @@ function renderWireframe(container, parsed, layout3, palette, isDark, _onClickIt
     palette,
     isTransparent: effectiveTheme === "transparent",
     isDark,
-    showGroupLabels: opts.showGroupLabels ?? true
+    showGroupLabels: opts.showGroupLabels ?? true,
+    solid: parsed.options["solid-fill"] === "on"
   };
   if (!ctx.isTransparent) {
     svg.append("rect").attr("width", layout3.width).attr("height", layout3.height).attr("fill", palette.bg).attr("rx", 8);
@@ -78933,17 +80772,19 @@ function renderSkeletonPlaceholder(g, node, ctx) {
   }
 }
 function renderAlert(g, node, ctx) {
-  const { palette, isTransparent } = ctx;
+  const { palette, isDark, isTransparent } = ctx;
   const el = node.element;
   const color4 = getElementSemanticColor(el, palette) || palette.accent;
-  if (!isTransparent) {
-    g.append("rect").attr("width", node.width).attr("height", node.height).attr("fill", mix(color4, palette.bg, 15)).attr("rx", 4);
+  const fill2 = isTransparent ? null : shapeFill(palette, color4, isDark, { solid: ctx.solid });
+  if (fill2) {
+    g.append("rect").attr("width", node.width).attr("height", node.height).attr("fill", fill2).attr("rx", 4);
   }
   g.append("rect").attr("width", 3).attr("height", node.height).attr("fill", color4).attr("rx", 1.5);
   if (isTransparent) {
     g.append("rect").attr("width", node.width).attr("height", node.height).attr("fill", "none").attr("stroke", color4).attr("rx", 4);
   }
-  g.append("text").attr("x", 12).attr("y", node.height / 2 + 4).attr("fill", palette.text).attr("font-size", 13).text(el.label);
+  const labelFill = fill2 ? contrastText(fill2, palette.textOnFillLight, palette.textOnFillDark) : palette.text;
+  g.append("text").attr("x", 12).attr("y", node.height / 2 + 4).attr("fill", labelFill).attr("font-size", 13).text(el.label);
 }
 function renderProgress(g, node, ctx) {
   const { palette, isTransparent } = ctx;
@@ -80785,9 +82626,9 @@ function typeColor(type, palette, nodeColor2) {
       return palette.colors.teal;
   }
 }
-function nodeFill5(palette, isDark, type, nodeColor2) {
+function nodeFill5(palette, isDark, type, nodeColor2, solid) {
   const color4 = typeColor(type, palette, nodeColor2);
-  return mix(color4, isDark ? palette.surface : palette.bg, 25);
+  return shapeFill(palette, color4, isDark, { solid });
 }
 function nodeStroke5(palette, type, nodeColor2) {
   return typeColor(type, palette, nodeColor2);
@@ -80937,12 +82778,18 @@ function renderC4Context(container, parsed, layout3, palette, isDark, onClickIte
     }
     const w2 = node.width;
     const h = node.height;
-    const fill2 = nodeFill5(palette, isDark, node.type, node.color);
+    const solid = parsed.options["solid-fill"] === "on";
+    const fill2 = nodeFill5(palette, isDark, node.type, node.color, solid);
     const stroke2 = nodeStroke5(palette, node.type, node.color);
+    const onFillText = contrastText(
+      fill2,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     nodeG.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", CARD_RADIUS4).attr("ry", CARD_RADIUS4).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", NODE_STROKE_WIDTH7);
     let yPos = -h / 2 + CARD_V_PAD4;
     const typeLabel = `\xAB${node.type}\xBB`;
-    nodeG.append("text").attr("x", 0).attr("y", yPos + TYPE_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", TYPE_FONT_SIZE).attr("font-style", "italic").text(typeLabel);
+    nodeG.append("text").attr("x", 0).attr("y", yPos + TYPE_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", TYPE_FONT_SIZE).attr("font-style", "italic").text(typeLabel);
     yPos += TYPE_LABEL_HEIGHT2;
     if (node.type === "person") {
       const nameCharWidth = NAME_FONT_SIZE * 0.6;
@@ -80957,18 +82804,18 @@ function renderC4Context(container, parsed, layout3, palette, isDark, onClickIte
         yPos + NAME_FONT_SIZE / 2 - 2,
         stroke2
       );
-      nodeG.append("text").attr("x", textX).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
+      nodeG.append("text").attr("x", textX).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
     } else {
-      nodeG.append("text").attr("x", 0).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
+      nodeG.append("text").attr("x", 0).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
     }
     yPos += NAME_HEIGHT2;
-    nodeG.append("line").attr("x1", -w2 / 2 + CARD_H_PAD4 / 2).attr("y1", yPos).attr("x2", w2 / 2 - CARD_H_PAD4 / 2).attr("y2", yPos).attr("stroke", stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.4);
+    nodeG.append("line").attr("x1", -w2 / 2 + CARD_H_PAD4 / 2).attr("y1", yPos).attr("x2", w2 / 2 - CARD_H_PAD4 / 2).attr("y2", yPos).attr("stroke", solid ? onFillText : stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.4);
     yPos += DIVIDER_GAP2;
     if (node.description) {
       const contentWidth = w2 - CARD_H_PAD4 * 2;
       const lines = wrapText3(node.description, contentWidth, DESC_CHAR_WIDTH2);
       for (const line11 of lines) {
-        const textEl = nodeG.append("text").attr("x", 0).attr("y", yPos + DESC_FONT_SIZE4 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", DESC_FONT_SIZE4);
+        const textEl = nodeG.append("text").attr("x", 0).attr("y", yPos + DESC_FONT_SIZE4 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", DESC_FONT_SIZE4);
         renderInlineText(
           textEl,
           preprocessDescriptionLine(line11),
@@ -80981,7 +82828,7 @@ function renderC4Context(container, parsed, layout3, palette, isDark, onClickIte
     if (node.drillable) {
       const clipId = `clip-drill-${node.id.replace(/\s+/g, "-")}`;
       nodeG.append("clipPath").attr("id", clipId).append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", CARD_RADIUS4);
-      nodeG.append("rect").attr("x", -w2 / 2).attr("y", h / 2 - DRILL_BAR_HEIGHT).attr("width", w2).attr("height", DRILL_BAR_HEIGHT).attr("fill", stroke2).attr("clip-path", `url(#${clipId})`).attr("class", "c4-drill-bar");
+      nodeG.append("rect").attr("x", -w2 / 2).attr("y", h / 2 - DRILL_BAR_HEIGHT).attr("width", w2).attr("height", DRILL_BAR_HEIGHT).attr("fill", solid ? onFillText : stroke2).attr("clip-path", `url(#${clipId})`).attr("class", "c4-drill-bar");
     }
   }
   if (hasLegend) {
@@ -81493,8 +83340,14 @@ function renderC4Containers(container, parsed, layout3, palette, isDark, onClick
     }
     const w2 = node.width;
     const h = node.height;
-    const fill2 = nodeFill5(palette, isDark, node.type, node.color);
+    const solid = parsed.options["solid-fill"] === "on";
+    const fill2 = nodeFill5(palette, isDark, node.type, node.color, solid);
     const stroke2 = nodeStroke5(palette, node.type, node.color);
+    const onFillText = contrastText(
+      fill2,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     const shape = node.shape ?? "default";
     const isExternalShape = shape === "external";
     if (shape === "database" || shape === "cache") {
@@ -81515,7 +83368,7 @@ function renderC4Containers(container, parsed, layout3, palette, isDark, onClick
     }
     if (node.type !== "container" && node.type !== "component") {
       const typeLabel = `\xAB${node.type}\xBB`;
-      nodeG.append("text").attr("x", 0).attr("y", yPos + TYPE_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", TYPE_FONT_SIZE).attr("font-style", "italic").text(typeLabel);
+      nodeG.append("text").attr("x", 0).attr("y", yPos + TYPE_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", TYPE_FONT_SIZE).attr("font-style", "italic").text(typeLabel);
       yPos += TYPE_LABEL_HEIGHT2;
     }
     if (node.type === "person") {
@@ -81531,9 +83384,9 @@ function renderC4Containers(container, parsed, layout3, palette, isDark, onClick
         yPos + NAME_FONT_SIZE / 2 - 2,
         stroke2
       );
-      nodeG.append("text").attr("x", textX).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
+      nodeG.append("text").attr("x", textX).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
     } else {
-      nodeG.append("text").attr("x", 0).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
+      nodeG.append("text").attr("x", 0).attr("y", yPos + NAME_FONT_SIZE / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", NAME_FONT_SIZE).attr("font-weight", "bold").text(node.name);
     }
     yPos += NAME_HEIGHT2;
     if (node.type === "container") {
@@ -81541,7 +83394,7 @@ function renderC4Containers(container, parsed, layout3, palette, isDark, onClick
         const contentWidth = w2 - CARD_H_PAD4 * 2;
         const lines = wrapText3(node.description, contentWidth, DESC_CHAR_WIDTH2);
         for (const line11 of lines) {
-          const textEl = nodeG.append("text").attr("x", 0).attr("y", yPos + DESC_FONT_SIZE4 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", DESC_FONT_SIZE4);
+          const textEl = nodeG.append("text").attr("x", 0).attr("y", yPos + DESC_FONT_SIZE4 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", DESC_FONT_SIZE4);
           renderInlineText(
             textEl,
             preprocessDescriptionLine(line11),
@@ -81553,24 +83406,24 @@ function renderC4Containers(container, parsed, layout3, palette, isDark, onClick
       }
       const metaEntries = collectCardMetadata(node.metadata);
       if (metaEntries.length > 0) {
-        nodeG.append("line").attr("x1", -w2 / 2 + CARD_H_PAD4 / 2).attr("y1", yPos).attr("x2", w2 / 2 - CARD_H_PAD4 / 2).attr("y2", yPos).attr("stroke", stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.4);
+        nodeG.append("line").attr("x1", -w2 / 2 + CARD_H_PAD4 / 2).attr("y1", yPos).attr("x2", w2 / 2 - CARD_H_PAD4 / 2).attr("y2", yPos).attr("stroke", solid ? onFillText : stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.4);
         yPos += DIVIDER_GAP2;
         const maxKeyLen = Math.max(...metaEntries.map((e3) => e3.key.length));
         const valueX = -w2 / 2 + CARD_H_PAD4 + (maxKeyLen + 2) * META_CHAR_WIDTH2;
         for (const entry of metaEntries) {
-          nodeG.append("text").attr("x", -w2 / 2 + CARD_H_PAD4).attr("y", yPos + META_FONT_SIZE3 / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", META_FONT_SIZE3).text(`${entry.key}:`);
-          nodeG.append("text").attr("x", valueX).attr("y", yPos + META_FONT_SIZE3 / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", META_FONT_SIZE3).text(entry.value);
+          nodeG.append("text").attr("x", -w2 / 2 + CARD_H_PAD4).attr("y", yPos + META_FONT_SIZE3 / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", META_FONT_SIZE3).text(`${entry.key}:`);
+          nodeG.append("text").attr("x", valueX).attr("y", yPos + META_FONT_SIZE3 / 2).attr("text-anchor", "start").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", META_FONT_SIZE3).text(entry.value);
           yPos += META_LINE_HEIGHT6;
         }
       }
     } else {
-      nodeG.append("line").attr("x1", -w2 / 2 + CARD_H_PAD4 / 2).attr("y1", yPos).attr("x2", w2 / 2 - CARD_H_PAD4 / 2).attr("y2", yPos).attr("stroke", stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.4);
+      nodeG.append("line").attr("x1", -w2 / 2 + CARD_H_PAD4 / 2).attr("y1", yPos).attr("x2", w2 / 2 - CARD_H_PAD4 / 2).attr("y2", yPos).attr("stroke", solid ? onFillText : stroke2).attr("stroke-width", 0.5).attr("stroke-opacity", 0.4);
       yPos += DIVIDER_GAP2;
       if (node.description) {
         const contentWidth = w2 - CARD_H_PAD4 * 2;
         const lines = wrapText3(node.description, contentWidth, DESC_CHAR_WIDTH2);
         for (const line11 of lines) {
-          const textEl = nodeG.append("text").attr("x", 0).attr("y", yPos + DESC_FONT_SIZE4 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.textMuted).attr("font-size", DESC_FONT_SIZE4);
+          const textEl = nodeG.append("text").attr("x", 0).attr("y", yPos + DESC_FONT_SIZE4 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", onFillText).attr("font-size", DESC_FONT_SIZE4);
           renderInlineText(
             textEl,
             preprocessDescriptionLine(line11),
@@ -81584,7 +83437,7 @@ function renderC4Containers(container, parsed, layout3, palette, isDark, onClick
     if (node.drillable) {
       const clipId = `clip-drill-${node.id.replace(/\s+/g, "-")}`;
       nodeG.append("clipPath").attr("id", clipId).append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", CARD_RADIUS4);
-      nodeG.append("rect").attr("x", -w2 / 2).attr("y", h / 2 - DRILL_BAR_HEIGHT).attr("width", w2).attr("height", DRILL_BAR_HEIGHT).attr("fill", stroke2).attr("clip-path", `url(#${clipId})`).attr("class", "c4-drill-bar");
+      nodeG.append("rect").attr("x", -w2 / 2).attr("y", h / 2 - DRILL_BAR_HEIGHT).attr("width", w2).attr("height", DRILL_BAR_HEIGHT).attr("fill", solid ? onFillText : stroke2).attr("clip-path", `url(#${clipId})`).attr("class", "c4-drill-bar");
     }
   }
   if (hasLegend) {
@@ -82008,25 +83861,45 @@ function shapeDefaultColor(shape, palette, isEndTerminal, colorOff) {
       return palette.colors.blue;
   }
 }
-function nodeFill6(palette, isDark, shape, nodeColor2, isEndTerminal, colorOff) {
+function nodeFill6(palette, isDark, shape, nodeColor2, isEndTerminal, colorOff, solid) {
   const color4 = nodeColor2 ?? shapeDefaultColor(shape, palette, isEndTerminal, colorOff);
-  return mix(color4, isDark ? palette.surface : palette.bg, 25);
+  return shapeFill(palette, color4, isDark, { solid });
 }
 function nodeStroke6(palette, shape, nodeColor2, isEndTerminal, colorOff) {
   return nodeColor2 ?? shapeDefaultColor(shape, palette, isEndTerminal, colorOff);
 }
-function renderTerminal(g, node, palette, isDark, isEnd, colorOff) {
+function renderTerminal(g, node, palette, isDark, isEnd, colorOff, solid) {
   const w2 = node.width;
   const h = node.height;
   const rx = h / 2;
-  g.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", rx).attr("ry", rx).attr("fill", nodeFill6(palette, isDark, node.shape, node.color, isEnd, colorOff)).attr("stroke", nodeStroke6(palette, node.shape, node.color, isEnd, colorOff)).attr("stroke-width", NODE_STROKE_WIDTH8);
+  g.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", rx).attr("ry", rx).attr(
+    "fill",
+    nodeFill6(palette, isDark, node.shape, node.color, isEnd, colorOff, solid)
+  ).attr(
+    "stroke",
+    nodeStroke6(palette, node.shape, node.color, isEnd, colorOff)
+  ).attr("stroke-width", NODE_STROKE_WIDTH8);
 }
-function renderProcess(g, node, palette, isDark, colorOff) {
+function renderProcess(g, node, palette, isDark, colorOff, solid) {
   const w2 = node.width;
   const h = node.height;
-  g.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", 3).attr("ry", 3).attr("fill", nodeFill6(palette, isDark, node.shape, node.color, void 0, colorOff)).attr("stroke", nodeStroke6(palette, node.shape, node.color, void 0, colorOff)).attr("stroke-width", NODE_STROKE_WIDTH8);
+  g.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", 3).attr("ry", 3).attr(
+    "fill",
+    nodeFill6(
+      palette,
+      isDark,
+      node.shape,
+      node.color,
+      void 0,
+      colorOff,
+      solid
+    )
+  ).attr(
+    "stroke",
+    nodeStroke6(palette, node.shape, node.color, void 0, colorOff)
+  ).attr("stroke-width", NODE_STROKE_WIDTH8);
 }
-function renderDecision(g, node, palette, isDark, colorOff) {
+function renderDecision(g, node, palette, isDark, colorOff, solid) {
   const w2 = node.width / 2;
   const h = node.height / 2;
   const points2 = [
@@ -82039,9 +83912,23 @@ function renderDecision(g, node, palette, isDark, colorOff) {
     `${-w2},${0}`
     // left
   ].join(" ");
-  g.append("polygon").attr("points", points2).attr("fill", nodeFill6(palette, isDark, node.shape, node.color, void 0, colorOff)).attr("stroke", nodeStroke6(palette, node.shape, node.color, void 0, colorOff)).attr("stroke-width", NODE_STROKE_WIDTH8);
+  g.append("polygon").attr("points", points2).attr(
+    "fill",
+    nodeFill6(
+      palette,
+      isDark,
+      node.shape,
+      node.color,
+      void 0,
+      colorOff,
+      solid
+    )
+  ).attr(
+    "stroke",
+    nodeStroke6(palette, node.shape, node.color, void 0, colorOff)
+  ).attr("stroke-width", NODE_STROKE_WIDTH8);
 }
-function renderIO(g, node, palette, isDark, colorOff) {
+function renderIO(g, node, palette, isDark, colorOff, solid) {
   const w2 = node.width / 2;
   const h = node.height / 2;
   const sk = IO_SKEW;
@@ -82055,17 +83942,41 @@ function renderIO(g, node, palette, isDark, colorOff) {
     `${-w2 - sk},${h}`
     // bottom-left (shifted left)
   ].join(" ");
-  g.append("polygon").attr("points", points2).attr("fill", nodeFill6(palette, isDark, node.shape, node.color, void 0, colorOff)).attr("stroke", nodeStroke6(palette, node.shape, node.color, void 0, colorOff)).attr("stroke-width", NODE_STROKE_WIDTH8);
+  g.append("polygon").attr("points", points2).attr(
+    "fill",
+    nodeFill6(
+      palette,
+      isDark,
+      node.shape,
+      node.color,
+      void 0,
+      colorOff,
+      solid
+    )
+  ).attr(
+    "stroke",
+    nodeStroke6(palette, node.shape, node.color, void 0, colorOff)
+  ).attr("stroke-width", NODE_STROKE_WIDTH8);
 }
-function renderSubroutine(g, node, palette, isDark, colorOff) {
+function renderSubroutine(g, node, palette, isDark, colorOff, solid) {
   const w2 = node.width;
   const h = node.height;
   const s = nodeStroke6(palette, node.shape, node.color, void 0, colorOff);
-  g.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", 3).attr("ry", 3).attr("fill", nodeFill6(palette, isDark, node.shape, node.color, void 0, colorOff)).attr("stroke", s).attr("stroke-width", NODE_STROKE_WIDTH8);
-  g.append("line").attr("x1", -w2 / 2 + SUBROUTINE_INSET).attr("y1", -h / 2).attr("x2", -w2 / 2 + SUBROUTINE_INSET).attr("y2", h / 2).attr("stroke", s).attr("stroke-width", NODE_STROKE_WIDTH8);
-  g.append("line").attr("x1", w2 / 2 - SUBROUTINE_INSET).attr("y1", -h / 2).attr("x2", w2 / 2 - SUBROUTINE_INSET).attr("y2", h / 2).attr("stroke", s).attr("stroke-width", NODE_STROKE_WIDTH8);
+  const fill2 = nodeFill6(
+    palette,
+    isDark,
+    node.shape,
+    node.color,
+    void 0,
+    colorOff,
+    solid
+  );
+  const innerStroke = solid ? contrastText(fill2, palette.textOnFillLight, palette.textOnFillDark) : s;
+  g.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", 3).attr("ry", 3).attr("fill", fill2).attr("stroke", s).attr("stroke-width", NODE_STROKE_WIDTH8);
+  g.append("line").attr("x1", -w2 / 2 + SUBROUTINE_INSET).attr("y1", -h / 2).attr("x2", -w2 / 2 + SUBROUTINE_INSET).attr("y2", h / 2).attr("stroke", innerStroke).attr("stroke-width", NODE_STROKE_WIDTH8);
+  g.append("line").attr("x1", w2 / 2 - SUBROUTINE_INSET).attr("y1", -h / 2).attr("x2", w2 / 2 - SUBROUTINE_INSET).attr("y2", h / 2).attr("stroke", innerStroke).attr("stroke-width", NODE_STROKE_WIDTH8);
 }
-function renderDocument(g, node, palette, isDark, colorOff) {
+function renderDocument(g, node, palette, isDark, colorOff, solid) {
   const w2 = node.width;
   const h = node.height;
   const waveH = DOC_WAVE_HEIGHT;
@@ -82080,27 +83991,49 @@ function renderDocument(g, node, palette, isDark, colorOff) {
     `C ${right - w2 * 0.25} ${bottom + waveH * 2}, ${left + w2 * 0.25} ${bottom - waveH}, ${left} ${bottom}`,
     "Z"
   ].join(" ");
-  g.append("path").attr("d", d).attr("fill", nodeFill6(palette, isDark, node.shape, node.color, void 0, colorOff)).attr("stroke", nodeStroke6(palette, node.shape, node.color, void 0, colorOff)).attr("stroke-width", NODE_STROKE_WIDTH8);
+  g.append("path").attr("d", d).attr(
+    "fill",
+    nodeFill6(
+      palette,
+      isDark,
+      node.shape,
+      node.color,
+      void 0,
+      colorOff,
+      solid
+    )
+  ).attr(
+    "stroke",
+    nodeStroke6(palette, node.shape, node.color, void 0, colorOff)
+  ).attr("stroke-width", NODE_STROKE_WIDTH8);
 }
-function renderNodeShape(g, node, palette, isDark, endTerminalIds, colorOff) {
+function renderNodeShape(g, node, palette, isDark, endTerminalIds, colorOff, solid) {
   switch (node.shape) {
     case "terminal":
-      renderTerminal(g, node, palette, isDark, endTerminalIds.has(node.id), colorOff);
+      renderTerminal(
+        g,
+        node,
+        palette,
+        isDark,
+        endTerminalIds.has(node.id),
+        colorOff,
+        solid
+      );
       break;
     case "process":
-      renderProcess(g, node, palette, isDark, colorOff);
+      renderProcess(g, node, palette, isDark, colorOff, solid);
       break;
     case "decision":
-      renderDecision(g, node, palette, isDark, colorOff);
+      renderDecision(g, node, palette, isDark, colorOff, solid);
       break;
     case "io":
-      renderIO(g, node, palette, isDark, colorOff);
+      renderIO(g, node, palette, isDark, colorOff, solid);
       break;
     case "subroutine":
-      renderSubroutine(g, node, palette, isDark, colorOff);
+      renderSubroutine(g, node, palette, isDark, colorOff, solid);
       break;
     case "document":
-      renderDocument(g, node, palette, isDark, colorOff);
+      renderDocument(g, node, palette, isDark, colorOff, solid);
       break;
   }
 }
@@ -82131,7 +84064,10 @@ function renderFlowchart(container, graph, layout3, palette, isDark, onClickItem
     defs.append("marker").attr("id", id).attr("viewBox", `0 0 ${ARROWHEAD_W3} ${ARROWHEAD_H3}`).attr("refX", ARROWHEAD_W3).attr("refY", ARROWHEAD_H3 / 2).attr("markerWidth", ARROWHEAD_W3).attr("markerHeight", ARROWHEAD_H3).attr("orient", "auto").append("polygon").attr("points", `0,0 ${ARROWHEAD_W3},${ARROWHEAD_H3 / 2} 0,${ARROWHEAD_H3}`).attr("fill", color4);
   }
   if (graph.title) {
-    const titleEl = svg.append("text").attr("class", "chart-title").attr("x", width / 2).attr("y", TITLE_Y).attr("text-anchor", "middle").attr("fill", palette.text).attr("font-size", TITLE_FONT_SIZE).attr("font-weight", TITLE_FONT_WEIGHT).style("cursor", onClickItem && graph.titleLineNumber ? "pointer" : "default").text(graph.title);
+    const titleEl = svg.append("text").attr("class", "chart-title").attr("x", width / 2).attr("y", TITLE_Y).attr("text-anchor", "middle").attr("fill", palette.text).attr("font-size", TITLE_FONT_SIZE).attr("font-weight", TITLE_FONT_WEIGHT).style(
+      "cursor",
+      onClickItem && graph.titleLineNumber ? "pointer" : "default"
+    ).text(graph.title);
     if (graph.titleLineNumber) {
       titleEl.attr("data-line-number", graph.titleLineNumber);
       if (onClickItem) {
@@ -82207,6 +84143,7 @@ function renderFlowchart(container, graph, layout3, palette, isDark, onClickItem
     }
   }
   const colorOff = graph.options?.color === "off";
+  const solid = graph.options?.["solid-fill"] === "on";
   for (const node of layout3.nodes) {
     const nodeG = contentG.append("g").attr("transform", `translate(${node.x}, ${node.y})`).attr("class", "fc-node").attr("data-line-number", String(node.lineNumber)).attr("data-node-id", node.id);
     if (onClickItem) {
@@ -82214,8 +84151,33 @@ function renderFlowchart(container, graph, layout3, palette, isDark, onClickItem
         onClickItem(node.lineNumber);
       });
     }
-    renderNodeShape(nodeG, node, palette, isDark, endTerminalIds, colorOff);
-    nodeG.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", NODE_FONT_SIZE2).text(node.label);
+    renderNodeShape(
+      nodeG,
+      node,
+      palette,
+      isDark,
+      endTerminalIds,
+      colorOff,
+      solid
+    );
+    const isEnd = endTerminalIds.has(node.id);
+    const resolvedFill = nodeFill6(
+      palette,
+      isDark,
+      node.shape,
+      node.color,
+      isEnd,
+      colorOff,
+      solid
+    );
+    nodeG.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr(
+      "fill",
+      contrastText(
+        resolvedFill,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      )
+    ).attr("font-size", NODE_FONT_SIZE2).text(node.label);
   }
 }
 function renderFlowchartForExport(content, theme2, palette) {
@@ -82232,15 +84194,10 @@ function renderFlowchartForExport(content, theme2, palette) {
   const exportWidth = layout3.width + DIAGRAM_PADDING9 * 2;
   const exportHeight = layout3.height + DIAGRAM_PADDING9 * 2 + (parsed.title ? 40 : 0);
   try {
-    renderFlowchart(
-      container,
-      parsed,
-      layout3,
-      palette,
-      isDark,
-      void 0,
-      { width: exportWidth, height: exportHeight }
-    );
+    renderFlowchart(container, parsed, layout3, palette, isDark, void 0, {
+      width: exportWidth,
+      height: exportHeight
+    });
     const svgEl = container.querySelector("svg");
     if (!svgEl) return "";
     if (theme2 === "transparent") {
@@ -84331,26 +86288,41 @@ function worstNodeSeverity(node, slo) {
   }
   return worst;
 }
-function nodeColor(_node, palette, isDark, severity) {
+function nodeColor(_node, palette, isDark, severity, solid) {
   if (severity === "overloaded") {
+    const fill2 = shapeFill(palette, COLOR_OVERLOADED, isDark, { solid });
     return {
-      fill: mix(palette.bg, COLOR_OVERLOADED, isDark ? 80 : 92),
+      fill: fill2,
       stroke: COLOR_OVERLOADED,
-      textFill: palette.text
+      textFill: contrastText(
+        fill2,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      )
     };
   }
   if (severity === "warning") {
+    const fill2 = shapeFill(palette, COLOR_WARNING, isDark, { solid });
     return {
-      fill: mix(palette.bg, COLOR_WARNING, isDark ? 85 : 92),
+      fill: fill2,
       stroke: COLOR_WARNING,
-      textFill: palette.text
+      textFill: contrastText(
+        fill2,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      )
     };
   }
   if (severity === "healthy") {
+    const fill2 = shapeFill(palette, COLOR_HEALTHY, isDark, { solid });
     return {
-      fill: mix(palette.bg, COLOR_HEALTHY, isDark ? 85 : 93),
+      fill: fill2,
       stroke: COLOR_HEALTHY,
-      textFill: palette.text
+      textFill: contrastText(
+        fill2,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      )
     };
   }
   return {
@@ -84466,11 +86438,10 @@ function resolveActiveTagStroke(node, activeGroup, tagGroups, palette) {
   return resolveColor(tv.color, palette);
 }
 function renderNodes(svg, nodes, palette, isDark, animate, expandedNodeIds, activeGroup, diagramOptions, collapsedNodes, tagGroups, fanoutSourceIds, scaledGroupIds) {
-  const mutedColor = palette.textMuted;
   for (const node of nodes) {
     const slo = !node.isEdge && diagramOptions ? resolveNodeSlo(node, diagramOptions) : null;
     const severity = worstNodeSeverity(node, slo);
-    const nodeColors2 = nodeColor(node, palette, isDark, severity);
+    const nodeColors2 = nodeColor(node, palette, isDark, severity, false);
     const textFill = nodeColors2.textFill;
     let { fill: fill2, stroke: stroke2 } = nodeColors2;
     if (activeGroup && tagGroups && !node.isEdge) {
@@ -84536,7 +86507,7 @@ function renderNodes(svg, nodes, palette, isDark, animate, expandedNodeIds, acti
         const textEl = g.append("text").attr("x", node.x).attr(
           "y",
           y2 + NODE_HEADER_HEIGHT2 + di * META_LINE_HEIGHT8 + META_LINE_HEIGHT8 / 2 + META_FONT_SIZE4 * 0.35
-        ).attr("text-anchor", "middle").attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("fill", mutedColor);
+        ).attr("text-anchor", "middle").attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("fill", textFill);
         renderInlineText(textEl, descTruncated, palette, META_FONT_SIZE4);
         if (isTruncated) textEl.append("title").text(rawLine);
       }
@@ -84566,7 +86537,7 @@ function renderNodes(svg, nodes, palette, isDark, animate, expandedNodeIds, acti
             else if (preRl > nodeRateLimit * 0.8) rlSeverity = "warning";
           }
           const rpsSeverity = node.overloaded ? "overloaded" : rlSeverity === "overloaded" ? "overloaded" : node.rateLimited ? "warning" : isWarning(node) ? "warning" : rlSeverity === "warning" ? "warning" : "normal";
-          const rpsColor = rpsSeverity === "overloaded" ? COLOR_OVERLOADED : rpsSeverity === "warning" ? COLOR_WARNING : mutedColor;
+          const rpsColor = rpsSeverity === "overloaded" ? COLOR_OVERLOADED : rpsSeverity === "warning" ? COLOR_WARNING : textFill;
           const rpsInverted = rpsSeverity !== "normal";
           const rpsText = effectiveCap > 0 && !node.isEdge ? `${formatRpsShort2(node.computedRps)} / ${formatRpsShort2(effectiveCap)}` : formatRpsShort2(node.computedRps);
           computedSection.push({
@@ -84582,7 +86553,7 @@ function renderNodes(svg, nodes, palette, isDark, animate, expandedNodeIds, acti
           computedSection.push({
             key: cr.key,
             value: cr.value,
-            valueFill: cr.color ?? mutedColor,
+            valueFill: cr.color ?? textFill,
             fontWeight: "normal",
             inverted: cr.inverted,
             invertedBg: cr.inverted ? cr.color : void 0
@@ -84640,7 +86611,7 @@ function renderNodes(svg, nodes, palette, isDark, animate, expandedNodeIds, acti
             g.append("text").attr("x", x3 + 10).attr("y", rowY).attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("font-weight", "600").attr("fill", pillTextColor).text(`${row.key}: `);
             g.append("text").attr("x", valueX).attr("y", rowY).attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("font-weight", "600").attr("fill", pillTextColor).text(row.value);
           } else {
-            g.append("text").attr("x", x3 + 10).attr("y", rowY).attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("fill", mutedColor).text(`${row.key}: `);
+            g.append("text").attr("x", x3 + 10).attr("y", rowY).attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("fill", textFill).text(`${row.key}: `);
             g.append("text").attr("x", valueX).attr("y", rowY).attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("font-weight", row.fontWeight).attr("fill", row.valueFill).text(row.value);
           }
           rowY += META_LINE_HEIGHT8;
@@ -84650,7 +86621,7 @@ function renderNodes(svg, nodes, palette, isDark, animate, expandedNodeIds, acti
       const inScaledGroup = node.groupId != null && (scaledGroupIds?.has(node.groupId) ?? false);
       if (!node.isEdge && node.computedConcurrentInvocations === 0 && node.computedInstances > 1 && !inScaledGroup) {
         const badgeText = `${node.computedInstances}x`;
-        g.append("text").attr("x", x3 + node.width - 6).attr("y", y2 + NODE_HEADER_HEIGHT2 / 2 + META_FONT_SIZE4 * 0.35).attr("text-anchor", "end").attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("fill", mutedColor).attr("data-instance-node", node.id).style("cursor", "pointer").text(badgeText);
+        g.append("text").attr("x", x3 + node.width - 6).attr("y", y2 + NODE_HEADER_HEIGHT2 / 2 + META_FONT_SIZE4 * 0.35).attr("text-anchor", "end").attr("font-family", FONT_FAMILY).attr("font-size", META_FONT_SIZE4).attr("fill", textFill).attr("data-instance-node", node.id).style("cursor", "pointer").text(badgeText);
       }
       const showDots = activeGroup != null && activeGroup.toLowerCase() === "capabilities";
       const roles = showDots && !node.isEdge ? inferRoles(node.properties) : [];
@@ -85161,9 +87132,12 @@ function collectTasks(nodes) {
   walk(nodes);
   return tasks;
 }
-function resolveTaskName(name, allTasks) {
+function resolveTaskName(name, allTasks2) {
   const trimmed = name.trim();
-  const exactMatches = allTasks.filter((t) => t.label === trimmed);
+  const normTrimmed = normalizeName(trimmed);
+  const exactMatches = allTasks2.filter(
+    (t) => normalizeName(t.label) === normTrimmed
+  );
   if (exactMatches.length === 1) {
     return { task: exactMatches[0] };
   }
@@ -85180,8 +87154,9 @@ function resolveTaskName(name, allTasks) {
   if (lastDotIdx > 0) {
     const groupPrefix = trimmed.substring(0, lastDotIdx);
     const taskLabel = trimmed.substring(lastDotIdx + 1);
-    const matches = allTasks.filter((t) => {
-      if (t.label !== taskLabel) return false;
+    const normTaskLabel = normalizeName(taskLabel);
+    const matches = allTasks2.filter((t) => {
+      if (normalizeName(t.label) !== normTaskLabel) return false;
       return matchesGroupPath(t.groupPath, groupPrefix);
     });
     if (matches.length === 1) {
@@ -85197,30 +87172,23 @@ function resolveTaskName(name, allTasks) {
       };
     }
   }
-  const caseInsensitive = allTasks.filter(
-    (t) => t.label.toLowerCase() === trimmed.toLowerCase()
-  );
-  if (caseInsensitive.length > 0) {
-    return {
-      kind: "not_found",
-      message: `No task found with name "${trimmed}". Did you mean "${caseInsensitive[0].label}" (case mismatch)?`
-    };
-  }
   return {
     kind: "not_found",
     message: `No task found with name "${trimmed}".`
   };
 }
 function matchesGroupPath(groupPath, prefix) {
+  const normPrefix = normalizeName(prefix);
   if (!prefix.includes(".")) {
-    return groupPath.some((g) => g === prefix);
+    return groupPath.some((g) => normalizeName(g) === normPrefix);
   }
-  const pathStr = groupPath.join(".");
-  return pathStr === prefix || pathStr.endsWith("." + prefix) || pathStr.startsWith(prefix + ".") || pathStr.includes("." + prefix + ".");
+  const pathStr = groupPath.map((g) => normalizeName(g)).join(".");
+  return pathStr === normPrefix || pathStr.endsWith("." + normPrefix) || pathStr.startsWith(normPrefix + ".") || pathStr.includes("." + normPrefix + ".");
 }
 var init_resolver = __esm({
   "src/gantt/resolver.ts"() {
     "use strict";
+    init_name_normalize();
   }
 });
 var calculator_exports = {};
@@ -85262,12 +87230,12 @@ function calculateSchedule(parsed) {
   }
   const sprintOpts = parsed.options.sprintLength ? { sprintLength: parsed.options.sprintLength } : void 0;
   const depOffsetMap = /* @__PURE__ */ new Map();
-  const allTasks = collectTasks(parsed.nodes);
-  if (allTasks.length === 0) {
+  const allTasks2 = collectTasks(parsed.nodes);
+  if (allTasks2.length === 0) {
     return result;
   }
   const taskMap = /* @__PURE__ */ new Map();
-  for (const task of allTasks) {
+  for (const task of allTasks2) {
     taskMap.set(task.id, {
       task,
       predecessors: [],
@@ -85276,10 +87244,10 @@ function calculateSchedule(parsed) {
     });
   }
   buildImplicitDeps(parsed.nodes, taskMap);
-  for (const task of allTasks) {
+  for (const task of allTasks2) {
     const _node = taskMap.get(task.id);
     for (const dep of task.dependencies) {
-      const resolved = resolveTaskName(dep.targetName, allTasks);
+      const resolved = resolveTaskName(dep.targetName, allTasks2);
       if (isResolverError(resolved)) {
         warn2(dep.lineNumber, `\`-> ${dep.targetName}\` \u2014 ${resolved.message}`);
         continue;
@@ -85860,11 +87828,16 @@ __export2(renderer_exports11, {
   buildTagLaneRowList: () => buildTagLaneRowList,
   renderGantt: () => renderGantt
 });
-function computeBarLabel(label, x1, barWidth, innerWidth, textColor) {
+function computeBarLabel(label, x1, barWidth, innerWidth, textColor, onFillColor) {
   const textWidth = label.length * CHAR_W2;
   const x22 = x1 + barWidth;
   if (textWidth < barWidth - LABEL_PAD2) {
-    return { x: x1 + 6, anchor: "start", fill: textColor, text: label };
+    return {
+      x: x1 + 6,
+      anchor: "start",
+      fill: onFillColor ?? textColor,
+      text: label
+    };
   }
   if (x22 + LABEL_GAP + textWidth <= innerWidth) {
     return { x: x22 + LABEL_GAP, anchor: "start", fill: textColor, text: label };
@@ -85884,13 +87857,13 @@ function computeBarLabel(label, x1, barWidth, innerWidth, textColor) {
   }
   return null;
 }
-function renderLabelBand(svg, y2, leftMargin, color4, palette, cssPrefix, dataAttr) {
+function renderLabelBand(svg, y2, leftMargin, color4, palette, isDark, cssPrefix, dataAttr, solid) {
   const bandX = 5;
   const bandW = leftMargin - 7;
   const bandY = y2 - BAR_H / 2;
   const clipId = `gantt-band-clip-${bandClipCounter++}`;
   svg.append("clipPath").attr("id", clipId).append("rect").attr("x", bandX).attr("y", bandY).attr("width", bandW).attr("height", BAR_H).attr("rx", BAND_RADIUS);
-  const tint2 = svg.append("rect").attr("class", `gantt-${cssPrefix}-band-bg`).attr("x", bandX).attr("y", bandY).attr("width", bandW).attr("height", BAR_H).attr("rx", BAND_RADIUS).attr("fill", mix(color4, palette.bg, 20)).style("pointer-events", "none");
+  const tint2 = svg.append("rect").attr("class", `gantt-${cssPrefix}-band-bg`).attr("x", bandX).attr("y", bandY).attr("width", bandW).attr("height", BAR_H).attr("rx", BAND_RADIUS).attr("fill", shapeFill(palette, color4, isDark, { solid })).style("pointer-events", "none");
   const accent = svg.append("rect").attr("class", `gantt-${cssPrefix}-band-accent`).attr("x", bandX).attr("y", bandY).attr("width", BAND_ACCENT_W).attr("height", BAR_H).attr("fill", color4).attr("clip-path", `url(#${clipId})`).style("pointer-events", "none");
   if (dataAttr) {
     tint2.attr(dataAttr.key, dataAttr.value);
@@ -85906,6 +87879,7 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
   container.innerHTML = "";
   bandClipCounter = 0;
   if (resolved.tasks.length === 0) return;
+  const solid = false;
   const onClickItem = options?.onClickItem;
   const collapsedGroups = options?.collapsedGroups;
   const onToggleGroup = options?.onToggleGroup;
@@ -86043,7 +88017,7 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
         seriesColors2,
         palette
       );
-      const fillColor = mix(color4, palette.bg, 30);
+      const fillColor = shapeFill(palette, color4, isDark, { solid });
       el.select("rect").attr("fill", fillColor).attr("stroke", color4);
     });
   }
@@ -86141,8 +88115,10 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
         leftMargin,
         laneColor,
         palette,
+        isDark,
         "lane",
-        { key: "data-lane", value: row.laneName }
+        { key: "data-lane", value: row.laneName },
+        solid
       );
       const labelG = svg.append("g").attr("class", "gantt-lane-header").attr(`data-tag-${row.tagKey}`, row.laneName.toLowerCase()).attr("data-lane", row.laneName).style("cursor", onToggleLane ? "pointer" : "default").on("click", () => {
         if (onToggleLane) onToggleLane(row.laneName);
@@ -86166,7 +88142,7 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
         toggleIcon + " " + row.laneName + (row.aggregateProgress !== null ? ` ${Math.round(row.aggregateProgress)}%` : "")
       );
       if (laneBarWidth > 0) {
-        const barFill = mix(laneColor, palette.bg, 30);
+        const barFill = shapeFill(palette, laneColor, isDark, { solid });
         const laneBandG = g.append("g").attr("class", "gantt-lane-band-group").attr("data-lane", row.laneName).on("mouseenter", () => {
           highlightLane(g, svg, row.tagKey, row.laneName);
           if (row.laneStartDate && row.laneEndDate) {
@@ -86209,8 +88185,10 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
         leftMargin,
         groupColor,
         palette,
+        isDark,
         "group",
-        { key: "data-group", value: group.name }
+        { key: "data-group", value: group.name },
+        solid
       );
       const labelG = svg.append("g").attr("class", "gantt-group-label").attr("data-group", group.name).attr("data-line-number", String(group.lineNumber)).style("cursor", onToggleGroup ? "pointer" : "default").on("click", () => {
         if (onToggleGroup) onToggleGroup(group.name);
@@ -86254,7 +88232,7 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
             resetHighlight(g, svg);
             hideGanttDateIndicators(g);
           });
-          summaryG.append("rect").attr("x", gx1).attr("y", yOffset).attr("width", barWidth).attr("height", BAR_H).attr("rx", 4).attr("fill", mix(groupColor, palette.bg, 30)).attr("stroke", groupColor).attr("stroke-width", 2);
+          summaryG.append("rect").attr("x", gx1).attr("y", yOffset).attr("width", barWidth).attr("height", BAR_H).attr("rx", 4).attr("fill", shapeFill(palette, groupColor, isDark, { solid })).attr("stroke", groupColor).attr("stroke-width", 2);
           if (group.progress !== null && group.progress > 0) {
             summaryG.append("rect").attr("x", gx1).attr("y", yOffset).attr("width", barWidth * Math.min(group.progress / 100, 1)).attr("height", BAR_H).attr("fill", groupColor).attr("opacity", 0.5);
           }
@@ -86264,7 +88242,12 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
             gx1,
             barWidth,
             innerWidth,
-            palette.text
+            palette.text,
+            contrastText(
+              shapeFill(palette, groupColor, isDark, { solid }),
+              palette.textOnFillLight,
+              palette.textOnFillDark
+            )
           );
           if (summaryPlacement) {
             summaryG.append("text").attr("x", summaryPlacement.x).attr("y", yOffset + BAR_H / 2).attr("dy", "0.35em").attr("font-size", "10px").attr("font-weight", "bold").attr("text-anchor", summaryPlacement.anchor).attr("fill", summaryPlacement.fill).attr("pointer-events", "none").text(summaryPlacement.text);
@@ -86276,7 +88259,7 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
           });
         } else {
           const groupBarWidth = Math.max(gx2 - gx1, 2);
-          const bandFill = mix(groupColor, palette.bg, 30);
+          const bandFill = shapeFill(palette, groupColor, isDark, { solid });
           const groupBarG = g.append("g").attr("class", "gantt-group-bar").attr("data-group", group.name).attr("data-line-number", String(group.lineNumber)).on("mouseenter", () => {
             highlightGroup(g, svg, group.name);
             showGanttDateIndicators(
@@ -86301,7 +88284,12 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
             gx1,
             groupBarWidth,
             innerWidth,
-            palette.text
+            palette.text,
+            contrastText(
+              shapeFill(palette, groupColor, isDark, { solid }),
+              palette.textOnFillLight,
+              palette.textOnFillDark
+            )
           );
           if (expandedPlacement) {
             groupBarG.append("text").attr("x", expandedPlacement.x).attr("y", yOffset + BAR_H / 2).attr("dy", "0.35em").attr("font-size", "10px").attr("font-weight", "bold").attr("text-anchor", expandedPlacement.anchor).attr("fill", expandedPlacement.fill).attr("pointer-events", "none").text(expandedPlacement.text);
@@ -86375,7 +88363,7 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
         const x1 = xScale(tStart);
         const x22 = xScale(tEnd);
         const barWidth = Math.max(x22 - x1, 2);
-        const fillColor = mix(barColor, palette.bg, 30);
+        const fillColor = shapeFill(palette, barColor, isDark, { solid });
         const taskG = g.append("g").attr("class", "gantt-task").attr("data-line-number", String(task.lineNumber)).attr("data-task-name", task.label).attr("data-task-id", task.id).attr("data-group", topGroup).style("cursor", onClickItem ? "pointer" : "default").on("click", () => {
           if (onClickItem) onClickItem(task.lineNumber);
         }).on("mouseenter", () => {
@@ -86444,7 +88432,12 @@ function renderGantt(container, resolved, palette, isDark, options, exportDims) 
           x1,
           barWidth,
           innerWidth,
-          palette.text
+          palette.text,
+          contrastText(
+            shapeFill(palette, barColor, isDark, { solid }),
+            palette.textOnFillLight,
+            palette.textOnFillDark
+          )
         );
         if (labelPlacement) {
           taskG.append("text").attr("x", labelPlacement.x).attr("y", yOffset + BAR_H / 2).attr("dy", "0.35em").attr("font-size", "10px").attr("text-anchor", labelPlacement.anchor).attr("fill", labelPlacement.fill).attr("pointer-events", "none").text(labelPlacement.text);
@@ -86661,8 +88654,11 @@ function renderDependencyArrows(g, resolved, taskPositions, groupPositions, coll
     const sourcePos = taskPositions.get(rt3.task.id) ?? (isTagMode ? findCollapsedLanePos(rt3, collapsedLanes, taskLaneMap, lanePositions) : findCollapsedGroupPos(rt3, collapsedGroups, groupPositions));
     if (!sourcePos) continue;
     for (const dep of rt3.task.dependencies) {
+      const depKey = normalizeName(dep.targetName);
       const targetTask = resolved.tasks.find(
-        (t) => t.task.label === dep.targetName || `${t.groupPath.join(".")}.${t.task.label}`.endsWith(dep.targetName)
+        (t) => normalizeName(t.task.label) === depKey || normalizeName(`${t.groupPath.join(".")}.${t.task.label}`).endsWith(
+          depKey
+        )
       );
       if (!targetTask) continue;
       const targetPos = taskPositions.get(targetTask.task.id) ?? (isTagMode ? findCollapsedLanePos(
@@ -87302,9 +89298,10 @@ function highlightDeps(g, svg, taskId, resolved) {
   if (!task) return;
   for (const rt3 of resolved.tasks) {
     for (const dep of rt3.task.dependencies) {
-      if (dep.targetName === task.task.label || `${task.groupPath.join(".")}.${task.task.label}`.endsWith(
-        dep.targetName
-      )) {
+      const depKey = normalizeName(dep.targetName);
+      if (depKey === normalizeName(task.task.label) || normalizeName(
+        `${task.groupPath.join(".")}.${task.task.label}`
+      ).endsWith(depKey)) {
         related.add(rt3.task.id);
       }
     }
@@ -87788,6 +89785,7 @@ var init_renderer11 = __esm({
     init_fonts();
     init_palettes();
     init_color_utils();
+    init_name_normalize();
     init_tag_groups();
     init_time_ticks();
     init_legend_constants();
@@ -87845,9 +89843,9 @@ __export2(state_renderer_exports, {
 function stateDefaultColor(palette, colorOff) {
   return colorOff ? palette.textMuted : palette.colors.blue;
 }
-function stateFill(palette, isDark, nodeColor2, colorOff) {
+function stateFill(palette, isDark, nodeColor2, colorOff, solid) {
   const color4 = nodeColor2 ?? stateDefaultColor(palette, colorOff);
-  return mix(color4, isDark ? palette.surface : palette.bg, 25);
+  return shapeFill(palette, color4, isDark, { solid });
 }
 function stateStroke(palette, nodeColor2, colorOff) {
   return nodeColor2 ?? stateDefaultColor(palette, colorOff);
@@ -88008,6 +90006,7 @@ function renderState(container, graph, layout3, palette, isDark, onClickItem, ex
     if (group.collapsed) collapsedGroupIds.add(group.id);
   }
   const colorOff = graph.options?.color === "off";
+  const solid = graph.options?.["solid-fill"] === "on";
   for (const node of layout3.nodes) {
     const isCollapsedGroup = collapsedGroupIds.has(node.id);
     const nodeG = contentG.append("g").attr("transform", `translate(${node.x}, ${node.y})`).attr("class", isCollapsedGroup ? "st-group-wrapper st-node" : "st-node").attr("data-line-number", String(node.lineNumber)).attr("data-node-id", node.id).style("cursor", "pointer");
@@ -88025,23 +90024,40 @@ function renderState(container, graph, layout3, palette, isDark, onClickItem, ex
       const w2 = node.width;
       const h = node.height;
       const groupColor = node.color ?? stateDefaultColor(palette, colorOff);
-      const fillColor = mix(
-        groupColor,
-        isDark ? palette.surface : palette.bg,
-        15
-      );
+      const fillColor = shapeFill(palette, groupColor, isDark, { solid });
       const strokeColor = groupColor;
       const COLLAPSE_BAR_H = 6;
       nodeG.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", STATE_CORNER_RADIUS).attr("ry", STATE_CORNER_RADIUS).attr("fill", fillColor).attr("stroke", strokeColor).attr("stroke-width", NODE_STROKE_WIDTH10);
       const clipId = `st-clip-${node.id.replace(/[[\]:\s]/g, "")}`;
       nodeG.append("clipPath").attr("id", clipId).append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", STATE_CORNER_RADIUS);
       nodeG.append("rect").attr("x", -w2 / 2).attr("y", h / 2 - COLLAPSE_BAR_H).attr("width", w2).attr("height", COLLAPSE_BAR_H).attr("fill", strokeColor).attr("opacity", 0.5).attr("clip-path", `url(#${clipId})`);
-      nodeG.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", NODE_FONT_SIZE4).text(node.label);
+      nodeG.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr(
+        "fill",
+        contrastText(
+          fillColor,
+          palette.textOnFillLight,
+          palette.textOnFillDark
+        )
+      ).attr("font-size", NODE_FONT_SIZE4).text(node.label);
     } else {
       const w2 = node.width;
       const h = node.height;
-      nodeG.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", STATE_CORNER_RADIUS).attr("ry", STATE_CORNER_RADIUS).attr("fill", stateFill(palette, isDark, node.color, colorOff)).attr("stroke", stateStroke(palette, node.color, colorOff)).attr("stroke-width", NODE_STROKE_WIDTH10);
-      nodeG.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("fill", palette.text).attr("font-size", NODE_FONT_SIZE4).text(node.label);
+      const resolvedFill = stateFill(
+        palette,
+        isDark,
+        node.color,
+        colorOff,
+        solid
+      );
+      nodeG.append("rect").attr("x", -w2 / 2).attr("y", -h / 2).attr("width", w2).attr("height", h).attr("rx", STATE_CORNER_RADIUS).attr("ry", STATE_CORNER_RADIUS).attr("fill", resolvedFill).attr("stroke", stateStroke(palette, node.color, colorOff)).attr("stroke-width", NODE_STROKE_WIDTH10);
+      nodeG.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr(
+        "fill",
+        contrastText(
+          resolvedFill,
+          palette.textOnFillLight,
+          palette.textOnFillDark
+        )
+      ).attr("font-size", NODE_FONT_SIZE4).text(node.label);
     }
   }
 }
@@ -88524,7 +90540,9 @@ function clearDim(root2) {
 }
 function renderHtmlPanel(panel, parsed, quadrant, qColor, palette, isDark, rootContainer, onClickItem) {
   const ringOrder = parsed.rings.map((r) => r.name);
-  const fillColor = mix(qColor, isDark ? palette.surface : palette.bg, 30);
+  const fillColor = shapeFill(palette, qColor, isDark, {
+    solid: parsed.options["solid-fill"] === "on"
+  });
   let expandedLineNum = null;
   function render22() {
     panel.innerHTML = "";
@@ -89011,7 +91029,18 @@ function renderTechRadar(container, parsed, palette, isDark, onClickItem, export
     const by = point6.y;
     blipGroup.on("mouseenter", (event) => {
       if (pinnedLineNum) return;
-      showBlipPopover(popover, point6.blip, qColor, palette, isDark, event);
+      showBlipPopover(
+        popover,
+        point6.blip,
+        qColor,
+        palette,
+        isDark,
+        event,
+        // Tech-radar opts out of solid-fill: blip popover stays in tinted
+        // form so it reads consistently against the radar bg regardless of
+        // the diagram's option setting.
+        false
+      );
       showBlipHighlight(lineNum, bx, by, blipGroup);
     }).on("mousemove", (event) => {
       if (pinnedLineNum) return;
@@ -89029,7 +91058,18 @@ function renderTechRadar(container, parsed, palette, isDark, onClickItem, export
         clearBlipHighlight();
       } else {
         pinnedLineNum = lineNum;
-        showBlipPopover(popover, point6.blip, qColor, palette, isDark, event);
+        showBlipPopover(
+          popover,
+          point6.blip,
+          qColor,
+          palette,
+          isDark,
+          event,
+          // Tech-radar opts out of solid-fill: blip popover stays in tinted
+          // form so it reads consistently against the radar bg regardless of
+          // the diagram's option setting.
+          false
+        );
         popover.style.pointerEvents = "auto";
         showBlipHighlight(lineNum, bx, by, blipGroup);
       }
@@ -89062,7 +91102,18 @@ function renderTechRadar(container, parsed, palette, isDark, onClickItem, export
             clientX: svgRect.left + point6.x,
             clientY: svgRect.top + offsetY + point6.y
           };
-          showBlipPopover(popover, blip, qColor, palette, isDark, fakeEvent);
+          showBlipPopover(
+            popover,
+            blip,
+            qColor,
+            palette,
+            isDark,
+            fakeEvent,
+            // Tech-radar opts out of solid-fill: blip popover stays in tinted
+            // form so it reads consistently against the radar bg regardless of
+            // the diagram's option setting.
+            false
+          );
         }
         const lineNum = String(blip.lineNumber);
         const blipEl = svg.select(`[data-line-number="${lineNum}"]`);
@@ -89256,11 +91307,16 @@ function createBlipPopover(container, palette, isDark) {
   container.appendChild(el);
   return el;
 }
-function showBlipPopover(popover, blip, qColor, palette, isDark, event) {
-  const fillColor = mix(qColor, isDark ? palette.surface : palette.bg, 30);
+function showBlipPopover(popover, blip, qColor, palette, isDark, event, solid) {
+  const fillColor = shapeFill(palette, qColor, isDark, { solid });
   const hasDesc = blip.description.length > 0;
+  const onFillText = contrastText(
+    fillColor,
+    palette.textOnFillLight,
+    palette.textOnFillDark
+  );
   let html = `<div style="background:${fillColor}; border: 1.5px solid ${qColor}; border-radius: 6px; overflow: hidden;">`;
-  html += `<div style="padding: 8px 12px; font-weight: 600; color: ${palette.text};">${escapeHtml2(blip.name)}</div>`;
+  html += `<div style="padding: 8px 12px; font-weight: 600; color: ${onFillText};">${escapeHtml2(blip.name)}</div>`;
   if (hasDesc) {
     html += `<div style="border-top: 1px solid ${qColor}; opacity: 0.3;"></div>`;
     html += `<div style="padding: 6px 12px 8px; color: ${palette.textMuted}; font-size: 11px; line-height: 1.6;">`;
@@ -89460,6 +91516,7 @@ function scoreToColor(score, palette) {
   return mix(palette.colors.red, palette.colors.green, t);
 }
 function layoutJourneyMap(parsed, palette, options) {
+  const isDark = options?.isDark ?? false;
   const hasTitle = !!parsed.title;
   const hasPersona = !!parsed.persona;
   const hasPhases = parsed.phases.length > 0;
@@ -89567,7 +91624,12 @@ function layoutJourneyMap(parsed, palette, options) {
       }
       const scoredSteps = phase.steps.filter((s) => s.score !== void 0);
       const avgScore = scoredSteps.length > 0 ? scoredSteps.reduce((sum2, s) => sum2 + s.score, 0) / scoredSteps.length : 3;
-      const headerColor = mix(scoreToColor(avgScore, palette), palette.bg, 25);
+      const headerColor = shapeFill(
+        palette,
+        scoreToColor(avgScore, palette),
+        isDark,
+        { solid: parsed.options["solid-fill"] === "on" }
+      );
       const COLLAPSED_CARD_H = 26;
       const COLLAPSED_GAP = 6;
       const phaseHeight = isCollapsed ? PHASE_HEADER_HEIGHT + CARD_GAP2 + phase.steps.length * (COLLAPSED_CARD_H + COLLAPSED_GAP) + CARD_GAP2 : PHASE_HEADER_HEIGHT + CARD_GAP2 + tagStripOffset + maxCardHeight + CARD_GAP2;
@@ -89612,7 +91674,13 @@ function layoutJourneyMap(parsed, palette, options) {
   }
   const rightEdge = hasPhases ? phaseLayouts.length > 0 ? phaseLayouts[phaseLayouts.length - 1].x + phaseLayouts[phaseLayouts.length - 1].width + PADDING : PADDING * 2 : flatStepLayouts.length > 0 ? flatStepLayouts[flatStepLayouts.length - 1].x + STEP_CARD_WIDTH + PADDING : PADDING * 2;
   const bottomEdge = hasPhases ? phaseLayouts.length > 0 ? phaseLayouts[0].y + phaseLayouts[0].height + PADDING + 40 : cardAreaTop + PADDING : cardAreaTop + CARD_GAP2 + tagStripOffset + maxCardHeight + PADDING + 40;
-  const totalWidth = Math.max(rightEdge, 400);
+  const headerTitleWidth = parsed.title ? parsed.title.length * TITLE_HEADER_CHAR_WIDTH : 0;
+  const personaPanelWidth = parsed.persona ? PERSONA_PANEL_WIDTH : 0;
+  const headerWidth = parsed.title && parsed.persona ? PADDING + headerTitleWidth + HEADER_GAP + personaPanelWidth + PADDING : Math.max(
+    PADDING + headerTitleWidth + PADDING,
+    PADDING + personaPanelWidth + PADDING
+  );
+  const totalWidth = Math.max(rightEdge, 400, headerWidth);
   const totalHeight = bottomEdge;
   return {
     phases: phaseLayouts,
@@ -89647,6 +91715,9 @@ function wrapLineCount(text, maxWidth, charWidth) {
 var PADDING;
 var TITLE_HEIGHT7;
 var PERSONA_HEIGHT;
+var PERSONA_PANEL_WIDTH;
+var TITLE_HEADER_CHAR_WIDTH;
+var HEADER_GAP;
 var CURVE_AREA_HEIGHT;
 var CARD_GAP2;
 var STEP_CARD_WIDTH;
@@ -89668,6 +91739,9 @@ var init_layout12 = __esm({
     PADDING = 24;
     TITLE_HEIGHT7 = 36;
     PERSONA_HEIGHT = 48;
+    PERSONA_PANEL_WIDTH = 280;
+    TITLE_HEADER_CHAR_WIDTH = 10;
+    HEADER_GAP = 24;
     CURVE_AREA_HEIGHT = 260;
     CARD_GAP2 = 8;
     STEP_CARD_WIDTH = 190;
@@ -89696,9 +91770,11 @@ function renderJourneyMap(container, parsed, palette, isDark, options) {
   const onActiveTagGroupChange = options?.onActiveTagGroupChange;
   const collapsedPhases = options?.collapsedPhases ?? /* @__PURE__ */ new Set();
   const onPhaseToggle = options?.onPhaseToggle;
+  const solid = parsed.options["solid-fill"] === "on";
   const layout3 = layoutJourneyMap(parsed, palette, {
     collapsedPhases,
-    exportDims
+    exportDims,
+    isDark
   });
   container.innerHTML = "";
   const containerW = exportDims?.width ?? container.clientWidth;
@@ -89744,20 +91820,24 @@ function renderJourneyMap(container, parsed, palette, isDark, options) {
     const textX = panelX + CARD_PADDING_X3;
     const clipId = "persona-clip";
     defs.append("clipPath").attr("id", clipId).append("rect").attr("x", panelX).attr("y", panelY).attr("width", panelWidth).attr("height", panelHeight).attr("rx", CARD_RADIUS5);
-    const cardBaseBg = isDark ? palette.surface : palette.bg;
-    const personaFill = mix(personaColor, cardBaseBg, 15);
+    const personaFill = shapeFill(palette, personaColor, isDark, { solid });
+    const onPersonaText = contrastText(
+      personaFill,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     personaG.append("rect").attr("x", panelX).attr("y", panelY).attr("width", panelWidth).attr("height", panelHeight).attr("rx", CARD_RADIUS5).attr("fill", personaFill);
     if (descLines.length > 0) {
-      personaG.append("line").attr("x1", panelX + 1).attr("x2", panelX + panelWidth - silhouetteZone).attr("y1", panelY + titleRowH).attr("y2", panelY + titleRowH).attr("stroke", personaColor).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
+      personaG.append("line").attr("x1", panelX + 1).attr("x2", panelX + panelWidth - silhouetteZone).attr("y1", panelY + titleRowH).attr("y2", panelY + titleRowH).attr("stroke", solid ? onPersonaText : personaColor).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
     }
     const silX = panelX + panelWidth - 32;
     const silY = panelY + panelHeight / 2 - 6;
     const silClip = personaG.append("g").attr("clip-path", `url(#${clipId})`);
     renderPersonaSilhouette(silClip, silX, silY, personaColor, palette, 1.2);
     personaG.append("rect").attr("x", panelX).attr("y", panelY).attr("width", panelWidth).attr("height", panelHeight).attr("rx", CARD_RADIUS5).attr("fill", "none").attr("stroke", personaColor).attr("stroke-width", CARD_STROKE_WIDTH2);
-    personaG.append("text").attr("x", textX).attr("y", panelY + CARD_PADDING_Y3 + FONT_SIZE_STEP).attr("font-size", FONT_SIZE_STEP).attr("font-weight", "500").attr("fill", palette.text).text(parsed.persona.name);
+    personaG.append("text").attr("x", textX).attr("y", panelY + CARD_PADDING_Y3 + FONT_SIZE_STEP).attr("font-size", FONT_SIZE_STEP).attr("font-weight", "500").attr("fill", onPersonaText).text(parsed.persona.name);
     for (let li = 0; li < descLines.length; li++) {
-      const lineEl = personaG.append("text").attr("x", textX).attr("y", panelY + titleRowH + descLineH * (li + 1)).attr("font-size", FONT_SIZE_META).attr("fill", palette.textMuted);
+      const lineEl = personaG.append("text").attr("x", textX).attr("y", panelY + titleRowH + descLineH * (li + 1)).attr("font-size", FONT_SIZE_META).attr("fill", onPersonaText);
       renderInlineText(lineEl, descLines[li], palette, FONT_SIZE_META);
     }
     if (onNavigateToLine) {
@@ -89944,7 +92024,12 @@ function renderJourneyMap(container, parsed, palette, isDark, options) {
       phaseG.append("rect").attr("x", pl.x).attr("y", pl.y).attr("width", pl.width).attr("height", pl.height).attr("rx", COLUMN_RADIUS2).attr("fill", colBg);
       phaseG.append("rect").attr("x", pl.x).attr("y", pl.y).attr("width", pl.width).attr("height", COLUMN_HEADER_HEIGHT2).attr("rx", COLUMN_RADIUS2).attr("fill", pl.headerColor);
       phaseG.append("rect").attr("x", pl.x).attr("y", pl.y + COLUMN_HEADER_HEIGHT2 - COLUMN_RADIUS2).attr("width", pl.width).attr("height", COLUMN_RADIUS2).attr("fill", pl.headerColor);
-      phaseG.append("text").attr("x", pl.x + COLUMN_PADDING3).attr("y", pl.y + COLUMN_HEADER_HEIGHT2 / 2 + FONT_SIZE_PHASE / 2 - 2).attr("font-size", FONT_SIZE_PHASE).attr("font-weight", "bold").attr("fill", palette.text).text(
+      const onHeaderText = contrastText(
+        pl.headerColor,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      );
+      phaseG.append("text").attr("x", pl.x + COLUMN_PADDING3).attr("y", pl.y + COLUMN_HEADER_HEIGHT2 / 2 + FONT_SIZE_PHASE / 2 - 2).attr("font-size", FONT_SIZE_PHASE).attr("font-weight", "bold").attr("fill", onHeaderText).text(
         isCollapsed ? truncateText(pl.phase.name, pl.width - COLUMN_PADDING3 * 2) : pl.phase.name
       );
       if (onPhaseToggle) {
@@ -89984,8 +92069,12 @@ function renderJourneyMap(container, parsed, palette, isDark, options) {
             parsed.tagGroups,
             palette
           );
-          const cardBaseBg = isDark ? palette.surface : palette.bg;
-          const rowFill = stepColor ? mix(stepColor, cardBaseBg, 15) : mix(palette.primary, cardBaseBg, 15);
+          const rowFill = shapeFill(
+            palette,
+            stepColor ?? palette.primary,
+            isDark,
+            { solid }
+          );
           const rowStroke = stepColor ?? palette.textMuted;
           itemG.append("rect").attr("x", listX).attr("y", itemY).attr("width", cardW).attr("height", COLLAPSED_CARD_H).attr("rx", CARD_RADIUS5).attr("fill", rowFill).attr("stroke", rowStroke).attr("stroke-width", CARD_STROKE_WIDTH2);
           const faceCx = listX + CARD_PADDING_X3 + COLLAPSED_FACE_R;
@@ -90025,7 +92114,8 @@ function renderJourneyMap(container, parsed, palette, isDark, options) {
             isDark,
             effectiveActiveGroup,
             parsed.tagGroups,
-            onNavigateToLine
+            onNavigateToLine,
+            solid
           );
         }
       }
@@ -90039,7 +92129,8 @@ function renderJourneyMap(container, parsed, palette, isDark, options) {
         isDark,
         effectiveActiveGroup,
         parsed.tagGroups,
-        onNavigateToLine
+        onNavigateToLine,
+        solid
       );
     }
   }
@@ -90276,7 +92367,7 @@ function resolveStepColor(step, scoreColor, activeGroup, tagGroups, _palette) {
   );
   return entry?.color;
 }
-function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onNavigateToLine) {
+function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onNavigateToLine, solid) {
   const stepG = parent.append("g").attr("class", "journey-step").attr("data-line-number", sl.step.lineNumber);
   if (sl.step.score !== void 0) {
     stepG.attr("data-score", sl.step.score);
@@ -90286,7 +92377,6 @@ function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onN
   }
   const cx = sl.x;
   const cy = sl.y;
-  const cardBaseBg = isDark ? palette.surface : palette.bg;
   const resolvedColor = resolveStepColor(
     sl.step,
     sl.color,
@@ -90294,8 +92384,20 @@ function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onN
     tagGroups,
     palette
   );
-  const cardFill = resolvedColor ? mix(resolvedColor, cardBaseBg, 15) : mix(palette.primary, cardBaseBg, 15);
+  const cardFill = shapeFill(
+    palette,
+    resolvedColor ?? palette.primary,
+    isDark,
+    {
+      solid
+    }
+  );
   const cardStroke = resolvedColor ?? palette.textMuted;
+  const onCardText = contrastText(
+    cardFill,
+    palette.textOnFillLight,
+    palette.textOnFillDark
+  );
   stepG.append("rect").attr("x", cx).attr("y", cy).attr("width", sl.width).attr("height", sl.height).attr("rx", CARD_RADIUS5).attr("fill", cardFill).attr("stroke", cardStroke).attr("stroke-width", CARD_STROKE_WIDTH2);
   const titleMaxW = sl.width - CARD_PADDING_X3 * 2;
   const titleMaxChars = Math.max(1, Math.floor(titleMaxW / TITLE_CHAR_WIDTH));
@@ -90313,13 +92415,13 @@ function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onN
   }
   if (titleCur) titleLines.push(titleCur);
   for (let i = 0; i < titleLines.length; i++) {
-    stepG.append("text").attr("x", cx + CARD_PADDING_X3).attr("y", cy + CARD_PADDING_Y3 + FONT_SIZE_STEP + i * TITLE_LINE_HEIGHT).attr("font-size", FONT_SIZE_STEP).attr("font-weight", "500").attr("fill", palette.text).text(titleLines[i]);
+    stepG.append("text").attr("x", cx + CARD_PADDING_X3).attr("y", cy + CARD_PADDING_Y3 + FONT_SIZE_STEP + i * TITLE_LINE_HEIGHT).attr("font-size", FONT_SIZE_STEP).attr("font-weight", "500").attr("fill", onCardText).text(titleLines[i]);
   }
   const titleBlockH = CARD_PADDING_Y3 + titleLines.length * TITLE_LINE_HEIGHT + CARD_PADDING_Y3;
   const cardAnnotations = sl.step.annotations;
   const hasContent = sl.step.description || cardAnnotations.length > 0;
   if (hasContent) {
-    stepG.append("line").attr("x1", cx).attr("y1", cy + titleBlockH).attr("x2", cx + sl.width).attr("y2", cy + titleBlockH).attr("stroke", cardStroke).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
+    stepG.append("line").attr("x1", cx).attr("y1", cy + titleBlockH).attr("x2", cx + sl.width).attr("y2", cy + titleBlockH).attr("stroke", solid ? onCardText : cardStroke).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
   }
   let metaY = cy + titleBlockH + CARD_META_LINE_HEIGHT3;
   if (sl.step.description) {
@@ -90329,7 +92431,7 @@ function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onN
       FONT_SIZE_META
     );
     for (const line11 of descLines) {
-      stepG.append("text").attr("x", cx + CARD_PADDING_X3).attr("y", metaY).attr("font-size", FONT_SIZE_META).attr("fill", palette.textMuted).text(line11);
+      stepG.append("text").attr("x", cx + CARD_PADDING_X3).attr("y", metaY).attr("font-size", FONT_SIZE_META).attr("fill", onCardText).text(line11);
       metaY += CARD_META_LINE_HEIGHT3;
     }
   }
@@ -90341,16 +92443,17 @@ function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onN
     const annoColor = annotationColor(anno.type, palette);
     const iconPaths = annotationIconPaths(anno.type);
     const annoLines = wrapText4(anno.text, annoTextW, FONT_SIZE_META);
+    const iconColor = solid ? onCardText : annoColor;
     renderAnnotationIcon(
       stepG,
       cx + CARD_PADDING_X3,
       metaY - ANNO_ICON_SIZE2 + 1,
       ANNO_ICON_SIZE2,
       iconPaths,
-      annoColor
+      iconColor
     );
     for (let li = 0; li < annoLines.length; li++) {
-      stepG.append("text").attr("x", cx + CARD_PADDING_X3 + annoIconIndent).attr("y", metaY).attr("font-size", FONT_SIZE_META).attr("fill", annoColor).text(annoLines[li]);
+      stepG.append("text").attr("x", cx + CARD_PADDING_X3 + annoIconIndent).attr("y", metaY).attr("font-size", FONT_SIZE_META).attr("fill", onCardText).text(annoLines[li]);
       metaY += CARD_META_LINE_HEIGHT3;
     }
   }
@@ -90364,10 +92467,14 @@ function renderStepCard(parent, sl, palette, isDark, activeGroup, tagGroups, onN
     const stripColor = entry?.color ?? palette.textMuted;
     const TAG_GAP = 6;
     const stripY = cy - TAG_STRIP_HEIGHT - TAG_GAP;
-    const cardBaseBg2 = isDark ? palette.surface : palette.bg;
-    const stripFill = mix(stripColor, cardBaseBg2, 15);
+    const stripFill = shapeFill(palette, stripColor, isDark, { solid });
     stepG.append("rect").attr("x", cx).attr("y", stripY).attr("width", sl.width).attr("height", TAG_STRIP_HEIGHT).attr("rx", CARD_RADIUS5).attr("fill", stripFill).attr("stroke", stripColor).attr("stroke-width", CARD_STROKE_WIDTH2);
-    stepG.append("text").attr("x", cx + sl.width / 2).attr("y", stripY + TAG_STRIP_HEIGHT / 2 + FONT_SIZE_META / 2 - 1).attr("text-anchor", "middle").attr("font-size", FONT_SIZE_META).attr("fill", palette.text).text(value);
+    const stripTextColor = contrastText(
+      stripFill,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
+    stepG.append("text").attr("x", cx + sl.width / 2).attr("y", stripY + TAG_STRIP_HEIGHT / 2 + FONT_SIZE_META / 2 - 1).attr("text-anchor", "middle").attr("font-size", FONT_SIZE_META).attr("fill", stripTextColor).text(value);
   }
   if (onNavigateToLine) {
     stepG.style("cursor", "pointer").on("click", (event) => {
@@ -90394,7 +92501,11 @@ function renderScoreFace(parent, cx, cy, score, palette, radius) {
   const color4 = scoreToColor(score, palette);
   const g = parent.append("g").attr("class", "journey-face").attr("data-cx", cx).attr("data-cy", cy);
   g.append("circle").attr("cx", cx).attr("cy", cy).attr("r", r).attr("fill", color4).attr("stroke", palette.bg).attr("stroke-width", 1.5);
-  const eyeColor = contrastText(color4, "#ffffff", "#000000");
+  const eyeColor = contrastText(
+    color4,
+    palette.textOnFillLight,
+    palette.textOnFillDark
+  );
   const eyeY = cy - r * 0.15;
   const eyeSpacing = r * 0.32;
   const eyeR = r * 0.12;
@@ -90467,7 +92578,7 @@ function renderJourneyMapForExport(content, theme2, palette) {
     return "";
   }
   const isDark = theme2 === "dark";
-  const layout3 = layoutJourneyMap(parsed, palette);
+  const layout3 = layoutJourneyMap(parsed, palette, { isDark });
   const container = document.createElement("div");
   renderJourneyMap(container, parsed, palette, isDark, {
     exportDims: { width: layout3.totalWidth, height: layout3.totalHeight }
@@ -91235,6 +93346,7 @@ __export2(renderer_exports14, {
 });
 function renderCycle(container, parsed, palette, isDark, onClickItem, exportDims, viewState, renderOptions) {
   if (parsed.nodes.length === 0) return;
+  const solid = parsed.options?.["solid-fill"] === "on";
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
   const width = exportDims?.width ?? container.clientWidth;
   const height = exportDims?.height ?? container.clientHeight;
@@ -91352,12 +93464,13 @@ function renderCycle(container, parsed, palette, isDark, onClickItem, exportDims
     const ln2 = layout3.nodes[i];
     const node = parsed.nodes[i];
     const solidColor = resolveNodeColor5(node.color, palette, defaultNodeColor);
-    const fillColor = mix(
-      solidColor,
-      isDark ? palette.surface : palette.bg,
-      30
+    const fillColor = shapeFill(palette, solidColor, isDark, { solid });
+    const textColor = contrastText(
+      fillColor,
+      palette.textOnFillLight,
+      palette.textOnFillDark
     );
-    const textColor = contrastText(fillColor, "#eceff4", "#2e3440");
+    const descColor = textColor;
     const nodeW = ln2.width;
     const nodeH = ln2.height;
     const wrappedDesc = ln2.wrappedDesc;
@@ -91378,7 +93491,7 @@ function renderCycle(container, parsed, palette, isDark, onClickItem, exportDims
         renderInlineText(labelText, node.label, palette, labelFont);
         let descY = startY + scaledDescLineH + 4;
         wrappedDesc.forEach((line11) => {
-          const descText = nodeG.append("text").attr("x", ln2.x).attr("y", descY).attr("text-anchor", "middle").attr("fill", palette.textMuted).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont);
+          const descText = nodeG.append("text").attr("x", ln2.x).attr("y", descY).attr("text-anchor", "middle").attr("fill", descColor).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont);
           renderInlineText(descText, line11.text, palette, DESC_FONT_SIZE5);
           descY += scaledDescLineH;
         });
@@ -91395,7 +93508,7 @@ function renderCycle(container, parsed, palette, isDark, onClickItem, exportDims
         const labelText = nodeG.append("text").attr("x", ln2.x).attr("y", headerCenterY + scaledNodeFont / 3).attr("text-anchor", "middle").attr("fill", textColor).attr("font-family", FONT_FAMILY).attr("font-size", scaledNodeFont).attr("font-weight", "600");
         renderInlineText(labelText, node.label, palette, scaledNodeFont);
         const sepY = ln2.y - nodeH / 2 + HEADER_H;
-        nodeG.append("line").attr("x1", ln2.x - nodeW / 2).attr("y1", sepY).attr("x2", ln2.x + nodeW / 2).attr("y2", sepY).attr("stroke", solidColor).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
+        nodeG.append("line").attr("x1", ln2.x - nodeW / 2).attr("y1", sepY).attr("x2", ln2.x + nodeW / 2).attr("y2", sepY).attr("stroke", solid ? descColor : solidColor).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
         const descStartY = sepY + 4 + scaledDescFont;
         const descPadX = Math.max(8, 12 * layout3.scale);
         const descX = ln2.x - nodeW / 2 + descPadX;
@@ -91403,12 +93516,12 @@ function renderCycle(container, parsed, palette, isDark, onClickItem, exportDims
         wrappedDesc.forEach((line11, li) => {
           const lineY = descStartY + li * scaledDescLineH;
           if (line11.kind === "bullet-first") {
-            nodeG.append("text").attr("x", descX).attr("y", lineY).attr("text-anchor", "start").attr("fill", palette.textMuted).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont).text("\u2022");
-            const bodyText = nodeG.append("text").attr("x", bulletBodyX).attr("y", lineY).attr("text-anchor", "start").attr("fill", palette.textMuted).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont);
+            nodeG.append("text").attr("x", descX).attr("y", lineY).attr("text-anchor", "start").attr("fill", descColor).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont).text("\u2022");
+            const bodyText = nodeG.append("text").attr("x", bulletBodyX).attr("y", lineY).attr("text-anchor", "start").attr("fill", descColor).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont);
             renderInlineText(bodyText, line11.text, palette, DESC_FONT_SIZE5);
           } else {
             const x3 = line11.kind === "bullet-cont" ? bulletBodyX : descX;
-            const descText = nodeG.append("text").attr("x", x3).attr("y", lineY).attr("text-anchor", "start").attr("fill", palette.textMuted).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont);
+            const descText = nodeG.append("text").attr("x", x3).attr("y", lineY).attr("text-anchor", "start").attr("fill", descColor).attr("font-family", FONT_FAMILY).attr("font-size", scaledDescFont);
             renderInlineText(descText, line11.text, palette, DESC_FONT_SIZE5);
           }
         });
@@ -91568,7 +93681,6 @@ function renderPyramid(container, parsed, palette, isDark, onClickItem, exportDi
     }
   }
   const seriesColors2 = getSeriesColors(palette);
-  const layerBase = isDark ? palette.surface : palette.bg;
   const resolveSolid = (layer, i) => {
     if (layer.color) {
       const named2 = resolveColor(layer.color, palette);
@@ -91590,7 +93702,9 @@ function renderPyramid(container, parsed, palette, isDark, onClickItem, exportDi
       [layout3.pyramidCx - botHalf, botEdgeY]
     ].map((p2) => `${p2[0]},${p2[1]}`).join(" ");
     const solidColor = resolveSolid(layer, i);
-    const fillColor = mix(solidColor, layerBase, 30);
+    const fillColor = shapeFill(palette, solidColor, isDark, {
+      solid: parsed.options["solid-fill"] === "on"
+    });
     const layerG = diagramG.append("g").attr("class", "pyramid-layer").attr("data-line-number", layer.lineNumber);
     if (onClickItem) {
       const ln2 = layer.lineNumber;
@@ -91598,9 +93712,17 @@ function renderPyramid(container, parsed, palette, isDark, onClickItem, exportDi
     }
     layerG.append("polygon").attr("points", polyPoints).attr("fill", fillColor).attr("stroke", solidColor).attr("stroke-width", 2);
     const midY = (topEdgeY + botEdgeY) / 2;
+    const textColor = contrastText(
+      fillColor,
+      palette.textOnFillLight,
+      palette.textOnFillDark
+    );
     const labelFitsInside = Math.min(topHalf, botHalf) * 2 > layout3.labelFont * 4;
-    const textColor = labelFitsInside ? contrastText(fillColor, "#eceff4", "#2e3440") : palette.text;
+    const haloColor = textColor === palette.textOnFillLight ? palette.textOnFillDark : palette.textOnFillLight;
     const labelText = layerG.append("text").attr("x", layout3.pyramidCx).attr("y", midY).attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", textColor).attr("font-family", FONT_FAMILY).attr("font-size", layout3.labelFont).attr("font-weight", 600);
+    if (!labelFitsInside) {
+      labelText.attr("paint-order", "stroke fill").attr("stroke", haloColor).attr("stroke-width", 3).attr("stroke-linejoin", "round").attr("stroke-opacity", 0.6);
+    }
     renderInlineText(labelText, layer.label, palette);
     if (layer.description.length > 0) {
       const side = useAlternate ? i % 2 === 0 ? "right" : "left" : "right";
@@ -91928,6 +94050,924 @@ var init_renderer15 = __esm({
     DESC_FONT_MAX = 15;
   }
 });
+var renderer_exports16 = {};
+__export2(renderer_exports16, {
+  renderRing: () => renderRing,
+  renderRingForExport: () => renderRingForExport
+});
+function renderRing(container, parsed, palette, isDark, onClickItem, exportDims) {
+  if (parsed.layers.length === 0) return;
+  select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
+  const width = exportDims?.width ?? container.clientWidth;
+  const height = exportDims?.height ?? container.clientHeight;
+  if (width <= 0 || height <= 0) return;
+  const N2 = parsed.layers.length;
+  const hasAnyDescription = parsed.layers.some((l) => l.description.length > 0);
+  const titleH = parsed.title ? TITLE_AREA_HEIGHT3 : 0;
+  const bodyTop = titleH + V_MARGIN2;
+  const bodyBottom = height - V_MARGIN2;
+  const bodyHeight = Math.max(60, bodyBottom - bodyTop);
+  const sideMargin = width * H_MARGIN_FRAC2;
+  const usableWidth = width - sideMargin * 2;
+  const ringAreaFrac = hasAnyDescription ? RING_AREA_FRAC_WITH_DESC : RING_AREA_FRAC_NO_DESC;
+  const ringDiameterByWidth = usableWidth * ringAreaFrac;
+  const ringDiameterByHeight = bodyHeight;
+  const ringDiameter = Math.min(ringDiameterByWidth, ringDiameterByHeight);
+  const outerRadius = ringDiameter / 2;
+  const thickness = outerRadius / N2;
+  const cy = bodyTop + bodyHeight / 2;
+  const cx = hasAnyDescription ? sideMargin + usableWidth * ringAreaFrac / 2 : width / 2;
+  const descAccentX = cx + outerRadius + DESC_GAP2;
+  const descTextX = descAccentX + DESC_ACCENT_WIDTH2 + DESC_ACCENT_GAP2;
+  const descTextWidth = Math.max(80, width - sideMargin - descTextX);
+  const naturalLabelFont = Math.round(thickness * 0.45);
+  const inBandLabelsVisible = naturalLabelFont >= LABEL_FONT_MIN2;
+  const labelFont = clamp22(naturalLabelFont, LABEL_FONT_MIN2, LABEL_FONT_MAX2);
+  const descFont = hasAnyDescription ? clamp22(Math.round(descTextWidth / 30), DESC_FONT_MIN2, DESC_FONT_MAX2) : DESC_FONT_MIN2;
+  const descLineHeight = Math.round(descFont * 1.35);
+  const svg = select_default2(container).append("svg").attr("width", width).attr("height", height).attr("xmlns", "http://www.w3.org/2000/svg").style("font-family", FONT_FAMILY);
+  svg.append("rect").attr("width", width).attr("height", height).attr("fill", palette.bg);
+  if (parsed.title) {
+    const titleText = svg.append("text").attr("class", "chart-title").attr("x", width / 2).attr("y", TITLE_Y).attr("text-anchor", "middle").attr("fill", palette.text).attr("font-family", FONT_FAMILY).attr("font-size", TITLE_FONT_SIZE).attr("font-weight", TITLE_FONT_WEIGHT).attr("data-line-number", parsed.titleLineNumber).text(parsed.title).style("cursor", onClickItem ? "pointer" : "default");
+    if (onClickItem) {
+      titleText.on("click", () => onClickItem(parsed.titleLineNumber));
+    }
+  }
+  const seriesColors2 = getSeriesColors(palette);
+  const resolveLayerColor = (layer, i) => {
+    if (layer.color) {
+      const named2 = resolveColor(layer.color, palette);
+      if (named2) return named2;
+    }
+    return seriesColors2[i % seriesColors2.length];
+  };
+  const solid = parsed.options["solid-fill"] === "on";
+  const layerColors = parsed.layers.map((l, i) => resolveLayerColor(l, i));
+  const layerFills = layerColors.map(
+    (c) => shapeFill(palette, c, isDark, { solid })
+  );
+  const diagramG = svg.append("g").attr("class", "ring-body");
+  const strokeColor = palette.text;
+  for (let i = 0; i < N2; i++) {
+    const layer = parsed.layers[i];
+    const rOuter = (i + 1) * thickness;
+    const rInner = i * thickness;
+    const fill2 = layerFills[i];
+    const layerG = diagramG.append("g").attr("class", "ring-layer").attr("data-line-number", layer.lineNumber);
+    if (onClickItem) {
+      const ln2 = layer.lineNumber;
+      layerG.style("cursor", "pointer").on("click", () => onClickItem(ln2));
+    }
+    if (i === 0) {
+      layerG.append("circle").attr("cx", cx).attr("cy", cy).attr("r", rOuter).attr("fill", fill2).attr("stroke", strokeColor).attr("stroke-width", RING_STROKE_WIDTH).attr("stroke-opacity", RING_STROKE_OPACITY);
+    } else {
+      const d = `M ${cx - rOuter} ${cy} A ${rOuter} ${rOuter} 0 1 0 ${cx + rOuter} ${cy} A ${rOuter} ${rOuter} 0 1 0 ${cx - rOuter} ${cy} M ${cx - rInner} ${cy} A ${rInner} ${rInner} 0 1 0 ${cx + rInner} ${cy} A ${rInner} ${rInner} 0 1 0 ${cx - rInner} ${cy} Z`;
+      layerG.append("path").attr("d", d).attr("fill-rule", "evenodd").attr("fill", fill2).attr("stroke", strokeColor).attr("stroke-width", RING_STROKE_WIDTH).attr("stroke-opacity", RING_STROKE_OPACITY);
+    }
+  }
+  if (inBandLabelsVisible) {
+    const labelsG = svg.append("g").attr("class", "ring-labels");
+    for (let i = 0; i < N2; i++) {
+      const layer = parsed.layers[i];
+      const fill2 = layerFills[i];
+      const isInnermost = i === 0;
+      const labelY = isInnermost ? cy : cy - (i + 0.5) * thickness;
+      const halfWidth = isInnermost ? thickness : Math.sqrt(i + 0.75) * thickness;
+      const textBudget = Math.max(20, halfWidth * 2 - 8);
+      const horizontalFit = Math.floor(
+        textBudget / Math.max(1, layer.label.length * CHAR_WIDTH_RATIO5)
+      );
+      const fittedFont = clamp22(
+        Math.min(labelFont, horizontalFit),
+        LABEL_FONT_MIN2,
+        LABEL_FONT_MAX2
+      );
+      if (fittedFont * layer.label.length * CHAR_WIDTH_RATIO5 > textBudget) {
+        continue;
+      }
+      const textColor = contrastText(
+        fill2,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      );
+      const labelG = labelsG.append("g").attr("class", "ring-label-group").attr("data-line-number", layer.lineNumber);
+      const label = labelG.append("text").attr("class", "ring-label").attr("x", cx).attr("y", labelY).attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", textColor).attr("font-family", FONT_FAMILY).attr("font-size", fittedFont).attr("font-weight", 600).style("pointer-events", "none");
+      renderInlineText(label, layer.label, palette, fittedFont);
+    }
+  }
+  if (hasAnyDescription || !inBandLabelsVisible) {
+    renderSideDescriptions({
+      parentG: svg.append("g").attr("class", "ring-descriptions"),
+      layers: parsed.layers,
+      colors: layerColors,
+      accentX: descAccentX,
+      textX: descTextX,
+      textWidth: descTextWidth,
+      topY: bodyTop,
+      bottomY: bodyBottom,
+      descFont,
+      descLineHeight,
+      palette,
+      onClickItem
+    });
+  }
+}
+function renderRingForExport(container, parsed, palette, isDark, exportDims) {
+  renderRing(container, parsed, palette, isDark, void 0, exportDims);
+}
+function renderSideDescriptions(args) {
+  const {
+    parentG,
+    layers,
+    colors,
+    accentX,
+    textX,
+    textWidth,
+    topY,
+    bottomY,
+    descFont,
+    descLineHeight,
+    palette,
+    onClickItem
+  } = args;
+  const charsPerLine = Math.max(
+    8,
+    Math.floor(textWidth / (descFont * CHAR_WIDTH_RATIO5))
+  );
+  const labelRowH = Math.round(descFont * 1.3);
+  const gutter = Math.max(8, Math.round(descFont * 0.6));
+  const availableH = bottomY - topY;
+  const computeStack = (cap) => {
+    const wraps2 = layers.map(
+      (l) => truncateWithEllipsis2(
+        wrapDescriptionLines(l.description, charsPerLine),
+        cap
+      )
+    );
+    const blockHeights2 = wraps2.map(
+      (lines) => labelRowH + lines.length * descLineHeight
+    );
+    const totalH2 = blockHeights2.reduce((s, h) => s + h, 0) + gutter * Math.max(0, layers.length - 1);
+    return { wraps: wraps2, blockHeights: blockHeights2, totalH: totalH2 };
+  };
+  let stack = computeStack(DESC_LINE_CAP);
+  for (let cap = DESC_LINE_CAP - 1; cap >= 0 && stack.totalH > availableH; cap--) {
+    stack = computeStack(cap);
+  }
+  const { wraps, blockHeights, totalH } = stack;
+  let cursorY = topY + Math.max(0, (availableH - totalH) / 2);
+  for (let i = 0; i < layers.length; i++) {
+    const layer = layers[i];
+    const lines = wraps[i];
+    const blockH = blockHeights[i];
+    const blockG = parentG.append("g").attr("class", "ring-desc").attr("data-line-number", layer.lineNumber);
+    if (onClickItem) {
+      const ln2 = layer.lineNumber;
+      blockG.style("cursor", "pointer").on("click", () => onClickItem(ln2));
+    }
+    blockG.append("rect").attr("x", accentX).attr("y", cursorY).attr("width", DESC_ACCENT_WIDTH2).attr("height", blockH).attr("rx", DESC_ACCENT_WIDTH2 / 2).attr("fill", colors[i]);
+    const labelEl = blockG.append("text").attr("x", textX).attr("y", cursorY + Math.round(labelRowH * 0.7)).attr("text-anchor", "start").attr("fill", palette.text).attr("font-family", FONT_FAMILY).attr("font-size", descFont).attr("font-weight", 600);
+    renderInlineText(labelEl, layer.label, palette, descFont);
+    let lineY = cursorY + labelRowH + Math.round(descLineHeight * 0.4);
+    for (const line11 of lines) {
+      const isBullet = line11.kind === "bullet-first" || line11.kind === "bullet-cont";
+      if (line11.kind === "bullet-first") {
+        blockG.append("text").attr("x", textX).attr("y", lineY).attr("text-anchor", "start").attr("fill", palette.textMuted).attr("font-family", FONT_FAMILY).attr("font-size", descFont).text("\u2022");
+      }
+      const textEl = blockG.append("text").attr("x", isBullet ? textX + BULLET_BODY_INDENT2 : textX).attr("y", lineY).attr("text-anchor", "start").attr("fill", palette.textMuted).attr("font-family", FONT_FAMILY).attr("font-size", descFont);
+      renderInlineText(textEl, line11.text, palette, descFont);
+      lineY += descLineHeight;
+    }
+    cursorY += blockH + gutter;
+  }
+}
+function truncateWithEllipsis2(lines, cap) {
+  if (lines.length <= cap) return lines.slice();
+  const visible = lines.slice(0, cap);
+  if (visible.length === 0) return visible;
+  const last = visible[visible.length - 1];
+  visible[visible.length - 1] = {
+    ...last,
+    text: last.text.endsWith("\u2026") ? last.text : `${last.text} \u2026`
+  };
+  return visible;
+}
+function clamp22(x3, lo, hi) {
+  return Math.max(lo, Math.min(hi, x3));
+}
+var TITLE_AREA_HEIGHT3;
+var H_MARGIN_FRAC2;
+var V_MARGIN2;
+var RING_AREA_FRAC_NO_DESC;
+var RING_AREA_FRAC_WITH_DESC;
+var DESC_GAP2;
+var DESC_ACCENT_WIDTH2;
+var DESC_ACCENT_GAP2;
+var CHAR_WIDTH_RATIO5;
+var BULLET_BODY_INDENT2;
+var RING_STROKE_WIDTH;
+var RING_STROKE_OPACITY;
+var DESC_LINE_CAP;
+var LABEL_FONT_MIN2;
+var LABEL_FONT_MAX2;
+var DESC_FONT_MIN2;
+var DESC_FONT_MAX2;
+var init_renderer16 = __esm({
+  "src/ring/renderer.ts"() {
+    "use strict";
+    init_fonts();
+    init_title_constants();
+    init_color_utils();
+    init_colors();
+    init_inline_markdown();
+    init_wrapped_desc();
+    TITLE_AREA_HEIGHT3 = 50;
+    H_MARGIN_FRAC2 = 0.03;
+    V_MARGIN2 = 16;
+    RING_AREA_FRAC_NO_DESC = 0.78;
+    RING_AREA_FRAC_WITH_DESC = 0.58;
+    DESC_GAP2 = 28;
+    DESC_ACCENT_WIDTH2 = 3;
+    DESC_ACCENT_GAP2 = 12;
+    CHAR_WIDTH_RATIO5 = 0.55;
+    BULLET_BODY_INDENT2 = 10;
+    RING_STROKE_WIDTH = 1;
+    RING_STROKE_OPACITY = 0.4;
+    DESC_LINE_CAP = 4;
+    LABEL_FONT_MIN2 = 12;
+    LABEL_FONT_MAX2 = 22;
+    DESC_FONT_MIN2 = 11;
+    DESC_FONT_MAX2 = 15;
+  }
+});
+var renderer_exports17 = {};
+__export2(renderer_exports17, {
+  MARKER_LABELS: () => MARKER_LABELS,
+  renderRaci: () => renderRaci,
+  renderRaciForExport: () => renderRaciForExport
+});
+function groupDiagnosticsByTask(parsed) {
+  const map4 = /* @__PURE__ */ new Map();
+  if (parsed.diagnostics.length === 0) return map4;
+  const tasks = [];
+  for (const t of parsed.tasksWithoutPhase) tasks.push(t);
+  for (const p2 of parsed.phases) for (const t of p2.tasks) tasks.push(t);
+  for (const d of parsed.diagnostics) {
+    if (d.line <= 0) continue;
+    const owner = tasks.find(
+      (t) => d.line >= t.lineNumber && d.line <= t.endLineNumber
+    );
+    if (!owner) continue;
+    let bucket = map4.get(owner.id);
+    if (!bucket) {
+      bucket = { errors: [], warnings: [], firstLine: d.line };
+      map4.set(owner.id, bucket);
+    } else if (d.line < bucket.firstLine) {
+      bucket.firstLine = d.line;
+    }
+    const entry = { line: d.line, message: d.message };
+    if (d.severity === "error") bucket.errors.push(entry);
+    else bucket.warnings.push(entry);
+  }
+  return map4;
+}
+function trimTaskPrefix(message) {
+  const prefix = message.match(/^Task '[^']*'\s+(.+)$/);
+  if (prefix) {
+    const rest = prefix[1];
+    return rest.charAt(0).toUpperCase() + rest.slice(1);
+  }
+  return message.replace(/\s+on task '[^']*'/, "");
+}
+function topRoundedRectPath(x3, y2, w2, h, r) {
+  const rr2 = Math.min(r, w2 / 2, h / 2);
+  return `M ${x3} ${y2 + rr2} A ${rr2} ${rr2} 0 0 1 ${x3 + rr2} ${y2} H ${x3 + w2 - rr2} A ${rr2} ${rr2} 0 0 1 ${x3 + w2} ${y2 + rr2} V ${y2 + h} H ${x3} Z`;
+}
+function sortByAlphabet(markers, alphabet) {
+  const order = new Map(
+    alphabet.map((m2, i) => [m2, i])
+  );
+  return [...markers].sort(
+    (a, b) => (order.get(a) ?? 99) - (order.get(b) ?? 99)
+  );
+}
+function autoAccent(index, palette) {
+  return palette.colors[AUTO_ACCENTS[index % AUTO_ACCENTS.length]];
+}
+function markerColor(marker, palette) {
+  switch (marker) {
+    case "R":
+      return palette.colors.green;
+    case "A":
+      return palette.colors.red;
+    case "S":
+      return palette.colors.teal;
+    case "C":
+      return palette.colors.yellow;
+    case "I":
+      return palette.colors.gray;
+    case "D":
+      return palette.colors.purple;
+  }
+}
+function renderRaci(container, parsed, palette, isDark, handlers, exportDims) {
+  const opts = typeof handlers === "function" ? { onClickLine: handlers } : handlers ?? {};
+  const onClickLine = opts.onClickLine;
+  const onMarkerDragStart = opts.onMarkerDragStart;
+  const hideLegend = opts.hideLegend ?? false;
+  const collapsedPhases = opts.collapsedPhases ?? /* @__PURE__ */ new Set();
+  const hideTitle = opts.hideTitle ?? false;
+  select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
+  const width = exportDims?.width ?? container.clientWidth;
+  const height = exportDims?.height ?? container.clientHeight;
+  if (width <= 0 || height <= 0) return;
+  const tasksAll = [...allTasks(parsed)];
+  if (tasksAll.length === 0 && parsed.phases.length === 0) return;
+  const solid = parsed.options["solid-fill"] === "on";
+  const surfaceBg = isDark ? palette.surface : palette.bg;
+  const roleCount = Math.max(1, parsed.roles.length);
+  const innerWidth = Math.max(0, width - 2 * H_MARGIN);
+  let roleColW = Math.max(
+    ROLE_COL_MIN,
+    Math.min(
+      ROLE_COL_MAX,
+      Math.floor((innerWidth - TASK_LABEL_MIN) / roleCount)
+    )
+  );
+  let labelW = innerWidth - roleColW * roleCount;
+  if (labelW > TASK_LABEL_MAX) {
+    labelW = TASK_LABEL_MAX;
+    roleColW = Math.max(
+      ROLE_COL_MIN,
+      Math.floor((innerWidth - labelW) / roleCount)
+    );
+  }
+  if (labelW < TASK_LABEL_MIN) labelW = TASK_LABEL_MIN;
+  const taskDiagnostics = groupDiagnosticsByTask(parsed);
+  const phasedRows = [];
+  for (const t of parsed.tasksWithoutPhase)
+    phasedRows.push({ kind: "task", task: t });
+  for (const p2 of parsed.phases) {
+    const collapsed = collapsedPhases.has(p2.id);
+    phasedRows.push({ kind: "phase", phase: p2, collapsed });
+    if (!collapsed) {
+      for (const t of p2.tasks) phasedRows.push({ kind: "task", task: t });
+    }
+  }
+  const hasTopRow = !hideTitle || !hideLegend;
+  const titleArea = hasTopRow ? TITLE_AREA_HEIGHT4 : V_MARGIN3;
+  const legendY = (TITLE_AREA_HEIGHT4 - LEGEND_HEIGHT5) / 2;
+  const headerY = titleArea + V_MARGIN3;
+  const bodyTop = headerY + HEADER_HEIGHT6;
+  let cursorY = bodyTop;
+  const rowYs = [];
+  const labelMaxW = labelW - 16;
+  const taskRowContent = /* @__PURE__ */ new Map();
+  for (const row of phasedRows) {
+    if (row.kind === "task") {
+      const bucket = taskDiagnostics.get(row.task.id);
+      taskRowContent.set(
+        row.task.id,
+        prepareRowContent(row.task, bucket, labelMaxW)
+      );
+    }
+  }
+  for (const row of phasedRows) {
+    rowYs.push(cursorY);
+    if (row.kind === "phase") {
+      cursorY += PHASE_HEIGHT;
+    } else {
+      const content = taskRowContent.get(row.task.id);
+      cursorY += content?.rowHeight ?? ROW_HEIGHT;
+    }
+  }
+  const colBottomY = cursorY + COLUMN_BOTTOM_PAD;
+  const totalHeight = colBottomY + V_MARGIN3;
+  const svg = select_default2(container).append("svg").attr("xmlns", "http://www.w3.org/2000/svg").attr("width", width).attr("height", Math.max(height, totalHeight)).attr("viewBox", `0 0 ${width} ${Math.max(height, totalHeight)}`).attr("font-family", FONT_FAMILY).style("background", "transparent");
+  const variantLabels = MARKER_LABELS[parsed.variant];
+  const legendMarkers = Object.keys(variantLabels).filter(
+    (m2) => variantLabels[m2] !== void 0
+  );
+  const numChips = legendMarkers.length;
+  const chipGapTotal = LEGEND_CHIP_GAP * Math.max(0, numChips - 1);
+  const longestLabel = legendMarkers.reduce(
+    (n, m2) => Math.max(n, (variantLabels[m2] ?? "").length),
+    0
+  );
+  const fullChipW = Math.max(
+    LEGEND_CHIP_LABEL_MIN,
+    Math.ceil(4 + 24 + 8 + longestLabel * LEGEND_LABEL_FONT * 0.6 + 8)
+  );
+  const fullLegendW = numChips * fullChipW + chipGapTotal;
+  const letterLegendW = numChips * LEGEND_LETTER_CHIP_W + chipGapTotal;
+  const titleEstW = parsed.title && !hideTitle ? parsed.title.length * TITLE_FONT_SIZE * 0.6 : 0;
+  let legendMode = "full";
+  let legendTotalW = fullLegendW;
+  let legendChipW = fullChipW;
+  if (!hideLegend) {
+    const remaining = innerWidth - titleEstW - TITLE_LEGEND_GAP;
+    if (remaining < fullLegendW) {
+      legendMode = "letters";
+      legendTotalW = letterLegendW;
+      legendChipW = LEGEND_LETTER_CHIP_W;
+    }
+  } else {
+    legendTotalW = 0;
+  }
+  const legendX = H_MARGIN + innerWidth - legendTotalW;
+  const titleMaxW = hideLegend ? innerWidth : legendX - H_MARGIN - TITLE_LEGEND_GAP;
+  if (parsed.title && !hideTitle) {
+    svg.append("text").attr("x", H_MARGIN).attr("y", TITLE_Y).attr("text-anchor", "start").attr("font-size", TITLE_FONT_SIZE).attr("font-weight", TITLE_FONT_WEIGHT).attr("fill", palette.text).text(truncateForWidth(parsed.title, titleMaxW, TITLE_FONT_SIZE));
+  }
+  if (!hideLegend && numChips > 0) {
+    renderLegend4(
+      svg,
+      legendMarkers,
+      parsed.variant,
+      legendX,
+      legendY,
+      legendMode,
+      legendChipW,
+      palette,
+      surfaceBg,
+      solid,
+      onMarkerDragStart
+    );
+  }
+  const roleX = (i) => H_MARGIN + labelW + i * roleColW;
+  const colTotalHeight = colBottomY - headerY;
+  if (parsed.phases.length === 0) {
+    const bandsG = svg.append("g").attr("class", "raci-row-bands");
+    phasedRows.forEach((row, i) => {
+      if (row.kind !== "task") return;
+      const taskIdx = parsed.tasksWithoutPhase.indexOf(row.task);
+      if (taskIdx < 0) return;
+      const yTop = rowYs[i];
+      const rh = taskRowContent.get(row.task.id)?.rowHeight ?? ROW_HEIGHT;
+      bandsG.append("rect").attr("class", "raci-row-band").attr("data-task-id", row.task.id).attr("x", H_MARGIN).attr("y", yTop + 2).attr("width", innerWidth).attr("height", rh - 4).attr("rx", 6).attr("fill", mix(autoAccent(taskIdx, palette), surfaceBg, 12));
+    });
+  }
+  const columnsG = svg.append("g").attr("class", "raci-columns");
+  parsed.roles.forEach((roleId, i) => {
+    const cx = roleX(i) + COLUMN_INSET;
+    const cw = roleColW - 2 * COLUMN_INSET;
+    const roleColor = parsed.roleColors[i] ?? autoAccent(i, palette);
+    const bodyFill = mix(roleColor, isDark ? palette.surface : palette.bg, 16);
+    const headerFill = mix(
+      roleColor,
+      isDark ? palette.surface : palette.bg,
+      30
+    );
+    const colG = columnsG.append("g").attr("class", "raci-column").attr("data-role-id", roleId);
+    colG.append("rect").attr("class", "raci-column-body").attr("x", cx).attr("y", headerY).attr("width", cw).attr("height", colTotalHeight).attr("rx", COLUMN_RADIUS3).attr("fill", bodyFill);
+    colG.append("path").attr("class", "raci-column-header").attr(
+      "d",
+      topRoundedRectPath(cx, headerY, cw, HEADER_HEIGHT6, COLUMN_RADIUS3)
+    ).attr("fill", headerFill);
+    const cxText = roleX(i) + roleColW / 2;
+    colG.append("text").attr("class", "raci-column-label").attr("x", cxText).attr("y", headerY + HEADER_HEIGHT6 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("font-size", ROLE_HEADER_FONT).attr("font-weight", 600).attr("fill", palette.text).text(
+      truncateForWidth(
+        parsed.roleDisplayNames[i] ?? "",
+        roleColW - 2 * CELL_PAD,
+        ROLE_HEADER_FONT
+      )
+    );
+  });
+  const hasAnyDiagnostic = taskDiagnostics.size > 0;
+  for (let i = 0; i < phasedRows.length; i++) {
+    const row = phasedRows[i];
+    const y2 = rowYs[i];
+    if (row.kind === "phase") {
+      const phaseIdx = parsed.phases.indexOf(row.phase);
+      renderPhaseBar(
+        svg,
+        row.phase,
+        H_MARGIN,
+        y2,
+        innerWidth,
+        palette,
+        row.collapsed,
+        autoAccent(Math.max(0, phaseIdx), palette)
+      );
+    } else {
+      renderTaskRow(
+        svg,
+        row.task,
+        parsed,
+        H_MARGIN,
+        y2,
+        labelW,
+        roleX,
+        roleColW,
+        palette,
+        surfaceBg,
+        solid,
+        taskDiagnostics,
+        hasAnyDiagnostic,
+        taskRowContent.get(row.task.id),
+        onClickLine,
+        onMarkerDragStart
+      );
+    }
+  }
+  const anyMarker = tasksAll.some(
+    (t) => t.roleAssignments.some((a) => a.markers.length > 0)
+  );
+  if (!anyMarker) {
+    svg.append("text").attr("x", width / 2).attr("y", totalHeight - V_MARGIN3 - 2).attr("text-anchor", "middle").attr("font-size", 12).attr("fill", palette.textMuted).text(
+      "Drag a marker from the legend onto any cell. Drag a marker out to remove."
+    );
+  }
+  setupColumnHover(svg);
+}
+function setupColumnHover(svg) {
+  const node = svg.node();
+  if (!node) return;
+  let current = null;
+  const findRole = (target) => {
+    let el = target;
+    while (el && el !== node) {
+      const r = el.getAttribute && el.getAttribute("data-role-id");
+      if (r) return r;
+      el = el.parentElement;
+    }
+    return null;
+  };
+  const set3 = (role) => {
+    if (role === current) return;
+    if (current) {
+      svg.selectAll(
+        `.raci-cell[data-role-id="${current}"], .raci-column[data-role-id="${current}"]`
+      ).classed("raci-col-active", false);
+    }
+    current = role;
+    if (role) {
+      svg.attr("data-hover-col", role);
+      svg.selectAll(
+        `.raci-cell[data-role-id="${role}"], .raci-column[data-role-id="${role}"]`
+      ).classed("raci-col-active", true);
+    } else {
+      svg.attr("data-hover-col", null);
+    }
+  };
+  svg.on("mouseover", (event) => set3(findRole(event.target)));
+  svg.on("mouseleave", () => set3(null));
+}
+function renderLegend4(svg, markers, variant, x3, y2, mode, chipW, palette, surfaceBg, solid, _onMarkerDragStart) {
+  if (markers.length === 0) return;
+  const labels = MARKER_LABELS[variant];
+  const legendG = svg.append("g").attr("class", "raci-legend").attr("aria-label", `${variant.toUpperCase()} marker legend`);
+  markers.forEach((marker, i) => {
+    const cx = x3 + i * (chipW + LEGEND_CHIP_GAP);
+    const rawColor = markerColor(marker, palette);
+    const labelText = labels[marker];
+    const chipG = legendG.append("g").attr("class", "raci-legend-chip").attr("data-marker", marker).style("cursor", "grab");
+    if (mode === "letters") {
+      const fill3 = solid ? rawColor : mix(rawColor, surfaceBg, 28);
+      const stroke3 = solid ? mix(rawColor, surfaceBg, 70) : rawColor;
+      chipG.append("rect").attr("x", cx).attr("y", y2).attr("width", chipW).attr("height", LEGEND_HEIGHT5).attr("rx", NODE_RADIUS2).attr("fill", fill3).attr("stroke", stroke3).attr("stroke-width", NODE_STROKE_WIDTH11);
+      chipG.append("text").attr("x", cx + chipW / 2).attr("y", y2 + LEGEND_HEIGHT5 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("font-size", LEGEND_LETTER_FONT).attr("font-weight", 700).attr(
+        "fill",
+        solid ? contrastText(
+          fill3,
+          palette.textOnFillLight,
+          palette.textOnFillDark
+        ) : palette.text
+      ).text(marker);
+      chipG.append("title").text(`${marker} \u2014 ${labelText}`);
+      return;
+    }
+    const fill2 = solid ? rawColor : mix(rawColor, surfaceBg, 28);
+    const stroke2 = mix(rawColor, surfaceBg, 70);
+    chipG.append("rect").attr("x", cx).attr("y", y2).attr("width", chipW).attr("height", LEGEND_HEIGHT5).attr("rx", NODE_RADIUS2).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", NODE_STROKE_WIDTH11);
+    const slabPad = 4;
+    const slabW = 24;
+    const slabFill = solid ? mix(rawColor, surfaceBg, 70) : mix(rawColor, surfaceBg, 55);
+    chipG.append("rect").attr("x", cx + slabPad).attr("y", y2 + slabPad).attr("width", slabW).attr("height", LEGEND_HEIGHT5 - 2 * slabPad).attr("rx", 4).attr("fill", slabFill);
+    chipG.append("text").attr("x", cx + slabPad + slabW / 2).attr("y", y2 + LEGEND_HEIGHT5 / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("font-size", LEGEND_LETTER_FONT).attr("font-weight", 700).attr(
+      "fill",
+      solid ? contrastText(
+        slabFill,
+        palette.textOnFillLight,
+        palette.textOnFillDark
+      ) : palette.text
+    ).text(marker);
+    chipG.append("text").attr("x", cx + slabPad + slabW + 8).attr("y", y2 + LEGEND_HEIGHT5 / 2).attr("dominant-baseline", "central").attr("font-size", LEGEND_LABEL_FONT).attr("font-weight", 600).attr("fill", palette.text).text(
+      truncateForWidth(
+        labelText,
+        chipW - slabW - slabPad * 2 - 12,
+        LEGEND_LABEL_FONT
+      )
+    );
+  });
+}
+function renderRaciForExport(container, parsed, palette, isDark, exportDims) {
+  renderRaci(container, parsed, palette, isDark, {}, exportDims);
+}
+function renderPhaseBar(svg, phase, x3, y2, width, palette, collapsed, autoColor) {
+  const phaseG = svg.append("g").attr("class", "raci-phase").attr("data-section", `phase-${phase.id}`).attr("data-section-toggle", "").attr("data-line-number", String(phase.lineNumber)).attr("data-phase-id", phase.id).attr("data-collapsed", collapsed ? "1" : "0").style("cursor", "pointer");
+  const phaseFill = mix(phase.color ?? autoColor, palette.bg, 30);
+  phaseG.append("rect").attr("x", x3).attr("y", y2 + 4).attr("width", width).attr("height", PHASE_HEIGHT - 8).attr("fill", phaseFill).attr("rx", 4);
+  const chevX = x3 + 12;
+  const chevY = y2 + PHASE_HEIGHT / 2;
+  const chevSize = 4;
+  const chevPath = collapsed ? (
+    // right-pointing triangle
+    `M ${chevX - chevSize / 2} ${chevY - chevSize} L ${chevX + chevSize / 2} ${chevY} L ${chevX - chevSize / 2} ${chevY + chevSize} Z`
+  ) : (
+    // down-pointing triangle
+    `M ${chevX - chevSize} ${chevY - chevSize / 2} L ${chevX + chevSize} ${chevY - chevSize / 2} L ${chevX} ${chevY + chevSize / 2} Z`
+  );
+  phaseG.append("path").attr("d", chevPath).attr("fill", palette.text).attr("opacity", 0.7);
+  phaseG.append("text").attr("x", x3 + 26).attr("y", y2 + (PHASE_HEIGHT - 4) / 2 + 2).attr("dominant-baseline", "central").attr("font-size", PHASE_FONT).attr("font-weight", 600).attr("fill", palette.text).text(phase.displayName);
+  if (collapsed) {
+    const taskCount = phase.tasks.length;
+    if (taskCount > 0) {
+      const labelTextWidth = phase.displayName.length * PHASE_FONT * 0.6;
+      phaseG.append("text").attr("x", x3 + 26 + labelTextWidth + 10).attr("y", y2 + (PHASE_HEIGHT - 4) / 2 + 2).attr("dominant-baseline", "central").attr("font-size", PHASE_FONT - 1).attr("font-weight", 500).attr("fill", palette.textMuted).text(`${taskCount} ${taskCount === 1 ? "task" : "tasks"}`);
+    }
+  }
+}
+function renderTaskRow(svg, task, parsed, x3, y2, labelW, roleX, roleColW, palette, surfaceBg, solid, taskDiagnostics, hasAnyDiagnostic, rowContent, onClickLine, _onMarkerDragStart) {
+  const rowG = svg.append("g").attr("class", "raci-task-row").attr("data-task-id", task.id).attr("data-line-number", String(task.lineNumber));
+  const labelX = x3 + 8;
+  const labelMaxW = labelW - 16;
+  const content = rowContent ?? prepareRowContent(task, taskDiagnostics?.get(task.id), labelMaxW);
+  const { nameLines, descLines, violations, rowHeight } = content;
+  const labelG = rowG.append("g").attr("class", "raci-task-label-area");
+  labelG.append("rect").attr("class", "raci-task-label-zone").attr("x", x3).attr("y", y2).attr("width", labelW).attr("height", rowHeight).attr("fill", "transparent").attr("pointer-events", "all");
+  const nameTopY = y2 + LABEL_FONT / 2 + 6;
+  const nameEl = labelG.append("text").attr("class", "raci-task-label").attr("x", labelX).attr("y", nameTopY).attr("dominant-baseline", "central").attr("font-size", LABEL_FONT).attr("fill", palette.text);
+  nameLines.forEach((line11, i) => {
+    const tspan = nameEl.append("tspan").attr("x", labelX).text(line11);
+    if (i > 0) tspan.attr("dy", NAME_LINE_HEIGHT);
+  });
+  let stackY = nameTopY + Math.max(0, nameLines.length - 1) * NAME_LINE_HEIGHT + LABEL_FONT / 2 + 4 + STACK_TOP_GAP;
+  if (descLines.length > 0) {
+    const descEl = labelG.append("text").attr("class", "raci-task-description").attr("x", labelX).attr("y", stackY).attr("dominant-baseline", "central").attr("font-size", DESC_FONT).attr("fill", palette.textMuted);
+    descLines.forEach((line11, i) => {
+      const tspan = descEl.append("tspan").attr("x", labelX).text(line11);
+      if (i > 0) tspan.attr("dy", DESC_LINE_HEIGHT9);
+    });
+    stackY += descLines.length * DESC_LINE_HEIGHT9;
+  }
+  for (const v4 of violations) {
+    const lineColor = v4.severity === "error" ? palette.colors.red : palette.colors.orange;
+    const lineG = labelG.append("g").attr("class", "raci-violation-line").attr("data-severity", v4.severity).style("cursor", onClickLine ? "pointer" : "default");
+    const violationFont = LABEL_FONT - 2;
+    const textEl = lineG.append("text").attr("x", labelX).attr("y", stackY).attr("dominant-baseline", "central").attr("font-size", violationFont).attr("fill", lineColor);
+    v4.lines.forEach((line11, i) => {
+      const segs = parseQuotedSegments(line11);
+      segs.forEach((seg, segIdx) => {
+        const tspan = textEl.append("tspan").text(seg.text);
+        if (i > 0 && segIdx === 0)
+          tspan.attr("x", labelX).attr("dy", VIOLATION_LINE_HEIGHT);
+        if (seg.bold) tspan.attr("font-weight", 700);
+      });
+    });
+    if (onClickLine) {
+      const targetLine = v4.sourceLine;
+      lineG.on("click", (e3) => {
+        e3.stopPropagation();
+        onClickLine(targetLine);
+      });
+    }
+    stackY += v4.lines.length * VIOLATION_LINE_HEIGHT;
+  }
+  const cellByRole = /* @__PURE__ */ new Map();
+  for (const a of task.roleAssignments) {
+    cellByRole.set(a.id, a.markers);
+  }
+  const alphabet = VARIANTS[parsed.variant].alphabet;
+  parsed.roles.forEach((roleId, idx) => {
+    const cellInset = COLUMN_INSET + 4;
+    const cx = roleX(idx) + cellInset;
+    const cy = y2 + CELL_PAD;
+    const cw = roleColW - 2 * cellInset;
+    const ch = ROW_HEIGHT - 2 * CELL_PAD;
+    const markersSource = cellByRole.get(roleId) ?? [];
+    const markers = sortByAlphabet(markersSource, alphabet);
+    const assignment = task.roleAssignments.find((a) => a.id === roleId);
+    const cellG = rowG.append("g").attr("class", "raci-cell").attr("data-task-id", task.id).attr("data-role-id", roleId);
+    if (assignment) {
+      cellG.attr("data-line-number", String(assignment.lineNumber));
+    }
+    cellG.append("rect").attr("class", "raci-cell-hit").attr("x", roleX(idx) + COLUMN_INSET).attr("y", y2).attr("width", roleColW - 2 * COLUMN_INSET).attr("height", ROW_HEIGHT).attr("fill", "transparent").attr("pointer-events", "all");
+    const totalGap = SLICE_GAP * (markers.length - 1);
+    const sliceW = markers.length > 0 ? (cw - totalGap) / markers.length : 0;
+    const variantLabels = MARKER_LABELS[parsed.variant];
+    markers.forEach((m2, i) => {
+      const rawColor = markerColor(m2, palette);
+      const fill2 = solid ? rawColor : mix(rawColor, surfaceBg, TINT_PCT);
+      const stroke2 = rawColor;
+      const sliceX = cx + i * (sliceW + SLICE_GAP);
+      const sliceG = cellG.append("g").attr("class", "raci-marker-slice").attr("data-marker", m2).style("cursor", "grab");
+      sliceG.append("rect").attr("x", sliceX).attr("y", cy).attr("width", sliceW).attr("height", ch).attr("rx", NODE_RADIUS2).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", NODE_STROKE_WIDTH11);
+      const fullLabel = variantLabels[m2] ?? m2;
+      const labelPx = fullLabel.length * LEGEND_LABEL_FONT * 0.6;
+      const showFullLabel = labelPx + 16 <= sliceW;
+      const textContent = showFullLabel ? fullLabel : m2;
+      const textFont = showFullLabel ? LEGEND_LABEL_FONT : MARKER_FONT;
+      sliceG.append("text").attr("x", sliceX + sliceW / 2).attr("y", cy + ch / 2).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("font-size", textFont).attr("font-weight", MARKER_FONT_WEIGHT).attr(
+        "fill",
+        solid ? contrastText(
+          fill2,
+          palette.textOnFillLight,
+          palette.textOnFillDark
+        ) : palette.text
+      ).text(textContent);
+    });
+    cellG.append("rect").attr("class", "raci-cell-drop-preview").attr("x", cx).attr("y", cy).attr("width", cw).attr("height", ch).attr("rx", NODE_RADIUS2).attr("fill", "transparent").attr("stroke", "transparent").attr("pointer-events", "none");
+    if (onClickLine && assignment) {
+      cellG.on("click", () => onClickLine(assignment.lineNumber));
+    }
+  });
+}
+function wordWrap(s, charsPerLine) {
+  if (charsPerLine <= 0 || s.length <= charsPerLine) return [s];
+  const out2 = [];
+  const tokens2 = s.split(/(\s+)/);
+  let cur = "";
+  for (const tok of tokens2) {
+    if (!tok) continue;
+    const isSpace = /^\s+$/.test(tok);
+    if (cur.length + tok.length <= charsPerLine) {
+      cur += tok;
+      continue;
+    }
+    if (cur.trimEnd().length > 0) out2.push(cur.trimEnd());
+    if (!isSpace && tok.length > charsPerLine) {
+      let chunk = tok;
+      while (chunk.length > charsPerLine) {
+        out2.push(chunk.slice(0, charsPerLine));
+        chunk = chunk.slice(charsPerLine);
+      }
+      cur = chunk;
+    } else {
+      cur = isSpace ? "" : tok;
+    }
+  }
+  if (cur.trimEnd().length > 0) out2.push(cur.trimEnd());
+  return out2.length > 0 ? out2 : [""];
+}
+function wrapText5(s, maxPx, fontSize) {
+  const charPx = fontSize * 0.6;
+  const cap = Math.max(8, Math.floor(maxPx / charPx));
+  return wordWrap(s, cap);
+}
+function prepareRowContent(task, bucket, labelMaxW) {
+  const nameLines = wrapText5(task.displayName, labelMaxW, LABEL_FONT);
+  const description = task.description?.trim() ?? "";
+  const descLines = description.length > 0 ? description.split("\n").flatMap((line11) => wrapText5(line11, labelMaxW, DESC_FONT)) : [];
+  const violations = [];
+  if (bucket) {
+    const collect2 = (arr, severity) => {
+      for (const e3 of arr) {
+        const text = trimTaskPrefix(e3.message);
+        violations.push({
+          severity,
+          sourceLine: e3.line,
+          text,
+          lines: wrapText5(text, labelMaxW, LABEL_FONT - 2)
+        });
+      }
+    };
+    collect2(bucket.errors, "error");
+    collect2(bucket.warnings, "warning");
+  }
+  const totalViolationLines = violations.reduce(
+    (n, v4) => n + v4.lines.length,
+    0
+  );
+  const hasStacked = descLines.length > 0 || violations.length > 0;
+  const labelExtra = Math.max(0, nameLines.length - 1) * NAME_LINE_HEIGHT;
+  const rowHeight = ROW_HEIGHT + labelExtra + (hasStacked ? STACK_TOP_GAP : 0) + descLines.length * DESC_LINE_HEIGHT9 + totalViolationLines * VIOLATION_LINE_HEIGHT;
+  return { nameLines, descLines, violations, rowHeight };
+}
+function truncateForWidth(s, maxPx, fontSize) {
+  const charPx = fontSize * 0.6;
+  const cap = Math.max(3, Math.floor(maxPx / charPx));
+  if (s.length <= cap) return s;
+  return s.substring(0, cap - 1) + "\u2026";
+}
+function parseQuotedSegments(message) {
+  const out2 = [];
+  const re3 = /'([^']+)'/g;
+  let last = 0;
+  let m2;
+  while ((m2 = re3.exec(message)) !== null) {
+    if (m2.index > last)
+      out2.push({ text: message.slice(last, m2.index), bold: false });
+    out2.push({ text: m2[1], bold: true });
+    last = m2.index + m2[0].length;
+  }
+  if (last < message.length)
+    out2.push({ text: message.slice(last), bold: false });
+  return out2;
+}
+var MARKER_LABELS;
+var TITLE_AREA_HEIGHT4;
+var H_MARGIN;
+var V_MARGIN3;
+var LEGEND_HEIGHT5;
+var LEGEND_CHIP_GAP;
+var LEGEND_CHIP_LABEL_MIN;
+var LEGEND_LETTER_CHIP_W;
+var TITLE_LEGEND_GAP;
+var LEGEND_LABEL_FONT;
+var LEGEND_LETTER_FONT;
+var HEADER_HEIGHT6;
+var ROW_HEIGHT;
+var PHASE_HEIGHT;
+var TASK_LABEL_MIN;
+var TASK_LABEL_MAX;
+var ROLE_COL_MIN;
+var ROLE_COL_MAX;
+var CELL_PAD;
+var VIOLATION_LINE_HEIGHT;
+var STACK_TOP_GAP;
+var DESC_FONT;
+var COLUMN_RADIUS3;
+var COLUMN_INSET;
+var COLUMN_BOTTOM_PAD;
+var MARKER_FONT;
+var MARKER_FONT_WEIGHT;
+var LABEL_FONT;
+var ROLE_HEADER_FONT;
+var PHASE_FONT;
+var TINT_PCT;
+var NODE_STROKE_WIDTH11;
+var NODE_RADIUS2;
+var AUTO_ACCENTS;
+var SLICE_GAP;
+var NAME_LINE_HEIGHT;
+var DESC_LINE_HEIGHT9;
+var init_renderer17 = __esm({
+  "src/raci/renderer.ts"() {
+    "use strict";
+    init_fonts();
+    init_title_constants();
+    init_color_utils();
+    init_parser18();
+    init_variants();
+    MARKER_LABELS = {
+      raci: { R: "Responsible", A: "Accountable", C: "Consulted", I: "Informed" },
+      rasci: {
+        R: "Responsible",
+        A: "Accountable",
+        S: "Support",
+        C: "Consulted",
+        I: "Informed"
+      },
+      daci: { D: "Driver", A: "Approver", C: "Contributor", I: "Informed" }
+    };
+    TITLE_AREA_HEIGHT4 = 50;
+    H_MARGIN = 24;
+    V_MARGIN3 = 16;
+    LEGEND_HEIGHT5 = 28;
+    LEGEND_CHIP_GAP = 8;
+    LEGEND_CHIP_LABEL_MIN = 96;
+    LEGEND_LETTER_CHIP_W = 28;
+    TITLE_LEGEND_GAP = 16;
+    LEGEND_LABEL_FONT = 12;
+    LEGEND_LETTER_FONT = 14;
+    HEADER_HEIGHT6 = 36;
+    ROW_HEIGHT = 36;
+    PHASE_HEIGHT = 32;
+    TASK_LABEL_MIN = 200;
+    TASK_LABEL_MAX = 360;
+    ROLE_COL_MIN = 64;
+    ROLE_COL_MAX = 120;
+    CELL_PAD = 4;
+    VIOLATION_LINE_HEIGHT = 14;
+    STACK_TOP_GAP = 8;
+    DESC_FONT = 11;
+    COLUMN_RADIUS3 = 8;
+    COLUMN_INSET = 8;
+    COLUMN_BOTTOM_PAD = 14;
+    MARKER_FONT = 14;
+    MARKER_FONT_WEIGHT = 600;
+    LABEL_FONT = 13;
+    ROLE_HEADER_FONT = 12;
+    PHASE_FONT = 13;
+    TINT_PCT = 28;
+    NODE_STROKE_WIDTH11 = 1.5;
+    NODE_RADIUS2 = 6;
+    AUTO_ACCENTS = [
+      "blue",
+      "orange",
+      "green",
+      "purple",
+      "yellow",
+      "cyan",
+      "red",
+      "teal"
+    ];
+    SLICE_GAP = 4;
+    NAME_LINE_HEIGHT = 16;
+    DESC_LINE_HEIGHT9 = 16;
+  }
+});
 function applyCollapseProjection(parsed, collapsedGroups) {
   if (collapsedGroups.size === 0) {
     return {
@@ -92115,8 +95155,8 @@ var init_tag_resolution = __esm({
     "use strict";
   }
 });
-var renderer_exports16 = {};
-__export2(renderer_exports16, {
+var renderer_exports18 = {};
+__export2(renderer_exports18, {
   applyGroupOrdering: () => applyGroupOrdering,
   applyPositionOverrides: () => applyPositionOverrides,
   buildNoteMessageMap: () => buildNoteMessageMap,
@@ -92161,11 +95201,11 @@ function wrapLabelWords(words) {
   if (current) lines.push(current);
   return lines;
 }
-function renderRectParticipant(g, palette, isDark, color4) {
-  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", H2).attr("rx", 2).attr("ry", 2).attr("fill", fill(palette, isDark, color4)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW);
+function renderRectParticipant(g, palette, isDark, color4, solid) {
+  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", H2).attr("rx", 2).attr("ry", 2).attr("fill", fill(palette, isDark, color4, solid)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW);
 }
-function renderServiceParticipant(g, palette, isDark, color4) {
-  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", H2).attr("rx", SERVICE_BORDER_RADIUS).attr("ry", SERVICE_BORDER_RADIUS).attr("fill", fill(palette, isDark, color4)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW);
+function renderServiceParticipant(g, palette, isDark, color4, solid) {
+  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", H2).attr("rx", SERVICE_BORDER_RADIUS).attr("ry", SERVICE_BORDER_RADIUS).attr("fill", fill(palette, isDark, color4, solid)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW);
 }
 function renderActorParticipant(g, palette, color4) {
   const headR = 8;
@@ -92184,11 +95224,11 @@ function renderActorParticipant(g, palette, color4) {
   g.append("line").attr("x1", cx).attr("y1", bodyBottomY).attr("x2", cx - legSpan).attr("y2", legY).attr("stroke", s).attr("stroke-width", actorSW);
   g.append("line").attr("x1", cx).attr("y1", bodyBottomY).attr("x2", cx + legSpan).attr("y2", legY).attr("stroke", s).attr("stroke-width", actorSW);
 }
-function renderDatabaseParticipant(g, palette, isDark, color4) {
+function renderDatabaseParticipant(g, palette, isDark, color4, solid) {
   const ry = 7;
   const topY = ry;
   const bodyH = H2 - ry * 2;
-  const f = fill(palette, isDark, color4);
+  const f = fill(palette, isDark, color4, solid);
   const s = stroke(palette, color4);
   g.append("ellipse").attr("cx", 0).attr("cy", topY + bodyH).attr("rx", W2 / 2).attr("ry", ry).attr("fill", f).attr("stroke", s).attr("stroke-width", SW);
   g.append("rect").attr("class", "participant-body").attr("x", -W2 / 2).attr("y", topY).attr("width", W2).attr("height", bodyH).attr("fill", f).attr("stroke", "none");
@@ -92196,11 +95236,11 @@ function renderDatabaseParticipant(g, palette, isDark, color4) {
   g.append("line").attr("x1", W2 / 2).attr("y1", topY).attr("x2", W2 / 2).attr("y2", topY + bodyH).attr("stroke", s).attr("stroke-width", SW);
   g.append("ellipse").attr("cx", 0).attr("cy", topY).attr("rx", W2 / 2).attr("ry", ry).attr("fill", f).attr("stroke", s).attr("stroke-width", SW);
 }
-function renderQueueParticipant(g, palette, isDark, color4) {
+function renderQueueParticipant(g, palette, isDark, color4, solid) {
   const rx = 10;
   const leftX = -W2 / 2 + rx;
   const bodyW = W2 - rx * 2;
-  const f = fill(palette, isDark, color4);
+  const f = fill(palette, isDark, color4, solid);
   const s = stroke(palette, color4);
   g.append("ellipse").attr("cx", leftX + bodyW).attr("cy", H2 / 2).attr("rx", rx).attr("ry", H2 / 2).attr("fill", f).attr("stroke", s).attr("stroke-width", SW);
   g.append("rect").attr("class", "participant-body").attr("x", leftX).attr("y", 0).attr("width", bodyW).attr("height", H2).attr("fill", f).attr("stroke", "none");
@@ -92208,11 +95248,11 @@ function renderQueueParticipant(g, palette, isDark, color4) {
   g.append("line").attr("x1", leftX).attr("y1", H2).attr("x2", leftX + bodyW).attr("y2", H2).attr("stroke", s).attr("stroke-width", SW);
   g.append("ellipse").attr("cx", leftX).attr("cy", H2 / 2).attr("rx", rx).attr("ry", H2 / 2).attr("fill", f).attr("stroke", s).attr("stroke-width", SW);
 }
-function renderCacheParticipant(g, palette, isDark, color4) {
+function renderCacheParticipant(g, palette, isDark, color4, solid) {
   const ry = 7;
   const topY = ry;
   const bodyH = H2 - ry * 2;
-  const f = fill(palette, isDark, color4);
+  const f = fill(palette, isDark, color4, solid);
   const s = stroke(palette, color4);
   const dash = "4 3";
   g.append("ellipse").attr("cx", 0).attr("cy", topY + bodyH).attr("rx", W2 / 2).attr("ry", ry).attr("fill", f).attr("stroke", s).attr("stroke-width", SW).attr("stroke-dasharray", dash);
@@ -92221,7 +95261,7 @@ function renderCacheParticipant(g, palette, isDark, color4) {
   g.append("line").attr("x1", W2 / 2).attr("y1", topY).attr("x2", W2 / 2).attr("y2", topY + bodyH).attr("stroke", s).attr("stroke-width", SW).attr("stroke-dasharray", dash);
   g.append("ellipse").attr("cx", 0).attr("cy", topY).attr("rx", W2 / 2).attr("ry", ry).attr("fill", f).attr("stroke", s).attr("stroke-width", SW).attr("stroke-dasharray", dash);
 }
-function renderNetworkingParticipant(g, palette, isDark, color4) {
+function renderNetworkingParticipant(g, palette, isDark, color4, solid) {
   const inset = 16;
   const points2 = [
     `${-W2 / 2 + inset},0`,
@@ -92231,19 +95271,19 @@ function renderNetworkingParticipant(g, palette, isDark, color4) {
     `${-W2 / 2 + inset},${H2}`,
     `${-W2 / 2},${H2 / 2}`
   ].join(" ");
-  g.append("polygon").attr("points", points2).attr("fill", fill(palette, isDark, color4)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW);
+  g.append("polygon").attr("points", points2).attr("fill", fill(palette, isDark, color4, solid)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW);
 }
-function renderFrontendParticipant(g, palette, isDark, color4) {
+function renderFrontendParticipant(g, palette, isDark, color4, solid) {
   const screenH = H2 - 10;
   const s = stroke(palette, color4);
-  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", screenH).attr("rx", 3).attr("ry", 3).attr("fill", fill(palette, isDark, color4)).attr("stroke", s).attr("stroke-width", SW);
+  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", screenH).attr("rx", 3).attr("ry", 3).attr("fill", fill(palette, isDark, color4, solid)).attr("stroke", s).attr("stroke-width", SW);
   g.append("line").attr("x1", 0).attr("y1", screenH).attr("x2", 0).attr("y2", H2 - 2).attr("stroke", s).attr("stroke-width", SW);
   g.append("line").attr("x1", -14).attr("y1", H2 - 2).attr("x2", 14).attr("y2", H2 - 2).attr("stroke", s).attr("stroke-width", SW);
 }
-function renderExternalParticipant(g, palette, isDark, color4) {
-  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", H2).attr("rx", 2).attr("ry", 2).attr("fill", fill(palette, isDark, color4)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW).attr("stroke-dasharray", "6 3");
+function renderExternalParticipant(g, palette, isDark, color4, solid) {
+  g.append("rect").attr("x", -W2 / 2).attr("y", 0).attr("width", W2).attr("height", H2).attr("rx", 2).attr("ry", 2).attr("fill", fill(palette, isDark, color4, solid)).attr("stroke", stroke(palette, color4)).attr("stroke-width", SW).attr("stroke-dasharray", "6 3");
 }
-function renderGatewayParticipant(g, palette, isDark, color4) {
+function renderGatewayParticipant(g, palette, isDark, color4, _solid) {
   renderRectParticipant(g, palette, isDark, color4);
 }
 function groupMessagesBySection(elements, messages) {
@@ -92465,6 +95505,7 @@ function applyGroupOrdering(participants, groups, messages = []) {
 function renderSequenceDiagram(container, parsed, palette, isDark, _onNavigateToLine, options) {
   select_default2(container).selectAll("*").remove();
   const { title, options: parsedOptions } = parsed;
+  const solid = parsedOptions["solid-fill"] === "on";
   const effectiveCollapsedGroups = /* @__PURE__ */ new Set();
   for (const group of parsed.groups) {
     if (group.collapsed) effectiveCollapsedGroups.add(group.lineNumber);
@@ -93021,7 +96062,8 @@ function renderSequenceDiagram(container, parsed, palette, isDark, _onNavigateTo
       palette,
       isDark,
       effectiveTagColor,
-      pTagAttr
+      pTagAttr,
+      solid
     );
     if (isCollapsedGroup) {
       const meta = collapsedGroupMeta.get(participant.id);
@@ -93219,11 +96261,7 @@ function renderSequenceDiagram(container, parsed, palette, isDark, _onNavigateTo
     const actTagColor = getTagColor(actTagValue);
     const actBaseColor = actTagColor || palette.primary;
     svg.append("rect").attr("x", x3).attr("y", y1).attr("width", ACTIVATION_WIDTH).attr("height", y2 - y1).attr("fill", isDark ? palette.surface : palette.bg);
-    const actFill = mix(
-      actBaseColor,
-      isDark ? palette.surface : palette.bg,
-      isDark ? 15 : 30
-    );
+    const actFill = shapeFill(palette, actBaseColor, isDark, { solid });
     const actRect = svg.append("rect").attr("x", x3).attr("y", y1).attr("width", ACTIVATION_WIDTH).attr("height", y2 - y1).attr("fill", actFill).attr("stroke", actBaseColor).attr("stroke-width", 1).attr("stroke-opacity", 0.5).attr("data-participant-id", act.participantId).attr("data-msg-lines", coveredLines.join(",")).attr("data-line-number", coveredLines[0] ?? "").attr("class", "activation");
     if (tagKey && actTagValue) {
       actRect.attr(`data-tag-${tagKey}`, actTagValue.toLowerCase());
@@ -93424,10 +96462,10 @@ function renderSequenceDiagram(container, parsed, palette, isDark, _onNavigateTo
             `L ${noteX + noteW} ${noteTopY + NOTE_FOLD}`
           ].join(" ")
         ).attr("fill", "none").attr("stroke", palette.textMuted).attr("stroke-width", 0.75).attr("class", "note-fold");
-        const BULLET_BODY_INDENT2 = 10;
+        const BULLET_BODY_INDENT3 = 10;
         wrappedLines.forEach((line11, li) => {
           const textY = noteTopY + NOTE_PAD_V + (li + 1) * NOTE_LINE_H - 3;
-          const indent = line11.kind === "plain" ? 0 : BULLET_BODY_INDENT2;
+          const indent = line11.kind === "plain" ? 0 : BULLET_BODY_INDENT3;
           if (line11.kind === "bullet-first") {
             noteG.append("text").attr("x", noteX + NOTE_PAD_H).attr("y", textY).attr("fill", palette.text).attr("font-size", NOTE_FONT_SIZE).text("\u2022");
           }
@@ -93505,7 +96543,7 @@ function buildNoteMessageMap(elements) {
   walk(elements);
   return map4;
 }
-function renderParticipant(svg, participant, cx, cy, palette, isDark, color4, tagAttr) {
+function renderParticipant(svg, participant, cx, cy, palette, isDark, color4, tagAttr, solid) {
   const g = svg.append("g").attr("transform", `translate(${cx}, ${cy})`).attr("class", "participant").attr("data-participant-id", participant.id);
   if (tagAttr) {
     g.attr(`data-tag-${tagAttr.key}`, tagAttr.value);
@@ -93515,38 +96553,43 @@ function renderParticipant(svg, participant, cx, cy, palette, isDark, color4, ta
       renderActorParticipant(g, palette, color4);
       break;
     case "database":
-      renderDatabaseParticipant(g, palette, isDark, color4);
+      renderDatabaseParticipant(g, palette, isDark, color4, solid);
       break;
     case "service":
-      renderServiceParticipant(g, palette, isDark, color4);
+      renderServiceParticipant(g, palette, isDark, color4, solid);
       break;
     case "queue":
-      renderQueueParticipant(g, palette, isDark, color4);
+      renderQueueParticipant(g, palette, isDark, color4, solid);
       break;
     case "cache":
-      renderCacheParticipant(g, palette, isDark, color4);
+      renderCacheParticipant(g, palette, isDark, color4, solid);
       break;
     case "networking":
-      renderNetworkingParticipant(g, palette, isDark, color4);
+      renderNetworkingParticipant(g, palette, isDark, color4, solid);
       break;
     case "frontend":
-      renderFrontendParticipant(g, palette, isDark, color4);
+      renderFrontendParticipant(g, palette, isDark, color4, solid);
       break;
     case "external":
-      renderExternalParticipant(g, palette, isDark, color4);
+      renderExternalParticipant(g, palette, isDark, color4, solid);
       break;
     case "gateway":
-      renderGatewayParticipant(g, palette, isDark, color4);
+      renderGatewayParticipant(g, palette, isDark, color4, solid);
       break;
     default:
-      renderRectParticipant(g, palette, isDark, color4);
+      renderRectParticipant(g, palette, isDark, color4, solid);
       break;
   }
   const isActor = participant.type === "actor";
   const labelLines = splitParticipantLabel(participant.label);
   const fontSize = 13;
   const lineHeight = fontSize + 2;
-  const textEl = g.append("text").attr("x", 0).attr("text-anchor", "middle").attr("fill", palette.text).attr("font-size", fontSize).attr("font-weight", 500);
+  const labelFill = isActor ? palette.text : contrastText(
+    fill(palette, isDark, color4, solid),
+    palette.textOnFillLight,
+    palette.textOnFillDark
+  );
+  const textEl = g.append("text").attr("x", 0).attr("text-anchor", "middle").attr("fill", labelFill).attr("font-size", fontSize).attr("font-weight", 500);
   if (labelLines.length === 1) {
     textEl.attr(
       "y",
@@ -93590,7 +96633,7 @@ var stroke;
 var SW;
 var W2;
 var H2;
-var init_renderer16 = __esm({
+var init_renderer18 = __esm({
   "src/sequence/renderer.ts"() {
     "use strict";
     init_color_utils();
@@ -93633,7 +96676,7 @@ var init_renderer16 = __esm({
     LABEL_MAX_CHARS = Math.floor(
       (PARTICIPANT_BOX_WIDTH - 10) / LABEL_CHAR_WIDTH
     );
-    fill = (palette, isDark, color4) => color4 ? mix(color4, isDark ? palette.surface : palette.bg, isDark ? 30 : 40) : isDark ? mix(palette.overlay, palette.surface, 50) : mix(palette.bg, palette.surface, 50);
+    fill = (palette, isDark, color4, solid) => color4 ? shapeFill(palette, color4, isDark, { solid }) : isDark ? mix(palette.overlay, palette.surface, 50) : mix(palette.bg, palette.surface, 50);
     stroke = (palette, color4) => color4 || palette.border;
     SW = 1.5;
     W2 = PARTICIPANT_BOX_WIDTH;
@@ -94129,7 +97172,8 @@ function parseVisualization(content, palette) {
       }
     }
     if (result.type === "venn") {
-      if (/\+/.test(line11)) {
+      if (/^(solid-fill|no-name|no-value|no-percent)$/i.test(line11)) {
+      } else if (/\+/.test(line11)) {
         const knownSetRefs = /* @__PURE__ */ new Set();
         for (const s of result.vennSets) {
           knownSetRefs.add(s.name.toLowerCase());
@@ -94162,24 +97206,53 @@ function parseVisualization(content, palette) {
           continue;
         }
       }
-      const setDeclMatch = line11.match(
-        /^([^(:]+?)(?:\(([^)]+)\))?(?:\s+alias\s+(\S+))?\s*$/i
-      );
-      if (setDeclMatch) {
-        const name = setDeclMatch[1].trim();
-        const colorName = setDeclMatch[2]?.trim() ?? null;
-        let color4 = null;
-        if (colorName) {
-          color4 = resolveColorWithDiagnostic(
-            colorName,
-            lineNumber,
-            result.diagnostics,
-            palette
-          ) ?? null;
+      if (!/^(solid-fill|no-name|no-value|no-percent)$/i.test(line11)) {
+        const legacyAliasMatch = line11.match(
+          /^([^(:]+?)(?:\(([^)]+)\))?\s+alias\s+(\S+)\s*$/i
+        );
+        if (legacyAliasMatch) {
+          const name = legacyAliasMatch[1].trim();
+          const colorName = legacyAliasMatch[2]?.trim() ?? null;
+          const aliasToken = legacyAliasMatch[3].trim();
+          let color4 = null;
+          if (colorName) {
+            color4 = resolveColorWithDiagnostic(
+              colorName,
+              lineNumber,
+              result.diagnostics,
+              palette
+            ) ?? null;
+          }
+          result.diagnostics.push(
+            makeDgmoError(
+              lineNumber,
+              vennAliasKeywordRemovedMessage({ name, alias: aliasToken }),
+              "error",
+              ALIAS_DIAGNOSTIC_CODES.VENN_ALIAS_KEYWORD_REMOVED
+            )
+          );
+          result.vennSets.push({ name, alias: aliasToken, color: color4, lineNumber });
+          continue;
         }
-        const alias = setDeclMatch[3]?.trim() ?? null;
-        result.vennSets.push({ name, alias, color: color4, lineNumber });
-        continue;
+        const setDeclMatch = line11.match(
+          /^([^(:]+?)(?:\(([^)]+)\))?(?:\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11}))?\s*$/i
+        );
+        if (setDeclMatch) {
+          const name = setDeclMatch[1].trim();
+          const colorName = setDeclMatch[2]?.trim() ?? null;
+          let color4 = null;
+          if (colorName) {
+            color4 = resolveColorWithDiagnostic(
+              colorName,
+              lineNumber,
+              result.diagnostics,
+              palette
+            ) ?? null;
+          }
+          const alias = setDeclMatch[3]?.trim() ?? null;
+          result.vennSets.push({ name, alias, color: color4, lineNumber });
+          continue;
+        }
       }
     }
     if (result.type === "quadrant") {
@@ -94318,6 +97391,10 @@ function parseVisualization(content, palette) {
       }
       if (bareToken === "no-percent") {
         result.noPercent = true;
+        continue;
+      }
+      if (bareToken === "solid-fill") {
+        result.solidFill = true;
         continue;
       }
       if (bareToken.startsWith("no-")) {
@@ -95447,6 +98524,7 @@ function renderTimelineGroupLegend(g, groups, groupColorMap, textColor, palette,
 }
 function renderTimeline(container, parsed, palette, isDark, onClickItem, exportDims, activeTagGroup, swimlaneTagGroup, onTagStateChange, viewMode) {
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
+  const solid = parsed.solidFill === true;
   const {
     timelineEvents,
     timelineGroups,
@@ -95787,7 +98865,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
           if (ev.endDate) {
             const y22 = yScale(parseTimelineDate(ev.endDate));
             const rectH = Math.max(y22 - y2, 4);
-            let fill2 = mix(evColor, bg, 30);
+            let fill2 = shapeFill(palette, evColor, isDark, { solid });
             let stroke2 = evColor;
             if (ev.uncertain) {
               const gradientId = `uncertain-vg-${ev.lineNumber}`;
@@ -95810,7 +98888,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
             evG.append("rect").attr("x", laneCenter - 6).attr("y", y2).attr("width", 12).attr("height", rectH).attr("rx", 4).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", 2);
             evG.append("text").attr("x", laneCenter + 14).attr("y", y2 + rectH / 2).attr("dy", "0.35em").attr("fill", textColor).attr("font-size", "10px").text(ev.label);
           } else {
-            evG.append("circle").attr("cx", laneCenter).attr("cy", y2).attr("r", 4).attr("fill", mix(evColor, bg, 30)).attr("stroke", evColor).attr("stroke-width", 2);
+            evG.append("circle").attr("cx", laneCenter).attr("cy", y2).attr("r", 4).attr("fill", shapeFill(palette, evColor, isDark, { solid })).attr("stroke", evColor).attr("stroke-width", 2);
             evG.append("text").attr("x", laneCenter + 10).attr("y", y2).attr("dy", "0.35em").attr("fill", textColor).attr("font-size", "10px").text(ev.label);
           }
         }
@@ -95914,7 +98992,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
         if (ev.endDate) {
           const y22 = yScale(parseTimelineDate(ev.endDate));
           const rectH = Math.max(y22 - y2, 4);
-          let fill2 = mix(color4, bg, 30);
+          let fill2 = shapeFill(palette, color4, isDark, { solid });
           let stroke2 = color4;
           if (ev.uncertain) {
             const gradientId = `uncertain-v-${ev.lineNumber}`;
@@ -95937,7 +99015,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
           evG.append("rect").attr("x", axisX - 6).attr("y", y2).attr("width", 12).attr("height", rectH).attr("rx", 4).attr("fill", fill2).attr("stroke", stroke2).attr("stroke-width", 2);
           evG.append("text").attr("x", axisX + 16).attr("y", y2 + rectH / 2).attr("dy", "0.35em").attr("fill", textColor).attr("font-size", "11px").text(ev.label);
         } else {
-          evG.append("circle").attr("cx", axisX).attr("cy", y2).attr("r", 4).attr("fill", mix(color4, bg, 30)).attr("stroke", color4).attr("stroke-width", 2);
+          evG.append("circle").attr("cx", axisX).attr("cy", y2).attr("r", 4).attr("fill", shapeFill(palette, color4, isDark, { solid })).attr("stroke", color4).attr("stroke-width", 2);
           evG.append("text").attr("x", axisX + 16).attr("y", y2).attr("dy", "0.35em").attr("fill", textColor).attr("font-size", "11px").text(ev.label);
         }
         evG.append("text").attr("x", axisX - 14).attr(
@@ -96105,7 +99183,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
           const rectW = Math.max(x22 - x3, 4);
           const estLabelWidth = ev.label.length * 7 + 16;
           const labelFitsInside = rectW >= estLabelWidth;
-          let fill2 = mix(evColor, bg, 30);
+          let fill2 = shapeFill(palette, evColor, isDark, { solid });
           let stroke2 = evColor;
           if (ev.uncertain) {
             const gradientId = `uncertain-${ev.lineNumber}`;
@@ -96139,7 +99217,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
           const wouldFlipLeft = x3 > innerWidth * 0.6;
           const labelFitsLeft = x3 - 10 - estLabelWidth > 0;
           const flipLeft = wouldFlipLeft && labelFitsLeft;
-          evG.append("circle").attr("cx", x3).attr("cy", y2).attr("r", 5).attr("fill", mix(evColor, bg, 30)).attr("stroke", evColor).attr("stroke-width", 2);
+          evG.append("circle").attr("cx", x3).attr("cy", y2).attr("r", 5).attr("fill", shapeFill(palette, evColor, isDark, { solid })).attr("stroke", evColor).attr("stroke-width", 2);
           evG.append("text").attr("x", flipLeft ? x3 - 10 : x3 + 10).attr("y", y2).attr("dy", "0.35em").attr("text-anchor", flipLeft ? "end" : "start").attr("fill", textColor).attr("font-size", "12px").text(ev.label);
         }
       });
@@ -96272,7 +99350,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
         const rectW = Math.max(x22 - x3, 4);
         const estLabelWidth = ev.label.length * 7 + 16;
         const labelFitsInside = rectW >= estLabelWidth;
-        let fill2 = mix(color4, bg, 30);
+        let fill2 = shapeFill(palette, color4, isDark, { solid });
         let stroke2 = color4;
         if (ev.uncertain) {
           const gradientId = `uncertain-ts-${ev.lineNumber}`;
@@ -96306,7 +99384,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
         const wouldFlipLeft = x3 > innerWidth * 0.6;
         const labelFitsLeft = x3 - 10 - estLabelWidth > 0;
         const flipLeft = wouldFlipLeft && labelFitsLeft;
-        evG.append("circle").attr("cx", x3).attr("cy", y2).attr("r", 5).attr("fill", mix(color4, bg, 30)).attr("stroke", color4).attr("stroke-width", 2);
+        evG.append("circle").attr("cx", x3).attr("cy", y2).attr("r", 5).attr("fill", shapeFill(palette, color4, isDark, { solid })).attr("stroke", color4).attr("stroke-width", 2);
         evG.append("text").attr("x", flipLeft ? x3 - 10 : x3 + 10).attr("y", y2).attr("dy", "0.35em").attr("text-anchor", flipLeft ? "end" : "start").attr("fill", textColor).attr("font-size", "12px").text(ev.label);
       }
     });
@@ -96462,8 +99540,8 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
           } else {
             color4 = ev.group && groupColorMap.has(ev.group) ? groupColorMap.get(ev.group) : textColor;
           }
-          el.selectAll("rect").attr("fill", mix(color4, bg, 30)).attr("stroke", color4);
-          el.selectAll("circle:not(.tl-event-point-outline)").attr("fill", mix(color4, bg, 30)).attr("stroke", color4);
+          el.selectAll("rect").attr("fill", shapeFill(palette, color4, isDark, { solid })).attr("stroke", color4);
+          el.selectAll("circle:not(.tl-event-point-outline)").attr("fill", shapeFill(palette, color4, isDark, { solid })).attr("stroke", color4);
         });
       };
       var drawSwimlaneIcon3 = drawSwimlaneIcon4, relayout = relayout2, drawLegend = drawLegend2, recolorEvents = recolorEvents2;
@@ -97315,8 +100393,8 @@ function renderQuadrant(container, parsed, palette, isDark, onClickItem, exportD
   const LABEL_MAX_FONT = 48;
   const LABEL_MIN_FONT = 14;
   const LABEL_PAD3 = 40;
-  const CHAR_WIDTH_RATIO5 = 0.6;
-  const estTextWidth = (text, fontSize) => text.length * fontSize * CHAR_WIDTH_RATIO5;
+  const CHAR_WIDTH_RATIO6 = 0.6;
+  const estTextWidth = (text, fontSize) => text.length * fontSize * CHAR_WIDTH_RATIO6;
   const quadrantLabelLayout = (text, qw2, qh2) => {
     const availW = qw2 - LABEL_PAD3;
     const availH = qh2 - LABEL_PAD3;
@@ -97464,7 +100542,7 @@ function renderQuadrant(container, parsed, palette, isDark, onClickItem, exportD
   const POINT_LABEL_FONT_SIZE = 12;
   const quadrantLabelObstacles = quadrantDefsWithLabel.map((d) => {
     const layout3 = labelLayouts.get(d.label.text);
-    const totalW = Math.max(...layout3.lines.map((l) => l.length)) * layout3.fontSize * CHAR_WIDTH_RATIO5;
+    const totalW = Math.max(...layout3.lines.map((l) => l.length)) * layout3.fontSize * CHAR_WIDTH_RATIO6;
     const totalH = layout3.lines.length * layout3.fontSize * 1.2;
     return {
       x: d.labelX - totalW / 2,
@@ -98016,7 +101094,9 @@ async function renderForExport(content, theme2, palette, viewState, options) {
     const jmParsed = parseJourneyMap2(content, effectivePalette2);
     if (jmParsed.error || jmParsed.phases.length === 0 && jmParsed.steps.length === 0)
       return "";
-    const jmLayout = layoutJourneyMap2(jmParsed, effectivePalette2);
+    const jmLayout = layoutJourneyMap2(jmParsed, effectivePalette2, {
+      isDark: theme2 === "dark"
+    });
     const container2 = createExportContainer(
       jmLayout.totalWidth,
       jmLayout.totalHeight
@@ -98059,6 +101139,38 @@ async function renderForExport(content, theme2, palette, viewState, options) {
     );
     return finalizeSvgExport(container2, theme2, effectivePalette2);
   }
+  if (detectedType === "ring") {
+    const { parseRing: parseRing2 } = await Promise.resolve().then(() => (init_parser17(), parser_exports17));
+    const { renderRingForExport: renderRingForExport2 } = await Promise.resolve().then(() => (init_renderer16(), renderer_exports16));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const ringParsed = parseRing2(content);
+    if (ringParsed.error || ringParsed.layers.length === 0) return "";
+    const container2 = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
+    renderRingForExport2(
+      container2,
+      ringParsed,
+      effectivePalette2,
+      theme2 === "dark",
+      { width: EXPORT_WIDTH, height: EXPORT_HEIGHT }
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2);
+  }
+  if (detectedType === "raci" || detectedType === "rasci" || detectedType === "daci") {
+    const { parseRaci: parseRaci2 } = await Promise.resolve().then(() => (init_parser18(), parser_exports18));
+    const { renderRaciForExport: renderRaciForExport2 } = await Promise.resolve().then(() => (init_renderer17(), renderer_exports17));
+    const effectivePalette2 = await resolveExportPalette(theme2, palette);
+    const raciParsed = parseRaci2(content, effectivePalette2);
+    if (raciParsed.error) return "";
+    const container2 = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
+    renderRaciForExport2(
+      container2,
+      raciParsed,
+      effectivePalette2,
+      theme2 === "dark",
+      { width: EXPORT_WIDTH, height: EXPORT_HEIGHT }
+    );
+    return finalizeSvgExport(container2, theme2, effectivePalette2);
+  }
   const parsed = parseVisualization(content, palette);
   if (parsed.error && parsed.type !== "sequence") {
     const looksLikeSequence2 = /->|~>|<-/.test(content);
@@ -98082,7 +101194,7 @@ async function renderForExport(content, theme2, palette, viewState, options) {
   };
   if (parsed.type === "sequence") {
     const { parseSequenceDgmo: parseSequenceDgmo2 } = await Promise.resolve().then(() => (init_parser(), parser_exports));
-    const { renderSequenceDiagram: renderSequenceDiagram2 } = await Promise.resolve().then(() => (init_renderer16(), renderer_exports16));
+    const { renderSequenceDiagram: renderSequenceDiagram2 } = await Promise.resolve().then(() => (init_renderer18(), renderer_exports18));
     const seqParsed = parseSequenceDgmo2(content);
     if (seqParsed.error || seqParsed.participants.length === 0) return "";
     renderSequenceDiagram2(
@@ -98832,6 +101944,7 @@ init_parser3();
 init_layout4();
 init_renderer5();
 init_inline_markdown();
+init_name_normalize();
 init_parser4();
 init_layout();
 init_renderer();
@@ -98878,6 +101991,13 @@ init_layout12();
 init_renderer13();
 init_parser16();
 init_renderer15();
+init_parser17();
+init_renderer16();
+init_parser18();
+init_renderer17();
+init_parsing();
+init_parser18();
+init_variants();
 init_diagnostics();
 init_tag_groups();
 init_layout9();
@@ -98888,7 +102008,7 @@ init_legend_constants();
 init_legend_d3();
 init_legend_layout();
 init_d3();
-init_renderer16();
+init_renderer18();
 init_collapse4();
 init_colors();
 init_palettes();
@@ -99111,6 +102231,55 @@ var COMPLETION_REGISTRY = /* @__PURE__ */ new Map([
       "active-tag": { description: "Active tag group name" }
     })
   ],
+  // RACI / RASCI / DACI — three chart-type ids, one parser, same directives.
+  [
+    "raci",
+    withGlobals({
+      variant: {
+        description: "Variant rule set",
+        values: ["raci", "rasci", "daci"]
+      },
+      roles: {
+        description: "Comma-separated role list (declares column order; enables unknown-role linting)"
+      },
+      draft: {
+        description: "Suppress missing-A / missing-R warnings during authoring"
+      },
+      "active-tag": { description: "Active tag group name" }
+    })
+  ],
+  [
+    "rasci",
+    withGlobals({
+      variant: {
+        description: "Variant rule set",
+        values: ["raci", "rasci", "daci"]
+      },
+      roles: {
+        description: "Comma-separated role list (declares column order; enables unknown-role linting)"
+      },
+      draft: {
+        description: "Suppress missing-A / missing-R warnings during authoring"
+      },
+      "active-tag": { description: "Active tag group name" }
+    })
+  ],
+  [
+    "daci",
+    withGlobals({
+      variant: {
+        description: "Variant rule set",
+        values: ["raci", "rasci", "daci"]
+      },
+      roles: {
+        description: "Comma-separated role list (declares column order; enables unknown-role linting)"
+      },
+      draft: {
+        description: "Suppress missing-A / missing-R warnings during authoring"
+      },
+      "active-tag": { description: "Active tag group name" }
+    })
+  ],
   [
     "c4",
     withGlobals({
@@ -99219,8 +102388,53 @@ var COMPLETION_REGISTRY = /* @__PURE__ */ new Map([
       color: { description: "Override layer color (pipe metadata)" },
       description: { description: "Layer description (pipe or indented body)" }
     })
+  ],
+  [
+    "ring",
+    withGlobals({
+      color: {
+        description: "Override ring color (pipe metadata; closed set of 11 named colors)"
+      },
+      description: {
+        description: "Ring description (pipe shorthand or indented body)"
+      }
+    })
   ]
 ]);
+var SOLID_FILL_CAPABLE = /* @__PURE__ */ new Set([
+  "flowchart",
+  "state",
+  "sequence",
+  "c4",
+  "org",
+  "kanban",
+  "journey-map",
+  "mindmap",
+  "cycle",
+  "pyramid",
+  "ring",
+  "funnel",
+  "class",
+  "er",
+  "sitemap",
+  "boxes-and-lines",
+  "wireframe",
+  "bar",
+  "bar-stacked",
+  "pie",
+  "doughnut",
+  "polar-area",
+  "radar",
+  "scatter",
+  "chord"
+]);
+for (const [type, spec] of COMPLETION_REGISTRY) {
+  if (SOLID_FILL_CAPABLE.has(type)) {
+    spec.directives["solid-fill"] = {
+      description: "Render shapes with full intent color instead of the default 25% tint"
+    };
+  }
+}
 var CHART_TYPES = [...ALL_CHART_TYPES].filter((t) => t !== "multi-line").map((name) => ({
   name,
   description: CHART_TYPE_DESCRIPTIONS[name] ?? name
@@ -99233,8 +102447,8 @@ var METADATA_KEY_SET = /* @__PURE__ */ new Set([
     (spec) => Object.keys(spec.directives)
   )
 ]);
-var SEQ_ARROW_RE = /^(\S+)\s+(->|-.*->|~>|~.*~>)\s+(\S+)/;
-var SEQ_IS_A_RE = /^(\S+)\s+is\s+an?\s+/i;
+var SEQ_ARROW_RE = /^(?:"([^"]+)"|([^|"]+?))\s+(->|-.*->|~>|~.*~>)\s+(?:"([^"]+)"|([^|"]+?))(?:\s|\|.*)?$/;
+var SEQ_IS_A_RE = /^(?:"([^"]+)"|([^|":]+?))\s+is\s+an?\s+/i;
 var SEQ_SECTION_RE = /^==/;
 var SEQ_STRUCTURAL_RE = /^(if|else|loop|parallel|end)\b/i;
 function extractSequenceSymbols(docText) {
@@ -99254,15 +102468,15 @@ function extractSequenceSymbols(docText) {
     if (SEQ_STRUCTURAL_RE.test(trimmed)) continue;
     const arrowMatch = trimmed.match(SEQ_ARROW_RE);
     if (arrowMatch) {
-      const src = arrowMatch[1].split("|")[0].trim();
-      const dst = arrowMatch[3].split("|")[0].trim();
+      const src = (arrowMatch[1] ?? arrowMatch[2] ?? "").trim();
+      const dst = (arrowMatch[4] ?? arrowMatch[5] ?? "").trim();
       if (src && !entities.includes(src)) entities.push(src);
       if (dst && !entities.includes(dst)) entities.push(dst);
       continue;
     }
     const isAMatch = trimmed.match(SEQ_IS_A_RE);
     if (isAMatch) {
-      const name = isAMatch[1].split("|")[0].trim();
+      const name = (isAMatch[1] ?? isAMatch[2] ?? "").trim();
       if (name && !entities.includes(name)) entities.push(name);
       continue;
     }
@@ -99511,6 +102725,9 @@ registerExtractor("boxes-and-lines", extractBoxesAndLinesSymbols);
 registerExtractor("tech-radar", extractTechRadarSymbols);
 registerExtractor("cycle", extractCycleSymbols);
 registerExtractor("journey-map", extractJourneyMapSymbols);
+registerExtractor("raci", extractRaciSymbols);
+registerExtractor("rasci", extractRaciSymbols);
+registerExtractor("daci", extractRaciSymbols);
 function extractTechRadarSymbols(docText) {
   const entities = [];
   const keywords = [
@@ -99577,6 +102794,64 @@ function extractCycleSymbols(docText) {
     kind: "cycle",
     entities,
     keywords: ["direction-counterclockwise", "no-descriptions", "circle-nodes"]
+  };
+}
+var RACI_PHASE_RE = /^\[(.+)\]\s*$/;
+var RACI_ROLES_DIRECTIVE_RE = /^roles\s+(.+)$/i;
+var RACI_VARIANT_DIRECTIVE_RE = /^variant\s+(.+)$/i;
+var RACI_ROLE_ASSIGNMENT_RE = /^([^:]+):\s*(.*)$/;
+function extractRaciSymbols(docText) {
+  const lines = docText.split("\n");
+  const entities = [];
+  let chartType = "raci";
+  let pastFirstLine = false;
+  let underTask = false;
+  const push = (s) => {
+    const trimmed = s.trim();
+    if (trimmed && !entities.includes(trimmed)) entities.push(trimmed);
+  };
+  for (const line11 of lines) {
+    const trimmed = line11.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    if (!pastFirstLine) {
+      pastFirstLine = true;
+      const firstToken = trimmed.split(/\s+/)[0].toLowerCase();
+      if (firstToken === "raci" || firstToken === "rasci" || firstToken === "daci") {
+        chartType = firstToken;
+      }
+      continue;
+    }
+    const indent = line11.length - line11.trimStart().length;
+    if (indent === 0) {
+      const rolesMatch = trimmed.match(RACI_ROLES_DIRECTIVE_RE);
+      if (rolesMatch) {
+        for (const r of rolesMatch[1].split(",")) push(r);
+        continue;
+      }
+      if (RACI_VARIANT_DIRECTIVE_RE.test(trimmed)) continue;
+      if (METADATA_KEY_SET.has(trimmed.split(/\s+/)[0].toLowerCase())) continue;
+      if (trimmed.toLowerCase() === "draft" || trimmed.toLowerCase() === "solid-fill")
+        continue;
+    }
+    const phaseMatch = trimmed.match(RACI_PHASE_RE);
+    if (phaseMatch && indent === 0) {
+      push(phaseMatch[1]);
+      underTask = false;
+      continue;
+    }
+    const roleMatch = trimmed.match(RACI_ROLE_ASSIGNMENT_RE);
+    if (underTask && roleMatch) {
+      const rolePart = roleMatch[1].trim();
+      push(rolePart);
+      continue;
+    }
+    push(trimmed);
+    underTask = true;
+  }
+  return {
+    kind: chartType,
+    entities,
+    keywords: ["variant", "roles", "no-rule-enforcement"]
   };
 }
 function extractJourneyMapSymbols(docText) {
@@ -100250,7 +103525,7 @@ Captain Blackbeard
 \`\`\`dgmo
 boxes-and-lines Pirate Software
 
-tag Status s
+tag Status as s
   Done(green)
   Doing(yellow)
   Todo(red)
@@ -100384,7 +103659,7 @@ gantt Product Launch Plan
 start 2024-01-15
 dependencies
 
-tag Team alias t
+tag Team as t
   Engineering(blue)
   Design(purple)
   QA(orange)
@@ -100414,7 +103689,7 @@ parallel
 \`\`\`dgmo
 infra Production Traffic Flow
 
-tag Team alias t
+tag Team as t
   Backend(blue)
   Platform(teal)
 
@@ -100611,7 +103886,7 @@ journey-map Stealing a Royal Navy Frigate
 persona Blackbeard | color: red
   Edward Teach, the most feared pirate in the Caribbean
 
-tag Method m
+tag Method as m
   Cunning(purple)
   Force(red)
   Diplomacy(green)
@@ -100675,6 +103950,43 @@ wireframe Pirate Crew Portal
   ---
 
   New to piracy? (Read the Code) | ghost
+\`\`\`
+
+---
+
+## RACI Matrix
+
+\`\`\`dgmo
+raci Voyage Operations
+roles
+  Cap  | color: red
+  QM   | color: orange
+  Bos  | color: yellow
+  Nav  | color: blue
+  Crew | color: gray
+
+[Departure] | color: teal
+  Plot the course
+    Cap: A
+    Nav: R
+    QM: C
+  Provision the hold
+    QM: A R
+    Cap: C
+    Crew: I
+
+[At Sea] | color: purple
+  Stand the watch
+    Bos: A
+    Crew: R
+  Mend sail damage
+    Bos: A
+    Crew: R
+
+[Landfall] | color: green
+  Negotiate with port
+    Cap: A R
+    QM: C
 \`\`\`
 `;
 
