@@ -670,6 +670,39 @@ Delivered -> [*]
 
 ---
 
+## PERT Chart
+
+\`\`\`dgmo
+pert Pirate Voyage to the Atoll
+time-unit w
+default-confidence medium
+
+voyage approved 0
+  -> recruit crew
+
+[outfit ship]
+  recruit crew 1 2 4 as rc
+    -> load powder
+  careen hull 1.5
+    -> load powder
+  load powder 0.5 1 2
+    -> sail to atoll
+
+sail to atoll 5
+  -> count gold
+  -> repair hull
+
+count gold 1 2 3
+  -> divvy shares
+
+repair hull 3
+  -> divvy shares
+
+divvy shares 1 2 3
+\`\`\`
+
+---
+
 ## Gantt Chart
 
 \`\`\`dgmo
