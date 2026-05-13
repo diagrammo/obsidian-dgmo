@@ -6,15 +6,16 @@ Render [Diagrammo](https://diagrammo.app) diagrams inline in your Obsidian notes
 
 ## Supported chart types
 
-All chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) are supported:
+All 39 chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) render in Obsidian:
 
-| Framework | Types |
-|-----------|-------|
-| **ECharts** | bar, bar-stacked, line, multi-line, area, pie, doughnut, radar, polar-area, scatter, sankey, chord, function, heatmap, funnel |
-| **D3** | slope, wordcloud, arc, timeline, venn, quadrant, flowchart, class, er, org, infra, kanban, sitemap, c4 |
-| **Sequence** | sequence (with participant type inference, collapsible sections, activation bars) |
+| Category | Types |
+|----------|-------|
+| **Data** | arc, area, bar, bar-stacked, chord, doughnut, function, heatmap, line, multi-line, pie, polar-area, radar, sankey, scatter, slope |
+| **Business** | cycle, funnel, journey-map, org, pyramid, quadrant, tech-radar, venn, wordcloud |
+| **Project** | gantt, kanban, timeline |
+| **Software** | boxes-and-lines, c4, class, er, flowchart, infra, mindmap, sequence, sitemap, state, wireframe |
 
-Mermaid-backed chart types (quadrant via Mermaid) are not yet supported in the plugin.
+Run **Diagrammo Diagrams: Create example note with all chart types** from the command palette to see every chart type rendered with working sample data. Full language reference at [diagrammo.app/docs](https://diagrammo.app/docs).
 
 ## Usage
 
