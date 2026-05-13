@@ -31,13 +31,20 @@ export default class DgmoPlugin extends Plugin {
   private async createExampleNote(): Promise<void> {
     const path = 'Diagrammo Examples.md';
     const existing = this.app.vault.getAbstractFileByPath(path);
+    let file;
     if (existing) {
-      new Notice(`"${path}" already exists — open it or delete it first.`);
-      return;
+      file = await this.app.vault.create(path, EXAMPLE_NOTE).catch(async () => {
+        await this.app.vault.adapter.write(path, EXAMPLE_NOTE);
+        return this.app.vault.getAbstractFileByPath(path);
+      });
+      new Notice(`"${path}" overwritten with latest examples.`);
+    } else {
+      file = await this.app.vault.create(path, EXAMPLE_NOTE);
+      new Notice('Diagrammo examples note created.');
     }
-    const file = await this.app.vault.create(path, EXAMPLE_NOTE);
-    await this.app.workspace.getLeaf().openFile(file);
-    new Notice('Diagrammo examples note created.');
+    if (file && 'extension' in file) {
+      await this.app.workspace.getLeaf().openFile(file);
+    }
   }
 
   async loadSettings() {

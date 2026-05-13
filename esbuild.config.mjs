@@ -20,6 +20,7 @@ const config = {
   absWorkingDir: __dirname,
   loader: {
     '.woff2': 'dataurl',
+    '.md': 'text',
   },
 };
 
