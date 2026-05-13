@@ -6,7 +6,7 @@ Render [Diagrammo](https://diagrammo.app) diagrams inline in your Obsidian notes
 
 ## Supported chart types
 
-All 39 chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) render in Obsidian:
+All 35+ chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) render in Obsidian:
 
 | Category | Types |
 |----------|-------|
@@ -34,7 +34,7 @@ Q4 5.9
 ```
 ````
 
-The diagram renders inline in reading mode and live preview.
+The diagram renders inline in reading mode and live preview. Hover any rendered diagram to reveal a small open-in-new-tab icon in the top-right corner — click it to pop the source open in [online.diagrammo.app](https://online.diagrammo.app) for live editing, with the same palette and theme.
 
 ## Example note
 
@@ -54,25 +54,23 @@ This creates a `Diagrammo Examples.md` file in your vault with working examples 
 
 ## Install
 
-### With BRAT (recommended)
+### From Obsidian Community Plugins (recommended)
 
-[BRAT](https://github.com/TfTHacker/obsidian42-brat) installs and auto-updates plugins straight from GitHub — no manual file copying, and you get new releases automatically.
+The plugin is listed at [community.obsidian.md/plugins/dgmo](https://community.obsidian.md/plugins/dgmo).
+
+1. Open **Settings > Community Plugins > Browse**
+2. Search for "Diagrammo Diagrams"
+3. Click **Install**, then **Enable**
+
+### With BRAT (beta / pre-release builds)
+
+[BRAT](https://github.com/TfTHacker/obsidian42-brat) installs and auto-updates plugins straight from GitHub. Use it if you want to test unreleased changes before they hit the Community Plugins store.
 
 1. In Obsidian, open **Settings > Community Plugins > Browse**, install **Obsidian42 - BRAT**, and enable it
 2. Open **Settings > BRAT > Beta Plugin List** and click **Add Beta Plugin**
 3. Paste this repo URL: `https://github.com/diagrammo/obsidian-dgmo`
 4. Leave the version dropdown on **Latest version** and click **Add Plugin**
 5. Enable **Diagrammo Diagrams** under **Settings > Community Plugins**
-
-BRAT checks this repo on Obsidian startup and pulls new releases automatically.
-
-### From Obsidian Community Plugins
-
-> Pending submission to the official directory. Use BRAT (above) until this lands.
-
-1. Open **Settings > Community Plugins > Browse**
-2. Search for "Diagrammo Diagrams"
-3. Click **Install**, then **Enable**
 
 ### Manual install
 
@@ -144,6 +142,7 @@ The plugin is listed in the [Obsidian Community Plugins](https://github.com/obsi
 
 ## Links
 
+- [community.obsidian.md/plugins/dgmo](https://community.obsidian.md/plugins/dgmo) — official Obsidian plugin page
 - [diagrammo.app](https://diagrammo.app) — full desktop editor
 - [@diagrammo/dgmo](https://github.com/diagrammo/dgmo) — the dgmo markup library and CLI
 - [dgmo syntax reference](https://github.com/diagrammo/dgmo#readme)

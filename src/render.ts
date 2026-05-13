@@ -1,4 +1,9 @@
-import { render, formatDgmoError, type DgmoError } from '@diagrammo/dgmo';
+import {
+  render,
+  formatDgmoError,
+  encodeDiagramUrl,
+  type DgmoError,
+} from '@diagrammo/dgmo';
 
 function showError(container: HTMLElement, message: string): void {
   container.empty();
@@ -77,4 +82,31 @@ export async function renderDgmo(
   const svgNode = svgDoc.documentElement;
   if (svgNode) wrapper.appendChild(wrapper.doc.importNode(svgNode, true));
   scaleSvgToFit(wrapper);
+  addEditButton(wrapper, source, isDark, paletteId);
+}
+
+function addEditButton(
+  wrapper: HTMLElement,
+  source: string,
+  isDark: boolean,
+  paletteId: string,
+): void {
+  const encoded = encodeDiagramUrl(source, {
+    palette: paletteId,
+    theme: isDark ? 'dark' : 'light',
+  });
+  if ('error' in encoded) return; // too large to share — silently skip
+
+  const link = wrapper.createEl('a', {
+    cls: 'dgmo-edit-link',
+    href: encoded.url,
+    attr: {
+      target: '_blank',
+      rel: 'noopener noreferrer',
+      'aria-label': 'Edit this diagram on online.diagrammo.app',
+      title: 'Edit on online.diagrammo.app',
+    },
+  });
+  link.innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
 }
