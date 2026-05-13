@@ -23,6 +23,6 @@ export async function ensureInterFonts(): Promise<void> {
   });
 
   await Promise.all([regular.load(), bold.load()]);
-  document.fonts.add(regular);
-  document.fonts.add(bold);
+  activeDocument.fonts.add(regular);
+  activeDocument.fonts.add(bold);
 }

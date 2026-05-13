@@ -41,7 +41,8 @@ export default class DgmoPlugin extends Plugin {
   }
 
   async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    const loaded = (await this.loadData()) as Partial<DgmoSettings> | null;
+    this.settings = { ...DEFAULT_SETTINGS, ...(loaded ?? {}) };
   }
 
   async saveSettings() {
@@ -51,6 +52,6 @@ export default class DgmoPlugin extends Plugin {
   private resolveIsDark(): boolean {
     if (this.settings.theme === 'light') return false;
     if (this.settings.theme === 'dark') return true;
-    return document.body.classList.contains('theme-dark');
+    return activeDocument.body.classList.contains('theme-dark');
   }
 }

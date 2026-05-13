@@ -27,7 +27,7 @@
   font-weight: 600;
   font-size: var(--font-ui-small);
   color: var(--text-error);
-  margin: 0 0 4px 0;
+  margin: 0 0 4px;
 }
 
 .dgmo-error-message {

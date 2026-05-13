@@ -57,7 +57,7 @@ export class DgmoSettingTab extends PluginSettingTab {
     cliEl.appendText('.');
 
     // Palette dropdown
-    const palettes = getAvailablePalettes();
+    const palettes: { id: string; name: string }[] = getAvailablePalettes();
     new Setting(containerEl)
       .setName('Palette')
       .setDesc('Color palette used for all dgmo diagrams.')

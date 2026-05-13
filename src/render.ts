@@ -42,10 +42,15 @@ export async function renderDgmo(
   let svg: string;
   let diagnostics: DgmoError[];
   try {
-    ({ svg, diagnostics } = await render(source, {
-      theme: isDark ? 'dark' : 'light',
-      palette: paletteId,
-    }));
+    const result: { svg: string; diagnostics: DgmoError[] } = await render(
+      source,
+      {
+        theme: isDark ? 'dark' : 'light',
+        palette: paletteId,
+      },
+    );
+    svg = result.svg;
+    diagnostics = result.diagnostics;
   } catch (err) {
     showError(
       container,
@@ -54,7 +59,9 @@ export async function renderDgmo(
     return;
   }
 
-  const firstError = diagnostics.find((d) => d.severity === 'error');
+  const firstError: DgmoError | undefined = diagnostics.find(
+    (d) => d.severity === 'error',
+  );
   if (firstError) {
     showError(container, formatDgmoError(firstError));
     return;
