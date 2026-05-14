@@ -4,3 +4,4 @@ main.js
 dist/
 data.json
 .claude/
+package-lock.json
