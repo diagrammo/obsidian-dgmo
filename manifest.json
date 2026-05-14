@@ -3,7 +3,7 @@
   "name": "Diagrammo Diagrams",
   "version": "1.5.10",
   "minAppVersion": "1.5.0",
-  "description": "Render bar, line, pie, sequence, arc, timeline, C4, kanban, and other diagrams from plain-text dgmo code fences.",
+  "description": "40+ chart types from one plain-text language — process, architecture, data, project, hierarchy. Diffable, searchable, mobile-friendly, with live preview and themed palettes.",
   "author": "Diagrammo",
   "isDesktopOnly": false
 }
