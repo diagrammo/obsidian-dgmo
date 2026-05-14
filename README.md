@@ -6,7 +6,7 @@ Render [Diagrammo](https://diagrammo.app) diagrams inline in your Obsidian notes
 
 ## Supported chart types
 
-All 35+ chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) render in Obsidian:
+All 40+ chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) render in Obsidian:
 
 | Category | Types |
 |----------|-------|
@@ -50,7 +50,6 @@ This creates a `Diagrammo Examples.md` file in your vault with working examples 
 |---------|-------------|---------|
 | **Palette** | Color palette for all diagrams — all 10 dgmo palettes available (nord, solarized, catppuccin, dracula, rose-pine, gruvbox, monokai, tokyo-night, one-dark, bold) | `nord` |
 | **Theme** | Light, dark, or auto (follows Obsidian's theme) | `auto` |
-| **Chart height** | Height in pixels for ECharts-based diagrams (100–2000) | `400` |
 
 ## Install
 
@@ -98,22 +97,21 @@ npm run build     # One-shot build → main.js (esbuild, CJS bundle)
 npm run dev       # Watch mode (rebuilds on save, inline sourcemaps)
 ```
 
-The build bundles everything (including `@diagrammo/dgmo` and `echarts`) into a single `main.js` in the repo root, which Obsidian loads directly. `obsidian`, `electron`, and CodeMirror packages are externalized.
+The build bundles `@diagrammo/dgmo` and its rendering dependencies into a single `main.js` in the repo root, which Obsidian loads directly. `obsidian`, `electron`, and CodeMirror packages are externalized.
 
 ### Project structure
 
 ```
 src/
 ├── main.ts       # Plugin lifecycle, markdown post-processor, example note command
-├── render.ts     # Rendering dispatcher (routes to ECharts or D3 based on chart type)
-├── settings.ts   # Settings tab UI (palette dropdown, theme, chart height)
+├── render.ts     # Rendering dispatcher (delegates each chart type to @diagrammo/dgmo)
+├── settings.ts   # Settings tab UI (palette dropdown, theme override)
 └── examples.ts   # Example note content with all chart types
 ```
 
 ### Dependencies
 
-- `@diagrammo/dgmo` `^0.8.19` — diagram parsing and rendering (bundled by esbuild)
-- `echarts` `^6.0.0` — chart rendering for ECharts-backed types
+- `@diagrammo/dgmo` `^0.14.1` — diagram parsing and rendering (bundled by esbuild; brings its own transitive rendering deps)
 - `obsidian` `^1.12.3` — Obsidian plugin API (dev only, externalized)
 
 ### Testing locally
