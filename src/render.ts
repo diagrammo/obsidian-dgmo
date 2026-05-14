@@ -2,8 +2,16 @@ import {
   render,
   formatDgmoError,
   encodeDiagramUrl,
+  palettes,
   type DgmoError,
+  type PaletteConfig,
 } from '@diagrammo/dgmo';
+
+function resolvePalette(id: string): PaletteConfig {
+  return (
+    Object.values(palettes).find((p) => p.id === id) ?? palettes.nord
+  );
+}
 
 function showError(container: HTMLElement, message: string): void {
   container.empty();
@@ -51,7 +59,7 @@ export async function renderDgmo(
       source,
       {
         theme: isDark ? 'dark' : 'light',
-        palette: paletteId,
+        palette: resolvePalette(paletteId),
       },
     );
     svg = result.svg;
@@ -91,15 +99,15 @@ function addEditButton(
   isDark: boolean,
   paletteId: string,
 ): void {
-  const encoded = encodeDiagramUrl(source, {
-    palette: paletteId,
+  const url = encodeDiagramUrl(source, {
+    palette: resolvePalette(paletteId),
     theme: isDark ? 'dark' : 'light',
   });
-  if ('error' in encoded) return; // too large to share — silently skip
+  if (!url) return; // too large to share — silently skip
 
   const link = wrapper.createEl('a', {
     cls: 'dgmo-edit-link',
-    href: encoded.url,
+    href: url,
     attr: {
       target: '_blank',
       rel: 'noopener noreferrer',

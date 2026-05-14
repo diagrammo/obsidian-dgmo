@@ -1,5 +1,5 @@
 import { App, PluginSettingTab, Setting } from 'obsidian';
-import { getAvailablePalettes } from '@diagrammo/dgmo';
+import { palettes } from '@diagrammo/dgmo';
 import type DgmoPlugin from './main';
 
 export interface DgmoSettings {
@@ -57,12 +57,14 @@ export class DgmoSettingTab extends PluginSettingTab {
     cliEl.appendText('.');
 
     // Palette dropdown
-    const palettes: { id: string; name: string }[] = getAvailablePalettes();
+    const paletteList = Object.values(palettes).sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
     new Setting(containerEl)
       .setName('Palette')
       .setDesc('Color palette used for all dgmo diagrams.')
       .addDropdown((dropdown) => {
-        for (const p of palettes) {
+        for (const p of paletteList) {
           dropdown.addOption(p.id, p.name);
         }
         dropdown.setValue(this.plugin.settings.palette);
