@@ -1,0 +1,10 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Bundled artifacts allowlisted from secret scanning"
+paths = [
+  # Built plugin bundle, committed for distribution. Minified
+  # vendor code (lz-string identifiers) trips generic-api-key.
+  '''^main\.js$''',
+]
