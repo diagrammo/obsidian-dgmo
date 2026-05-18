@@ -1,4 +1,4 @@
-import { Notice, Plugin } from 'obsidian';
+import { Notice, Plugin, TFile } from 'obsidian';
 import { renderDgmo } from './render';
 import { ensureInterFonts } from './fonts';
 import { EXAMPLE_NOTE } from './examples';
@@ -11,7 +11,7 @@ import {
 export default class DgmoPlugin extends Plugin {
   settings: DgmoSettings = DEFAULT_SETTINGS;
 
-  async onload() {
+  override async onload() {
     await this.loadSettings();
     this.addSettingTab(new DgmoSettingTab(this.app, this));
 
@@ -42,7 +42,7 @@ export default class DgmoPlugin extends Plugin {
       file = await this.app.vault.create(path, EXAMPLE_NOTE);
       new Notice('Diagrammo examples note created.');
     }
-    if (file && 'extension' in file) {
+    if (file instanceof TFile) {
       await this.app.workspace.getLeaf().openFile(file);
     }
   }
