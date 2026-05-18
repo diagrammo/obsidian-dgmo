@@ -8,9 +8,7 @@ import {
 } from '@diagrammo/dgmo';
 
 function resolvePalette(id: string): PaletteConfig {
-  return (
-    Object.values(palettes).find((p) => p.id === id) ?? palettes.nord
-  );
+  return Object.values(palettes).find((p) => p.id === id) ?? palettes.nord;
 }
 
 function showError(container: HTMLElement, message: string): void {
@@ -50,7 +48,7 @@ export async function renderDgmo(
   source: string,
   container: HTMLElement,
   isDark: boolean,
-  paletteId = 'nord',
+  paletteId = 'nord'
 ): Promise<void> {
   let svg: string;
   let diagnostics: DgmoError[];
@@ -60,20 +58,20 @@ export async function renderDgmo(
       {
         theme: isDark ? 'dark' : 'light',
         palette: resolvePalette(paletteId),
-      },
+      }
     );
     svg = result.svg;
     diagnostics = result.diagnostics;
   } catch (err) {
     showError(
       container,
-      `Render error: ${err instanceof Error ? err.message : String(err)}`,
+      `Render error: ${err instanceof Error ? err.message : String(err)}`
     );
     return;
   }
 
   const firstError: DgmoError | undefined = diagnostics.find(
-    (d) => d.severity === 'error',
+    (d) => d.severity === 'error'
   );
   if (firstError) {
     showError(container, formatDgmoError(firstError));
@@ -97,7 +95,7 @@ function addEditButton(
   wrapper: HTMLElement,
   source: string,
   isDark: boolean,
-  paletteId: string,
+  paletteId: string
 ): void {
   const url = encodeDiagramUrl(source, {
     palette: resolvePalette(paletteId),

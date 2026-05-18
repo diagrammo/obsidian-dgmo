@@ -29,7 +29,7 @@ export class DgmoSettingTab extends PluginSettingTab {
 
     const introEl = aboutEl.createEl('p', { cls: 'setting-item-description' });
     introEl.appendText(
-      'Diagrammo turns plain-text markup into beautiful charts and diagrams — bar, line, pie, sequence, arc, timeline, and more. Just write a ',
+      'Diagrammo turns plain-text markup into beautiful charts and diagrams — bar, line, pie, sequence, arc, timeline, and more. Just write a '
     );
     introEl.createEl('code', { text: '```dgmo' });
     introEl.appendText(' code fence and it renders inline in your notes.');
@@ -40,7 +40,7 @@ export class DgmoSettingTab extends PluginSettingTab {
       href: 'https://diagrammo.app',
     });
     linksEl.appendText(
-      ' — A dedicated desktop editor with live preview, export to PNG/SVG, and all the palettes and chart types in one place. Great for when you want to go beyond what a code fence can do.',
+      ' — A dedicated desktop editor with live preview, export to PNG/SVG, and all the palettes and chart types in one place. Great for when you want to go beyond what a code fence can do.'
     );
 
     const cliEl = aboutEl.createEl('p', { cls: 'setting-item-description' });
@@ -58,7 +58,7 @@ export class DgmoSettingTab extends PluginSettingTab {
 
     // Palette dropdown
     const paletteList = Object.values(palettes).sort((a, b) =>
-      a.name.localeCompare(b.name),
+      a.name.localeCompare(b.name)
     );
     new Setting(containerEl)
       .setName('Palette')
@@ -77,7 +77,9 @@ export class DgmoSettingTab extends PluginSettingTab {
     // Theme override
     new Setting(containerEl)
       .setName('Theme')
-      .setDesc('Auto follows Obsidian\'s light/dark mode. Override to force one.')
+      .setDesc(
+        "Auto follows Obsidian's light/dark mode. Override to force one."
+      )
       .addDropdown((dropdown) => {
         dropdown.addOption('auto', 'Auto (follow Obsidian)');
         dropdown.addOption('light', 'Light');
@@ -88,6 +90,5 @@ export class DgmoSettingTab extends PluginSettingTab {
           await this.plugin.saveSettings();
         });
       });
-
   }
 }
