@@ -1193,13 +1193,13 @@ tag Team as t
   Vendor orange
 
 User is an actor
-App is a frontend | t: Web
+App | t: Web
 [Backend] | t: Backend
   API
   Orders
   Inventory
   DB
-Stripe is a service | t: Vendor
+Stripe | t: Vendor
 
 User -click checkout-> App
 App -POST /orders-> API
