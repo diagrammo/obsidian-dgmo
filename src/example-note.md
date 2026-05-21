@@ -22,11 +22,11 @@
 ```dgmo
 arc Microservice Dependencies
 
-[Frontend](blue)
+[Frontend] blue
   WebApp -> APIGateway: 5
   MobileApp -> APIGateway: 3
 
-[Core Services](green)
+[Core Services] green
   APIGateway -> AuthService: 4
   APIGateway -> UserService: 5
   APIGateway -> OrderService: 3
@@ -34,7 +34,7 @@ arc Microservice Dependencies
   OrderService -> Database: 3
   OrderService -> PaymentService: 2
 
-[External](orange)
+[External] orange
   PaymentService -> Stripe: 2
   AuthService -> OAuth: 3
 ```
@@ -48,7 +48,7 @@ area Memory Usage Over Day
 series GB
 x-label Hour
 
-era 9am -> 5pm Business Hours (blue)
+era 9am -> 5pm Business Hours blue
 
 12am 2.1
 3am  1.8
@@ -86,10 +86,10 @@ Consulting   128
 bar-stacked Support Tickets by Priority
 solid-fill
 series
-  Critical (red)
-  High (orange)
-  Medium (yellow)
-  Low (green)
+  Critical red
+  High orange
+  Medium yellow
+  Low green
 x-label Month
 y-label Tickets
 
@@ -127,12 +127,12 @@ Sales -- Product 30
 doughnut Cloud Spending by Service
 solid-fill
 
-Compute (blue)        34
-Storage (cyan)        22
-Database (green)      18
-Networking (orange)   12
-AI/ML (purple)         8
-Other (gray)           6
+Compute blue        34
+Storage cyan        22
+Database green      18
+Networking orange   12
+AI/ML purple         8
+Other gray           6
 ```
 
 ---
@@ -145,9 +145,9 @@ x-label x
 y-label f(x)
 x -6 to 6
 
-sin(x) (blue): sin(x)
-cos(x) (green): cos(x)
-x²/10 (red): x^2 / 10
+sin(x) blue: sin(x)
+cos(x) green: cos(x)
+x²/10 red: x^2 / 10
 ```
 
 ---
@@ -174,8 +174,8 @@ line Daily Active Users (Q1)
 series Users (thousands)
 x-label Week
 
-era Week 1 -> Week 4 Soft Launch (orange)
-era Week 5 -> Week 12 Public Beta (blue)
+era Week 1 -> Week 4 Soft Launch orange
+era Week 5 -> Week 12 Public Beta blue
 
 Week 1  12.4
 Week 2  13.1
@@ -197,7 +197,7 @@ Week 12 23.8
 
 ```dgmo
 line Quarterly Revenue vs Cost
-series Revenue (blue), Operating Cost (red), Net Profit (green)
+series Revenue blue, Operating Cost red, Net Profit green
 x-label Quarter
 
 Q1 2024 4.2 3.1 1.1
@@ -266,18 +266,18 @@ scatter Startup Funding vs Revenue
 x-label Funding ($M)
 y-label Annual Revenue ($M)
 
-[SaaS](blue)
+[SaaS] blue
   Acme Cloud  12   8.5
   DataSync     5.2 3.1
   CloudOps    25  18.4
   PlatformX    8   5.7
 
-[Fintech](green)
+[Fintech] green
   PayFlow     45  32
   LendTech    18  12.5
   QuickPay     9   6.8
 
-[HealthTech](red)
+[HealthTech] red
   MediScan    15   7.2
   HealthAI    22  14.1
   CareLink     7   3.8
@@ -294,11 +294,11 @@ period
   2020
   2025
 
-Python (blue)       3  1
-JavaScript (yellow) 1  2
-TypeScript (cyan)   7  3
-Rust (orange)      18  5
-Go (green)         10  7
+Python blue       3  1
+JavaScript yellow 1  2
+TypeScript cyan   7  3
+Rust orange      18  5
+Go green         10  7
 ```
 
 ---
@@ -370,10 +370,10 @@ persona Alex | color: blue
   Needs to convince three internal stakeholders before purchase
 
 tag Stage as s
-  Discovery(blue)
-  Trial(green)
-  Activation(orange)
-  Expansion(purple)
+  Discovery blue
+  Trial green
+  Activation orange
+  Expansion purple
 
 [Discovery]
   Search for solutions | 3, s: Discovery
@@ -418,11 +418,11 @@ org Engineering Department
 solid-fill
 
 tag Role as r
-  VP(red)
-  Director(orange)
-  Manager(yellow)
-  Lead(green)
-  IC(blue)
+  VP red
+  Director orange
+  Manager yellow
+  Lead green
+  IC blue
 
 VP Engineering | r: VP
   Director of Platform | r: Director
@@ -479,13 +479,13 @@ quadrant Feature Prioritization Matrix
 x-label Low Effort, High Effort
 y-label Low Impact, High Impact
 
-top-left Quick Wins (green)
-top-right Major Projects (blue)
-bottom-left Fill-ins (gray)
-bottom-right Avoid (red)
+top-left Quick Wins green
+top-right Major Projects blue
+bottom-left Fill-ins gray
+bottom-right Avoid red
 
-Dark Mode (blue)        0.25  0.85
-API v2 (red)             0.8   0.9
+Dark Mode blue        0.25  0.85
+API v2 red             0.8   0.9
 Fix Typos                0.1   0.15
 SSO Integration          0.75  0.7
 Export CSV               0.3   0.6
@@ -530,17 +530,17 @@ Industry & Competitors | color: blue
 ```dgmo
 sankey Website Traffic Flow
 
-Organic Search (green)
+Organic Search green
   Landing Page 450
-Paid Ads (orange)
+Paid Ads orange
   Landing Page 280
-Social Media (blue)
+Social Media blue
   Landing Page 180
 
 Landing Page
   Sign Up 340
   Browse Products 520
-  Bounce 260 (red)
+  Bounce 260 red
 
 Sign Up
   Free Trial 240
@@ -548,11 +548,11 @@ Sign Up
 
 Browse Products
   Add to Cart 310
-  Exit 210 (red)
+  Exit 210 red
 
 Add to Cart
-  Purchase (green) 220
-  Abandon 90 (red)
+  Purchase green 220
+  Abandon 90 red
 ```
 
 ---
@@ -610,9 +610,9 @@ Styling | quadrant: bottom-right
 ```dgmo
 venn Full-Stack Developer Skills
 
-Frontend(blue)
-Backend(green)
-DevOps(orange)
+Frontend blue
+Backend green
+DevOps orange
 
 Frontend + Backend Web Apps
 Backend + DevOps Infrastructure
@@ -698,9 +698,9 @@ start 2026-01-15
 dependencies
 
 tag Team as t
-  Engineering(blue)
-  Design(purple)
-  QA(orange)
+  Engineering blue
+  Design purple
+  QA orange
 
 parallel
   [Backend] | t: Engineering
@@ -729,31 +729,31 @@ kanban Sprint 7
 solid-fill
 
 tag Priority
-  Low(green)
-  Medium(yellow)
-  High(orange)
-  Urgent(red)
+  Low green
+  Medium yellow
+  High orange
+  Urgent red
 
 tag Owner as o
-  Alex(blue)
-  Jordan(purple)
-  Sam(teal)
+  Alex blue
+  Jordan purple
+  Sam teal
 
-[To Do](red)
+[To Do] red
   Recruit two senior engineers | priority: High, o: Alex
   Draft Q2 release plan | priority: Urgent, o: Alex
   Update onboarding docs | priority: Low, o: Sam
 
-[In Progress](orange) | wip: 3
+[In Progress] orange | wip: 3
   Define API contracts | priority: High, o: Jordan
   Refactor auth module | priority: Urgent, o: Jordan
   Build settings UI | priority: Medium, o: Sam
 
-[Review](blue)
+[Review] blue
   Mobile push notifications | priority: High, o: Alex
   Analytics dashboard | priority: Medium, o: Sam
 
-[Done](green)
+[Done] green
   Deploy staging environment | priority: High, o: Jordan
   Fix login regression | priority: Low, o: Sam
 ```
@@ -897,15 +897,15 @@ roles
 timeline Product Roadmap 2026
 
 tag Team as t
-  Engineering(blue)
-  Design(purple)
-  QA(orange)
+  Engineering blue
+  Design purple
+  QA orange
 
 era 2026-01 -> 2026-06 Phase 1: Foundation
-era 2026-07 -> 2026-12 Phase 2: Growth (teal)
+era 2026-07 -> 2026-12 Phase 2: Growth teal
 
-marker 2026-03 Beta Launch (red)
-marker 2026-09 GA Release (green)
+marker 2026-03 Beta Launch red
+marker 2026-09 GA Release green
 
 2026-01 -> 2026-03 Core API Development | t: Engineering
 2026-02 -> 2026-05 Auth and Permissions | t: Engineering
@@ -928,10 +928,10 @@ marker 2026-09 GA Release (green)
 boxes-and-lines System Architecture
 
 tag Status as s
-  Operational(green)
-  Degraded(orange)
-  Down(red)
-  Planned(blue) default
+  Operational green
+  Degraded orange
+  Down red
+  Planned blue default
 
 active-tag Status
 
@@ -969,8 +969,8 @@ c4 Internet Banking System
 solid-fill
 
 tag Scope as sc
-  Internal(blue)
-  External(gray)
+  Internal blue
+  External gray
 
 Customer is a person | description: A retail customer of the bank, sc: External
 
@@ -1092,12 +1092,12 @@ solid-fill
 [Cached Session?] -- yes --> [Validate Token]
 [Cached Session?] -- no --> /Show Login/
 
-[Validate Token] -- valid --> ((Home Screen)) (green)
+[Validate Token] -- valid --> ((Home Screen)) green
 [Validate Token] -- expired --> /Show Login/
 
 /Show Login/ -> [[Submit Credentials]]
 [[Submit Credentials]] -- ok --> ((Home Screen))
-[[Submit Credentials]] -- 401 --> /Show Error/ (red)
+[[Submit Credentials]] -- 401 --> /Show Error/ red
 /Show Error/ -> /Show Login/
 ```
 
@@ -1109,9 +1109,9 @@ solid-fill
 infra Production Traffic Flow
 
 tag Team as t
-  Platform(blue)
-  Backend(teal)
-  Data(purple)
+  Platform blue
+  Backend teal
+  Data purple
 
 Edge
   rps 10000
@@ -1188,9 +1188,9 @@ sequence Checkout Flow
 active-tag Team
 
 tag Team as t
-  Web(blue)
-  Backend(green)
-  Vendor(orange)
+  Web blue
+  Backend green
+  Vendor orange
 
 User is an actor
 App is a frontend | t: Web
@@ -1238,14 +1238,14 @@ Orders ~analytics~> API
 sitemap SaaS Application
 
 tag Access
-  Public(green)
-  Authenticated(blue)
-  Admin(red)
+  Public green
+  Authenticated blue
+  Admin red
 
 tag Page
-  Marketing(purple)
-  Form(orange)
-  Content(cyan)
+  Marketing purple
+  Form orange
+  Content cyan
 
 Home | Access: Public, Page: Marketing
   -pricing-> Pricing
