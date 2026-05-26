@@ -907,15 +907,15 @@ era 2026-07 -> 2026-12 Phase 2: Growth teal
 marker 2026-03 Beta Launch red
 marker 2026-09 GA Release green
 
-2026-01 -> 2026-03 Core API Development | t: Engineering
-2026-02 -> 2026-05 Auth and Permissions | t: Engineering
-2026-04 -> 2026-07 Real-time Features | t: Engineering
-2026-08 -> 2026-11 Performance Optimization | t: Engineering
-2026-01 -> 2026-02 Design System v1 | t: Design
-2026-03 -> 2026-05 User Research | t: Design
-2026-06 -> 2026-08 Design System v2 | t: Design
-2026-04 -> 2026-06 Test Automation Suite | t: QA
-2026-09 -> 2026-12 Launch QA Hardening | t: QA
+Core API Development start: 2026-01, end: 2026-03, t: Engineering
+Auth and Permissions start: 2026-02, end: 2026-05, t: Engineering
+Real-time Features start: 2026-04, end: 2026-07, t: Engineering
+Performance Optimization start: 2026-08, end: 2026-11, t: Engineering
+Design System v1 start: 2026-01, end: 2026-02, t: Design
+User Research start: 2026-03, end: 2026-05, t: Design
+Design System v2 start: 2026-06, end: 2026-08, t: Design
+Test Automation Suite start: 2026-04, end: 2026-06, t: QA
+Launch QA Hardening start: 2026-09, end: 2026-12, t: QA
 ```
 
 ---
