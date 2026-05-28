@@ -312,35 +312,35 @@ cycle Continuous Delivery Loop
 
 circle-nodes
 
-Plan | color: blue
+Plan color: blue
   Capture user stories and acceptance criteria
   - Triage backlog
   - Estimate effort
-  -Sprint ready-> | color: blue, width: 5
+  -Sprint ready-> color: blue, width: 5
 
-Build | color: green
+Build color: green
   Implement feature with tests and code review
   - Pair on tricky modules
   - Open pull request
-  -PR merged-> | color: green, width: 5
+  -PR merged-> color: green, width: 5
 
-Test | color: orange
+Test color: orange
   Run unit, integration, and end-to-end suites
   - Smoke test in staging
   - Verify performance budgets
-  -All green-> | color: orange, width: 5
+  -All green-> color: orange, width: 5
 
-Deploy | color: purple
+Deploy color: purple
   Ship to production via automated pipeline
   - Canary 10% of traffic
   - Promote to 100%
-  -Live-> | color: purple, width: 5
+  -Live-> color: purple, width: 5
 
-Monitor | color: red
+Monitor color: red
   Watch metrics, logs, and user feedback
   - Alert on SLO regressions
   - Capture telemetry for next planning round
-  -Insights-> | color: red, width: 5
+  -Insights-> color: red, width: 5
 ```
 
 ---
@@ -365,7 +365,7 @@ Paid Conversion         340
 ```dgmo
 journey-map New Customer Onboarding
 
-persona Alex | color: blue
+persona Alex color: blue
   Mid-market product manager evaluating analytics tools
   Needs to convince three internal stakeholders before purchase
 
@@ -376,36 +376,36 @@ tag Stage as s
   Expansion purple
 
 [Discovery]
-  Search for solutions | 3, s: Discovery
+  Search for solutions 3, s: Discovery
     thought: There must be something better than spreadsheets
     description: Lands on the marketing site via Google
-  Compare three vendors | 2 Cautious, s: Discovery
+  Compare three vendors 2 Cautious, s: Discovery
     pain: Pricing pages are hard to compare apples-to-apples
     opportunity: A side-by-side comparison page would help
 
 [Trial]
-  Sign up for free trial | 4 Hopeful, s: Trial
+  Sign up for free trial 4 Hopeful, s: Trial
     description: Account created in under 30 seconds
-  Complete first integration | 2 Frustrated, s: Trial
+  Complete first integration 2 Frustrated, s: Trial
     pain: Auth setup took longer than expected
     thought: Hope this is worth the effort
-  Build first dashboard | 5 Excited, s: Trial
+  Build first dashboard 5 Excited, s: Trial
     description: First chart renders, the wow moment
     opportunity: Surface example dashboards earlier
 
 [Activation]
-  Invite teammates | 4, s: Activation
+  Invite teammates 4, s: Activation
     description: Three colleagues join the workspace
-  Schedule weekly review | 5 Confident, s: Activation
+  Schedule weekly review 5 Confident, s: Activation
     thought: This is becoming part of how we work
-  Hit feature ceiling on free plan | 2 Pressured, s: Activation
+  Hit feature ceiling on free plan 2 Pressured, s: Activation
     pain: Cannot export beyond 100 rows
     opportunity: Show upgrade value contextually
 
 [Expansion]
-  Convert to paid plan | 4, s: Expansion
+  Convert to paid plan 4, s: Expansion
     description: Picks team plan after stakeholder approval
-  Roll out to second department | 5 Triumphant, s: Expansion
+  Roll out to second department 5 Triumphant, s: Expansion
     description: Marketing team adopts the same workspace
 ```
 
@@ -424,26 +424,26 @@ tag Role as r
   Lead green
   IC blue
 
-VP Engineering | r: VP
-  Director of Platform | r: Director
-    Infrastructure Lead | r: Lead
-      Backend Engineer | r: IC
-      Backend Engineer | r: IC
-      SRE | r: IC
-    Data Lead | r: Lead
-      Data Engineer | r: IC
-      Analytics Engineer | r: IC
-  Director of Product Eng | r: Director
-    Web Manager | r: Manager
-      Frontend Engineer | r: IC
-      Frontend Engineer | r: IC
-      Designer | r: IC
-    Mobile Manager | r: Manager
-      iOS Engineer | r: IC
-      Android Engineer | r: IC
-  QA Manager | r: Manager
-    QA Engineer | r: IC
-    QA Engineer | r: IC
+VP Engineering r: VP
+  Director of Platform r: Director
+    Infrastructure Lead r: Lead
+      Backend Engineer r: IC
+      Backend Engineer r: IC
+      SRE r: IC
+    Data Lead r: Lead
+      Data Engineer r: IC
+      Analytics Engineer r: IC
+  Director of Product Eng r: Director
+    Web Manager r: Manager
+      Frontend Engineer r: IC
+      Frontend Engineer r: IC
+      Designer r: IC
+    Mobile Manager r: Manager
+      iOS Engineer r: IC
+      Android Engineer r: IC
+  QA Manager r: Manager
+    QA Engineer r: IC
+    QA Engineer r: IC
 ```
 
 ---
@@ -454,19 +454,19 @@ VP Engineering | r: VP
 pyramid Maslow's Hierarchy of Needs
 solid-fill
 
-Self-Actualization | color: purple
+Self-Actualization color: purple
   Personal growth, creativity, fulfillment of potential
 
-Esteem | color: blue
+Esteem color: blue
   Confidence, achievement, respect from others
 
-Belonging | color: green
+Belonging color: green
   Friendship, family, intimacy, sense of connection
 
-Safety | color: yellow
+Safety color: yellow
   Security of body, employment, health, property
 
-Physiological | color: red
+Physiological color: red
   Food, water, warmth, rest, shelter
 ```
 
@@ -502,23 +502,23 @@ Refactor Auth Module     0.85  0.4
 ring Product Manager's Sphere of Influence
 solid-fill
 
-Direct Team | color: red
+Direct Team color: red
   Engineers, designers, QA — daily
   collaboration on the roadmap.
 
-Cross-Functional Partners | color: orange
+Cross-Functional Partners color: orange
   Sales, marketing, support — quarterly
   planning and feature requests.
 
-Executive Stakeholders | color: yellow
+Executive Stakeholders color: yellow
   CEO, CTO, VP Sales — strategic
   alignment and budget approval.
 
-External Customers | color: green
+External Customers color: green
   Users, beta testers, advisory board —
   feedback shapes priorities.
 
-Industry & Competitors | color: blue
+Industry & Competitors color: blue
   Market trends, competitive moves —
   context but not directly controllable.
 ```
@@ -568,38 +568,38 @@ rings
   Assess
   Hold
 
-Frameworks | quadrant: top-right
-  React | ring: Adopt, trend: stable
+Frameworks quadrant: top-right
+  React ring: Adopt, trend: stable
     Default for all new web surfaces. Strong ecosystem and team familiarity.
-  Astro | ring: Adopt, trend: up
+  Astro ring: Adopt, trend: up
     Standard for marketing and content-heavy pages. Ships almost zero JS.
-  SolidJS | ring: Trial, trend: new
+  SolidJS ring: Trial, trend: new
     Promising performance characteristics. Two pilot projects underway.
-  Vue | ring: Hold, trend: down
+  Vue ring: Hold, trend: down
     Legacy admin app only. New work goes to React.
 
-Build & Tooling | quadrant: top-left
-  Vite | ring: Adopt, trend: stable
+Build & Tooling quadrant: top-left
+  Vite ring: Adopt, trend: stable
     Fast HMR, good TypeScript story.
-  Bun | ring: Trial, trend: up
+  Bun ring: Trial, trend: up
     Faster install + test runner. Caveats with some native modules.
-  Webpack | ring: Hold, trend: down
+  Webpack ring: Hold, trend: down
     Migrating remaining bundles to Vite by Q3.
 
-State & Data | quadrant: bottom-left
-  Zustand | ring: Adopt, trend: stable
+State & Data quadrant: bottom-left
+  Zustand ring: Adopt, trend: stable
     Lightweight, no provider boilerplate.
-  TanStack Query | ring: Adopt, trend: stable
+  TanStack Query ring: Adopt, trend: stable
     Standard for server state and caching.
-  Redux Toolkit | ring: Hold, trend: down
+  Redux Toolkit ring: Hold, trend: down
     Existing apps only. Don't introduce in new code.
 
-Styling | quadrant: bottom-right
-  Tailwind CSS | ring: Adopt, trend: stable
+Styling quadrant: bottom-right
+  Tailwind CSS ring: Adopt, trend: stable
     Standard utility framework across all surfaces.
-  CSS Modules | ring: Trial, trend: stable
+  CSS Modules ring: Trial, trend: stable
     For complex component-scoped styles where Tailwind feels heavy.
-  styled-components | ring: Hold, trend: down
+  styled-components ring: Hold, trend: down
     Runtime cost is no longer worth it. Migrate to Tailwind or CSS Modules.
 ```
 
@@ -703,19 +703,19 @@ tag Team as t
   QA orange
 
 parallel
-  [Backend] | t: Engineering
-    30bd Database Layer | 80%
-    10bd? Auth Module | 100%
+  [Backend] t: Engineering
+    30bd Database Layer progress: 80
+    10bd? Auth Module progress: 100
     parallel
-      5bd Load Testing | t: QA
-      5bd Security Audit | t: QA
+      5bd Load Testing t: QA
+      5bd Security Audit t: QA
 
-  [Frontend] | t: Design
+  [Frontend] t: Design
     15bd Component Library
-    10bd API Integration | t: Engineering
-    5bd Polish | 30%
+    10bd API Integration t: Engineering
+    5bd Polish progress: 30
 
-[Integration] | t: QA
+[Integration] t: QA
   10bd E2E Testing
   0d Release Candidate
 ```
@@ -740,22 +740,22 @@ tag Owner as o
   Sam teal
 
 [To Do] red
-  Recruit two senior engineers | priority: High, o: Alex
-  Draft Q2 release plan | priority: Urgent, o: Alex
-  Update onboarding docs | priority: Low, o: Sam
+  Recruit two senior engineers priority: High, o: Alex
+  Draft Q2 release plan priority: Urgent, o: Alex
+  Update onboarding docs priority: Low, o: Sam
 
-[In Progress] orange | wip: 3
-  Define API contracts | priority: High, o: Jordan
-  Refactor auth module | priority: Urgent, o: Jordan
-  Build settings UI | priority: Medium, o: Sam
+[In Progress] orange wip: 3
+  Define API contracts priority: High, o: Jordan
+  Refactor auth module priority: Urgent, o: Jordan
+  Build settings UI priority: Medium, o: Sam
 
 [Review] blue
-  Mobile push notifications | priority: High, o: Alex
-  Analytics dashboard | priority: Medium, o: Sam
+  Mobile push notifications priority: High, o: Alex
+  Analytics dashboard priority: Medium, o: Sam
 
 [Done] green
-  Deploy staging environment | priority: High, o: Jordan
-  Fix login regression | priority: Low, o: Sam
+  Deploy staging environment priority: High, o: Jordan
+  Fix login regression priority: Low, o: Sam
 ```
 
 ---
@@ -809,11 +809,11 @@ launch 0
 ```dgmo
 raci Q3 Product Launch
 roles
-  PM    | color: blue
-  Eng   | color: green
-  UX    | color: purple
-  Mkt   | color: orange
-  Sales | color: red
+  PM    color: blue
+  Eng   color: green
+  UX    color: purple
+  Mkt   color: orange
+  Sales color: red
 
 [Discovery]
   Define the problem
@@ -907,15 +907,15 @@ era 2026-07 -> 2026-12 Phase 2: Growth teal
 marker 2026-03 Beta Launch red
 marker 2026-09 GA Release green
 
-Core API Development start: 2026-01, end: 2026-03, t: Engineering
-Auth and Permissions start: 2026-02, end: 2026-05, t: Engineering
-Real-time Features start: 2026-04, end: 2026-07, t: Engineering
-Performance Optimization start: 2026-08, end: 2026-11, t: Engineering
-Design System v1 start: 2026-01, end: 2026-02, t: Design
-User Research start: 2026-03, end: 2026-05, t: Design
-Design System v2 start: 2026-06, end: 2026-08, t: Design
-Test Automation Suite start: 2026-04, end: 2026-06, t: QA
-Launch QA Hardening start: 2026-09, end: 2026-12, t: QA
+2026-01 -> 2026-03 Core API Development t: Engineering
+2026-02 -> 2026-05 Auth and Permissions t: Engineering
+2026-04 -> 2026-07 Real-time Features t: Engineering
+2026-08 -> 2026-11 Performance Optimization t: Engineering
+2026-01 -> 2026-02 Design System v1 t: Design
+2026-03 -> 2026-05 User Research t: Design
+2026-06 -> 2026-08 Design System v2 t: Design
+2026-04 -> 2026-06 Test Automation Suite t: QA
+2026-09 -> 2026-12 Launch QA Hardening t: QA
 ```
 
 ---
@@ -935,28 +935,28 @@ tag Status as s
 
 active-tag Status
 
-MobileApp | s: Operational
+MobileApp s: Operational
   -> APIGateway
 
-WebApp | s: Operational
+WebApp s: Operational
   -> APIGateway
 
-APIGateway | s: Operational
+APIGateway s: Operational
   -> [Services]
   -> AuthVendor
 
 [Services]
-  UserService | s: Operational
+  UserService s: Operational
     -> Database
-  OrderService | s: Degraded
+  OrderService s: Degraded
     -> Database
     -> PaymentVendor
-  Database | s: Operational
+  Database s: Operational
 
-PaymentVendor | s: Operational
-AuthVendor | s: Operational
+PaymentVendor s: Operational
+AuthVendor s: Operational
 
-AnalyticsPipeline | s: Planned
+AnalyticsPipeline s: Planned
   -> Database
 ```
 
@@ -972,17 +972,17 @@ tag Scope as sc
   Internal blue
   External gray
 
-Customer is a person | description: A retail customer of the bank, sc: External
+Customer is a person description: A retail customer of the bank, sc: External
 
-Banking is a system | description: Core internet banking application, sc: Internal
+Banking is a system description: Core internet banking application, sc: Internal
   -Uses-> Customer
 
   containers
-    WebApp is a container | description: Single-page application, tech: React
-    API is a container | description: Backend API serving the SPA, tech: Node.js
-    DB is a container is a database | description: Customer accounts and transactions, tech: PostgreSQL
+    WebApp is a container description: Single-page application, tech: React
+    API is a container description: Backend API serving the SPA, tech: Node.js
+    DB is a container is a database description: Customer accounts and transactions, tech: PostgreSQL
 
-Email is a system | description: External transactional email service, sc: External
+Email is a system description: External transactional email service, sc: External
   ~Sends notifications via~> Banking
 
 deployment
@@ -1114,37 +1114,37 @@ tag Team as t
   Data purple
 
 Edge
-  rps 10000
+  rps: 10000
   -> CloudFront
 
-CloudFront | t: Platform
-  cache-hit 80%
+CloudFront t: Platform
+  cache-hit: 80%
   -> ALB
 
-ALB | t: Platform
-  -/api-> APIServer | split: 70%
-  -/static-> StaticServer | split: 30%
+ALB t: Platform
+  -/api-> APIServer split: 70%
+  -/static-> StaticServer split: 30%
 
-APIServer | t: Backend
-  instances 4
-  max-rps 500
-  latency-ms 45
+APIServer t: Backend
+  instances: 4
+  max-rps: 500
+  latency-ms: 45
   -> PostgresDB
   ~events~> EventBus
 
-PostgresDB | t: Data
-  latency-ms 8
+PostgresDB t: Data
+  latency-ms: 8
 
-EventBus | t: Backend
-  buffer 1000
+EventBus t: Backend
+  buffer: 1000
   -> AnalyticsWorker
 
-AnalyticsWorker | t: Data
-  instances 2
-  max-rps 100
+AnalyticsWorker t: Data
+  instances: 2
+  max-rps: 100
 
-StaticServer | t: Platform
-  latency-ms 5
+StaticServer t: Platform
+  latency-ms: 5
 ```
 
 ---
@@ -1155,27 +1155,27 @@ StaticServer | t: Platform
 mindmap API Design Considerations
 
 Versioning
-  URL Path | description: /v1/users, /v2/users
-  Header | description: Accept: application/vnd.api+json;v=2
-  Sunset Policy | description: Announce deprecation 6 months ahead
+  URL Path description: "/v1/users, /v2/users"
+  Header description: Accept: application/vnd.api+json;v=2
+  Sunset Policy description: Announce deprecation 6 months ahead
 Authentication
   OAuth 2.0
-    Authorization Code Flow | description: Web apps with backend
-    Client Credentials | description: Server-to-server
-  API Keys | description: Simple but harder to rotate
+    Authorization Code Flow description: Web apps with backend
+    Client Credentials description: Server-to-server
+  API Keys description: Simple but harder to rotate
 Errors
-  Status Codes | description: Use the right 4xx vs 5xx
-  Problem Details | description: RFC 7807 — type, title, detail, instance
-  Idempotency | description: Safe to retry on network failures
+  Status Codes description: Use the right 4xx vs 5xx
+  Problem Details description: "RFC 7807 — type, title, detail, instance"
+  Idempotency description: Safe to retry on network failures
 Pagination
-  Cursor-based | description: Stable across writes
-  Offset-based | description: Simpler but breaks under inserts
+  Cursor-based description: Stable across writes
+  Offset-based description: Simpler but breaks under inserts
 Performance
   Caching
-    ETags | description: Conditional GETs
-    Cache-Control | description: max-age, stale-while-revalidate
-  Compression | description: gzip and brotli on responses
-  Rate Limiting | description: Per-key with retry-after header
+    ETags description: Conditional GETs
+    Cache-Control description: "max-age, stale-while-revalidate"
+  Compression description: gzip and brotli on responses
+  Rate Limiting description: Per-key with retry-after header
 ```
 
 ---
@@ -1193,13 +1193,13 @@ tag Team as t
   Vendor orange
 
 User is an actor
-App | t: Web
-[Backend] | t: Backend
+App t: Web
+[Backend] t: Backend
   API
   Orders
   Inventory
   DB
-Stripe | t: Vendor
+Stripe t: Vendor
 
 User -click checkout-> App
 App -POST /orders-> API
@@ -1247,28 +1247,28 @@ tag Page
   Form orange
   Content cyan
 
-Home | Access: Public, Page: Marketing
+Home Access: Public, Page: Marketing
   -pricing-> Pricing
   -signup-> Signup
   -login-> Login
 
-Pricing | Access: Public, Page: Marketing
-Signup | Access: Public, Page: Form
+Pricing Access: Public, Page: Marketing
+Signup Access: Public, Page: Form
   -created-> Dashboard
-Login | Access: Public, Page: Form
+Login Access: Public, Page: Form
   -ok-> Dashboard
 
 [App]
-  Dashboard | Access: Authenticated, Page: Content
+  Dashboard Access: Authenticated, Page: Content
     -open-> Project
-  Project | Access: Authenticated, Page: Content
+  Project Access: Authenticated, Page: Content
     -edit-> Settings
-  Settings | Access: Authenticated, Page: Form
+  Settings Access: Authenticated, Page: Form
 
 [Admin]
-  Users | Access: Admin, Page: Content
-  Billing | Access: Admin, Page: Content
-  AuditLog | Access: Admin, Page: Content
+  Users Access: Admin, Page: Content
+  Billing Access: Admin, Page: Content
+  AuditLog Access: Admin, Page: Content
 ```
 
 ---
@@ -1319,7 +1319,7 @@ wireframe Settings Screen
 [Header]
   Workspace Settings
   nav
-    General | active
+    General active
     Members
     Billing
     Integrations
@@ -1328,7 +1328,7 @@ wireframe Settings Screen
   # General
 
   Workspace Name [Acme Corp]
-  Workspace URL [acme.example.com] | readonly
+  Workspace URL [acme.example.com] readonly
 
   {Free | Team | Enterprise}
 
@@ -1341,9 +1341,9 @@ wireframe Settings Screen
   ( ) Match system
 
   (Save Changes)
-  (Cancel) | ghost
+  (Cancel) ghost
 
   ---
 
-  Need help configuring? (Open Docs) | ghost
+  Need help configuring? (Open Docs) ghost
 ```
