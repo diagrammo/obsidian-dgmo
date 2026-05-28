@@ -23,20 +23,20 @@
 arc Microservice Dependencies
 
 [Frontend] blue
-  WebApp -> APIGateway: 5
-  MobileApp -> APIGateway: 3
+  WebApp -> APIGateway 5
+  MobileApp -> APIGateway 3
 
 [Core Services] green
-  APIGateway -> AuthService: 4
-  APIGateway -> UserService: 5
-  APIGateway -> OrderService: 3
-  UserService -> Database: 4
-  OrderService -> Database: 3
-  OrderService -> PaymentService: 2
+  APIGateway -> AuthService 4
+  APIGateway -> UserService 5
+  APIGateway -> OrderService 3
+  UserService -> Database 4
+  OrderService -> Database 3
+  OrderService -> PaymentService 2
 
 [External] orange
-  PaymentService -> Stripe: 2
-  AuthService -> OAuth: 3
+  PaymentService -> Stripe 2
+  AuthService -> OAuth 3
 ```
 
 ---
