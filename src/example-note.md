@@ -7,7 +7,7 @@
 
 **Data** — [Arc](#arc) · [Area](#area) · [Bar](#bar) · [Bar Stacked](#bar-stacked) · [Chord](#chord) · [Doughnut](#doughnut) · [Function](#function) · [Heatmap](#heatmap) · [Line](#line) · [Multi-Line](#multi-line) · [Pie](#pie) · [Polar Area](#polar-area) · [Radar](#radar) · [Scatter](#scatter) · [Slope](#slope)
 
-**Business** — [Cycle](#cycle) · [Funnel](#funnel) · [Journey Map](#journey-map) · [Org Chart](#org-chart) · [Pyramid](#pyramid) · [Quadrant](#quadrant) · [Ring](#ring) · [Sankey](#sankey) · [Tech Radar](#tech-radar) · [Venn](#venn) · [Word Cloud](#word-cloud)
+**Business** — [Cycle](#cycle) · [Funnel](#funnel) · [Journey Map](#journey-map) · [Map](#map) · [Org Chart](#org-chart) · [Pyramid](#pyramid) · [Quadrant](#quadrant) · [Ring](#ring) · [Sankey](#sankey) · [Tech Radar](#tech-radar) · [Venn](#venn) · [Word Cloud](#word-cloud)
 
 **Project** — [DACI](#daci) · [Gantt](#gantt) · [Kanban](#kanban) · [PERT](#pert) · [RACI](#raci) · [RASCI](#rasci) · [Timeline](#timeline)
 
@@ -407,6 +407,27 @@ tag Stage as s
     description: Picks team plan after stakeholder approval
   Roll out to second department 5 Triumphant, s: Expansion
     description: Marketing team adopts the same workspace
+```
+
+---
+
+## Map
+
+```dgmo
+map Global Market Presence
+region world
+
+tag Market as m
+  HQ blue
+  Region teal
+  Prospect orange
+active-tag Market
+
+United States m: HQ
+Germany m: Region
+Japan m: Region
+Brazil m: Prospect
+Australia m: Prospect
 ```
 
 ---
