@@ -1,0 +1,21 @@
+map Go Ahead Program
+poi-labels all
+region us-states
+
+tag GAE
+  NA gray
+  TM blue
+  Future yellow
+  Installed green
+
+poi 33.45 -112.07 label: ARI, GAE:TM
+poi 38.58 -121.51 label: ATH
+poi 33.89 -84.47 label: ATL, GAE:TM
+poi 41.95 -87.66 label: CHC
+poi 39.10 -84.51 label: CIN, GAE:Installed
+poi 39.76 -104.99 label: COL, GAE:TM
+poi 29.76 -95.36 label: HOU, GAE:Installed
+poi 34.07 -118.24 label: LAD, GAE:Installed
+poi 40.83 -73.93 label: NYY, GAE:TM
+poi 47.59 -122.33 label: SEA, GAE:TM
+poi 38.87 -77.01 label: WSH, GAE:Installed

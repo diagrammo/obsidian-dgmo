@@ -6,6 +6,13 @@ import {
   type DgmoError,
   type PaletteConfig,
 } from '@diagrammo/dgmo';
+import {
+  looksLikeMap,
+  parseMap,
+  resolveMap,
+  renderMapForExport,
+} from '@diagrammo/dgmo/internal';
+import { mapData } from './map-data';
 
 function resolvePalette(id: string): PaletteConfig {
   return Object.values(palettes).find((p) => p.id === id) ?? palettes.nord;
@@ -50,6 +57,14 @@ export async function renderDgmo(
   isDark: boolean,
   paletteId = 'nord'
 ): Promise<void> {
+  // The map chart type loads its geo data via Node `fs` in the public
+  // `render()` — which fails in the Obsidian renderer and yields an empty SVG.
+  // Render it through dgmo's DI pipeline with the bundled data instead.
+  if (looksLikeMap(source)) {
+    renderMapDgmo(source, container, isDark, paletteId);
+    return;
+  }
+
   let svg: string;
   let diagnostics: DgmoError[];
   try {
@@ -87,6 +102,56 @@ export async function renderDgmo(
   const svgDoc = new DOMParser().parseFromString(svg, 'image/svg+xml');
   const svgNode = svgDoc.documentElement;
   if (svgNode) wrapper.appendChild(wrapper.doc.importNode(svgNode, true));
+  scaleSvgToFit(wrapper);
+  addEditButton(wrapper, source, isDark, paletteId);
+}
+
+/**
+ * Render a `map` diagram via dgmo's dependency-injection pipeline
+ * (`parseMap` → `resolveMap` → `renderMapForExport`) with the geo data bundled
+ * into the plugin. Mirrors the desktop app's MapPreview; avoids the public
+ * `render()`'s Node-only `loadMapData()`, which can't resolve assets in the
+ * Obsidian renderer.
+ */
+function renderMapDgmo(
+  source: string,
+  container: HTMLElement,
+  isDark: boolean,
+  paletteId: string
+): void {
+  const palette = resolvePalette(paletteId)[isDark ? 'dark' : 'light'];
+
+  let resolved: ReturnType<typeof resolveMap>;
+  const exportDiv = document.createElement('div');
+  try {
+    resolved = resolveMap(parseMap(source), mapData);
+    // Fixed export canvas; scaleSvgToFit makes the result responsive.
+    renderMapForExport(exportDiv, resolved, mapData, palette, isDark, {
+      width: 1200,
+      height: 800,
+    });
+  } catch (err) {
+    showError(
+      container,
+      `Render error: ${err instanceof Error ? err.message : String(err)}`
+    );
+    return;
+  }
+
+  const firstError = resolved.diagnostics.find((d) => d.severity === 'error');
+  if (firstError) {
+    showError(container, formatDgmoError(firstError));
+    return;
+  }
+
+  const svgEl = exportDiv.querySelector('svg');
+  if (!svgEl) {
+    showError(container, 'No SVG output from dgmo render().');
+    return;
+  }
+
+  const wrapper = container.createDiv({ cls: 'dgmo-container' });
+  wrapper.appendChild(wrapper.doc.importNode(svgEl, true));
   scaleSvgToFit(wrapper);
   addEditButton(wrapper, source, isDark, paletteId);
 }
