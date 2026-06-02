@@ -16,6 +16,7 @@ import naLakes from '../../dgmo/src/map/data/na-lakes.json';
 import naLand from '../../dgmo/src/map/data/na-land.json';
 import rivers from '../../dgmo/src/map/data/rivers.json';
 import usStates from '../../dgmo/src/map/data/us-states.json';
+import waterBodies from '../../dgmo/src/map/data/water-bodies.json';
 import worldCoarse from '../../dgmo/src/map/data/world-coarse.json';
 import worldDetail from '../../dgmo/src/map/data/world-detail.json';
 
@@ -28,5 +29,6 @@ export const mapData: MapData = {
   rivers,
   naLand,
   naLakes,
+  waterBodies,
   gazetteer,
 } as unknown as MapData;
