@@ -1,0 +1,11 @@
+{
+  "entry": ["src/main.ts"],
+  "project": ["src/**/*.ts"],
+  "ignoreDependencies": ["wawoff2"],
+  "ignoreExportsUsedInFile": true,
+  "rules": {
+    "duplicates": "off",
+    "exports": "warn",
+    "types": "warn"
+  }
+}

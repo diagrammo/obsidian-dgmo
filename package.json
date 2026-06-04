@@ -18,6 +18,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
+    "check:deadcode": "knip",
+    "check:duplication": "jscpd ./src",
+    "check:deps": "depcheck --ignores=''",
     "check:security": "pnpm audit --prod"
   },
   "dependencies": {
@@ -26,10 +29,13 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^25.9.1",
+    "depcheck": "^1.4.7",
     "esbuild": "^0.28.0",
     "eslint": "^10.2.0",
     "globals": "^17.5.0",
+    "jscpd": "^4.0.9",
     "jsdom": "^29.1.1",
+    "knip": "^6.14.1",
     "obsidian": "^1.12.3",
     "prettier": "^3.8.2",
     "typescript": "^6.0.2",
