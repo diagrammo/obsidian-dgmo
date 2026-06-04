@@ -1,12 +1,14 @@
 # Diagrammo Diagrams for Obsidian
 
-Render [Diagrammo](https://diagrammo.app) diagrams inline in your Obsidian notes using ` ```dgmo ` code fences. Works on desktop and mobile.
+Write a `dgmo` code block and it renders as a diagram inline in your notes — reading mode and live preview, desktop and mobile.
+
+[Diagrammo](https://diagrammo.app) gives you 40+ chart types from one small plain-text language: data viz, software architecture, project planning, hierarchies, and more. Because the diagrams are plain text, they're searchable in Obsidian, diffable in git or Sync history, and never go stale the way an exported image does.
 
 ![bar, sequence, timeline, pie — all rendered inside Obsidian](https://diagrammo.app/og-image.png)
 
 ## Supported chart types
 
-All 40+ chart types from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) render in Obsidian:
+Every chart type from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) renders in Obsidian:
 
 | Category | Types |
 |----------|-------|
@@ -119,7 +121,7 @@ src/
 1. Run `npm run dev` (watch mode)
 2. Symlink or copy the repo into your vault's `.obsidian/plugins/dgmo/` folder
 3. Enable the plugin in Obsidian settings
-4. Edit a note with a ` ```dgmo ` code fence — changes rebuild automatically
+4. Edit a note with a `dgmo` code block — changes rebuild automatically
 
 ## Releasing
 
