@@ -5,20 +5,23 @@
 // the plugin). So we inject them by dependency injection into
 // `resolveMap`/`renderMapForExport` instead, exactly as the desktop app does.
 //
-// Imported from the committed dgmo source JSON (sibling repo). esbuild's default
-// JSON loader inlines the content at build time, so the published main.js is
-// self-contained — no runtime file lookup, no extra release assets.
+// Imported from ./vendor/map-data, which scripts/copy-map-data.mjs populates
+// from the installed @diagrammo/dgmo package before typecheck/build (see that
+// script for why we copy rather than import the package subpath directly).
+// esbuild's default JSON loader inlines the content at build time, so the
+// published main.js is self-contained — no runtime file lookup, no extra
+// release assets.
 import type { MapData } from '@diagrammo/dgmo/internal';
 
-import gazetteer from '../../dgmo/src/map/data/gazetteer.json';
-import lakes from '../../dgmo/src/map/data/lakes.json';
-import naLakes from '../../dgmo/src/map/data/na-lakes.json';
-import naLand from '../../dgmo/src/map/data/na-land.json';
-import rivers from '../../dgmo/src/map/data/rivers.json';
-import usStates from '../../dgmo/src/map/data/us-states.json';
-import waterBodies from '../../dgmo/src/map/data/water-bodies.json';
-import worldCoarse from '../../dgmo/src/map/data/world-coarse.json';
-import worldDetail from '../../dgmo/src/map/data/world-detail.json';
+import gazetteer from '../vendor/map-data/gazetteer.json';
+import lakes from '../vendor/map-data/lakes.json';
+import naLakes from '../vendor/map-data/na-lakes.json';
+import naLand from '../vendor/map-data/na-land.json';
+import rivers from '../vendor/map-data/rivers.json';
+import usStates from '../vendor/map-data/us-states.json';
+import waterBodies from '../vendor/map-data/water-bodies.json';
+import worldCoarse from '../vendor/map-data/world-coarse.json';
+import worldDetail from '../vendor/map-data/world-detail.json';
 
 /** The assets dgmo's `resolveMap`/`renderMap` consume (DI). */
 export const mapData: MapData = {
