@@ -21,6 +21,7 @@
     "check:deadcode": "knip",
     "check:duplication": "jscpd ./src",
     "check:deps": "depcheck --ignores=''",
+    "check:all": "pnpm check:deadcode && pnpm check:duplication && pnpm check:deps",
     "check:security": "pnpm audit --prod"
   },
   "dependencies": {
