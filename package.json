@@ -1,6 +1,6 @@
 {
   "name": "dgmo",
-  "version": "1.5.18",
+  "version": "1.5.19",
   "description": "Render Diagrammo diagrams inline in Obsidian notes",
   "license": "MIT",
   "type": "module",
