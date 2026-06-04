@@ -15,6 +15,7 @@ import type { MapData } from '@diagrammo/dgmo/internal';
 
 import gazetteer from '../vendor/map-data/gazetteer.json';
 import lakes from '../vendor/map-data/lakes.json';
+import mountainRanges from '../vendor/map-data/mountain-ranges.json';
 import naLakes from '../vendor/map-data/na-lakes.json';
 import naLand from '../vendor/map-data/na-land.json';
 import rivers from '../vendor/map-data/rivers.json';
@@ -30,6 +31,7 @@ export const mapData: MapData = {
   usStates,
   lakes,
   rivers,
+  mountainRanges,
   naLand,
   naLakes,
   waterBodies,

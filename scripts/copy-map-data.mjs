@@ -22,6 +22,7 @@ const outDir = join(root, 'vendor', 'map-data');
 const FILES = [
   'gazetteer.json',
   'lakes.json',
+  'mountain-ranges.json',
   'na-lakes.json',
   'na-land.json',
   'rivers.json',
