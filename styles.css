@@ -11,7 +11,7 @@
 
 .dgmo-edit-link {
   position: absolute;
-  top: 6px;
+  bottom: 6px;
   right: 6px;
   display: inline-flex;
   align-items: center;
