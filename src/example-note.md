@@ -1,153 +1,172 @@
-# Diagrammo Chart Examples
+# Diagrammo — All Chart Types
 
-> Every code fence below renders a different chart type. Edit the data inline to experiment.
-> Full language reference, more chart types, and the desktop editor at [diagrammo.app/docs](https://diagrammo.app/docs).
-
-## Contents
-
-**Data** — [Arc](#arc) · [Area](#area) · [Bar](#bar) · [Bar Stacked](#bar-stacked) · [Chord](#chord) · [Doughnut](#doughnut) · [Function](#function) · [Heatmap](#heatmap) · [Line](#line) · [Multi-Line](#multi-line) · [Pie](#pie) · [Polar Area](#polar-area) · [Radar](#radar) · [Scatter](#scatter) · [Slope](#slope)
-
-**Business** — [Cycle](#cycle) · [Funnel](#funnel) · [Journey Map](#journey-map) · [Map](#map) · [Org Chart](#org-chart) · [Pyramid](#pyramid) · [Quadrant](#quadrant) · [Ring](#ring) · [Sankey](#sankey) · [Tech Radar](#tech-radar) · [Venn](#venn) · [Word Cloud](#word-cloud)
-
-**Project** — [DACI](#daci) · [Gantt](#gantt) · [Kanban](#kanban) · [PERT](#pert) · [RACI](#raci) · [RASCI](#rasci) · [Timeline](#timeline)
-
-**Software** — [Boxes and Lines](#boxes-and-lines) · [C4 Architecture](#c4-architecture) · [Class Diagram](#class-diagram) · [Entity-Relationship](#entity-relationship) · [Flowchart](#flowchart) · [Infrastructure](#infrastructure) · [Mindmap](#mindmap) · [Sequence](#sequence) · [Sitemap](#sitemap) · [State Machine](#state-machine) · [Wireframe](#wireframe)
+> Every `dgmo` code fence below renders a different chart type.
+> Edit the data to experiment! For the full editor experience visit [diagrammo.app](https://diagrammo.app).
 
 ---
 
 # Data
 
-## Arc
+## Arc Diagram
 
 ```dgmo
-arc Microservice Dependencies
+arc Pirate Alliances
 
-[Frontend] blue
-  WebApp -> APIGateway 5
-  MobileApp -> APIGateway 3
+[Caribbean] red
+  Blackbeard -> Bonnet     8
+  Blackbeard -> Vane       5
+  Blackbeard -> Hornigold  4
+  Hornigold  -> Bonnet     2
 
-[Core Services] green
-  APIGateway -> AuthService 4
-  APIGateway -> UserService 5
-  APIGateway -> OrderService 3
-  UserService -> Database 4
-  OrderService -> Database 3
-  OrderService -> PaymentService 2
+[Women Pirates] purple
+  Bonny   -> Rackham 9
+  Bonny   -> Read    7
+  Rackham -> Vane    3
 
-[External] orange
-  PaymentService -> Stripe 2
-  AuthService -> OAuth 3
+[West Africa] teal
+  Roberts -> Davis    6
+  Davis   -> Roberts 10
 ```
 
 ---
 
-## Area
+## Area Chart
 
 ```dgmo
-area Memory Usage Over Day
-series GB
-x-label Hour
+area Fleet Growth Over Time
+series Ships
+x-label Year
 
-era 9am -> 5pm Business Hours blue
+era 1710 -> 1716 Rise green
+era 1716 -> 1720 Decline red
 
-12am 2.1
-3am  1.8
-6am  2.4
-9am  5.7
-12pm 7.1
-3pm  6.8
-6pm  4.2
-9pm  3.1
-11pm 2.5
+1710  3
+1712  5
+1714  9
+1716 14
+1718  8
+1720  4
 ```
 
 ---
 
-## Bar
+## Bar Chart
 
 ```dgmo
-bar Monthly Revenue by Product
-solid-fill
-series Revenue ($K)
+bar Treasure Hauls by Port
+series Gold Doubloons
 
-Enterprise   245
-Professional 182
-Starter       97
-Free Trial    43
-Add-ons       61
-Consulting   128
+Port Royal blue    850
+Tortuga green      620
+Nassau red        1100
+Havana yellow      430
+Cartagena purple   780
 ```
 
 ---
 
-## Bar Stacked
+## Bar Chart (Stacked)
 
 ```dgmo
-bar-stacked Support Tickets by Priority
-solid-fill
+bar-stacked Port Revenue by Trade
+orientation-horizontal
 series
-  Critical red
-  High orange
-  Medium yellow
-  Low green
-x-label Month
-y-label Tickets
+  Imports blue
+  Exports green
+  Tariffs orange
 
-January   8 24 45 62
-February 12 19 51 58
-March     6 22 38 71
-April    10 28 42 65
-May       5 15 48 70
+Port Royal 300 450  80
+Tortuga    150 200  30
+Nassau     400 350 120
+Havana     500 600 150
 ```
 
 ---
 
-## Chord
+## Bubble Chart
 
 ```dgmo
-chord Inter-Department Collaboration
+scatter Pirate Fleets of the Caribbean
+size-label Crew
+x-label Firepower
+y-label Reputation
 
-Engineering -- Design 85
-Engineering -- Product 72
-Engineering -- QA 95
-Design -- Product 68
-Design -- Marketing 45
-Product -- Marketing 58
-Product -- Sales 42
-Marketing -- Sales 65
-QA -- Engineering 88
-Sales -- Product 30
+[English Pirates] red
+  Blackbeard   85 90 80
+  Calico Jack  45 55 35
+  Anne Bonny   50 70 30
+  Charles Vane 60 65 45
+
+[French Buccaneers] blue
+  L'Olonnais         70 80 60
+  Michel de Grammont 55 60 40
+  Pierre le Grand    30 45 25
 ```
 
 ---
 
-## Doughnut
+## Chord Diagram
 
 ```dgmo
-doughnut Cloud Spending by Service
+chord Pirate Alliance Network
+
+Blackbeard -- Bonnet 150
+Blackbeard -- Vane 80
+Blackbeard -- Hornigold 120
+Bonnet -- Rackham 40
+Vane -- Rackham 60
+Rackham -- Bonny 200
+Bonny -- Read 180
+Roberts -- Davis 90
+Roberts -- Anstis 70
+Hornigold -- Bonnet 50
+Vane -- Bonny 30
+Roberts -> Rackham 20
+Rackham -> Roberts 100
+```
+
+---
+
+## Doughnut Chart
+
+```dgmo
+doughnut Plunder Distribution
 solid-fill
 
-Compute blue        34
-Storage cyan        22
-Database green      18
-Networking orange   12
-AI/ML purple         8
-Other gray           6
+Captain's Share 40
+Quartermaster   20
+Crew Split      25
+Ship Repairs    10
+Provisions       5
 ```
 
 ---
 
-## Function
+## Function Plot
 
 ```dgmo
-function Trigonometric Reference
-x-label x
-y-label f(x)
-x -6 to 6
+function Cannonball Trajectories by Elevation
+x-label Distance (meters)
+y-label Height (meters)
+x 0 to 250
 
-sin(x) blue: sin(x)
-cos(x) green: cos(x)
-x²/10 red: x^2 / 10
+15 degrees blue: -0.001*x^2 + 0.27*x
+30 degrees green: -0.002*x^2 + 0.58*x
+45 degrees red: -0.003*x^2 + 0.75*x
+```
+
+---
+
+## Funnel Chart
+
+```dgmo
+funnel Pirate Recruitment Pipeline
+
+Port Visitors blue         1000
+Tavern Recruits cyan        500
+Crew Trials yellow          200
+Sworn Pirates orange        100
+Veteran Buccaneers red       50
 ```
 
 ---
@@ -155,207 +174,202 @@ x²/10 red: x^2 / 10
 ## Heatmap
 
 ```dgmo
-heatmap Deploy Frequency by Day and Hour
-columns Mon, Tue, Wed, Thu, Fri
+heatmap Pirate Activity by Sea Region
+columns Jan, Feb, Mar, Apr, May, Jun
 
-6 AM   1 2 0 1 0
-9 AM   5 8 6 7 4
-12 PM  3 4 5 3 2
-3 PM   8 12 9 10 6
-6 PM   2 3 1 2 1
+Caribbean       5 4 5 3 4 5
+Atlantic        2 3 2 4 3 2
+Mediterranean   3 2 1 2 3 4
+Indian Ocean    4 5 4 5 4 3
+South China Sea 1 2 3 2 1 2
+West Africa     3 3 4 3 5 4
 ```
 
 ---
 
-## Line
+## Line Chart
 
 ```dgmo
-line Daily Active Users (Q1)
-series Users (thousands)
-x-label Week
+line Ship Speed Over Voyage
+series Knots
+x-label Day
+y-label Speed
 
-era Week 1 -> Week 4 Soft Launch orange
-era Week 5 -> Week 12 Public Beta blue
+era Day 1 -> Day 3 Rough Seas red
+era Day 3 -> Day 7 Fair Winds blue
 
-Week 1  12.4
-Week 2  13.1
-Week 3  14.8
-Week 4  13.9
-Week 5  16.2
-Week 6  17.5
-Week 7  18.1
-Week 8  19.3
-Week 9  21.0
-Week 10 22.4
-Week 11 24.1
-Week 12 23.8
+Day 1  8
+Day 2 10
+Day 3  7
+Day 4 12
+Day 5  9
+Day 6 11
+Day 7  6
 ```
 
 ---
 
-## Multi-Line
+## Line Chart (Multi-series)
 
 ```dgmo
-line Quarterly Revenue vs Cost
-series Revenue blue, Operating Cost red, Net Profit green
-x-label Quarter
+line Monthly Captures by Fleet
+series Blackbeard red, Roberts blue, Vane green
+x-label Month
 
-Q1 2024 4.2 3.1 1.1
-Q2 2024 4.8 3.3 1.5
-Q3 2024 5.1 3.5 1.6
-Q4 2024 5.9 3.7 2.2
-Q1 2025 6.3 3.9 2.4
-Q2 2025 7.1 4.2 2.9
+era Jan -> Mar Atlantic Season
+era Mar -> Jun Caribbean Season teal
+
+Jan 3 5 2
+Feb 4 3 4
+Mar 2 7 3
+Apr 6 4 1
+May 5 6 5
+Jun 3 8 2
 ```
 
 ---
 
-## Pie
+## Pie Chart
 
 ```dgmo
-pie Browser Market Share
+pie Crew Roles Distribution
 solid-fill
 
-Chrome   63.5
-Safari   19.8
-Firefox   6.2
-Edge      5.1
-Samsung   2.8
-Opera     1.4
-Other     1.2
+Sailors          45
+Gunners          20
+Marines          15
+Officers          8
+Specialists       7
+Cooks & Surgeons  5
 ```
 
 ---
 
-## Polar Area
+## Polar Area Chart
 
 ```dgmo
-polar-area Incident Categories (Last 30 Days)
+polar-area Captain's Skills
+
+Navigation    90
+Swordsmanship 75
+Leadership    85
+Cunning       95
+Seamanship    80
+```
+
+---
+
+## Radar Chart
+
+```dgmo
+radar Ship Combat Rating
 solid-fill
 
-Security       12
-Performance    28
-Availability    8
-Data Loss       3
-Configuration  19
-Network        15
+Firepower       85
+Speed           70
+Armor           60
+Maneuverability 90
+Crew Morale     75
 ```
 
 ---
 
-## Radar
+## Sankey Diagram
 
 ```dgmo
-radar Engineering Team Skills
-solid-fill
+sankey Rum Supply Chain of the Caribbean
 
-Frontend       85
-Backend        72
-DevOps         68
-Testing        90
-Documentation  55
-Architecture   78
+Sugar Plantations green
+  Tortuga Distillery orange 3000
+  Nassau Distillery orange 2500
+  Kingston Distillery orange 2000
+
+Tortuga Distillery
+  Pirate Taverns red 2000
+  Ship Provisions teal 1000
+
+Nassau Distillery
+  Pirate Taverns 1500
+  Black Market purple 1000
+
+Kingston Distillery
+  Royal Navy blue 1200
+  Pirate Taverns 800
+
+Pirate Taverns
+  Crew Morale 3500
+  Bar Fights 800 red
+
+Ship Provisions -> Long Voyages 1000
 ```
 
 ---
 
-## Scatter
+## Scatter Plot
 
 ```dgmo
-scatter Startup Funding vs Revenue
-x-label Funding ($M)
-y-label Annual Revenue ($M)
+scatter Pirate Captains
+x-label Ruthlessness
+y-label Treasure
 
-[SaaS] blue
-  Acme Cloud  12   8.5
-  DataSync     5.2 3.1
-  CloudOps    25  18.4
-  PlatformX    8   5.7
+[Caribbean] red
+  Blackbeard   90  8500
+  Calico Jack  55  3200
+  Anne Bonny   70  2800
+  Henry Morgan 85 12000
+  Charles Vane 75  4100
 
-[Fintech] green
-  PayFlow     45  32
-  LendTech    18  12.5
-  QuickPay     9   6.8
+[Atlantic] blue
+  Black Sam Bellamy   60  9200
+  Bartholomew Roberts 88 11000
+  Edward Low          95  5500
+  Stede Bonnet        30  1800
 
-[HealthTech] red
-  MediScan    15   7.2
-  HealthAI    22  14.1
-  CareLink     7   3.8
+[Indian Ocean] green
+  Henry Every  80 14000
+  William Kidd 65  6800
+  Thomas Tew   50  7200
 ```
 
 ---
 
-## Slope
+## Slope Chart
 
 ```dgmo
-slope Programming Language Popularity
+slope Pirate Fleet Strength: 1715 vs 1725
 
 period
-  2020
-  2025
+  1715
+  1725
 
-Python blue       3  1
-JavaScript yellow 1  2
-TypeScript cyan   7  3
-Rust orange      18  5
-Go green         10  7
+Blackbeard red           40  4
+Bartholomew Roberts blue 12 52
+Charles Vane orange      20  2
+Anne Bonny green          8 15
+Calico Jack purple       18  6
 ```
 
 ---
 
 # Business
 
-## Cycle
+## Cycle Diagram
 
 ```dgmo
-cycle Continuous Delivery Loop
-
-circle-nodes
-
-Plan color: blue
-  Capture user stories and acceptance criteria
-  - Triage backlog
-  - Estimate effort
-  -Sprint ready-> color: blue, width: 5
-
-Build color: green
-  Implement feature with tests and code review
-  - Pair on tricky modules
-  - Open pull request
-  -PR merged-> color: green, width: 5
-
-Test color: orange
-  Run unit, integration, and end-to-end suites
-  - Smoke test in staging
-  - Verify performance budgets
-  -All green-> color: orange, width: 5
-
-Deploy color: purple
-  Ship to production via automated pipeline
-  - Canary 10% of traffic
-  - Promote to 100%
-  -Live-> color: purple, width: 5
-
-Monitor color: red
-  Watch metrics, logs, and user feedback
-  - Alert on SLO regressions
-  - Capture telemetry for next planning round
-  -Insights-> color: red, width: 5
-```
-
----
-
-## Funnel
-
-```dgmo
-funnel Sales Pipeline Conversion
+cycle The Pirate Raid Cycle
 solid-fill
 
-Website Visitors      12000
-Product Page Views     5400
-Free Trial Signups     2100
-Onboarding Complete     890
-Paid Conversion         340
+Scout blue
+  Spot merchant vessels from afar
+
+Pursue green
+  Raise the colors, trim the sails
+
+Board orange
+  Swing across and seize the deck
+
+Celebrate red
+  Divide the spoils, then repair
 ```
 
 ---
@@ -363,50 +377,28 @@ Paid Conversion         340
 ## Journey Map
 
 ```dgmo
-journey-map New Customer Onboarding
+journey-map First Voyage Aboard the Black Pearl
+solid-fill
 
-persona Alex color: blue
-  Mid-market product manager evaluating analytics tools
-  Needs to convince three internal stakeholders before purchase
+persona Squidlips Sam color: blue
+  Greenhorn cabin boy, first time at sea
+  Sworn to the crew but quietly terrified
 
-tag Stage as s
-  Discovery blue
-  Trial green
-  Activation orange
-  Expansion purple
+[Boarding]
+  Sign the articles score: 4, emotion: Hopeful
+    thought: This is the start of a legendary career
+    description: Captain reads the code aloud — pay shares, no women aboard, lights out at 8
 
-[Discovery]
-  Search for solutions 3, s: Discovery
-    thought: There must be something better than spreadsheets
-    description: Lands on the marketing site via Google
-  Compare three vendors 2 Cautious, s: Discovery
-    pain: Pricing pages are hard to compare apples-to-apples
-    opportunity: A side-by-side comparison page would help
+[Storm]
+  Caught in a tempest off Tortuga score: 1, emotion: Terrified
+    pain: Two crewmates lost overboard before dawn
+    pain: Hold floods to the knees, pumps barely keep pace
+    thought: Maybe the merchant fleet wasn't so bad after all
 
-[Trial]
-  Sign up for free trial 4 Hopeful, s: Trial
-    description: Account created in under 30 seconds
-  Complete first integration 2 Frustrated, s: Trial
-    pain: Auth setup took longer than expected
-    thought: Hope this is worth the effort
-  Build first dashboard 5 Excited, s: Trial
-    description: First chart renders, the wow moment
-    opportunity: Surface example dashboards earlier
-
-[Activation]
-  Invite teammates 4, s: Activation
-    description: Three colleagues join the workspace
-  Schedule weekly review 5 Confident, s: Activation
-    thought: This is becoming part of how we work
-  Hit feature ceiling on free plan 2 Pressured, s: Activation
-    pain: Cannot export beyond 100 rows
-    opportunity: Show upgrade value contextually
-
-[Expansion]
-  Convert to paid plan 4, s: Expansion
-    description: Picks team plan after stakeholder approval
-  Roll out to second department 5 Triumphant, s: Expansion
-    description: Marketing team adopts the same workspace
+[Riches]
+  Sight a Spanish galleon score: 5, emotion: Elated
+    opportunity: Heavy with silver from the Veracruz mines
+    description: First taste of plunder — three doubloons in his share
 ```
 
 ---
@@ -414,20 +406,21 @@ tag Stage as s
 ## Map
 
 ```dgmo
-map Global Market Presence
-region world
+map The Brethren's Caribbean
 
-tag Market as m
-  HQ blue
-  Region teal
-  Prospect orange
-active-tag Market
+tag Port as p
+  Home Port red
+  Friendly green
+  Spanish Prize orange
 
-United States m: HQ
-Germany m: Region
-Japan m: Region
-Brazil m: Prospect
-Australia m: Prospect
+poi Kingston p: Home Port, value: 120
+poi Havana p: Spanish Prize, value: 90
+poi Santo Domingo p: Friendly, value: 70
+
+route Kingston style: arc
+  -weigh anchor-> Havana
+  -raid the galleons-> Santo Domingo
+  -careen & resupply-> Kingston
 ```
 
 ---
@@ -435,145 +428,135 @@ Australia m: Prospect
 ## Org Chart
 
 ```dgmo
-org Engineering Department
+org The Dread Fleet
+solid-fill
+sub-node-label Crew
+show-sub-node-count
+
+tag Rank as r
+  Sailor blue
+  Captain red
+  FirstMate orange
+  Quartermaster yellow
+  Bosun green
+  Gunner teal
+  Jester cyan
+  Swab purple
+
+tag Ship as s
+  Revenge blue
+  Serpent green
+  Phantom purple
+
+tag Status as st
+  Loyal green
+  Turncoat red
+  NewRecruit yellow
+
+Blackbeard r: Captain, s: Revenge
+  Anne Bonny r: FirstMate
+    [Gun Deck]
+      Cannonball Pete r: Gunner
+      Smokey Jack r: Gunner, st: NewRecruit
+      Powder Meg r: Swab, st: NewRecruit
+    [Boarding Party]
+      Cutlass Jim r: Bosun
+      Red Mary
+      One-Eyed Dan st: Turncoat
+  Calico Rackham r: Quartermaster
+    [Cargo Hold]
+      Barnacle Bob
+      Slippery Sal st: Turncoat
+  Long John r: FirstMate, s: Serpent
+    [Rigging Crew]
+      Monkey Fist r: Bosun
+      Pegleg Pete
+      Crow Jane
+    [Navigation]
+      Stargazer Quinn r: Quartermaster
+      Compass Rose st: NewRecruit
+```
+
+---
+
+## Pyramid Diagram
+
+```dgmo
+pyramid Pirate Crew Hierarchy
 solid-fill
 
-tag Role as r
-  VP red
-  Director orange
-  Manager yellow
-  Lead green
-  IC blue
+Captain purple
+  Final word on heading and plunder,
+  keeper of the ship's charter.
 
-VP Engineering r: VP
-  Director of Platform r: Director
-    Infrastructure Lead r: Lead
-      Backend Engineer r: IC
-      Backend Engineer r: IC
-      SRE r: IC
-    Data Lead r: Lead
-      Data Engineer r: IC
-      Analytics Engineer r: IC
-  Director of Product Eng r: Director
-    Web Manager r: Manager
-      Frontend Engineer r: IC
-      Frontend Engineer r: IC
-      Designer r: IC
-    Mobile Manager r: Manager
-      iOS Engineer r: IC
-      Android Engineer r: IC
-  QA Manager r: Manager
-    QA Engineer r: IC
-    QA Engineer r: IC
+Quartermaster blue
+  Second-in-command, arbitrates
+  disputes, divvies the booty.
+
+Boatswain & Gunner green
+  Keep the rigging tight and
+  the cannons ready.
+
+Able Seamen yellow
+  Haul lines, swab decks,
+  and stand watch.
+
+Powder Monkeys orange
+  Ferry shot and charges to the guns
+  during a broadside.
 ```
 
 ---
 
-## Pyramid
+## Quadrant Chart
 
 ```dgmo
-pyramid Maslow's Hierarchy of Needs
+quadrant Crew Performance Assessment
+x-label Low Skill, High Skill
+y-label Low Loyalty, High Loyalty
+
+top-right Promote green
+top-left Train yellow
+bottom-left Maroon red
+bottom-right Watch Closely purple
+
+Quartermaster  0.9 0.95
+Navigator     0.85  0.8
+Gunner         0.7  0.6
+Surgeon        0.8 0.75
+Boatswain      0.6 0.85
+Cook           0.4  0.9
+New Recruit    0.2  0.5
+Troublemaker  0.65  0.2
+Spy            0.8  0.1
+```
+
+---
+
+## Ring Diagram
+
+```dgmo
+ring Captain's Sphere of Influence
 solid-fill
 
-Self-Actualization color: purple
-  Personal growth, creativity, fulfillment of potential
+Captain red
+  Final word on heading and plunder,
+  keeper of the ship's charter.
 
-Esteem color: blue
-  Confidence, achievement, respect from others
+Quartermaster orange
+  Second-in-command, arbitrates disputes and divvies the booty
 
-Belonging color: green
-  Friendship, family, intimacy, sense of connection
+Crew yellow
+  Deckhands, gunners, and powder
+  monkeys aboard the ship.
 
-Safety color: yellow
-  Security of body, employment, health, property
+Allied Crews green
+  Loose alliances kept by oath
+  or shared bounty in fair seas.
 
-Physiological color: red
-  Food, water, warmth, rest, shelter
-```
-
----
-
-## Quadrant
-
-```dgmo
-quadrant Feature Prioritization Matrix
-x-label Low Effort, High Effort
-y-label Low Impact, High Impact
-
-top-left Quick Wins green
-top-right Major Projects blue
-bottom-left Fill-ins gray
-bottom-right Avoid red
-
-Dark Mode blue        0.25  0.85
-API v2 red             0.8   0.9
-Fix Typos                0.1   0.15
-SSO Integration          0.75  0.7
-Export CSV               0.3   0.6
-Mobile App               0.9   0.95
-Inline Help Tooltips     0.2   0.7
-Refactor Auth Module     0.85  0.4
-```
-
----
-
-## Ring
-
-```dgmo
-ring Product Manager's Sphere of Influence
-solid-fill
-
-Direct Team color: red
-  Engineers, designers, QA — daily
-  collaboration on the roadmap.
-
-Cross-Functional Partners color: orange
-  Sales, marketing, support — quarterly
-  planning and feature requests.
-
-Executive Stakeholders color: yellow
-  CEO, CTO, VP Sales — strategic
-  alignment and budget approval.
-
-External Customers color: green
-  Users, beta testers, advisory board —
-  feedback shapes priorities.
-
-Industry & Competitors color: blue
-  Market trends, competitive moves —
-  context but not directly controllable.
-```
-
----
-
-## Sankey
-
-```dgmo
-sankey Website Traffic Flow
-
-Organic Search green
-  Landing Page 450
-Paid Ads orange
-  Landing Page 280
-Social Media blue
-  Landing Page 180
-
-Landing Page
-  Sign Up 340
-  Browse Products 520
-  Bounce 260 red
-
-Sign Up
-  Free Trial 240
-  Paid Plan 100
-
-Browse Products
-  Add to Cart 310
-  Exit 210 red
-
-Add to Cart
-  Purchase green 220
-  Abandon 90 red
+The Open Sea blue
+  Weather, currents, and rival
+  flags beyond any captain's reach.
 ```
 
 ---
@@ -581,64 +564,75 @@ Add to Cart
 ## Tech Radar
 
 ```dgmo
-tech-radar Frontend Tech Stack — Q1 2026
+tech-radar Pirate Operations Radar — Q2 1718
 
 rings
-  Adopt
-  Trial
-  Assess
-  Hold
+  Full Sail
+  Trial Run
+  Spyglass
+  Davy Jones
 
-Frameworks quadrant: top-right
-  React ring: Adopt, trend: stable
-    Default for all new web surfaces. Strong ecosystem and team familiarity.
-  Astro ring: Adopt, trend: up
-    Standard for marketing and content-heavy pages. Ships almost zero JS.
-  SolidJS ring: Trial, trend: new
-    Promising performance characteristics. Two pilot projects underway.
-  Vue ring: Hold, trend: down
-    Legacy admin app only. New work goes to React.
+Tactics quadrant: top-right
+  Ambush at Dawn ring: Full Sail, trend: stable
+    Our most reliable boarding tactic. **90% success rate** when
+    approaching from the east with the sun behind us.
+  Boarding Parties ring: Full Sail, trend: stable
+    Standard 20-man teams equipped with **cutlasses**, *grappling hooks*,
+    and smoke pots.
+  Decoy Flags ring: Trial Run, trend: up
+    Flying false colours until within cannon range. Merchant ships
+    drop anchor **40% more often** when they see a Dutch East India flag.
+  Night Raids ring: Trial Run, trend: up
+    Blackened sails and muffled oars.
+  Ramming ring: Davy Jones, trend: down
+    Costs more in hull repairs than it's worth.
 
-Build & Tooling quadrant: top-left
-  Vite ring: Adopt, trend: stable
-    Fast HMR, good TypeScript story.
-  Bun ring: Trial, trend: up
-    Faster install + test runner. Caveats with some native modules.
-  Webpack ring: Hold, trend: down
-    Migrating remaining bundles to Vite by Q3.
+Vessels quadrant: top-left
+  Brigantine ring: Full Sail, trend: stable
+    Our workhorse. Fast, manoeuvrable, **18 cannons**.
+  Sloop ring: Full Sail, trend: up
+    Fastest ship in the fleet. Perfect for *reconnaissance*.
+  War Galleon ring: Trial Run, trend: up
+    Captured from the Spanish fleet. Massive firepower.
+  Longboat ring: Davy Jones, trend: down
+    Too slow, too small, too leaky.
 
-State & Data quadrant: bottom-left
-  Zustand ring: Adopt, trend: stable
-    Lightweight, no provider boilerplate.
-  TanStack Query ring: Adopt, trend: stable
-    Standard for server state and caching.
-  Redux Toolkit ring: Hold, trend: down
-    Existing apps only. Don't introduce in new code.
+Plunder Targets quadrant: bottom-left
+  Merchant Convoys ring: Full Sail, trend: stable
+    Core revenue stream — **78% of total plunder**.
+  Spanish Treasure Fleets ring: Full Sail, trend: stable
+    The **crown jewels** of piracy.
+  Port Raids ring: Trial Run, trend: up
+    Shifting from sea-only operations.
+  Fishing Villages ring: Davy Jones, trend: down
+    Terrible ROI and **bad for reputation**.
 
-Styling quadrant: bottom-right
-  Tailwind CSS ring: Adopt, trend: stable
-    Standard utility framework across all surfaces.
-  CSS Modules ring: Trial, trend: stable
-    For complex component-scoped styles where Tailwind feels heavy.
-  styled-components ring: Hold, trend: down
-    Runtime cost is no longer worth it. Migrate to Tailwind or CSS Modules.
+Crew Welfare quadrant: bottom-right
+  Grog Rations ring: Full Sail, trend: stable
+    Non-negotiable. Current allocation: **2 pints per day** per pirate.
+  Code of Conduct ring: Full Sail, trend: stable
+    Our **Articles of Agreement** — fair share, fair vote.
+  Sea Shanty Program ring: Trial Run, trend: new
+    Hired a shanty master from *Liverpool*. Productivity up **25%**.
+  Plank Walking ring: Davy Jones, trend: down
+    Terrible for recruitment and **crew retention**.
 ```
 
 ---
 
-## Venn
+## Venn Diagram
 
 ```dgmo
-venn Full-Stack Developer Skills
+venn Pirate Skill Overlap
 
-Frontend blue
-Backend green
-DevOps orange
+Swordsmanship as sw red
+Navigation as nav blue
+Leadership as lead green
 
-Frontend + Backend Web Apps
-Backend + DevOps Infrastructure
-Frontend + DevOps CI/CD
-Frontend + Backend + DevOps Unicorns
+sw + nav        Sea Raiders
+nav + lead      Voyager Captains
+sw + lead       Buccaneer Chiefs
+sw + nav + lead Legendary Pirates
 ```
 
 ---
@@ -646,24 +640,22 @@ Frontend + Backend + DevOps Unicorns
 ## Word Cloud
 
 ```dgmo
-wordcloud Tech Conference Topics
+wordcloud Pirate Skills
 
-Kubernetes 95
-Machine Learning 88
-Microservices 72
-DevOps 68
-Serverless 55
-GraphQL 48
-TypeScript 82
-Rust 62
-WebAssembly 45
-Edge Computing 38
-Observability 52
-Platform Engineering 60
-AI Agents 90
-LLM 85
-Vector Databases 50
-RAG 65
+swordsmanship 95
+navigation    88
+seamanship    85
+gunnery       80
+leadership    75
+cartography   70
+intimidation  68
+sailing       65
+plundering    60
+knot-tying    55
+lookout       50
+cooking       45
+carpentry     40
+fishing       35
 ```
 
 ---
@@ -673,110 +665,109 @@ RAG 65
 ## DACI
 
 ```dgmo
-raci Architecture Decisions
+raci Captain's Council Decisions
 variant-daci
 roles
-  CTO
-  TechLead
-  Engineer
-  Security
+  Captain
+  Quartermaster
+  Navigator
+  Bosun
 
-[Database Choices]
-  Pick primary database
-    TechLead: D
-    CTO: A
-    Engineer: C
-    Security: C
-  Schema migration strategy
-    TechLead: D A
-    Engineer: C
-  Backup and DR plan
-    TechLead: D
-    CTO: A
-    Security: C
+[Raid Planning]
+  Choose the next prize
+    Navigator: D
+    Captain: A
+    Quartermaster: C
+    Bosun: I
+  Set the attack heading
+    Navigator: D A
+    Captain: C
+  Divide the boarding parties
+    Bosun: D
+    Captain: A
+    Quartermaster: C
 
-[Auth & Identity]
-  Choose SSO provider
-    Security: D
-    CTO: A
-    TechLead: C
-  Session token storage
-    Security: D A
-    Engineer: I
-  MFA rollout plan
-    Security: D
-    CTO: A
-    Engineer: C
+[Provisioning]
+  Ration the grog
+    Quartermaster: D A
+    Bosun: C
+  Restock the powder
+    Quartermaster: D
+    Captain: A
+    Bosun: I
 ```
 
 ---
 
-## Gantt
+## Gantt Chart
 
 ```dgmo
-gantt Product Launch Plan
-start 2026-01-15
-dependencies
+gantt Blackbeard's Blockade — 1718
 
-tag Team as t
-  Engineering blue
-  Design purple
-  QA orange
+start 1718-05-01
+today-marker 1718-05-15
 
-parallel
-  [Backend] t: Engineering
-    30bd Database Layer progress: 80
-    10bd? Auth Module progress: 100
-    parallel
-      5bd Load Testing t: QA
-      5bd Security Audit t: QA
+tag Role as r
+  Command red
+  Crew blue
+  Captives orange
 
-  [Frontend] t: Design
-    15bd Component Library
-    10bd API Integration t: Engineering
-    5bd Polish progress: 30
+marker 1718-05-22 Ransom Deadline red
+era 1718-05-10 -> 1718-05-18 Blockade Active blue
 
-[Integration] t: QA
-  10bd E2E Testing
-  0d Release Candidate
+[Preparation] r: Command
+  Anchor Fleet 7d progress: 100
+    -> Deploy Sloops 4d r: Crew, progress: 100
+
+[Blockade] r: Crew
+  Seize Merchants 12d progress: 80
+  Hold Hostages 8d r: Captives, progress: 60
+
+[Negotiations] r: Command
+  Demand Medicine 8d progress: 50
+    -> Threaten Executions 6d? progress: 40
+
+[Resolution] r: Command
+  Receive Ransom 3d r: Captives
+    -> Release Prisoners 0d
 ```
 
 ---
 
-## Kanban
+## Kanban Board
 
 ```dgmo
-kanban Sprint 7
-solid-fill
+kanban Crew Tasks
 
-tag Priority
-  Low green
+tag Priority as p
+  Low blue
   Medium yellow
   High orange
-  Urgent red
+  Critical red
 
-tag Owner as o
-  Alex blue
-  Jordan purple
-  Sam teal
+tag Watch as w
+  Morning green
+  Afternoon yellow
+  Night purple
 
-[To Do] red
-  Recruit two senior engineers priority: High, o: Alex
-  Draft Q2 release plan priority: Urgent, o: Alex
-  Update onboarding docs priority: Low, o: Sam
+[Backlog] blue
+  Repair the foretops'l p: Low, w: Morning
+    Mend after the last storm
+  Reinforce the gunwales p: Medium, w: Afternoon
 
-[In Progress] orange wip: 3
-  Define API contracts priority: High, o: Jordan
-  Refactor auth module priority: Urgent, o: Jordan
-  Build settings UI priority: Medium, o: Sam
+[In Progress] yellow
+  Restock powder kegs p: High, w: Morning
+    Last batch ran damp
+  Caulk the hull seams p: High, w: Afternoon
+    Hold has been taking water
 
-[Review] blue
-  Mobile push notifications priority: High, o: Alex
-  Analytics dashboard priority: Medium, o: Sam
+[Blocked] red
+  Find a new sailmaker p: Critical, w: Morning
+    Old one took ill at last port
 
 [Done] green
-  Deploy staging environment priority: High, o: Jordan
-  Fix login regression priority: Low, o: Sam
+  Inventory the hold p: Medium, w: Night
+  Sharpen the cutlasses p: Low, w: Night
 ```
 
 ---
@@ -784,93 +775,72 @@ tag Owner as o
 ## PERT
 
 ```dgmo
-pert Product Launch Critical Path
+pert Pirate Voyage to the Atoll
 time-unit w
 default-confidence medium
 
-kickoff 0
-  -> requirements
+voyage approved 0
+  -> recruit crew
 
-[Requirements & Design]
-  requirements 1 2 3
-    -> tech spec
-    -> wireframes
-  tech spec 2 3 5
-    -> api design
-  wireframes 1 2 3
-    -> ui prototype
+[outfit ship]
+  recruit crew 1 2 4 as rc
+    -> load powder
+  careen hull 1.5
+    -> load powder
+  load powder 0.5 1 2
+    -> sail to atoll
 
-api design 1 2 3
-  -> backend build
-ui prototype 1 2 3
-  -> frontend build
+sail to atoll 5
+  -> count gold
+  -> repair hull
 
-[Build]
-  backend build 3 5 8
-    -> integration
-  frontend build 3 5 7
-    -> integration
+count gold 1 2 3
+  -> divvy shares
 
-integration 1 2 4
-  -> qa
-  -> docs
+repair hull 3
+  -> divvy shares
 
-qa 1 2 3
-  -> launch
-docs 1 2 3
-  -> launch
-
-launch 0
+divvy shares 1 2 3
 ```
 
 ---
 
-## RACI
+## RACI Matrix
 
 ```dgmo
-raci Q3 Product Launch
+raci Voyage Operations
 roles
-  PM    color: blue
-  Eng   color: green
-  UX    color: purple
-  Mkt   color: orange
-  Sales color: red
+  Cap  red
+  QM   orange
+  Bos  yellow
+  Nav  blue
+  Crew gray
 
-[Discovery]
-  Define the problem
-    PM: A R
-    UX: C
-    Eng: I
-  Customer interviews
-    PM: A
-    UX: R
-    Mkt: C
+[Departure] teal
+  Plot the course
+    Cap: A
+    Nav: R
+    QM: C
+  Provision the hold
+    QM: A R
+    Cap: C
+    Crew: I
 
-[Build]
-  Spec the API
-    PM: C
-    Eng: A R
-  Ship the prototype
-    Eng: A R
-    UX: C
-    PM: I
-  Design system updates
-    UX: A R
-    Eng: C
+[At Sea] purple
+  Stand the watch
+    Bos: A
+    Crew: R
+  Mend sail damage
+    Bos: A
+    Crew: R
 
-[Launch]
-  Pricing and positioning
-    PM: C
-    Mkt: A R
-    Sales: C
-  Sales enablement
-    Mkt: C
-    Sales: A R
-    Eng: I
-  Public launch
-    PM: C
-    Mkt: A R
-    Sales: C
+[Landfall] green
+  Negotiate with port
+    Cap: A R
+    QM: C
+  Inventory the take
+    QM: A R
+    Crew: I
 ```
 
 ---
@@ -878,36 +848,31 @@ roles
 ## RASCI
 
 ```dgmo
-rasci Sprint Planning
+rasci Voyage Preparation
 roles
-  PM
-  TechLead
-  Engineer
-  QA
-  Designer
+  Captain
+  Quartermaster
+  Bosun
+  Cook
+  Surgeon
 
-[Refinement]
-  Triage backlog
-    PM: A R
-    TechLead: C
-    Engineer: S
-  Estimate stories
-    TechLead: A R
-    Engineer: R
-    PM: C
+[Outfitting]
+  Provision the hold
+    Quartermaster: A R
+    Cook: S
+    Captain: C
+  Mend the sails
+    Bosun: A R
+    Quartermaster: C
 
-[Sprint Execution]
-  Implement feature
-    Engineer: A R
-    TechLead: S
-    QA: I
-  Design review
-    Designer: A R
-    Engineer: C
-    PM: I
-  Run test suite
-    QA: A R
-    Engineer: S
+[At Sea]
+  Tend the wounded
+    Surgeon: A R
+    Cook: S
+    Captain: I
+  Stand the night watch
+    Bosun: A R
+    Quartermaster: S
 ```
 
 ---
@@ -915,28 +880,40 @@ roles
 ## Timeline
 
 ```dgmo
-timeline Product Roadmap 2026
+timeline The Golden Age of Piracy (1716–1722)
+scale on
 
-tag Team as t
-  Engineering blue
-  Design purple
-  QA orange
+tag Pirate as p
+  Blackbeard red
+  Bonny & Rackham purple
+  Roberts blue
 
-era 2026-01 -> 2026-06 Phase 1: Foundation
-era 2026-07 -> 2026-12 Phase 2: Growth teal
+tag Outcome as o
+  Uncertain yellow
+  Victory green
+  Defeat red
 
-marker 2026-03 Beta Launch red
-marker 2026-09 GA Release green
+tag Theatre as t
+  Caribbean teal
+  Atlantic blue
+  Africa orange
 
-2026-01 -> 2026-03 Core API Development t: Engineering
-2026-02 -> 2026-05 Auth and Permissions t: Engineering
-2026-04 -> 2026-07 Real-time Features t: Engineering
-2026-08 -> 2026-11 Performance Optimization t: Engineering
-2026-01 -> 2026-02 Design System v1 t: Design
-2026-03 -> 2026-05 User Research t: Design
-2026-06 -> 2026-08 Design System v2 t: Design
-2026-04 -> 2026-06 Test Automation Suite t: QA
-2026-09 -> 2026-12 Launch QA Hardening t: QA
+era 1716->1718 Nassau Republic
+era 1719->1722 Roberts Era
+
+marker 1718-07 Woodes Rogers arrives orange
+marker 1721-08 Roberts reaches peak teal
+
+1716 -> 1717 Sails under Hornigold p: Blackbeard, o: Victory
+1717-11 -> 1718-06 Commands Queen Anne's Revenge p: Blackbeard, o: Victory, t: Atlantic
+1718-05 Blockades Charleston harbor p: Blackbeard, o: Victory
+1718-11-22 Killed at Ocracoke p: Blackbeard, o: Defeat
+1718 -> 1719 Rackham builds crew in Nassau p: Bonny & Rackham, o: Victory
+1719-03 -> 1720-10? Bonny & Rackham raid together p: Bonny & Rackham
+1720-11 Rackham hanged at Port Royal p: Bonny & Rackham, o: Defeat
+1719-06 -> 1720 Raids West African coast p: Roberts, o: Victory, t: Africa
+1720 -> 1722 Captures 400+ ships p: Roberts, o: Victory, t: Atlantic
+1722-02-10 Killed at Cape Lopez p: Roberts, o: Defeat, t: Africa
 ```
 
 ---
@@ -946,39 +923,32 @@ marker 2026-09 GA Release green
 ## Boxes and Lines
 
 ```dgmo
-boxes-and-lines System Architecture
+boxes-and-lines Pirate Fleet Command
 
 tag Status as s
   Operational green
-  Degraded orange
-  Down red
-  Planned blue default
+  Damaged orange
+  Sunk red
+  Building blue default
 
-active-tag Status
+Flagship s: Operational
+  -> [Harbor Defenses]
+  -> IntelNetwork
 
-MobileApp s: Operational
-  -> APIGateway
+[Harbor Defenses]
+  FortCannon s: Operational
+    -> Watchtower
+  Watchtower s: Operational
+  SeaMines s: Building
 
-WebApp s: Operational
-  -> APIGateway
+IntelNetwork s: Operational
+  -> SpyRing
+  -> SignalFlags
 
-APIGateway s: Operational
-  -> [Services]
-  -> AuthVendor
+SpyRing s: Operational
+  -> [Harbor Defenses]
 
-[Services]
-  UserService s: Operational
-    -> Database
-  OrderService s: Degraded
-    -> Database
-    -> PaymentVendor
-  Database s: Operational
-
-PaymentVendor s: Operational
-AuthVendor s: Operational
-
-AnalyticsPipeline s: Planned
-  -> Database
+SignalFlags s: Damaged
 ```
 
 ---
@@ -986,32 +956,37 @@ AnalyticsPipeline s: Planned
 ## C4 Architecture
 
 ```dgmo
-c4 Internet Banking System
+c4 Pirate Treasure Map System
 solid-fill
 
 tag Scope as sc
-  Internal blue
+  Crew blue
   External gray
 
-Customer is a person description: A retail customer of the bank, sc: External
+Captain is a person description: Commands the fleet and plans raids
 
-Banking is a system description: Core internet banking application, sc: Internal
-  -Uses-> Customer
+TreasureMap is a system description: Tracks buried treasure locations and raid intelligence
+  -Views treasure locations-> Captain
+  -Sends raid alerts [carrier pigeon]-> Lookout
 
   containers
-    WebApp is a container description: Single-page application, tech: React
-    API is a container description: Backend API serving the SPA, tech: Node.js
-    DB is a container is a database description: Customer accounts and transactions, tech: PostgreSQL
+    ChartRoom is a container description: Interactive sea chart with treasure markers, tech: Parchment
+      -Queries treasure data [secret code]-> Vault
 
-Email is a system description: External transactional email service, sc: External
-  ~Sends notifications via~> Banking
+    Vault is a container description: Encrypted treasure ledger and coordinates, tech: Iron Chest
+      -Reads/writes [quill and ink]-> TreasureLog
+
+    TreasureLog is a container description: Stores locations, guard counts, and loot inventories, tech: Leather-Bound Tome
+
+Lookout is an external description: Crow's nest spotter on allied ships, sc: External
+  ~Relays sightings to~> Captain
 
 deployment
-  CustomerDevice
-    container WebApp
-  CloudInfra
-    container API
-    container DB
+  Flagship
+    container ChartRoom
+    container Vault
+  SecretCave
+    container TreasureLog
 ```
 
 ---
@@ -1019,86 +994,75 @@ deployment
 ## Class Diagram
 
 ```dgmo
-class Shape Hierarchy
+class Ship Class Hierarchy
 
-interface Drawable
-  + draw(): void
-  + getBounds(): Rect
+interface Vessel
+  + sail(): void
+  + anchor(): void
 
-abstract Shape implements Drawable
-  # x: number
-  # y: number
-  + getPosition(): Point
-  + translate(dx: number, dy: number): void
+abstract Ship implements Vessel
+  # name: string
+  # crew: number
+  + getName(): string
 
-Circle extends Shape
-  - radius: number
-  + area(): number
+Galleon extends Ship
+  - cannons: number
+  + fire(): void
 
-Rectangle extends Shape
-  - width: number
-  - height: number
-  + area(): number
+Sloop extends Ship
+  - speed: number
+  + flee(): void
 
-Triangle extends Shape
-  - base: number
-  - height: number
-  + area(): number
+enum ShipType
+  Galleon
+  Sloop
+  Frigate
 
-enum ShapeKind
-  Circle
-  Rectangle
-  Triangle
-
-Shape
-  -> ShapeKind has kind
+Ship
+  -> ShipType has type
 ```
 
 ---
 
-## Entity-Relationship
+## Entity Relationship
 
 ```dgmo
-er Online Store
+er Pirate Fleet
 
-users
-  id int pk
-  email varchar unique
-  name varchar
-  created_at timestamp
-  1-places-* orders
-
-orders
-  id int pk
-  user_id int fk
-  status varchar
-  total decimal
-  created_at timestamp
-  1-contains-* order_items
-  ?-ships_to-1 addresses
-
-order_items
-  id int pk
-  order_id int fk
-  product_id int fk
-  quantity int
-  price_at_purchase decimal
-
-products
+ships
   id int pk
   name varchar
-  description text nullable
-  price decimal
-  stock int
-  1-listed_in-* order_items
+  ship_type varchar
+  cannons int
+  1-aboard-* crew_members
+  1-1 captains
+  1-carries-* treasure
 
-addresses
+captains
   id int pk
-  user_id int fk
-  line1 varchar
-  city varchar
-  postal_code varchar
-  country varchar
+  name varchar
+  ship_id int fk
+  bounty int
+  ?-frequents-1 ports
+  *-has-1 crew_members
+
+crew_members
+  id int pk
+  name varchar
+  ship_id int fk
+  role varchar nullable
+
+treasure
+  id int pk
+  name varchar
+  value int
+  ship_id int fk, nullable
+
+ports
+  id int pk
+  name varchar
+  region varchar unique
+  1-docks-* ships
 ```
 
 ---
@@ -1106,66 +1070,85 @@ addresses
 ## Flowchart
 
 ```dgmo
-flowchart Login Flow
-solid-fill
+flowchart Mutiny Resolution
+direction-tb
 
-(Open App) -> [Cached Session?]
-[Cached Session?] -- yes --> [Validate Token]
-[Cached Session?] -- no --> /Show Login/
+[Sail] Set sail under the captain
+{Trouble?} Discontent in the crew?
+[Hold]   Hold steady, stay loyal
+{Vote}   Crew vote called
+[Mutiny] Seize the ship
+[Maroon] Maroon the captain
+[New]    Elect a new captain
 
-[Validate Token] -- valid --> ((Home Screen)) green
-[Validate Token] -- expired --> /Show Login/
-
-/Show Login/ -> [[Submit Credentials]]
-[[Submit Credentials]] -- ok --> ((Home Screen))
-[[Submit Credentials]] -- 401 --> /Show Error/ red
-/Show Error/ -> /Show Login/
+(Sail) -> (Trouble?)
+(Trouble?) -No-> (Sail)
+(Trouble?) -Yes-> (Vote)
+(Vote) -Stay-> (Hold)
+(Vote) -Mutiny-> (Mutiny)
+(Mutiny) -> (Maroon)
+(Maroon) -> (New)
+(New) -> (Sail)
+(Hold) -> (Sail)
 ```
 
 ---
 
-## Infrastructure
+## Infrastructure Diagram
 
 ```dgmo
-infra Production Traffic Flow
+infra Pirate Communication Network
 
-tag Team as t
-  Platform blue
-  Backend teal
-  Data purple
+tag Fleet as f
+  Blackbeard red
+  Bonny purple
+  Rackham blue
 
 Edge
-  rps: 10000
-  -> CloudFront
+  rps: 200
+  -> SignalFlags
 
-CloudFront t: Platform
-  cache-hit: 80%
-  -> ALB
+SignalFlags f: Blackbeard
+  description: Flag semaphore relay — ship-to-ship messaging
+  latency-ms: 30000
+  -> Flagship
+  -> ScoutShip
 
-ALB t: Platform
-  -/api-> APIServer split: 70%
-  -/static-> StaticServer split: 30%
+Flagship f: Blackbeard
+  description: Command vessel — decrypts and routes all intelligence
+  instances: 1
+  max-rps: 50
+  latency-ms: 5000
+  -> CarrierPigeons
+  -> RumRunner
 
-APIServer t: Backend
-  instances: 4
-  max-rps: 500
-  latency-ms: 45
-  -> PostgresDB
-  ~events~> EventBus
-
-PostgresDB t: Data
-  latency-ms: 8
-
-EventBus t: Backend
-  buffer: 1000
-  -> AnalyticsWorker
-
-AnalyticsWorker t: Data
+ScoutShip f: Bonny
+  description: Fast sloop for reconnaissance
   instances: 2
-  max-rps: 100
+  max-rps: 30
+  latency-ms: 8000
+  -> Flagship
 
-StaticServer t: Platform
-  latency-ms: 5
+CarrierPigeons f: Rackham
+  description: Long-range bird relay — messages to allied ports
+  buffer: 100
+  drain-rate: 12
+  retention-hours: 72
+  -> TavernNetwork
+
+[Allied Ports]
+  instances: 3
+
+  TavernNetwork f: Rackham
+    description: Dockside tavern informants across the Caribbean
+    max-rps: 20
+    latency-ms: 86400000
+
+RumRunner f: Bonny
+  description: Smuggler supply line — moves coded messages in rum barrels
+  concurrency: 4
+  duration-ms: 172800000
+  -> TavernNetwork
 ```
 
 ---
@@ -1173,82 +1156,85 @@ StaticServer t: Platform
 ## Mindmap
 
 ```dgmo
-mindmap API Design Considerations
+mindmap Product Strategy
 
-Versioning
-  URL Path description: "/v1/users, /v2/users"
-  Header description: Accept: application/vnd.api+json;v=2
-  Sunset Policy description: Announce deprecation 6 months ahead
-Authentication
-  OAuth 2.0
-    Authorization Code Flow description: Web apps with backend
-    Client Credentials description: Server-to-server
-  API Keys description: Simple but harder to rotate
-Errors
-  Status Codes description: Use the right 4xx vs 5xx
-  Problem Details description: "RFC 7807 — type, title, detail, instance"
-  Idempotency description: Safe to retry on network failures
-Pagination
-  Cursor-based description: Stable across writes
-  Offset-based description: Simpler but breaks under inserts
-Performance
-  Caching
-    ETags description: Conditional GETs
-    Cache-Control description: "max-age, stale-while-revalidate"
-  Compression description: gzip and brotli on responses
-  Rate Limiting description: Per-key with retry-after header
+tag Priority as p
+  High red
+  Medium yellow
+  Low green
+
+tag Department as d
+  Engineering blue
+  Design purple
+  Marketing orange
+
+Research d: Marketing
+  User Interviews p: High
+    Surveys description: Quarterly NPS survey
+    Focus Groups
+  Competitor Analysis d: Engineering
+    Feature Matrix
+    Pricing Review
+Development p: High, d: Engineering
+  MVP Features
+    Auth System
+      description: Handle login, signup, OAuth flows
+    Dashboard
+  Nice-to-haves p: Low, collapsed: true
+    Dark Mode
+    Export PDF
+Go-to-Market d: Marketing
+  Launch Plan
+    Blog Post
+    Demo Video description: 2-min product walkthrough
 ```
 
 ---
 
-## Sequence
+## Sequence Diagram
 
 ```dgmo
-sequence Checkout Flow
+sequence Treasure Hunt App
 
-active-tag Team
+tag Concern as c
+  Search blue
+  Claims green
+  Notifications orange
 
-tag Team as t
-  Web blue
-  Backend green
-  Vendor orange
+tag Layer as l
+  Frontend teal
+  Backend purple
+  Data red
 
 User is an actor
-App t: Web
-[Backend] t: Backend
-  API
-  Orders
-  Inventory
-  DB
-Stripe t: Vendor
+WebApp l: Frontend
+TreasureAPI l: Backend
+MapDB is a database l: Data
+NotifyQueue is a queue l: Backend
 
-User -click checkout-> App
-App -POST /orders-> API
+User -Search nearby loot-> WebApp
+WebApp -GET /treasures?nearby-> TreasureAPI c: Search
 note
-  - validate cart
-  - check session
-API -createOrder-> Orders
-Orders -reserveStock-> Inventory
+  - check location
+  - use compass
+TreasureAPI -Find within 5nm-> MapDB c: Search
+MapDB -3 results-> TreasureAPI
+TreasureAPI -locations-> WebApp
+WebApp -Show treasure map-> User
 
-if stock available
-  Inventory -OK-> Orders
-  Orders -POST /charge-> Stripe
-  Stripe -charge_id-> Orders
-  Orders -writeOrder-> DB
-  DB -order_id-> Orders
-  Orders -201 Created-> API
-  API -receipt-> App
-  App -Show receipt-> User
+== Claim ==
+
+User -Claim chest #42-> WebApp
+WebApp -POST /claim-> TreasureAPI c: Claims
+if chest available
+  TreasureAPI -Set status = claimed-> MapDB c: Claims
+  MapDB -OK-> TreasureAPI
+  TreasureAPI -Claim accepted-> WebApp
+  WebApp -500 doubloons earned!-> User
+  TreasureAPI ~treasure.claimed~> NotifyQueue c: Notifications
 else
-  Inventory -out of stock-> Orders
-  Orders -409 Conflict-> API
-  API -error-> App
-  App -Sorry, sold out-> User
-
-== Notify ==
-
-Orders ~order.placed~> DB
-Orders ~analytics~> API
+  TreasureAPI -409 Already claimed-> WebApp
+  WebApp -Too slow, matey!-> User
 ```
 
 ---
@@ -1256,78 +1242,78 @@ Orders ~analytics~> API
 ## Sitemap
 
 ```dgmo
-sitemap SaaS Application
+sitemap Pirate Bay Trading Co.
 
 tag Access
   Public green
-  Authenticated blue
-  Admin red
+  Crew Only blue
+  Captain red
 
 tag Page
-  Marketing purple
+  Landing purple
   Form orange
   Content cyan
 
-Home Access: Public, Page: Marketing
-  -pricing-> Pricing
-  -signup-> Signup
-  -login-> Login
+Home Access: Public, Page: Landing
+  -shop-> Shop
+  -join-> Enlist
+  -map-> Treasure Map
+  -> [Port Market]
 
-Pricing Access: Public, Page: Marketing
-Signup Access: Public, Page: Form
-  -created-> Dashboard
-Login Access: Public, Page: Form
-  -ok-> Dashboard
+[Port Market]
+  Shop Access: Public, Page: Content
+    -buy-> Checkout
 
-[App]
-  Dashboard Access: Authenticated, Page: Content
-    -open-> Project
-  Project Access: Authenticated, Page: Content
-    -edit-> Settings
-  Settings Access: Authenticated, Page: Form
+  Checkout Access: Crew Only, Page: Form
+    -purchased-> Ship Log
 
-[Admin]
-  Users Access: Admin, Page: Content
-  Billing Access: Admin, Page: Content
-  AuditLog Access: Admin, Page: Content
+[Crew Quarters]
+  Enlist Access: Public, Page: Form
+    -enlisted-> Ship Log
+
+  Ship Log Access: Crew Only, Page: Content
+    -voyage-> Treasure Map
+
+  Treasure Map Access: Captain, Page: Content
 ```
 
 ---
 
-## State Machine
+## State Diagram
 
 ```dgmo
-state Order Lifecycle
+state Ship Battle Lifecycle
 solid-fill
 
-[*] -> Pending
+[*] -> Sailing
 
-Pending
-  -submit-> Validating
+Sailing
+  -enemy spotted-> BattleStations
 
-Validating
-  -approved-> Processing
-  -rejected-> Cancelled
+BattleStations
+  -in range-> Engaging
+  -enemy retreats-> Sailing
 
-[Fulfillment]
-  Processing
-    -pack-> Shipping
-    -out of stock-> Cancelled
+[Combat]
+  Engaging
+    -alongside-> Boarding
+    -hull breach-> Sinking
+    -outgunned-> Retreating
 
-  Shipping
-    -delivered-> Delivered
-    -lost-> Refunded
+  Boarding
+    -crew wins-> Victorious
+    -crew loses-> Captured
 
-[Resolution]
-  Delivered
-    -return request-> Returning
+[Aftermath]
+  Victorious
+    -loot taken-> Sailing
 
-  Returning
-    -received-> Refunded
+  Retreating
+    -escaped-> Sailing
+    -caught-> Captured
 
-Cancelled -> [*]
-Refunded -> [*]
-Delivered -> [*]
+Captured -> [*]
+Sinking -> [*]
 ```
 
 ---
@@ -1335,36 +1321,34 @@ Delivered -> [*]
 ## Wireframe
 
 ```dgmo
-wireframe Settings Screen
+wireframe Pirate Crew Portal
 
 [Header]
-  Workspace Settings
+  The Jolly Roger Crew Hub
   nav
-    General active
-    Members
-    Billing
-    Integrations
+    Dashboard active
+    Treasure Map
+    Ship Log
+    Crew Roster
 
 [Main]
-  # General
+  # Ahoy, Captain!
 
-  Workspace Name [Acme Corp]
-  Workspace URL [acme.example.com] readonly
+  Next Raid Target  [Port Royal]
+  Estimated Loot  [5000 doubloons] readonly
 
-  {Free | Team | Enterprise}
+  {The Revenge | The Serpent | The Phantom}
 
-  <x> Allow guest access
-  < > Require two-factor auth
-  <x> Show getting-started checklist
+  <x> Load extra cannons
+  < > Fly false colors
 
-  (*) Light theme
-  ( ) Dark theme
-  ( ) Match system
+  (*) Full crew
+  ( ) Skeleton crew
 
-  (Save Changes)
-  (Cancel) ghost
+  (Set Sail!)
+  (Abort Mission) ghost
 
   ---
 
-  Need help configuring? (Open Docs) ghost
+  New to piracy? (Read the Code) ghost
 ```
