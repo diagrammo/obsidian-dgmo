@@ -2,6 +2,7 @@ import {
   render,
   formatDgmoError,
   encodeDiagramUrl,
+  normalizeSvgForEmbed,
   palettes,
   type DgmoError,
   type PaletteConfig,
@@ -100,7 +101,14 @@ export async function renderDgmo(
   }
 
   const wrapper = container.createDiv({ cls: 'dgmo-container' });
-  const svgDoc = new DOMParser().parseFromString(svg, 'image/svg+xml');
+  // Tighten the export-canvas viewBox to the diagram's content so the SVG's
+  // intrinsic aspect ratio (used by scaleSvgToFit below) matches the content,
+  // not the fixed 1200×800 canvas — otherwise short diagrams reserve a tall
+  // band of dead space.
+  const svgDoc = new DOMParser().parseFromString(
+    normalizeSvgForEmbed(svg),
+    'image/svg+xml'
+  );
   const svgNode = svgDoc.documentElement;
   if (svgNode) wrapper.appendChild(wrapper.doc.importNode(svgNode, true));
   scaleSvgToFit(wrapper);
