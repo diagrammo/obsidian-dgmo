@@ -8,10 +8,12 @@
     "node": ">=20.6"
   },
   "scripts": {
-    "build": "node esbuild.config.mjs",
-    "dev": "node esbuild.config.mjs --watch",
-    "test": "vitest run",
-    "typecheck": "tsc --noEmit",
+    "gen:map-data": "node scripts/copy-map-data.mjs",
+    "postinstall": "node scripts/copy-map-data.mjs",
+    "build": "node scripts/copy-map-data.mjs && node esbuild.config.mjs",
+    "dev": "node scripts/copy-map-data.mjs && node esbuild.config.mjs --watch",
+    "test": "node scripts/copy-map-data.mjs && vitest run",
+    "typecheck": "node scripts/copy-map-data.mjs && tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write src/",
@@ -19,7 +21,7 @@
     "check:security": "pnpm audit --prod"
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.21.0"
+    "@diagrammo/dgmo": "^0.22.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

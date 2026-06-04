@@ -11,6 +11,7 @@ import {
   parseMap,
   resolveMap,
   renderMapForExport,
+  mapExportDimensions,
 } from '@diagrammo/dgmo/internal';
 import { mapData } from './map-data';
 
@@ -125,11 +126,11 @@ function renderMapDgmo(
   const exportDiv = document.createElement('div');
   try {
     resolved = resolveMap(parseMap(source), mapData);
-    // Fixed export canvas; scaleSvgToFit makes the result responsive.
-    renderMapForExport(exportDiv, resolved, mapData, palette, isDark, {
-      width: 1200,
-      height: 800,
-    });
+    // Content-aware canvas: height derived from the map's intrinsic projected
+    // aspect (no vertical stretch). The viewBox-derived aspect-ratio set below
+    // makes the embed responsive at width:100%.
+    const dims = mapExportDimensions(resolved, mapData, 1200);
+    renderMapForExport(exportDiv, resolved, mapData, palette, isDark, dims);
   } catch (err) {
     showError(
       container,
