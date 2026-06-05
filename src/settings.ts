@@ -8,7 +8,7 @@ export interface DgmoSettings {
 }
 
 export const DEFAULT_SETTINGS: DgmoSettings = {
-  palette: 'nord',
+  palette: 'slate',
   theme: 'auto',
 };
 
