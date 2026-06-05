@@ -55,30 +55,11 @@ This creates a `Diagrammo Examples.md` file in your vault with working examples 
 
 ## Install
 
-### From Obsidian Community Plugins (recommended)
-
-The plugin is listed at [community.obsidian.md/plugins/dgmo](https://community.obsidian.md/plugins/dgmo).
-
-1. Open **Settings > Community Plugins > Browse**
+1. Open **Settings > Community Plugins > Browse** in Obsidian
 2. Search for "Diagrammo Diagrams"
 3. Click **Install**, then **Enable**
 
-### With BRAT (beta / pre-release builds)
-
-[BRAT](https://github.com/TfTHacker/obsidian42-brat) installs and auto-updates plugins straight from GitHub. Use it if you want to test unreleased changes before they hit the Community Plugins store.
-
-1. In Obsidian, open **Settings > Community Plugins > Browse**, install **Obsidian42 - BRAT**, and enable it
-2. Open **Settings > BRAT > Beta Plugin List** and click **Add Beta Plugin**
-3. Paste this repo URL: `https://github.com/diagrammo/obsidian-dgmo`
-4. Leave the version dropdown on **Latest version** and click **Add Plugin**
-5. Enable **Diagrammo Diagrams** under **Settings > Community Plugins**
-
-### Manual install
-
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/diagrammo/obsidian-dgmo/releases)
-2. Create a folder: `<vault>/.obsidian/plugins/dgmo/`
-3. Copy the three files into that folder
-4. Enable the plugin in **Settings > Community Plugins**
+Or install directly from [community.obsidian.md/plugins/dgmo](https://community.obsidian.md/plugins/dgmo).
 
 ## Development
 
