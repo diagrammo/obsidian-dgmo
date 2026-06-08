@@ -50,7 +50,7 @@ This creates a `Diagrammo Examples.md` file in your vault with working examples 
 
 | Setting | Description | Default |
 |---------|-------------|---------|
-| **Palette** | Color palette for all diagrams — all 8 dgmo palettes available (slate, atlas, blueprint, facet, tidewater, nord, catppuccin, tokyo-night) | `slate` |
+| **Palette** | Color palette for all diagrams — all 7 dgmo palettes available (slate, atlas, blueprint, tidewater, nord, catppuccin, tokyo-night) | `slate` |
 | **Theme** | Light, dark, or auto (follows Obsidian's theme) | `auto` |
 
 ## Install
