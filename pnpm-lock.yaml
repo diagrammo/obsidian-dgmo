@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@diagrammo/dgmo':
-        specifier: ^0.27.0
-        version: 0.27.0(@codemirror/state@6.6.0)
+        specifier: ^0.28.0
+        version: 0.28.0(@codemirror/state@6.6.0)
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -168,8 +168,8 @@ packages:
   '@dagrejs/graphlib@4.0.1':
     resolution: {integrity: sha512-IvcV6FduIIAmLwnH+yun+QtV36SC7mERqa86aClNqmMN09WhmPPYU8ckHrZBozErf+UvHPWOTJYaGYiIcs0DgA==}
 
-  '@diagrammo/dgmo@0.27.0':
-    resolution: {integrity: sha512-M3u4dr2mTaI1MYyUv+IwVQT6sPIqNeyEQsth7Nx9zvJgSbgA1V3oY6NDLz4AeAKZHPxkxD/kQT53gzhI9ePrXg==}
+  '@diagrammo/dgmo@0.28.0':
+    resolution: {integrity: sha512-XWM3WeVccPpWncdSt3NIC9fCSvtJv9h4XVLygUiS/xNHnpsDngF9RTQABmeLJQbCc7xqu7h3AaDCivCrjtmnsg==}
     engines: {node: '>=20.6'}
     hasBin: true
     peerDependencies:
@@ -1261,9 +1261,6 @@ packages:
 
   echarts@6.1.0:
     resolution: {integrity: sha512-q0yaFPggC9FUdsWH4blavRWFmxdrIodbkoKNAjJudAI6CA9gNPxHtV2RcZNEepZVlk4yvBYkOkbk6HIVpIyHZA==}
-
-  elkjs@0.11.1:
-    resolution: {integrity: sha512-zxxR9k+rx5ktMwT/FwyLdPCrq7xN6e4VGGHH8hA01vVYKjTFik7nHOxBnAYtrgYUB1RpAiLvA1/U2YraWxyKKg==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -2473,7 +2470,7 @@ snapshots:
 
   '@dagrejs/graphlib@4.0.1': {}
 
-  '@diagrammo/dgmo@0.27.0(@codemirror/state@6.6.0)':
+  '@diagrammo/dgmo@0.28.0(@codemirror/state@6.6.0)':
     dependencies:
       '@dagrejs/dagre': 3.0.0
       '@resvg/resvg-js': 2.6.2
@@ -2485,7 +2482,6 @@ snapshots:
       d3-selection: 3.0.0
       d3-shape: 3.2.0
       echarts: 6.1.0
-      elkjs: 0.11.1
       jsdom: 29.1.1
       lz-string: 1.5.0
       topojson-client: 3.1.0
@@ -3398,8 +3394,6 @@ snapshots:
     dependencies:
       tslib: 2.3.0
       zrender: 6.1.0
-
-  elkjs@0.11.1: {}
 
   emoji-regex@8.0.0: {}
 
