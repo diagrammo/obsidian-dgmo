@@ -377,28 +377,32 @@ Celebrate red
 ## Journey Map
 
 ```dgmo
-journey-map First Voyage Aboard the Black Pearl
+journey-map A Cabin Boy's First Voyage
 solid-fill
 
 persona Squidlips Sam color: blue
   Greenhorn cabin boy, first time at sea
   Sworn to the crew but quietly terrified
 
-[Boarding]
+[Signing On]
   Sign the articles score: 4, emotion: Hopeful
-    thought: This is the start of a legendary career
     description: Captain reads the code aloud — pay shares, no women aboard, lights out at 8
 
-[Storm]
-  Caught in a tempest off Tortuga score: 1, emotion: Terrified
+[The Tempest]
+  Caught in a squall off the reef score: 1, emotion: Terrified
     pain: Two crewmates lost overboard before dawn
-    pain: Hold floods to the knees, pumps barely keep pace
     thought: Maybe the merchant fleet wasn't so bad after all
+  Dawn, and she still floats score: 3, emotion: Relieved
 
-[Riches]
-  Sight a Spanish galleon score: 5, emotion: Elated
-    opportunity: Heavy with silver from the Veracruz mines
-    description: First taste of plunder — three doubloons in his share
+[The Prize]
+  Strike the colors score: 5, emotion: Triumphant
+    description: Heavy with silver from the Veracruz mines
+
+[Homecoming]
+  Bury a share on the island score: 5, emotion: Proud
+    thought: Three doubloons hidden where only he can find them
+  Back to the Rusty Anchor score: 4, emotion: Content
+    opportunity: Next time he signs on as a full hand, not a boy
 ```
 
 ---
