@@ -3,7 +3,7 @@ import {
   formatDgmoError,
   encodeDiagramUrl,
   normalizeSvgForEmbed,
-  palettes,
+  resolvePaletteOrFallback,
   type DgmoError,
   type PaletteConfig,
 } from '@diagrammo/dgmo';
@@ -17,7 +17,10 @@ import {
 import { mapData } from './map-data';
 
 function resolvePalette(id: string): PaletteConfig {
-  return Object.values(palettes).find((p) => p.id === id) ?? palettes.nord;
+  // Silent resolution (no logger) — preserves Obsidian's current no-notice
+  // behavior. The resolve/fallback policy lives in @diagrammo/dgmo (Story
+  // 110.2); fallback is the dgmo default (slate).
+  return resolvePaletteOrFallback(id);
 }
 
 function showError(container: HTMLElement, message: string): void {
