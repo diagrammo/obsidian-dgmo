@@ -7,7 +7,7 @@ import {
   parseMap,
   renderMapForExport,
   resolveMap,
-} from '@diagrammo/dgmo/internal';
+} from '@diagrammo/dgmo/advanced';
 import { describe, expect, it } from 'vitest';
 
 import { mapData } from '../src/map-data';
