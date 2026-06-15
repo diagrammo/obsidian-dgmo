@@ -13,7 +13,7 @@ import {
   resolveMap,
   renderMapForExport,
   mapExportDimensions,
-} from '@diagrammo/dgmo/internal';
+} from '@diagrammo/dgmo/advanced';
 import { mapData } from './map-data';
 
 function resolvePalette(id: string): PaletteConfig {

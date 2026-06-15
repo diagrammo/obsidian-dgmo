@@ -11,7 +11,7 @@
 // esbuild's default JSON loader inlines the content at build time, so the
 // published main.js is self-contained — no runtime file lookup, no extra
 // release assets.
-import type { MapData } from '@diagrammo/dgmo/internal';
+import type { MapData } from '@diagrammo/dgmo/advanced';
 
 import gazetteer from '../vendor/map-data/gazetteer.json';
 import lakes from '../vendor/map-data/lakes.json';
