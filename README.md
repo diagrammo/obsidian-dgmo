@@ -2,7 +2,7 @@
 
 Write a `dgmo` code block and it renders as a diagram inline in your notes — reading mode and live preview, desktop and mobile.
 
-[Diagrammo](https://diagrammo.app) gives you 40+ chart types from one small plain-text language: data viz, software architecture, project planning, hierarchies, and more. Because the diagrams are plain text, they're searchable in Obsidian, diffable in git or Sync history, and never go stale the way an exported image does.
+[Diagrammo](https://diagrammo.app) gives you **45 chart types** from one small plain-text language: data viz, software architecture, project planning, hierarchies, geographic maps, and more. Because the diagrams are plain text, they're searchable in Obsidian, diffable in git or Sync history, and never go stale the way an exported image does.
 
 ![A geographic map with routes and points of interest, written as plain text in Diagrammo](https://diagrammo.app/readme/map.gif)
 
@@ -12,12 +12,12 @@ Every chart type from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) ren
 
 | Category | Types |
 |----------|-------|
-| **Data** | arc, area, bar, bar-stacked, chord, doughnut, function, heatmap, line, multi-line, pie, polar-area, radar, sankey, scatter, slope |
-| **Business** | cycle, funnel, journey-map, org, pyramid, quadrant, tech-radar, venn, wordcloud |
-| **Project** | gantt, kanban, timeline |
-| **Software** | boxes-and-lines, c4, class, er, flowchart, infra, mindmap, sequence, sitemap, state, wireframe |
+| **Data & charts** | arc, area, bar, bar-stacked, chord, doughnut, funnel, function, heatmap, line, multi-line, pie, polar-area, radar, sankey, scatter, slope, wordcloud |
+| **Business & strategy** | cycle, journey-map, map, org, pyramid, quadrant, ring, tech-radar, venn |
+| **Project & process** | gantt, kanban, pert, raci, rasci, daci, timeline |
+| **Software & architecture** | boxes-and-lines, c4, class, er, flowchart, infra, mindmap, sequence, sitemap, state, wireframe |
 
-Run **Diagrammo Diagrams: Create example note with all chart types** from the command palette to see every chart type rendered with working sample data. Full language reference at [diagrammo.app/docs](https://diagrammo.app/docs).
+Run **Diagrammo Diagrams: Create example note with all chart types** from the command palette to see every chart type rendered with working sample data. Full language reference at [diagrammo.app/reference](https://diagrammo.app/reference).
 
 ## Usage
 
@@ -37,6 +37,10 @@ Q4 5.9
 ````
 
 The diagram renders inline in reading mode and live preview. Hover any rendered diagram to reveal a small open-in-new-tab icon in the top-right corner — click it to pop the source open in [online.diagrammo.app](https://online.diagrammo.app) for live editing, with the same palette and theme.
+
+## Author in the Diagrammo app
+
+This plugin renders the exact same DGMO that powers the **[Diagrammo desktop app](https://diagrammo.app/app)** (native macOS, offline, auto-updating) and the **[online editor](https://online.diagrammo.app)** (any browser, nothing to install). When you want a heavier authoring session, open a diagram there for **live preview, autocomplete, optional vim keybindings, all 7 palettes (light/dark/transparent), and one-click PNG/SVG export plus shareable links** — then paste the text straight back into your note. Same language, same palettes, everywhere. There's even an [MCP server](https://diagrammo.app/ai) so AI assistants can draft diagrams for you.
 
 ## Example note
 
@@ -94,7 +98,7 @@ src/
 
 ### Dependencies
 
-- `@diagrammo/dgmo` `^0.14.1` — diagram parsing and rendering (bundled by esbuild; brings its own transitive rendering deps)
+- `@diagrammo/dgmo` `^0.30.0` — diagram parsing and rendering (bundled by esbuild; brings its own transitive rendering deps)
 - `obsidian` `^1.12.3` — Obsidian plugin API (dev only, externalized)
 
 ### Testing locally
