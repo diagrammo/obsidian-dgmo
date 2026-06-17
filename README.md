@@ -4,7 +4,7 @@ Write a `dgmo` code block and it renders as a diagram inline in your notes — r
 
 [Diagrammo](https://diagrammo.app) gives you 40+ chart types from one small plain-text language: data viz, software architecture, project planning, hierarchies, and more. Because the diagrams are plain text, they're searchable in Obsidian, diffable in git or Sync history, and never go stale the way an exported image does.
 
-![bar, sequence, timeline, pie — all rendered inside Obsidian](https://diagrammo.app/og-image.png)
+![A geographic map with routes and points of interest, written as plain text in Diagrammo](https://diagrammo.app/readme/map.gif)
 
 ## Supported chart types
 
