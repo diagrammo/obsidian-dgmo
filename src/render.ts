@@ -134,7 +134,9 @@ function renderMapDgmo(
   const palette = resolvePalette(paletteId)[isDark ? 'dark' : 'light'];
 
   let resolved: ReturnType<typeof resolveMap>;
-  const exportDiv = document.createElement('div');
+  // `activeDocument` (not the global `document`) so map rendering works in
+  // Obsidian popout windows, per the plugin review guidelines.
+  const exportDiv = activeDocument.createElement('div');
   try {
     resolved = resolveMap(parseMap(source), mapData);
     // Content-aware canvas: height derived from the map's intrinsic projected
@@ -190,6 +192,27 @@ function addEditButton(
       title: 'Edit on online.diagrammo.app',
     },
   });
-  link.innerHTML =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
+  // Build the "open external" icon via DOM nodes rather than innerHTML — the
+  // plugin review guidelines disallow innerHTML/outerHTML writes.
+  const svg = link.createSvg('svg', {
+    attr: {
+      xmlns: 'http://www.w3.org/2000/svg',
+      width: '14',
+      height: '14',
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      'stroke-width': '2',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      'aria-hidden': 'true',
+    },
+  });
+  for (const d of [
+    'M15 3h6v6',
+    'M10 14 21 3',
+    'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
+  ]) {
+    svg.createSvg('path', { attr: { d } });
+  }
 }
