@@ -1,4 +1,4 @@
-import { Notice, Plugin, TFile } from 'obsidian';
+import { MarkdownRenderChild, Notice, Plugin, TFile } from 'obsidian';
 import { renderDgmo } from './render';
 import { ensureInterFonts } from './fonts';
 import {
@@ -19,14 +19,15 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
   /** Live `![[*.dgmo]]` embeds, so vault `modify` can re-render dependents. */
   private readonly embeds = new Set<DgmoEmbed>();
 
+  /** Live ```dgmo code blocks, so a settings change can re-render them. */
+  private readonly codeBlocks = new Set<DgmoCodeBlock>();
+
   override async onload() {
     await this.loadSettings();
     this.addSettingTab(new DgmoSettingTab(this.app, this));
 
-    this.registerMarkdownCodeBlockProcessor('dgmo', async (source, el) => {
-      await ensureInterFonts();
-      const isDark = this.resolveIsDark();
-      await renderDgmo(source, el, isDark, this.settings.palette);
+    this.registerMarkdownCodeBlockProcessor('dgmo', (source, el, ctx) => {
+      ctx.addChild(new DgmoCodeBlock(el, source, this));
     });
 
     // Obsidian-style `![[foo.dgmo]]` transclusion (BL-101). Claims Obsidian's
@@ -42,6 +43,14 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
         for (const embed of this.embeds) {
           if (embed.filePath === f.path) void embed.render();
         }
+      })
+    );
+
+    // When the user toggles Obsidian's light/dark mode, re-render diagrams that
+    // follow it (theme === 'auto') so they recolor without a note reload.
+    this.registerEvent(
+      this.app.workspace.on('css-change', () => {
+        if (this.settings.theme === 'auto') this.refreshAll();
       })
     );
 
@@ -101,5 +110,57 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
 
   unregisterEmbed(embed: DgmoEmbed): void {
     this.embeds.delete(embed);
+  }
+
+  registerCodeBlock(block: DgmoCodeBlock): void {
+    this.codeBlocks.add(block);
+  }
+
+  unregisterCodeBlock(block: DgmoCodeBlock): void {
+    this.codeBlocks.delete(block);
+  }
+
+  /** Re-render every live diagram (code blocks + embeds) in place — called when
+   * the palette or theme setting changes so visible diagrams update without a
+   * note reload. */
+  refreshAll(): void {
+    for (const block of this.codeBlocks) void block.render();
+    for (const embed of this.embeds) void embed.render();
+  }
+}
+
+/**
+ * A single ```dgmo code block. `MarkdownRenderChild` gives the correct
+ * mount/unmount lifecycle in Reading mode and Live Preview (blocks re-mount on
+ * scroll/edit); tracking the live instances lets a settings change re-render
+ * them in place.
+ */
+class DgmoCodeBlock extends MarkdownRenderChild {
+  constructor(
+    node: HTMLElement,
+    private readonly source: string,
+    private readonly plugin: DgmoPlugin
+  ) {
+    super(node);
+  }
+
+  override onload(): void {
+    this.plugin.registerCodeBlock(this);
+    void this.render();
+  }
+
+  override onunload(): void {
+    this.plugin.unregisterCodeBlock(this);
+  }
+
+  async render(): Promise<void> {
+    await ensureInterFonts();
+    this.containerEl.empty();
+    await renderDgmo(
+      this.source,
+      this.containerEl,
+      this.plugin.isDark(),
+      this.plugin.getPalette()
+    );
   }
 }

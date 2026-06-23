@@ -71,6 +71,7 @@ export class DgmoSettingTab extends PluginSettingTab {
         dropdown.onChange(async (value) => {
           this.plugin.settings.palette = value;
           await this.plugin.saveSettings();
+          this.plugin.refreshAll();
         });
       });
 
@@ -88,6 +89,7 @@ export class DgmoSettingTab extends PluginSettingTab {
         dropdown.onChange(async (value) => {
           this.plugin.settings.theme = value as DgmoSettings['theme'];
           await this.plugin.saveSettings();
+          this.plugin.refreshAll();
         });
       });
   }
