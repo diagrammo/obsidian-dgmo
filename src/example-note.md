@@ -421,10 +421,10 @@ poi Kingston p: Home Port, value: 120
 poi Havana p: Spanish Prize, value: 90
 poi Santo Domingo p: Friendly, value: 70
 
-route Kingston style: arc
-  -weigh anchor-> Havana
-  -raid the galleons-> Santo Domingo
-  -careen & resupply-> Kingston
+route Kingston
+  ~weigh anchor~> Havana
+  ~raid the galleons~> Santo Domingo
+  ~careen & resupply~> Kingston
 ```
 
 ---
