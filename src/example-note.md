@@ -351,6 +351,30 @@ Calico Jack purple       18  6
 
 ---
 
+## Treemap
+
+```dgmo
+treemap Plunder Allocation
+
+tag Crew as t
+  Deck blue
+  Gunners green
+  Officers orange
+
+Deck Hands t: Deck
+  Riggers 320
+  Swabs 180
+  Lookouts 140
+Gun Crews t: Gunners
+  Cannoneers 90
+  Powder Monkeys 130
+Officers t: Officers
+  Quartermaster 110
+  Bosun 70
+```
+
+---
+
 # Business
 
 ## Cycle Diagram
