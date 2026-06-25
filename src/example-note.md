@@ -589,6 +589,36 @@ The Open Sea blue
 
 ---
 
+## Swimlane
+
+```dgmo
+swimlane Expense Approval
+direction LR
+
+lane Employee gray
+lane Manager blue
+lane Finance green
+
+[Submit]
+  Employee
+    File Expense
+[Review]
+  Manager
+    <Approve>
+    (!Rejected)
+[Pay]
+  Finance
+    Reimburse
+    (Paid) success
+
+File Expense -> <Approve>
+<Approve>
+  -deny-> (!Rejected)
+  -approve-> Reimburse -> (Paid)
+```
+
+---
+
 ## Tech Radar
 
 ```dgmo
