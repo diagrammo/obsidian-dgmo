@@ -1346,6 +1346,34 @@ Sinking -> [*]
 
 ---
 
+## Version Control
+
+```dgmo
+version-control Feature Branch Workflow
+
+main
+  Initial commit
+  Add README
+
+develop from main
+  Set up CI
+  Add test suite
+
+feature/login from develop
+  Login form
+  Form validation
+
+develop
+  merge feature/login
+  Address review notes
+
+main
+  merge develop tag: v1.0.0
+  Hotfix typo type: highlight
+```
+
+---
+
 ## Wireframe
 
 ```dgmo
