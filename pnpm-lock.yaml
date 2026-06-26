@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@diagrammo/dgmo':
-        specifier: ^0.39.0
-        version: 0.39.0(@codemirror/state@6.6.0)
+        specifier: ^0.41.0
+        version: 0.41.0(@codemirror/state@6.6.0)
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -148,8 +148,8 @@ packages:
   '@dagrejs/graphlib@4.0.1':
     resolution: {integrity: sha512-IvcV6FduIIAmLwnH+yun+QtV36SC7mERqa86aClNqmMN09WhmPPYU8ckHrZBozErf+UvHPWOTJYaGYiIcs0DgA==}
 
-  '@diagrammo/dgmo@0.39.0':
-    resolution: {integrity: sha512-SkV2tDv9mLC6lyPdtp8TVdA65JmH+jBGGJYu8ZwSvYlo6XMWzpln8nDge1zE97U5rXJTqOpF1q3OFpMd50/PLQ==}
+  '@diagrammo/dgmo@0.41.0':
+    resolution: {integrity: sha512-mT+2MU4naWp0IhxURc0gY7HO+n32ObG/5RmGQdSpI17Y1FufONi3jGZGfqkG9EtREsO19ffg6zw0N+p8aAOf2w==}
     engines: {node: '>=20.6'}
     hasBin: true
     peerDependencies:
@@ -2151,7 +2151,7 @@ snapshots:
 
   '@dagrejs/graphlib@4.0.1': {}
 
-  '@diagrammo/dgmo@0.39.0(@codemirror/state@6.6.0)':
+  '@diagrammo/dgmo@0.41.0(@codemirror/state@6.6.0)':
     dependencies:
       '@dagrejs/dagre': 3.0.0
       '@resvg/resvg-js': 2.6.2

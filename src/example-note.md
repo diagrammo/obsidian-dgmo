@@ -1441,6 +1441,32 @@ wireframe Pirate Crew Portal
 
 ---
 
+## Event Line
+
+```dgmo
+event-line A Short History of the Web
+no-scale
+
+tag Theme as t
+  Protocol blue
+  Browser green
+  Platform purple
+
+[The Early Web]
+  1991 WorldWideWeb  t: Protocol
+    Tim Berners-Lee publishes the first website at CERN.
+  1993 Mosaic  t: Browser
+    The first popular graphical browser.
+
+[The App Era] collapsed: true
+  2005 Ajax  t: Platform
+    Pages update without a reload.
+  2014 HTML5  t: Standard
+    The living standard — video, canvas, semantics.
+```
+
+---
+
 ## Block
 
 ```dgmo
@@ -1460,37 +1486,4 @@ tag Layer as l
 
 [Data] l: Data collapsed
   [Postgres] [Redis]
-```
-
----
-
-## Event Line
-
-```dgmo
-event-line A Short History of the Web
-no-scale
-
-tag Theme as t
-  Protocol blue
-  Browser green
-  Platform purple
-  Standard orange
-
-[The Early Web]
-  1991 WorldWideWeb  t: Protocol
-    Tim Berners-Lee publishes the first website at CERN.
-  1993 Mosaic  t: Browser
-    The first popular graphical browser.
-
-[The Standards Era] collapsed: true
-  1995 JavaScript  t: Platform
-    Brendan Eich writes the language in ten days.
-  1996 CSS  t: Standard
-    Styling splits from structure.
-
-[The App Era]
-  2005 Ajax  t: Platform
-    XMLHttpRequest updates pages without a reload.
-  2014 HTML5  t: Standard
-    The living standard — video, canvas, semantics.
 ```
