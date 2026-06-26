@@ -441,9 +441,9 @@ tag Port as p
   Friendly green
   Spanish Prize orange
 
-poi Kingston p: Home Port, value: 120
-poi Havana p: Spanish Prize, value: 90
-poi Santo Domingo p: Friendly, value: 70
+poi Kingston p: Home Port, size: 120
+poi Havana p: Spanish Prize, size: 90
+poi Santo Domingo p: Friendly, size: 70
 
 route Kingston
   ~weigh anchor~> Havana
