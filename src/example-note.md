@@ -726,7 +726,6 @@ fishing       35
 
 ```dgmo
 raci Captain's Council Decisions
-variant-daci
 roles
   Captain
   Quartermaster
@@ -908,7 +907,7 @@ roles
 ## RASCI
 
 ```dgmo
-rasci Voyage Preparation
+raci Voyage Preparation
 roles
   Captain
   Quartermaster
