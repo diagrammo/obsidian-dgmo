@@ -14,7 +14,7 @@ Every chart type from [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) ren
 
 | Category | Types |
 |----------|-------|
-| **Data & charts** | arc, area, bar, bar-stacked, chord, doughnut, funnel, function, heatmap, line, multi-line, pie, polar-area, radar, sankey, scatter, slope, treemap, wordcloud |
+| **Data & charts** | arc, area, bar, chord, doughnut, funnel, function, heatmap, line, multi-line, pie, polar-area, radar, sankey, scatter, slope, treemap, wordcloud |
 | **Business & strategy** | cycle, journey-map, map, org, pyramid, quadrant, ring, tech-radar, venn |
 | **Project & process** | gantt, kanban, pert, raci, rasci, daci, timeline |
 | **Software & architecture** | boxes-and-lines, c4, class, er, flowchart, infra, mindmap, sequence, sitemap, state, wireframe |

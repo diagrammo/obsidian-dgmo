@@ -33,7 +33,8 @@ arc Pirate Alliances
 ## Area Chart
 
 ```dgmo
-area Fleet Growth Over Time
+line Fleet Growth Over Time
+fill
 series Ships
 x-label Year
 
@@ -68,9 +69,9 @@ Cartagena purple   780
 ## Bar Chart (Stacked)
 
 ```dgmo
-bar-stacked Port Revenue by Trade
+bar Port Revenue by Trade
 orientation-horizontal
-series
+stack
   Imports blue
   Exports green
   Tariffs orange
@@ -130,7 +131,8 @@ Rackham -> Roberts 100
 ## Doughnut Chart
 
 ```dgmo
-doughnut Plunder Distribution
+pie Plunder Distribution
+hole
 solid-fill
 
 Captain's Share 40
@@ -441,9 +443,9 @@ tag Port as p
   Friendly green
   Spanish Prize orange
 
-poi Kingston p: Home Port, size: 120
-poi Havana p: Spanish Prize, size: 90
-poi Santo Domingo p: Friendly, size: 70
+poi Kingston p: Home Port, value: 120
+poi Havana p: Spanish Prize, value: 90
+poi Santo Domingo p: Friendly, value: 70
 
 route Kingston
   ~weigh anchor~> Havana
@@ -1486,4 +1488,21 @@ tag Layer as l
 
 [Data] l: Data collapsed
   [Postgres] [Redis]
+```
+
+---
+
+## Error state
+
+> This block is **intentionally invalid** — `piechart` isn't a chart type (it
+> should be `pie`). It's included to show how Diagrammo reports a mistake, so you
+> know what to look for when a diagram doesn't render.
+
+<!-- dgmo-expect-error -->
+```dgmo
+piechart Quarterly Revenue
+  Q1 40
+  Q2 30
+  Q3 20
+  Q4 10
 ```
