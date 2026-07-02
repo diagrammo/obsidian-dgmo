@@ -106,22 +106,23 @@ y-label Reputation
 
 ---
 
-## Chord Diagram
+## Arc — Chord Layout
 
 ```dgmo
-chord Pirate Alliance Network
+arc Pirate Alliance Network
+layout chord
 
-Blackbeard -- Bonnet 150
-Blackbeard -- Vane 80
-Blackbeard -- Hornigold 120
-Bonnet -- Rackham 40
-Vane -- Rackham 60
-Rackham -- Bonny 200
-Bonny -- Read 180
-Roberts -- Davis 90
-Roberts -- Anstis 70
-Hornigold -- Bonnet 50
-Vane -- Bonny 30
+Blackbeard -> Bonnet 150
+Blackbeard -> Vane 80
+Blackbeard -> Hornigold 120
+Bonnet -> Rackham 40
+Vane -> Rackham 60
+Rackham -> Bonny 200
+Bonny -> Read 180
+Roberts -> Davis 90
+Roberts -> Anstis 70
+Hornigold -> Bonnet 50
+Vane -> Bonny 30
 Roberts -> Rackham 20
 Rackham -> Roberts 100
 ```
