@@ -376,6 +376,29 @@ Officers t: Officers
   Bosun 70
 ```
 
+## Sunburst (treemap radial)
+
+```dgmo
+treemap Plunder Allocation
+radial
+
+tag Crew as t
+  Deck blue
+  Gunners green
+  Officers orange
+
+Deck Hands t: Deck
+  Riggers 320
+  Swabs 180
+  Lookouts 140
+Gun Crews t: Gunners
+  Cannoneers 90
+  Powder Monkeys 130
+Officers t: Officers
+  Quartermaster 110
+  Bosun 70
+```
+
 ---
 
 # Business
