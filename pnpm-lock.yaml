@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@diagrammo/dgmo':
-        specifier: ^0.41.0
-        version: 0.41.0(@codemirror/state@6.6.0)
+        specifier: ^0.44.1
+        version: 0.44.1(@codemirror/state@6.6.0)
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -148,8 +148,8 @@ packages:
   '@dagrejs/graphlib@4.0.1':
     resolution: {integrity: sha512-IvcV6FduIIAmLwnH+yun+QtV36SC7mERqa86aClNqmMN09WhmPPYU8ckHrZBozErf+UvHPWOTJYaGYiIcs0DgA==}
 
-  '@diagrammo/dgmo@0.41.0':
-    resolution: {integrity: sha512-mT+2MU4naWp0IhxURc0gY7HO+n32ObG/5RmGQdSpI17Y1FufONi3jGZGfqkG9EtREsO19ffg6zw0N+p8aAOf2w==}
+  '@diagrammo/dgmo@0.44.1':
+    resolution: {integrity: sha512-zg0ywMBeb181vuZ/8gQS48nLQ/GuwO3R/WvbCIN3q1Z9i3gfhOTfygqeThcAq0OhV7BLELrzAxmkxD1r8jUECg==}
     engines: {node: '>=20.6'}
     hasBin: true
     peerDependencies:
@@ -1140,9 +1140,6 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
-  echarts@6.1.0:
-    resolution: {integrity: sha512-q0yaFPggC9FUdsWH4blavRWFmxdrIodbkoKNAjJudAI6CA9gNPxHtV2RcZNEepZVlk4yvBYkOkbk6HIVpIyHZA==}
-
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
@@ -1870,9 +1867,6 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
-  tslib@2.3.0:
-    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
-
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -2065,9 +2059,6 @@ packages:
   zod@4.4.3:
     resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
-  zrender@6.1.0:
-    resolution: {integrity: sha512-oEGMDB6pOP2S6OwRR4PdVv610zrjnA3Bh+JnSG12fYJlBKjtNAoEb5fSUoCOOINlH96I2fU38/A2UpRKs67xYQ==}
-
 snapshots:
 
   '@asamuzakjp/css-color@5.1.11':
@@ -2151,7 +2142,7 @@ snapshots:
 
   '@dagrejs/graphlib@4.0.1': {}
 
-  '@diagrammo/dgmo@0.41.0(@codemirror/state@6.6.0)':
+  '@diagrammo/dgmo@0.44.1(@codemirror/state@6.6.0)':
     dependencies:
       '@dagrejs/dagre': 3.0.0
       '@resvg/resvg-js': 2.6.2
@@ -2162,7 +2153,6 @@ snapshots:
       d3-scale: 4.0.2
       d3-selection: 3.0.0
       d3-shape: 3.2.0
-      echarts: 6.1.0
       jsdom: 29.1.1
       lz-string: 1.5.0
       topojson-client: 3.1.0
@@ -2937,11 +2927,6 @@ snapshots:
       call-bind-apply-helpers: 1.0.2
       es-errors: 1.3.0
       gopd: 1.2.0
-
-  echarts@6.1.0:
-    dependencies:
-      tslib: 2.3.0
-      zrender: 6.1.0
 
   emoji-regex@8.0.0: {}
 
@@ -3754,8 +3739,6 @@ snapshots:
     dependencies:
       typescript: 6.0.2
 
-  tslib@2.3.0: {}
-
   tslib@2.8.1:
     optional: true
 
@@ -3885,7 +3868,3 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zod@4.4.3: {}
-
-  zrender@6.1.0:
-    dependencies:
-      tslib: 2.3.0
