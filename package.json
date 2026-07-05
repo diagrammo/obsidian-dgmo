@@ -10,7 +10,8 @@
   "scripts": {
     "gen:map-data": "node scripts/copy-map-data.mjs",
     "gen:examples": "node scripts/copy-example-note.mjs",
-    "gen:assets": "node scripts/copy-map-data.mjs && node scripts/copy-example-note.mjs",
+    "gen:styles": "node scripts/build-styles.mjs",
+    "gen:assets": "node scripts/copy-map-data.mjs && node scripts/copy-example-note.mjs && node scripts/build-styles.mjs",
     "postinstall": "pnpm gen:assets",
     "build": "pnpm gen:assets && node esbuild.config.mjs",
     "dev": "pnpm gen:assets && node esbuild.config.mjs --watch",
@@ -27,14 +28,15 @@
   },
   "pnpm": {
     "overrides": {
-      "undici": ">=7.28.0"
+      "undici": ">=7.28.0 <8"
     }
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.44.1"
+    "@diagrammo/dgmo": "^0.45.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@lezer/lr": "^1.4.10",
     "@types/node": "^25.9.1",
     "esbuild": "^0.28.0",
     "eslint": "^10.2.0",

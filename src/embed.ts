@@ -4,7 +4,8 @@ import {
   type MarkdownPostProcessor,
   type TFile,
 } from 'obsidian';
-import { renderDgmo } from './render';
+import { errorBlockHtml } from '@diagrammo/dgmo/block';
+import { appendBlockHtml, renderDgmo } from './render';
 import { ensureInterFonts } from './fonts';
 
 /**
@@ -53,21 +54,11 @@ export interface EmbedDeps {
   palette(): string;
 }
 
-/** Render an embed error card with plain DOM (no Obsidian-only helpers). */
+/** Unified error card (BL-114): same `.dgmo--error` markup as code blocks. */
 function showEmbedError(node: HTMLElement, message: string): void {
   node.replaceChildren();
   node.classList.add('dgmo-embed');
-  const doc = node.ownerDocument;
-  const wrapper = doc.createElement('div');
-  wrapper.className = 'dgmo-error';
-  const title = doc.createElement('p');
-  title.className = 'dgmo-error-title';
-  title.textContent = 'Embed error';
-  const msg = doc.createElement('p');
-  msg.className = 'dgmo-error-message';
-  msg.textContent = message;
-  wrapper.append(title, msg);
-  node.appendChild(wrapper);
+  appendBlockHtml(node, errorBlockHtml(new Error(message), ''));
 }
 
 /**

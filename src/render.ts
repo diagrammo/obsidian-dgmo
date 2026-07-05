@@ -7,6 +7,7 @@ import {
   type DgmoError,
   type PaletteConfig,
 } from '@diagrammo/dgmo';
+import { buildDgmoBlockHtml, errorBlockHtml } from '@diagrammo/dgmo/block';
 import {
   looksLikeMap,
   parseMap,
@@ -23,11 +24,31 @@ function resolvePalette(id: string): PaletteConfig {
   return resolvePaletteOrFallback(id);
 }
 
-function showError(container: HTMLElement, message: string): void {
-  container.empty();
-  const wrapper = container.createDiv({ cls: 'dgmo-error' });
-  wrapper.createEl('p', { cls: 'dgmo-error-title', text: 'Parse error' });
-  wrapper.createEl('p', { cls: 'dgmo-error-message', text: message });
+/**
+ * Parse an HTML string produced by `@diagrammo/dgmo/block` and append its
+ * root element to `container`. DOMParser + importNode rather than innerHTML —
+ * the Obsidian plugin review guidelines disallow innerHTML/outerHTML writes.
+ */
+export function appendBlockHtml(
+  container: HTMLElement,
+  html: string
+): HTMLElement | null {
+  const parsed = new DOMParser().parseFromString(html, 'text/html');
+  const root = parsed.body.firstElementChild;
+  if (!root) return null;
+  const node = container.ownerDocument.importNode(root, true);
+  container.appendChild(node);
+  return node as HTMLElement;
+}
+
+/** Unified error card (BL-114): same `.dgmo--error` markup on every surface. */
+function showError(
+  container: HTMLElement,
+  message: string,
+  source: string
+): void {
+  container.replaceChildren();
+  appendBlockHtml(container, errorBlockHtml(new Error(message), source));
 }
 
 function scaleSvgToFit(container: HTMLElement): void {
@@ -54,6 +75,89 @@ function scaleSvgToFit(container: HTMLElement): void {
       svgEl.style.aspectRatio = `${vbW} / ${vbH}`;
     }
   }
+}
+
+/**
+ * Mount the standard DGMO embed block (BL-114) around already-rendered SVG
+ * markup: diagram hero, hover-reveal icon toolbar (view-source / copy /
+ * open-in-editor), source behind a native `<details>`. The `<details>` toggle
+ * needs no JS; copy/open get a per-render click handler scoped to the block
+ * element, so re-renders (Obsidian re-mounts blocks on edit) can't stack
+ * duplicate bindings — the listener dies with the node.
+ */
+function mountBlock(
+  container: HTMLElement,
+  source: string,
+  svgsHtml: string,
+  isDark: boolean,
+  paletteId: string
+): HTMLElement | null {
+  const html = buildDgmoBlockHtml(source, svgsHtml, { mode: 'showcase' });
+  const block = appendBlockHtml(container, html);
+  if (!block) return null;
+  retargetOpenLink(block, source, isDark, paletteId);
+  bindToolbar(block);
+  return block;
+}
+
+/**
+ * The canonical block encodes only the source into the open-in-editor URL.
+ * This plugin has always carried palette + theme into the share URL so the
+ * online editor opens with the same look — rebuild the href with those params.
+ */
+function retargetOpenLink(
+  block: HTMLElement,
+  source: string,
+  isDark: boolean,
+  paletteId: string
+): void {
+  const link = block.querySelector<HTMLAnchorElement>('a.dgmo-open');
+  if (!link) return;
+  const url = encodeDiagramUrl(source, {
+    palette: resolvePalette(paletteId),
+    theme: isDark ? 'dark' : 'light',
+  });
+  if (url) link.setAttribute('href', url);
+  else link.remove(); // too large to share — copy remains
+}
+
+/** Copy + open handlers for the toolbar (mirrors remark-dgmo's `bindDgmo`). */
+function bindToolbar(block: HTMLElement): void {
+  block.addEventListener('click', (e) => {
+    const target = e.target as Element | null;
+    const btn = (target?.closest('.dgmo-toolbar-btn') ??
+      null) as HTMLElement | null;
+    if (!btn) return;
+
+    // The toolbar IS the <summary> of the source <details>; a click on any
+    // descendant would also toggle the disclosure unless we cancel the
+    // default action. That also cancels anchor navigation, so the open
+    // button is re-opened manually below.
+    const insideSummary = btn.closest('summary') != null;
+    if (insideSummary) e.preventDefault();
+
+    if (btn.matches('button.dgmo-copy')) {
+      const src = btn.dataset['dgmoSource'] ?? '';
+      void navigator.clipboard
+        .writeText(src)
+        .then(() => {
+          btn.classList.add('dgmo-copy--success');
+          window.setTimeout(
+            () => btn.classList.remove('dgmo-copy--success'),
+            1500
+          );
+        })
+        .catch(() => {
+          /* clipboard unavailable — ignore */
+        });
+      return;
+    }
+
+    if (insideSummary && btn.matches('a.dgmo-open')) {
+      const href = (btn as HTMLAnchorElement).href;
+      if (href) window.open(href, '_blank', 'noopener,noreferrer');
+    }
+  });
 }
 
 export async function renderDgmo(
@@ -85,7 +189,8 @@ export async function renderDgmo(
   } catch (err) {
     showError(
       container,
-      `Render error: ${err instanceof Error ? err.message : String(err)}`
+      err instanceof Error ? err.message : String(err),
+      source
     );
     return;
   }
@@ -94,28 +199,26 @@ export async function renderDgmo(
     (d) => d.severity === 'error'
   );
   if (firstError) {
-    showError(container, formatDgmoError(firstError));
+    showError(container, formatDgmoError(firstError), source);
     return;
   }
 
   if (!svg) {
-    showError(container, 'No SVG output from dgmo render().');
+    showError(container, 'No SVG output from dgmo render().', source);
     return;
   }
 
-  const wrapper = container.createDiv({ cls: 'dgmo-container' });
-  // Tighten the export-canvas viewBox to the diagram's content so the SVG's
-  // intrinsic aspect ratio (used by scaleSvgToFit below) matches the content,
-  // not the fixed 1200×800 canvas — otherwise short diagrams reserve a tall
-  // band of dead space.
-  const svgDoc = new DOMParser().parseFromString(
-    normalizeSvgForEmbed(svg),
-    'image/svg+xml'
+  // normalizeSvgForEmbed tightens the export-canvas viewBox to the diagram's
+  // content and strips fixed width/height, so block.css's responsive sizing
+  // (`.dgmo-svg > svg { width:100%; height:auto }`) matches the content, not
+  // the fixed 1200×800 canvas.
+  mountBlock(
+    container,
+    source,
+    `<div class="dgmo-svg">${normalizeSvgForEmbed(svg)}</div>`,
+    isDark,
+    paletteId
   );
-  const svgNode = svgDoc.documentElement;
-  if (svgNode) wrapper.appendChild(wrapper.doc.importNode(svgNode, true));
-  scaleSvgToFit(wrapper);
-  addEditButton(wrapper, source, isDark, paletteId);
 }
 
 /**
@@ -147,72 +250,36 @@ function renderMapDgmo(
   } catch (err) {
     showError(
       container,
-      `Render error: ${err instanceof Error ? err.message : String(err)}`
+      err instanceof Error ? err.message : String(err),
+      source
     );
     return;
   }
 
   const firstError = resolved.diagnostics.find((d) => d.severity === 'error');
   if (firstError) {
-    showError(container, formatDgmoError(firstError));
+    showError(container, formatDgmoError(firstError), source);
     return;
   }
 
   const svgEl = exportDiv.querySelector('svg');
   if (!svgEl) {
-    showError(container, 'No SVG output from dgmo render().');
+    showError(container, 'No SVG output from dgmo render().', source);
     return;
   }
 
-  const wrapper = container.createDiv({ cls: 'dgmo-container' });
-  wrapper.appendChild(wrapper.doc.importNode(svgEl, true));
-  scaleSvgToFit(wrapper);
-  addEditButton(wrapper, source, isDark, paletteId);
-}
-
-function addEditButton(
-  wrapper: HTMLElement,
-  source: string,
-  isDark: boolean,
-  paletteId: string
-): void {
-  const url = encodeDiagramUrl(source, {
-    palette: resolvePalette(paletteId),
-    theme: isDark ? 'dark' : 'light',
-  });
-  if (!url) return; // too large to share — silently skip
-
-  const link = wrapper.createEl('a', {
-    cls: 'dgmo-edit-link',
-    href: url,
-    attr: {
-      target: '_blank',
-      rel: 'noopener noreferrer',
-      'aria-label': 'Edit this diagram on online.diagrammo.app',
-      title: 'Edit on online.diagrammo.app',
-    },
-  });
-  // Build the "open external" icon via DOM nodes rather than innerHTML — the
-  // plugin review guidelines disallow innerHTML/outerHTML writes.
-  const svg = link.createSvg('svg', {
-    attr: {
-      xmlns: 'http://www.w3.org/2000/svg',
-      width: '14',
-      height: '14',
-      viewBox: '0 0 24 24',
-      fill: 'none',
-      stroke: 'currentColor',
-      'stroke-width': '2',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      'aria-hidden': 'true',
-    },
-  });
-  for (const d of [
-    'M15 3h6v6',
-    'M10 14 21 3',
-    'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
-  ]) {
-    svg.createSvg('path', { attr: { d } });
-  }
+  // Maps are rendered as live DOM (not an SVG string), so mount the block
+  // chrome with an empty `.dgmo-svg` slot and import the node into it —
+  // serializing a full geo basemap to string and back would be wasteful.
+  const block = mountBlock(
+    container,
+    source,
+    '<div class="dgmo-svg"></div>',
+    isDark,
+    paletteId
+  );
+  const slot = block?.querySelector<HTMLElement>('.dgmo-svg');
+  if (!slot) return;
+  slot.appendChild(slot.ownerDocument.importNode(svgEl, true));
+  scaleSvgToFit(slot);
 }
