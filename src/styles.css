@@ -1,0 +1,30 @@
+/* Hand-maintained plugin styles. The standard embed-block chrome (BL-114) is
+ * appended from @diagrammo/dgmo/block.css by scripts/build-styles.mjs, which
+ * generates the root styles.css — edit THIS file, then run `pnpm gen:styles`. */
+
+/* The block chrome wrapper is a <figure>; strip the browser/Obsidian default
+ * figure margins so diagrams render flush like the old .dgmo-container div. */
+figure.dgmo {
+  margin: 0;
+  width: 100%;
+}
+
+.dgmo-settings-about {
+  margin-bottom: 16px;
+}
+
+.dgmo-settings-about p {
+  margin: 6px 0;
+}
+
+/* `![[foo.dgmo]]` transclusion (BL-101): strip Obsidian's default embed chrome
+   so the diagram renders flush like a ```dgmo fenced block. */
+.internal-embed.dgmo-embed {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: default;
+}

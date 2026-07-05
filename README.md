@@ -38,7 +38,7 @@ Q4 5.9
 ```
 ````
 
-The diagram renders inline in reading mode and live preview. Hover any rendered diagram to reveal a small open-in-new-tab icon in the top-right corner — click it to pop the source open in [online.diagrammo.app](https://online.diagrammo.app) for live editing, with the same palette and theme.
+The diagram renders inline in reading mode and live preview. Hover any rendered diagram to reveal a slim icon toolbar below it: view the DGMO source in place (`</>`), copy the source, or open it in [online.diagrammo.app](https://online.diagrammo.app) for live editing with the same palette and theme.
 
 ## Author in the Diagrammo app
 

@@ -49,13 +49,23 @@ describe('renderEmbed', () => {
     const node = document.createElement('div');
     const read = vi.fn().mockResolvedValue('flowchart\nA -> B');
     const render = vi.fn().mockResolvedValue(undefined);
-    const d: EmbedDeps = { read, render, isDark: () => true, palette: () => 'nord' };
+    const d: EmbedDeps = {
+      read,
+      render,
+      isDark: () => true,
+      palette: () => 'nord',
+    };
     const file = fileStub('foo.dgmo');
 
     await renderEmbed(node, file, d);
 
     expect(read).toHaveBeenCalledWith(file);
-    expect(render).toHaveBeenCalledWith('flowchart\nA -> B', node, true, 'nord');
+    expect(render).toHaveBeenCalledWith(
+      'flowchart\nA -> B',
+      node,
+      true,
+      'nord'
+    );
     expect(node.classList.contains('dgmo-embed')).toBe(true);
   });
 
@@ -63,14 +73,17 @@ describe('renderEmbed', () => {
     const node = document.createElement('div');
     const read = vi.fn().mockRejectedValue(new Error('EACCES'));
     const render = vi.fn().mockResolvedValue(undefined);
-    const d: EmbedDeps = { read, render, isDark: () => false, palette: () => 'nord' };
+    const d: EmbedDeps = {
+      read,
+      render,
+      isDark: () => false,
+      palette: () => 'nord',
+    };
 
     await renderEmbed(node, fileStub('foo.dgmo'), d);
 
     expect(render).not.toHaveBeenCalled();
-    expect(node.querySelector('.dgmo-error-message')?.textContent).toContain(
-      'EACCES'
-    );
+    expect(node.querySelector('.dgmo--error')?.textContent).toContain('EACCES');
   });
 });
 
