@@ -32,7 +32,7 @@
     }
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.45.0"
+    "@diagrammo/dgmo": "^0.46.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
