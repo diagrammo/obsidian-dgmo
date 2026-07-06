@@ -15,7 +15,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const srcDir = join(root, 'node_modules', '@diagrammo', 'dgmo', 'src', 'map', 'data');
+// dgmo 0.48.0 became ESM-only and stopped publishing raw `src/`; the map JSON
+// now ships at `dist/map-data/` (was `src/map/data/`).
+const srcDir = join(root, 'node_modules', '@diagrammo', 'dgmo', 'dist', 'map-data');
 const outDir = join(root, 'vendor', 'map-data');
 
 // Keep in sync with the imports in src/map-data.ts.
