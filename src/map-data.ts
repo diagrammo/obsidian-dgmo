@@ -13,6 +13,7 @@
 // release assets.
 import type { MapData } from '@diagrammo/dgmo/advanced';
 
+import airports from '../vendor/map-data/airports.json';
 import gazetteer from '../vendor/map-data/gazetteer.json';
 import lakes from '../vendor/map-data/lakes.json';
 import mountainRanges from '../vendor/map-data/mountain-ranges.json';
@@ -36,4 +37,5 @@ export const mapData: MapData = {
   naLakes,
   waterBodies,
   gazetteer,
+  airports,
 } as unknown as MapData;

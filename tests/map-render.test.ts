@@ -30,9 +30,20 @@ describe('map rendering (Obsidian DI pipeline)', () => {
       'worldDetail',
       'usStates',
       'gazetteer',
+      'airports',
     ] as const) {
       expect(mapData[key], `missing bundled asset: ${key}`).toBeTruthy();
     }
+  });
+
+  // Regression: airports.json was never added to the bundle when IATA
+  // resolution shipped, so `route DEN -> LAX` failed with
+  // E_MAP_UNKNOWN_AIRPORT_CODE in Obsidian while working in the app.
+  it('resolves IATA airport codes', () => {
+    const source = ['map', '', 'DEN ~Demian and Ramos~> LAX'].join('\n');
+    const resolved = resolveMap(parseMap(source), mapData);
+    const errors = resolved.diagnostics.filter((d) => d.severity === 'error');
+    expect(errors).toEqual([]);
   });
 
   it('resolves the fixture with no error diagnostics', () => {

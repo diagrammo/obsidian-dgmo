@@ -22,6 +22,7 @@ const outDir = join(root, 'vendor', 'map-data');
 
 // Keep in sync with the imports in src/map-data.ts.
 const FILES = [
+  'airports.json',
   'gazetteer.json',
   'lakes.json',
   'mountain-ranges.json',
