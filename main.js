@@ -35,10 +35,10 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3SMGIJDD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3SMGIJDD.js
 var MAP_DX, MAP_DIAGNOSTICS;
 var init_chunk_3SMGIJDD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3SMGIJDD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3SMGIJDD.js"() {
     MAP_DX = {
       // Runtime severity: 'error' (matches E_ prefix). ONE code, THREE distinct
       // emit sites in resolver.ts. The builder switches on params:
@@ -147,7 +147,7 @@ var init_chunk_3SMGIJDD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCT3NYCV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCT3NYCV.js
 function measureText(text, fontSize) {
   let w2 = 0;
   for (let i = 0; i < text.length; i++) {
@@ -212,7 +212,7 @@ function wrapTextToWidth(text, fontSize, maxWidth, opts) {
 }
 var CHAR_W, DEFAULT_W, CHAR_WIDTH_RATIO;
 var init_chunk_WCT3NYCV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCT3NYCV.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCT3NYCV.js"() {
     CHAR_W = {
       " ": 0.28,
       "!": 0.28,
@@ -305,7 +305,7 @@ var init_chunk_WCT3NYCV = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBAHEPLQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBAHEPLQ.js
 function rectsOverlap(a, b) {
   return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
 }
@@ -516,15 +516,15 @@ function computeQuadrantPointLabels(points, chartBounds, obstacles, pointRadius,
   return results;
 }
 var init_chunk_PBAHEPLQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBAHEPLQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBAHEPLQ.js"() {
     init_chunk_WCT3NYCV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js
 var TITLE_FONT_SIZE, TITLE_FONT_WEIGHT, TITLE_Y, TITLE_OFFSET, CAPTION_FONT_SIZE, CAPTION_FONT_WEIGHT, CAPTION_LINE_HEIGHT, CAPTION_TOP_GAP, CAPTION_BOX_PADDING_X, CAPTION_BOX_PADDING_Y;
 var init_chunk_A4GOY3PE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js"() {
     TITLE_FONT_SIZE = 20;
     TITLE_FONT_WEIGHT = "700";
     TITLE_Y = 30;
@@ -538,15 +538,15 @@ var init_chunk_A4GOY3PE = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js
 var FONT_FAMILY;
 var init_chunk_6KFWC4CO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js"() {
     FONT_FAMILY = "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif";
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CXK4DZH3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CXK4DZH3.js
 function makeDgmoError(line, message, severity = "error", code) {
   return code !== void 0 ? { line, message, severity, code } : { line, message, severity };
 }
@@ -621,7 +621,7 @@ function emptyMetadataValueMessage(key) {
 }
 var NAME_DIAGNOSTIC_CODES, METADATA_DIAGNOSTIC_CODES;
 var init_chunk_CXK4DZH3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CXK4DZH3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CXK4DZH3.js"() {
     NAME_DIAGNOSTIC_CODES = {
       /**
        * Warning: two source-distinct names normalized to the same key
@@ -652,7 +652,7 @@ var init_chunk_CXK4DZH3 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TLVIHFRO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TLVIHFRO.js
 function isRecognizedColorName(name) {
   return Object.prototype.hasOwnProperty.call(colorNames, name.toLowerCase());
 }
@@ -761,7 +761,7 @@ function resolveColorWithDiagnostic(color2, line, diagnostics, palette) {
 }
 var nord, colorNames, RECOGNIZED_COLOR_NAMES, CATEGORICAL_COLOR_ORDER, INVALID_COLOR_CODE, INVALID_CSS_COLOR_HEX, seriesColors;
 var init_chunk_TLVIHFRO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TLVIHFRO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TLVIHFRO.js"() {
     init_chunk_CXK4DZH3();
     nord = {
       // Polar Night (dark)
@@ -933,7 +933,7 @@ var init_chunk_TLVIHFRO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P6T66CCZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P6T66CCZ.js
 function hexToHSL(hex2) {
   const raw = hex2.replace("#", "");
   const full = raw.length === 3 ? [...raw].map((c) => c + c).join("") : raw;
@@ -1133,7 +1133,7 @@ function politicalTints(palette, count2, isDark) {
 }
 var POLITICAL_TINT_BANDS;
 var init_chunk_P6T66CCZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P6T66CCZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P6T66CCZ.js"() {
     init_chunk_TLVIHFRO();
     POLITICAL_TINT_BANDS = {
       light: [32, 48, 64, 80],
@@ -2186,7 +2186,7 @@ var init_src = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js
 function isValidHex(value) {
   return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value);
 }
@@ -2231,7 +2231,7 @@ function getAvailablePalettes() {
 }
 var PALETTE_REGISTRY, DEFAULT_PALETTE_ID, COLOR_KEYS, SEMANTIC_KEYS, atlasPalette, blueprintPalette, catppuccinPalette, nordPalette, slatePalette, tidewaterPalette, tokyoNightPalette, palettes;
 var init_chunk_R3XI2VC7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js"() {
     PALETTE_REGISTRY = /* @__PURE__ */ new Map();
     DEFAULT_PALETTE_ID = "slate";
     COLOR_KEYS = [
@@ -2960,10 +2960,10 @@ var init_chunk_R3XI2VC7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js
 var __create2, __defProp2, __getOwnPropDesc2, __getOwnPropNames2, __getProtoOf2, __hasOwnProp2, __commonJS2, __copyProps2, __toESM2;
 var init_chunk_5WRI5ZAA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js"() {
     __create2 = Object.create;
     __defProp2 = Object.defineProperty;
     __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -2992,7 +2992,7 @@ var init_chunk_5WRI5ZAA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/palettes-PRJ2RI6D.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/palettes-PRJ2RI6D.js
 var palettes_PRJ2RI6D_exports = {};
 __export(palettes_PRJ2RI6D_exports, {
   atlasPalette: () => atlasPalette,
@@ -3020,13 +3020,13 @@ __export(palettes_PRJ2RI6D_exports, {
   tokyoNightPalette: () => tokyoNightPalette
 });
 var init_palettes_PRJ2RI6D = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/palettes-PRJ2RI6D.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/palettes-PRJ2RI6D.js"() {
     init_chunk_R3XI2VC7();
     init_chunk_P6T66CCZ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-U6EQI3U6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-U6EQI3U6.js
 function renderChartTitle(svg, title, titleLineNumber, width, textColor, onClickItem) {
   if (!title) return;
   const titleEl = svg.append("text").attr("class", "chart-title").attr("x", width / 2).attr("y", TITLE_Y).attr("text-anchor", "middle").attr("fill", textColor).attr("font-size", TITLE_FONT_SIZE).attr("font-weight", TITLE_FONT_WEIGHT).style("cursor", onClickItem && titleLineNumber ? "pointer" : "default").text(title);
@@ -3129,7 +3129,7 @@ function finalizeSvgExport(container, theme, palette) {
 }
 var EXPORT_WIDTH, EXPORT_HEIGHT;
 var init_chunk_U6EQI3U6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-U6EQI3U6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-U6EQI3U6.js"() {
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_P6T66CCZ();
@@ -3139,10 +3139,10 @@ var init_chunk_U6EQI3U6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QOOUC2J5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QOOUC2J5.js
 var LEGEND_HEIGHT, LEGEND_PILL_PAD, LEGEND_PILL_FONT_SIZE, LEGEND_CAPSULE_PAD, LEGEND_DOT_R, LEGEND_ENTRY_FONT_SIZE, LEGEND_ENTRY_DOT_GAP, LEGEND_ENTRY_TRAIL, LEGEND_GROUP_GAP, LEGEND_EYE_SIZE, LEGEND_EYE_GAP, LEGEND_ICON_W, LEGEND_MAX_ENTRY_ROWS, measureLegendText, truncateLegendText, EYE_OPEN_PATH, EYE_CLOSED_PATH, CONTROLS_ICON_PATH, LEGEND_TOGGLE_DOT_R, LEGEND_TOGGLE_OFF_OPACITY, LEGEND_GEAR_PILL_W;
 var init_chunk_QOOUC2J5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QOOUC2J5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QOOUC2J5.js"() {
     init_chunk_WCT3NYCV();
     LEGEND_HEIGHT = 28;
     LEGEND_PILL_PAD = 16;
@@ -3168,7 +3168,7 @@ var init_chunk_QOOUC2J5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YAA6IID3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YAA6IID3.js
 function compactNumber(n) {
   if (!Number.isFinite(n)) return String(n);
   const abs3 = Math.abs(n);
@@ -3679,7 +3679,7 @@ function getMaxLegendReservedHeight(config, containerWidth) {
 }
 var CONTROL_PILL_PAD, CONTROL_FONT_SIZE, CONTROL_ICON_GAP, CONTROL_GAP, RAMP_LEGEND_W, RAMP_LEGEND_H, RAMP_LABEL_GAP;
 var init_chunk_YAA6IID3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YAA6IID3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YAA6IID3.js"() {
     init_chunk_QOOUC2J5();
     CONTROL_PILL_PAD = 16;
     CONTROL_FONT_SIZE = 11;
@@ -3691,7 +3691,7 @@ var init_chunk_YAA6IID3 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y3J7VR52.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y3J7VR52.js
 function staticRegistry(keys) {
   return { keys: new Set(keys), tagAliases: /* @__PURE__ */ new Set() };
 }
@@ -4095,7 +4095,7 @@ function warnUnknownMetaKeys(meta, registry, warn, nameToScan) {
 }
 var SEQUENCE_REGISTRY, INFRA_REGISTRY, MAP_REGISTRY, ORG_REGISTRY, C4_REGISTRY, ER_REGISTRY, EVENT_LINE_REGISTRY, KANBAN_REGISTRY, SITEMAP_REGISTRY, GANTT_REGISTRY, PERT_REGISTRY, BOXES_AND_LINES_REGISTRY, TIMELINE_REGISTRY, MINDMAP_REGISTRY, TECH_RADAR_REGISTRY, CYCLE_REGISTRY, JOURNEY_MAP_REGISTRY, PYRAMID_REGISTRY, RING_REGISTRY, TREEMAP_REGISTRY, RACI_REGISTRY, RECOGNIZED_COLOR_SET, ALL_CHART_TYPES, OPTION_NOCOLON_RE, GLOBAL_BOOLEANS, RESERVED_KEY_RE, AS_ALIAS_RE, POTENTIAL_META_RE;
 var init_chunk_Y3J7VR52 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y3J7VR52.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y3J7VR52.js"() {
     init_chunk_TLVIHFRO();
     init_chunk_CXK4DZH3();
     SEQUENCE_REGISTRY = staticRegistry([
@@ -4288,7 +4288,7 @@ var init_chunk_Y3J7VR52 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P235SVAH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P235SVAH.js
 function rejectSeriesHeader(result, keyword, lineNumber) {
   if (result.type === "bar" && keyword === "series") {
     const diag = makeDgmoError(
@@ -5250,7 +5250,7 @@ function getExtendedChartLegendGroups(parsed, colors) {
 }
 var VALID_TYPES, KNOWN_OPTIONS, DEFAULT_HOLE, KNOWN_BOOLEANS, VALID_EXTENDED_TYPES, KNOWN_EXTENDED_OPTIONS, EXTENDED_CHART_DOORS;
 var init_chunk_P235SVAH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P235SVAH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P235SVAH.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_TLVIHFRO();
     init_chunk_CXK4DZH3();
@@ -5319,7 +5319,7 @@ var init_chunk_P235SVAH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QLCCJEJI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QLCCJEJI.js
 function tagAttrKey(name) {
   return name.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -5543,7 +5543,7 @@ function matchTagBlockHeading(trimmed) {
 }
 var AUTO_TAG_COLOR_SENTINEL, autoTagColorCycle, TAG_BLOCK_NOCOLON_RE, VALID_TAG_IDENT_RE;
 var init_chunk_QLCCJEJI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QLCCJEJI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QLCCJEJI.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_TLVIHFRO();
     AUTO_TAG_COLOR_SENTINEL = "";
@@ -8180,7 +8180,7 @@ var init_src9 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OJR3MQYV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OJR3MQYV.js
 function esc(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -9517,7 +9517,7 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
 }
 var AXIS_LABEL_FONT, TICK_FONT, VALUE_FONT, LABEL_FONT, RINGS, FILL_OPACITY, DEFAULT_SIZE, NODE_W, NODE_GAP, SAMPLES, STANDARD, EXTENDED, D3_DATA_CHART_TYPES;
 var init_chunk_OJR3MQYV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OJR3MQYV.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OJR3MQYV.js"() {
     init_chunk_U6EQI3U6();
     init_chunk_YAA6IID3();
     init_chunk_6KFWC4CO();
@@ -9558,7 +9558,7 @@ var init_chunk_OJR3MQYV = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js
 function fractionalYearToDate(frac) {
   const year = Math.floor(frac);
   const remainder = frac - year;
@@ -9726,7 +9726,7 @@ function computeTimeTicks(domainMin, domainMax, scale, boundaryStart, boundaryEn
 }
 var MONTH_ABBR;
 var init_chunk_YRYKTYMQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js"() {
     MONTH_ABBR = [
       "Jan",
       "Feb",
@@ -9744,7 +9744,7 @@ var init_chunk_YRYKTYMQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PWIHZ6NJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PWIHZ6NJ.js
 function centerText(sel) {
   return sel.attr("dy", LEGEND_TEXT_DY);
 }
@@ -10004,7 +10004,7 @@ function renderIntegratedLegend(container, opts) {
 }
 var LEGEND_TEXT_DY, DEFAULT_POSITION;
 var init_chunk_PWIHZ6NJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PWIHZ6NJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PWIHZ6NJ.js"() {
     init_chunk_YAA6IID3();
     init_chunk_6KFWC4CO();
     init_chunk_QOOUC2J5();
@@ -10018,10 +10018,10 @@ var init_chunk_PWIHZ6NJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js
 var DEFAULT_MIN_SCALE_FACTOR, TEXT_FLOOR, ScaleContext;
 var init_chunk_YYVTBZZC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js"() {
     DEFAULT_MIN_SCALE_FACTOR = 0.5;
     TEXT_FLOOR = 9;
     ScaleContext = class _ScaleContext {
@@ -10080,7 +10080,7 @@ var init_chunk_YYVTBZZC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-GMR5MFHJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-GMR5MFHJ.js
 function parseTime(timeStr) {
   const [hStr, mStr, sStr] = timeStr.split(":");
   const h = parseInt(hStr, 10);
@@ -10398,7 +10398,7 @@ function parseTimelineEventLine(line, lineNumber, currentGroup, groupMetadata, a
 }
 var TIMELINE_DURATION_RE, DATE_RE, TIME_RE, ARROW_RE, ERA_DATE_RE;
 var init_chunk_GMR5MFHJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-GMR5MFHJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-GMR5MFHJ.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
     TIMELINE_DURATION_RE = /^(\d+(?:\.\d{1,2})?)(min|[dwmyhs])(\?)?$/;
@@ -10409,7 +10409,7 @@ var init_chunk_GMR5MFHJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UWN33VNX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UWN33VNX.js
 function getEraColors(palette) {
   return [
     palette.colors.blue,
@@ -11966,7 +11966,7 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
 }
 var timelineCollapseState, tlBandClipCounter;
 var init_chunk_UWN33VNX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UWN33VNX.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UWN33VNX.js"() {
     init_chunk_YRYKTYMQ();
     init_chunk_U6EQI3U6();
     init_chunk_PWIHZ6NJ();
@@ -11983,7 +11983,7 @@ var init_chunk_UWN33VNX = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6HO5ZTXK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6HO5ZTXK.js
 function parseCycle(content) {
   const options = {};
   const result = {
@@ -12242,7 +12242,7 @@ function parseCycle(content) {
 }
 var BARE_EDGE_RE, LABELED_EDGE_RE;
 var init_chunk_6HO5ZTXK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6HO5ZTXK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6HO5ZTXK.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
     BARE_EDGE_RE = /^->\s*(.*)?$/;
@@ -12250,7 +12250,7 @@ var init_chunk_6HO5ZTXK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js
 function tryStripDescriptionKeyword(line) {
   const colonMatch = line.match(/^description\s*:\s+(.+)$/i);
   if (colonMatch) return { isKeyword: true, text: colonMatch[1] };
@@ -12268,11 +12268,11 @@ function preprocessDescriptionLine(line) {
   return line;
 }
 var init_chunk_IYULMRBE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-44CM72SQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-44CM72SQ.js
 function parseJourneyMap(content, palette) {
   const options = {};
   const result = {
@@ -12639,7 +12639,7 @@ function parseStepLine(trimmed, lineNumber, counter, aliasMap, warn, diagnostics
 }
 var PHASE_RE, ANNOTATION_RE, KNOWN_OPTIONS2, KNOWN_BOOLEANS2, REMOVED_BOOLEANS;
 var init_chunk_44CM72SQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-44CM72SQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-44CM72SQ.js"() {
     init_chunk_IYULMRBE();
     init_chunk_QLCCJEJI();
     init_chunk_Y3J7VR52();
@@ -12655,7 +12655,7 @@ var init_chunk_44CM72SQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-76OWZ3BA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-76OWZ3BA.js
 function parsePyramid(content) {
   const options = {};
   const result = {
@@ -12768,14 +12768,14 @@ function parsePyramid(content) {
 }
 var MAX_LAYERS;
 var init_chunk_76OWZ3BA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-76OWZ3BA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-76OWZ3BA.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
     MAX_LAYERS = 15;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MO5YHHMQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MO5YHHMQ.js
 function parseRing(content) {
   const options = {};
   const result = {
@@ -12920,7 +12920,7 @@ function parseRing(content) {
 }
 var MAX_LAYERS2, KNOWN_PIPE_KEYS;
 var init_chunk_MO5YHHMQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MO5YHHMQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MO5YHHMQ.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_TLVIHFRO();
     init_chunk_CXK4DZH3();
@@ -12929,7 +12929,7 @@ var init_chunk_MO5YHHMQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCSOJFU3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCSOJFU3.js
 function isFullyQuoted(s) {
   return s.length >= 2 && (s.startsWith('"') && s.endsWith('"') || s.startsWith("'") && s.endsWith("'"));
 }
@@ -13243,7 +13243,7 @@ function attachNode(node, indent, indentStack, result) {
 }
 var TREEMAP_DX, TREEMAP_DIAGNOSTICS, VALUE_TOKEN_RE;
 var init_chunk_WCSOJFU3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCSOJFU3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WCSOJFU3.js"() {
     init_chunk_QLCCJEJI();
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
@@ -13281,16 +13281,16 @@ var init_chunk_WCSOJFU3 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NNAAJVBU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NNAAJVBU.js
 function isBlockNode(cell) {
   return cell.empty !== true;
 }
 var init_chunk_NNAAJVBU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NNAAJVBU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NNAAJVBU.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-7JEGTRLD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-7JEGTRLD.js
 function parseBlock(content, palette) {
   const options = { noLegend: false, solidFill: false };
   const result = {
@@ -13600,7 +13600,7 @@ function parseBlockTail(tail, aliasMap) {
   return { meta, ...span !== void 0 && { span }, collapsed };
 }
 var init_chunk_7JEGTRLD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-7JEGTRLD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-7JEGTRLD.js"() {
     init_chunk_NNAAJVBU();
     init_chunk_QLCCJEJI();
     init_chunk_Y3J7VR52();
@@ -13608,7 +13608,7 @@ var init_chunk_7JEGTRLD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js
 function normalizeName(input) {
   return input.normalize("NFC").replace(WHITESPACE_RUN_RE, " ").trim().toLocaleLowerCase("en-US");
 }
@@ -13617,12 +13617,12 @@ function displayName(input) {
 }
 var WHITESPACE_RUN_RE;
 var init_chunk_NOTA6TEI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js"() {
     WHITESPACE_RUN_RE = /\s+/gu;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RYEGFMUO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RYEGFMUO.js
 function inferVariant(markers) {
   let hasD = false;
   let hasS = false;
@@ -14101,7 +14101,7 @@ function* allTasks(parsed) {
 }
 var RACI_DX, RACI_DIAGNOSTICS, ALL_MARKERS, TOO_MANY_RESPONSIBLE_THRESHOLD, multiAccountableRule, daciMultiDriverRule, daciMultiAccountableRule, emptyTaskRule, missingAccountableRule, missingResponsibleRule, daciMissingDriverRule, daciMissingAccountableRule, ACTIVE_MARKERS, PASSIVE_MARKERS, conflictingMarkersRule, tooManyResponsibleRule, VARIANTS, KNOWN_OPTIONS3, KNOWN_BOOLEANS3, REMOVED_BOOLEANS2, PHASE_RE2, PHASE_PALETTE_COLOR_RE, ROLE_ASSIGNMENT_RE;
 var init_chunk_RYEGFMUO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RYEGFMUO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RYEGFMUO.js"() {
     init_chunk_NOTA6TEI();
     init_chunk_Y3J7VR52();
     init_chunk_TLVIHFRO();
@@ -14529,7 +14529,7 @@ Task
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DKEPS5LH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DKEPS5LH.js
 function tokensWhere(pred) {
   const out = /* @__PURE__ */ new Set();
   for (const e of DIRECTIVES_REGISTRY) if (pred(e)) out.add(e.token);
@@ -14537,7 +14537,7 @@ function tokensWhere(pred) {
 }
 var DIRECTIVES_REGISTRY, INFRA_TOP_LEVEL_OPTION_SET, INFRA_BEHAVIOR_KEY_SET, INFRA_EDGE_ONLY_KEY_SET, GANTT_OPTION_SET, GANTT_BOOLEAN_SET, MAP_DIRECTIVE_KEY_SET, REGISTRY_DIRECTIVE_TOKENS, REGISTRY_CONTROL_TOKENS, REGISTRY_STATUS_TOKENS, REGISTRY_MODIFIER_TOKENS, REGISTRY_COLON_KEY_TOKENS, REGISTRY_NON_HIGHLIGHT_TOKENS;
 var init_chunk_DKEPS5LH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DKEPS5LH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DKEPS5LH.js"() {
     DIRECTIVES_REGISTRY = [
       // ── Infra ────────────────────────────────────────────────
       // Top-level SLO options that are ALSO accepted as node colon-properties
@@ -14835,10 +14835,10 @@ var init_chunk_DKEPS5LH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I46X5VUA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I46X5VUA.js
 var GRAPH_DX, GRAPH_DIAGNOSTICS;
 var init_chunk_I46X5VUA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I46X5VUA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I46X5VUA.js"() {
     GRAPH_DX = {
       INFRA_NO_ENTRY: {
         // src/infra/parser.ts:1094 — makeDgmoError(..., 'warning', 'W_INFRA_NO_ENTRY')
@@ -14894,7 +14894,7 @@ Orphan
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FFUN5D66.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FFUN5D66.js
 function validateLabelCharacters(label, lineNumber) {
   const out = [];
   if (label.includes("->") || label.includes("~>")) {
@@ -14969,7 +14969,7 @@ function parseArrow(line) {
 }
 var ARROW_DIAGNOSTIC_CODES, SYNC_LABELED_RE, ASYNC_LABELED_RE, RETURN_SYNC_LABELED_RE, RETURN_ASYNC_LABELED_RE, BIDI_SYNC_RE, BIDI_ASYNC_RE;
 var init_chunk_FFUN5D66 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FFUN5D66.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FFUN5D66.js"() {
     init_chunk_CXK4DZH3();
     ARROW_DIAGNOSTIC_CODES = {
       /** Active: label contains `->` or `~>` substring (TD-13). */
@@ -14986,7 +14986,7 @@ var init_chunk_FFUN5D66 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-33LCUH4H.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-33LCUH4H.js
 function nodeId(name) {
   return normalizeName(name);
 }
@@ -15807,7 +15807,7 @@ function extractSymbols(docText) {
 }
 var INFRA_BEHAVIOR_KEYS, EDGE_ONLY_KEYS, CONNECTION_RE, SIMPLE_CONNECTION_RE, ASYNC_CONNECTION_RE, ASYNC_SIMPLE_CONNECTION_RE, DEPRECATED_FANOUT_RE, GROUP_RE, TAG_VALUE_RE, COMPONENT_RE, PIPE_META_RE, SAMELINE_META_RE, PROPERTY_RE, PERCENT_RE, RANGE_RE, EDGE_NODE_NAMES, INFRA_TOP_LEVEL_OPTIONS, TOP_LEVEL_OPTIONS, UNPARSED_SPLIT_RE;
 var init_chunk_33LCUH4H = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-33LCUH4H.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-33LCUH4H.js"() {
     init_chunk_DKEPS5LH();
     init_chunk_IYULMRBE();
     init_chunk_QLCCJEJI();
@@ -15839,7 +15839,7 @@ var init_chunk_33LCUH4H = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-USZW2HHU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-USZW2HHU.js
 function isWorkday(date, workweek, holidaySet) {
   const dayName = JS_DAY_TO_WEEKDAY[date.getDay()];
   if (!workweek.includes(dayName)) return false;
@@ -16018,7 +16018,7 @@ function parseGanttDate(s) {
 }
 var JS_DAY_TO_WEEKDAY;
 var init_chunk_USZW2HHU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-USZW2HHU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-USZW2HHU.js"() {
     JS_DAY_TO_WEEKDAY = [
       "sun",
       "mon",
@@ -16031,7 +16031,7 @@ var init_chunk_USZW2HHU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-XAKEUMEJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-XAKEUMEJ.js
 function parseGantt(content, palette) {
   var _a;
   const lines = content.split("\n");
@@ -17210,7 +17210,7 @@ function hasSprintDurationUnit(nodes) {
 }
 var GROUP_RE2, DEPENDENCY_RE, COMMENT_RE, ERA_RE, MARKER_RE, HOLIDAY_DATE_RE, HOLIDAY_RANGE_RE, WORKWEEK_RE, ERA_ENTRY_RE, MARKER_ENTRY_RE, OFFSET_PREFIX_RE, DURATION_TOKEN_RE, LAG_ARROW_RE, LEAD_ARROW_RE, BASIC_ARROW_RE, ERA_OFFSET_RE, MARKER_OFFSET_RE, WEEKDAY_MAP, GANTT_KNOWN_OPTIONS, KNOWN_OPTIONS4, GANTT_KNOWN_BOOLEANS, KNOWN_BOOLEANS4;
 var init_chunk_XAKEUMEJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-XAKEUMEJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-XAKEUMEJ.js"() {
     init_chunk_DKEPS5LH();
     init_chunk_USZW2HHU();
     init_chunk_P6T66CCZ();
@@ -17258,7 +17258,7 @@ var init_chunk_XAKEUMEJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUPDIHML.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUPDIHML.js
 function looksLikeMap(content) {
   for (const raw of content.split("\n")) {
     const t = stripInlineComment(raw).trim();
@@ -17819,7 +17819,7 @@ function poiName(pos) {
 }
 var COORD_RE, NUMERIC_LEAD_RE, SCOPE_RE, ARROW_TOKENS, ARROW_SPLIT, HUB_RE, LEG_ARROW_RE, AT_RE, CHANNEL_FOREIGN, CHANNEL_HINT, MAP_DIRECTIVE_SET, DIRECTIVE_SET;
 var init_chunk_BUPDIHML = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUPDIHML.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUPDIHML.js"() {
     init_chunk_DKEPS5LH();
     init_chunk_QLCCJEJI();
     init_chunk_FFUN5D66();
@@ -17848,7 +17848,7 @@ var init_chunk_BUPDIHML = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5MLYVTYM.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5MLYVTYM.js
 function parseNoteHeader(rest) {
   const t = rest.trim();
   const quoted = t.match(/^"([^"]+)"\s*(.*)$/);
@@ -17912,13 +17912,13 @@ function tryCollectNote(lines, index, indent, palette, diagnostics) {
   };
 }
 var init_chunk_5MLYVTYM = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5MLYVTYM.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5MLYVTYM.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FMDSF3OV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FMDSF3OV.js
 function resolveNotes(notes, targets, diagnostics) {
   const byNodeId = /* @__PURE__ */ new Map();
   if (notes.length === 0) return byNodeId;
@@ -17974,13 +17974,13 @@ function resolveNotes(notes, targets, diagnostics) {
   return byNodeId;
 }
 var init_chunk_FMDSF3OV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FMDSF3OV.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FMDSF3OV.js"() {
     init_chunk_NOTA6TEI();
     init_chunk_CXK4DZH3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUVJFRPY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUVJFRPY.js
 function looksLikeBoxesAndLines(_content) {
   return false;
 }
@@ -18824,7 +18824,7 @@ function parseEdgeLine(trimmed, lineNum, metaAliasMap, diagnostics, nameAliasMap
 }
 var MAX_GROUP_DEPTH;
 var init_chunk_BUVJFRPY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUVJFRPY.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BUVJFRPY.js"() {
     init_chunk_QLCCJEJI();
     init_chunk_5MLYVTYM();
     init_chunk_FMDSF3OV();
@@ -18836,7 +18836,7 @@ var init_chunk_BUVJFRPY = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WVAJFAIA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WVAJFAIA.js
 function normKey(label) {
   return label.trim().replace(/\s+/g, " ").toLowerCase();
 }
@@ -19273,7 +19273,7 @@ function parseSwimlane(content, palette) {
 }
 var SWIMLANE_DX, SWIMLANE_DIAGNOSTICS, ARROW_RE2;
 var init_chunk_WVAJFAIA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WVAJFAIA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WVAJFAIA.js"() {
     init_chunk_QLCCJEJI();
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
@@ -19350,7 +19350,7 @@ L
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EB6FPQUP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EB6FPQUP.js
 function parseMindmap(content, palette) {
   const options = {};
   const result = {
@@ -19631,7 +19631,7 @@ function findMetadataParent(indent, indentStack) {
 }
 var KNOWN_OPTIONS5;
 var init_chunk_EB6FPQUP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EB6FPQUP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EB6FPQUP.js"() {
     init_chunk_IYULMRBE();
     init_chunk_QLCCJEJI();
     init_chunk_Y3J7VR52();
@@ -19640,7 +19640,7 @@ var init_chunk_EB6FPQUP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EVCVDTXE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EVCVDTXE.js
 function genId(lineNumber, indent, suffix = "") {
   return `wf-${lineNumber}-${indent}${suffix ? "-" + suffix : ""}`;
 }
@@ -20300,7 +20300,7 @@ function hasBracketMnemonic(segment) {
 }
 var KNOWN_OPTIONS6, GROUP_ONLY_METADATA, STATE_KEYWORDS, ELEMENT_KEYWORDS, BRACKET_RE, BUTTON_RE, DROPDOWN_RE, CHECKBOX_CHECKED_RE, CHECKBOX_UNCHECKED_RE, RADIO_SELECTED_RE, RADIO_UNSELECTED_RE, HEADING_RE, DIVIDER_RE, LIST_ITEM_RE, TABLE_SKELETON_RE;
 var init_chunk_EVCVDTXE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EVCVDTXE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EVCVDTXE.js"() {
     init_chunk_QLCCJEJI();
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
@@ -20353,7 +20353,7 @@ var init_chunk_EVCVDTXE = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NURGB5Z4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NURGB5Z4.js
 function parseTechRadar(content) {
   const result = {
     type: "tech-radar",
@@ -20652,7 +20652,7 @@ function assignGlobalNumbers(result) {
 }
 var VALID_POSITIONS, VALID_TRENDS, POSITION_ORDER, KNOWN_OPTIONS7, KNOWN_BOOLEANS5;
 var init_chunk_NURGB5Z4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NURGB5Z4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NURGB5Z4.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
     VALID_POSITIONS = [
@@ -20677,7 +20677,7 @@ var init_chunk_NURGB5Z4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L66GEFB6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L66GEFB6.js
 function tableId(name) {
   return normalizeName(name);
 }
@@ -21133,7 +21133,7 @@ function extractSymbols2(docText) {
 }
 var TABLE_DECL_RE, INDENT_REL_RE, CONSTRAINT_MAP, KNOWN_OPTIONS8, REL_SYMBOLIC_RE, REL_KEYWORD_RE, KEYWORD_TO_SYMBOL, CONSTRAINT_KEYWORD_RE;
 var init_chunk_L66GEFB6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L66GEFB6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L66GEFB6.js"() {
     init_chunk_QLCCJEJI();
     init_chunk_5MLYVTYM();
     init_chunk_FMDSF3OV();
@@ -21162,7 +21162,7 @@ var init_chunk_L66GEFB6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RVMRZAPB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RVMRZAPB.js
 function looksLikeOrg(content) {
   for (const line of content.split("\n")) {
     const trimmed = line.trim();
@@ -21468,7 +21468,7 @@ function findMetadataParent2(indent, indentStack) {
 }
 var CONTAINER_RE, METADATA_RE, KNOWN_OPTIONS9, KNOWN_BOOLEANS6;
 var init_chunk_RVMRZAPB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RVMRZAPB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RVMRZAPB.js"() {
     init_chunk_QLCCJEJI();
     init_chunk_NOTA6TEI();
     init_chunk_Y3J7VR52();
@@ -21490,7 +21490,7 @@ var init_chunk_RVMRZAPB = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AN2MOO5T.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AN2MOO5T.js
 function parseArrowLine(trimmed, _palette, _lineNumber, _diagnostics) {
   const bareMatch = trimmed.match(BARE_ARROW_RE);
   if (bareMatch) {
@@ -21969,7 +21969,7 @@ function findParentNode(indent, indentStack) {
 }
 var CONTAINER_RE2, METADATA_RE2, ARROW_RE3, BARE_ARROW_RE;
 var init_chunk_AN2MOO5T = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AN2MOO5T.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AN2MOO5T.js"() {
     init_chunk_IYULMRBE();
     init_chunk_QLCCJEJI();
     init_chunk_NOTA6TEI();
@@ -21982,7 +21982,7 @@ var init_chunk_AN2MOO5T = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L3UHP6TD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L3UHP6TD.js
 function resolveConfidence(value) {
   const trimmed = value.trim().toLowerCase();
   if (trimmed in CONFIDENCE_TABLE) {
@@ -22047,7 +22047,7 @@ function formatSlackValue(value, projectStart, unit2, nullLabel) {
 }
 var CONFIDENCE_TABLE, UNIT_TO_DAYS_LOCAL, ISO_DATE_RE;
 var init_chunk_L3UHP6TD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L3UHP6TD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-L3UHP6TD.js"() {
     init_chunk_USZW2HHU();
     CONFIDENCE_TABLE = {
       high: { oFactor: 0.9, pFactor: 1.5 },
@@ -22071,7 +22071,7 @@ var init_chunk_L3UHP6TD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RTLBSQ3G.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RTLBSQ3G.js
 function parseEdgeLabel(label, defaultUnit) {
   const trimmed = label.trim();
   if (trimmed === "") return null;
@@ -23019,7 +23019,7 @@ function looksLikePert(content) {
 }
 var PERT_DX, PERT_DIAGNOSTICS, DIRECTIVE_KEYS, RESERVED_PIPE_KEYS, NEAR_DIRECTIVE_HINTS, GROUP_HEADER_RE, ARROW_RE4, INDENTED_META_RE, LABELED_ARROW_RE, VALID_DURATION_UNITS, ALIAS_SUFFIX_RE, ESTIMATE_TOKEN_RE, DEFAULT_OPTIONS;
 var init_chunk_RTLBSQ3G = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RTLBSQ3G.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RTLBSQ3G.js"() {
     init_chunk_L3UHP6TD();
     init_chunk_USZW2HHU();
     init_chunk_QLCCJEJI();
@@ -23193,7 +23193,7 @@ var init_chunk_RTLBSQ3G = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5QXL4NYS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5QXL4NYS.js
 function parseEventLine(content, palette) {
   const options = {
     scale: true,
@@ -23613,7 +23613,7 @@ function parseEventHeader(trimmed, lineNumber, era, aliasMap, diagnostics, pushW
 }
 var EVENT_LINE_DX, EVENT_LINE_DIAGNOSTICS, NON_ISO_DATE_RE, TBD_RE, SIDE_RE, ERA_RE2, ERA_COLLAPSED_RE, SECTION_SEAM_RE, DIRECTION_RE;
 var init_chunk_5QXL4NYS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5QXL4NYS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5QXL4NYS.js"() {
     init_chunk_GMR5MFHJ();
     init_chunk_QLCCJEJI();
     init_chunk_Y3J7VR52();
@@ -23716,7 +23716,7 @@ direction TB
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ERLBPDGU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ERLBPDGU.js
 function parseVersionControl(content, palette) {
   const options = {
     direction: "LR",
@@ -24169,7 +24169,7 @@ function peelMeta(s) {
 }
 var VERSION_CONTROL_DX, VERSION_CONTROL_DIAGNOSTICS;
 var init_chunk_ERLBPDGU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ERLBPDGU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ERLBPDGU.js"() {
     init_chunk_Y3J7VR52();
     init_chunk_CXK4DZH3();
     VERSION_CONTROL_DX = {
@@ -24214,7 +24214,7 @@ var init_chunk_ERLBPDGU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AELOBFW5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AELOBFW5.js
 function parseKanban(content, palette) {
   const options = {};
   const result = {
@@ -24547,7 +24547,7 @@ function parseCardLine(trimmed, lineNumber, counter, metaAliasMap, _palette, dia
 }
 var COLUMN_RE, PALETTE_COLOR_WORD_RE, AS_ALIAS_TOKEN_RE, KNOWN_OPTIONS10, KNOWN_BOOLEANS7, REMOVED_BOOLEANS3;
 var init_chunk_AELOBFW5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AELOBFW5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-AELOBFW5.js"() {
     init_chunk_QLCCJEJI();
     init_chunk_NOTA6TEI();
     init_chunk_Y3J7VR52();
@@ -24564,7 +24564,7 @@ var init_chunk_AELOBFW5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js
 function inferParticipantType(name) {
   for (const rule of PARTICIPANT_RULES) {
     if (rule.pattern.test(name)) {
@@ -24575,7 +24575,7 @@ function inferParticipantType(name) {
 }
 var PARTICIPANT_RULES, RULE_COUNT;
 var init_chunk_C3Z4DX3V = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js"() {
     PARTICIPANT_RULES = [
       // ── 0. Conflict overrides ────────────────────────────────
       // Names that would incorrectly match general patterns in later groups
@@ -24676,7 +24676,7 @@ var init_chunk_C3Z4DX3V = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-2DXMZRWJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-B65G5DNL.js
 function participantTypeToC4Shape(pType) {
   switch (pType) {
     case "database":
@@ -25133,6 +25133,13 @@ function parseC4(content, palette) {
         }
         namePart = namePart.substring(0, nameIsAMatch.index).trim();
       }
+      const bareTail = metaTail.trim();
+      if (bareTail && !bareTail.includes(":")) {
+        pushError(
+          lineNumber,
+          `text after 'is a ${rawType}' must be 'key: value' metadata \u2014 '${bareTail}' is not recognized (did you mean 'description: ${bareTail}'?)`
+        );
+      }
       const metadata = parseC4MetaTail(metaTail, metaAliasMap);
       const shape = explicitShape ?? inferC4Shape(namePart, metadata["tech"] ?? metadata["technology"]);
       let isADescription;
@@ -25385,8 +25392,8 @@ function validateDeploymentRefs(result, knownNames, pushWarning) {
   walkDeploy(result.deployment);
 }
 var CONTAINER_RE3, ELEMENT_RE, IS_A_RE, C4_IS_A_RE, RELATIONSHIP_RE, C4_LABELED_SYNC_RE, C4_LABELED_ASYNC_RE, C4_LABELED_BIDI_SYNC_RE, C4_LABELED_BIDI_ASYNC_RE, SECTION_HEADER_RE, CONTAINER_REF_RE, METADATA_RE3, VALID_ELEMENT_TYPES, VALID_SHAPES, KNOWN_C4_OPTIONS, KNOWN_C4_BOOLEANS, ALL_CHART_TYPES2;
-var init_chunk_2DXMZRWJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-2DXMZRWJ.js"() {
+var init_chunk_B65G5DNL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-B65G5DNL.js"() {
     init_chunk_IYULMRBE();
     init_chunk_C3Z4DX3V();
     init_chunk_QLCCJEJI();
@@ -25447,7 +25454,7 @@ var init_chunk_2DXMZRWJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SML67VPV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SML67VPV.js
 function isSequenceBlock(el) {
   return el.kind === "block";
 }
@@ -26410,7 +26417,7 @@ function looksLikeSequence(content) {
 }
 var KNOWN_SEQ_OPTIONS, KNOWN_SEQ_BOOLEANS, NO_PREFIX_ONLY_BOOLEANS, VALID_PARTICIPANT_TYPES, IS_A_PATTERN, COLORED_PARTICIPANT_PATTERN, GROUP_HEADING_PATTERN, GROUP_HEADING_FALLBACK, SECTION_PATTERN, ARROW_PATTERN, NOTE_BARE, NOTE_MULTI;
 var init_chunk_SML67VPV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SML67VPV.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SML67VPV.js"() {
     init_chunk_C3Z4DX3V();
     init_chunk_QLCCJEJI();
     init_chunk_FFUN5D66();
@@ -26437,7 +26444,7 @@ var init_chunk_SML67VPV = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LIOHW36Z.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LIOHW36Z.js
 function nodeId2(shape, label) {
   return `${shape}:${normalizeName(label)}`;
 }
@@ -26868,7 +26875,7 @@ function extractSymbols3(docText) {
 }
 var NODE_ID_RE;
 var init_chunk_LIOHW36Z = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LIOHW36Z.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LIOHW36Z.js"() {
     init_chunk_I46X5VUA();
     init_chunk_5MLYVTYM();
     init_chunk_FMDSF3OV();
@@ -26880,7 +26887,7 @@ var init_chunk_LIOHW36Z = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3MQQNXPD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3MQQNXPD.js
 function splitArrows2(line) {
   const segments = [];
   const arrowPositions = [];
@@ -27257,7 +27264,7 @@ function looksLikeState(content) {
 }
 var PSEUDOSTATE_ID, PSEUDOSTATE_LABEL, GROUP_BRACKET_RE;
 var init_chunk_3MQQNXPD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3MQQNXPD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3MQQNXPD.js"() {
     init_chunk_5MLYVTYM();
     init_chunk_FMDSF3OV();
     init_chunk_FFUN5D66();
@@ -27271,7 +27278,7 @@ var init_chunk_3MQQNXPD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RUNNI6VE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RUNNI6VE.js
 function classId(name) {
   return normalizeName(name);
 }
@@ -27670,7 +27677,7 @@ function extractSymbols4(docText) {
 }
 var CLASS_DECL_RE, INDENT_REL_ARROW_RE, REL_ARROW_RE, VISIBILITY_RE, STATIC_SUFFIX_RE, METHOD_RE, FIELD_RE, ARROW_TO_TYPE;
 var init_chunk_RUNNI6VE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RUNNI6VE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RUNNI6VE.js"() {
     init_chunk_5MLYVTYM();
     init_chunk_FMDSF3OV();
     init_chunk_FFUN5D66();
@@ -27696,7 +27703,7 @@ var init_chunk_RUNNI6VE = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6FZYCKXB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-HSH73DP6.js
 function parseVisualization(content, palette) {
   return parseVisualizationFull(content, palette);
 }
@@ -29112,8 +29119,8 @@ function detectEmptyContent(content) {
   return [];
 }
 var DEFAULT_CLOUD_OPTIONS, STOP_WORDS, chartTypes, CHART_TYPE_REGISTRY, REGISTRY_BY_ID, GANTT_DURATION_RE, GANTT_DATE_RE, C4_TYPE_RE, CHART_TYPE_DESCRIPTIONS, chartTypeParsers, knownChartTypeIds, PARSER_BY_ID, ALL_KNOWN_TYPES;
-var init_chunk_6FZYCKXB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6FZYCKXB.js"() {
+var init_chunk_HSH73DP6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-HSH73DP6.js"() {
     init_chunk_P235SVAH();
     init_chunk_6HO5ZTXK();
     init_chunk_44CM72SQ();
@@ -29138,7 +29145,7 @@ var init_chunk_6FZYCKXB = __esm({
     init_chunk_GMR5MFHJ();
     init_chunk_ERLBPDGU();
     init_chunk_AELOBFW5();
-    init_chunk_2DXMZRWJ();
+    init_chunk_B65G5DNL();
     init_chunk_SML67VPV();
     init_chunk_QLCCJEJI();
     init_chunk_LIOHW36Z();
@@ -30000,9 +30007,9 @@ var require_d3_cloud = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dgmo-router-DZCIDUO5.js
-var dgmo_router_DZCIDUO5_exports = {};
-__export(dgmo_router_DZCIDUO5_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dgmo-router-X35VLZLM.js
+var dgmo_router_X35VLZLM_exports = {};
+__export(dgmo_router_X35VLZLM_exports, {
   CHART_TYPE_DESCRIPTIONS: () => CHART_TYPE_DESCRIPTIONS,
   chartTypeParsers: () => chartTypeParsers,
   getAllChartTypes: () => getAllChartTypes,
@@ -30014,13 +30021,13 @@ __export(dgmo_router_DZCIDUO5_exports, {
   parseDgmo: () => parseDgmo,
   parseDgmoChartType: () => parseDgmoChartType
 });
-var init_dgmo_router_DZCIDUO5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dgmo-router-DZCIDUO5.js"() {
-    init_chunk_6FZYCKXB();
+var init_dgmo_router_X35VLZLM = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dgmo-router-X35VLZLM.js"() {
+    init_chunk_HSH73DP6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/charts-d3-QOZHKTCT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/charts-d3-QOZHKTCT.js
 var charts_d3_QOZHKTCT_exports = {};
 __export(charts_d3_QOZHKTCT_exports, {
   D3_DATA_CHART_TYPES: () => D3_DATA_CHART_TYPES,
@@ -30028,23 +30035,23 @@ __export(charts_d3_QOZHKTCT_exports, {
   supportsD3DataChart: () => supportsD3DataChart
 });
 var init_charts_d3_QOZHKTCT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/charts-d3-QOZHKTCT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/charts-d3-QOZHKTCT.js"() {
     init_chunk_OJR3MQYV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-JAL2HD4I.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-JAL2HD4I.js
 var parser_JAL2HD4I_exports = {};
 __export(parser_JAL2HD4I_exports, {
   parseEventLine: () => parseEventLine
 });
 var init_parser_JAL2HD4I = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-JAL2HD4I.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-JAL2HD4I.js"() {
     init_chunk_5QXL4NYS();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js
 function safeHref(url) {
   if (typeof url !== "string") return null;
   const trimmed = url.replace(LEADING_TRIM_RE, "");
@@ -30118,7 +30125,7 @@ function renderInlineText(textEl, text, palette, fontSize) {
 }
 var ALLOWED_SCHEMES, SCHEME_RE, LEADING_TRIM_RE, BARE_URL_MAX_DISPLAY;
 var init_chunk_3HDBAXF5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js"() {
     ALLOWED_SCHEMES = ["http", "https", "mailto"];
     SCHEME_RE = /^([a-z][a-z0-9+.-]*):/i;
     LEADING_TRIM_RE = /^[\x00-\x20]+/;
@@ -30126,7 +30133,7 @@ var init_chunk_3HDBAXF5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js
 function wrapDescriptionLines(lines, charsPerLine, lengthFn = (s) => s.length) {
   const result = [];
   for (const line of lines) {
@@ -30162,13 +30169,13 @@ function wrapPlainLine(line, charsPerLine, lengthFn) {
 }
 var BULLET_PREFIX, BULLET_INDENT_CHARS;
 var init_chunk_BMR4CIEO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js"() {
     BULLET_PREFIX = "\u2022 ";
     BULLET_INDENT_CHARS = 2;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-VOKGH627.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-VOKGH627.js
 function renderNodeCard(container, opts) {
   const rect2 = container.append("rect").attr("x", 0).attr("y", 0).attr("width", opts.width).attr("height", opts.height).attr("rx", opts.rx).attr("fill", opts.fill).attr("stroke", opts.stroke).attr("stroke-width", opts.strokeWidth);
   if (opts.dashed) {
@@ -30196,15 +30203,15 @@ function renderCollapseBar(container, opts) {
   container.append("rect").attr("x", opts.inset).attr("y", opts.height - opts.barHeight).attr("width", opts.width - opts.inset * 2).attr("height", opts.barHeight).attr("fill", opts.fill).attr("clip-path", `url(#${opts.clipId})`).attr("class", opts.className);
 }
 var init_chunk_VOKGH627 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-VOKGH627.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-VOKGH627.js"() {
     init_chunk_WCT3NYCV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js
 var NODE_STROKE_WIDTH, EDGE_STROKE_WIDTH, CARD_RADIUS, CONTAINER_RADIUS, COLLAPSE_BAR_INSET, HEADER_HEIGHT, LABEL_FONT_SIZE, META_FONT_SIZE, META_LINE_HEIGHT, SEPARATOR_GAP, COLLAPSE_BAR_HEIGHT, CONTAINER_HEADER_HEIGHT, CONTAINER_LABEL_FONT_SIZE, CONTAINER_META_FONT_SIZE, CONTAINER_META_LINE_HEIGHT;
 var init_chunk_3CIOJ5YJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js"() {
     NODE_STROKE_WIDTH = 1.5;
     EDGE_STROKE_WIDTH = 1.5;
     CARD_RADIUS = 6;
@@ -30223,7 +30230,7 @@ var init_chunk_3CIOJ5YJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZGR7ULFJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZGR7ULFJ.js
 function renderEventLine(container, parsed, palette, isDark, onClickItem, exportDims, tagOverride) {
   if (parsed.events.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -31108,7 +31115,7 @@ function renderBody(cardG, lines, bodyColor, palette, startBaseline = CARD_BODY_
 }
 var CARD_W, H_MARGIN, TITLE_AREA, LEGEND_BAND, LEADER_ABOVE, LEADER_BELOW, DESC_FONT, DESC_LINE_H, CARD_PAD, CARD_BODY_TOP, DOT_R, MIN_SPACING, LANE_GAP, NEUTRAL_TAG, CARD_INSET, FAN_GAP, DATE_SUBTITLE_H, DATE_SUBTITLE_FONT, SHELF_TINT, SHELF_EDGE, ERA_BLOCK, ERA_BRACKET_CAP, ERA_BRACKET_PAD, ERA_SEAM_GAP, BREAK_HALF_H, BREAK_AMP, BREAK_GAP, ERA_LEG, ERA_LABEL_FONT, HL, DIM, ERA_HL, COLLAPSED, OFF, HIDDEN_ATTR, HOVER_CSS, DIMMABLE_SEL, PIN_ATTR;
 var init_chunk_ZGR7ULFJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZGR7ULFJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZGR7ULFJ.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_VOKGH627();
@@ -31163,7 +31170,7 @@ var init_chunk_ZGR7ULFJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-RPOA5YPZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-RPOA5YPZ.js
 var renderer_RPOA5YPZ_exports = {};
 __export(renderer_RPOA5YPZ_exports, {
   clearEventLineMuted: () => clearEventLineMuted,
@@ -31172,23 +31179,23 @@ __export(renderer_RPOA5YPZ_exports, {
   renderEventLineForExport: () => renderEventLineForExport
 });
 var init_renderer_RPOA5YPZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-RPOA5YPZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-RPOA5YPZ.js"() {
     init_chunk_ZGR7ULFJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TFZFBVWN.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TFZFBVWN.js
 var parser_TFZFBVWN_exports = {};
 __export(parser_TFZFBVWN_exports, {
   parseVersionControl: () => parseVersionControl
 });
 var init_parser_TFZFBVWN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TFZFBVWN.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TFZFBVWN.js"() {
     init_chunk_ERLBPDGU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QYTPPDAO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QYTPPDAO.js
 function clip(s, max3) {
   return s.length > max3 ? s.slice(0, max3 - 1) + "\u2026" : s;
 }
@@ -31563,7 +31570,7 @@ function renderVersionControlForExport(container, parsed, palette, isDark, expor
 }
 var LINE, DOT, CORNER, ANG, STACK, CIRCLED, TITLE_AREA2;
 var init_chunk_QYTPPDAO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QYTPPDAO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QYTPPDAO.js"() {
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_P6T66CCZ();
@@ -31579,26 +31586,26 @@ var init_chunk_QYTPPDAO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-GHPZMFU2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-GHPZMFU2.js
 var renderer_GHPZMFU2_exports = {};
 __export(renderer_GHPZMFU2_exports, {
   renderVersionControl: () => renderVersionControl,
   renderVersionControlForExport: () => renderVersionControlForExport
 });
 var init_renderer_GHPZMFU2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-GHPZMFU2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-GHPZMFU2.js"() {
     init_chunk_QYTPPDAO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-6BTRLKRZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-6BTRLKRZ.js
 var parser_6BTRLKRZ_exports = {};
 __export(parser_6BTRLKRZ_exports, {
   looksLikeOrg: () => looksLikeOrg,
   parseOrg: () => parseOrg
 });
 var init_parser_6BTRLKRZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-6BTRLKRZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-6BTRLKRZ.js"() {
     init_chunk_RVMRZAPB();
   }
 });
@@ -32284,7 +32291,7 @@ var init_src10 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-J5FIXQRT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-J5FIXQRT.js
 function countDescendantNodes(node, hiddenCounts) {
   let count2 = 0;
   for (const child of node.children) {
@@ -33054,7 +33061,7 @@ function layoutOrg(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, expan
 }
 var LABEL_FONT_SIZE2, META_FONT_SIZE2, META_LINE_HEIGHT2, HEADER_HEIGHT2, SEPARATOR_GAP2, CARD_H_PAD, CARD_V_PAD, MIN_CARD_WIDTH, H_GAP, V_GAP, MARGIN, CONTAINER_PAD_X, CONTAINER_PAD_BOTTOM, CONTAINER_LABEL_HEIGHT, CONTAINER_META_LINE_HEIGHT2, STACK_V_GAP;
 var init_chunk_J5FIXQRT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-J5FIXQRT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-J5FIXQRT.js"() {
     init_chunk_QOOUC2J5();
     init_chunk_WCT3NYCV();
     init_chunk_QLCCJEJI();
@@ -33078,18 +33085,18 @@ var init_chunk_J5FIXQRT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-OB3RI63S.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-OB3RI63S.js
 var layout_OB3RI63S_exports = {};
 __export(layout_OB3RI63S_exports, {
   layoutOrg: () => layoutOrg
 });
 var init_layout_OB3RI63S = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-OB3RI63S.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-OB3RI63S.js"() {
     init_chunk_J5FIXQRT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js
 function countDescendants2(node, shape) {
   let count2 = 0;
   for (const child of shape.getChildren(node)) {
@@ -33135,11 +33142,11 @@ function collectTreeIds(roots, shape) {
   return ids;
 }
 var init_chunk_BS7SV7C3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js
 function cloneNode(node) {
   return {
     id: node.id,
@@ -33208,7 +33215,7 @@ function focusOrgTree(original, focusNodeId) {
 }
 var ORG_SHAPE;
 var init_chunk_UJ4FJLBF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js"() {
     init_chunk_BS7SV7C3();
     ORG_SHAPE = {
       getId: (node) => node.id,
@@ -33222,19 +33229,19 @@ var init_chunk_UJ4FJLBF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js
 var collapse_CLPJD2RL_exports = {};
 __export(collapse_CLPJD2RL_exports, {
   collapseOrgTree: () => collapseOrgTree,
   focusOrgTree: () => focusOrgTree
 });
 var init_collapse_CLPJD2RL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js"() {
     init_chunk_UJ4FJLBF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y5QGVTVC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JTSMEYIZ.js
 function runInExportContainer(width, height, fn2) {
   const container = document.createElement("div");
   container.style.width = `${width}px`;
@@ -33248,22 +33255,26 @@ function runInExportContainer(width, height, fn2) {
     document.body.removeChild(container);
   }
 }
-function extractExportSvg(container, theme) {
+function extractExportSvg(container, theme, palette) {
   const svgEl = container.querySelector("svg");
   if (!svgEl) return "";
-  if (theme === "transparent") svgEl.style.background = "none";
+  if (theme === "transparent") {
+    svgEl.style.background = "none";
+  } else if (palette && !svgEl.style.background) {
+    svgEl.style.background = palette.bg;
+  }
   svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   svgEl.style.fontFamily = FONT_FAMILY;
   svgEl.querySelectorAll("[data-export-ignore]").forEach((el) => el.remove());
   return svgEl.outerHTML;
 }
-var init_chunk_Y5QGVTVC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y5QGVTVC.js"() {
+var init_chunk_JTSMEYIZ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JTSMEYIZ.js"() {
     init_chunk_6KFWC4CO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DU7W62N5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FANX6UJR.js
 function nodeFill(palette, isDark, nodeColor2, solid) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, {
@@ -33663,13 +33674,13 @@ function renderOrgForExport(content, theme, palette) {
       width: exportWidth,
       height: exportHeight
     });
-    return extractExportSvg(container, theme);
+    return extractExportSvg(container, theme, palette);
   });
 }
 var DIAGRAM_PADDING, MAX_SCALE, TITLE_HEIGHT, ANCESTOR_DOT_R, ANCESTOR_LABEL_FONT_SIZE, ANCESTOR_ROW_HEIGHT, ANCESTOR_TRAIL_BOTTOM_GAP, LEGEND_FIXED_GAP;
-var init_chunk_DU7W62N5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DU7W62N5.js"() {
-    init_chunk_Y5QGVTVC();
+var init_chunk_FANX6UJR = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FANX6UJR.js"() {
+    init_chunk_JTSMEYIZ();
     init_chunk_VOKGH627();
     init_chunk_3CIOJ5YJ();
     init_chunk_J5FIXQRT();
@@ -33695,26 +33706,26 @@ var init_chunk_DU7W62N5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-T7YKC5VP.js
-var renderer_T7YKC5VP_exports = {};
-__export(renderer_T7YKC5VP_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZRNG54CW.js
+var renderer_ZRNG54CW_exports = {};
+__export(renderer_ZRNG54CW_exports, {
   renderOrg: () => renderOrg,
   renderOrgForExport: () => renderOrgForExport
 });
-var init_renderer_T7YKC5VP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-T7YKC5VP.js"() {
-    init_chunk_DU7W62N5();
+var init_renderer_ZRNG54CW = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZRNG54CW.js"() {
+    init_chunk_FANX6UJR();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NGU3ETO6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NGU3ETO6.js
 var parser_NGU3ETO6_exports = {};
 __export(parser_NGU3ETO6_exports, {
   looksLikeSitemap: () => looksLikeSitemap,
   parseSitemap: () => parseSitemap
 });
 var init_parser_NGU3ETO6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NGU3ETO6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NGU3ETO6.js"() {
     init_chunk_AN2MOO5T();
   }
 });
@@ -35375,7 +35386,7 @@ var init_dagre_esm = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6SM5NJQH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6SM5NJQH.js
 function clipToRectBorder(cx, cy, w2, h, tx, ty) {
   const dx = tx - cx;
   const dy = ty - cy;
@@ -35952,7 +35963,7 @@ function layoutSitemap(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, e
 }
 var LABEL_FONT_SIZE3, META_FONT_SIZE3, CONTAINER_LABEL_FONT_SIZE2, META_LINE_HEIGHT3, HEADER_HEIGHT3, SEPARATOR_GAP3, CARD_H_PAD2, CARD_V_PAD2, MIN_CARD_WIDTH2, MARGIN2, CONTAINER_PAD_X2, CONTAINER_PAD_TOP, CONTAINER_PAD_BOTTOM2, CONTAINER_LABEL_HEIGHT2, CONTAINER_META_LINE_HEIGHT3, OVERLAP_GAP;
 var init_chunk_6SM5NJQH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6SM5NJQH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6SM5NJQH.js"() {
     init_chunk_QOOUC2J5();
     init_chunk_WCT3NYCV();
     init_chunk_QLCCJEJI();
@@ -35976,18 +35987,18 @@ var init_chunk_6SM5NJQH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5T6RH5M6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5T6RH5M6.js
 var layout_5T6RH5M6_exports = {};
 __export(layout_5T6RH5M6_exports, {
   layoutSitemap: () => layoutSitemap
 });
 var init_layout_5T6RH5M6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5T6RH5M6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5T6RH5M6.js"() {
     init_chunk_6SM5NJQH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js
 function buildParentMap(roots, shape) {
   const map2 = /* @__PURE__ */ new Map();
   const walk = (nodes) => {
@@ -36086,7 +36097,7 @@ function collapseSitemapTree(original, collapsedIds) {
 }
 var SITEMAP_SHAPE, SITEMAP_EDGE_SHAPE;
 var init_chunk_UNCCZ3NU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js"() {
     init_chunk_BS7SV7C3();
     SITEMAP_SHAPE = {
       getId: (node) => node.id,
@@ -36109,18 +36120,18 @@ var init_chunk_UNCCZ3NU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js
 var collapse_ZWUFFCK2_exports = {};
 __export(collapse_ZWUFFCK2_exports, {
   collapseSitemapTree: () => collapseSitemapTree
 });
 var init_collapse_ZWUFFCK2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js"() {
     init_chunk_UNCCZ3NU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OURHMODR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OURHMODR.js
 function nodeFill2(palette, isDark, nodeColor2, solid) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, {
@@ -36497,7 +36508,7 @@ async function renderSitemapForExport(content, theme, palette) {
 }
 var DIAGRAM_PADDING2, MAX_SCALE2, TITLE_HEIGHT2, ARROWHEAD_W, ARROWHEAD_H, EDGE_LABEL_FONT_SIZE, LEGEND_FIXED_GAP2, lineGenerator, lineGeneratorLinear;
 var init_chunk_OURHMODR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OURHMODR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-OURHMODR.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_VOKGH627();
     init_chunk_3CIOJ5YJ();
@@ -36525,30 +36536,30 @@ var init_chunk_OURHMODR = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-5NDVNDAZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-5NDVNDAZ.js
 var renderer_5NDVNDAZ_exports = {};
 __export(renderer_5NDVNDAZ_exports, {
   renderSitemap: () => renderSitemap,
   renderSitemapForExport: () => renderSitemapForExport
 });
 var init_renderer_5NDVNDAZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-5NDVNDAZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-5NDVNDAZ.js"() {
     init_chunk_OURHMODR();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XDVELHRK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XDVELHRK.js
 var parser_XDVELHRK_exports = {};
 __export(parser_XDVELHRK_exports, {
   parseKanban: () => parseKanban
 });
 var init_parser_XDVELHRK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XDVELHRK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XDVELHRK.js"() {
     init_chunk_AELOBFW5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MZSBFAPJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MZSBFAPJ.js
 function isArchiveColumn(name) {
   return name.toLowerCase() === ARCHIVE_COLUMN_NAME;
 }
@@ -37267,7 +37278,7 @@ function renderSwimlaneCard(parent, cardLayout, tagGroups, activeTagGroup, palet
 }
 var ARCHIVE_COLUMN_NAME, DIAGRAM_PADDING3, COLUMN_GAP, COLUMN_HEADER_HEIGHT, COLUMN_PADDING, COLUMN_MIN_WIDTH, CARD_HEADER_HEIGHT, CARD_META_LINE_HEIGHT, CARD_SEPARATOR_GAP, CARD_GAP, CARD_PADDING_X, CARD_PADDING_Y, CARD_STROKE_WIDTH, TITLE_HEIGHT3, COLUMN_HEADER_FONT_SIZE, CARD_TITLE_FONT_SIZE, CARD_META_FONT_SIZE, WIP_FONT_SIZE, COLUMN_RADIUS, COLUMN_HEADER_RADIUS, COLLAPSED_COLUMN_WIDTH, COLLAPSED_LANE_HEIGHT, LANE_HEADER_WIDTH, LANE_GAP2;
 var init_chunk_MZSBFAPJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MZSBFAPJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MZSBFAPJ.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_PWIHZ6NJ();
@@ -37308,19 +37319,19 @@ var init_chunk_MZSBFAPJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6EEZHMH4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6EEZHMH4.js
 var renderer_6EEZHMH4_exports = {};
 __export(renderer_6EEZHMH4_exports, {
   renderKanban: () => renderKanban,
   renderKanbanForExport: () => renderKanbanForExport
 });
 var init_renderer_6EEZHMH4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6EEZHMH4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6EEZHMH4.js"() {
     init_chunk_MZSBFAPJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NRAI6O25.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NRAI6O25.js
 var parser_NRAI6O25_exports = {};
 __export(parser_NRAI6O25_exports, {
   extractSymbols: () => extractSymbols4,
@@ -37328,15 +37339,15 @@ __export(parser_NRAI6O25_exports, {
   parseClassDiagram: () => parseClassDiagram
 });
 var init_parser_NRAI6O25 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NRAI6O25.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-NRAI6O25.js"() {
     init_chunk_RUNNI6VE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js
 var NOTE_MAX_W, NOTE_FOLD, NOTE_PAD_H, NOTE_PAD_V, NOTE_FONT_SIZE, NOTE_LINE_H, NOTE_GAP, NOTE_BULLET_INDENT;
 var init_chunk_5DH3KYFH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js"() {
     NOTE_MAX_W = 200;
     NOTE_FOLD = 10;
     NOTE_PAD_H = 8;
@@ -37348,7 +37359,7 @@ var init_chunk_5DH3KYFH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js
 function placeNotes(obstacles, requests, direction) {
   const placements = /* @__PURE__ */ new Map();
   const occupied = obstacles.map((p2) => ({
@@ -37453,14 +37464,14 @@ function noteCanvasShift(minX, minY, margin = 20) {
 }
 var NOTE_CLEAR, intersects;
 var init_chunk_6EK55ART = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js"() {
     init_chunk_5DH3KYFH();
     NOTE_CLEAR = 14;
     intersects = (a, b, pad2) => !(a.right + pad2 <= b.left || b.right + pad2 <= a.left || a.bottom + pad2 <= b.top || b.bottom + pad2 <= a.top);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TYS6CSS5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TYS6CSS5.js
 function normalizeBulletLine(line) {
   return line.replace(/^\s*[-*]\s+/, "\u2022 ");
 }
@@ -37491,14 +37502,14 @@ function noteBoxSize(body, opts = {}) {
   return { width, height, lines };
 }
 var init_chunk_TYS6CSS5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TYS6CSS5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-TYS6CSS5.js"() {
     init_chunk_5DH3KYFH();
     init_chunk_BMR4CIEO();
     init_chunk_WCT3NYCV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JED6ZDEE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JED6ZDEE.js
 function buildPlacedNotes(anchors, noteByNode, direction, collapsedNotes) {
   const placed = /* @__PURE__ */ new Map();
   if (noteByNode.size === 0) return placed;
@@ -37560,13 +37571,13 @@ function buildPlacedNotes(anchors, noteByNode, direction, collapsedNotes) {
   return placed;
 }
 var init_chunk_JED6ZDEE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JED6ZDEE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JED6ZDEE.js"() {
     init_chunk_6EK55ART();
     init_chunk_TYS6CSS5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WBRZJOEC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WBRZJOEC.js
 function computeNodeDimensions(node) {
   const fields = node.members.filter((m) => !m.isMethod);
   const methods = node.members.filter((m) => m.isMethod);
@@ -37744,7 +37755,7 @@ function layoutClassDiagram(parsed, options) {
 }
 var MIN_WIDTH, PADDING_X, HEADER_BASE, CLASS_FONT_SIZE, MEMBER_FONT_SIZE, MODIFIER_BADGE, MEMBER_LINE_HEIGHT, COMPARTMENT_PADDING_Y, SEPARATOR_HEIGHT;
 var init_chunk_WBRZJOEC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WBRZJOEC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-WBRZJOEC.js"() {
     init_chunk_JED6ZDEE();
     init_chunk_6EK55ART();
     init_chunk_WCT3NYCV();
@@ -37762,18 +37773,18 @@ var init_chunk_WBRZJOEC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-46N4JJYK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-46N4JJYK.js
 var layout_46N4JJYK_exports = {};
 __export(layout_46N4JJYK_exports, {
   layoutClassDiagram: () => layoutClassDiagram
 });
 var init_layout_46N4JJYK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-46N4JJYK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-46N4JJYK.js"() {
     init_chunk_WBRZJOEC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JEUJOX5X.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JEUJOX5X.js
 function renderNoteConnector(parent, x12, y12, x22, y2, palette) {
   parent.append("line").attr("x1", x12).attr("y1", y12).attr("x2", x22).attr("y2", y2).attr("stroke", palette.textMuted).attr("stroke-width", NOTE_STROKE_WIDTH).attr("stroke-opacity", NOTE_STROKE_OPACITY).attr("class", "note-connector").style("pointer-events", "none");
 }
@@ -37883,7 +37894,7 @@ function renderNoteBadge(parent, center, palette, opts) {
 }
 var NOTE_STROKE_WIDTH, NOTE_STROKE_OPACITY, NOTE_BADGE_RADIUS, NOTE_BADGE_OPACITY;
 var init_chunk_JEUJOX5X = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JEUJOX5X.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JEUJOX5X.js"() {
     init_chunk_5DH3KYFH();
     init_chunk_3HDBAXF5();
     init_chunk_P6T66CCZ();
@@ -37894,7 +37905,7 @@ var init_chunk_JEUJOX5X = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FNB3PNGF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-7DTWEFUE.js
 function modifierColor(modifier, palette, colorOff) {
   if (colorOff) return palette.textMuted;
   switch (modifier) {
@@ -38230,15 +38241,15 @@ function renderClassDiagramForExport(content, theme, palette) {
       true
       // exportMode
     );
-    return extractExportSvg(container, theme);
+    return extractExportSvg(container, theme, palette);
   });
 }
 var DIAGRAM_PADDING4, MAX_SCALE3, CLASS_FONT_SIZE2, MEMBER_FONT_SIZE2, EDGE_LABEL_FONT_SIZE2, MEMBER_LINE_HEIGHT2, COMPARTMENT_PADDING_Y2, MEMBER_PADDING_X, CLASS_TYPE_MAP, CLASS_TYPE_ORDER, LEGEND_GROUP_NAME, lineGenerator2;
-var init_chunk_FNB3PNGF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FNB3PNGF.js"() {
+var init_chunk_7DTWEFUE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-7DTWEFUE.js"() {
     init_chunk_WBRZJOEC();
     init_chunk_JEUJOX5X();
-    init_chunk_Y5QGVTVC();
+    init_chunk_JTSMEYIZ();
     init_chunk_3CIOJ5YJ();
     init_chunk_PWIHZ6NJ();
     init_chunk_YYVTBZZC();
@@ -38270,19 +38281,19 @@ var init_chunk_FNB3PNGF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-TOCOVLHS.js
-var renderer_TOCOVLHS_exports = {};
-__export(renderer_TOCOVLHS_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-B2OMQIQG.js
+var renderer_B2OMQIQG_exports = {};
+__export(renderer_B2OMQIQG_exports, {
   renderClassDiagram: () => renderClassDiagram,
   renderClassDiagramForExport: () => renderClassDiagramForExport
 });
-var init_renderer_TOCOVLHS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-TOCOVLHS.js"() {
-    init_chunk_FNB3PNGF();
+var init_renderer_B2OMQIQG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-B2OMQIQG.js"() {
+    init_chunk_7DTWEFUE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-KNSQSKQO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-KNSQSKQO.js
 var parser_KNSQSKQO_exports = {};
 __export(parser_KNSQSKQO_exports, {
   extractSymbols: () => extractSymbols2,
@@ -38290,12 +38301,12 @@ __export(parser_KNSQSKQO_exports, {
   parseERDiagram: () => parseERDiagram
 });
 var init_parser_KNSQSKQO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-KNSQSKQO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-KNSQSKQO.js"() {
     init_chunk_L66GEFB6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6NYWYNBI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6NYWYNBI.js
 function computeNodeDimensions2(table) {
   let maxTextWidth = measureText(table.name, TABLE_FONT_SIZE);
   for (const col of table.columns) {
@@ -38595,7 +38606,7 @@ function layoutERDiagram(parsed, options) {
 }
 var MIN_WIDTH2, PADDING_X2, HEADER_BASE2, TABLE_FONT_SIZE, COLUMN_FONT_SIZE, EDGE_LABEL_FONT_SIZE3, CONSTRAINT_ICON_WIDTH, MEMBER_LINE_HEIGHT3, COMPARTMENT_PADDING_Y3, SEPARATOR_HEIGHT2, HALF_MARGIN, COMP_GAP;
 var init_chunk_6NYWYNBI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6NYWYNBI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6NYWYNBI.js"() {
     init_chunk_JED6ZDEE();
     init_chunk_6EK55ART();
     init_chunk_WCT3NYCV();
@@ -38616,18 +38627,18 @@ var init_chunk_6NYWYNBI = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-EE6GE46Y.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-EE6GE46Y.js
 var layout_EE6GE46Y_exports = {};
 __export(layout_EE6GE46Y_exports, {
   layoutERDiagram: () => layoutERDiagram
 });
 var init_layout_EE6GE46Y = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-EE6GE46Y.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-EE6GE46Y.js"() {
     init_chunk_6NYWYNBI();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MITI6NOL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MITI6NOL.js
 function classifyEREntities(tables, relationships) {
   const result = /* @__PURE__ */ new Map();
   if (tables.length === 0) return result;
@@ -39078,7 +39089,7 @@ function renderERDiagramForExport(content, theme, palette) {
 }
 var ROLE_COLORS, ROLE_LABELS, ROLE_ORDER, LOOKUP_NAME_SUFFIXES, DIAGRAM_PADDING5, MAX_SCALE4, TABLE_FONT_SIZE2, COLUMN_FONT_SIZE2, EDGE_LABEL_FONT_SIZE4, MEMBER_LINE_HEIGHT4, COMPARTMENT_PADDING_Y4, MEMBER_PADDING_X2, lineGenerator3;
 var init_chunk_MITI6NOL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MITI6NOL.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-MITI6NOL.js"() {
     init_chunk_6NYWYNBI();
     init_chunk_JEUJOX5X();
     init_chunk_3CIOJ5YJ();
@@ -39136,31 +39147,31 @@ var init_chunk_MITI6NOL = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-W4M6QLIJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-W4M6QLIJ.js
 var renderer_W4M6QLIJ_exports = {};
 __export(renderer_W4M6QLIJ_exports, {
   renderERDiagram: () => renderERDiagram,
   renderERDiagramForExport: () => renderERDiagramForExport
 });
 var init_renderer_W4M6QLIJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-W4M6QLIJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-W4M6QLIJ.js"() {
     init_chunk_MITI6NOL();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TRTHDFPP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TRTHDFPP.js
 var parser_TRTHDFPP_exports = {};
 __export(parser_TRTHDFPP_exports, {
   looksLikeBoxesAndLines: () => looksLikeBoxesAndLines,
   parseBoxesAndLines: () => parseBoxesAndLines
 });
 var init_parser_TRTHDFPP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TRTHDFPP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-TRTHDFPP.js"() {
     init_chunk_BUVJFRPY();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-2LACINWN.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-2LACINWN.js
 function splitCamelCase(word) {
   const parts = [];
   let start = 0;
@@ -39866,7 +39877,7 @@ function renderBoxesAndLinesForExport(container, parsed, layout, palette, isDark
 }
 var DIAGRAM_PADDING6, NODE_FONT_SIZE, MIN_NODE_FONT_SIZE, EDGE_LABEL_FONT_SIZE5, NODE_RX, COLLAPSE_BAR_HEIGHT2, ARROWHEAD_W2, ARROWHEAD_H2, DESC_FONT_SIZE, DESC_LINE_HEIGHT, MAX_DESC_LINES, NODE_TEXT_PADDING, GROUP_RX, GROUP_LABEL_FONT_SIZE, GROUP_LABEL_ZONE, RAMP_FLOOR, VALUE_FONT_SIZE, lineGeneratorLR, lineGeneratorTB, lineGeneratorStraight;
 var init_chunk_2LACINWN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-2LACINWN.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-2LACINWN.js"() {
     init_chunk_JEUJOX5X();
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
@@ -39905,19 +39916,19 @@ var init_chunk_2LACINWN = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-YY2OSF6E.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-YY2OSF6E.js
 var renderer_YY2OSF6E_exports = {};
 __export(renderer_YY2OSF6E_exports, {
   renderBoxesAndLines: () => renderBoxesAndLines,
   renderBoxesAndLinesForExport: () => renderBoxesAndLinesForExport
 });
 var init_renderer_YY2OSF6E = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-YY2OSF6E.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-YY2OSF6E.js"() {
     init_chunk_2LACINWN();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YGJTDXVR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YGJTDXVR.js
 function rng(s) {
   return () => {
     s |= 0;
@@ -40589,7 +40600,7 @@ function groupedTierCandidates(parsed, sizes, opts) {
 }
 var NODESEP, RANKSEP, DUMMY_THICK, MARGIN3, GROUP_PAD, GROUP_LABEL_ZONE2, GROUP_GAP, TIER_GAP, W_REAL_REAL, W_REAL_DUMMY, W_DUMMY_DUMMY;
 var init_chunk_YGJTDXVR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YGJTDXVR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YGJTDXVR.js"() {
     init_chunk_IJZFN3HM();
     NODESEP = 50;
     RANKSEP = 60;
@@ -40605,7 +40616,7 @@ var init_chunk_YGJTDXVR = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-search-OYV77HHS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-search-OYV77HHS.js
 var layout_search_OYV77HHS_exports = {};
 __export(layout_search_OYV77HHS_exports, {
   countEdgeNearMiss: () => countEdgeNearMiss,
@@ -42219,7 +42230,7 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
 }
 var NODESEP2, RANKSEP2, DUMMY_THICK2, MARGIN4, W_REAL_REAL2, W_REAL_DUMMY2, W_DUMMY_DUMMY2, DEFAULT_LAMBDA, ESCALATE_THRESHOLD, ESCALATE_MAX_N, ESCALATE_SEEDS, ESCALATE_REFINE, splineGen, PATH_TOKEN_RE, FLAT_CACHE, GROUP_LABEL_ZONE3;
 var init_layout_search_OYV77HHS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-search-OYV77HHS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-search-OYV77HHS.js"() {
     init_chunk_YGJTDXVR();
     init_chunk_IJZFN3HM();
     init_dagre_esm();
@@ -42243,7 +42254,7 @@ var init_layout_search_OYV77HHS = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IJZFN3HM.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IJZFN3HM.js
 function measureEdgeLabel(label, fontSize = EDGE_LABEL_FONT_SIZE6, maxWidth = LABEL_MAX_WIDTH) {
   let lines = wrapTextToWidth(label, fontSize, maxWidth, { hardBreak: true });
   if (lines.length > MAX_LABEL_LINES) {
@@ -42654,7 +42665,7 @@ function applyParallelEdgeOffsets(layout) {
 }
 var EDGE_LABEL_FONT_SIZE6, LABEL_MAX_WIDTH, MAX_LABEL_LINES, LABEL_LINE_HEIGHT, H_PAD, V_PAD, BOX_CLEAR_PAD, PERP_STEP, PERP_MAX, SLIDE_SAMPLES, MARGIN5, MAX_PARALLEL_EDGES, PARALLEL_SPACING, PHI, NODE_HEIGHT, NODE_WIDTH, DESC_NODE_WIDTH, DESC_FONT_SIZE2, DESC_LINE_HEIGHT2, DESC_PADDING, SEPARATOR_GAP4, MAX_DESC_LINES2, MAX_LABEL_LINES2, LABEL_LINE_HEIGHT2, LABEL_PAD, VALUE_ROW_FONT, VALUE_ROW_H;
 var init_chunk_IJZFN3HM = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IJZFN3HM.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IJZFN3HM.js"() {
     init_chunk_JED6ZDEE();
     init_chunk_6EK55ART();
     init_chunk_WCT3NYCV();
@@ -42689,7 +42700,7 @@ var init_chunk_IJZFN3HM = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HRBZPFCN.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HRBZPFCN.js
 var layout_HRBZPFCN_exports = {};
 __export(layout_HRBZPFCN_exports, {
   NODE_HEIGHT: () => NODE_HEIGHT,
@@ -42698,23 +42709,23 @@ __export(layout_HRBZPFCN_exports, {
   layoutBoxesAndLines: () => layoutBoxesAndLines
 });
 var init_layout_HRBZPFCN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HRBZPFCN.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HRBZPFCN.js"() {
     init_chunk_IJZFN3HM();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-ZSDPZYQP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-ZSDPZYQP.js
 var parser_ZSDPZYQP_exports = {};
 __export(parser_ZSDPZYQP_exports, {
   parseSwimlane: () => parseSwimlane
 });
 var init_parser_ZSDPZYQP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-ZSDPZYQP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-ZSDPZYQP.js"() {
     init_chunk_WVAJFAIA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-725LDASD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-725LDASD.js
 function nodeSize(shape) {
   if (shape === "exclusive" || shape === "parallel")
     return { w: DIAMOND, h: DIAMOND };
@@ -43116,7 +43127,7 @@ function layoutSwimlane(parsed) {
 }
 var MARGIN6, COL_GAP, NODE_W2, NODE_H, DIAMOND, TERM_D, INTRA_GAP, LANE_PAD, MIN_LANE, LANE_HEADER, PHASE_HEADER, BACK_CHANNEL, BACK_STEP;
 var init_chunk_725LDASD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-725LDASD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-725LDASD.js"() {
     init_chunk_YGJTDXVR();
     MARGIN6 = 30;
     COL_GAP = 64;
@@ -43134,18 +43145,18 @@ var init_chunk_725LDASD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-N76NR4ZO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-N76NR4ZO.js
 var layout_N76NR4ZO_exports = {};
 __export(layout_N76NR4ZO_exports, {
   layoutSwimlane: () => layoutSwimlane
 });
 var init_layout_N76NR4ZO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-N76NR4ZO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-N76NR4ZO.js"() {
     init_chunk_725LDASD();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js
 function appendArrowheadMarkers(defs, opts) {
   const { idPrefix, width, height, baseFill, colors } = opts;
   const appendMarker = (id, fill2) => {
@@ -43157,11 +43168,11 @@ function appendArrowheadMarkers(defs, opts) {
   }
 }
 var init_chunk_LP7EC4MI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-X5LCYCL5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-X5LCYCL5.js
 function roundedPolyline(pts, radius) {
   if (pts.length < 3) {
     return pts.map((p2, i) => `${i ? "L" : "M"}${p2.x} ${p2.y}`).join(" ");
@@ -43514,7 +43525,7 @@ function drawCenteredLabel(g, label, cx, cy, fill2, fontSize, tight = false, hal
 }
 var NODE_FONT_SIZE2, LANE_LABEL_FONT, PHASE_LABEL_FONT, EDGE_LABEL_FONT, NODE_RX2, NODE_STROKE, EDGE_STROKE, EDGE_CORNER_R, ARROW_W, ARROW_H, LANE_RADIUS, LANE_INSET;
 var init_chunk_X5LCYCL5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-X5LCYCL5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-X5LCYCL5.js"() {
     init_chunk_LP7EC4MI();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
@@ -43537,29 +43548,29 @@ var init_chunk_X5LCYCL5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-JGBKUCZD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-JGBKUCZD.js
 var renderer_JGBKUCZD_exports = {};
 __export(renderer_JGBKUCZD_exports, {
   renderSwimlaneForExport: () => renderSwimlaneForExport
 });
 var init_renderer_JGBKUCZD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-JGBKUCZD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-JGBKUCZD.js"() {
     init_chunk_X5LCYCL5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-N5O4IHUN.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-N5O4IHUN.js
 var parser_N5O4IHUN_exports = {};
 __export(parser_N5O4IHUN_exports, {
   parseMindmap: () => parseMindmap
 });
 var init_parser_N5O4IHUN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-N5O4IHUN.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-N5O4IHUN.js"() {
     init_chunk_EB6FPQUP();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T2OE3YQB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T2OE3YQB.js
 function tokenize(text) {
   const tokens = [];
   const parts = text.split(/(\s+)/);
@@ -44069,7 +44080,7 @@ function populateDepthCache(roots) {
 }
 var H_PAD2, MAX_LABEL_LINES3, MAX_DESC_LINES3, ROOT_FONT_SIZE, MIN_FONT_SIZE, FONT_STEP, DESC_FONT_SIZE3, ROOT_WIDTH, DEPTH1_WIDTH, LEAF_WIDTH, SINGLE_LABEL_HEIGHT, LABEL_LINE_HEIGHT3, DESC_LINE_HEIGHT3, NODE_V_PAD, H_GAP2, V_GAP2, MARGIN7, MULTI_ROOT_GAP, nodeDepthCache;
 var init_chunk_T2OE3YQB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T2OE3YQB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T2OE3YQB.js"() {
     init_chunk_YYVTBZZC();
     init_chunk_WCT3NYCV();
     init_chunk_IYULMRBE();
@@ -44096,18 +44107,18 @@ var init_chunk_T2OE3YQB = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-UM5F4DJB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-UM5F4DJB.js
 var layout_UM5F4DJB_exports = {};
 __export(layout_UM5F4DJB_exports, {
   layoutMindmap: () => layoutMindmap
 });
 var init_layout_UM5F4DJB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-UM5F4DJB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-UM5F4DJB.js"() {
     init_chunk_T2OE3YQB();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js
 function cloneNode3(node) {
   return {
     id: node.id,
@@ -44131,7 +44142,7 @@ function collapseMindmapTree(roots, collapsedIds) {
 }
 var MINDMAP_SHAPE;
 var init_chunk_UZ7EZW3B = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js"() {
     init_chunk_BS7SV7C3();
     MINDMAP_SHAPE = {
       getId: (node) => node.id,
@@ -44145,18 +44156,18 @@ var init_chunk_UZ7EZW3B = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js
 var collapse_SLINJQW6_exports = {};
 __export(collapse_SLINJQW6_exports, {
   collapseMindmapTree: () => collapseMindmapTree
 });
 var init_collapse_SLINJQW6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js"() {
     init_chunk_UZ7EZW3B();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CUVHQHZ7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-THXCFRTU.js
 function nodeFill4(palette, isDark, nodeColor2, solid) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, {
@@ -44471,15 +44482,15 @@ function renderMindmapForExport(content, theme, palette) {
       void 0,
       hideDescriptions
     );
-    return extractExportSvg(container, theme);
+    return extractExportSvg(container, theme, palette);
   });
 }
 var DIAGRAM_PADDING7, TITLE_HEIGHT4, SINGLE_LABEL_HEIGHT2, LABEL_LINE_HEIGHT4, DESC_LINE_HEIGHT4, NODE_RADIUS, ROOT_STROKE_WIDTH, DEPTH_COLOR_KEYS;
-var init_chunk_CUVHQHZ7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CUVHQHZ7.js"() {
+var init_chunk_THXCFRTU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-THXCFRTU.js"() {
     init_chunk_T2OE3YQB();
     init_chunk_3HDBAXF5();
-    init_chunk_Y5QGVTVC();
+    init_chunk_JTSMEYIZ();
     init_chunk_3CIOJ5YJ();
     init_chunk_PWIHZ6NJ();
     init_chunk_YYVTBZZC();
@@ -44512,19 +44523,19 @@ var init_chunk_CUVHQHZ7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-2XQQQ6QR.js
-var renderer_2XQQQ6QR_exports = {};
-__export(renderer_2XQQQ6QR_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-N43WR5GV.js
+var renderer_N43WR5GV_exports = {};
+__export(renderer_N43WR5GV_exports, {
   renderMindmap: () => renderMindmap,
   renderMindmapForExport: () => renderMindmapForExport
 });
-var init_renderer_2XQQQ6QR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-2XQQQ6QR.js"() {
-    init_chunk_CUVHQHZ7();
+var init_renderer_N43WR5GV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-N43WR5GV.js"() {
+    init_chunk_THXCFRTU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-IXSZZQHY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-IXSZZQHY.js
 var parser_IXSZZQHY_exports = {};
 __export(parser_IXSZZQHY_exports, {
   GROUP_ONLY_METADATA: () => GROUP_ONLY_METADATA,
@@ -44533,12 +44544,12 @@ __export(parser_IXSZZQHY_exports, {
   resetWireframeIds: () => resetWireframeIds
 });
 var init_parser_IXSZZQHY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-IXSZZQHY.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-IXSZZQHY.js"() {
     init_chunk_EVCVDTXE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-H6PI3KJT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-H6PI3KJT.js
 function layoutWireframe(parsed, _options, overrideWidth, showGroupLabels = true) {
   GROUP_PADDING_TOP = showGroupLabels ? GROUP_PADDING_TOP_WITH_LABEL : GROUP_PADDING_TOP_NO_LABEL;
   const defaultWidth = parsed.formFactor === "mobile" ? MOBILE_WIDTH : DESKTOP_WIDTH;
@@ -44772,7 +44783,7 @@ function computeFieldAlignX(children2) {
 }
 var DESKTOP_WIDTH, MOBILE_WIDTH, LABEL_PADDING, LABEL_FIELD_FONT_SIZE, ELEMENT_HEIGHTS, SPACING_AFTER, GROUP_PADDING_TOP_WITH_LABEL, GROUP_PADDING_TOP_NO_LABEL, GROUP_PADDING_BOTTOM, GROUP_PADDING_TOP, GROUP_PADDING_X, FRAME_PADDING, TITLE_HEIGHT5, REGION_SIZES, FULL_WIDTH_REGIONS, HEADER_REGION_HEIGHT, FOOTER_REGION_HEIGHT;
 var init_chunk_H6PI3KJT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-H6PI3KJT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-H6PI3KJT.js"() {
     init_chunk_WCT3NYCV();
     DESKTOP_WIDTH = 1200;
     MOBILE_WIDTH = 375;
@@ -44841,18 +44852,18 @@ var init_chunk_H6PI3KJT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-G23F7LDH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-G23F7LDH.js
 var layout_G23F7LDH_exports = {};
 __export(layout_G23F7LDH_exports, {
   layoutWireframe: () => layoutWireframe
 });
 var init_layout_G23F7LDH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-G23F7LDH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-G23F7LDH.js"() {
     init_chunk_H6PI3KJT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZO27FGJS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZO27FGJS.js
 function getSemanticColor(state, palette) {
   const fn2 = SEMANTIC_COLORS[state];
   return fn2 ? fn2(palette) : null;
@@ -45374,7 +45385,7 @@ function renderModal(parent, node, ctx) {
 }
 var INPUT_CORNER, BUTTON_CORNER, GROUP_CORNER, SEMANTIC_COLORS;
 var init_chunk_ZO27FGJS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZO27FGJS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZO27FGJS.js"() {
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
@@ -45393,29 +45404,29 @@ var init_chunk_ZO27FGJS = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-QIWVHWZO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-QIWVHWZO.js
 var renderer_QIWVHWZO_exports = {};
 __export(renderer_QIWVHWZO_exports, {
   renderWireframe: () => renderWireframe
 });
 var init_renderer_QIWVHWZO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-QIWVHWZO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-QIWVHWZO.js"() {
     init_chunk_ZO27FGJS();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-FUSKFGZN.js
-var parser_FUSKFGZN_exports = {};
-__export(parser_FUSKFGZN_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-2EWECDSA.js
+var parser_2EWECDSA_exports = {};
+__export(parser_2EWECDSA_exports, {
   parseC4: () => parseC4
 });
-var init_parser_FUSKFGZN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-FUSKFGZN.js"() {
-    init_chunk_2DXMZRWJ();
+var init_parser_2EWECDSA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-2EWECDSA.js"() {
+    init_chunk_B65G5DNL();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QEBUY5NY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QEBUY5NY.js
 function computeEdgePenalty(edgeList, nodePositions, degrees2, nodeGeometry) {
   let penalty = 0;
   for (const edge of edgeList) {
@@ -47047,7 +47058,7 @@ function layoutC4Deployment(parsed, activeTagGroup) {
 }
 var gNode, gEdge, MIN_NODE_WIDTH, MAX_NODE_WIDTH, TYPE_LABEL_HEIGHT, DIVIDER_GAP, NAME_HEIGHT, NAME_FONT_SIZE, DESC_LINE_HEIGHT5, DESC_FONT_SIZE4, CARD_V_PAD3, CARD_H_PAD3, META_LINE_HEIGHT4, META_FONT_SIZE4, MARGIN8, BOUNDARY_PAD, GROUP_BOUNDARY_PAD, EDGE_NODE_COLLISION_WEIGHT, META_EXCLUDE_KEYS;
 var init_chunk_QEBUY5NY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QEBUY5NY.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-QEBUY5NY.js"() {
     init_chunk_QOOUC2J5();
     init_chunk_WCT3NYCV();
     init_chunk_QLCCJEJI();
@@ -47079,7 +47090,7 @@ var init_chunk_QEBUY5NY = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5RA6QWR6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5RA6QWR6.js
 var layout_5RA6QWR6_exports = {};
 __export(layout_5RA6QWR6_exports, {
   collectCardMetadata: () => collectCardMetadata,
@@ -47091,12 +47102,12 @@ __export(layout_5RA6QWR6_exports, {
   rollUpContextRelationships: () => rollUpContextRelationships
 });
 var init_layout_5RA6QWR6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5RA6QWR6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-5RA6QWR6.js"() {
     init_chunk_QEBUY5NY();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P4RH4OSP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ILKORZ3H.js
 function typeColor(type, palette, nodeColor2) {
   if (nodeColor2) return nodeColor2;
   switch (type) {
@@ -48048,8 +48059,8 @@ function renderC4DeploymentForExport(content, theme, palette) {
   }
 }
 var DIAGRAM_PADDING8, MAX_SCALE5, TITLE_HEIGHT6, TYPE_FONT_SIZE, NAME_FONT_SIZE2, DESC_FONT_SIZE5, DESC_LINE_HEIGHT6, EDGE_LABEL_FONT_SIZE7, TECH_FONT_SIZE, CARD_H_PAD4, CARD_V_PAD4, TYPE_LABEL_HEIGHT2, DIVIDER_GAP2, NAME_HEIGHT2, BOUNDARY_LABEL_FONT_SIZE, BOUNDARY_STROKE_WIDTH, BOUNDARY_RADIUS, DRILL_BAR_HEIGHT, CYLINDER_RY, PERSON_HEAD_R, PERSON_ARM_SPAN, PERSON_LEG_SPAN, PERSON_ICON_W, PERSON_SW, lineGenerator4;
-var init_chunk_P4RH4OSP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-P4RH4OSP.js"() {
+var init_chunk_ILKORZ3H = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ILKORZ3H.js"() {
     init_chunk_QEBUY5NY();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
@@ -48058,7 +48069,7 @@ var init_chunk_P4RH4OSP = __esm({
     init_chunk_6KFWC4CO();
     init_chunk_QOOUC2J5();
     init_chunk_WCT3NYCV();
-    init_chunk_2DXMZRWJ();
+    init_chunk_B65G5DNL();
     init_chunk_IYULMRBE();
     init_chunk_P6T66CCZ();
     init_chunk_QLCCJEJI();
@@ -48092,9 +48103,9 @@ var init_chunk_P4RH4OSP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-UWA5XS74.js
-var renderer_UWA5XS74_exports = {};
-__export(renderer_UWA5XS74_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-4JHRUBE6.js
+var renderer_4JHRUBE6_exports = {};
+__export(renderer_4JHRUBE6_exports, {
   renderC4ComponentsForExport: () => renderC4ComponentsForExport,
   renderC4Containers: () => renderC4Containers,
   renderC4ContainersForExport: () => renderC4ContainersForExport,
@@ -48103,13 +48114,13 @@ __export(renderer_UWA5XS74_exports, {
   renderC4Deployment: () => renderC4Deployment,
   renderC4DeploymentForExport: () => renderC4DeploymentForExport
 });
-var init_renderer_UWA5XS74 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-UWA5XS74.js"() {
-    init_chunk_P4RH4OSP();
+var init_renderer_4JHRUBE6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-4JHRUBE6.js"() {
+    init_chunk_ILKORZ3H();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-parser-ZNSKIBVR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-parser-ZNSKIBVR.js
 var flowchart_parser_ZNSKIBVR_exports = {};
 __export(flowchart_parser_ZNSKIBVR_exports, {
   extractSymbols: () => extractSymbols3,
@@ -48117,12 +48128,12 @@ __export(flowchart_parser_ZNSKIBVR_exports, {
   parseFlowchart: () => parseFlowchart
 });
 var init_flowchart_parser_ZNSKIBVR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-parser-ZNSKIBVR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-parser-ZNSKIBVR.js"() {
     init_chunk_LIOHW36Z();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T3UBLACL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T3UBLACL.js
 function computeNodeWidth(label, shape) {
   if (shape === "pseudostate") return 24;
   const base = Math.max(120, label.length * 9 + 40);
@@ -48405,7 +48416,7 @@ function layoutGraph(graph, options) {
 }
 var GROUP_PADDING;
 var init_chunk_T3UBLACL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T3UBLACL.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-T3UBLACL.js"() {
     init_chunk_6EK55ART();
     init_chunk_TYS6CSS5();
     init_chunk_FMDSF3OV();
@@ -48414,18 +48425,18 @@ var init_chunk_T3UBLACL = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HWDSRX5E.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HWDSRX5E.js
 var layout_HWDSRX5E_exports = {};
 __export(layout_HWDSRX5E_exports, {
   layoutGraph: () => layoutGraph
 });
 var init_layout_HWDSRX5E = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HWDSRX5E.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HWDSRX5E.js"() {
     init_chunk_T3UBLACL();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js
 function fitDiagramToCanvas(p2) {
   const scaleX = (p2.width - p2.padding * 2) / p2.diagramW;
   let scale;
@@ -48452,13 +48463,13 @@ function edgeSplinePath(points) {
 }
 var lineGenerator5;
 var init_chunk_PDKUANDZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js"() {
     init_src9();
     lineGenerator5 = line_default().x((d) => d.x).y((d) => d.y).curve(basis_default2);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RZCF2VVM.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-B7JUCQUA.js
 function shapeDefaultColor(shape, palette, isEndTerminal, colorOff) {
   if (colorOff) return palette.textMuted;
   switch (shape) {
@@ -48919,6 +48930,8 @@ function renderFlowchartForExport(content, theme, palette) {
     if (!svgEl) return "";
     if (theme === "transparent") {
       svgEl.style.background = "none";
+    } else if (!svgEl.style.background) {
+      svgEl.style.background = palette.bg;
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
@@ -48928,8 +48941,8 @@ function renderFlowchartForExport(content, theme, palette) {
   }
 }
 var DIAGRAM_PADDING9, MAX_SCALE6, NODE_FONT_SIZE3, EDGE_LABEL_FONT_SIZE8, ARROWHEAD_W3, ARROWHEAD_H3, IO_SKEW, SUBROUTINE_INSET, DOC_WAVE_HEIGHT;
-var init_chunk_RZCF2VVM = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RZCF2VVM.js"() {
+var init_chunk_B7JUCQUA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-B7JUCQUA.js"() {
     init_chunk_PDKUANDZ();
     init_chunk_T3UBLACL();
     init_chunk_LP7EC4MI();
@@ -48954,19 +48967,19 @@ var init_chunk_RZCF2VVM = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-ZAEOL4DX.js
-var flowchart_renderer_ZAEOL4DX_exports = {};
-__export(flowchart_renderer_ZAEOL4DX_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-SNDSII4D.js
+var flowchart_renderer_SNDSII4D_exports = {};
+__export(flowchart_renderer_SNDSII4D_exports, {
   renderFlowchart: () => renderFlowchart,
   renderFlowchartForExport: () => renderFlowchartForExport
 });
-var init_flowchart_renderer_ZAEOL4DX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-ZAEOL4DX.js"() {
-    init_chunk_RZCF2VVM();
+var init_flowchart_renderer_SNDSII4D = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-SNDSII4D.js"() {
+    init_chunk_B7JUCQUA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-OV7NOBW6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-OV7NOBW6.js
 var parser_OV7NOBW6_exports = {};
 __export(parser_OV7NOBW6_exports, {
   INFRA_TOP_LEVEL_OPTIONS: () => INFRA_TOP_LEVEL_OPTIONS,
@@ -48974,12 +48987,12 @@ __export(parser_OV7NOBW6_exports, {
   parseInfra: () => parseInfra
 });
 var init_parser_OV7NOBW6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-OV7NOBW6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-OV7NOBW6.js"() {
     init_chunk_33LCUH4H();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A44USUV7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A44USUV7.js
 function getNumProp(node, key, fallback) {
   const prop = node.properties.find((p2) => p2.key === key);
   if (!prop) return fallback;
@@ -49898,22 +49911,22 @@ function computeInfra(parsed, params = {}) {
   };
 }
 var init_chunk_A44USUV7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A44USUV7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A44USUV7.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/compute-G55RG53N.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/compute-G55RG53N.js
 var compute_G55RG53N_exports = {};
 __export(compute_G55RG53N_exports, {
   computeInfra: () => computeInfra
 });
 var init_compute_G55RG53N = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/compute-G55RG53N.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/compute-G55RG53N.js"() {
     init_chunk_A44USUV7();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y2ZE3MSG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y2ZE3MSG.js
 function countDisplayProps(node, expanded, options) {
   if (!expanded) return 0;
   let count2 = node.properties.filter((p2) => DISPLAY_KEYS.has(p2.key)).length;
@@ -50440,7 +50453,7 @@ function layoutInfra(computed, expandedNodeIds, collapsedNodes) {
 }
 var MIN_NODE_WIDTH2, NODE_HEADER_HEIGHT, META_LINE_HEIGHT5, NODE_SEPARATOR_GAP, NODE_PAD_BOTTOM, ROLE_DOT_ROW, COLLAPSE_BAR_HEIGHT3, NODE_FONT_SIZE4, META_FONT_SIZE5, EDGE_LABEL_FONT_SIZE9, PADDING_X3, GROUP_PADDING2, GROUP_HEADER_HEIGHT, EDGE_MARGIN, DISPLAY_KEYS, DISPLAY_NAMES, GROUP_GAP2;
 var init_chunk_Y2ZE3MSG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y2ZE3MSG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Y2ZE3MSG.js"() {
     init_chunk_WCT3NYCV();
     init_dagre_esm();
     MIN_NODE_WIDTH2 = 140;
@@ -50497,7 +50510,7 @@ var init_chunk_Y2ZE3MSG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-7QXCNOVS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-7QXCNOVS.js
 var layout_7QXCNOVS_exports = {};
 __export(layout_7QXCNOVS_exports, {
   fixEdgeWaypoints: () => fixEdgeWaypoints,
@@ -50505,12 +50518,12 @@ __export(layout_7QXCNOVS_exports, {
   separateGroups: () => separateGroups
 });
 var init_layout_7QXCNOVS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-7QXCNOVS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-7QXCNOVS.js"() {
     init_chunk_Y2ZE3MSG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBHE5UG6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBHE5UG6.js
 function inferRoles(properties) {
   const propKeys = new Set(properties.map((p2) => p2.key));
   const roles = [];
@@ -51887,7 +51900,7 @@ function parseAndLayoutInfra(content) {
 }
 var ROLE_RULES, FANOUT_ROLE, NODE_FONT_SIZE5, META_FONT_SIZE6, META_LINE_HEIGHT6, EDGE_LABEL_FONT_SIZE10, GROUP_LABEL_FONT_SIZE2, NODE_BORDER_RADIUS, OVERLOAD_STROKE_WIDTH, ROLE_DOT_RADIUS, NODE_HEADER_HEIGHT2, NODE_SEPARATOR_GAP2, NODE_PAD_BOTTOM2, LEGEND_FIXED_GAP3, SPEED_BADGE_H_PAD, SPEED_BADGE_V_PAD, SPEED_BADGE_GAP, COLOR_HEALTHY, COLOR_WARNING, COLOR_OVERLOADED, FLOW_SPEED_MIN, FLOW_SPEED_MAX, PARTICLE_R, PARTICLE_COUNT_MIN, PARTICLE_COUNT_MAX, NODE_PULSE_SPEED, NODE_PULSE_OVERLOAD, REJECT_DROP_DISTANCE, REJECT_DURATION_MIN, REJECT_DURATION_MAX, REJECT_COUNT_MIN, REJECT_COUNT_MAX, PROP_DISPLAY, DESC_MAX_CHARS, DESC_MAX_WIDTH, RPS_FORMAT_KEYS, MS_FORMAT_KEYS, PCT_FORMAT_KEYS;
 var init_chunk_PBHE5UG6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBHE5UG6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PBHE5UG6.js"() {
     init_chunk_A44USUV7();
     init_chunk_Y2ZE3MSG();
     init_chunk_3HDBAXF5();
@@ -51982,7 +51995,7 @@ var init_chunk_PBHE5UG6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-BYCNMBF7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-BYCNMBF7.js
 var renderer_BYCNMBF7_exports = {};
 __export(renderer_BYCNMBF7_exports, {
   computeInfraLegendGroups: () => computeInfraLegendGroups,
@@ -51990,12 +52003,12 @@ __export(renderer_BYCNMBF7_exports, {
   renderInfra: () => renderInfra
 });
 var init_renderer_BYCNMBF7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-BYCNMBF7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-BYCNMBF7.js"() {
     init_chunk_PBHE5UG6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-3STE62GB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-3STE62GB.js
 var parser_3STE62GB_exports = {};
 __export(parser_3STE62GB_exports, {
   extractPertSymbols: () => extractPertSymbols,
@@ -52004,12 +52017,12 @@ __export(parser_3STE62GB_exports, {
   parsePert: () => parsePert
 });
 var init_parser_3STE62GB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-3STE62GB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-3STE62GB.js"() {
     init_chunk_RTLBSQ3G();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NX4EQS3U.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NX4EQS3U.js
 function lagDays(lag) {
   return lag === null ? 0 : lag.amount * unitToDays(lag.unit);
 }
@@ -53021,7 +53034,7 @@ function emptyResolved(parsed, diagnostics) {
 }
 var UNIT_TO_DAYS, UNIT_WORDS;
 var init_chunk_NX4EQS3U = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NX4EQS3U.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-NX4EQS3U.js"() {
     init_chunk_L3UHP6TD();
     init_chunk_CXK4DZH3();
     UNIT_TO_DAYS = {
@@ -53052,7 +53065,7 @@ var init_chunk_NX4EQS3U = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/analyzer-UYKBXAKR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/analyzer-UYKBXAKR.js
 var analyzer_UYKBXAKR_exports = {};
 __export(analyzer_UYKBXAKR_exports, {
   analyzePert: () => analyzePert,
@@ -53060,12 +53073,12 @@ __export(analyzer_UYKBXAKR_exports, {
   buildSummary: () => buildSummary
 });
 var init_analyzer_UYKBXAKR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/analyzer-UYKBXAKR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/analyzer-UYKBXAKR.js"() {
     init_chunk_NX4EQS3U();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4OHACBGX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4OHACBGX.js
 function computeNodeSizing(resolved) {
   const unit2 = resolved.options.timeUnit;
   const sprintMode = resolved.options.sprintMode;
@@ -53636,7 +53649,7 @@ function segmentsCross2(a1, a2, b1, b2) {
 }
 var DEFAULT_NODE_HEIGHT, MILESTONE_NODE_HEIGHT, COLLAPSED_GROUP_HEIGHT, DIAGRAM_PADDING10, GROUP_PADDING3, GROUP_TOP_PADDING, SWIMLANE_SLOT_SEP, SWIMLANE_GAP, NODE_CELL_FONT_SIZE, NODE_NAME_FONT_SIZE, MILESTONE_NAME_FONT_SIZE, CELL_PAD_X, NAME_PAD_X, NAME_PIN_WIDTH, MIN_CELL_WIDTH, MIN_NODE_WIDTH3, MAX_NODE_WIDTH2, MIN_MILESTONE_WIDTH, MAX_MILESTONE_WIDTH;
 var init_chunk_4OHACBGX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4OHACBGX.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4OHACBGX.js"() {
     init_chunk_WCT3NYCV();
     init_chunk_L3UHP6TD();
     init_dagre_esm();
@@ -53662,7 +53675,7 @@ var init_chunk_4OHACBGX = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-S2QBYSK2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-S2QBYSK2.js
 var layout_S2QBYSK2_exports = {};
 __export(layout_S2QBYSK2_exports, {
   computeNodeSizing: () => computeNodeSizing,
@@ -53670,12 +53683,12 @@ __export(layout_S2QBYSK2_exports, {
   relayoutPert: () => relayoutPert
 });
 var init_layout_S2QBYSK2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-S2QBYSK2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-S2QBYSK2.js"() {
     init_chunk_4OHACBGX();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CI2G3OEB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CI2G3OEB.js
 function analysisBlockChrome(palette, isDark) {
   const surfaceBg = themeBaseBg(palette, isDark);
   return {
@@ -55318,7 +55331,7 @@ function formatScurveDate(iso) {
 }
 var DIAGRAM_PADDING11, NODE_FONT_SIZE6, NODE_CELL_FONT_SIZE2, NODE_RADIUS2, NODE_TOP_ROW_HEIGHT, NODE_BOTTOM_ROW_HEIGHT, ARROWHEAD_W4, ARROWHEAD_H4, DURATION_FADE_OPACITY, PIN_ICON_W, PIN_ICON_H, LEGEND_PILL_HEIGHT, LEGEND_TOP_GAP, LEGEND_BOTTOM_GAP, FIELD_LEGEND_HEADER_BAND_HEIGHT, FIELD_LEGEND_CELL_VPAD, FIELD_LEGEND_LABEL_FONT_SIZE, FIELD_LEGEND_DESC_FONT_SIZE, FIELD_LEGEND_DESC_LINE_HEIGHT, FIELD_LEGEND_LABEL_DESC_GAP, FIELD_LEGEND_CELLS, lineGenerator6, FIELD_LEGEND_MIN_W, SUB_BULLET_INDENT, CAPTION_HEADER_BAND_HEIGHT, TORNADO_TOP_N, TORNADO_ROW_HEIGHT, TORNADO_NAME_COL_W, TORNADO_BAR_FONT_SIZE, TORNADO_BAR_HEIGHT, SUMMARY_MIN_W, SUMMARY_MAX_W, ANALYSIS_GAP, COL1_VSTACK_GAP, TORNADO_MIN_W, SCURVE_MIN_W, SCURVE_BOX_HEIGHT, SCURVE_PLOT_PADDING_X, SCURVE_PLOT_PADDING_RIGHT, SCURVE_PLOT_PADDING_BOTTOM, SCURVE_TICK_FONT_SIZE, SCURVE_PERCENTILE_RADIUS, DAYS_PER_UNIT, SCURVE_MONTH_NAMES, UNIT_TO_DAYS_LOCAL2;
 var init_chunk_CI2G3OEB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CI2G3OEB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CI2G3OEB.js"() {
     init_chunk_4OHACBGX();
     init_chunk_NX4EQS3U();
     init_chunk_3CIOJ5YJ();
@@ -55440,7 +55453,7 @@ var init_chunk_CI2G3OEB = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-AWWAF6XD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-AWWAF6XD.js
 var renderer_AWWAF6XD_exports = {};
 __export(renderer_AWWAF6XD_exports, {
   measurePertAnalysisBlock: () => measurePertAnalysisBlock,
@@ -55449,12 +55462,12 @@ __export(renderer_AWWAF6XD_exports, {
   renderPertForExport: () => renderPertForExport
 });
 var init_renderer_AWWAF6XD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-AWWAF6XD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-AWWAF6XD.js"() {
     init_chunk_CI2G3OEB();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-AQETEVRW.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-AQETEVRW.js
 var parser_AQETEVRW_exports = {};
 __export(parser_AQETEVRW_exports, {
   GANTT_KNOWN_BOOLEANS: () => GANTT_KNOWN_BOOLEANS,
@@ -55462,12 +55475,12 @@ __export(parser_AQETEVRW_exports, {
   parseGantt: () => parseGantt
 });
 var init_parser_AQETEVRW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-AQETEVRW.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-AQETEVRW.js"() {
     init_chunk_XAKEUMEJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z72XRXD4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z72XRXD4.js
 function isResolverError(r) {
   return "kind" in r;
 }
@@ -56234,7 +56247,7 @@ function findGroupOffset(nodes, groupPath) {
 }
 var BRACKET_GROUP_RE;
 var init_chunk_Z72XRXD4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z72XRXD4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z72XRXD4.js"() {
     init_chunk_USZW2HHU();
     init_chunk_NOTA6TEI();
     init_chunk_CXK4DZH3();
@@ -56242,18 +56255,18 @@ var init_chunk_Z72XRXD4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/calculator-LDYQCDDY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/calculator-LDYQCDDY.js
 var calculator_LDYQCDDY_exports = {};
 __export(calculator_LDYQCDDY_exports, {
   calculateSchedule: () => calculateSchedule
 });
 var init_calculator_LDYQCDDY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/calculator-LDYQCDDY.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/calculator-LDYQCDDY.js"() {
     init_chunk_Z72XRXD4();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-G2H74XJZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-G2H74XJZ.js
 function computeBarLabel(label, x12, barWidth, innerWidth, textColor, onFillColor, fontSize = 10, labelPad = LABEL_PAD2, labelGap = LABEL_GAP) {
   const textWidth = measureText(label, fontSize);
   const x22 = x12 + barWidth;
@@ -58268,7 +58281,7 @@ function renderTimeScaleHorizontal(g, scale, _innerWidth, innerHeight, textColor
 }
 var BAR_H, ROW_GAP, GROUP_GAP3, MILESTONE_SIZE, MIN_LEFT_MARGIN, BOTTOM_MARGIN, RIGHT_MARGIN, LABEL_PAD2, LABEL_GAP, BAND_ACCENT_W, BAND_RADIUS, bandClipCounter, JS_DAY_TO_WEEKDAY2, ERA_COLORS, SPRINT_BAND_OPACITY, SPRINT_HOVER_OPACITY, SPRINT_BOUNDARY_OPACITY, FADE_OPACITY;
 var init_chunk_G2H74XJZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-G2H74XJZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-G2H74XJZ.js"() {
     init_chunk_YRYKTYMQ();
     init_chunk_PWIHZ6NJ();
     init_chunk_YYVTBZZC();
@@ -58311,31 +58324,31 @@ var init_chunk_G2H74XJZ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-VACVQYML.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-VACVQYML.js
 var renderer_VACVQYML_exports = {};
 __export(renderer_VACVQYML_exports, {
   buildTagLaneRowList: () => buildTagLaneRowList,
   renderGantt: () => renderGantt
 });
 var init_renderer_VACVQYML = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-VACVQYML.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-VACVQYML.js"() {
     init_chunk_G2H74XJZ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-parser-Z2V23ATR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-parser-Z2V23ATR.js
 var state_parser_Z2V23ATR_exports = {};
 __export(state_parser_Z2V23ATR_exports, {
   looksLikeState: () => looksLikeState,
   parseState: () => parseState
 });
 var init_state_parser_Z2V23ATR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-parser-Z2V23ATR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-parser-Z2V23ATR.js"() {
     init_chunk_3MQQNXPD();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EMS2SK26.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZBWMSD5N.js
 function stateDefaultColor(palette, colorOff) {
   return colorOff ? palette.textMuted : palette.colors.blue;
 }
@@ -58641,6 +58654,8 @@ function renderStateForExport(content, theme, palette) {
     if (!svgEl) return "";
     if (theme === "transparent") {
       svgEl.style.background = "none";
+    } else if (!svgEl.style.background) {
+      svgEl.style.background = palette.bg;
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
@@ -58650,8 +58665,8 @@ function renderStateForExport(content, theme, palette) {
   }
 }
 var DIAGRAM_PADDING12, MAX_SCALE7, NODE_FONT_SIZE7, EDGE_LABEL_FONT_SIZE11, GROUP_LABEL_FONT_SIZE3, ARROWHEAD_W5, ARROWHEAD_H5, PSEUDOSTATE_RADIUS, STATE_CORNER_RADIUS, GROUP_EXTRA_PADDING;
-var init_chunk_EMS2SK26 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-EMS2SK26.js"() {
+var init_chunk_ZBWMSD5N = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZBWMSD5N.js"() {
     init_chunk_PDKUANDZ();
     init_chunk_T3UBLACL();
     init_chunk_LP7EC4MI();
@@ -58677,19 +58692,19 @@ var init_chunk_EMS2SK26 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-renderer-RFYHSP4K.js
-var state_renderer_RFYHSP4K_exports = {};
-__export(state_renderer_RFYHSP4K_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-renderer-B4DQBM6M.js
+var state_renderer_B4DQBM6M_exports = {};
+__export(state_renderer_B4DQBM6M_exports, {
   renderState: () => renderState,
   renderStateForExport: () => renderStateForExport
 });
-var init_state_renderer_RFYHSP4K = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-renderer-RFYHSP4K.js"() {
-    init_chunk_EMS2SK26();
+var init_state_renderer_B4DQBM6M = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-renderer-B4DQBM6M.js"() {
+    init_chunk_ZBWMSD5N();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js
 function collapseStateGroups(parsed, collapsedGroups) {
   const originalGroups = parsed.groups ?? [];
   if (collapsedGroups.size === 0 || originalGroups.length === 0) {
@@ -58729,33 +58744,33 @@ function collapseStateGroups(parsed, collapsedGroups) {
   };
 }
 var init_chunk_SQ7IY53Q = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js
 var state_collapse_HCGD6IVJ_exports = {};
 __export(state_collapse_HCGD6IVJ_exports, {
   collapseStateGroups: () => collapseStateGroups
 });
 var init_state_collapse_HCGD6IVJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js"() {
     init_chunk_SQ7IY53Q();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-2MFP2H2E.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-2MFP2H2E.js
 var parser_2MFP2H2E_exports = {};
 __export(parser_2MFP2H2E_exports, {
   parseTechRadar: () => parseTechRadar
 });
 var init_parser_2MFP2H2E = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-2MFP2H2E.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-2MFP2H2E.js"() {
     init_chunk_NURGB5Z4();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4GRI7MEB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4GRI7MEB.js
 function getQuadrantArc(position) {
   switch (position) {
     case "top-right":
@@ -60058,7 +60073,7 @@ function renderTechRadarForExport(container, parsed, palette, isDark, exportDims
 }
 var POSITION_ORDER2, BASE_BLIP_RADIUS, MIN_BLIP_RADIUS, DEFAULT_QUADRANT_COLORS, DIM_OPACITY, TREND_ITEMS, BLIP_RADIUS, BLIP_FONT_SIZE, TITLE_FONT_SIZE2, NARROW_BREAKPOINT, BLIP_RADIUS2, BLIP_FONT_SIZE2, RING_LABEL_FONT_SIZE, QUADRANT_LABEL_FONT_SIZE, TITLE_FONT_SIZE22, LISTING_FONT_SIZE, LISTING_HEADER_FONT_SIZE, LISTING_TOP_MARGIN, LISTING_COL_GAP, LISTING_LINE_HEIGHT, LISTING_BLIP_R;
 var init_chunk_4GRI7MEB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4GRI7MEB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-4GRI7MEB.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_PWIHZ6NJ();
     init_chunk_YYVTBZZC();
@@ -60107,30 +60122,30 @@ var init_chunk_4GRI7MEB = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZGNTUWC4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZGNTUWC4.js
 var renderer_ZGNTUWC4_exports = {};
 __export(renderer_ZGNTUWC4_exports, {
   renderTechRadar: () => renderTechRadar,
   renderTechRadarForExport: () => renderTechRadarForExport
 });
 var init_renderer_ZGNTUWC4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZGNTUWC4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZGNTUWC4.js"() {
     init_chunk_4GRI7MEB();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-I6KXEYFK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-I6KXEYFK.js
 var parser_I6KXEYFK_exports = {};
 __export(parser_I6KXEYFK_exports, {
   parseJourneyMap: () => parseJourneyMap
 });
 var init_parser_I6KXEYFK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-I6KXEYFK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-I6KXEYFK.js"() {
     init_chunk_44CM72SQ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3JLKYGBQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3JLKYGBQ.js
 function scoreToColor(score, palette) {
   const s = Math.max(1, Math.min(5, score));
   const { red, yellow, green } = palette.colors;
@@ -60384,7 +60399,7 @@ function layoutJourneyMap(parsed, palette, options) {
 }
 var PADDING, TITLE_HEIGHT7, PERSONA_HEIGHT, PERSONA_PANEL_WIDTH, HEADER_GAP, CURVE_AREA_HEIGHT, CARD_GAP2, STEP_CARD_WIDTH, CARD_HEADER_HEIGHT2, CARD_META_LINE_HEIGHT2, PHASE_HEADER_HEIGHT, CARD_PADDING_X2, CARD_PADDING_Y2, ANNO_ICON_SIZE, ANNO_ICON_GAP, TAG_STRIP_HEIGHT, PHASE_GAP, COLUMN_PADDING2, FACE_ICON_SIZE, EMOTION_CAPTION_BAND, CURVE_TOP_RESERVE;
 var init_chunk_3JLKYGBQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3JLKYGBQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3JLKYGBQ.js"() {
     init_chunk_WCT3NYCV();
     init_chunk_P6T66CCZ();
     PADDING = 24;
@@ -60411,7 +60426,7 @@ var init_chunk_3JLKYGBQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZJEL4H2R.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZJEL4H2R.js
 function renderJourneyMap(container, parsed, palette, isDark, options) {
   const exportDims = options?.exportDims;
   const onNavigateToLine = options?.onNavigateToLine;
@@ -61173,7 +61188,7 @@ function renderJourneyMapForExport(content, theme, palette) {
 }
 var DIAGRAM_PADDING13, PADDING2, CARD_PADDING_X3, CARD_PADDING_Y3, CARD_HEADER_HEIGHT3, CARD_STROKE_WIDTH2, CARD_META_LINE_HEIGHT3, CARD_GAP_INTERNAL, COLUMN_RADIUS2, COLUMN_HEADER_HEIGHT2, COLUMN_PADDING3, FONT_SIZE_TITLE, FONT_SIZE_PHASE, FONT_SIZE_STEP, FONT_SIZE_META, GRID_LINE_OPACITY, CURVE_STROKE_WIDTH, FACE_RADIUS, CURVE_AREA_BOTTOM_GAP, FACE_HOVER_SCALE, FACE_HOVER_R, DIM_HOVER, TITLE_LINE_HEIGHT, EMOTION_LABEL_MAX_WIDTH, EMOTION_LABEL_FONT_SIZE, ICON_THUMBS_DOWN, ICON_THUMBS_UP, ICON_THOUGHT;
 var init_chunk_ZJEL4H2R = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZJEL4H2R.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ZJEL4H2R.js"() {
     init_chunk_3JLKYGBQ();
     init_chunk_TYS6CSS5();
     init_chunk_5DH3KYFH();
@@ -61229,19 +61244,19 @@ var init_chunk_ZJEL4H2R = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-CLJHQPBJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-CLJHQPBJ.js
 var renderer_CLJHQPBJ_exports = {};
 __export(renderer_CLJHQPBJ_exports, {
   renderJourneyMap: () => renderJourneyMap,
   renderJourneyMapForExport: () => renderJourneyMapForExport
 });
 var init_renderer_CLJHQPBJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-CLJHQPBJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-CLJHQPBJ.js"() {
     init_chunk_ZJEL4H2R();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HYZPWAK5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HYZPWAK5.js
 var layout_HYZPWAK5_exports = {};
 __export(layout_HYZPWAK5_exports, {
   TAG_STRIP_HEIGHT: () => TAG_STRIP_HEIGHT,
@@ -61250,23 +61265,23 @@ __export(layout_HYZPWAK5_exports, {
   scoreToCurveY: () => scoreToCurveY
 });
 var init_layout_HYZPWAK5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HYZPWAK5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/layout-HYZPWAK5.js"() {
     init_chunk_3JLKYGBQ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-VQP2UJ6W.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-VQP2UJ6W.js
 var parser_VQP2UJ6W_exports = {};
 __export(parser_VQP2UJ6W_exports, {
   parseCycle: () => parseCycle
 });
 var init_parser_VQP2UJ6W = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-VQP2UJ6W.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-VQP2UJ6W.js"() {
     init_chunk_6HO5ZTXK();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3R5POCTZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3R5POCTZ.js
 function arrowHeadLength(strokeWidth) {
   return BASE_ARROW_SIZE + ARROW_SCALE * Math.sqrt(strokeWidth);
 }
@@ -62155,7 +62170,7 @@ function ensureArrowMarker(defs, color2, strokeWidth) {
 }
 var DEFAULT_EDGE_WIDTH, MIN_EDGE_WIDTH, BASE_ARROW_SIZE, ARROW_SCALE, MIN_ARC_ANGLE, LABEL_FONT_SIZE4, CIRCLE_LABEL_FONT_SIZE, DESC_FONT_SIZE6, EDGE_LABEL_FONT_SIZE12, MIN_NODE_WIDTH4, MAX_NODE_WIDTH3, DESC_MIN_WIDTH, DESC_WIDTH_STEP, DESC_TARGET_RATIO, PLAIN_NODE_HEIGHT, HEADER_HEIGHT4, DESC_LINE_HEIGHT7, DESC_PAD_Y, NODE_PAD_X, MIN_CIRCLE_RADIUS, CIRCLE_PAD, RENDERER_DESC_FONT, RENDERER_DESC_FONT_MIN, RENDERER_DESC_LINE_H, RENDERER_DESC_LINE_H_MIN, EDGE_LABEL_MAX_WIDTH, NODE_FONT_SIZE8, DESC_FONT_SIZE22, EDGE_LABEL_FONT_SIZE22, DESC_LINE_HEIGHT22, TITLE_AREA_HEIGHT;
 var init_chunk_3R5POCTZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3R5POCTZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-3R5POCTZ.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_PWIHZ6NJ();
@@ -62201,19 +62216,19 @@ var init_chunk_3R5POCTZ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-Z7I3W2PP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-Z7I3W2PP.js
 var renderer_Z7I3W2PP_exports = {};
 __export(renderer_Z7I3W2PP_exports, {
   renderCycle: () => renderCycle,
   renderCycleForExport: () => renderCycleForExport
 });
 var init_renderer_Z7I3W2PP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-Z7I3W2PP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-Z7I3W2PP.js"() {
     init_chunk_3R5POCTZ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4FL2CMDG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4FL2CMDG.js
 var parser_4FL2CMDG_exports = {};
 __export(parser_4FL2CMDG_exports, {
   MAP_DIRECTIVE_SET: () => MAP_DIRECTIVE_SET,
@@ -62221,7 +62236,7 @@ __export(parser_4FL2CMDG_exports, {
   parseMap: () => parseMap
 });
 var init_parser_4FL2CMDG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4FL2CMDG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4FL2CMDG.js"() {
     init_chunk_BUPDIHML();
   }
 });
@@ -64458,7 +64473,7 @@ var init_src12 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I5IGB56C.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I5IGB56C.js
 function geomObject(topo) {
   const key = Object.keys(topo.objects)[0];
   return topo.objects[key];
@@ -64695,7 +64710,7 @@ function unionLongitudes(lons) {
 }
 var fold, adjacencyCache, EDGE_EPS, DETACH_GAP_DEG, DETACH_AREA_FRAC;
 var init_chunk_I5IGB56C = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I5IGB56C.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-I5IGB56C.js"() {
     init_src11();
     init_src12();
     fold = (s) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().trim();
@@ -64706,7 +64721,7 @@ var init_chunk_I5IGB56C = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FITOLXSX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FITOLXSX.js
 function containerOvershoot(span, usOriented) {
   if (usOriented) return CONTAINER_OVERSHOOT_MAX;
   return Math.max(
@@ -65308,7 +65323,7 @@ function firstError(diags) {
 }
 var WORLD_SPAN, MERCATOR_MAX_LAT, PAD_FRACTION, REGION_PAD_FRACTION, WORLD_LAT_SOUTH, WORLD_LAT_NORTH, POI_ZOOM_FLOOR_DEG, CONTAINER_OVERSHOOT_MAX, CONTAINER_OVERSHOOT_MIN, CONTAINER_OVERSHOOT_DECAY, US_NATIONAL_LON_SPAN, CONUS_BBOX, US_SUBNATIONAL_AREA_FRACTION, REGION_ALIASES, US_STATE_POSTAL;
 var init_chunk_FITOLXSX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FITOLXSX.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FITOLXSX.js"() {
     init_chunk_I5IGB56C();
     init_chunk_3SMGIJDD();
     init_chunk_CXK4DZH3();
@@ -65405,19 +65420,19 @@ var init_chunk_FITOLXSX = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/resolver-NOAA7ID7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/resolver-NOAA7ID7.js
 var resolver_NOAA7ID7_exports = {};
 __export(resolver_NOAA7ID7_exports, {
   isSubNationalUsExtent: () => isSubNationalUsExtent,
   resolveMap: () => resolveMap
 });
 var init_resolver_NOAA7ID7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/resolver-NOAA7ID7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/resolver-NOAA7ID7.js"() {
     init_chunk_FITOLXSX();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IPWPWM6R.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IPWPWM6R.js
 function mapLegendGroups(legend) {
   const ramp = legend.ramp;
   const scoreGroup = ramp ? {
@@ -68312,7 +68327,7 @@ function layoutMap(resolvedIn, data, size, opts) {
 }
 var LEGEND_TOP_GAP2, LEGEND_BOTTOM_GAP2, FONT, LINE_HEIGHT, PADX, PADY, WATER_LETTER_SPACING, CONTEXT_PAD, EDGE_CLAMP_MARGIN, EDGE_CLAMP_OVERSHOOT, COUNTRY_FONT_MAX, COUNTRY_SIZE_FRAC_MIN, COUNTRY_SIZE_FRAC_MAX, MAX_COUNTRY_POSITIONS, COUNTRY_POS_GRID, COUNTRY_POS_TOPN_MARGIN, KIND_ORDER, FIT_PAD, PATH_DIGITS, THIN_TOL, ALBERS_SKEW_MAX, RAMP_FLOOR2, R_DEFAULT, R_MIN, R_MAX, POI_FILL_OPACITY_MAX, POI_FILL_OPACITY_MIN, W_MIN, W_MAX, FONT2, WORLD_LABEL_ANCHORS, MAX_CLUSTER_EXTENT_FACTOR, MAX_COLUMN_ROWS, REGION_LABEL_HALO_RATIO, LAND_TINT_LIGHT, LAND_TINT_DARK, TAG_TINT_LIGHT, TAG_TINT_DARK, WATER_TINT_LIGHT, WATER_TINT_DARK, RIVER_WIDTH, COMPACT_WIDTH_PX, RELIEF_MIN_AREA, RELIEF_MIN_DIM, RELIEF_HATCH_SPACING, RELIEF_HATCH_WIDTH, RELIEF_HATCH_STRENGTH, COASTLINE_RING_COUNT, COASTLINE_D0, COASTLINE_STEP, COASTLINE_THICKNESS, COASTLINE_OPACITY_NEAR, COASTLINE_OPACITY_FAR, COASTLINE_MIN_EXTENT, COASTLINE_MIN_EXTENT_GLOBAL, COASTLINE_STROKE_MIX, FOREIGN_TINT_LIGHT, FOREIGN_TINT_DARK, MUTED_FOREIGN_LIGHT, MUTED_FOREIGN_DARK, COLO_R, GOLDEN_ANGLE, STACK_OVERLAP, STACK_RING_MAX, STACK_RING_GAP, FAN_STEP, ARC_CURVE_FRAC, decodeCache, usConusProjection, alaskaProjection, hawaiiProjection, INSET_STATES, inAlaska, inHawaii, FOREIGN_BORDER, US_NON_CONUS, REGION_GEO_MEMO, REGION_GEO_MAX_FITS;
 var init_chunk_IPWPWM6R = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IPWPWM6R.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IPWPWM6R.js"() {
     init_chunk_I5IGB56C();
     init_chunk_PBAHEPLQ();
     init_chunk_YAA6IID3();
@@ -68445,7 +68460,7 @@ var init_chunk_IPWPWM6R = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z5CGSFJB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z5CGSFJB.js
 function pointInRing2(px, py, ring) {
   let inside = false;
   for (let i = 0, j2 = ring.length - 1; i < ring.length; j2 = i++) {
@@ -69061,7 +69076,7 @@ function emitText(g, x3, y2, text, anchor, color2, halo, withHalo, fontSize, ita
 }
 var LABEL_FONT2, mapInstanceCounter;
 var init_chunk_Z5CGSFJB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z5CGSFJB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-Z5CGSFJB.js"() {
     init_chunk_IPWPWM6R();
     init_chunk_PWIHZ6NJ();
     init_chunk_A4GOY3PE();
@@ -69074,19 +69089,19 @@ var init_chunk_Z5CGSFJB = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-SMIBCRVB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-SMIBCRVB.js
 var renderer_SMIBCRVB_exports = {};
 __export(renderer_SMIBCRVB_exports, {
   renderMap: () => renderMap,
   renderMapForExport: () => renderMapForExport
 });
 var init_renderer_SMIBCRVB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-SMIBCRVB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-SMIBCRVB.js"() {
     init_chunk_Z5CGSFJB();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CKNVO24D.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CKNVO24D.js
 function mapContentAspect(resolved, data, ref = REF) {
   const { projection: projection2, fitTarget } = buildMapProjection(resolved, data);
   projection2.fitSize([ref, ref], fitTarget);
@@ -69119,7 +69134,7 @@ function mapExportDimensions(resolved, data, baseWidth = 1200, aspectOverride) {
 }
 var FIT_PAD2, TITLE_GAP, ASPECT_MAX, ASPECT_MIN, GLOBAL_HEIGHT_BOOST, MIN_MAP_BAND, FALLBACK_ASPECT, REF;
 var init_chunk_CKNVO24D = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CKNVO24D.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-CKNVO24D.js"() {
     init_chunk_IPWPWM6R();
     init_chunk_A4GOY3PE();
     init_src12();
@@ -69134,19 +69149,19 @@ var init_chunk_CKNVO24D = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dimensions-J3FHIMJ6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dimensions-J3FHIMJ6.js
 var dimensions_J3FHIMJ6_exports = {};
 __export(dimensions_J3FHIMJ6_exports, {
   mapContentAspect: () => mapContentAspect,
   mapExportDimensions: () => mapExportDimensions
 });
 var init_dimensions_J3FHIMJ6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dimensions-J3FHIMJ6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/dimensions-J3FHIMJ6.js"() {
     init_chunk_CKNVO24D();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js
 async function loadNodeBuiltins() {
   const [{ readFile }, { fileURLToPath }, { dirname, resolve }] = await Promise.all([
     import("fs/promises"),
@@ -69244,7 +69259,7 @@ function loadMapData() {
 }
 var import_meta, FILES, CANDIDATE_DIRS, cache;
 var init_chunk_6MTWIQVO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js"() {
     import_meta = {};
     FILES = {
       worldCoarse: "world-coarse.json",
@@ -69268,29 +69283,29 @@ var init_chunk_6MTWIQVO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js
 var load_data_EHDDZ5ZS_exports = {};
 __export(load_data_EHDDZ5ZS_exports, {
   loadMapData: () => loadMapData
 });
 var init_load_data_EHDDZ5ZS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js"() {
     init_chunk_6MTWIQVO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XKRP7QKP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XKRP7QKP.js
 var parser_XKRP7QKP_exports = {};
 __export(parser_XKRP7QKP_exports, {
   parsePyramid: () => parsePyramid
 });
 var init_parser_XKRP7QKP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XKRP7QKP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-XKRP7QKP.js"() {
     init_chunk_76OWZ3BA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JM4LEPY3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JM4LEPY3.js
 function renderPyramid(container, parsed, palette, isDark, onClickItem, exportDims) {
   if (parsed.layers.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -69676,7 +69691,7 @@ function clamp(x3, lo, hi) {
 }
 var TITLE_AREA_HEIGHT2, H_MARGIN_FRAC, V_MARGIN, BASE_WIDTH_FRAC_NO_DESC, PYRAMID_SHARE_WITH_DESC, PYRAMID_SHARE_ALTERNATE, PITCH_RATIO, DESC_GAP, DESC_ACCENT_WIDTH, DESC_ACCENT_GAP, BULLET_BODY_INDENT, LABEL_FONT_MIN, LABEL_FONT_MAX, DESC_FONT_MIN, DESC_FONT_MAX;
 var init_chunk_JM4LEPY3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JM4LEPY3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-JM4LEPY3.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_YYVTBZZC();
@@ -69704,30 +69719,30 @@ var init_chunk_JM4LEPY3 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-KQB7UGDS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-KQB7UGDS.js
 var renderer_KQB7UGDS_exports = {};
 __export(renderer_KQB7UGDS_exports, {
   renderPyramid: () => renderPyramid,
   renderPyramidForExport: () => renderPyramidForExport
 });
 var init_renderer_KQB7UGDS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-KQB7UGDS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-KQB7UGDS.js"() {
     init_chunk_JM4LEPY3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-O5J4VBII.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-O5J4VBII.js
 var parser_O5J4VBII_exports = {};
 __export(parser_O5J4VBII_exports, {
   parseRing: () => parseRing
 });
 var init_parser_O5J4VBII = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-O5J4VBII.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-O5J4VBII.js"() {
     init_chunk_MO5YHHMQ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A4VFQH5G.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YGJZWZTY.js
 function renderRing(container, parsed, palette, isDark, onClickItem, exportDims) {
   if (parsed.layers.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -69810,20 +69825,35 @@ function renderRing(container, parsed, palette, isDark, onClickItem, exportDims)
   }
   if (inBandLabelsVisible) {
     const labelsG = svg.append("g").attr("class", "ring-labels");
+    const labelDefs = labelsG.append("defs");
+    let ringLabelSeq = 0;
     for (let i = 0; i < N2; i++) {
       const layer = parsed.layers[i];
       const fill2 = layerFills[i];
       const isInnermost = i === 0;
-      const labelY = isInnermost ? cy : cy - (i + 0.5) * thickness;
-      const fittedFont = labelFont;
       const textColor = contrastText(
         fill2,
         palette.textOnFillLight,
         palette.textOnFillDark
       );
       const labelG = labelsG.append("g").attr("class", "ring-label-group").attr("data-line-number", layer.lineNumber);
-      const label = labelG.append("text").attr("class", "ring-label").attr("x", cx).attr("y", labelY).attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", textColor).attr("font-family", FONT_FAMILY).attr("font-size", fittedFont).attr("font-weight", 600).style("pointer-events", "none");
-      renderInlineText(label, layer.label, palette, fittedFont);
+      if (isInnermost) {
+        const label = labelG.append("text").attr("class", "ring-label").attr("x", cx).attr("y", cy).attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", textColor).attr("font-family", FONT_FAMILY).attr("font-size", labelFont).attr("font-weight", 600).style("pointer-events", "none");
+        renderInlineText(label, layer.label, palette, labelFont);
+        continue;
+      }
+      drawRingCurvedLabel(
+        labelG,
+        labelDefs,
+        `dgmo-ring-lbl-${ringLabelSeq++}`,
+        layer.label,
+        cx,
+        cy,
+        (i + 0.5) * thickness,
+        labelFont,
+        textColor,
+        palette
+      );
     }
   }
   if (hasAnyDescription || !inBandLabelsVisible) {
@@ -69842,6 +69872,34 @@ function renderRing(container, parsed, palette, isDark, onClickItem, exportDims)
       ...onClickItem !== void 0 && { onClickItem }
     });
   }
+}
+function drawRingCurvedLabel(labelG, defs, pathId, text, cx, cy, rMid, labelFont, textColor, palette) {
+  const PAD2 = 1.18;
+  let fs = labelFont;
+  let rPath = rMid - fs * 0.32;
+  const maxLen = MAX_LABEL_ARC * rPath;
+  const wPadded = measureText(text, labelFont) * PAD2;
+  if (wPadded > maxLen) {
+    fs = Math.max(LABEL_FONT_MIN2, Math.floor(labelFont * maxLen / wPadded));
+    rPath = rMid - fs * 0.32;
+  }
+  const arcLen = measureText(text, fs) * PAD2;
+  const halfAngle = Math.min(arcLen / (2 * rPath), MAX_LABEL_ARC / 2);
+  const largeArc = halfAngle * 2 > Math.PI ? 1 : 0;
+  const p0x = cx - Math.sin(halfAngle) * rPath;
+  const p0y = cy - Math.cos(halfAngle) * rPath;
+  const p1x = cx + Math.sin(halfAngle) * rPath;
+  const p1y = cy - Math.cos(halfAngle) * rPath;
+  const d = `M ${p0x.toFixed(2)} ${p0y.toFixed(2)} A ${rPath.toFixed(2)} ${rPath.toFixed(2)} 0 ${largeArc} 1 ${p1x.toFixed(2)} ${p1y.toFixed(2)}`;
+  defs.append("path").attr("id", pathId).attr("d", d);
+  const label = labelG.append("text").attr("class", "ring-label").attr("fill", textColor).attr("font-family", FONT_FAMILY).attr("font-size", fs).attr("font-weight", 600).style("pointer-events", "none");
+  const textPath = label.append("textPath").attr("href", `#${pathId}`).attr("startOffset", "50%").attr("text-anchor", "middle");
+  renderInlineText(
+    textPath,
+    text,
+    palette,
+    fs
+  );
 }
 function renderRingForExport(container, parsed, palette, isDark, exportDims) {
   renderRing(container, parsed, palette, isDark, void 0, exportDims);
@@ -69926,9 +69984,9 @@ function truncateWithEllipsis2(lines, cap) {
 function clamp2(x3, lo, hi) {
   return Math.max(lo, Math.min(hi, x3));
 }
-var TITLE_AREA_HEIGHT3, H_MARGIN_FRAC2, V_MARGIN2, RING_AREA_FRAC_NO_DESC, RING_AREA_FRAC_WITH_DESC, DESC_GAP2, DESC_ACCENT_WIDTH2, DESC_ACCENT_GAP2, BULLET_BODY_INDENT2, RING_STROKE_WIDTH, RING_STROKE_OPACITY, DESC_LINE_CAP, LABEL_FONT_MIN2, LABEL_FONT_MAX2, DESC_FONT_MIN2, DESC_FONT_MAX2;
-var init_chunk_A4VFQH5G = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-A4VFQH5G.js"() {
+var TITLE_AREA_HEIGHT3, H_MARGIN_FRAC2, V_MARGIN2, RING_AREA_FRAC_NO_DESC, RING_AREA_FRAC_WITH_DESC, DESC_GAP2, DESC_ACCENT_WIDTH2, DESC_ACCENT_GAP2, BULLET_BODY_INDENT2, RING_STROKE_WIDTH, RING_STROKE_OPACITY, DESC_LINE_CAP, LABEL_FONT_MIN2, LABEL_FONT_MAX2, DESC_FONT_MIN2, DESC_FONT_MAX2, MAX_LABEL_ARC;
+var init_chunk_YGJZWZTY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-YGJZWZTY.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_YYVTBZZC();
@@ -69954,33 +70012,34 @@ var init_chunk_A4VFQH5G = __esm({
     LABEL_FONT_MAX2 = 22;
     DESC_FONT_MIN2 = 11;
     DESC_FONT_MAX2 = 15;
+    MAX_LABEL_ARC = 1.6 * Math.PI;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZTR3DER3.js
-var renderer_ZTR3DER3_exports = {};
-__export(renderer_ZTR3DER3_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-UV6MI64M.js
+var renderer_UV6MI64M_exports = {};
+__export(renderer_UV6MI64M_exports, {
   renderRing: () => renderRing,
   renderRingForExport: () => renderRingForExport
 });
-var init_renderer_ZTR3DER3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-ZTR3DER3.js"() {
-    init_chunk_A4VFQH5G();
+var init_renderer_UV6MI64M = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-UV6MI64M.js"() {
+    init_chunk_YGJZWZTY();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-CFZD5IBL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-CFZD5IBL.js
 var parser_CFZD5IBL_exports = {};
 __export(parser_CFZD5IBL_exports, {
   parseTreemap: () => parseTreemap
 });
 var init_parser_CFZD5IBL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-CFZD5IBL.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-CFZD5IBL.js"() {
     init_chunk_WCSOJFU3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IZMRON6C.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IZMRON6C.js
 function depthTint(hue, depth, bg) {
   if (depth <= 1) return hue;
   const keepPct = Math.max(55, 100 - (depth - 1) * 18);
@@ -70126,7 +70185,7 @@ function buildLegend(activeMode, parsed, heat, seriesColors2, colorOffset) {
 }
 var MUTED_FILL;
 var init_chunk_IZMRON6C = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IZMRON6C.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IZMRON6C.js"() {
     init_chunk_P6T66CCZ();
     init_chunk_QLCCJEJI();
     init_chunk_TLVIHFRO();
@@ -70135,7 +70194,7 @@ var init_chunk_IZMRON6C = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ULOEATBZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ULOEATBZ.js
 function toDatum(node) {
   if (node.children.length === 0) {
     return {
@@ -70429,7 +70488,7 @@ function clip2(s, maxWidth, fs) {
 }
 var PADDING3, LEGEND_POSITION, MIN_LABEL_SWEEP, MIN_LABEL_FS;
 var init_chunk_ULOEATBZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ULOEATBZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ULOEATBZ.js"() {
     init_chunk_IZMRON6C();
     init_chunk_PWIHZ6NJ();
     init_chunk_YAA6IID3();
@@ -70451,19 +70510,19 @@ var init_chunk_ULOEATBZ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-radial-C32GPJQ7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-radial-C32GPJQ7.js
 var renderer_radial_C32GPJQ7_exports = {};
 __export(renderer_radial_C32GPJQ7_exports, {
   renderTreemapRadial: () => renderTreemapRadial,
   renderTreemapRadialForExport: () => renderTreemapRadialForExport
 });
 var init_renderer_radial_C32GPJQ7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-radial-C32GPJQ7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-radial-C32GPJQ7.js"() {
     init_chunk_ULOEATBZ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FCIIHT24.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FCIIHT24.js
 function toDatum2(node) {
   if (node.children.length === 0) {
     return {
@@ -70787,7 +70846,7 @@ function clipLabel(s, maxWidth, fs) {
 }
 var PADDING4, HEADER_H, TITLE_BAND, LEAF_MUTE_PCT, LEGEND_POSITION2;
 var init_chunk_FCIIHT24 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FCIIHT24.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-FCIIHT24.js"() {
     init_chunk_IZMRON6C();
     init_chunk_PWIHZ6NJ();
     init_chunk_YAA6IID3();
@@ -70810,30 +70869,30 @@ var init_chunk_FCIIHT24 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-7MVLWWQD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-7MVLWWQD.js
 var renderer_7MVLWWQD_exports = {};
 __export(renderer_7MVLWWQD_exports, {
   renderTreemap: () => renderTreemap,
   renderTreemapForExport: () => renderTreemapForExport
 });
 var init_renderer_7MVLWWQD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-7MVLWWQD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-7MVLWWQD.js"() {
     init_chunk_FCIIHT24();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4OGOBJJ4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4OGOBJJ4.js
 var parser_4OGOBJJ4_exports = {};
 __export(parser_4OGOBJJ4_exports, {
   parseBlock: () => parseBlock
 });
 var init_parser_4OGOBJJ4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4OGOBJJ4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-4OGOBJJ4.js"() {
     init_chunk_7JEGTRLD();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RJE5JTVK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RJE5JTVK.js
 function layoutBlock(grid, opts = {}) {
   const collapsed = opts.collapsed ?? /* @__PURE__ */ new Set();
   const node = layoutGrid(grid, 0, 0, null, collapsed);
@@ -71136,7 +71195,7 @@ function buildBlockLegend(parsed) {
 }
 var BLOCK_GAP, BLOCK_PAD, BLOCK_LEAF_H, BLOCK_HEADER_H, BLOCK_COLLAPSED_H, BLOCK_BAR_H, MIN_COL, MAX_COL, LABEL_FS, PADDING5, TITLE_BAND2, MIN_EXPORT_WIDTH, LEGEND_POSITION3, clipCounter;
 var init_chunk_RJE5JTVK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RJE5JTVK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RJE5JTVK.js"() {
     init_chunk_PWIHZ6NJ();
     init_chunk_YAA6IID3();
     init_chunk_A4GOY3PE();
@@ -71167,7 +71226,7 @@ var init_chunk_RJE5JTVK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-PGX2TKVS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-PGX2TKVS.js
 var renderer_PGX2TKVS_exports = {};
 __export(renderer_PGX2TKVS_exports, {
   authoredCollapsedIds: () => authoredCollapsedIds,
@@ -71175,24 +71234,24 @@ __export(renderer_PGX2TKVS_exports, {
   renderBlockForExport: () => renderBlockForExport
 });
 var init_renderer_PGX2TKVS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-PGX2TKVS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-PGX2TKVS.js"() {
     init_chunk_RJE5JTVK();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-Y6WTBU76.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-Y6WTBU76.js
 var parser_Y6WTBU76_exports = {};
 __export(parser_Y6WTBU76_exports, {
   allTasks: () => allTasks,
   parseRaci: () => parseRaci
 });
 var init_parser_Y6WTBU76 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-Y6WTBU76.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-Y6WTBU76.js"() {
     init_chunk_RYEGFMUO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DZAQBW35.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SGZYXELT.js
 function groupDiagnosticsByTask(parsed) {
   const map2 = /* @__PURE__ */ new Map();
   if (parsed.diagnostics.length === 0) return map2;
@@ -71371,7 +71430,7 @@ function renderRaci(container, parsed, palette, isDark, handlers, exportDims) {
   const colBottomY = cursorY + sColumnBottomPad;
   const totalHeight = colBottomY + sVMargin;
   const svgHeight = exportDims ? totalHeight : Math.max(height, totalHeight);
-  const svg = select_default2(container).append("svg").attr("xmlns", "http://www.w3.org/2000/svg").attr("width", width).attr("height", svgHeight).attr("viewBox", `0 0 ${width} ${svgHeight}`).attr("preserveAspectRatio", "xMidYMin meet").attr("font-family", FONT_FAMILY).style("background", "transparent");
+  const svg = select_default2(container).append("svg").attr("xmlns", "http://www.w3.org/2000/svg").attr("width", width).attr("height", svgHeight).attr("viewBox", `0 0 ${width} ${svgHeight}`).attr("preserveAspectRatio", "xMidYMin meet").attr("font-family", FONT_FAMILY);
   if (ctx.isBelowFloor) {
     svg.attr("width", "100%");
   }
@@ -71450,11 +71509,7 @@ function renderRaci(container, parsed, palette, isDark, handlers, exportDims) {
     const cw = roleColW - 2 * sColumnInset;
     const roleColor = parsed.roleColors[i] ?? autoAccent(i, palette);
     const bodyFill = mix(roleColor, themeBaseBg(palette, isDark), 16);
-    const headerFill = mix(
-      roleColor,
-      themeBaseBg(palette, isDark),
-      30
-    );
+    const headerFill = mix(roleColor, themeBaseBg(palette, isDark), 30);
     const colG = columnsG.append("g").attr("class", "raci-column").attr("data-role-id", roleId);
     colG.append("rect").attr("class", "raci-column-body").attr("x", cx).attr("y", headerY).attr("width", cw).attr("height", colTotalHeight).attr("rx", sColumnRadius).attr("fill", bodyFill);
     colG.append("path").attr("class", "raci-column-header").attr(
@@ -71852,8 +71907,8 @@ function parseQuotedSegments(message) {
   return out;
 }
 var MARKER_LABELS, TITLE_AREA_HEIGHT4, H_MARGIN2, V_MARGIN3, LEGEND_HEIGHT2, LEGEND_CHIP_GAP, LEGEND_CHIP_LABEL_MIN, LEGEND_LETTER_CHIP_W, TITLE_LEGEND_GAP, LEGEND_LABEL_FONT, LEGEND_LETTER_FONT, HEADER_HEIGHT5, ROW_HEIGHT, PHASE_HEIGHT, TASK_LABEL_MIN, TASK_LABEL_MAX, ROLE_COL_MIN, ROLE_COL_MAX, CELL_PAD, VIOLATION_LINE_HEIGHT, STACK_TOP_GAP, DESC_FONT2, COLUMN_RADIUS3, COLUMN_INSET, COLUMN_BOTTOM_PAD, MARKER_FONT, MARKER_FONT_WEIGHT, LABEL_FONT3, ROLE_HEADER_FONT, PHASE_FONT, TINT_PCT, NODE_RADIUS3, AUTO_ACCENTS, SLICE_GAP, NAME_LINE_HEIGHT, DESC_LINE_HEIGHT8;
-var init_chunk_DZAQBW35 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-DZAQBW35.js"() {
+var init_chunk_SGZYXELT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SGZYXELT.js"() {
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
@@ -71920,20 +71975,20 @@ var init_chunk_DZAQBW35 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-WZRREQ2P.js
-var renderer_WZRREQ2P_exports = {};
-__export(renderer_WZRREQ2P_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-5MYBMBYO.js
+var renderer_5MYBMBYO_exports = {};
+__export(renderer_5MYBMBYO_exports, {
   MARKER_LABELS: () => MARKER_LABELS,
   renderRaci: () => renderRaci,
   renderRaciForExport: () => renderRaciForExport
 });
-var init_renderer_WZRREQ2P = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-WZRREQ2P.js"() {
-    init_chunk_DZAQBW35();
+var init_renderer_5MYBMBYO = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-5MYBMBYO.js"() {
+    init_chunk_SGZYXELT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-PQ3POX45.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-PQ3POX45.js
 var parser_PQ3POX45_exports = {};
 __export(parser_PQ3POX45_exports, {
   isSequenceBlock: () => isSequenceBlock,
@@ -71943,12 +71998,12 @@ __export(parser_PQ3POX45_exports, {
   parseSequenceDgmo: () => parseSequenceDgmo
 });
 var init_parser_PQ3POX45 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-PQ3POX45.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/parser-PQ3POX45.js"() {
     init_chunk_SML67VPV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SRTU6HMQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SRTU6HMQ.js
 function applyCollapseProjection(parsed, collapsedGroups) {
   if (collapsedGroups.size === 0) {
     return {
@@ -73710,7 +73765,7 @@ function renderParticipant(svg, participant, cx, cy, palette, isDark, color2, ta
 }
 var PARTICIPANT_GAP, PARTICIPANT_BOX_WIDTH, PARTICIPANT_BOX_HEIGHT, LABEL_FONT_SIZE5, TOP_MARGIN, TITLE_HEIGHT8, PARTICIPANT_Y_OFFSET, MESSAGE_START_OFFSET, LIFELINE_TAIL, ARROWHEAD_SIZE, NOTE_MAX_W2, NOTE_FOLD2, NOTE_PAD_H2, NOTE_PAD_V2, NOTE_FONT_SIZE2, NOTE_LINE_H2, NOTE_GAP2, ACTIVATION_WIDTH, SELF_CALL_HEIGHT, SELF_CALL_WIDTH, ACTOR_LABEL_CLEARANCE, labelTextWidth, fill, stroke, SW, W2, H2;
 var init_chunk_SRTU6HMQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SRTU6HMQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-SRTU6HMQ.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_PWIHZ6NJ();
@@ -73755,7 +73810,7 @@ var init_chunk_SRTU6HMQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6W5462RB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6W5462RB.js
 var renderer_6W5462RB_exports = {};
 __export(renderer_6W5462RB_exports, {
   applyGroupOrdering: () => applyGroupOrdering,
@@ -73769,7 +73824,7 @@ __export(renderer_6W5462RB_exports, {
   truncateBareUrl: () => truncateBareUrl
 });
 var init_renderer_6W5462RB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6W5462RB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/renderer-6W5462RB.js"() {
     init_chunk_SRTU6HMQ();
     init_chunk_3HDBAXF5();
   }
@@ -73783,7 +73838,7 @@ __export(main_exports, {
 module.exports = __toCommonJS(main_exports);
 var import_obsidian3 = require("obsidian");
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-RCERWOJR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-ODZVHU3R.js
 function normalizeSvgForEmbed(input) {
   let svg = input;
   const rootMatch = svg.match(/<svg[^>]*>/);
@@ -73812,7 +73867,6 @@ function normalizeSvgForEmbed(input) {
   }
   svg = svg.replace(/(<svg[^>]*?) width="[^"]*"/g, "$1");
   svg = svg.replace(/(<svg[^>]*?) height="[^"]*"/g, "$1");
-  svg = svg.replace(/(<svg[^>]*?style="[^"]*?)background:[^;"]*;?\s*/g, "$1");
   svg = svg.replace(/<svg\s{2,}/g, "<svg ");
   return svg;
 }
@@ -73921,10 +73975,10 @@ function computeBBox(svg) {
   return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/index.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/index.js
 init_chunk_3SMGIJDD();
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-IH6ZMVQ5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/chunk-PZMETGLY.js
 init_chunk_PBAHEPLQ();
 init_chunk_OJR3MQYV();
 init_chunk_UWN33VNX();
@@ -73932,7 +73986,7 @@ init_chunk_U6EQI3U6();
 init_chunk_YYVTBZZC();
 init_chunk_6KFWC4CO();
 init_chunk_WCT3NYCV();
-init_chunk_6FZYCKXB();
+init_chunk_HSH73DP6();
 init_chunk_R3XI2VC7();
 init_chunk_P6T66CCZ();
 init_chunk_QLCCJEJI();
@@ -76093,7 +76147,7 @@ function resolveArcChordOverride(content, detectedType, palette) {
 }
 async function renderForExport(content, theme, palette, viewState, options) {
   const exportMode = options?.exportMode ?? false;
-  const { parseDgmoChartType: parseDgmoChartType2 } = await Promise.resolve().then(() => (init_dgmo_router_DZCIDUO5(), dgmo_router_DZCIDUO5_exports));
+  const { parseDgmoChartType: parseDgmoChartType2 } = await Promise.resolve().then(() => (init_dgmo_router_X35VLZLM(), dgmo_router_X35VLZLM_exports));
   const detectedTypeRaw = parseDgmoChartType2(content);
   const override = resolveArcChordOverride(content, detectedTypeRaw, palette);
   const renderContent = override?.content ?? content;
@@ -76167,7 +76221,7 @@ async function exportOrg(ctx) {
   const { parseOrg: parseOrg2 } = await Promise.resolve().then(() => (init_parser_6BTRLKRZ(), parser_6BTRLKRZ_exports));
   const { layoutOrg: layoutOrg2 } = await Promise.resolve().then(() => (init_layout_OB3RI63S(), layout_OB3RI63S_exports));
   const { collapseOrgTree: collapseOrgTree2 } = await Promise.resolve().then(() => (init_collapse_CLPJD2RL(), collapse_CLPJD2RL_exports));
-  const { renderOrg: renderOrg2 } = await Promise.resolve().then(() => (init_renderer_T7YKC5VP(), renderer_T7YKC5VP_exports));
+  const { renderOrg: renderOrg2 } = await Promise.resolve().then(() => (init_renderer_ZRNG54CW(), renderer_ZRNG54CW_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const orgParsed = parseOrg2(content, effectivePalette);
@@ -76294,7 +76348,7 @@ async function exportClass(ctx) {
   const { content, theme, palette, exportMode } = ctx;
   const { parseClassDiagram: parseClassDiagram2 } = await Promise.resolve().then(() => (init_parser_NRAI6O25(), parser_NRAI6O25_exports));
   const { layoutClassDiagram: layoutClassDiagram2 } = await Promise.resolve().then(() => (init_layout_46N4JJYK(), layout_46N4JJYK_exports));
-  const { renderClassDiagram: renderClassDiagram2 } = await Promise.resolve().then(() => (init_renderer_TOCOVLHS(), renderer_TOCOVLHS_exports));
+  const { renderClassDiagram: renderClassDiagram2 } = await Promise.resolve().then(() => (init_renderer_B2OMQIQG(), renderer_B2OMQIQG_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const classParsed = parseClassDiagram2(content, effectivePalette);
   if (classParsed.error || classParsed.classes.length === 0) return "";
@@ -76429,7 +76483,7 @@ async function exportMindmap(ctx) {
   const { parseMindmap: parseMindmap2 } = await Promise.resolve().then(() => (init_parser_N5O4IHUN(), parser_N5O4IHUN_exports));
   const { layoutMindmap: layoutMindmap2 } = await Promise.resolve().then(() => (init_layout_UM5F4DJB(), layout_UM5F4DJB_exports));
   const { collapseMindmapTree: collapseMindmapTree2 } = await Promise.resolve().then(() => (init_collapse_SLINJQW6(), collapse_SLINJQW6_exports));
-  const { renderMindmap: renderMindmap2 } = await Promise.resolve().then(() => (init_renderer_2XQQQ6QR(), renderer_2XQQQ6QR_exports));
+  const { renderMindmap: renderMindmap2 } = await Promise.resolve().then(() => (init_renderer_N43WR5GV(), renderer_N43WR5GV_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const mmParsed = parseMindmap2(content, effectivePalette);
@@ -76504,14 +76558,14 @@ async function exportWireframe(ctx) {
 }
 async function exportC4(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseC4: parseC42 } = await Promise.resolve().then(() => (init_parser_FUSKFGZN(), parser_FUSKFGZN_exports));
+  const { parseC4: parseC42 } = await Promise.resolve().then(() => (init_parser_2EWECDSA(), parser_2EWECDSA_exports));
   const {
     layoutC4Context: layoutC4Context2,
     layoutC4Containers: layoutC4Containers2,
     layoutC4Components: layoutC4Components2,
     layoutC4Deployment: layoutC4Deployment2
   } = await Promise.resolve().then(() => (init_layout_5RA6QWR6(), layout_5RA6QWR6_exports));
-  const { renderC4Context: renderC4Context2, renderC4Containers: renderC4Containers2 } = await Promise.resolve().then(() => (init_renderer_UWA5XS74(), renderer_UWA5XS74_exports));
+  const { renderC4Context: renderC4Context2, renderC4Containers: renderC4Containers2 } = await Promise.resolve().then(() => (init_renderer_4JHRUBE6(), renderer_4JHRUBE6_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const c4Parsed = parseC42(content, effectivePalette);
   if (c4Parsed.error || c4Parsed.elements.length === 0) return "";
@@ -76547,7 +76601,7 @@ async function exportFlowchart(ctx) {
   const { content, theme, palette } = ctx;
   const { parseFlowchart: parseFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_parser_ZNSKIBVR(), flowchart_parser_ZNSKIBVR_exports));
   const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_HWDSRX5E(), layout_HWDSRX5E_exports));
-  const { renderFlowchart: renderFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_renderer_ZAEOL4DX(), flowchart_renderer_ZAEOL4DX_exports));
+  const { renderFlowchart: renderFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_renderer_SNDSII4D(), flowchart_renderer_SNDSII4D_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const fcParsed = parseFlowchart2(content, effectivePalette);
   if (fcParsed.error || fcParsed.nodes.length === 0) return "";
@@ -76702,7 +76756,7 @@ async function exportState(ctx) {
   const { content, theme, palette, viewState } = ctx;
   const { parseState: parseState2 } = await Promise.resolve().then(() => (init_state_parser_Z2V23ATR(), state_parser_Z2V23ATR_exports));
   const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_HWDSRX5E(), layout_HWDSRX5E_exports));
-  const { renderState: renderState2 } = await Promise.resolve().then(() => (init_state_renderer_RFYHSP4K(), state_renderer_RFYHSP4K_exports));
+  const { renderState: renderState2 } = await Promise.resolve().then(() => (init_state_renderer_B4DQBM6M(), state_renderer_B4DQBM6M_exports));
   const { collapseStateGroups: collapseStateGroups2 } = await Promise.resolve().then(() => (init_state_collapse_HCGD6IVJ(), state_collapse_HCGD6IVJ_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const stateParsed = parseState2(content, effectivePalette);
@@ -76854,7 +76908,7 @@ async function exportPyramid(ctx) {
 async function exportRing(ctx) {
   const { content, theme, palette } = ctx;
   const { parseRing: parseRing2 } = await Promise.resolve().then(() => (init_parser_O5J4VBII(), parser_O5J4VBII_exports));
-  const { renderRingForExport: renderRingForExport2 } = await Promise.resolve().then(() => (init_renderer_ZTR3DER3(), renderer_ZTR3DER3_exports));
+  const { renderRingForExport: renderRingForExport2 } = await Promise.resolve().then(() => (init_renderer_UV6MI64M(), renderer_UV6MI64M_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const ringParsed = parseRing2(content);
   if (ringParsed.error || ringParsed.layers.length === 0) return "";
@@ -76911,7 +76965,7 @@ async function exportBlock(ctx) {
 async function exportRaci(ctx) {
   const { content, theme, palette } = ctx;
   const { parseRaci: parseRaci2 } = await Promise.resolve().then(() => (init_parser_Y6WTBU76(), parser_Y6WTBU76_exports));
-  const { renderRaciForExport: renderRaciForExport2 } = await Promise.resolve().then(() => (init_renderer_WZRREQ2P(), renderer_WZRREQ2P_exports));
+  const { renderRaciForExport: renderRaciForExport2 } = await Promise.resolve().then(() => (init_renderer_5MYBMBYO(), renderer_5MYBMBYO_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const raciParsed = parseRaci2(content, effectivePalette);
   if (raciParsed.error) return "";
@@ -77169,34 +77223,50 @@ function buildHoverCss(spec, derived = {}, emphasisOverride) {
   return parts.join("");
 }
 var HOVER_SPECS = {
+  // Data-chart family (`.dgmo-datum`): `dim` at 0.18 to MIRROR the app's live
+  // hover (charts-d3/interactions.ts `.dgmo-dim{opacity:.18}` — hover a mark →
+  // every other emph-key drops out). `lift` (saturate/brightness) read as
+  // "nothing happened" on muted fills. Safe to dim: these export renderers set
+  // NO inline `style="opacity"` on datums (only presentation `*-opacity` attrs,
+  // which a `<style>` rule outranks), so no RED-2 inline-defeat.
   pie: {
     markSelector: ".dgmo-datum",
     strategy: "enumerated",
     groupAttr: "data-emph-key",
+    emphasis: "dim",
+    dimOpacity: 0.18,
     legend: true
   },
   bar: {
     markSelector: ".dgmo-datum",
     strategy: "enumerated",
     groupAttr: "data-emph-key",
+    emphasis: "dim",
+    dimOpacity: 0.18,
     legend: true
   },
   funnel: {
     markSelector: ".dgmo-datum",
     strategy: "enumerated",
     groupAttr: "data-emph-key",
+    emphasis: "dim",
+    dimOpacity: 0.18,
     legend: true
   },
   heatmap: {
     markSelector: ".dgmo-datum",
     strategy: "enumerated",
     groupAttr: "data-emph-key",
+    emphasis: "dim",
+    dimOpacity: 0.18,
     legend: true
   },
   "polar-area": {
     markSelector: ".dgmo-datum",
     strategy: "enumerated",
     groupAttr: "data-emph-key",
+    emphasis: "dim",
+    dimOpacity: 0.18,
     legend: true
   },
   // ── CROSS-FREE diagram charts — FIXED-attr keys, DOM-verified (Task 3) ──
@@ -77370,6 +77440,8 @@ var HOVER_SPECS = {
     markSelector: ".dgmo-datum",
     strategy: "enumerated",
     groupAttr: "data-category",
+    emphasis: "dim",
+    dimOpacity: 0.18,
     legend: true
   },
   quadrant: {
@@ -77677,7 +77749,7 @@ function encodeDiagramUrl(dsl, options) {
   return { url: `${baseUrl}?${hash}#${hash}` };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/index.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/index.js
 init_chunk_6KFWC4CO();
 init_chunk_WCT3NYCV();
 init_chunk_WCSOJFU3();
@@ -77994,7 +78066,7 @@ function encodeDiagramUrl2(text, options) {
   return "error" in result && result.error ? null : result.url ?? null;
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/block.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/block.js
 init_chunk_DKEPS5LH();
 var import_lr = require("@lezer/lr");
 var ChartType = 1;
@@ -78446,7 +78518,7 @@ function highlightedSource(source) {
   return `<pre class="dgmo-pre"><span class="dgmo-code">${inner}</span></pre>`;
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.47.0_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/advanced.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.48.2_@codemirror+state@6.6.0_@lezer+common@1.5.2_@lezer+lr@1.4.10/node_modules/@diagrammo/dgmo/dist/advanced.js
 init_chunk_FITOLXSX();
 init_chunk_Z5CGSFJB();
 init_chunk_CKNVO24D();
