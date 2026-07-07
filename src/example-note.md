@@ -1570,6 +1570,32 @@ tag Layer as l
 
 ---
 
+### Sketch
+
+```dgmo
+sketch Plunder Pipeline
+
+tag Crew
+  Deck
+  Hold
+
+Spyglass Feed shape: cloud, at: 0 0, crew: Deck
+  -sightings-> con
+Captain's Console as con at: 2 0, crew: Deck
+  -orders-> bq
+Divvy Service as dvy at: 4 0, crew: Hold
+
+[Below Decks] at: 2 2, crew: Hold
+  Booty Queue as bq shape: queue, at: 0 0
+    ~haul~> dvy
+  Ship Ledger as ledger shape: database, at: 2 0
+
+[Armory] as armory at: 0 2, collapsed
+  Powder Store at: 0 0
+```
+
+---
+
 ### Error state
 
 > This block is **intentionally invalid** — `piechart` isn't a chart type (it
