@@ -27,8 +27,27 @@ figure.dgmo {
 }
 .dgmo-edit-stack > .dgmo-pre {
   /* The textarea on top owns scrolling and mirrors offsets onto the pre. */
-  overflow: hidden;
+  overflow: hidden !important;
   pointer-events: none;
+  min-height: 0 !important;
+}
+/* Caret-on-glyph alignment: both layers MUST share identical text metrics.
+   Obsidian's `.markdown-rendered pre` (padding: 12px 16px, min-height, border)
+   out-specifies `.dgmo-pre` and shifted the glyph layer ~2.4px right of the
+   caret. Pin every metric that moves text on BOTH layers; !important so
+   neither app.css nor community themes can split them apart again. */
+.dgmo-edit-stack > .dgmo-pre,
+.dgmo-edit-stack > .dgmo-edit-area {
+  margin: 0 !important;
+  padding: 1em !important;
+  border: none !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  font-size: 0.85em !important;
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+  text-indent: 0 !important;
+  white-space: pre !important;
+  tab-size: 4 !important;
 }
 .dgmo-edit-area {
   position: absolute;
