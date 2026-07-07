@@ -137,12 +137,12 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
 
   /**
    * Write an edited code-block body back into its note (in-block editing).
-   * The section is re-located at commit time and its current body verified
+   * The section is re-located at save time and its current body verified
    * against what this block rendered from — if the note moved underneath the
    * editor, refuse rather than clobber. Throws (after a Notice) so the editor
-   * stays open and the draft isn't lost.
+   * keeps the draft.
    */
-  async commitCodeBlockEdit(
+  async saveCodeBlockEdit(
     ctx: MarkdownPostProcessorContext,
     el: HTMLElement,
     oldSource: string,
@@ -191,6 +191,10 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
  * them in place.
  */
 class DgmoCodeBlock extends MarkdownRenderChild {
+  /** Saves an in-progress source edit; set per render, called on unmount so
+   * a draft survives Live Preview's scroll-away block recycling. */
+  private flushEdit: (() => Promise<void>) | null = null;
+
   constructor(
     node: HTMLElement,
     private readonly source: string,
@@ -207,18 +211,19 @@ class DgmoCodeBlock extends MarkdownRenderChild {
 
   override onunload(): void {
     this.plugin.unregisterCodeBlock(this);
+    void this.flushEdit?.();
   }
 
   async render(): Promise<void> {
     await ensureInterFonts();
     this.containerEl.empty();
-    await renderDgmo(
+    this.flushEdit = await renderDgmo(
       this.source,
       this.containerEl,
       this.plugin.isDark(),
       this.plugin.getPalette(),
       (next) =>
-        this.plugin.commitCodeBlockEdit(
+        this.plugin.saveCodeBlockEdit(
           this.ctx,
           this.containerEl,
           this.source,

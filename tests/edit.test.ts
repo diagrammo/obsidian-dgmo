@@ -47,12 +47,8 @@ function makeBlock(): HTMLElement {
   return figure;
 }
 
-function pencil(block: HTMLElement): HTMLButtonElement {
-  return block.querySelector<HTMLButtonElement>('button.dgmo-edit')!;
-}
-
-function textarea(block: HTMLElement): HTMLTextAreaElement | null {
-  return block.querySelector<HTMLTextAreaElement>('textarea.dgmo-edit-area');
+function textarea(block: HTMLElement): HTMLTextAreaElement {
+  return block.querySelector<HTMLTextAreaElement>('textarea.dgmo-edit-area')!;
 }
 
 function key(
@@ -73,14 +69,15 @@ function key(
 describe('enableBlockEditing', () => {
   let block: HTMLElement;
   let update: Mock<(source: string) => Promise<void>>;
-  let commit: Mock<(next: string) => Promise<void>>;
+  let save: Mock<(next: string) => Promise<void>>;
+  let flush: (() => Promise<void>) | null;
 
   beforeEach(() => {
     vi.useFakeTimers();
     block = makeBlock();
     update = vi.fn<(source: string) => Promise<void>>().mockResolvedValue();
-    commit = vi.fn<(next: string) => Promise<void>>().mockResolvedValue();
-    enableBlockEditing(block, SOURCE, { update, commit });
+    save = vi.fn<(next: string) => Promise<void>>().mockResolvedValue();
+    flush = enableBlockEditing(block, SOURCE, { update, save });
   });
 
   afterEach(() => {
@@ -88,41 +85,32 @@ describe('enableBlockEditing', () => {
     document.body.replaceChildren();
   });
 
-  it('adds a pencil button to the toolbar', () => {
-    expect(pencil(block)).not.toBeNull();
-    expect(pencil(block).querySelector('svg')).not.toBeNull();
-  });
-
-  it('pencil click opens the source panel and swaps in a textarea', () => {
-    pencil(block).click();
-
-    const details = block.querySelector<HTMLDetailsElement>('details')!;
-    expect(details.open).toBe(true);
-    const ta = textarea(block)!;
+  it('replaces the highlighted source with a textarea holding the source', () => {
+    const ta = textarea(block);
     expect(ta).not.toBeNull();
     expect(ta.value).toBe(SOURCE);
     expect(
-      block.querySelector('pre.dgmo-pre')!.classList.contains(
-        'dgmo-pre--hidden'
-      )
+      block
+        .querySelector('pre.dgmo-pre')!
+        .classList.contains('dgmo-pre--hidden')
     ).toBe(true);
-    expect(block.classList.contains('dgmo--editing')).toBe(true);
+    // No extra affordance — the panel just is editable.
+    expect(block.querySelector('button.dgmo-edit')).toBeNull();
   });
 
-  it('typing live-updates the diagram after the debounce', () => {
-    pencil(block).click();
-    const ta = textarea(block)!;
+  it('typing live-updates the diagram after the debounce, without saving', () => {
+    const ta = textarea(block);
     ta.value = SOURCE + '\nFlying Dutchman 12';
     ta.dispatchEvent(new Event('input'));
 
     expect(update).not.toHaveBeenCalled();
     vi.advanceTimersByTime(350);
     expect(update).toHaveBeenCalledWith(SOURCE + '\nFlying Dutchman 12');
+    expect(save).not.toHaveBeenCalled();
   });
 
   it('rapid keystrokes collapse into one update', () => {
-    pencil(block).click();
-    const ta = textarea(block)!;
+    const ta = textarea(block);
     for (const suffix of ['a', 'ab', 'abc']) {
       ta.value = `${SOURCE}\n${suffix}`;
       ta.dispatchEvent(new Event('input'));
@@ -133,71 +121,96 @@ describe('enableBlockEditing', () => {
     expect(update).toHaveBeenCalledWith(`${SOURCE}\nabc`);
   });
 
-  it('Escape cancels: editor closes, original diagram restored', () => {
-    pencil(block).click();
-    const ta = textarea(block)!;
+  it('blur saves a changed draft into the note', () => {
+    const ta = textarea(block);
+    ta.value = 'pie chart\nRum 60\nGrog 40';
+    ta.dispatchEvent(new Event('blur'));
+    expect(save).toHaveBeenCalledWith('pie chart\nRum 60\nGrog 40');
+  });
+
+  it('blur without changes writes nothing', () => {
+    textarea(block).dispatchEvent(new Event('blur'));
+    expect(save).not.toHaveBeenCalled();
+  });
+
+  it('closing the source panel saves a changed draft', () => {
+    const details = block.querySelector<HTMLDetailsElement>('details')!;
+    details.open = true;
+    details.dispatchEvent(new Event('toggle'));
+
+    const ta = textarea(block);
+    ta.value = 'pie chart\nRum 60';
+    details.open = false;
+    details.dispatchEvent(new Event('toggle'));
+    expect(save).toHaveBeenCalledWith('pie chart\nRum 60');
+  });
+
+  it('flush saves a pending draft (block unmounts mid-edit)', async () => {
+    const ta = textarea(block);
+    ta.value = 'pie chart\nRum 60';
+    await flush!();
+    expect(save).toHaveBeenCalledWith('pie chart\nRum 60');
+  });
+
+  it('flush is a no-op when nothing changed', async () => {
+    await flush!();
+    expect(save).not.toHaveBeenCalled();
+  });
+
+  it('concurrent triggers (blur + close) save once', () => {
+    save.mockReturnValue(new Promise(() => {})); // never resolves
+    const ta = textarea(block);
+    ta.value = 'pie chart\nRum 60';
+    ta.dispatchEvent(new Event('blur'));
+    const details = block.querySelector<HTMLDetailsElement>('details')!;
+    details.open = false;
+    details.dispatchEvent(new Event('toggle'));
+    expect(save).toHaveBeenCalledTimes(1);
+  });
+
+  it('Escape reverts the draft and restores the diagram', () => {
+    const ta = textarea(block);
     ta.value = 'draft';
     ta.dispatchEvent(new Event('input'));
     vi.advanceTimersByTime(350);
     update.mockClear();
 
     key(ta, 'Escape');
-    expect(textarea(block)).toBeNull();
-    expect(
-      block.querySelector('pre.dgmo-pre')!.classList.contains(
-        'dgmo-pre--hidden'
-      )
-    ).toBe(false);
+    expect(ta.value).toBe(SOURCE);
     expect(update).toHaveBeenCalledWith(SOURCE);
-    expect(block.classList.contains('dgmo--editing')).toBe(false);
+    ta.dispatchEvent(new Event('blur'));
+    expect(save).not.toHaveBeenCalled();
   });
 
-  it('Escape without a painted draft skips the restore render', () => {
-    pencil(block).click();
-    key(textarea(block)!, 'Escape');
+  it('Escape before any painted draft skips the restore render', () => {
+    key(textarea(block), 'Escape');
     expect(update).not.toHaveBeenCalled();
   });
 
-  it('Cmd+Enter commits the draft', () => {
-    pencil(block).click();
-    const ta = textarea(block)!;
-    ta.value = 'pie chart\nRum 60\nGrog 40';
-    key(ta, 'Enter', { metaKey: true });
-    expect(commit).toHaveBeenCalledWith('pie chart\nRum 60\nGrog 40');
+  it('Tab indents instead of moving focus', () => {
+    const ta = textarea(block);
+    ta.setSelectionRange(0, 0);
+    key(ta, 'Tab');
+    expect(ta.value.startsWith('  bar chart')).toBe(true);
   });
 
-  it('pencil click while editing commits (same as Cmd+Enter)', () => {
-    pencil(block).click();
-    const ta = textarea(block)!;
-    ta.value = 'pie chart\nRum 60';
-    pencil(block).click();
-    expect(commit).toHaveBeenCalledWith('pie chart\nRum 60');
-  });
-
-  it('unchanged draft closes without committing', () => {
-    pencil(block).click();
-    key(textarea(block)!, 'Enter', { ctrlKey: true });
-    expect(commit).not.toHaveBeenCalled();
-    expect(textarea(block)).toBeNull();
-  });
-
-  it('rejected commit keeps the editor (and the draft) open', async () => {
-    commit.mockRejectedValueOnce(new Error('stale'));
-    pencil(block).click();
-    const ta = textarea(block)!;
+  it('failed save keeps the draft for retry', async () => {
+    save.mockRejectedValueOnce(new Error('stale'));
+    const ta = textarea(block);
     ta.value = 'draft that must survive';
-    key(ta, 'Enter', { metaKey: true });
+    ta.dispatchEvent(new Event('blur'));
     await vi.runAllTimersAsync();
-    expect(textarea(block)).not.toBeNull();
-    expect(textarea(block)!.value).toBe('draft that must survive');
+    expect(ta.value).toBe('draft that must survive');
+
+    // A later blur retries the save.
+    ta.dispatchEvent(new Event('blur'));
+    expect(save).toHaveBeenCalledTimes(2);
   });
 
   it('no-op on blocks without source chrome (error cards)', () => {
     const bare = document.createElement('div');
-    expect(() =>
-      enableBlockEditing(bare, SOURCE, { update, commit })
-    ).not.toThrow();
-    expect(bare.querySelector('button.dgmo-edit')).toBeNull();
+    expect(enableBlockEditing(bare, SOURCE, { update, save })).toBeNull();
+    expect(bare.querySelector('textarea')).toBeNull();
   });
 });
 
@@ -206,14 +219,16 @@ describe('renderDgmo edit wiring', () => {
     (globalThis as { activeDocument?: Document }).activeDocument = document;
   });
 
-  it('mounts the pencil only when a commit handler is passed', async () => {
-    const withCommit = document.createElement('div');
-    await renderDgmo(SOURCE, withCommit, false, 'nord', async () => {});
-    expect(withCommit.querySelector('button.dgmo-edit')).not.toBeNull();
+  it('source panel is editable only when a save handler is passed', async () => {
+    const withSave = document.createElement('div');
+    const flush = await renderDgmo(SOURCE, withSave, false, 'nord', async () => {});
+    expect(withSave.querySelector('textarea.dgmo-edit-area')).not.toBeNull();
+    expect(flush).toBeTypeOf('function');
 
-    const withoutCommit = document.createElement('div');
-    await renderDgmo(SOURCE, withoutCommit, false, 'nord');
-    expect(withoutCommit.querySelector('button.dgmo-edit')).toBeNull();
+    const withoutSave = document.createElement('div');
+    const noFlush = await renderDgmo(SOURCE, withoutSave, false, 'nord');
+    expect(withoutSave.querySelector('textarea.dgmo-edit-area')).toBeNull();
+    expect(noFlush).toBeNull();
   });
 
   it('updateDiagram swaps the hero SVG in place', async () => {

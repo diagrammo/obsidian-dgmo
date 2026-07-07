@@ -16,7 +16,7 @@ import {
   mapExportDimensions,
 } from '@diagrammo/dgmo/advanced';
 import { mapData } from './map-data';
-import { enableBlockEditing } from './edit';
+import { enableBlockEditing, type FlushFn } from './edit';
 
 function resolvePalette(id: string): PaletteConfig {
   // Silent resolution (no logger) — preserves Obsidian's current no-notice
@@ -92,20 +92,21 @@ function mountBlock(
   svgsHtml: string,
   isDark: boolean,
   paletteId: string,
-  onCommit?: CommitFn
-): HTMLElement | null {
+  onSave?: SaveFn
+): { block: HTMLElement; flush: FlushFn | null } | null {
   const html = buildDgmoBlockHtml(source, svgsHtml, { mode: 'showcase' });
   const block = appendBlockHtml(container, html);
   if (!block) return null;
   retargetOpenLink(block, source, isDark, paletteId);
   bindToolbar(block);
-  if (onCommit) {
-    enableBlockEditing(block, source, {
+  let flush: FlushFn | null = null;
+  if (onSave) {
+    flush = enableBlockEditing(block, source, {
       update: (draft) => updateDiagram(block, draft, isDark, paletteId),
-      commit: onCommit,
+      save: onSave,
     });
   }
-  return block;
+  return { block, flush };
 }
 
 /**
@@ -169,21 +170,26 @@ function bindToolbar(block: HTMLElement): void {
 }
 
 /** Write-back hook for in-block editing (code blocks pass one; embeds don't). */
-export type CommitFn = (next: string) => Promise<void>;
+export type SaveFn = (next: string) => Promise<void>;
 
+/**
+ * Renders the standard block. When `onSave` is provided the source panel is
+ * live-editable; the returned flush saves a pending edit and should be called
+ * by the host's unload (Live Preview unmounts blocks on scroll — an
+ * in-progress edit must not be lost). Null when the block isn't editable.
+ */
 export async function renderDgmo(
   source: string,
   container: HTMLElement,
   isDark: boolean,
   paletteId = 'nord',
-  onCommit?: CommitFn
-): Promise<void> {
+  onSave?: SaveFn
+): Promise<FlushFn | null> {
   // The map chart type loads its geo data via Node `fs` in the public
   // `render()` — which fails in the Obsidian renderer and yields an empty SVG.
   // Render it through dgmo's DI pipeline with the bundled data instead.
   if (looksLikeMap(source)) {
-    renderMapDgmo(source, container, isDark, paletteId, onCommit);
-    return;
+    return renderMapDgmo(source, container, isDark, paletteId, onSave);
   }
 
   let svg: string;
@@ -204,7 +210,7 @@ export async function renderDgmo(
       err instanceof Error ? err.message : String(err),
       source
     );
-    return;
+    return null;
   }
 
   const firstError: DgmoError | undefined = diagnostics.find(
@@ -212,26 +218,27 @@ export async function renderDgmo(
   );
   if (firstError) {
     showError(container, formatDgmoError(firstError), source);
-    return;
+    return null;
   }
 
   if (!svg) {
     showError(container, 'No SVG output from dgmo render().', source);
-    return;
+    return null;
   }
 
   // normalizeSvgForEmbed tightens the export-canvas viewBox to the diagram's
   // content and strips fixed width/height, so block.css's responsive sizing
   // (`.dgmo-svg > svg { width:100%; height:auto }`) matches the content, not
   // the fixed 1200×800 canvas.
-  mountBlock(
+  const mounted = mountBlock(
     container,
     source,
     `<div class="dgmo-svg">${normalizeSvgForEmbed(svg)}</div>`,
     isDark,
     paletteId,
-    onCommit
+    onSave
   );
+  return mounted?.flush ?? null;
 }
 
 /**
@@ -302,29 +309,30 @@ function renderMapDgmo(
   container: HTMLElement,
   isDark: boolean,
   paletteId: string,
-  onCommit?: CommitFn
-): void {
+  onSave?: SaveFn
+): FlushFn | null {
   const out = buildMapSvg(source, isDark, paletteId);
   if ('error' in out) {
     showError(container, out.error, source);
-    return;
+    return null;
   }
 
   // Maps are rendered as live DOM (not an SVG string), so mount the block
   // chrome with an empty `.dgmo-svg` slot and import the node into it —
   // serializing a full geo basemap to string and back would be wasteful.
-  const block = mountBlock(
+  const mounted = mountBlock(
     container,
     source,
     '<div class="dgmo-svg"></div>',
     isDark,
     paletteId,
-    onCommit
+    onSave
   );
-  const slot = block?.querySelector<HTMLElement>('.dgmo-svg');
-  if (!slot) return;
+  const slot = mounted?.block.querySelector<HTMLElement>('.dgmo-svg');
+  if (!slot) return null;
   slot.appendChild(slot.ownerDocument.importNode(out.svgEl, true));
   scaleSvgToFit(slot);
+  return mounted?.flush ?? null;
 }
 
 /** Run the map DI pipeline off-DOM; the SVG element or a display error. */

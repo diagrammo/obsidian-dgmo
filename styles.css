@@ -22,9 +22,10 @@ figure.dgmo {
   margin: 6px 0;
 }
 
-/* In-block source editing (live edit): the textarea replaces the highlighted
-   source panel inside .dgmo-source-inner; the diagram above re-renders live.
-   Metrics mirror .dgmo-pre so the swap is visually seamless. */
+/* In-block live editing: when the source panel is open, a textarea stands in
+   for the highlighted .dgmo-pre — type and the diagram above re-renders live;
+   edits autosave into the note on blur/close. Metrics mirror .dgmo-pre so the
+   swap is visually seamless. */
 .dgmo-edit-area {
   display: block;
   width: 100%;
@@ -44,11 +45,6 @@ figure.dgmo {
 }
 .dgmo-pre--hidden {
   display: none;
-}
-.dgmo--editing .dgmo-edit,
-.dgmo--editing .dgmo-edit:hover {
-  color: var(--interactive-accent, #7aa2f7);
-  opacity: 1;
 }
 
 /* `![[foo.dgmo]]` transclusion (BL-101): strip Obsidian's default embed chrome

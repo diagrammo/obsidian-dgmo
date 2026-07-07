@@ -133,7 +133,10 @@ export class DgmoEmbed extends MarkdownRenderChild {
     await ensureInterFonts();
     await renderEmbed(this.node, this.file, {
       read: (f) => this.host.app.vault.cachedRead(f),
-      render: renderDgmo,
+      // No save hook → embeds render read-only (no in-block editing).
+      render: async (source, el, isDark, palette) => {
+        await renderDgmo(source, el, isDark, palette);
+      },
       isDark: () => this.host.isDark(),
       palette: () => this.host.getPalette(),
     });
