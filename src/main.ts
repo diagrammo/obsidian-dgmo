@@ -1,5 +1,12 @@
-import { MarkdownRenderChild, Notice, Plugin, TFile } from 'obsidian';
+import {
+  MarkdownRenderChild,
+  Notice,
+  Plugin,
+  TFile,
+  type MarkdownPostProcessorContext,
+} from 'obsidian';
 import { renderDgmo } from './render';
+import { containsFence, replaceFencedSource } from './edit';
 import { ensureInterFonts } from './fonts';
 import {
   type DgmoEmbed,
@@ -27,7 +34,7 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
     this.addSettingTab(new DgmoSettingTab(this.app, this));
 
     this.registerMarkdownCodeBlockProcessor('dgmo', (source, el, ctx) => {
-      ctx.addChild(new DgmoCodeBlock(el, source, this));
+      ctx.addChild(new DgmoCodeBlock(el, source, this, ctx));
     });
 
     // Obsidian-style `![[foo.dgmo]]` transclusion (BL-101). Claims Obsidian's
@@ -127,6 +134,54 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
     for (const block of this.codeBlocks) void block.render();
     for (const embed of this.embeds) void embed.render();
   }
+
+  /**
+   * Write an edited code-block body back into its note (in-block editing).
+   * The section is re-located at commit time and its current body verified
+   * against what this block rendered from — if the note moved underneath the
+   * editor, refuse rather than clobber. Throws (after a Notice) so the editor
+   * stays open and the draft isn't lost.
+   */
+  async commitCodeBlockEdit(
+    ctx: MarkdownPostProcessorContext,
+    el: HTMLElement,
+    oldSource: string,
+    newSource: string
+  ): Promise<void> {
+    if (containsFence(newSource)) {
+      new Notice('DGMO source cannot contain code fences (``` or ~~~).');
+      throw new Error('fence in edited source');
+    }
+    const info = ctx.getSectionInfo(el);
+    const file = this.app.vault.getFileByPath(ctx.sourcePath);
+    if (!info || !file) {
+      new Notice(
+        'Cannot locate this block in its note — copy your edits and paste them manually.'
+      );
+      throw new Error('no section info for edited block');
+    }
+    let stale = false;
+    await this.app.vault.process(file, (data) => {
+      const next = replaceFencedSource(
+        data,
+        info.lineStart,
+        info.lineEnd,
+        oldSource,
+        newSource
+      );
+      if (next == null) {
+        stale = true;
+        return data;
+      }
+      return next;
+    });
+    if (stale) {
+      new Notice(
+        'Note changed since this diagram rendered — copy your edits and retry.'
+      );
+      throw new Error('stale section on edited block');
+    }
+  }
 }
 
 /**
@@ -139,7 +194,8 @@ class DgmoCodeBlock extends MarkdownRenderChild {
   constructor(
     node: HTMLElement,
     private readonly source: string,
-    private readonly plugin: DgmoPlugin
+    private readonly plugin: DgmoPlugin,
+    private readonly ctx: MarkdownPostProcessorContext
   ) {
     super(node);
   }
@@ -160,7 +216,14 @@ class DgmoCodeBlock extends MarkdownRenderChild {
       this.source,
       this.containerEl,
       this.plugin.isDark(),
-      this.plugin.getPalette()
+      this.plugin.getPalette(),
+      (next) =>
+        this.plugin.commitCodeBlockEdit(
+          this.ctx,
+          this.containerEl,
+          this.source,
+          next
+        )
     );
   }
 }

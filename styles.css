@@ -22,6 +22,35 @@ figure.dgmo {
   margin: 6px 0;
 }
 
+/* In-block source editing (live edit): the textarea replaces the highlighted
+   source panel inside .dgmo-source-inner; the diagram above re-renders live.
+   Metrics mirror .dgmo-pre so the swap is visually seamless. */
+.dgmo-edit-area {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 8em;
+  resize: none;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-normal, inherit);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  line-height: 1.5;
+  padding: 1em;
+  white-space: pre;
+}
+.dgmo-pre--hidden {
+  display: none;
+}
+.dgmo--editing .dgmo-edit,
+.dgmo--editing .dgmo-edit:hover {
+  color: var(--interactive-accent, #7aa2f7);
+  opacity: 1;
+}
+
 /* `![[foo.dgmo]]` transclusion (BL-101): strip Obsidian's default embed chrome
    so the diagram renders flush like a ```dgmo fenced block. */
 .internal-embed.dgmo-embed {

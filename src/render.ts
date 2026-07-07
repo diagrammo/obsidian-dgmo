@@ -16,6 +16,7 @@ import {
   mapExportDimensions,
 } from '@diagrammo/dgmo/advanced';
 import { mapData } from './map-data';
+import { enableBlockEditing } from './edit';
 
 function resolvePalette(id: string): PaletteConfig {
   // Silent resolution (no logger) — preserves Obsidian's current no-notice
@@ -90,13 +91,20 @@ function mountBlock(
   source: string,
   svgsHtml: string,
   isDark: boolean,
-  paletteId: string
+  paletteId: string,
+  onCommit?: CommitFn
 ): HTMLElement | null {
   const html = buildDgmoBlockHtml(source, svgsHtml, { mode: 'showcase' });
   const block = appendBlockHtml(container, html);
   if (!block) return null;
   retargetOpenLink(block, source, isDark, paletteId);
   bindToolbar(block);
+  if (onCommit) {
+    enableBlockEditing(block, source, {
+      update: (draft) => updateDiagram(block, draft, isDark, paletteId),
+      commit: onCommit,
+    });
+  }
   return block;
 }
 
@@ -160,17 +168,21 @@ function bindToolbar(block: HTMLElement): void {
   });
 }
 
+/** Write-back hook for in-block editing (code blocks pass one; embeds don't). */
+export type CommitFn = (next: string) => Promise<void>;
+
 export async function renderDgmo(
   source: string,
   container: HTMLElement,
   isDark: boolean,
-  paletteId = 'nord'
+  paletteId = 'nord',
+  onCommit?: CommitFn
 ): Promise<void> {
   // The map chart type loads its geo data via Node `fs` in the public
   // `render()` — which fails in the Obsidian renderer and yields an empty SVG.
   // Render it through dgmo's DI pipeline with the bundled data instead.
   if (looksLikeMap(source)) {
-    renderMapDgmo(source, container, isDark, paletteId);
+    renderMapDgmo(source, container, isDark, paletteId, onCommit);
     return;
   }
 
@@ -217,8 +229,65 @@ export async function renderDgmo(
     source,
     `<div class="dgmo-svg">${normalizeSvgForEmbed(svg)}</div>`,
     isDark,
-    paletteId
+    paletteId,
+    onCommit
   );
+}
+
+/**
+ * Live re-render for in-block editing: replace only the `.dgmo-svg` hero with
+ * the draft's SVG (or the standard error card), leaving the block chrome and
+ * the open source editor intact. Draft errors keep the editor usable — the
+ * card sits where the diagram was.
+ */
+export async function updateDiagram(
+  block: HTMLElement,
+  source: string,
+  isDark: boolean,
+  paletteId: string
+): Promise<void> {
+  const slot = block.querySelector<HTMLElement>('.dgmo-svg');
+  if (!slot) return;
+
+  if (looksLikeMap(source)) {
+    const out = buildMapSvg(source, isDark, paletteId);
+    if (!block.isConnected) return;
+    slot.replaceChildren();
+    if ('error' in out) {
+      appendBlockHtml(slot, errorBlockHtml(new Error(out.error), ''));
+      return;
+    }
+    slot.appendChild(slot.ownerDocument.importNode(out.svgEl, true));
+    scaleSvgToFit(slot);
+    return;
+  }
+
+  let html: string;
+  try {
+    const result: { svg: string; diagnostics: DgmoError[] } = await render(
+      source,
+      {
+        theme: isDark ? 'dark' : 'light',
+        palette: resolvePalette(paletteId),
+      }
+    );
+    const firstError = result.diagnostics.find((d) => d.severity === 'error');
+    if (firstError) {
+      html = errorBlockHtml(new Error(formatDgmoError(firstError)), '');
+    } else if (!result.svg) {
+      html = errorBlockHtml(new Error('No SVG output from dgmo render().'), '');
+    } else {
+      html = normalizeSvgForEmbed(result.svg);
+    }
+  } catch (err) {
+    html = errorBlockHtml(
+      err instanceof Error ? err : new Error(String(err)),
+      ''
+    );
+  }
+  if (!block.isConnected) return;
+  slot.replaceChildren();
+  appendBlockHtml(slot, html);
 }
 
 /**
@@ -232,39 +301,12 @@ function renderMapDgmo(
   source: string,
   container: HTMLElement,
   isDark: boolean,
-  paletteId: string
+  paletteId: string,
+  onCommit?: CommitFn
 ): void {
-  const palette = resolvePalette(paletteId)[isDark ? 'dark' : 'light'];
-
-  let resolved: ReturnType<typeof resolveMap>;
-  // `activeDocument` (not the global `document`) so map rendering works in
-  // Obsidian popout windows, per the plugin review guidelines.
-  const exportDiv = activeDocument.createElement('div');
-  try {
-    resolved = resolveMap(parseMap(source), mapData);
-    // Content-aware canvas: height derived from the map's intrinsic projected
-    // aspect (no vertical stretch). The viewBox-derived aspect-ratio set below
-    // makes the embed responsive at width:100%.
-    const dims = mapExportDimensions(resolved, mapData, 1200);
-    renderMapForExport(exportDiv, resolved, mapData, palette, isDark, dims);
-  } catch (err) {
-    showError(
-      container,
-      err instanceof Error ? err.message : String(err),
-      source
-    );
-    return;
-  }
-
-  const firstError = resolved.diagnostics.find((d) => d.severity === 'error');
-  if (firstError) {
-    showError(container, formatDgmoError(firstError), source);
-    return;
-  }
-
-  const svgEl = exportDiv.querySelector('svg');
-  if (!svgEl) {
-    showError(container, 'No SVG output from dgmo render().', source);
+  const out = buildMapSvg(source, isDark, paletteId);
+  if ('error' in out) {
+    showError(container, out.error, source);
     return;
   }
 
@@ -276,10 +318,42 @@ function renderMapDgmo(
     source,
     '<div class="dgmo-svg"></div>',
     isDark,
-    paletteId
+    paletteId,
+    onCommit
   );
   const slot = block?.querySelector<HTMLElement>('.dgmo-svg');
   if (!slot) return;
-  slot.appendChild(slot.ownerDocument.importNode(svgEl, true));
+  slot.appendChild(slot.ownerDocument.importNode(out.svgEl, true));
   scaleSvgToFit(slot);
+}
+
+/** Run the map DI pipeline off-DOM; the SVG element or a display error. */
+function buildMapSvg(
+  source: string,
+  isDark: boolean,
+  paletteId: string
+): { svgEl: SVGSVGElement } | { error: string } {
+  const palette = resolvePalette(paletteId)[isDark ? 'dark' : 'light'];
+
+  let resolved: ReturnType<typeof resolveMap>;
+  // `activeDocument` (not the global `document`) so map rendering works in
+  // Obsidian popout windows, per the plugin review guidelines.
+  const exportDiv = activeDocument.createElement('div');
+  try {
+    resolved = resolveMap(parseMap(source), mapData);
+    // Content-aware canvas: height derived from the map's intrinsic projected
+    // aspect (no vertical stretch). The viewBox-derived aspect-ratio set in
+    // scaleSvgToFit makes the embed responsive at width:100%.
+    const dims = mapExportDimensions(resolved, mapData, 1200);
+    renderMapForExport(exportDiv, resolved, mapData, palette, isDark, dims);
+  } catch (err) {
+    return { error: err instanceof Error ? err.message : String(err) };
+  }
+
+  const firstError = resolved.diagnostics.find((d) => d.severity === 'error');
+  if (firstError) return { error: formatDgmoError(firstError) };
+
+  const svgEl = exportDiv.querySelector('svg');
+  if (!svgEl) return { error: 'No SVG output from dgmo render().' };
+  return { svgEl };
 }
