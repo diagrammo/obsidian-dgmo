@@ -17,29 +17,45 @@ figure.dgmo {
   margin: 6px 0;
 }
 
-/* In-block live editing: when the source panel is open, a textarea stands in
-   for the highlighted .dgmo-pre — type and the diagram above re-renders live;
-   edits autosave into the note on blur/close. Metrics mirror .dgmo-pre so the
-   swap is visually seamless. */
+/* In-block live editing: when the source panel is open, a transparent-text
+   textarea is stacked over the highlighted .dgmo-pre — the pre paints the
+   glyphs (re-tokenized per keystroke), the textarea owns input, caret, and
+   scrolling. Font metrics on both layers MUST stay identical or the caret
+   drifts off the glyphs. Edits autosave into the note on blur/close. */
+.dgmo-edit-stack {
+  position: relative;
+}
+.dgmo-edit-stack > .dgmo-pre {
+  /* The textarea on top owns scrolling and mirrors offsets onto the pre. */
+  overflow: hidden;
+  pointer-events: none;
+}
 .dgmo-edit-area {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
-  min-height: 8em;
+  margin: 0;
   resize: none;
-  overflow: hidden;
+  overflow: auto;
   border: none;
   outline: none;
   background: transparent;
-  color: var(--text-normal, inherit);
+  color: transparent;
+  caret-color: var(--text-normal, currentColor);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.85em;
   line-height: 1.5;
   padding: 1em;
   white-space: pre;
 }
-.dgmo-pre--hidden {
-  display: none;
+.dgmo-edit-area::selection {
+  /* Glyphs live on the layer below — keep selection translucent so they
+     show through, and don't let ::selection recolor the (invisible) text. */
+  background: rgba(127, 127, 127, 0.35);
+  color: transparent;
 }
 
 /* `![[foo.dgmo]]` transclusion (BL-101): strip Obsidian's default embed chrome

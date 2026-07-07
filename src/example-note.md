@@ -7,13 +7,13 @@
 
 ---
 
-# Markdown formatting
+## Markdown formatting
 
 Diagrams live inside ordinary Markdown, so everything below renders normally
 next to the `dgmo` fences — **bold**, *italic*, ~~strikethrough~~, `inline
 code`, and [links](https://diagrammo.app).
 
-## Bullet lists & indentation
+### Bullet lists & indentation
 
 - Crew roster
   - Captain
@@ -24,7 +24,7 @@ code`, and [links](https://diagrammo.app).
   - Powder and shot
   - Salt pork and biscuit
 
-## Numbered steps
+### Numbered steps
 
 1. Hoist the colours
 2. Come alongside the prize
@@ -32,13 +32,13 @@ code`, and [links](https://diagrammo.app).
    1. Take the powder room first
    2. Then the captain's cabin
 
-## Task list
+### Task list
 
 - [x] Careen the hull
 - [x] Re-tar the rigging
 - [ ] Divide the plunder
 
-## Table
+### Table
 
 | Vessel             | Guns | Crew | Status    |
 | ------------------ | ---: | ---: | --------- |
@@ -46,7 +46,7 @@ code`, and [links](https://diagrammo.app).
 | Ranger             |   10 |   80 | Consort   |
 | Adventure          |    8 |   60 | Captured  |
 
-## Blockquote & code
+### Blockquote & code
 
 > A merry life and a short one shall be my motto. — Bartholomew Roberts
 
@@ -56,9 +56,9 @@ const plunder = ships.reduce((sum, s) => sum + s.gold, 0);
 
 ---
 
-# Data
+## Data
 
-## Arc Diagram
+### Arc Diagram
 
 ```dgmo
 arc Pirate Alliances
@@ -81,7 +81,7 @@ arc Pirate Alliances
 
 ---
 
-## Area Chart (line + fill)
+### Area Chart (line + fill)
 
 ```dgmo
 line Fleet Growth Over Time
@@ -102,7 +102,7 @@ era 1716 -> 1720 Decline red
 
 ---
 
-## Bar Chart
+### Bar Chart
 
 ```dgmo
 bar Treasure Hauls by Port
@@ -116,7 +116,7 @@ Cartagena purple   780
 
 ---
 
-## Bar Chart (stacked)
+### Bar Chart (stacked)
 
 ```dgmo
 bar Port Revenue by Trade
@@ -134,7 +134,7 @@ Havana     500 600 150
 
 ---
 
-## Bubble Chart (scatter + size)
+### Bubble Chart (scatter + size)
 
 ```dgmo
 scatter Pirate Fleets of the Caribbean
@@ -156,7 +156,7 @@ y-label Reputation
 
 ---
 
-## Arc — Chord Layout
+### Arc — Chord Layout
 
 ```dgmo
 arc Pirate Alliance Network
@@ -179,7 +179,7 @@ Rackham -> Roberts 100
 
 ---
 
-## Doughnut Chart (pie + hole)
+### Doughnut Chart (pie + hole)
 
 ```dgmo
 pie Plunder Distribution
@@ -195,7 +195,7 @@ Provisions       5
 
 ---
 
-## Function Plot
+### Function Plot
 
 ```dgmo
 function Cannonball Trajectories by Elevation
@@ -210,7 +210,7 @@ x 0 to 250
 
 ---
 
-## Funnel Chart
+### Funnel Chart
 
 ```dgmo
 funnel Pirate Recruitment Pipeline
@@ -224,7 +224,7 @@ Veteran Buccaneers red       50
 
 ---
 
-## Heatmap
+### Heatmap
 
 ```dgmo
 heatmap Pirate Activity by Sea Region
@@ -240,7 +240,7 @@ West Africa     3 3 4 3 5 4
 
 ---
 
-## Line Chart
+### Line Chart
 
 ```dgmo
 line Ship Speed Over Voyage
@@ -262,7 +262,7 @@ Day 7  6
 
 ---
 
-## Line Chart (Multi-series)
+### Line Chart (Multi-series)
 
 ```dgmo
 line Monthly Captures by Fleet
@@ -282,7 +282,7 @@ Jun 3 8 2
 
 ---
 
-## Pie Chart
+### Pie Chart
 
 ```dgmo
 pie Crew Roles Distribution
@@ -298,7 +298,7 @@ Cooks & Surgeons  5
 
 ---
 
-## Polar Area Chart
+### Polar Area Chart
 
 ```dgmo
 polar-area Captain's Skills
@@ -312,7 +312,7 @@ Seamanship    80
 
 ---
 
-## Radar Chart
+### Radar Chart
 
 ```dgmo
 radar Ship Combat Rating
@@ -327,7 +327,7 @@ Crew Morale     75
 
 ---
 
-## Sankey Diagram
+### Sankey Diagram
 
 ```dgmo
 sankey Rum Supply Chain of the Caribbean
@@ -358,7 +358,7 @@ Ship Provisions -> Long Voyages 1000
 
 ---
 
-## Scatter Plot
+### Scatter Plot
 
 ```dgmo
 scatter Pirate Captains
@@ -386,7 +386,7 @@ y-label Treasure
 
 ---
 
-## Slope Chart
+### Slope Chart
 
 ```dgmo
 slope Pirate Fleet Strength: 1715 vs 1725
@@ -404,7 +404,7 @@ Calico Jack purple       18  6
 
 ---
 
-## Treemap
+### Treemap
 
 ```dgmo
 treemap Plunder Allocation
@@ -428,7 +428,7 @@ Officers t: Officers
 
 ---
 
-## Sunburst (treemap radial)
+### Sunburst (treemap radial)
 
 Add a bare `radial` flag to render the same hierarchy as a sunburst — a multi-ring hierarchical pie.
 
@@ -455,9 +455,9 @@ Officers t: Officers
 
 ---
 
-# Business
+## Business
 
-## Cycle Diagram
+### Cycle Diagram
 
 ```dgmo
 cycle The Pirate Raid Cycle
@@ -478,7 +478,7 @@ Celebrate red
 
 ---
 
-## Journey Map
+### Journey Map
 
 ```dgmo
 journey-map A Cabin Boy's First Voyage
@@ -511,7 +511,7 @@ persona Squidlips Sam color: blue
 
 ---
 
-## Map
+### Map
 
 ```dgmo
 map The Brethren's Caribbean
@@ -533,7 +533,7 @@ route Kingston
 
 ---
 
-## Org Chart
+### Org Chart
 
 ```dgmo
 org The Dread Fleet
@@ -587,7 +587,7 @@ Blackbeard r: Captain, s: Revenge
 
 ---
 
-## Pyramid Diagram
+### Pyramid Diagram
 
 ```dgmo
 pyramid Pirate Crew Hierarchy
@@ -616,7 +616,7 @@ Powder Monkeys orange
 
 ---
 
-## Quadrant Chart
+### Quadrant Chart
 
 ```dgmo
 quadrant Crew Performance Assessment
@@ -641,7 +641,7 @@ Spy            0.8  0.1
 
 ---
 
-## Ring Diagram
+### Ring Diagram
 
 ```dgmo
 ring Captain's Sphere of Influence
@@ -669,7 +669,7 @@ The Open Sea blue
 
 ---
 
-## Swimlane
+### Swimlane
 
 ```dgmo
 swimlane Expense Approval
@@ -699,7 +699,7 @@ File Expense -> <Approve>
 
 ---
 
-## Tech Radar
+### Tech Radar
 
 ```dgmo
 tech-radar Pirate Operations Radar — Q2 1718
@@ -758,7 +758,7 @@ Crew Welfare quadrant: bottom-right
 
 ---
 
-## Venn Diagram
+### Venn Diagram
 
 ```dgmo
 venn Pirate Skill Overlap
@@ -775,7 +775,7 @@ sw + nav + lead Legendary Pirates
 
 ---
 
-## Word Cloud
+### Word Cloud
 
 ```dgmo
 wordcloud Pirate Skills
@@ -798,9 +798,9 @@ fishing       35
 
 ---
 
-# Project
+## Project
 
-## DACI
+### DACI
 
 ```dgmo
 raci Captain's Council Decisions
@@ -836,7 +836,7 @@ roles
 
 ---
 
-## Gantt Chart
+### Gantt Chart
 
 ```dgmo
 gantt Blackbeard's Blockade — 1718
@@ -871,7 +871,7 @@ era 1718-05-10 -> 1718-05-18 Blockade Active blue
 
 ---
 
-## Kanban Board
+### Kanban Board
 
 ```dgmo
 kanban Crew Tasks
@@ -909,7 +909,7 @@ tag Watch as w
 
 ---
 
-## PERT
+### PERT
 
 ```dgmo
 pert Pirate Voyage to the Atoll
@@ -942,7 +942,7 @@ divvy shares 1 2 3
 
 ---
 
-## RACI Matrix
+### RACI Matrix
 
 ```dgmo
 raci Voyage Operations
@@ -982,7 +982,7 @@ roles
 
 ---
 
-## RASCI
+### RASCI
 
 ```dgmo
 raci Voyage Preparation
@@ -1014,7 +1014,7 @@ roles
 
 ---
 
-## Timeline
+### Timeline
 
 ```dgmo
 timeline The Golden Age of Piracy (1716–1722)
@@ -1055,9 +1055,9 @@ marker 1721-08 Roberts reaches peak teal
 
 ---
 
-# Software
+## Software
 
-## Boxes and Lines
+### Boxes and Lines
 
 ```dgmo
 boxes-and-lines Pirate Fleet Command
@@ -1090,7 +1090,7 @@ SignalFlags s: Damaged
 
 ---
 
-## C4 Architecture
+### C4 Architecture
 
 ```dgmo
 c4 Pirate Treasure Map System
@@ -1128,7 +1128,7 @@ deployment
 
 ---
 
-## Class Diagram
+### Class Diagram
 
 ```dgmo
 class Ship Class Hierarchy
@@ -1161,7 +1161,7 @@ Ship
 
 ---
 
-## Entity Relationship
+### Entity Relationship
 
 ```dgmo
 er Pirate Fleet
@@ -1204,7 +1204,7 @@ ports
 
 ---
 
-## Flowchart
+### Flowchart
 
 ```dgmo
 flowchart Mutiny Resolution
@@ -1231,7 +1231,7 @@ direction-tb
 
 ---
 
-## Infrastructure Diagram
+### Infrastructure Diagram
 
 ```dgmo
 infra Pirate Communication Network
@@ -1290,7 +1290,7 @@ RumRunner f: Bonny
 
 ---
 
-## Mindmap
+### Mindmap
 
 ```dgmo
 mindmap Product Strategy
@@ -1328,7 +1328,7 @@ Go-to-Market d: Marketing
 
 ---
 
-## Sequence Diagram
+### Sequence Diagram
 
 ```dgmo
 sequence Treasure Hunt App
@@ -1376,7 +1376,7 @@ else
 
 ---
 
-## Sitemap
+### Sitemap
 
 ```dgmo
 sitemap Pirate Bay Trading Co.
@@ -1416,7 +1416,7 @@ Home Access: Public, Page: Landing
 
 ---
 
-## State Diagram
+### State Diagram
 
 ```dgmo
 state Ship Battle Lifecycle
@@ -1455,7 +1455,7 @@ Sinking -> [*]
 
 ---
 
-## Version Control
+### Version Control
 
 ```dgmo
 version-control Feature Branch Workflow
@@ -1483,7 +1483,7 @@ main
 
 ---
 
-## Wireframe
+### Wireframe
 
 ```dgmo
 wireframe Pirate Crew Portal
@@ -1520,7 +1520,7 @@ wireframe Pirate Crew Portal
 
 ---
 
-## Event Line
+### Event Line
 
 ```dgmo
 event-line A Short History of the Web
@@ -1547,7 +1547,7 @@ tag Theme as t
 
 ---
 
-## Block
+### Block
 
 ```dgmo
 block Web Service Architecture
@@ -1570,7 +1570,7 @@ tag Layer as l
 
 ---
 
-## Error state
+### Error state
 
 > This block is **intentionally invalid** — `piechart` isn't a chart type (it
 > should be `pie`). It's included to show how Diagrammo reports a mistake, so you

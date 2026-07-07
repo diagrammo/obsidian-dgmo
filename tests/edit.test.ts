@@ -37,7 +37,10 @@ function makeBlock(): HTMLElement {
   inner.className = 'dgmo-source-inner';
   const pre = document.createElement('pre');
   pre.className = 'dgmo-pre';
-  pre.textContent = SOURCE;
+  const codeSpan = document.createElement('span');
+  codeSpan.className = 'dgmo-code';
+  codeSpan.textContent = SOURCE;
+  pre.appendChild(codeSpan);
   inner.appendChild(pre);
   details.append(summary, inner);
 
@@ -85,17 +88,36 @@ describe('enableBlockEditing', () => {
     document.body.replaceChildren();
   });
 
-  it('replaces the highlighted source with a textarea holding the source', () => {
+  it('stacks a transparent textarea over the highlighted source', () => {
     const ta = textarea(block);
     expect(ta).not.toBeNull();
     expect(ta.value).toBe(SOURCE);
-    expect(
-      block
-        .querySelector('pre.dgmo-pre')!
-        .classList.contains('dgmo-pre--hidden')
-    ).toBe(true);
+    expect(ta.wrap).toBe('off');
+
+    // Both layers live in the overlay stack; the pre keeps painting glyphs.
+    const stack = block.querySelector('.dgmo-edit-stack')!;
+    expect(stack).not.toBeNull();
+    const pre = stack.querySelector('pre.dgmo-pre')!;
+    expect(pre).not.toBeNull();
+    expect(pre.getAttribute('aria-hidden')).toBe('true');
+    expect(stack.querySelector('textarea.dgmo-edit-area')).toBe(ta);
     // No extra affordance — the panel just is editable.
     expect(block.querySelector('button.dgmo-edit')).toBeNull();
+  });
+
+  it('mount re-highlights the source with token spans', () => {
+    const code = block.querySelector('.dgmo-code')!;
+    expect(code.textContent).toContain('bar chart');
+    expect(code.querySelector('[class^="dgmo-tok-"]')).not.toBeNull();
+  });
+
+  it('typing repaints the highlight layer immediately (no debounce)', () => {
+    const ta = textarea(block);
+    ta.value = SOURCE + '\nFlying Dutchman 12';
+    ta.dispatchEvent(new Event('input'));
+
+    const code = block.querySelector('.dgmo-code')!;
+    expect(code.textContent).toContain('Flying Dutchman 12');
   });
 
   it('typing live-updates the diagram after the debounce, without saving', () => {
@@ -178,6 +200,10 @@ describe('enableBlockEditing', () => {
     key(ta, 'Escape');
     expect(ta.value).toBe(SOURCE);
     expect(update).toHaveBeenCalledWith(SOURCE);
+    // Highlight layer reverts with the draft.
+    expect(block.querySelector('.dgmo-code')!.textContent).not.toContain(
+      'draft'
+    );
     ta.dispatchEvent(new Event('blur'));
     expect(save).not.toHaveBeenCalled();
   });
