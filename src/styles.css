@@ -40,16 +40,28 @@ figure.dgmo {
   margin: 0;
   resize: none;
   overflow: auto;
-  border: none;
   outline: none;
-  background: transparent;
-  color: transparent;
   caret-color: var(--text-normal, currentColor);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.85em;
   line-height: 1.5;
   padding: 1em;
   white-space: pre;
+}
+/* Obsidian's app.css styles textarea per interaction state — notably
+   `textarea:hover { background-color: var(--background-modifier-form-field-hover) }`
+   out-specifies a bare class and paints an opaque box over the glyph layer
+   (code "disappears" on hover). Pin every state; !important so community
+   themes can't re-break the overlay. */
+.dgmo-edit-area,
+.dgmo-edit-area:hover,
+.dgmo-edit-area:focus,
+.dgmo-edit-area:focus-visible,
+.dgmo-edit-area:active {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: transparent !important;
 }
 .dgmo-edit-area::selection {
   /* Glyphs live on the layer below — keep selection translucent so they
