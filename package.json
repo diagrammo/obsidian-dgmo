@@ -35,8 +35,14 @@
     "@diagrammo/dgmo": "^0.48.2"
   },
   "devDependencies": {
+    "@codemirror/commands": "^6.10.4",
+    "@codemirror/language": "^6.12.4",
+    "@codemirror/state": "^6.7.1",
+    "@codemirror/view": "^6.43.6",
     "@eslint/js": "^10.0.1",
+    "@lezer/highlight": "^1.2.3",
     "@lezer/lr": "^1.4.10",
+    "@replit/codemirror-vim": "^6.3.0",
     "@types/node": "^25.9.1",
     "esbuild": "^0.28.0",
     "eslint": "^10.2.0",

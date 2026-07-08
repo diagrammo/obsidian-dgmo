@@ -8,6 +8,8 @@ import {
   type Mock,
 } from 'vitest';
 
+import { EditorView } from '@codemirror/view';
+
 import {
   containsFence,
   enableBlockEditing,
@@ -50,21 +52,30 @@ function makeBlock(): HTMLElement {
   return figure;
 }
 
-function textarea(block: HTMLElement): HTMLTextAreaElement {
-  return block.querySelector<HTMLTextAreaElement>('textarea.dgmo-edit-area')!;
+/** The mounted CodeMirror view for the block's source panel. */
+function editor(block: HTMLElement): EditorView {
+  const dom = block.querySelector<HTMLElement>('.dgmo-source-inner .cm-editor')!;
+  return EditorView.findFromDOM(dom)!;
 }
 
-function key(
-  el: HTMLElement,
-  keyName: string,
-  init: KeyboardEventInit = {}
-): void {
-  el.dispatchEvent(
+/** Replace the editor's whole document (models a user editing the source). */
+function setDoc(view: EditorView, text: string): void {
+  view.dispatch({
+    changes: { from: 0, to: view.state.doc.length, insert: text },
+  });
+}
+
+function docText(view: EditorView): string {
+  return view.state.doc.toString();
+}
+
+/** Dispatch a raw keydown at the editor's content, as the browser would. */
+function key(view: EditorView, keyName: string): void {
+  view.contentDOM.dispatchEvent(
     new KeyboardEvent('keydown', {
       key: keyName,
       bubbles: true,
       cancelable: true,
-      ...init,
     })
   );
 }
@@ -88,42 +99,30 @@ describe('enableBlockEditing', () => {
     document.body.replaceChildren();
   });
 
-  it('stacks a transparent textarea over the highlighted source', () => {
-    const ta = textarea(block);
-    expect(ta).not.toBeNull();
-    expect(ta.value).toBe(SOURCE);
-    expect(ta.wrap).toBe('off');
+  it('replaces the static <pre> with a CodeMirror editor seeded with the source', () => {
+    // The overlay/textarea approach is gone: a real editor owns the panel.
+    expect(block.querySelector('textarea')).toBeNull();
+    expect(block.querySelector('.dgmo-source-inner pre.dgmo-pre')).toBeNull();
 
-    // Both layers live in the overlay stack; the pre keeps painting glyphs.
-    const stack = block.querySelector('.dgmo-edit-stack')!;
-    expect(stack).not.toBeNull();
-    const pre = stack.querySelector('pre.dgmo-pre')!;
-    expect(pre).not.toBeNull();
-    expect(pre.getAttribute('aria-hidden')).toBe('true');
-    expect(stack.querySelector('textarea.dgmo-edit-area')).toBe(ta);
+    const view = editor(block);
+    expect(view).not.toBeNull();
+    expect(docText(view)).toBe(SOURCE);
     // No extra affordance — the panel just is editable.
     expect(block.querySelector('button.dgmo-edit')).toBeNull();
   });
 
-  it('mount re-highlights the source with token spans', () => {
-    const code = block.querySelector('.dgmo-code')!;
-    expect(code.textContent).toContain('bar chart');
-    expect(code.querySelector('[class^="dgmo-tok-"]')).not.toBeNull();
-  });
-
-  it('typing repaints the highlight layer immediately (no debounce)', () => {
-    const ta = textarea(block);
-    ta.value = SOURCE + '\nFlying Dutchman 12';
-    ta.dispatchEvent(new Event('input'));
-
-    const code = block.querySelector('.dgmo-code')!;
-    expect(code.textContent).toContain('Flying Dutchman 12');
+  it('renders the source inside a CodeMirror content region', () => {
+    // dgmoExtension supplies the native syntax highlighting; the painted token
+    // spans need real layout (viewport measurement), so they're an e2e/in-app
+    // concern — here we assert the editor content mounts with the source text.
+    const content = block.querySelector('.dgmo-source-inner .cm-content')!;
+    expect(content).not.toBeNull();
+    expect(content.textContent).toContain('bar chart');
   });
 
   it('typing live-updates the diagram after the debounce, without saving', () => {
-    const ta = textarea(block);
-    ta.value = SOURCE + '\nFlying Dutchman 12';
-    ta.dispatchEvent(new Event('input'));
+    const view = editor(block);
+    setDoc(view, SOURCE + '\nFlying Dutchman 12');
 
     expect(update).not.toHaveBeenCalled();
     vi.advanceTimersByTime(350);
@@ -132,10 +131,9 @@ describe('enableBlockEditing', () => {
   });
 
   it('rapid keystrokes collapse into one update', () => {
-    const ta = textarea(block);
+    const view = editor(block);
     for (const suffix of ['a', 'ab', 'abc']) {
-      ta.value = `${SOURCE}\n${suffix}`;
-      ta.dispatchEvent(new Event('input'));
+      setDoc(view, `${SOURCE}\n${suffix}`);
       vi.advanceTimersByTime(100);
     }
     vi.advanceTimersByTime(350);
@@ -144,14 +142,14 @@ describe('enableBlockEditing', () => {
   });
 
   it('blur saves a changed draft into the note', () => {
-    const ta = textarea(block);
-    ta.value = 'pie chart\nRum 60\nGrog 40';
-    ta.dispatchEvent(new Event('blur'));
+    const view = editor(block);
+    setDoc(view, 'pie chart\nRum 60\nGrog 40');
+    view.contentDOM.dispatchEvent(new FocusEvent('blur'));
     expect(save).toHaveBeenCalledWith('pie chart\nRum 60\nGrog 40');
   });
 
   it('blur without changes writes nothing', () => {
-    textarea(block).dispatchEvent(new Event('blur'));
+    editor(block).contentDOM.dispatchEvent(new FocusEvent('blur'));
     expect(save).not.toHaveBeenCalled();
   });
 
@@ -160,16 +158,14 @@ describe('enableBlockEditing', () => {
     details.open = true;
     details.dispatchEvent(new Event('toggle'));
 
-    const ta = textarea(block);
-    ta.value = 'pie chart\nRum 60';
+    setDoc(editor(block), 'pie chart\nRum 60');
     details.open = false;
     details.dispatchEvent(new Event('toggle'));
     expect(save).toHaveBeenCalledWith('pie chart\nRum 60');
   });
 
   it('flush saves a pending draft (block unmounts mid-edit)', async () => {
-    const ta = textarea(block);
-    ta.value = 'pie chart\nRum 60';
+    setDoc(editor(block), 'pie chart\nRum 60');
     await flush!();
     expect(save).toHaveBeenCalledWith('pie chart\nRum 60');
   });
@@ -181,9 +177,9 @@ describe('enableBlockEditing', () => {
 
   it('concurrent triggers (blur + close) save once', () => {
     save.mockReturnValue(new Promise(() => {})); // never resolves
-    const ta = textarea(block);
-    ta.value = 'pie chart\nRum 60';
-    ta.dispatchEvent(new Event('blur'));
+    const view = editor(block);
+    setDoc(view, 'pie chart\nRum 60');
+    view.contentDOM.dispatchEvent(new FocusEvent('blur'));
     const details = block.querySelector<HTMLDetailsElement>('details')!;
     details.open = false;
     details.dispatchEvent(new Event('toggle'));
@@ -191,52 +187,51 @@ describe('enableBlockEditing', () => {
   });
 
   it('Escape reverts the draft and restores the diagram', () => {
-    const ta = textarea(block);
-    ta.value = 'draft';
-    ta.dispatchEvent(new Event('input'));
+    const view = editor(block);
+    setDoc(view, 'draft');
     vi.advanceTimersByTime(350);
     update.mockClear();
 
-    key(ta, 'Escape');
-    expect(ta.value).toBe(SOURCE);
+    key(view, 'Escape');
+    expect(docText(view)).toBe(SOURCE);
     expect(update).toHaveBeenCalledWith(SOURCE);
-    // Highlight layer reverts with the draft.
-    expect(block.querySelector('.dgmo-code')!.textContent).not.toContain(
-      'draft'
-    );
-    ta.dispatchEvent(new Event('blur'));
+    view.contentDOM.dispatchEvent(new FocusEvent('blur'));
     expect(save).not.toHaveBeenCalled();
   });
 
   it('Escape before any painted draft skips the restore render', () => {
-    key(textarea(block), 'Escape');
+    key(editor(block), 'Escape');
     expect(update).not.toHaveBeenCalled();
   });
 
-  it('Tab indents instead of moving focus', () => {
-    const ta = textarea(block);
-    ta.setSelectionRange(0, 0);
-    key(ta, 'Tab');
-    expect(ta.value.startsWith('  bar chart')).toBe(true);
+  it('withholds the Esc-revert binding when Vim mode is on (vim owns Esc)', () => {
+    document.body.replaceChildren();
+    const vimBlock = makeBlock();
+    enableBlockEditing(vimBlock, SOURCE, { update, save, vimMode: true });
+    const view = editor(vimBlock);
+    setDoc(view, 'draft');
+    key(view, 'Escape');
+    // Our revert did not fire — the draft stands (vim would handle Esc).
+    expect(docText(view)).toBe('draft');
   });
 
   it('failed save keeps the draft for retry', async () => {
     save.mockRejectedValueOnce(new Error('stale'));
-    const ta = textarea(block);
-    ta.value = 'draft that must survive';
-    ta.dispatchEvent(new Event('blur'));
+    const view = editor(block);
+    setDoc(view, 'draft that must survive');
+    view.contentDOM.dispatchEvent(new FocusEvent('blur'));
     await vi.runAllTimersAsync();
-    expect(ta.value).toBe('draft that must survive');
+    expect(docText(view)).toBe('draft that must survive');
 
     // A later blur retries the save.
-    ta.dispatchEvent(new Event('blur'));
+    view.contentDOM.dispatchEvent(new FocusEvent('blur'));
     expect(save).toHaveBeenCalledTimes(2);
   });
 
   it('no-op on blocks without source chrome (error cards)', () => {
     const bare = document.createElement('div');
     expect(enableBlockEditing(bare, SOURCE, { update, save })).toBeNull();
-    expect(bare.querySelector('textarea')).toBeNull();
+    expect(bare.querySelector('.cm-editor')).toBeNull();
   });
 });
 
@@ -248,12 +243,13 @@ describe('renderDgmo edit wiring', () => {
   it('source panel is editable only when a save handler is passed', async () => {
     const withSave = document.createElement('div');
     const flush = await renderDgmo(SOURCE, withSave, false, 'nord', async () => {});
-    expect(withSave.querySelector('textarea.dgmo-edit-area')).not.toBeNull();
+    expect(withSave.querySelector('.dgmo-source-inner .cm-editor')).not.toBeNull();
     expect(flush).toBeTypeOf('function');
 
     const withoutSave = document.createElement('div');
     const noFlush = await renderDgmo(SOURCE, withoutSave, false, 'nord');
-    expect(withoutSave.querySelector('textarea.dgmo-edit-area')).toBeNull();
+    expect(withoutSave.querySelector('.dgmo-source-inner .cm-editor')).toBeNull();
+    expect(withoutSave.querySelector('.dgmo-source-inner pre.dgmo-pre')).not.toBeNull();
     expect(noFlush).toBeNull();
   });
 

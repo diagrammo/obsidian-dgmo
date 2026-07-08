@@ -1,20 +1,43 @@
 /**
  * In-block source editing: when the source panel is open (the `</>` toggle),
- * the source IS an editor. A transparent-text <textarea> is stacked over the
- * block's highlighted <pre> — the textarea owns input and the caret, the pre
- * underneath is re-tokenized (highlightDgmo) on every keystroke, so the
- * source stays syntax-highlighted while being edited. Typing re-renders the
- * diagram hero live (debounced). There is no commit ceremony: the edit is
- * written back into the note's markdown quietly when the user is done — on
- * blur, on closing the panel, or when the block unmounts (scroll-away in
- * Live Preview). Esc reverts the draft.
+ * the source IS an editor. The static highlighted `<pre>` is replaced by a real
+ * CodeMirror 6 `EditorView` running dgmo's own language extension
+ * (`dgmoExtension` — the same lezer parser + highlighting the desktop editor
+ * uses), so the source stays syntax-highlighted natively while being edited.
+ * Typing re-renders the diagram hero live (debounced). There is no commit
+ * ceremony: the edit is written back into the note's markdown quietly when the
+ * user is done — on blur, on closing the panel, or when the block unmounts
+ * (scroll-away in Live Preview). Esc reverts the draft (unless Vim owns Esc).
  *
- * This module is DOM-only and framework-agnostic — the Obsidian-specific
- * pieces (re-rendering the hero, writing the note) come in through
- * `BlockEditOpts`, which keeps it unit-testable without the `obsidian` module.
+ * Vim: when the host reports Obsidian's Vim mode is on (`opts.vimMode`), the
+ * `@replit/codemirror-vim` extension — the very engine Obsidian's own editors
+ * use — is lazy-loaded into a compartment and slotted in at highest precedence.
+ * We don't reimplement any keybindings; we host the same vim engine.
+ *
+ * CodeMirror core (`@codemirror/*`, `@lezer/*`) is provided by Obsidian at
+ * runtime (esbuild marks it external), so mounting an editor adds no bundle
+ * weight; only the vim engine is bundled.
+ *
+ * This module stays framework-agnostic — the Obsidian-specific pieces
+ * (re-rendering the hero, writing the note, reading the vim setting) come in
+ * through `BlockEditOpts`, which keeps it unit-testable without `obsidian`.
  */
 
-import { highlightDgmo } from '@diagrammo/dgmo/highlight';
+import { EditorView, keymap } from '@codemirror/view';
+import {
+  EditorState,
+  Compartment,
+  Prec,
+  type Extension,
+} from '@codemirror/state';
+import {
+  history,
+  historyKeymap,
+  defaultKeymap,
+  indentWithTab,
+} from '@codemirror/commands';
+import { indentUnit } from '@codemirror/language';
+import { dgmoExtension } from '@diagrammo/dgmo/editor';
 
 const DEBOUNCE_MS = 300;
 
@@ -27,10 +50,19 @@ export interface BlockEditOpts {
    * draft in the editor (stale section, fence in source, …).
    */
   save(next: string): Promise<void>;
+  /**
+   * Obsidian's Vim mode setting. When true the vim engine is lazy-loaded into
+   * the editor and Esc belongs to vim (so the Esc-reverts-draft binding is
+   * withheld). The host reads this from `app.vault.getConfig('vimMode')`.
+   */
+  vimMode?: boolean;
 }
 
 /** Save-any-pending-edit hook, for the host's unmount lifecycle. */
 export type FlushFn = () => Promise<void>;
+
+/** Compartment slot each editor reuses for its (optional) vim extension. */
+const vimSlot = new Compartment();
 
 /**
  * Wire live editing into a mounted standard block. Returns a flush function
@@ -51,37 +83,10 @@ export function enableBlockEditing(
   const details = detailsQ;
   const inner = innerQ;
 
+  const pre = inner.querySelector<HTMLElement>('pre.dgmo-pre');
+  if (!pre) return null;
+
   const original = source.replace(/\n$/, '');
-  const doc = block.ownerDocument;
-
-  // Overlay stack: the chrome's highlighted <pre> moves into a relative
-  // wrapper and keeps painting the tokens (and defining the panel's size);
-  // the textarea sits absolutely on top with transparent text — its caret
-  // and selection are visible, the glyphs underneath supply the color.
-  const preQ = inner.querySelector<HTMLElement>('pre.dgmo-pre');
-  const codeQ = preQ?.querySelector<HTMLElement>('.dgmo-code');
-  if (!preQ || !codeQ) return null;
-  // Re-bind as definitely-non-null consts so the closures below typecheck.
-  const pre = preQ;
-  const code = codeQ;
-  const stack = doc.createElement('div');
-  stack.className = 'dgmo-edit-stack';
-  inner.appendChild(stack);
-  stack.appendChild(pre);
-  pre.setAttribute('aria-hidden', 'true');
-
-  const ta = doc.createElement('textarea');
-  ta.className = 'dgmo-edit-area';
-  ta.value = original;
-  ta.spellcheck = false;
-  ta.wrap = 'off'; // lines must not soft-wrap or they'd drift off the backdrop
-  ta.setAttribute('aria-label', 'DGMO source (editable)');
-  stack.appendChild(ta);
-
-  // Re-render from `original` (the chrome highlighted the trimmed source;
-  // the textarea holds the untrimmed block body — they must match glyph for
-  // glyph or the overlay drifts).
-  rehighlight(code, original);
 
   let timer: ReturnType<typeof setTimeout> | null = null;
   let dirtyDiagram = false;
@@ -93,9 +98,8 @@ export function enableBlockEditing(
     timer = null;
   }
 
-  function onEdited(): void {
-    rehighlight(code, ta.value);
-    scheduleUpdate();
+  function currentText(): string {
+    return view.state.doc.toString();
   }
 
   function scheduleUpdate(): void {
@@ -104,7 +108,7 @@ export function enableBlockEditing(
       timer = null;
       if (!block.isConnected) return;
       dirtyDiagram = true;
-      void opts.update(ta.value);
+      void opts.update(currentText());
     }, DEBOUNCE_MS);
   }
 
@@ -112,7 +116,7 @@ export function enableBlockEditing(
    * re-entrant-safe: blur + panel-close + unload can all race into it. */
   function saveIfChanged(): Promise<void> {
     if (savePromise) return savePromise;
-    const next = ta.value;
+    const next = currentText();
     if (next.trimEnd() === lastSaved.trimEnd()) return Promise.resolve();
     clearTimer();
     savePromise = opts
@@ -135,67 +139,107 @@ export function enableBlockEditing(
 
   function revert(): void {
     clearTimer();
-    ta.value = lastSaved;
-    rehighlight(code, lastSaved);
+    view.dispatch({
+      changes: { from: 0, to: view.state.doc.length, insert: lastSaved },
+    });
     if (dirtyDiagram) {
       dirtyDiagram = false;
       void opts.update(lastSaved);
     }
   }
 
-  ta.addEventListener('input', onEdited);
-  // Long lines: the textarea owns scrolling (it's on top); mirror its offsets
-  // onto the pre so glyphs stay under the caret.
-  ta.addEventListener('scroll', () => {
-    pre.scrollLeft = ta.scrollLeft;
-    pre.scrollTop = ta.scrollTop;
+  // Esc reverts the draft — but only when Vim is off; with Vim on, Esc is the
+  // way out of insert mode and belongs to the vim engine.
+  const escRevert: Extension = opts.vimMode
+    ? []
+    : Prec.highest(
+        keymap.of([
+          {
+            key: 'Escape',
+            run: () => {
+              revert();
+              return true;
+            },
+          },
+        ])
+      );
+
+  const theme = EditorView.theme({
+    '&': { fontSize: '0.85em', background: 'transparent' },
+    '&.cm-focused': { outline: 'none' },
+    '.cm-content': {
+      fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+      padding: '1em',
+    },
+    '.cm-line': { padding: '0' },
+    '.cm-scroller': { lineHeight: '1.5' },
   });
-  // stopPropagation on every key: the block may live inside a CodeMirror
-  // widget (Live Preview) or under global hotkeys — keystrokes belong to
-  // the textarea while it has focus.
-  ta.addEventListener('keydown', (e) => {
-    e.stopPropagation();
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      revert();
-      return;
-    }
-    // DGMO is indent-significant; Tab must indent, not move focus.
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      ta.setRangeText('  ', ta.selectionStart, ta.selectionEnd, 'end');
-      onEdited();
-    }
+
+  const view = new EditorView({
+    state: EditorState.create({
+      doc: original,
+      extensions: [
+        // Slot the vim extension first so, once loaded, its keymap outranks
+        // everything below it. Empty until (and unless) vim is lazy-loaded.
+        vimSlot.of([]),
+        escRevert,
+        dgmoExtension,
+        history(),
+        indentUnit.of('  '), // DGMO is indent-significant; indent in 2-space steps
+        keymap.of([...defaultKeymap, ...historyKeymap, indentWithTab]),
+        EditorView.lineWrapping,
+        theme,
+        EditorView.updateListener.of((u) => {
+          if (u.docChanged) scheduleUpdate();
+        }),
+        EditorView.domEventHandlers({
+          // The block may live inside a CodeMirror widget (Live Preview) or
+          // under global hotkeys — keystrokes and clicks belong to THIS editor
+          // while it has focus. stopPropagation keeps the outer editor from
+          // also acting; returning false lets our own CM handle normally.
+          keydown: (e) => {
+            e.stopPropagation();
+            return false;
+          },
+          mousedown: (e) => {
+            e.stopPropagation();
+            return false;
+          },
+          blur: () => {
+            void saveIfChanged();
+            return false;
+          },
+        }),
+      ],
+    }),
   });
-  ta.addEventListener('blur', () => void saveIfChanged());
+
+  // Replace the static highlighted <pre> with the live editor.
+  pre.replaceWith(view.dom);
+
+  // Vim is optional; load it only when the user actually runs Obsidian in Vim
+  // mode, then reconfigure it into its slot at highest precedence.
+  if (opts.vimMode) {
+    void import('@replit/codemirror-vim')
+      .then(({ vim }) => {
+        if (block.isConnected) {
+          view.dispatch({ effects: vimSlot.reconfigure(vim()) });
+        }
+      })
+      .catch(() => {
+        // Vim engine failed to load — editor keeps working without it.
+      });
+  }
+
   details.addEventListener('toggle', () => {
     if (!details.open) void saveIfChanged();
   });
 
-  return saveIfChanged;
-}
-
-/**
- * Repaint the highlight layer from a draft: tokenize with the same
- * highlighter the static chrome used and rebuild the `.dgmo-code` spans
- * (plugin guidelines: no innerHTML). A trailing newline keeps the pre one
- * line taller than the last glyph row, so the textarea overlay never
- * outgrows its backdrop while the caret sits on a trailing empty line.
- */
-function rehighlight(code: HTMLElement, source: string): void {
-  const doc = code.ownerDocument;
-  code.replaceChildren();
-  for (const t of highlightDgmo(source)) {
-    if (!t.role || t.role === 'default') {
-      code.appendChild(doc.createTextNode(t.text));
-    } else {
-      const span = doc.createElement('span');
-      span.className = `dgmo-tok-${t.role}`;
-      span.textContent = t.text;
-      code.appendChild(span);
-    }
-  }
-  code.appendChild(doc.createTextNode('\n'));
+  const flush: FlushFn = () =>
+    saveIfChanged().finally(() => {
+      view.destroy();
+    });
+  return flush;
 }
 
 /** Would this source terminate its own fenced block if written back? */
