@@ -145,6 +145,11 @@ function bindToolbar(block: HTMLElement): void {
     const insideSummary = btn.closest('summary') != null;
     if (insideSummary) e.preventDefault();
 
+    if (btn.matches('button.dgmo-expand')) {
+      openDgmoLightbox(block);
+      return;
+    }
+
     if (btn.matches('button.dgmo-copy')) {
       const src = btn.dataset['dgmoSource'] ?? '';
       void navigator.clipboard
@@ -167,6 +172,127 @@ function bindToolbar(block: HTMLElement): void {
       if (href) window.open(href, '_blank', 'noopener,noreferrer');
     }
   });
+}
+
+// ============================================================
+// Full-screen lightbox (expand toolbar button)
+// ============================================================
+//
+// MIRROR of the canonical helper in @diagrammo/dgmo's `auto/shared.ts`
+// (`openDgmoLightbox`), kept in sync with remark-dgmo's copy. Obsidian-specific
+// differences: no innerHTML (plugin review guidelines) — the close glyph is a
+// text node; and `block.ownerDocument` / its defaultView are used throughout so
+// it works in Obsidian popout windows. The `.dgmo-lightbox*` CSS is generated
+// from dgmo's BLOCK_CSS into styles.css.
+
+const LIGHTBOX_XLINK_NS = 'http://www.w3.org/1999/xlink';
+const LIGHTBOX_REF_ATTRS = [
+  'clip-path',
+  'mask',
+  'filter',
+  'fill',
+  'stroke',
+  'marker-start',
+  'marker-mid',
+  'marker-end',
+];
+let lightboxIdSeq = 0;
+
+/**
+ * Namespace a cloned SVG's ids + internal `url(#id)`/`href="#id"` refs so the
+ * clone can't clash with the still-mounted inline copy (WebKit resolves
+ * duplicate ids to the first match, corrupting gradients/clips/masks).
+ */
+function namespaceLightboxSvgIds(root: SVGElement, prefix: string): void {
+  const map = new Map<string, string>();
+  root.querySelectorAll('[id]').forEach((el) => {
+    const oldId = el.getAttribute('id');
+    if (!oldId) return;
+    const newId = prefix + oldId;
+    map.set(oldId, newId);
+    el.setAttribute('id', newId);
+  });
+  if (map.size === 0) return;
+  const remap = (value: string): string =>
+    value.replace(/url\(#([^)]+)\)/g, (m, id: string) => {
+      const next = map.get(id);
+      return next ? `url(#${next})` : m;
+    });
+  root.querySelectorAll('*').forEach((el) => {
+    for (const attr of LIGHTBOX_REF_ATTRS) {
+      const v = el.getAttribute(attr);
+      if (v && v.includes('url(#')) el.setAttribute(attr, remap(v));
+    }
+    const style = el.getAttribute('style');
+    if (style && style.includes('url(#'))
+      el.setAttribute('style', remap(style));
+    const href = el.getAttribute('href');
+    if (href && href.startsWith('#') && map.has(href.slice(1)))
+      el.setAttribute('href', '#' + map.get(href.slice(1)));
+    const xhref = el.getAttributeNS(LIGHTBOX_XLINK_NS, 'href');
+    if (xhref && xhref.startsWith('#') && map.has(xhref.slice(1)))
+      el.setAttributeNS(
+        LIGHTBOX_XLINK_NS,
+        'href',
+        '#' + map.get(xhref.slice(1))
+      );
+  });
+}
+
+/**
+ * Open the block's diagram in a full-viewport `<dialog>` lightbox: clone the
+ * currently-visible color-mode SVG, namespace its ids, then `showModal()`.
+ * Escape / backdrop-click / the close button dismiss and remove it.
+ */
+function openDgmoLightbox(block: HTMLElement): void {
+  const doc = block.ownerDocument;
+  const win = doc.defaultView;
+  if (!win) return;
+
+  const wrappers = block.querySelectorAll('.dgmo-light, .dgmo-dark, .dgmo-svg');
+  let svg: SVGSVGElement | null = null;
+  for (const w of Array.from(wrappers)) {
+    if (win.getComputedStyle(w).display === 'none') continue;
+    const found = w.querySelector('svg');
+    if (found) {
+      svg = found as SVGSVGElement;
+      break;
+    }
+  }
+  if (!svg) svg = block.querySelector('svg');
+  if (!svg) return;
+
+  const clone = svg.cloneNode(true) as SVGSVGElement;
+  namespaceLightboxSvgIds(clone, `dgmo-lb-${++lightboxIdSeq}-`);
+
+  const dialog = doc.createElement('dialog');
+  dialog.className = 'dgmo-lightbox';
+  dialog.setAttribute('aria-label', 'Diagram, full screen');
+
+  const closeBtn = doc.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'dgmo-lightbox-close';
+  closeBtn.setAttribute('aria-label', 'Close full screen');
+  // No innerHTML (plugin guidelines): a text glyph, sized by the CSS.
+  closeBtn.textContent = '✕';
+
+  const host = doc.createElement('div');
+  host.className = 'dgmo-lightbox-svg';
+  host.appendChild(clone);
+
+  dialog.appendChild(closeBtn);
+  dialog.appendChild(host);
+  doc.body.appendChild(dialog);
+
+  const close = (): void => {
+    if (dialog.open) dialog.close();
+  };
+  closeBtn.addEventListener('click', close);
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) close();
+  });
+  dialog.addEventListener('close', () => dialog.remove());
+  dialog.showModal();
 }
 
 /** Write-back hook for in-block editing (code blocks pass one; embeds don't). */
