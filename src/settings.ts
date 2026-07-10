@@ -53,6 +53,26 @@ interface IconDoc {
   desc: string;
 }
 
+/** Command-palette commands this plugin registers (name matches main.ts). */
+const COMMANDS: Array<{ name: string; desc: string }> = [
+  {
+    name: 'New diagram: pick a chart type',
+    desc: 'Fuzzy-search every chart type and insert a starter block at the cursor. The fast everyday path.',
+  },
+  {
+    name: 'New diagram: browse the gallery',
+    desc: 'Visual picker with categories and live thumbnails. Click a tile to insert at the cursor; ⌘/Ctrl-click to create a new note instead.',
+  },
+  {
+    name: 'Open diagram under cursor in the online editor',
+    desc: 'Opens the diagram block your cursor is in at online.diagrammo.app, with this note’s palette and theme applied.',
+  },
+  {
+    name: 'Create example note with all chart types',
+    desc: 'Generates the “Diagrammo Examples” note — same as the button above.',
+  },
+];
+
 const TOOLBAR_ICONS: IconDoc[] = [
   {
     icon: 'code',
@@ -95,10 +115,27 @@ export class DgmoSettingTab extends PluginSettingTab {
 
     this.renderAbout(containerEl);
     this.renderGetStarted(containerEl);
+    this.renderCommands(containerEl);
     this.renderAppearance(containerEl);
     this.renderLayout(containerEl);
     this.renderToolbarHelp(containerEl);
     this.renderResources(containerEl);
+  }
+
+  // --- Command palette reference ---------------------------------------------
+  private renderCommands(containerEl: HTMLElement): void {
+    new Setting(containerEl).setName('Commands').setHeading();
+
+    const p = containerEl.createEl('p', { cls: 'setting-item-description' });
+    p.appendText('Open the command palette (');
+    p.createEl('kbd', { text: 'Ctrl/Cmd-P' });
+    p.appendText(
+      ') and search “Diagrammo” to run these. Assign hotkeys under Settings → Hotkeys.'
+    );
+
+    for (const cmd of COMMANDS) {
+      new Setting(containerEl).setName(cmd.name).setDesc(cmd.desc);
+    }
   }
 
   // --- Intro -----------------------------------------------------------------
