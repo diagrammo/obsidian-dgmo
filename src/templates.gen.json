@@ -1,0 +1,317 @@
+[
+  {
+    "id": "arc",
+    "name": "Arc",
+    "family": "data",
+    "description": "Network relationships",
+    "source": "arc Pirate Alliances\n\n[Caribbean] red\n  Blackbeard -> Bonnet    8\n  Blackbeard -> Vane      5\n  Blackbeard -> Hornigold 4\n  Hornigold  -> Bonnet    2\n\n[Women Pirates] green\n  Bonny   -> Rackham 9\n  Bonny   -> Read    7\n  Rackham -> Vane    3\n\n[West Africa] blue\n  Roberts -> Davis    6\n  Davis   -> Roberts 10"
+  },
+  {
+    "id": "bar",
+    "name": "Bar",
+    "family": "data",
+    "description": "Categorical comparisons for 3 - 5 figures",
+    "source": "bar Treasure Hauls by Port\n\nPort Royal blue   850\nTortuga green     620\nNassau red       1100\nHavana yellow     430\nCartagena purple  780"
+  },
+  {
+    "id": "block",
+    "name": "Block",
+    "family": "software",
+    "description": "",
+    "source": "block Web Service Architecture\n\nsolid-fill\n\ntag Layer as l\n  Edge blue\n  Service green\n  Data orange\n\n[Clients] l: Edge\n  [Browser] [Mobile] [CLI]\n\n[Backend] l: Service\n  [Auth] [Orders]\n  [Inventory] [Billing]\n\n[Data] l: Data collapsed\n  [Postgres] [Redis]"
+  },
+  {
+    "id": "boxes-and-lines",
+    "name": "Boxes and Lines",
+    "family": "software",
+    "description": "General-purpose node-edge diagrams with groups and tags",
+    "source": "boxes-and-lines Pirate Fleet Command\n\ntag Status as s\n  Operational green\n  Damaged orange\n  Sunk red\n  Building blue default\n\nheat Crew red green\nshow-values\nactive-tag Status\n\nFlagship s: Operational, heat: 120\n  -> [Harbor Defenses]\n  -> IntelNetwork\n\n[Harbor Defenses]\n  FortCannon s: Operational, heat: 40\n    -> Watchtower\n  Watchtower s: Operational, heat: 12\n  SeaMines s: Building, heat: 6\n\nIntelNetwork s: Operational, heat: 35\n  -> SpyRing\n  -> SignalFlags\n\nSpyRing s: Operational, heat: 18\n  -> [Harbor Defenses]\n\nSignalFlags s: Damaged, heat: 8"
+  },
+  {
+    "id": "c4",
+    "name": "C4",
+    "family": "software",
+    "description": "System architecture (context, container, component, deployment)",
+    "source": "c4 Pirate Treasure Map System\nsolid-fill\n\ntag Scope as sc\n  Crew blue\n  External gray\n\nCaptain is a person description: Commands the fleet and plans raids\n\nTreasureMap is a system description: Tracks buried treasure locations and raid intelligence\n  -Views treasure locations-> Captain\n  -Sends raid alerts [carrier pigeon]-> Lookout\n\n  containers\n    ChartRoom is a container description: Interactive sea chart with treasure markers, tech: Parchment\n      -Queries treasure data [secret code]-> Vault\n\n    Vault is a container description: Encrypted treasure ledger and coordinates, tech: Iron Chest\n      -Reads/writes [quill and ink]-> TreasureLog\n\n    TreasureLog is a container description: \"Stores locations, guard counts, and loot inventories\", tech: Leather-Bound Tome\n\nLookout is an external description: Crow's nest spotter on allied ships, sc: External\n  ~Relays sightings to~> Captain\n\ndeployment\n  Flagship\n    container ChartRoom\n    container Vault\n  SecretCave\n    container TreasureLog"
+  },
+  {
+    "id": "class",
+    "name": "Class",
+    "family": "software",
+    "description": "UML class hierarchies",
+    "source": "class Ship Class Hierarchy\n\nsolid-fill \n\ninterface Vessel\n  + sail(): void\n  + anchor(): void\n\nabstract Ship implements Vessel\n  # name: string\n  # crew: number\n  + getName(): string\n\nGalleon extends Ship\n  - cannons: number\n  + fire(): void\n\nSloop extends Ship\n  - speed: number\n  + flee(): void\n\nenum ShipType\n  Galleon\n  Sloop\n  Frigate\n\nShip\n  -> ShipType has type"
+  },
+  {
+    "id": "cycle",
+    "name": "Cycle",
+    "family": "business",
+    "description": "Cyclical process visualization (PDCA, OODA, DevOps loops)",
+    "source": "cycle The Pirate Raid Cycle\nsolid-fill\n\nScout blue\n  Spot merchant vessels from afar\n\nPursue green\n  Raise the colors, trim the sails\n\nBoard orange\n  Swing across and seize the deck\n\nCelebrate red\n  Divide the spoils, then repair"
+  },
+  {
+    "id": "er",
+    "name": "Entity Relationship",
+    "family": "software",
+    "description": "Database schemas and relationships",
+    "source": "er Pirate Fleet\n\nships\n  id int pk\n  name varchar\n  ship_type varchar\n  cannons int\n  1-aboard-* crew_members\n  1-1 captains\n  1-carries-* treasure\n\ncaptains\n  id int pk\n  name varchar\n  ship_id int fk\n  bounty int\n  ?-frequents-1 ports\n  *-has-1 crew_members \n\ncrew_members\n  id int pk\n  name varchar\n  ship_id int fk\n  role varchar nullable\n\ntreasure\n  id int pk\n  name varchar\n  value int\n  ship_id int fk, nullable\n\nports\n  id int pk\n  name varchar\n  region varchar unique\n  1-docks-* ships"
+  },
+  {
+    "id": "event-line",
+    "name": "Event Line",
+    "family": "project",
+    "description": "",
+    "source": "event-line Product Milestones\n//no-scale\nno-box\n\ntag Track as t\n  Product blue\n  Growth green\n  Funding purple\n\n[Early Days]\n  2019-03 Idea sketched  t: Product\n    A weekend prototype becomes a real plan.\n  2019-09 Private beta  t: Product\n    First fifty users kick the tires.\n\n[Scaling Up]\n  2020-06 Seed round  t: Funding\n    **$2M** raised to grow the team.\n  2021-01 Public launch  t: Product\n    Open to everyone, no waitlist.\n  2021-11 100k users  t: Growth\n    Word of mouth does the heavy lifting.\n\n[Going Long]\n  2023-04 Series A  t: Funding\n    Expansion into new markets.\n  2024-08 1M users  t: Growth\n    A milestone years in the making.\n\n[What's Next]\n  TBD Series B  t: Funding\n    Raising when the metrics line up — no date yet.\n  TBD Mobile app  t: Product\n    On the roadmap, not yet scheduled."
+  },
+  {
+    "id": "family",
+    "name": "Family",
+    "family": "life",
+    "description": "Genealogy / family tree — people, unions, and descent",
+    "source": "family The Blackwater Buccaneers\n\ntag Allegiance as flag\n  Founders green\n  Brethren red\n  Crown blue\n\nRedbeard b: 1638, d: 1701, sex: m, occupation: Captain, military: Sacked three ports, flag: Founders\nBlackheart Bess b: 1642, d: 1699, sex: f, occupation: Quartermaster, flag: Founders\n\nRedbeard + Blackheart Bess m: 1660\n  Anne b: 1662, sex: f, occupation: Pirate King, flag: Brethren\n  Mad Mary b: 1665, sex: f, occupation: Powder Monkey\n\n\"Long John Silver\" b: 1658, sex: m, occupation: Cook\nOne-Eyed Pete b: 1660, d: 1712, sex: m, occupation: Bosun, flag: Crown\n\nAnne + \"Long John Silver\" m: 1685\n  Young Jack b: 1686, sex: m, occupation: Navigator\n  Grace b: 1689, sex: f, occupation: Sailmaker, flag: Brethren\n\nAnne + One-Eyed Pete m: 1698\n  Sally b: 1699, sex: f, occupation: Lookout\n\nMad Mary sex: f\n  Tom b: 1690, sex: m, occupation: Cabin Boy\n\nYoung Jack + Calico Kate m: 1712\n  Ned b: 1713, sex: m, occupation: Gunner\n  Pearl adopted, b: 1715, sex: f, occupation: Cartographer"
+  },
+  {
+    "id": "flowchart",
+    "name": "Flowchart",
+    "family": "software",
+    "description": "Decision trees and process flows",
+    "source": "flowchart Mutiny Resolution\ndirection-tb\n\n(Weigh Anchor) -> [Set Sail] -> <Crew Discontent?>\n  -no-> (Reach Port)\n  -yes-> [Call a Vote] -> <Vote Outcome?>\n    -loyal-> [Hold Steady] -> (Reach Port)\n    -mutiny-> [Seize the Ship] -> [Maroon the Captain] -> (Elect New Captain)"
+  },
+  {
+    "id": "function",
+    "name": "Function Plot",
+    "family": "data",
+    "description": "Mathematical expressions",
+    "source": "function Cannonball Trajectories by Elevation\nx-label Distance (meters)\ny-label Height (meters)\nx 0 to 250\n\n15 degrees blue: -0.001*x^2 + 0.27*x\n30 degrees green: -0.002*x^2 + 0.58*x\n45 degrees red: -0.003*x^2 + 0.75*x"
+  },
+  {
+    "id": "funnel",
+    "name": "Funnel",
+    "family": "business",
+    "description": "Conversion pipeline",
+    "source": "funnel Pirate Recruitment Pipeline\n\nPort Visitors blue     1000\nTavern Recruits cyan    500\nCrew Trials yellow      200\nSworn Pirates orange    100\nVeteran Buccaneers red   50"
+  },
+  {
+    "id": "gantt",
+    "name": "Gantt",
+    "family": "project",
+    "description": "Project scheduling with task dependencies and milestones",
+    "source": " gantt Blackbeard's Blockade — 1718\n\nstart 1718-05-01\ntoday-marker 1718-05-15\n\ntag Role as r\n  Command red\n  Crew blue\n  Captives orange\n\nmarker 1718-05-14 Ransom Deadline red\nera 1718-05-08 -> 1718-05-17 Blockade Active blue\n\n[Preparation] r: Command\n  Provision Ship 3d r: Crew, progress: 100\n    -> Anchor Fleet 2d r: Crew, progress: 100\n  Scout Harbor 3d r: Crew, progress: 100\n    -> Position Cannons 3d r: Crew, progress: 100\n  Recruit Hands 5d r: Crew, progress: 100\n\n+7d [Blockade] r: Crew\n  Seize Merchants 4d progress: 100\n    -> Hold Hostages 5d r: Captives, progress: 60\n  Patrol Perimeter 9d progress: 75\n  Demand Medicine 4d r: Command, progress: 100\n    -> Threaten Executions 3d? r: Command, progress: 90\n\n+17d [Resolution] r: Command\n  Receive Ransom 2d r: Captives\n    -> Release Prisoners 1d r: Captives\n      -> Set Sail 0d\n  Burn Evidence 2d r: Crew"
+  },
+  {
+    "id": "heatmap",
+    "name": "Heatmap",
+    "family": "data",
+    "description": "Matrix intensity visualization",
+    "source": "heatmap Pirate Activity by Sea Region\ncolumns Jan, Feb, Mar, Apr, May, Jun\n\n// label value1, value2, ...\nCaribbean       5 4 5 3 4 5\nAtlantic        2 3 2 4 3 2\nMediterranean   3 2 1 2 3 4\nIndian Ocean    4 5 4 5 4 3\nSouth China Sea 1 2 3 2 1 2\nWest Africa     3 3 4 3 5 4"
+  },
+  {
+    "id": "infra",
+    "name": "Infrastructure",
+    "family": "software",
+    "description": "Infrastructure traffic flow with RPS computation",
+    "source": "infra Pirate Communication Network\n\ntag Fleet as f\n  Blackbeard red\n  Bonny purple\n  Rackham blue\n\nEdge\n  rps: 200\n  -> SignalFlags\n\nSignalFlags f: Blackbeard\n  description: Flag semaphore relay — ship-to-ship messaging\n  latency-ms: 30000\n  -> Flagship\n  -> ScoutShip\n\nFlagship f: Blackbeard\n  description: Command vessel — decrypts and routes all intelligence\n  instances: 1\n  max-rps: 50\n  latency-ms: 5000\n  -> CarrierPigeons\n  -> RumRunner\n\nScoutShip f: Bonny\n  description: Fast sloop for reconnaissance\n  instances: 2\n  max-rps: 30\n  latency-ms: 8000\n  -> Flagship\n\nCarrierPigeons f: Rackham\n  description: Long-range bird relay — messages to allied ports\n  buffer: 100\n  drain-rate: 12\n  retention-hours: 72\n  -> TavernNetwork\n\n[Allied Ports]\n  instances: 3\n\n  TavernNetwork f: Rackham\n    description: Dockside tavern informants across the Caribbean\n    max-rps: 20\n    latency-ms: 86400000\n\nRumRunner f: Bonny\n  description: Smuggler supply line — moves coded messages in rum barrels\n  concurrency: 4\n  duration-ms: 172800000\n  -> TavernNetwork"
+  },
+  {
+    "id": "journey-map",
+    "name": "Journey Map",
+    "family": "business",
+    "description": "User experience flow with emotion scores, phases, and annotations",
+    "source": "journey-map A Cabin Boy's First Voyage\nsolid-fill\n\npersona Squidlips Sam color: blue\n  Greenhorn cabin boy, first time at sea\n  Sworn to the crew but quietly terrified\n\n[Signing On]\n  Sign the articles score: 4, emotion: Hopeful\n    description: Captain reads the code aloud — pay shares, no women aboard, lights out at 8\n\n[The Tempest]\n  Caught in a squall off the reef score: 1, emotion: Terrified\n    pain: Two crewmates lost overboard before dawn\n    thought: Maybe the merchant fleet wasn't so bad after all\n  Dawn, and she still floats score: 3, emotion: Relieved\n\n[The Prize]\n  Strike the colors score: 5, emotion: Triumphant\n    description: Heavy with silver from the Veracruz mines\n\n[Homecoming]\n  Bury a share on the island score: 5, emotion: Proud\n    thought: Three doubloons hidden where only he can find them\n  Back to the Rusty Anchor score: 4, emotion: Content\n    opportunity: Next time he signs on as a full hand, not a boy"
+  },
+  {
+    "id": "kanban",
+    "name": "Kanban Board",
+    "family": "project",
+    "description": "Task board columns",
+    "source": "kanban Crew Tasks\n\ntag Priority as p\n  Low blue\n  Medium yellow\n  High orange\n  Critical red\n\ntag Watch as w\n  Morning green\n  Afternoon yellow\n  Night purple\n\n[Backlog] blue\n  Repair the foretops'l p: Low, w: Morning\n    Mend after the last storm\n  Reinforce the gunwales p: Medium, w: Afternoon\n\n[In Progress] yellow\n  Caulk the hull seams p: High, w: Afternoon\n    Hold has been taking water\n  Restock powder kegs p: High, w: Morning\n    Last batch ran damp\n\n[Blocked] red\n  Find a new sailmaker p: Critical, w: Morning\n    Old one took ill at last port\n\n[Done] green\n  Inventory the hold p: Medium, w: Night\n  Sharpen the cutlasses p: Low, w: Night"
+  },
+  {
+    "id": "line",
+    "name": "Line",
+    "family": "data",
+    "description": "",
+    "source": "line Ship Speed Over Voyage\nseries Knots\nx-label Day\ny-label Speed\n\nera Day 1 -> Day 3 Rough Seas red \nera Day 3 -> Day 7 Fair Winds blue\n\nDay 1  8\nDay 2 10\nDay 3  7\nDay 4 12\nDay 5  9\nDay 6 11\nDay 7  6"
+  },
+  {
+    "id": "map",
+    "name": "Map",
+    "family": "business",
+    "description": "Geographic concept map: highlight/score regions, drop points of interest, connect with routes or edges",
+    "source": "map The Brethren's Caribbean\n\ntag Port as p\n  Home Port red\n  Friendly green\n  Spanish Prize orange\n\ntag Passage as l\n  Open Sea blue\n  Coastal Run teal\n\npoi Kingston p: Home Port, size: 120\npoi Havana p: Spanish Prize, size: 90\npoi Santo Domingo p: Friendly, size: 70\n\nroute Kingston\n  ~weigh anchor~> Havana l: Open Sea\n  ~raid the galleons~> Santo Domingo l: Coastal Run\n  ~careen & resupply~> Kingston l: Open Sea"
+  },
+  {
+    "id": "mindmap",
+    "name": "Mind Map",
+    "family": "business",
+    "description": "Radial hierarchy of ideas branching from a central topic",
+    "source": "mindmap Product Strategy\n\ntag Priority as p\n  High red\n  Medium yellow\n  Low green\n\ntag Department as d\n  Engineering blue\n  Design purple\n  Marketing orange\n\nResearch d: Marketing\n  User Interviews p: High\n    Surveys description: Quarterly NPS survey\n    Focus Groups\n  Competitor Analysis d: Engineering\n    Feature Matrix\n    Pricing Review\nDevelopment p: High, d: Engineering\n  MVP Features\n    Auth System\n      description: Handle login, signup, OAuth flows\n    Dashboard\n  Nice-to-haves p: Low, collapsed: true\n    Dark Mode\n    Export PDF\nGo-to-Market d: Marketing\n  Launch Plan\n    Blog Post\n    Demo Video description: 2-min product walkthrough"
+  },
+  {
+    "id": "org",
+    "name": "Org",
+    "family": "business",
+    "description": "Reporting hierarchy",
+    "source": "org The Dread Fleet\nsolid-fill\nsub-node-label Crew\nshow-sub-node-count\n\ntag Rank as r\n  Sailor blue\n  Captain red\n  FirstMate orange\n  Quartermaster yellow\n  Bosun green\n  Gunner teal\n  Jester cyan\n  Swab purple\n\ntag Ship as s\n  Revenge blue\n  Serpent green\n  Phantom purple\n\ntag Status as st\n  Loyal green\n  Turncoat red\n  NewRecruit yellow\n\nBlackbeard r: Captain, s: Revenge\n  Anne Bonny r: FirstMate\n    [Gun Deck]\n      Cannonball Pete r: Gunner\n      Smokey Jack r: Gunner, st: NewRecruit\n      Powder Meg r: Swab, st: NewRecruit\n    [Boarding Party]\n      Cutlass Jim r: Bosun\n      Red Mary\n      One-Eyed Dan st: Turncoat\n  Calico Rackham r: Quartermaster\n    [Cargo Hold]\n      Barnacle Bob\n      Slippery Sal st: Turncoat\n  Long John r: FirstMate, s: Serpent\n    [Rigging Crew]\n      Monkey Fist r: Bosun\n      Pegleg Pete\n      Crow Jane\n    [Navigation]\n      Stargazer Quinn r: Quartermaster\n      Compass Rose st: NewRecruit"
+  },
+  {
+    "id": "pert",
+    "name": "PERT",
+    "family": "project",
+    "description": "Project network with three-point estimates, critical path, and uncertainty (Beta-PERT, Monte Carlo)",
+    "source": "pert Pirate Voyage to the Atoll\ntime-unit w\ndefault-confidence medium\n\nvoyage approved 0\n  -> recruit crew\n\n[outfit ship]\n  recruit crew 1 2 4 as rc\n    -> load powder\n  careen hull 1.5\n    -> load powder\n  load powder 0.5 1 2\n    -> sail to atoll\n\nsail to atoll 5\n  -> count gold\n  -> repair hull\n\ncount gold 1 2 3\n  -> divvy shares\n\nrepair hull 3\n  -> divvy shares\n\ndivvy shares 1 2 3"
+  },
+  {
+    "id": "pie",
+    "name": "Pie",
+    "family": "data",
+    "description": "",
+    "source": "pie Crew Roles Distribution\nsolid-fill\n//no-percent\n//no-value\n\nSailors          45\nGunners          20\nMarines          15\nOfficers          8\nSpecialists       7\nCooks & Surgeons  5"
+  },
+  {
+    "id": "polar-area",
+    "name": "Polar Area",
+    "family": "data",
+    "description": "",
+    "source": "polar-area Captain's Skills\n\nNavigation    90\nSwordsmanship 75\nLeadership    85\nCunning       95\nSeamanship    80"
+  },
+  {
+    "id": "pyramid",
+    "name": "Pyramid",
+    "family": "business",
+    "description": "Stacked hierarchy of layers with descriptions (Maslow, DIKW)",
+    "source": "pyramid Pirate Crew Hierarchy\nsolid-fill\n\nCaptain purple\n  Final word on heading and plunder,\n  keeper of the ship's charter.\n\nQuartermaster blue\n  Second-in-command, arbitrates\n  disputes, divvies the booty.\n\nBoatswain & Gunner green\n  Keep the rigging tight and\n  the cannons ready.\n\nAble Seamen yellow\n  Haul lines, swab decks,\n  and stand watch.\n\nPowder Monkeys orange\n  Ferry shot and charges to the guns\n  during a broadside."
+  },
+  {
+    "id": "quadrant",
+    "name": "Quadrant",
+    "family": "business",
+    "description": "2x2 positioning matrix",
+    "source": "quadrant Crew Performance Assessment\nx-label Low Skill, High Skill\ny-label Low Loyalty, High Loyalty\n\ntop-right Promote green\ntop-left Train yellow\nbottom-left Maroon red\nbottom-right Watch Closely purple\n\nQuartermaster  0.9 0.95\nNavigator     0.85  0.8\nGunner         0.7  0.6\nSurgeon        0.8 0.75\nBoatswain      0.6 0.85\nCook           0.4  0.9\nNew Recruit    0.2  0.5\nTroublemaker  0.65  0.2\nSpy            0.8  0.1"
+  },
+  {
+    "id": "raci",
+    "name": "RACI Matrix",
+    "family": "project",
+    "description": "Tasks × roles responsibility matrix with constraint linting",
+    "source": "raci Voyage Operations\nroles\n  Cap  red\n  QM orange\n  Bos  yellow\n  Nav  blue\n  Crew gray\n\n[Departure] teal\n  Plot the course\n    Cap: A\n    Nav: R\n    QM: C\n  Provision the hold\n    QM: A R\n    Cap: C\n    Crew: I\n\n[At Sea] purple\n  Stand the watch\n    Bos: A\n    Crew: R\n  Mend sail damage\n    Bos: A\n    Crew: R\n\n[Landfall] green\n  Negotiate with port\n    Cap: R A\n    QM: C\n  Inventory the take\n    QM: A R\n    Crew: I"
+  },
+  {
+    "id": "radar",
+    "name": "Radar",
+    "family": "data",
+    "description": "",
+    "source": "radar Ship Combat Rating\nsolid-fill\n\nFirepower       85\nSpeed           70\nArmor           60\nManeuverability 90\nCrew Morale     75"
+  },
+  {
+    "id": "ring",
+    "name": "Ring",
+    "family": "business",
+    "description": "Concentric rings showing nested or hierarchical categories (read core-out)",
+    "source": "ring Captain's Sphere of Influence\n\nsolid-fill \n\nCaptain  red\n  Final word on heading and plunder,\n  keeper of the ship's charter.\n\nQuartermaster orange\n  Second-in-command, arbitrates disputes and divvies the booty\n\nCrew yellow\n  Deckhands, gunners, and powder\n  monkeys aboard the ship.\n\nAllied Crews green\n  Loose alliances kept by oath\n  or shared bounty in fair seas.\n\nThe Open Sea blue\n  Weather, currents, and rival\n  flags beyond any captain's reach."
+  },
+  {
+    "id": "sankey",
+    "name": "Sankey",
+    "family": "business",
+    "description": "Flow / allocation visualization",
+    "source": "sankey Rum Supply Chain of the Caribbean\n\n// Source — color the plantation node green\nSugar Plantations green\n  Tortuga Distillery orange 3000\n  Nassau Distillery orange 2500\n  Kingston Distillery orange 2000\n\n// Distribution — indented targets under each distillery\nTortuga Distillery\n  Pirate Taverns red 2000\n  Ship Provisions teal 1000\n\nNassau Distillery\n  Pirate Taverns 1500\n  Black Market purple 1000\n\nKingston Distillery\n  Royal Navy blue 1200\n  Pirate Taverns 800\n\n// Final destinations\nPirate Taverns\n  Crew Morale 3500\n  Bar Fights 800 red\n\nShip Provisions -> Long Voyages 1000"
+  },
+  {
+    "id": "scatter",
+    "name": "Scatter Plot",
+    "family": "data",
+    "description": "2D data points or bubble chart",
+    "source": "scatter Pirate Captains\nx-label Ruthlessness\ny-label Treasure\n\n[Caribbean] red\n  Blackbeard   90  8500\n  Calico Jack  55  3200\n  Anne Bonny   70  2800\n  Henry Morgan 85 12000\n  Charles Vane 75  4100\n\n\n[Atlantic] blue\n  Black Sam Bellamy   60  9200\n  Bartholomew Roberts 88 11000\n  Edward Low          95  5500\n  Stede Bonnet        30  1800\n\n\n\n[Indian Ocean] green\n  Henry Every  80 14000\n  William Kidd 65  6800\n  Thomas Tew   50  7200"
+  },
+  {
+    "id": "sequence",
+    "name": "Sequence",
+    "family": "software",
+    "description": "Message request and response interaction flows",
+    "source": "sequence Treasure Hunt App\n\ntag Concern as c\n  Search blue\n  Claims green\n  Notifications orange\n\nUser is an actor\n\n[Treasure Service]\n  TreasureAPI\n  MapDB is a database\n  NotifyQueue is a queue\n\nUser -Search nearby loot-> WebApp\nWebApp -GET /treasures?nearby-> TreasureAPI c: Search\nTreasureAPI -Find within 5nm-> MapDB c: Search\nnote\n  - check location\n  - use compass\nMapDB -3 results-> TreasureAPI\nTreasureAPI -locations-> WebApp\nWebApp -Show treasure map-> User\n\n== Claim ==\n\nUser -Claim chest #42-> WebApp\nWebApp -POST /claim-> TreasureAPI c: Claims\nif chest available\n  TreasureAPI -Set status = claimed-> MapDB c: Claims\n  MapDB -OK-> TreasureAPI\n  TreasureAPI ~treasure.claimed~> NotifyQueue c: Notifications\n  TreasureAPI -Claim accepted-> WebApp\n  WebApp -500 doubloons earned!-> User\nelse\n  TreasureAPI -409 Already claimed-> WebApp\n  WebApp -Too slow, matey!-> User"
+  },
+  {
+    "id": "sitemap",
+    "name": "Sitemap",
+    "family": "software",
+    "description": "Site / app navigation structure",
+    "source": "sitemap Pirate Bay Trading Co.\n\ntag Access\n  Public green\n  Crew Only blue\n  Captain red\n\ntag Page\n  Landing purple\n  Form orange\n  Content cyan \n\nHome Access: Public, Page: Landing\n  -shop-> Shop\n  -join-> Enlist\n  -map-> Treasure Map\n  -> [Port Market]\n\n[Port Market]\n  Shop Access: Public, Page: Content\n    -buy-> Checkout\n\n  Checkout Access: Crew Only, Page: Form\n    -purchased-> Ship Log \n\n[Crew Quarters]\n  Enlist Access: Public, Page: Form\n    -enlisted-> Ship Log\n\n  Ship Log Access: Crew Only, Page: Content\n    -voyage-> Treasure Map\n\n  Treasure Map Access: Captain, Page: Content"
+  },
+  {
+    "id": "sketch",
+    "name": "Sketch",
+    "family": "software",
+    "description": "GUI-first constrained canvas — place shapes, connect, tag",
+    "source": "sketch Plunder Pipeline\n\ntag Crew\n  Deck\n  Hold\n\nSpyglass Feed shape: database, at: 0 0, crew: Deck\n  -sightings-> con\nCaptain's Console as con at: 2 0, crew: Deck\n  -orders-> bq\n  -supplies-> armory\nDivvy Service as dvy at: 4 0, crew: Hold\n  -entries-> ledger\n\n[Below Decks] at: 2 2, crew: Hold\n  Booty Queue as bq shape: queue, at: 0 0\n    ~haul~> dvy\n  Ship Ledger as ledger shape: database, at: 2 0\n\n[Armory] as armory at: 0 2, collapsed\n  Powder Store at: 0 0\n  Cutlass Rack at: 0 1"
+  },
+  {
+    "id": "slope",
+    "name": "Slope",
+    "family": "data",
+    "description": "Change between 2 time periods",
+    "source": "slope Pirate Fleet Strength: 1715 vs 1725\n\nperiod\n  1715\n  1725\n\nBlackbeard red           40  4\nBartholomew Roberts blue 12 52\nCharles Vane orange      20  2\nAnne Bonny green          8 15\nCalico Jack purple       18  6"
+  },
+  {
+    "id": "state",
+    "name": "State",
+    "family": "software",
+    "description": "State machine / lifecycle transitions",
+    "source": "state Ship Battle Lifecycle\nsolid-fill\n\n[*] -> Sailing\n\nSailing\n  -enemy spotted-> BattleStations\n\nBattleStations\n  -in range-> Engaging\n  -enemy retreats-> Sailing\n\n[Combat]\n  Engaging\n    -alongside-> Boarding\n    -hull breach-> Sinking\n    -outgunned-> Retreating\n\n  Boarding\n    -crew wins-> Victorious\n    -crew loses-> Captured\n\n[Aftermath]\n  Victorious\n    -loot taken-> Sailing\n\n  Retreating\n    -escaped-> Sailing\n    -caught-> Captured\n\nCaptured -> [*]\nSinking -> [*]"
+  },
+  {
+    "id": "swimlane",
+    "name": "Swimlane",
+    "family": "business",
+    "description": "",
+    "source": "swimlane Weekly Publishing\ndirection LR\n\nlane Writer gray\nlane Editor blue\nlane Social green\n\nWriter\n  Draft Post\n  Revise\nEditor\n  <Review>\n  Schedule\n  Publish\nSocial\n  Promote\n\nDraft Post -> <Review>\n<Review>\n  -changes-> Revise -> <Review>\n  -ok-> Schedule -> Publish -> Promote"
+  },
+  {
+    "id": "tech-radar",
+    "name": "Technology Radar",
+    "family": "business",
+    "description": "Technology adoption quadrants (adopt/trial/assess/hold)",
+    "source": "tech-radar Pirate Operations Radar — Q2 1718\n\nrings\n  Full Sail \n  Trial Run\n  Spyglass\n  Davy Jones\n\nTactics quadrant: top-right\n  Ambush at Dawn ring: Full Sail, trend: stable\n    Our most reliable boarding tactic. **90% success rate** when\n    approaching from the east with the sun behind us.\n    - Crew morale peaks at dawn — grog hasn't worn off yet\n    - Reduced cannon fire needed: *3 volleys* vs 8 at midday\n    - See [battle log](https://wiki.pirates.example/dawn-ambush)\n  Boarding Parties ring: Full Sail, trend: stable\n    Standard 20-man teams equipped with **cutlasses**, *grappling hooks*,\n    and smoke pots. Training regimen updated after the *Tortuga Incident*.\n  Decoy Flags ring: Trial Run, trend: up\n    Flying false colours until within cannon range. Early results\n    are promising — merchant ships drop anchor **40% more often**\n    when they see a Dutch East India flag.\n    - Works best in *foggy conditions*\n    - Risk: Royal Navy ships sometimes call the bluff\n  Smoke Screens ring: Trial Run, trend: new\n    Burning wet straw and tar barrels on approach. Visibility drops to\n    **under 10 metres** — perfect for sneaking alongside.\n  Kraken Diplomacy ring: Spyglass, trend: new\n    Exploring alliances with *sea monsters*. Negotiations ongoing\n    but the Kraken's demands are... unreasonable.\n    - Wants **50% of all treasure** plus exclusive fishing rights\n    - Communication barrier: only speaks in bubbles\n  Night Raids ring: Trial Run, trend: up\n    Blackened sails and muffled oars. Three successful raids on\n    *sleeping harbours* this quarter. Key constraint: **no moonlight**.\n  Ramming ring: Davy Jones, trend: down\n    Costs more in hull repairs than it's worth. The *HMS Splinter*\n    incident of 1716 proved this conclusively.\n\nVessels quadrant: top-left\n  Brigantine ring: Full Sail, trend: stable\n    Our workhorse. Fast, manoeuvrable, carries **18 cannons**.\n    - Crew capacity: 100 pirates\n    - Top speed: *11 knots* in fair wind\n    - Draft shallow enough for **coastal ambushes**\n  Sloop ring: Full Sail, trend: up\n    Fastest ship in the fleet. Only **6 cannons** but can outrun\n    anything the Royal Navy sends. Perfect for *reconnaissance*\n    and courier runs between hideouts.\n  War Galleon ring: Trial Run, trend: up\n    Captured from the Spanish fleet. Massive firepower but\n    **slow to turn** — best for convoy raids, not chases.\n    - 42 cannons across *three gun decks*\n    - Requires 200+ crew to operate effectively\n    - Ongoing hull repairs from [Battle of Nassau](https://wiki.pirates.example/nassau)\n  Frigate ring: Spyglass, trend: new\n    Intercepted blueprints from a *British shipyard*. Could be our\n    next flagship if we can find enough **seasoned carpenters**.\n  Junk Rig ring: Spyglass, trend: new\n    Far Eastern design with **battened sails** — easier to handle\n    in storms and requires *fewer crew*. Trader Wong demonstrated\n    one in Macao harbour.\n  Longboat ring: Davy Jones, trend: down\n    Too slow, too small, too leaky. Last three longboat missions\n    ended in **catastrophic sinkings**. Retired from active duty.\n\nPlunder Targets quadrant: bottom-left\n  Merchant Convoys ring: Full Sail, trend: stable\n    Core revenue stream — **78% of total plunder**. East India\n    Company ships running the spice route remain most lucrative.\n    - Average haul: *4,200 doubloons* per convoy\n    - Best intercepted near the [Windward Passage](https://wiki.pirates.example/windward)\n    - Seasonal peak: July–September during *monsoon trade runs*\n  Spanish Treasure Fleets ring: Full Sail, trend: stable\n    The **crown jewels** of piracy. Annual fleet carries gold,\n    silver, and emeralds from the New World. Requires *coordinated\n    multi-ship ambush* but one raid funds operations for a year.\n  Port Raids ring: Trial Run, trend: up\n    Shifting from sea-only operations. The raid on *Port-de-Paix*\n    yielded **12,000 doubloons** and a warehouse of rum.\n  Rival Pirates ring: Trial Run, trend: new\n    Controversial but profitable. Blackbeard's crew carries\n    **more gold** than most merchants. Ethics committee (the parrot)\n    has filed an objection.\n  Royal Treasury Ships ring: Spyglass, trend: new\n    High risk, astronomical reward. Requires:\n    - Inside information from *corrupt harbourmasters*\n    - At least **3 allied ships** for the blockade\n    - A really good escape plan\n  Whaling Ships ring: Spyglass, trend: stable\n    Moderate value — whale oil fetches **decent prices** in European\n    markets. But the ships fight back *hard*.\n  Fishing Villages ring: Davy Jones, trend: down\n    Terrible ROI and **bad for reputation**. The parrot union\n    filed a formal complaint. We're pirates, not bullies.\n\nCrew Welfare quadrant: bottom-right\n  Grog Rations ring: Full Sail, trend: stable\n    Non-negotiable. Cutting grog rations caused the *Great Mutiny\n    of 1716*. Current allocation: **2 pints per day** per pirate.\n    - Premium rum reserved for post-battle celebrations\n    - Watered grog for the night watch (safety first)\n  Code of Conduct ring: Full Sail, trend: stable\n    Our **Articles of Agreement** — fair share of plunder, compensation\n    for injuries, voting rights on major decisions. *Democracy at sea.*\n  Sea Shanty Program ring: Trial Run, trend: new\n    Hired a shanty master from *Liverpool*. Crew productivity up\n    **25%** during long voyages. Current repertoire:\n    - \"Yo Ho Ho and a Bottle of Rum\" — *morale boost*\n    - \"What Shall We Do with a Drunken Sailor\" — **work efficiency**\n    - \"Haul Away Joe\" — anchor duty motivation\n  Dental Plan ring: Spyglass, trend: up\n    Exploring options. Most crew down to **4 teeth** on average.\n    Parley with a Port Royal dentist scheduled for Q3 1718.\n    - Estimated cost: *3 doubloons per extraction*\n    - [Tooth census results](https://wiki.pirates.example/dental)\n  Parrot Companions ring: Full Sail, trend: up\n    Every pirate deserves a **shoulder companion**. Proven benefits:\n    - *Scouts* that can spot sails at 3x human range\n    - Morale boost: crew happiness up **30%**\n    - Built-in alarm system for surprise attacks\n  Retirement Fund ring: Spyglass, trend: new\n    Proposal to set aside **5% of all plunder** for retirement.\n    Controversial — most pirates don't expect to *live that long*.\n  Plank Walking ring: Davy Jones, trend: down\n    Terrible for recruitment and **crew retention**. Modern pirates\n    prefer *marooning* — at least they get a pistol and a bottle."
+  },
+  {
+    "id": "timeline",
+    "name": "Timeline",
+    "family": "project",
+    "description": "Events, eras, and date ranges",
+    "source": "timeline Pirate Campaigns 1717-1719\n\nera 1717-01 -> 1717-12 Golden Age Peak\nera 1718-01 -> 1718-12 Royal Navy Response\nmarker 1718-05 Rogers Arrives Nassau\n\n[Blackbeard]\n  1717-03 -> 1717-09 Blockade of Charles Town\n  1717-11 Queen Anne's Revenge captured\n  1718-01 -> 1718-06 Carolina Coast raids\n  1718-11 Last stand at Ocracoke\n\n[Bonnet]\n  1717-06 -> 1717-10 First cruise\n  1718-03 -> 1718-07 Revenge refitted\n  1718-08 -> 1718-10 Cape Fear pursuit\n  1718-12 Trial and hanging\n\n[Royal Navy]\n  1718-02 -> 1718-06 Fleet assembles\n  1718-07 -> 1718-09 Nassau secured\n  1718-10 -> 1719-03 Sweep operations"
+  },
+  {
+    "id": "treemap",
+    "name": "Treemap",
+    "family": "data",
+    "description": "",
+    "source": "treemap Plunder Spend ($k)\n\ntag Crew as t\n  Deck blue\n  Guns orange\n  Stores green\n\nSailing & Rigging t: Deck\n  Rigging 320\n  Helm 180\n  Lookout 140\nCannon Battery t: Guns\n  Powder 90\n  Shot 130\nProvisions t: Stores\n  Rum 110\n  Hardtack 70"
+  },
+  {
+    "id": "venn",
+    "name": "Venn",
+    "family": "business",
+    "description": "Set overlaps",
+    "source": "venn Pirate Skill Overlap\n\nSwordsmanship as sw red\nNavigation as nav blue\nLeadership as lead green\n\nsw + nav        Sea Raiders\nnav + lead      Voyager Captains\nsw + lead       Buccaneer Chiefs\nsw + nav + lead Legendary Pirates"
+  },
+  {
+    "id": "version-control",
+    "name": "Version Control",
+    "family": "software",
+    "description": "",
+    "source": "version-control Feature Branch Workflow\n\nmain\n  Initial commit\n  Add README\n\ndevelop from main\n  Set up CI\n  Add test suite\n\nfeature/login from develop\n  Login form\n  Form validation\n\ndevelop\n  merge feature/login\n  Address review notes\n\nmain\n  merge develop tag: v1.0.0\n  Hotfix typo type: highlight"
+  },
+  {
+    "id": "wireframe",
+    "name": "Wireframe",
+    "family": "software",
+    "description": "Low-fidelity UI layout with panels, controls, and annotations",
+    "source": "wireframe Pirate Crew Portal\n\n[Header]\n  The Jolly Roger Crew Hub\n  nav\n    Dashboard active\n    Treasure Map\n    Ship Log\n    Crew Roster\n\n[Main]\n  # Ahoy, Captain!\n\n  Next Raid Target  [Port Royal]\n  Estimated Loot  [5000 doubloons] readonly\n\n  {The Revenge | The Serpent | The Phantom}\n\n  <x> Load extra cannons\n  < > Fly false colors\n\n  (*) Full crew\n  ( ) Skeleton crew\n\n  (Set Sail!)\n  (Abort Mission) ghost\n\n  ---\n\n  New to piracy? (Read the Code) ghost"
+  },
+  {
+    "id": "wordcloud",
+    "name": "Word Cloud",
+    "family": "business",
+    "description": "Term frequency visualization",
+    "source": "wordcloud Pirate Skills\n\n// word weight (higher = larger)\nswordsmanship 95\nnavigation    88\nseamanship    85\ngunnery       80\nleadership    75\ncartography   70\nintimidation  68\nsailing       65\nplundering    60\nknot-tying    55\nlookout       50\ncooking       45\ncarpentry     40\nfishing       35"
+  }
+]

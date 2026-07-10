@@ -19,3 +19,41 @@ export class TFile {
   path = '';
   extension = '';
 }
+
+// Runtime stand-ins for the modal/notice classes new-diagram.ts constructs or
+// extends. Behaviourless — the unit tests exercise the pure helpers, not the UI.
+export class Notice {
+  constructor(_message?: string) {}
+}
+
+export class Modal {
+  app: unknown;
+  contentEl: HTMLElement = document.createElement('div');
+  modalEl: HTMLElement = document.createElement('div');
+  constructor(app: unknown) {
+    this.app = app;
+  }
+  open(): void {}
+  close(): void {}
+  onOpen(): void {}
+  onClose(): void {}
+}
+
+export class FuzzySuggestModal<T> {
+  app: unknown;
+  constructor(app: unknown) {
+    this.app = app;
+  }
+  setPlaceholder(_p: string): void {}
+  setInstructions(_i: unknown): void {}
+  getItems(): T[] {
+    return [];
+  }
+  getItemText(_t: T): string {
+    return '';
+  }
+  renderSuggestion(_m: unknown, _el: HTMLElement): void {}
+  onChooseItem(_t: T): void {}
+  open(): void {}
+  close(): void {}
+}

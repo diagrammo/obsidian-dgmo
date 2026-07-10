@@ -328,6 +328,44 @@ function openDgmoLightbox(block: HTMLElement): void {
   dialog.showModal();
 }
 
+/**
+ * Render just the diagram SVG (no block chrome, no toolbar, not editable) into
+ * `container` — for gallery thumbnails in the "New diagram" picker. Errors
+ * render nothing (the tile keeps its label). Maps go through the DI pipeline
+ * like the main renderer.
+ */
+export async function renderDiagramThumbnail(
+  source: string,
+  container: HTMLElement,
+  isDark: boolean,
+  paletteId: string
+): Promise<void> {
+  container.replaceChildren();
+  if (looksLikeMap(source)) {
+    const out = buildMapSvg(source, isDark, paletteId);
+    if ('error' in out) return;
+    container.appendChild(container.ownerDocument.importNode(out.svgEl, true));
+    scaleSvgToFit(container);
+    return;
+  }
+  try {
+    const result = await render(source, {
+      theme: isDark ? 'dark' : 'light',
+      palette: resolvePalette(paletteId),
+    });
+    if (result.diagnostics.some((d) => d.severity === 'error') || !result.svg) {
+      return;
+    }
+    if (!container.isConnected) return;
+    appendBlockHtml(
+      container,
+      `<div class="dgmo-svg">${normalizeSvgForEmbed(result.svg)}</div>`
+    );
+  } catch {
+    /* thumbnail best-effort — leave the tile label */
+  }
+}
+
 /** Write-back hook for in-block editing (code blocks pass one; embeds don't). */
 export type SaveFn = (next: string) => Promise<void>;
 

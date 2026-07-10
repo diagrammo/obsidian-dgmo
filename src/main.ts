@@ -1,10 +1,19 @@
 import {
+  type Editor,
   MarkdownRenderChild,
   Notice,
   Plugin,
   TFile,
   type MarkdownPostProcessorContext,
 } from 'obsidian';
+import {
+  DiagramGalleryModal,
+  NewDiagramFuzzyModal,
+  createDiagramNote,
+  insertDiagramAtCursor,
+  openBlockInEditor,
+} from './new-diagram';
+import { templates } from './templates';
 import { renderDgmo } from './render';
 import { containsFence, replaceFencedSource } from './edit';
 import { ensureInterFonts } from './fonts';
@@ -66,6 +75,40 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
       id: 'insert-example-note',
       name: 'Create example note with all chart types',
       callback: () => this.createExampleNote(),
+    });
+
+    // New diagram — fuzzy picker (the everyday driver: insert at cursor).
+    this.addCommand({
+      id: 'new-diagram',
+      name: 'New diagram: pick a chart type',
+      editorCallback: (editor: Editor) => {
+        new NewDiagramFuzzyModal(this.app, templates, (t) =>
+          insertDiagramAtCursor(editor, t)
+        ).open();
+      },
+    });
+
+    // New diagram — visual gallery with live thumbnails.
+    this.addCommand({
+      id: 'new-diagram-gallery',
+      name: 'New diagram: browse the gallery',
+      editorCallback: (editor: Editor) => {
+        new DiagramGalleryModal(
+          this.app,
+          this,
+          (t) => insertDiagramAtCursor(editor, t),
+          (t) => void createDiagramNote(this.app, t)
+        ).open();
+      },
+    });
+
+    // Open the dgmo block under the cursor in the online editor.
+    this.addCommand({
+      id: 'open-diagram-in-editor',
+      name: 'Open diagram under cursor in the online editor',
+      editorCallback: (editor: Editor) => {
+        openBlockInEditor(editor, this.settings.palette, this.isDark());
+      },
     });
   }
 
