@@ -8,10 +8,14 @@
  * generates the root styles.css — edit THIS file, then run `pnpm gen:styles`. */
 
 /* The block chrome wrapper is a <figure>; strip the browser/Obsidian default
- * figure margins so diagrams render flush like the old .dgmo-container div. */
+ * figure margins so diagrams render flush like the old .dgmo-container div.
+ * Alignment + max-width come from the plugin's body-level CSS vars (see
+ * applyLayoutVars); defaults keep the pre-1.14 flush-left, full-width look. */
 figure.dgmo {
-  margin: 0;
+  margin-block: 0;
+  margin-inline: var(--dgmo-margin-inline, 0);
   width: 100%;
+  max-width: var(--dgmo-max-width, 100%);
 }
 
 .dgmo-settings-about {
@@ -20,6 +24,136 @@ figure.dgmo {
 
 .dgmo-settings-about p {
   margin: 6px 0;
+}
+
+.dgmo-settings-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.dgmo-settings-logo {
+  display: flex;
+  flex: 0 0 auto;
+}
+.dgmo-settings-logo svg {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+}
+.dgmo-settings-wordmark {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-normal);
+}
+
+/* Full-screen lightbox for the toolbar's expand button. Mirrors dgmo's
+ * canonical `.dgmo-lightbox*` (embed/css.ts) — bundled here because the
+ * published @diagrammo/dgmo/block.css this plugin appends doesn't ship it yet.
+ * A transparent <dialog> filling the viewport; the dim comes from ::backdrop,
+ * so a click outside the centered card reads as a backdrop dismiss. */
+.dgmo-lightbox {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+.dgmo-lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dgmo-lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+}
+.dgmo-lightbox-svg {
+  width: 95vw;
+  max-width: 95vw;
+  max-height: 95vh;
+  overflow: auto;
+  border-radius: 0.5em;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
+}
+.dgmo-lightbox-svg > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.dgmo-lightbox-close {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4em;
+  height: 2.4em;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.dgmo-lightbox-close:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* Live sample diagram in settings ("Using diagrams"). A real dgmo block is
+ * rendered inside; keep the toolbar always visible here so the icons are
+ * discoverable without hovering, and cap the width so it doesn't dominate. */
+.dgmo-settings-demo {
+  max-width: 440px;
+  margin: 12px 0 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  background: var(--background-secondary);
+}
+.dgmo-settings-demo .dgmo-toolbar {
+  opacity: 1;
+}
+
+/* Hover-toolbar icon legend in settings ("Using diagrams"). */
+.dgmo-icon-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 4px;
+}
+.dgmo-icon-guide-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.dgmo-icon-guide-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  background: var(--background-modifier-hover);
+}
+.dgmo-icon-guide-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dgmo-icon-guide-name {
+  font-weight: 600;
+  color: var(--text-normal);
 }
 
 /* In-block live editing: when the source panel is open, a transparent-text

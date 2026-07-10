@@ -31,6 +31,7 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
 
   override async onload() {
     await this.loadSettings();
+    this.applyLayoutVars();
     this.addSettingTab(new DgmoSettingTab(this.app, this));
 
     this.registerMarkdownCodeBlockProcessor('dgmo', (source, el, ctx) => {
@@ -68,7 +69,22 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
     });
   }
 
-  private async createExampleNote(): Promise<void> {
+  /** Drive `figure.dgmo` alignment + max-width from settings via body-level CSS
+   * custom properties (see styles.css). Applied on load and on each change so
+   * layout updates live without re-rendering diagrams. */
+  applyLayoutVars(): void {
+    const { style } = activeDocument.body;
+    style.setProperty(
+      '--dgmo-margin-inline',
+      this.settings.align === 'center' ? 'auto' : '0'
+    );
+    style.setProperty(
+      '--dgmo-max-width',
+      this.settings.maxWidth === 'full' ? '100%' : `${this.settings.maxWidth}px`
+    );
+  }
+
+  async createExampleNote(): Promise<void> {
     const path = 'Diagrammo Examples.md';
     const existing = this.app.vault.getAbstractFileByPath(path);
     let file;

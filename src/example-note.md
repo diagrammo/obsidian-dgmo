@@ -1,3 +1,5 @@
+<!-- GENERATED — do not edit. Author examples/all-chart-types.src.md (![[…]] embeds), then run: node scripts/expand-dgmo-embeds.mjs examples/all-chart-types.src.md examples/all-chart-types.md -->
+
 # Diagrammo — All Chart Types
 
 > Every `dgmo` code fence below renders a different chart type, and the prose
@@ -64,97 +66,99 @@ const plunder = ships.reduce((sum, s) => sum + s.gold, 0);
 arc Pirate Alliances
 
 [Caribbean] red
-  Blackbeard -> Bonnet     8
-  Blackbeard -> Vane       5
-  Blackbeard -> Hornigold  4
-  Hornigold  -> Bonnet     2
+  Blackbeard -> Bonnet    8
+  Blackbeard -> Vane      5
+  Blackbeard -> Hornigold 4
+  Hornigold  -> Bonnet    2
 
-[Women Pirates] purple
+[Women Pirates] green
   Bonny   -> Rackham 9
   Bonny   -> Read    7
   Rackham -> Vane    3
 
-[West Africa] teal
+[West Africa] blue
   Roberts -> Davis    6
   Davis   -> Roberts 10
 ```
 
----
-
 ### Area Chart (line + fill)
 
 ```dgmo
-line Fleet Growth Over Time
+line Tortuga Rum Barrels in Stores
 fill
-series Ships
-x-label Year
+series Barrels
+x-label Month
+y-label Barrels in Hold
 
-era 1710 -> 1716 Rise green
-era 1716 -> 1720 Decline red
+era Jan -> Apr Raiding Season red
+era Apr -> Aug Dry Spell blue
 
-1710  3
-1712  5
-1714  9
-1716 14
-1718  8
-1720  4
+Jan 320
+Feb 410
+Mar 505
+Apr 618
+May 470
+Jun 355
+Jul 210
+Aug 140
+Sep 260
+Oct 430
+Nov 560
+Dec 690
 ```
-
----
 
 ### Bar Chart
 
 ```dgmo
 bar Treasure Hauls by Port
 
-Port Royal blue    850
-Tortuga green      620
-Nassau red        1100
-Havana yellow      430
-Cartagena purple   780
+Port Royal blue   850
+Tortuga green     620
+Nassau red       1100
+Havana yellow     430
+Cartagena purple  780
 ```
-
----
 
 ### Bar Chart (stacked)
 
 ```dgmo
-bar Port Revenue by Trade
-orientation-horizontal
+bar Plunder by Voyage
+x-label Voyage
+y-label Doubloons
+
 stack
-  Imports blue
-  Exports green
-  Tariffs orange
+  Gold red
+  Silver orange
+  Spices yellow
+  Rum green
 
-Port Royal 300 450  80
-Tortuga    150 200  30
-Nassau     400 350 120
-Havana     500 600 150
+Spanish Main     480 320 210 150
+Barbary Coast    360 290 340 180
+Windward Passage 520 410 160 240
+Coral Run        300 260 380 200
 ```
-
----
 
 ### Bubble Chart (scatter + size)
 
 ```dgmo
 scatter Pirate Fleets of the Caribbean
+x-label Ruthlessness
+y-label Plunder (chests)
 size-label Crew
-x-label Firepower
-y-label Reputation
 
 [English Pirates] red
-  Blackbeard   85 90 80
-  Calico Jack  45 55 35
-  Anne Bonny   50 70 30
-  Charles Vane 60 65 45
+  Blackbeard    90  85  300
+  Calico Jack   55  32  110
+  Anne Bonny    70  28   90
 
 [French Buccaneers] blue
-  L'Olonnais         70 80 60
-  Michel de Grammont 55 60 40
-  Pierre le Grand    30 45 25
-```
+  L'Olonnais         80  60  220
+  Pierre le Grand    45  25   70
 
----
+[Welsh Privateers] green
+  Henry Morgan  85  120  470
+  Bartholomew Roberts  88  110  510
+```
 
 ### Arc — Chord Layout
 
@@ -162,38 +166,34 @@ y-label Reputation
 arc Pirate Alliance Network
 layout chord
 
-Blackbeard -> Bonnet 150
-Blackbeard -> Vane 80
+Blackbeard -> Bonnet    150
+Blackbeard -> Vane       80
 Blackbeard -> Hornigold 120
-Bonnet -> Rackham 40
-Vane -> Rackham 60
-Rackham -> Bonny 200
-Bonny -> Read 180
-Roberts -> Davis 90
-Roberts -> Anstis 70
-Hornigold -> Bonnet 50
-Vane -> Bonny 30
-Roberts -> Rackham 20
-Rackham -> Roberts 100
+Bonnet     -> Rackham    40
+Vane       -> Rackham    60
+Rackham    -> Bonny     200
+Bonny      -> Read      180
+Roberts    -> Davis      90
+Roberts    -> Anstis     70
+Hornigold  -> Bonnet     50
+Vane       -> Bonny      30
+Roberts    -> Rackham    20
+Rackham    -> Roberts   100
 ```
-
----
 
 ### Doughnut Chart (pie + hole)
 
 ```dgmo
-pie Plunder Distribution
-hole
-solid-fill
+pie Plunder Hold Contents
+hole 0.5
 
-Captain's Share 40
-Quartermaster   20
-Crew Split      25
-Ship Repairs    10
-Provisions       5
+Gold Doubloons   420
+Silver Pieces    260
+Spices & Silk    180
+Rum Casks        140
+Gunpowder         90
+Navigation Charts  30
 ```
-
----
 
 ### Function Plot
 
@@ -208,21 +208,17 @@ x 0 to 250
 45 degrees red: -0.003*x^2 + 0.75*x
 ```
 
----
-
 ### Funnel Chart
 
 ```dgmo
 funnel Pirate Recruitment Pipeline
 
-Port Visitors blue         1000
-Tavern Recruits cyan        500
-Crew Trials yellow          200
-Sworn Pirates orange        100
-Veteran Buccaneers red       50
+Port Visitors blue     1000
+Tavern Recruits cyan    500
+Crew Trials yellow      200
+Sworn Pirates orange    100
+Veteran Buccaneers red   50
 ```
-
----
 
 ### Heatmap
 
@@ -230,6 +226,7 @@ Veteran Buccaneers red       50
 heatmap Pirate Activity by Sea Region
 columns Jan, Feb, Mar, Apr, May, Jun
 
+// label value1, value2, ...
 Caribbean       5 4 5 3 4 5
 Atlantic        2 3 2 4 3 2
 Mediterranean   3 2 1 2 3 4
@@ -237,8 +234,6 @@ Indian Ocean    4 5 4 5 4 3
 South China Sea 1 2 3 2 1 2
 West Africa     3 3 4 3 5 4
 ```
-
----
 
 ### Line Chart
 
@@ -248,7 +243,7 @@ series Knots
 x-label Day
 y-label Speed
 
-era Day 1 -> Day 3 Rough Seas red
+era Day 1 -> Day 3 Rough Seas red 
 era Day 3 -> Day 7 Fair Winds blue
 
 Day 1  8
@@ -260,33 +255,31 @@ Day 6 11
 Day 7  6
 ```
 
----
-
 ### Line Chart (Multi-series)
 
 ```dgmo
-line Monthly Captures by Fleet
-series Blackbeard red, Roberts blue, Vane green
-x-label Month
+line Plunder by Crew Over the Voyage
+series
+  Cutlass Crew blue
+  Powder Monkeys green
+  Rigging Rats orange
+x-label Port of Call
+y-label Doubloons (thousands)
 
-era Jan -> Mar Atlantic Season
-era Mar -> Jun Caribbean Season teal
-
-Jan 3 5 2
-Feb 4 3 4
-Mar 2 7 3
-Apr 6 4 1
-May 5 6 5
-Jun 3 8 2
+Nassau     4.2  1.1  0.6
+Tortuga    6.5  1.9  0.9
+Port Royal 9.1  3.4  1.7
+Isla Muerta 7.8  4.2  2.3
+Kingston   11.4  5.1  3.0
 ```
-
----
 
 ### Pie Chart
 
 ```dgmo
 pie Crew Roles Distribution
 solid-fill
+//no-percent
+//no-value
 
 Sailors          45
 Gunners          20
@@ -295,8 +288,6 @@ Officers          8
 Specialists       7
 Cooks & Surgeons  5
 ```
-
----
 
 ### Polar Area Chart
 
@@ -309,8 +300,6 @@ Leadership    85
 Cunning       95
 Seamanship    80
 ```
-
----
 
 ### Radar Chart
 
@@ -325,18 +314,18 @@ Maneuverability 90
 Crew Morale     75
 ```
 
----
-
 ### Sankey Diagram
 
 ```dgmo
 sankey Rum Supply Chain of the Caribbean
 
+// Source — color the plantation node green
 Sugar Plantations green
   Tortuga Distillery orange 3000
   Nassau Distillery orange 2500
   Kingston Distillery orange 2000
 
+// Distribution — indented targets under each distillery
 Tortuga Distillery
   Pirate Taverns red 2000
   Ship Provisions teal 1000
@@ -349,14 +338,13 @@ Kingston Distillery
   Royal Navy blue 1200
   Pirate Taverns 800
 
+// Final destinations
 Pirate Taverns
   Crew Morale 3500
   Bar Fights 800 red
 
 Ship Provisions -> Long Voyages 1000
 ```
-
----
 
 ### Scatter Plot
 
@@ -372,19 +360,20 @@ y-label Treasure
   Henry Morgan 85 12000
   Charles Vane 75  4100
 
+
 [Atlantic] blue
   Black Sam Bellamy   60  9200
   Bartholomew Roberts 88 11000
   Edward Low          95  5500
   Stede Bonnet        30  1800
 
+
+
 [Indian Ocean] green
   Henry Every  80 14000
   William Kidd 65  6800
   Thomas Tew   50  7200
 ```
-
----
 
 ### Slope Chart
 
@@ -402,58 +391,50 @@ Anne Bonny green          8 15
 Calico Jack purple       18  6
 ```
 
----
-
 ### Treemap
 
 ```dgmo
-treemap Plunder Allocation
+treemap Plunder Spend ($k)
 
 tag Crew as t
   Deck blue
-  Gunners green
-  Officers orange
+  Guns orange
+  Stores green
 
-Deck Hands t: Deck
-  Riggers 320
-  Swabs 180
-  Lookouts 140
-Gun Crews t: Gunners
-  Cannoneers 90
-  Powder Monkeys 130
-Officers t: Officers
-  Quartermaster 110
-  Bosun 70
+Sailing & Rigging t: Deck
+  Rigging 320
+  Helm 180
+  Lookout 140
+Cannon Battery t: Guns
+  Powder 90
+  Shot 130
+Provisions t: Stores
+  Rum 110
+  Hardtack 70
 ```
-
----
 
 ### Sunburst (treemap radial)
 
-Add a bare `radial` flag to render the same hierarchy as a sunburst — a multi-ring hierarchical pie.
-
 ```dgmo
-treemap Plunder Allocation
+treemap Plunder Spend ($k)
 radial
 
 tag Crew as t
   Deck blue
-  Gunners green
-  Officers orange
+  Guns orange
+  Stores green
 
-Deck Hands t: Deck
-  Riggers 320
-  Swabs 180
-  Lookouts 140
-Gun Crews t: Gunners
-  Cannoneers 90
-  Powder Monkeys 130
-Officers t: Officers
-  Quartermaster 110
-  Bosun 70
+Sailing & Rigging t: Deck
+  Rigging 320
+  Helm 180
+  Lookout 140
+Cannon Battery t: Guns
+  Powder 90
+  Shot 130
+Provisions t: Stores
+  Rum 110
+  Hardtack 70
 ```
-
----
 
 ## Business
 
@@ -476,7 +457,40 @@ Celebrate red
   Divide the spoils, then repair
 ```
 
----
+### Family
+
+```dgmo
+family The Blackwater Buccaneers
+
+tag Allegiance as flag
+  Founders green
+  Brethren red
+  Crown blue
+
+Redbeard b: 1638, d: 1701, sex: m, occupation: Captain, military: Sacked three ports, flag: Founders
+Blackheart Bess b: 1642, d: 1699, sex: f, occupation: Quartermaster, flag: Founders
+
+Redbeard + Blackheart Bess m: 1660
+  Anne b: 1662, sex: f, occupation: Pirate King, flag: Brethren
+  Mad Mary b: 1665, sex: f, occupation: Powder Monkey
+
+"Long John Silver" b: 1658, sex: m, occupation: Cook
+One-Eyed Pete b: 1660, d: 1712, sex: m, occupation: Bosun, flag: Crown
+
+Anne + "Long John Silver" m: 1685
+  Young Jack b: 1686, sex: m, occupation: Navigator
+  Grace b: 1689, sex: f, occupation: Sailmaker, flag: Brethren
+
+Anne + One-Eyed Pete m: 1698
+  Sally b: 1699, sex: f, occupation: Lookout
+
+Mad Mary sex: f
+  Tom b: 1690, sex: m, occupation: Cabin Boy
+
+Young Jack + Calico Kate m: 1712
+  Ned b: 1713, sex: m, occupation: Gunner
+  Pearl adopted, b: 1715, sex: f, occupation: Cartographer
+```
 
 ### Journey Map
 
@@ -509,8 +523,6 @@ persona Squidlips Sam color: blue
     opportunity: Next time he signs on as a full hand, not a boy
 ```
 
----
-
 ### Map
 
 ```dgmo
@@ -521,17 +533,19 @@ tag Port as p
   Friendly green
   Spanish Prize orange
 
-poi Kingston p: Home Port, value: 120
-poi Havana p: Spanish Prize, value: 90
-poi Santo Domingo p: Friendly, value: 70
+tag Passage as l
+  Open Sea blue
+  Coastal Run teal
+
+poi Kingston p: Home Port, size: 120
+poi Havana p: Spanish Prize, size: 90
+poi Santo Domingo p: Friendly, size: 70
 
 route Kingston
-  ~weigh anchor~> Havana
-  ~raid the galleons~> Santo Domingo
-  ~careen & resupply~> Kingston
+  ~weigh anchor~> Havana l: Open Sea
+  ~raid the galleons~> Santo Domingo l: Coastal Run
+  ~careen & resupply~> Kingston l: Open Sea
 ```
-
----
 
 ### Org Chart
 
@@ -585,8 +599,6 @@ Blackbeard r: Captain, s: Revenge
       Compass Rose st: NewRecruit
 ```
 
----
-
 ### Pyramid Diagram
 
 ```dgmo
@@ -614,8 +626,6 @@ Powder Monkeys orange
   during a broadside.
 ```
 
----
-
 ### Quadrant Chart
 
 ```dgmo
@@ -639,15 +649,14 @@ Troublemaker  0.65  0.2
 Spy            0.8  0.1
 ```
 
----
-
 ### Ring Diagram
 
 ```dgmo
 ring Captain's Sphere of Influence
-solid-fill
 
-Captain red
+solid-fill 
+
+Captain  red
   Final word on heading and plunder,
   keeper of the ship's charter.
 
@@ -667,37 +676,31 @@ The Open Sea blue
   flags beyond any captain's reach.
 ```
 
----
-
 ### Swimlane
 
 ```dgmo
-swimlane Expense Approval
+swimlane Weekly Publishing
 direction LR
 
-lane Employee gray
-lane Manager blue
-lane Finance green
+lane Writer gray
+lane Editor blue
+lane Social green
 
-[Submit]
-  Employee
-    File Expense
-[Review]
-  Manager
-    <Approve>
-    (!Rejected)
-[Pay]
-  Finance
-    Reimburse
-    (Paid) success
+Writer
+  Draft Post
+  Revise
+Editor
+  <Review>
+  Schedule
+  Publish
+Social
+  Promote
 
-File Expense -> <Approve>
-<Approve>
-  -deny-> (!Rejected)
-  -approve-> Reimburse -> (Paid)
+Draft Post -> <Review>
+<Review>
+  -changes-> Revise -> <Review>
+  -ok-> Schedule -> Publish -> Promote
 ```
-
----
 
 ### Tech Radar
 
@@ -705,7 +708,7 @@ File Expense -> <Approve>
 tech-radar Pirate Operations Radar — Q2 1718
 
 rings
-  Full Sail
+  Full Sail 
   Trial Run
   Spyglass
   Davy Jones
@@ -714,49 +717,122 @@ Tactics quadrant: top-right
   Ambush at Dawn ring: Full Sail, trend: stable
     Our most reliable boarding tactic. **90% success rate** when
     approaching from the east with the sun behind us.
+    - Crew morale peaks at dawn — grog hasn't worn off yet
+    - Reduced cannon fire needed: *3 volleys* vs 8 at midday
+    - See [battle log](https://wiki.pirates.example/dawn-ambush)
   Boarding Parties ring: Full Sail, trend: stable
     Standard 20-man teams equipped with **cutlasses**, *grappling hooks*,
-    and smoke pots.
+    and smoke pots. Training regimen updated after the *Tortuga Incident*.
   Decoy Flags ring: Trial Run, trend: up
-    Flying false colours until within cannon range. Merchant ships
-    drop anchor **40% more often** when they see a Dutch East India flag.
+    Flying false colours until within cannon range. Early results
+    are promising — merchant ships drop anchor **40% more often**
+    when they see a Dutch East India flag.
+    - Works best in *foggy conditions*
+    - Risk: Royal Navy ships sometimes call the bluff
+  Smoke Screens ring: Trial Run, trend: new
+    Burning wet straw and tar barrels on approach. Visibility drops to
+    **under 10 metres** — perfect for sneaking alongside.
+  Kraken Diplomacy ring: Spyglass, trend: new
+    Exploring alliances with *sea monsters*. Negotiations ongoing
+    but the Kraken's demands are... unreasonable.
+    - Wants **50% of all treasure** plus exclusive fishing rights
+    - Communication barrier: only speaks in bubbles
   Night Raids ring: Trial Run, trend: up
-    Blackened sails and muffled oars.
+    Blackened sails and muffled oars. Three successful raids on
+    *sleeping harbours* this quarter. Key constraint: **no moonlight**.
   Ramming ring: Davy Jones, trend: down
-    Costs more in hull repairs than it's worth.
+    Costs more in hull repairs than it's worth. The *HMS Splinter*
+    incident of 1716 proved this conclusively.
 
 Vessels quadrant: top-left
   Brigantine ring: Full Sail, trend: stable
-    Our workhorse. Fast, manoeuvrable, **18 cannons**.
+    Our workhorse. Fast, manoeuvrable, carries **18 cannons**.
+    - Crew capacity: 100 pirates
+    - Top speed: *11 knots* in fair wind
+    - Draft shallow enough for **coastal ambushes**
   Sloop ring: Full Sail, trend: up
-    Fastest ship in the fleet. Perfect for *reconnaissance*.
+    Fastest ship in the fleet. Only **6 cannons** but can outrun
+    anything the Royal Navy sends. Perfect for *reconnaissance*
+    and courier runs between hideouts.
   War Galleon ring: Trial Run, trend: up
-    Captured from the Spanish fleet. Massive firepower.
+    Captured from the Spanish fleet. Massive firepower but
+    **slow to turn** — best for convoy raids, not chases.
+    - 42 cannons across *three gun decks*
+    - Requires 200+ crew to operate effectively
+    - Ongoing hull repairs from [Battle of Nassau](https://wiki.pirates.example/nassau)
+  Frigate ring: Spyglass, trend: new
+    Intercepted blueprints from a *British shipyard*. Could be our
+    next flagship if we can find enough **seasoned carpenters**.
+  Junk Rig ring: Spyglass, trend: new
+    Far Eastern design with **battened sails** — easier to handle
+    in storms and requires *fewer crew*. Trader Wong demonstrated
+    one in Macao harbour.
   Longboat ring: Davy Jones, trend: down
-    Too slow, too small, too leaky.
+    Too slow, too small, too leaky. Last three longboat missions
+    ended in **catastrophic sinkings**. Retired from active duty.
 
 Plunder Targets quadrant: bottom-left
   Merchant Convoys ring: Full Sail, trend: stable
-    Core revenue stream — **78% of total plunder**.
+    Core revenue stream — **78% of total plunder**. East India
+    Company ships running the spice route remain most lucrative.
+    - Average haul: *4,200 doubloons* per convoy
+    - Best intercepted near the [Windward Passage](https://wiki.pirates.example/windward)
+    - Seasonal peak: July–September during *monsoon trade runs*
   Spanish Treasure Fleets ring: Full Sail, trend: stable
-    The **crown jewels** of piracy.
+    The **crown jewels** of piracy. Annual fleet carries gold,
+    silver, and emeralds from the New World. Requires *coordinated
+    multi-ship ambush* but one raid funds operations for a year.
   Port Raids ring: Trial Run, trend: up
-    Shifting from sea-only operations.
+    Shifting from sea-only operations. The raid on *Port-de-Paix*
+    yielded **12,000 doubloons** and a warehouse of rum.
+  Rival Pirates ring: Trial Run, trend: new
+    Controversial but profitable. Blackbeard's crew carries
+    **more gold** than most merchants. Ethics committee (the parrot)
+    has filed an objection.
+  Royal Treasury Ships ring: Spyglass, trend: new
+    High risk, astronomical reward. Requires:
+    - Inside information from *corrupt harbourmasters*
+    - At least **3 allied ships** for the blockade
+    - A really good escape plan
+  Whaling Ships ring: Spyglass, trend: stable
+    Moderate value — whale oil fetches **decent prices** in European
+    markets. But the ships fight back *hard*.
   Fishing Villages ring: Davy Jones, trend: down
-    Terrible ROI and **bad for reputation**.
+    Terrible ROI and **bad for reputation**. The parrot union
+    filed a formal complaint. We're pirates, not bullies.
 
 Crew Welfare quadrant: bottom-right
   Grog Rations ring: Full Sail, trend: stable
-    Non-negotiable. Current allocation: **2 pints per day** per pirate.
+    Non-negotiable. Cutting grog rations caused the *Great Mutiny
+    of 1716*. Current allocation: **2 pints per day** per pirate.
+    - Premium rum reserved for post-battle celebrations
+    - Watered grog for the night watch (safety first)
   Code of Conduct ring: Full Sail, trend: stable
-    Our **Articles of Agreement** — fair share, fair vote.
+    Our **Articles of Agreement** — fair share of plunder, compensation
+    for injuries, voting rights on major decisions. *Democracy at sea.*
   Sea Shanty Program ring: Trial Run, trend: new
-    Hired a shanty master from *Liverpool*. Productivity up **25%**.
+    Hired a shanty master from *Liverpool*. Crew productivity up
+    **25%** during long voyages. Current repertoire:
+    - "Yo Ho Ho and a Bottle of Rum" — *morale boost*
+    - "What Shall We Do with a Drunken Sailor" — **work efficiency**
+    - "Haul Away Joe" — anchor duty motivation
+  Dental Plan ring: Spyglass, trend: up
+    Exploring options. Most crew down to **4 teeth** on average.
+    Parley with a Port Royal dentist scheduled for Q3 1718.
+    - Estimated cost: *3 doubloons per extraction*
+    - [Tooth census results](https://wiki.pirates.example/dental)
+  Parrot Companions ring: Full Sail, trend: up
+    Every pirate deserves a **shoulder companion**. Proven benefits:
+    - *Scouts* that can spot sails at 3x human range
+    - Morale boost: crew happiness up **30%**
+    - Built-in alarm system for surprise attacks
+  Retirement Fund ring: Spyglass, trend: new
+    Proposal to set aside **5% of all plunder** for retirement.
+    Controversial — most pirates don't expect to *live that long*.
   Plank Walking ring: Davy Jones, trend: down
-    Terrible for recruitment and **crew retention**.
+    Terrible for recruitment and **crew retention**. Modern pirates
+    prefer *marooning* — at least they get a pistol and a bottle.
 ```
-
----
 
 ### Venn Diagram
 
@@ -773,13 +849,12 @@ sw + lead       Buccaneer Chiefs
 sw + nav + lead Legendary Pirates
 ```
 
----
-
 ### Word Cloud
 
 ```dgmo
 wordcloud Pirate Skills
 
+// word weight (higher = larger)
 swordsmanship 95
 navigation    88
 seamanship    85
@@ -795,8 +870,6 @@ cooking       45
 carpentry     40
 fishing       35
 ```
-
----
 
 ## Project
 
@@ -834,12 +907,10 @@ roles
     Bosun: I
 ```
 
----
-
 ### Gantt Chart
 
 ```dgmo
-gantt Blackbeard's Blockade — 1718
+ gantt Blackbeard's Blockade — 1718
 
 start 1718-05-01
 today-marker 1718-05-15
@@ -849,27 +920,29 @@ tag Role as r
   Crew blue
   Captives orange
 
-marker 1718-05-22 Ransom Deadline red
-era 1718-05-10 -> 1718-05-18 Blockade Active blue
+marker 1718-05-14 Ransom Deadline red
+era 1718-05-08 -> 1718-05-17 Blockade Active blue
 
 [Preparation] r: Command
-  Anchor Fleet 7d progress: 100
-    -> Deploy Sloops 4d r: Crew, progress: 100
+  Provision Ship 3d r: Crew, progress: 100
+    -> Anchor Fleet 2d r: Crew, progress: 100
+  Scout Harbor 3d r: Crew, progress: 100
+    -> Position Cannons 3d r: Crew, progress: 100
+  Recruit Hands 5d r: Crew, progress: 100
 
-[Blockade] r: Crew
-  Seize Merchants 12d progress: 80
-  Hold Hostages 8d r: Captives, progress: 60
++7d [Blockade] r: Crew
+  Seize Merchants 4d progress: 100
+    -> Hold Hostages 5d r: Captives, progress: 60
+  Patrol Perimeter 9d progress: 75
+  Demand Medicine 4d r: Command, progress: 100
+    -> Threaten Executions 3d? r: Command, progress: 90
 
-[Negotiations] r: Command
-  Demand Medicine 8d progress: 50
-    -> Threaten Executions 6d? progress: 40
-
-[Resolution] r: Command
-  Receive Ransom 3d r: Captives
-    -> Release Prisoners 0d
++17d [Resolution] r: Command
+  Receive Ransom 2d r: Captives
+    -> Release Prisoners 1d r: Captives
+      -> Set Sail 0d
+  Burn Evidence 2d r: Crew
 ```
-
----
 
 ### Kanban Board
 
@@ -893,10 +966,10 @@ tag Watch as w
   Reinforce the gunwales p: Medium, w: Afternoon
 
 [In Progress] yellow
-  Restock powder kegs p: High, w: Morning
-    Last batch ran damp
   Caulk the hull seams p: High, w: Afternoon
     Hold has been taking water
+  Restock powder kegs p: High, w: Morning
+    Last batch ran damp
 
 [Blocked] red
   Find a new sailmaker p: Critical, w: Morning
@@ -906,8 +979,6 @@ tag Watch as w
   Inventory the hold p: Medium, w: Night
   Sharpen the cutlasses p: Low, w: Night
 ```
-
----
 
 ### PERT
 
@@ -940,15 +1011,13 @@ repair hull 3
 divvy shares 1 2 3
 ```
 
----
-
 ### RACI Matrix
 
 ```dgmo
 raci Voyage Operations
 roles
   Cap  red
-  QM   orange
+  QM orange
   Bos  yellow
   Nav  blue
   Crew gray
@@ -973,87 +1042,88 @@ roles
 
 [Landfall] green
   Negotiate with port
-    Cap: A R
+    Cap: R A
     QM: C
   Inventory the take
     QM: A R
     Crew: I
 ```
 
----
-
 ### RASCI
 
 ```dgmo
-raci Voyage Preparation
+raci Crew Responsibilities — Boarding Raid
 roles
-  Captain
-  Quartermaster
-  Bosun
-  Cook
-  Surgeon
+  Cap  red
+  QM   orange
+  Bos  yellow
+  Nav  blue
+  Gun  purple
+  Crew gray
 
-[Outfitting]
-  Provision the hold
-    Quartermaster: A R
-    Cook: S
-    Captain: C
-  Mend the sails
-    Bosun: A R
-    Quartermaster: C
+[Approach] teal
+  Spot the prize
+    Cap: A
+    Nav: R
+    Bos: S
+    Crew: I
+  Close the distance
+    Nav: A R
+    Cap: C
+    Bos: S
 
-[At Sea]
-  Tend the wounded
-    Surgeon: A R
-    Cook: S
-    Captain: I
-  Stand the night watch
-    Bosun: A R
-    Quartermaster: S
+[Boarding] purple
+  Fire a warning shot
+    Gun: A R
+    Cap: C
+    Crew: S
+  Swing the grappling lines
+    Bos: A R
+    Crew: S
+    Cap: I
+  Storm the deck
+    Cap: A
+    Bos: R
+    Crew: S
+    Gun: S
+
+[Plunder] green
+  Secure the captives
+    QM: A
+    Crew: R
+    Bos: S
+  Tally the take
+    QM: A R
+    Cap: C
+    Crew: S
 ```
-
----
 
 ### Timeline
 
 ```dgmo
-timeline The Golden Age of Piracy (1716–1722)
-scale on
+timeline Pirate Campaigns 1717-1719
 
-tag Pirate as p
-  Blackbeard red
-  Bonny & Rackham purple
-  Roberts blue
+era 1717-01 -> 1717-12 Golden Age Peak
+era 1718-01 -> 1718-12 Royal Navy Response
+marker 1718-05 Rogers Arrives Nassau
 
-tag Outcome as o
-  Uncertain yellow
-  Victory green
-  Defeat red
+[Blackbeard]
+  1717-03 -> 1717-09 Blockade of Charles Town
+  1717-11 Queen Anne's Revenge captured
+  1718-01 -> 1718-06 Carolina Coast raids
+  1718-11 Last stand at Ocracoke
 
-tag Theatre as t
-  Caribbean teal
-  Atlantic blue
-  Africa orange
+[Bonnet]
+  1717-06 -> 1717-10 First cruise
+  1718-03 -> 1718-07 Revenge refitted
+  1718-08 -> 1718-10 Cape Fear pursuit
+  1718-12 Trial and hanging
 
-era 1716->1718 Nassau Republic
-era 1719->1722 Roberts Era
-
-marker 1718-07 Woodes Rogers arrives orange
-marker 1721-08 Roberts reaches peak teal
-
-1716 -> 1717 Sails under Hornigold p: Blackbeard, o: Victory
-1717-11 -> 1718-06 Commands Queen Anne's Revenge p: Blackbeard, o: Victory, t: Atlantic
-1718-05 Blockades Charleston harbor p: Blackbeard, o: Victory
-1718-11-22 Killed at Ocracoke p: Blackbeard, o: Defeat
-1718 -> 1719 Rackham builds crew in Nassau p: Bonny & Rackham, o: Victory
-1719-03 -> 1720-10? Bonny & Rackham raid together p: Bonny & Rackham
-1720-11 Rackham hanged at Port Royal p: Bonny & Rackham, o: Defeat
-1719-06 -> 1720 Raids West African coast p: Roberts, o: Victory, t: Africa
-1720 -> 1722 Captures 400+ ships p: Roberts, o: Victory, t: Atlantic
-1722-02-10 Killed at Cape Lopez p: Roberts, o: Defeat, t: Africa
+[Royal Navy]
+  1718-02 -> 1718-06 Fleet assembles
+  1718-07 -> 1718-09 Nassau secured
+  1718-10 -> 1719-03 Sweep operations
 ```
-
----
 
 ## Software
 
@@ -1068,27 +1138,29 @@ tag Status as s
   Sunk red
   Building blue default
 
-Flagship s: Operational
+heat Crew red green
+show-values
+active-tag Status
+
+Flagship s: Operational, heat: 120
   -> [Harbor Defenses]
   -> IntelNetwork
 
 [Harbor Defenses]
-  FortCannon s: Operational
+  FortCannon s: Operational, heat: 40
     -> Watchtower
-  Watchtower s: Operational
-  SeaMines s: Building
+  Watchtower s: Operational, heat: 12
+  SeaMines s: Building, heat: 6
 
-IntelNetwork s: Operational
+IntelNetwork s: Operational, heat: 35
   -> SpyRing
   -> SignalFlags
 
-SpyRing s: Operational
+SpyRing s: Operational, heat: 18
   -> [Harbor Defenses]
 
-SignalFlags s: Damaged
+SignalFlags s: Damaged, heat: 8
 ```
-
----
 
 ### C4 Architecture
 
@@ -1113,7 +1185,7 @@ TreasureMap is a system description: Tracks buried treasure locations and raid i
     Vault is a container description: Encrypted treasure ledger and coordinates, tech: Iron Chest
       -Reads/writes [quill and ink]-> TreasureLog
 
-    TreasureLog is a container description: Stores locations, guard counts, and loot inventories, tech: Leather-Bound Tome
+    TreasureLog is a container description: "Stores locations, guard counts, and loot inventories", tech: Leather-Bound Tome
 
 Lookout is an external description: Crow's nest spotter on allied ships, sc: External
   ~Relays sightings to~> Captain
@@ -1126,12 +1198,12 @@ deployment
     container TreasureLog
 ```
 
----
-
 ### Class Diagram
 
 ```dgmo
 class Ship Class Hierarchy
+
+solid-fill 
 
 interface Vessel
   + sail(): void
@@ -1159,8 +1231,6 @@ Ship
   -> ShipType has type
 ```
 
----
-
 ### Entity Relationship
 
 ```dgmo
@@ -1181,7 +1251,7 @@ captains
   ship_id int fk
   bounty int
   ?-frequents-1 ports
-  *-has-1 crew_members
+  *-has-1 crew_members 
 
 crew_members
   id int pk
@@ -1202,34 +1272,18 @@ ports
   1-docks-* ships
 ```
 
----
-
 ### Flowchart
 
 ```dgmo
 flowchart Mutiny Resolution
 direction-tb
 
-[Sail] Set sail under the captain
-{Trouble?} Discontent in the crew?
-[Hold]   Hold steady, stay loyal
-{Vote}   Crew vote called
-[Mutiny] Seize the ship
-[Maroon] Maroon the captain
-[New]    Elect a new captain
-
-(Sail) -> (Trouble?)
-(Trouble?) -No-> (Sail)
-(Trouble?) -Yes-> (Vote)
-(Vote) -Stay-> (Hold)
-(Vote) -Mutiny-> (Mutiny)
-(Mutiny) -> (Maroon)
-(Maroon) -> (New)
-(New) -> (Sail)
-(Hold) -> (Sail)
+(Weigh Anchor) -> [Set Sail] -> <Crew Discontent?>
+  -no-> (Reach Port)
+  -yes-> [Call a Vote] -> <Vote Outcome?>
+    -loyal-> [Hold Steady] -> (Reach Port)
+    -mutiny-> [Seize the Ship] -> [Maroon the Captain] -> (Elect New Captain)
 ```
-
----
 
 ### Infrastructure Diagram
 
@@ -1288,8 +1342,6 @@ RumRunner f: Bonny
   -> TavernNetwork
 ```
 
----
-
 ### Mindmap
 
 ```dgmo
@@ -1326,8 +1378,6 @@ Go-to-Market d: Marketing
     Demo Video description: 2-min product walkthrough
 ```
 
----
-
 ### Sequence Diagram
 
 ```dgmo
@@ -1338,23 +1388,19 @@ tag Concern as c
   Claims green
   Notifications orange
 
-tag Layer as l
-  Frontend teal
-  Backend purple
-  Data red
-
 User is an actor
-WebApp l: Frontend
-TreasureAPI l: Backend
-MapDB is a database l: Data
-NotifyQueue is a queue l: Backend
+
+[Treasure Service]
+  TreasureAPI
+  MapDB is a database
+  NotifyQueue is a queue
 
 User -Search nearby loot-> WebApp
 WebApp -GET /treasures?nearby-> TreasureAPI c: Search
+TreasureAPI -Find within 5nm-> MapDB c: Search
 note
   - check location
   - use compass
-TreasureAPI -Find within 5nm-> MapDB c: Search
 MapDB -3 results-> TreasureAPI
 TreasureAPI -locations-> WebApp
 WebApp -Show treasure map-> User
@@ -1366,15 +1412,13 @@ WebApp -POST /claim-> TreasureAPI c: Claims
 if chest available
   TreasureAPI -Set status = claimed-> MapDB c: Claims
   MapDB -OK-> TreasureAPI
+  TreasureAPI ~treasure.claimed~> NotifyQueue c: Notifications
   TreasureAPI -Claim accepted-> WebApp
   WebApp -500 doubloons earned!-> User
-  TreasureAPI ~treasure.claimed~> NotifyQueue c: Notifications
 else
   TreasureAPI -409 Already claimed-> WebApp
   WebApp -Too slow, matey!-> User
 ```
-
----
 
 ### Sitemap
 
@@ -1389,7 +1433,7 @@ tag Access
 tag Page
   Landing purple
   Form orange
-  Content cyan
+  Content cyan 
 
 Home Access: Public, Page: Landing
   -shop-> Shop
@@ -1402,7 +1446,7 @@ Home Access: Public, Page: Landing
     -buy-> Checkout
 
   Checkout Access: Crew Only, Page: Form
-    -purchased-> Ship Log
+    -purchased-> Ship Log 
 
 [Crew Quarters]
   Enlist Access: Public, Page: Form
@@ -1413,8 +1457,6 @@ Home Access: Public, Page: Landing
 
   Treasure Map Access: Captain, Page: Content
 ```
-
----
 
 ### State Diagram
 
@@ -1453,8 +1495,6 @@ Captured -> [*]
 Sinking -> [*]
 ```
 
----
-
 ### Version Control
 
 ```dgmo
@@ -1480,8 +1520,6 @@ main
   merge develop tag: v1.0.0
   Hotfix typo type: highlight
 ```
-
----
 
 ### Wireframe
 
@@ -1518,39 +1556,51 @@ wireframe Pirate Crew Portal
   New to piracy? (Read the Code) ghost
 ```
 
----
-
 ### Event Line
 
 ```dgmo
-event-line A Short History of the Web
-no-scale
+event-line Product Milestones
+//no-scale
+no-box
 
-tag Theme as t
-  Protocol blue
-  Browser green
-  Platform purple
-  Standard orange
+tag Track as t
+  Product blue
+  Growth green
+  Funding purple
 
-[The Early Web]
-  1991 WorldWideWeb  t: Protocol
-    Tim Berners-Lee publishes the first website at CERN.
-  1993 Mosaic  t: Browser
-    The first popular graphical browser.
+[Early Days]
+  2019-03 Idea sketched  t: Product
+    A weekend prototype becomes a real plan.
+  2019-09 Private beta  t: Product
+    First fifty users kick the tires.
 
-[The App Era] collapsed: true
-  2005 Ajax  t: Platform
-    Pages update without a reload.
-  2014 HTML5  t: Standard
-    The living standard — video, canvas, semantics.
+[Scaling Up]
+  2020-06 Seed round  t: Funding
+    **$2M** raised to grow the team.
+  2021-01 Public launch  t: Product
+    Open to everyone, no waitlist.
+  2021-11 100k users  t: Growth
+    Word of mouth does the heavy lifting.
+
+[Going Long]
+  2023-04 Series A  t: Funding
+    Expansion into new markets.
+  2024-08 1M users  t: Growth
+    A milestone years in the making.
+
+[What's Next]
+  TBD Series B  t: Funding
+    Raising when the metrics line up — no date yet.
+  TBD Mobile app  t: Product
+    On the roadmap, not yet scheduled.
 ```
-
----
 
 ### Block
 
 ```dgmo
 block Web Service Architecture
+
+solid-fill
 
 tag Layer as l
   Edge blue
@@ -1568,8 +1618,6 @@ tag Layer as l
   [Postgres] [Redis]
 ```
 
----
-
 ### Sketch
 
 ```dgmo
@@ -1579,11 +1627,13 @@ tag Crew
   Deck
   Hold
 
-Spyglass Feed shape: cloud, at: 0 0, crew: Deck
+Spyglass Feed shape: database, at: 0 0, crew: Deck
   -sightings-> con
 Captain's Console as con at: 2 0, crew: Deck
   -orders-> bq
+  -supplies-> armory
 Divvy Service as dvy at: 4 0, crew: Hold
+  -entries-> ledger
 
 [Below Decks] at: 2 2, crew: Hold
   Booty Queue as bq shape: queue, at: 0 0
@@ -1592,43 +1642,7 @@ Divvy Service as dvy at: 4 0, crew: Hold
 
 [Armory] as armory at: 0 2, collapsed
   Powder Store at: 0 0
-```
-
----
-
-### Family
-
-```dgmo
-family The Blackwater Line
-
-generations
-highlight Anne
-
-tag Allegiance as flag
-  Founders green
-  Brethren red
-  Crown blue
-
-Redbeard b: 1638, d: 1701, sex: m, occupation: Captain, flag: Founders
-Blackheart Bess b: 1642, d: 1699, sex: f, occupation: Quartermaster, flag: Founders
-
-Redbeard + Blackheart Bess m: 1660
-  Anne b: 1662, sex: f, occupation: Pirate King, flag: Brethren
-  Mad Mary b: 1665, sex: f, occupation: Powder Monkey
-
-Anne + "Long John Silver" m: 1685 divorced
-  Grace b: 1689, sex: f, flag: Brethren
-  Young Jack b: 1686, sex: m
-  Foundling adopted, sex: m, occupation: Cabin Boy
-
-Anne + One-Eyed Pete m: 1698
-  Sally b: 1699, sex: f
-
-? + Mad Mary
-  Tom b: 1690, d: 1755, sex: m
-
-Young Jack + Calico Kate m: 1712
-  Ned b: 1713, sex: m
+  Cutlass Rack at: 0 1
 ```
 
 ---

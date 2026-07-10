@@ -98,6 +98,7 @@ function mountBlock(
   const block = appendBlockHtml(container, html);
   if (!block) return null;
   retargetOpenLink(block, source, isDark, paletteId);
+  injectExpandButton(block);
   bindToolbar(block);
   let flush: FlushFn | null = null;
   if (onSave) {
@@ -128,6 +129,38 @@ function retargetOpenLink(
   });
   if (url) link.setAttribute('href', url);
   else link.remove(); // too large to share — copy remains
+}
+
+/**
+ * Full-screen expand icon (arrows-out), mirroring dgmo's canonical
+ * `EXPAND_ICON`. The published `@diagrammo/dgmo/block` this plugin bundles
+ * doesn't yet emit the expand button (it's merged but unreleased upstream), so
+ * inject it into the hover toolbar here — the lightbox handler + `.dgmo-lightbox`
+ * CSS already live in this plugin. Idempotent: re-renders replace the block.
+ */
+const EXPAND_ICON =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2.5h4v4"/><path d="M6.5 13.5h-4v-4"/><path d="M13.5 2.5 9 7"/><path d="M2.5 13.5 7 9"/></svg>';
+
+function injectExpandButton(block: HTMLElement): void {
+  const toolbar = block.querySelector<HTMLElement>('summary.dgmo-toolbar');
+  if (!toolbar || toolbar.querySelector('.dgmo-expand')) return;
+  const doc = toolbar.ownerDocument;
+  const btn = doc.createElement('button');
+  btn.type = 'button';
+  btn.className = 'dgmo-toolbar-btn dgmo-expand';
+  btn.setAttribute('aria-label', 'View full screen');
+  btn.title = 'Expand';
+  // No innerHTML (plugin review guidelines): parse the icon and import it.
+  const iconDoc = new DOMParser().parseFromString(
+    EXPAND_ICON,
+    'image/svg+xml'
+  );
+  const icon = iconDoc.documentElement;
+  if (icon) btn.appendChild(doc.importNode(icon, true));
+  // Sit just left of copy/open — right after the source toggle.
+  const toggle = toolbar.querySelector('.dgmo-toggle');
+  if (toggle?.nextSibling) toolbar.insertBefore(btn, toggle.nextSibling);
+  else toolbar.appendChild(btn);
 }
 
 /** Copy + open handlers for the toolbar (mirrors remark-dgmo's `bindDgmo`). */
