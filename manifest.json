@@ -1,7 +1,7 @@
 {
   "id": "dgmo",
   "name": "Diagrammo Diagrams",
-  "version": "1.13.3",
+  "version": "1.14.0",
   "minAppVersion": "1.5.0",
   "description": "Render diagrams inline from plain-text dgmo code blocks. 40+ chart types — flowcharts, sequence, gantt, charts, mind maps, and more — with live preview, themed palettes, and mobile support.",
   "author": "Diagrammo",
