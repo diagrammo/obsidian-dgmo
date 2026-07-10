@@ -14,7 +14,11 @@ import {
   resolveMap,
   renderMapForExport,
   mapExportDimensions,
+  parseDgmoChartType,
+  knownChartTypeIds,
 } from '@diagrammo/dgmo/advanced';
+
+const DOCS_BASE = 'https://diagrammo.app/docs';
 import { mapData } from './map-data';
 import { enableBlockEditing, type FlushFn } from './edit';
 
@@ -99,6 +103,7 @@ function mountBlock(
   if (!block) return null;
   retargetOpenLink(block, source, isDark, paletteId);
   injectExpandButton(block);
+  injectDocsButton(block, source);
   bindToolbar(block);
   let flush: FlushFn | null = null;
   if (onSave) {
@@ -163,6 +168,37 @@ function injectExpandButton(block: HTMLElement): void {
   else toolbar.appendChild(btn);
 }
 
+/**
+ * Book icon — links the block to the online docs page for its chart type.
+ * Added only when the source declares a known chart type; the docs pages live
+ * at `diagrammo.app/docs/chart-<id>` (one per base type).
+ */
+const DOCS_ICON =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>';
+
+function injectDocsButton(block: HTMLElement, source: string): void {
+  const toolbar = block.querySelector<HTMLElement>('summary.dgmo-toolbar');
+  if (!toolbar || toolbar.querySelector('.dgmo-docs')) return;
+  const id = parseDgmoChartType(source);
+  if (!id || !knownChartTypeIds.includes(id)) return;
+
+  const doc = toolbar.ownerDocument;
+  const link = doc.createElement('a');
+  link.className = 'dgmo-toolbar-btn dgmo-docs';
+  link.setAttribute('href', `${DOCS_BASE}/chart-${id}`);
+  link.setAttribute('target', '_blank');
+  link.setAttribute('rel', 'noopener noreferrer');
+  link.setAttribute('aria-label', `Open ${id} documentation`);
+  link.title = 'Documentation';
+  const iconDoc = new DOMParser().parseFromString(DOCS_ICON, 'image/svg+xml');
+  const icon = iconDoc.documentElement;
+  if (icon) link.appendChild(doc.importNode(icon, true));
+  // Sit just left of the open-in-editor link (rightmost).
+  const openLink = toolbar.querySelector('a.dgmo-open');
+  if (openLink) toolbar.insertBefore(link, openLink);
+  else toolbar.appendChild(link);
+}
+
 /** Copy + open handlers for the toolbar (mirrors remark-dgmo's `bindDgmo`). */
 function bindToolbar(block: HTMLElement): void {
   block.addEventListener('click', (e) => {
@@ -200,7 +236,7 @@ function bindToolbar(block: HTMLElement): void {
       return;
     }
 
-    if (insideSummary && btn.matches('a.dgmo-open')) {
+    if (insideSummary && btn.matches('a.dgmo-open, a.dgmo-docs')) {
       const href = (btn as HTMLAnchorElement).href;
       if (href) window.open(href, '_blank', 'noopener,noreferrer');
     }

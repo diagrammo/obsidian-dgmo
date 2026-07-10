@@ -70,6 +70,11 @@ const TOOLBAR_ICONS: IconDoc[] = [
     desc: 'Copy the diagram’s DGMO text to the clipboard.',
   },
   {
+    icon: 'book-open',
+    name: 'Documentation',
+    desc: 'Open the online docs for this diagram’s chart type — syntax, options, and examples.',
+  },
+  {
     icon: 'external-link',
     name: 'Open in online editor',
     desc: 'Open the diagram at online.diagrammo.app for live preview, autocomplete, and PNG/SVG export — with this note’s palette and theme already applied.',

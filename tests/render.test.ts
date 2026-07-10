@@ -62,6 +62,26 @@ describe('renderDgmo (standard embed block)', () => {
     expect(href).not.toContain('th=');
   });
 
+  it('injects the expand button + a chart-type docs link into the toolbar', async () => {
+    const container = document.createElement('div');
+    await renderDgmo(CHART, container, false, 'nord');
+
+    const toolbar = container.querySelector('summary.dgmo-toolbar')!;
+    expect(toolbar.querySelector('button.dgmo-expand')).not.toBeNull();
+
+    const docs = toolbar.querySelector<HTMLAnchorElement>('a.dgmo-docs');
+    expect(docs).not.toBeNull();
+    expect(docs!.getAttribute('href')).toBe(
+      'https://diagrammo.app/docs/chart-bar'
+    );
+    // Docs sits left of the open-in-editor link.
+    const links = Array.from(toolbar.querySelectorAll('a'));
+    const docsIdx = links.findIndex((a) => a.classList.contains('dgmo-docs'));
+    const openIdx = links.findIndex((a) => a.classList.contains('dgmo-open'));
+    expect(docsIdx).toBeGreaterThanOrEqual(0);
+    expect(docsIdx).toBeLessThan(openIdx);
+  });
+
   it('re-render after clearing leaves exactly one block (no stacking)', async () => {
     const container = document.createElement('div');
     await renderDgmo(CHART, container, false, 'nord');
