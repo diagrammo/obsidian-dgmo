@@ -284,76 +284,28 @@ figure.dgmo {
   color: var(--text-normal);
 }
 
-/* In-block live editing: when the source panel is open, a transparent-text
-   textarea is stacked over the highlighted .dgmo-pre — the pre paints the
-   glyphs (re-tokenized per keystroke), the textarea owns input, caret, and
-   scrolling. Font metrics on both layers MUST stay identical or the caret
-   drifts off the glyphs. Edits autosave into the note on blur/close. */
-.dgmo-edit-stack {
-  position: relative;
-}
-.dgmo-edit-stack > .dgmo-pre {
-  /* The textarea on top owns scrolling and mirrors offsets onto the pre. */
-  overflow: hidden !important;
-  pointer-events: none;
-  min-height: 0 !important;
-}
-/* Caret-on-glyph alignment: both layers MUST share identical text metrics.
-   Obsidian's `.markdown-rendered pre` (padding: 12px 16px, min-height, border)
-   out-specifies `.dgmo-pre` and shifted the glyph layer ~2.4px right of the
-   caret. Pin every metric that moves text on BOTH layers; !important so
-   neither app.css nor community themes can split them apart again. */
-.dgmo-edit-stack > .dgmo-pre,
-.dgmo-edit-stack > .dgmo-edit-area {
-  margin: 0 !important;
-  padding: 1em !important;
-  border: none !important;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
-  font-size: 0.85em !important;
-  line-height: 1.5 !important;
-  letter-spacing: normal !important;
-  text-indent: 0 !important;
-  white-space: pre !important;
-  tab-size: 4 !important;
-}
-.dgmo-edit-area {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  resize: none;
-  overflow: auto;
-  outline: none;
-  caret-color: var(--text-normal, currentColor);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.85em;
-  line-height: 1.5;
-  padding: 1em;
-  white-space: pre;
-}
-/* Obsidian's app.css styles textarea per interaction state — notably
-   `textarea:hover { background-color: var(--background-modifier-form-field-hover) }`
-   out-specifies a bare class and paints an opaque box over the glyph layer
-   (code "disappears" on hover). Pin every state; !important so community
-   themes can't re-break the overlay. */
-.dgmo-edit-area,
-.dgmo-edit-area:hover,
-.dgmo-edit-area:focus,
-.dgmo-edit-area:focus-visible,
-.dgmo-edit-area:active {
+/* In-block live editing: when the source panel is open, the static highlighted
+   <pre> is replaced by a CodeMirror 6 editor (dgmo's own language extension
+   paints the tokens; Vim is loaded when Obsidian's Vim mode is on). Obsidian's
+   app.css styles `.cm-editor` for the main note editor — neutralize the bits
+   that would draw a border/background box or a gutter inside the source panel.
+   Metrics that move text live in edit.ts's EditorView.theme. */
+.dgmo-source-inner .cm-editor {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  color: transparent !important;
+  outline: none !important;
 }
-.dgmo-edit-area::selection {
-  /* Glyphs live on the layer below — keep selection translucent so they
-     show through, and don't let ::selection recolor the (invisible) text. */
-  background: rgba(127, 127, 127, 0.35);
-  color: transparent;
+.dgmo-source-inner .cm-editor.cm-focused {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.dgmo-source-inner .cm-scroller {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+/* No gutter/line-numbers in the compact block editor. */
+.dgmo-source-inner .cm-gutters {
+  display: none !important;
 }
 
 /* `![[foo.dgmo]]` transclusion (BL-101): strip Obsidian's default embed chrome

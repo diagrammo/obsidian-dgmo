@@ -170,6 +170,15 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
     return this.resolveIsDark();
   }
 
+  /** Whether Obsidian's editor Vim mode is on, so in-block editors match it.
+   * `getConfig` is an undocumented but long-stable Vault accessor. */
+  isVimMode(): boolean {
+    const vault = this.app.vault as unknown as {
+      getConfig?(key: string): unknown;
+    };
+    return vault.getConfig?.('vimMode') === true;
+  }
+
   registerEmbed(embed: DgmoEmbed): void {
     this.embeds.add(embed);
   }
@@ -287,7 +296,8 @@ class DgmoCodeBlock extends MarkdownRenderChild {
           this.containerEl,
           this.source,
           next
-        )
+        ),
+      this.plugin.isVimMode()
     );
   }
 }

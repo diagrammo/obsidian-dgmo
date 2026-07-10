@@ -96,7 +96,8 @@ function mountBlock(
   svgsHtml: string,
   isDark: boolean,
   paletteId: string,
-  onSave?: SaveFn
+  onSave?: SaveFn,
+  vimMode = false
 ): { block: HTMLElement; flush: FlushFn | null } | null {
   const html = buildDgmoBlockHtml(source, svgsHtml, { mode: 'showcase' });
   const block = appendBlockHtml(container, html);
@@ -110,6 +111,7 @@ function mountBlock(
     flush = enableBlockEditing(block, source, {
       update: (draft) => updateDiagram(block, draft, isDark, paletteId),
       save: onSave,
+      vimMode,
     });
   }
   return { block, flush };
@@ -416,13 +418,14 @@ export async function renderDgmo(
   container: HTMLElement,
   isDark: boolean,
   paletteId = 'nord',
-  onSave?: SaveFn
+  onSave?: SaveFn,
+  vimMode = false
 ): Promise<FlushFn | null> {
   // The map chart type loads its geo data via Node `fs` in the public
   // `render()` — which fails in the Obsidian renderer and yields an empty SVG.
   // Render it through dgmo's DI pipeline with the bundled data instead.
   if (looksLikeMap(source)) {
-    return renderMapDgmo(source, container, isDark, paletteId, onSave);
+    return renderMapDgmo(source, container, isDark, paletteId, onSave, vimMode);
   }
 
   let svg: string;
@@ -469,7 +472,8 @@ export async function renderDgmo(
     `<div class="dgmo-svg">${normalizeSvgForEmbed(svg)}</div>`,
     isDark,
     paletteId,
-    onSave
+    onSave,
+    vimMode
   );
   return mounted?.flush ?? null;
 }
@@ -542,7 +546,8 @@ function renderMapDgmo(
   container: HTMLElement,
   isDark: boolean,
   paletteId: string,
-  onSave?: SaveFn
+  onSave?: SaveFn,
+  vimMode = false
 ): FlushFn | null {
   const out = buildMapSvg(source, isDark, paletteId);
   if ('error' in out) {
@@ -559,7 +564,8 @@ function renderMapDgmo(
     '<div class="dgmo-svg"></div>',
     isDark,
     paletteId,
-    onSave
+    onSave,
+    vimMode
   );
   const slot = mounted?.block.querySelector<HTMLElement>('.dgmo-svg');
   if (!slot) return null;
