@@ -1596,6 +1596,43 @@ Divvy Service as dvy at: 4 0, crew: Hold
 
 ---
 
+### Family
+
+```dgmo
+family The Blackwater Line
+
+generations
+highlight Anne
+
+tag Allegiance as flag
+  Founders green
+  Brethren red
+  Crown blue
+
+Redbeard b: 1638, d: 1701, sex: m, occupation: Captain, flag: Founders
+Blackheart Bess b: 1642, d: 1699, sex: f, occupation: Quartermaster, flag: Founders
+
+Redbeard + Blackheart Bess m: 1660
+  Anne b: 1662, sex: f, occupation: Pirate King, flag: Brethren
+  Mad Mary b: 1665, sex: f, occupation: Powder Monkey
+
+Anne + "Long John Silver" m: 1685 divorced
+  Grace b: 1689, sex: f, flag: Brethren
+  Young Jack b: 1686, sex: m
+  Foundling adopted, sex: m, occupation: Cabin Boy
+
+Anne + One-Eyed Pete m: 1698
+  Sally b: 1699, sex: f
+
+? + Mad Mary
+  Tom b: 1690, d: 1755, sex: m
+
+Young Jack + Calico Kate m: 1712
+  Ned b: 1713, sex: m
+```
+
+---
+
 ### Error state
 
 > This block is **intentionally invalid** — `piechart` isn't a chart type (it
