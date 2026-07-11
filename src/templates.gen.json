@@ -263,7 +263,7 @@
     "name": "Swimlane",
     "family": "business",
     "description": "",
-    "source": "swimlane Weekly Publishing\ndirection LR\n\nlane Writer gray\nlane Editor blue\nlane Social green\n\nWriter\n  Draft Post\n  Revise\nEditor\n  <Review>\n  Schedule\n  Publish\nSocial\n  Promote\n\nDraft Post -> <Review>\n<Review>\n  -changes-> Revise -> <Review>\n  -ok-> Schedule -> Publish -> Promote"
+    "source": "swimlane Weekly Publishing\ndirection LR\n\nlane Writer gray\n  Draft Post -> Review\n  Revise -> Review\nlane Editor blue\n  <Review>\n    -changes-> Revise\n    -ok-> Schedule\n  Schedule -> Publish\n  Publish -> Promote\nlane Social green\n  Promote"
   },
   {
     "id": "tech-radar",

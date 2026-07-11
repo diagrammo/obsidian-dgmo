@@ -514,6 +514,90 @@ Young Jack + Calico Kate m: 1712
   Pearl adopted, b: 1715, sex: f, occupation: Cartographer
 ```
 
+### Goal
+
+```dgmo
+goal Doubloons Plundered ($)
+now 6400
+target 10000
+```
+
+### Goal (gauge)
+
+```dgmo
+goal Voyage Quota (chests)
+gauge
+now 64
+target 100
+```
+
+### Countdown
+
+```dgmo
+countdown Voyage to Tortuga
+
+target 2099-08-21
+```
+
+### Countdown (recurring, numbered)
+
+```dgmo
+countdown Ship's Commissioning
+every year on Jun 14
+since 2019
+since-label anniversary
+since-style eyebrow
+```
+
+### Bracket
+
+```dgmo
+bracket Buccaneer Brawl
+
+Black Pearl beats Sea Serpent 5-3
+Salty Dog beats Kraken 4-2
+Queen Anne beats Jolly Roger 6-1
+Flying Dutchman beats Barnacle Betty 3-2
+Black Pearl beats Salty Dog 2-1
+Queen Anne beats Flying Dutchman 4-3
+Black Pearl beats Queen Anne 7-5
+```
+
+### Bracket (seeded, two sides)
+
+```dgmo
+bracket Grand Line Cup
+rounds Skirmish, Clash, Fleet Final
+
+[Red Fleet] red
+  seed 1 Black Pearl
+  seed 2 Queen Anne
+  seed 3 Sea Serpent
+  seed 4 Jolly Roger
+  seed 5 Kraken
+  seed 6 Barnacle Betty
+  Sea Serpent beats Barnacle Betty 2-1
+  Jolly Roger beats Kraken 2-0
+  Black Pearl beats Jolly Roger 3-1
+  Queen Anne beats Sea Serpent 3-2
+  Black Pearl beats Queen Anne 4-2
+
+[Blue Fleet] blue
+  seed 1 Flying Dutchman
+  seed 2 Salty Dog
+  seed 3 Grog Hound
+  seed 4 Marauder
+  seed 5 Tidewater
+  seed 6 Coral Cutlass
+  Grog Hound beats Coral Cutlass 2-1
+  Marauder beats Tidewater 2-1
+  Flying Dutchman beats Marauder 3-0
+  Salty Dog beats Grog Hound 3-2
+  Flying Dutchman beats Salty Dog 4-1
+
+Black Pearl beats Flying Dutchman 4-3
+```
+
 ### Journey Map
 
 ```dgmo
@@ -705,23 +789,16 @@ swimlane Weekly Publishing
 direction LR
 
 lane Writer gray
+  Draft Post -> Review
+  Revise -> Review
 lane Editor blue
-lane Social green
-
-Writer
-  Draft Post
-  Revise
-Editor
   <Review>
-  Schedule
-  Publish
-Social
+    -changes-> Revise
+    -ok-> Schedule
+  Schedule -> Publish
+  Publish -> Promote
+lane Social green
   Promote
-
-Draft Post -> <Review>
-<Review>
-  -changes-> Revise -> <Review>
-  -ok-> Schedule -> Publish -> Promote
 ```
 
 ### Tech Radar
