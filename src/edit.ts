@@ -88,13 +88,13 @@ export function enableBlockEditing(
 
   const original = source.replace(/\n$/, '');
 
-  let timer: ReturnType<typeof setTimeout> | null = null;
+  let timer: number | null = null;
   let dirtyDiagram = false;
   let lastSaved = original;
   let savePromise: Promise<void> | null = null;
 
   function clearTimer(): void {
-    if (timer != null) clearTimeout(timer);
+    if (timer != null) window.clearTimeout(timer);
     timer = null;
   }
 
@@ -104,7 +104,7 @@ export function enableBlockEditing(
 
   function scheduleUpdate(): void {
     clearTimer();
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
       timer = null;
       if (!block.isConnected) return;
       dirtyDiagram = true;
