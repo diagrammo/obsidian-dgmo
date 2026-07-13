@@ -436,7 +436,7 @@ Provisions t: Stores
   Hardtack 70
 ```
 
-## Business
+## Life
 
 ### Body
 
@@ -460,23 +460,80 @@ abs          e: Warm-up
   Plank — 3×45s
 ```
 
-### Cycle Diagram
+### Bracket
 
 ```dgmo
-cycle The Pirate Raid Cycle
-solid-fill
+bracket Buccaneer Brawl
 
-Scout blue
-  Spot merchant vessels from afar
+Black Pearl beats Sea Serpent 5-3
+Salty Dog beats Kraken 4-2
+Queen Anne beats Jolly Roger 6-1
+Flying Dutchman beats Barnacle Betty 3-2
+Black Pearl beats Salty Dog 2-1
+Queen Anne beats Flying Dutchman 4-3
+Black Pearl beats Queen Anne 7-5
+```
 
-Pursue green
-  Raise the colors, trim the sails
+### Bracket (seeded, two sides)
 
-Board orange
-  Swing across and seize the deck
+```dgmo
+bracket Grand Line Cup
+rounds Skirmish, Clash, Fleet Final
 
-Celebrate red
-  Divide the spoils, then repair
+[Red Fleet] red
+  seed 1 Black Pearl
+  seed 2 Queen Anne
+  seed 3 Sea Serpent
+  seed 4 Jolly Roger
+  seed 5 Kraken
+  seed 6 Barnacle Betty
+  Sea Serpent beats Barnacle Betty 2-1
+  Jolly Roger beats Kraken 2-0
+  Black Pearl beats Jolly Roger 3-1
+  Queen Anne beats Sea Serpent 3-2
+  Black Pearl beats Queen Anne 4-2
+
+[Blue Fleet] blue
+  seed 1 Flying Dutchman
+  seed 2 Salty Dog
+  seed 3 Grog Hound
+  seed 4 Marauder
+  seed 5 Tidewater
+  seed 6 Coral Cutlass
+  Grog Hound beats Coral Cutlass 2-1
+  Marauder beats Tidewater 2-1
+  Flying Dutchman beats Marauder 3-0
+  Salty Dog beats Grog Hound 3-2
+  Flying Dutchman beats Salty Dog 4-1
+
+Black Pearl beats Flying Dutchman 4-3
+```
+
+### Clock
+
+```dgmo
+clock Crew standups
+
+London        Europe/London        as Quartermaster
+New York      America/New_York     as Dani (NY)
+Los Angeles   America/Los_Angeles  as West coast
+```
+
+### Countdown
+
+```dgmo
+countdown Voyage to Tortuga
+
+target 2099-08-21
+```
+
+### Countdown (recurring, numbered)
+
+```dgmo
+countdown Ship's Commissioning
+every year on Jun 14
+since 2019
+since-label Nth Anniversary
 ```
 
 ### Family
@@ -536,80 +593,25 @@ now 64
 target 100
 ```
 
-### Countdown
+## Business
+
+### Cycle Diagram
 
 ```dgmo
-countdown Voyage to Tortuga
+cycle The Pirate Raid Cycle
+solid-fill
 
-target 2099-08-21
-```
+Scout blue
+  Spot merchant vessels from afar
 
-### Countdown (recurring, numbered)
+Pursue green
+  Raise the colors, trim the sails
 
-```dgmo
-countdown Ship's Commissioning
-every year on Jun 14
-since 2019
-since-label Nth Anniversary
-```
+Board orange
+  Swing across and seize the deck
 
-### Clock
-
-```dgmo
-clock Crew standups
-
-London        Europe/London        as Quartermaster
-New York      America/New_York     as Dani (NY)
-Los Angeles   America/Los_Angeles  as West coast
-```
-
-### Bracket
-
-```dgmo
-bracket Buccaneer Brawl
-
-Black Pearl beats Sea Serpent 5-3
-Salty Dog beats Kraken 4-2
-Queen Anne beats Jolly Roger 6-1
-Flying Dutchman beats Barnacle Betty 3-2
-Black Pearl beats Salty Dog 2-1
-Queen Anne beats Flying Dutchman 4-3
-Black Pearl beats Queen Anne 7-5
-```
-
-### Bracket (seeded, two sides)
-
-```dgmo
-bracket Grand Line Cup
-rounds Skirmish, Clash, Fleet Final
-
-[Red Fleet] red
-  seed 1 Black Pearl
-  seed 2 Queen Anne
-  seed 3 Sea Serpent
-  seed 4 Jolly Roger
-  seed 5 Kraken
-  seed 6 Barnacle Betty
-  Sea Serpent beats Barnacle Betty 2-1
-  Jolly Roger beats Kraken 2-0
-  Black Pearl beats Jolly Roger 3-1
-  Queen Anne beats Sea Serpent 3-2
-  Black Pearl beats Queen Anne 4-2
-
-[Blue Fleet] blue
-  seed 1 Flying Dutchman
-  seed 2 Salty Dog
-  seed 3 Grog Hound
-  seed 4 Marauder
-  seed 5 Tidewater
-  seed 6 Coral Cutlass
-  Grog Hound beats Coral Cutlass 2-1
-  Marauder beats Tidewater 2-1
-  Flying Dutchman beats Marauder 3-0
-  Salty Dog beats Grog Hound 3-2
-  Flying Dutchman beats Salty Dog 4-1
-
-Black Pearl beats Flying Dutchman 4-3
+Celebrate red
+  Divide the spoils, then repair
 ```
 
 ### Journey Map
