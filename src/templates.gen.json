@@ -21,11 +21,25 @@
     "source": "block Web Service Architecture\n\nsolid-fill\n\ntag Layer as l\n  Edge blue\n  Service green\n  Data orange\n\n[Clients] l: Edge\n  [Browser] [Mobile] [CLI]\n\n[Backend] l: Service\n  [Auth] [Orders]\n  [Inventory] [Billing]\n\n[Data] l: Data collapsed\n  [Postgres] [Redis]"
   },
   {
+    "id": "body",
+    "name": "Body",
+    "family": "life",
+    "description": "Human anatomy figure — colorable muscle groups over a skin layer",
+    "source": "body Powder Monkey Push Day\nmuscle\nfront\n\ntag Effort as e\n  Primary red\n  Secondary orange\n  Warm-up yellow\n\nchest        e: Primary\n  Barbell bench press — 4×8\ndeltoids     e: Primary\n  Overhead press — 3×10\ntriceps      e: Secondary\n  Rope pushdowns — 3×12\nabs          e: Warm-up\n  Plank — 3×45s"
+  },
+  {
     "id": "boxes-and-lines",
     "name": "Boxes and Lines",
     "family": "software",
     "description": "General-purpose node-edge diagrams with groups and tags",
     "source": "boxes-and-lines Pirate Fleet Command\n\ntag Status as s\n  Operational green\n  Damaged orange\n  Sunk red\n  Building blue default\n\nheat Crew red green\nshow-values\nactive-tag Status\n\nFlagship s: Operational, heat: 120\n  -> [Harbor Defenses]\n  -> IntelNetwork\n\n[Harbor Defenses]\n  FortCannon s: Operational, heat: 40\n    -> Watchtower\n  Watchtower s: Operational, heat: 12\n  SeaMines s: Building, heat: 6\n\nIntelNetwork s: Operational, heat: 35\n  -> SpyRing\n  -> SignalFlags\n\nSpyRing s: Operational, heat: 18\n  -> [Harbor Defenses]\n\nSignalFlags s: Damaged, heat: 8"
+  },
+  {
+    "id": "bracket",
+    "name": "Bracket",
+    "family": "life",
+    "description": "Single-elimination tournament bracket — winners auto-advance to a championship",
+    "source": "bracket Buccaneer Brawl\n\nBlack Pearl beats Sea Serpent 5-3\nSalty Dog beats Kraken 4-2\nQueen Anne beats Jolly Roger 6-1\nFlying Dutchman beats Barnacle Betty 3-2\nBlack Pearl beats Salty Dog 2-1\nQueen Anne beats Flying Dutchman 4-3\nBlack Pearl beats Queen Anne 7-5"
   },
   {
     "id": "c4",
@@ -40,6 +54,20 @@
     "family": "software",
     "description": "UML class hierarchies",
     "source": "class Ship Class Hierarchy\n\nsolid-fill \n\ninterface Vessel\n  + sail(): void\n  + anchor(): void\n\nabstract Ship implements Vessel\n  # name: string\n  # crew: number\n  + getName(): string\n\nGalleon extends Ship\n  - cannons: number\n  + fire(): void\n\nSloop extends Ship\n  - speed: number\n  + flee(): void\n\nenum ShipType\n  Galleon\n  Sloop\n  Frigate\n\nShip\n  -> ShipType has type"
+  },
+  {
+    "id": "clock",
+    "name": "Clock",
+    "family": "life",
+    "description": "Live world clocks — current local time for people or places across time zones, ticking every second; single person or whole-team overlap",
+    "source": "clock Crew standups\n\nLondon        Europe/London        as Quartermaster\nNew York      America/New_York     as Dani (NY)\nLos Angeles   America/Los_Angeles  as West coast"
+  },
+  {
+    "id": "countdown",
+    "name": "Countdown",
+    "family": "life",
+    "description": "Live \"N days until X\" that ticks every second and is accurate on every load — trip dates, launches, deadlines; the only dynamic chart type",
+    "source": "countdown Voyage to Tortuga\n\ntarget 2099-08-21"
   },
   {
     "id": "cycle",
@@ -96,6 +124,13 @@
     "family": "project",
     "description": "Project scheduling with task dependencies and milestones",
     "source": " gantt Blackbeard's Blockade — 1718\n\nstart 1718-05-01\ntoday-marker 1718-05-15\n\ntag Role as r\n  Command red\n  Crew blue\n  Captives orange\n\nmarker 1718-05-14 Ransom Deadline red\nera 1718-05-08 -> 1718-05-17 Blockade Active blue\n\n[Preparation] r: Command\n  Provision Ship 3d r: Crew, progress: 100\n    -> Anchor Fleet 2d r: Crew, progress: 100\n  Scout Harbor 3d r: Crew, progress: 100\n    -> Position Cannons 3d r: Crew, progress: 100\n  Recruit Hands 5d r: Crew, progress: 100\n\n+7d [Blockade] r: Crew\n  Seize Merchants 4d progress: 100\n    -> Hold Hostages 5d r: Captives, progress: 60\n  Patrol Perimeter 9d progress: 75\n  Demand Medicine 4d r: Command, progress: 100\n    -> Threaten Executions 3d? r: Command, progress: 90\n\n+17d [Resolution] r: Command\n  Receive Ransom 2d r: Captives\n    -> Release Prisoners 1d r: Captives\n      -> Set Sail 0d\n  Burn Evidence 2d r: Crew"
+  },
+  {
+    "id": "goal",
+    "name": "Goal",
+    "family": "life",
+    "description": "Single progress-toward-a-target value (now vs target) as a bar, thermometer, or gauge — KPIs, fundraising, quotas",
+    "source": "goal Doubloons Plundered ($)\nnow 6400\ntarget 10000\nnote\n  **Welcome aboard, matey!** The hold's filling nicely — `6.4k` of `10k` doubloons.\n  - *Tortuga* raid — counted and stowed\n  - **Port Royal** — first mate swears it's *almost* tallied\n  The bar rides **orange** at 64%; cross `80%` and she turns green."
   },
   {
     "id": "heatmap",

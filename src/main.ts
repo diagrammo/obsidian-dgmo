@@ -16,6 +16,7 @@ import {
 import { templates } from './templates';
 import { renderDgmo } from './render';
 import { tickCountdowns } from '@diagrammo/dgmo/countdown';
+import { tickClocks } from '@diagrammo/dgmo/clock';
 import { containsFence, replaceFencedSource } from './edit';
 import { ensureInterFonts } from './fonts';
 import {
@@ -48,13 +49,17 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
       ctx.addChild(new DgmoCodeBlock(el, source, this, ctx));
     });
 
-    // Single plugin-level ticker for the `countdown` chart type (the only
-    // dynamic dgmo chart). registerInterval auto-clears it on unload; each pass
-    // rescans the whole document, so blocks (re)mounted on note open tick
-    // live and are accurate on open (they re-render at open time). No-op when
-    // no countdown is on screen.
+    // Single plugin-level ticker for the dynamic dgmo chart types (`countdown`
+    // and `clock`). One interval drives both to avoid a second timer.
+    // registerInterval auto-clears it on unload; each pass rescans the whole
+    // document, so blocks (re)mounted on note open tick live and are accurate
+    // on open (they re-render at open time). No-op when no countdown or clock
+    // is on screen.
     this.registerInterval(
-      window.setInterval(() => tickCountdowns(document), 1000)
+      window.setInterval(() => {
+        tickCountdowns(document);
+        tickClocks(document);
+      }, 1000)
     );
 
     // Obsidian-style `![[foo.dgmo]]` transclusion (BL-101). Claims Obsidian's
