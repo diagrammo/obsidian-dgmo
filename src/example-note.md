@@ -522,17 +522,17 @@ Los Angeles   America/Los_Angeles  as West coast
 ### Countdown
 
 ```dgmo
-countdown Voyage to Tortuga
-
-target 2099-08-21
+countdown New Year
+every year on Jan 1
+on-day 🎉 Happy New Year!
 ```
 
 ### Countdown (recurring, numbered)
 
 ```dgmo
-countdown Ship's Commissioning
+countdown Wedding Anniversary
 every year on Jun 14
-since 2019
+since 2015
 since-label Nth Anniversary
 ```
 
