@@ -289,23 +289,23 @@ figure.dgmo {
    paints the tokens; Vim is loaded when Obsidian's Vim mode is on). Obsidian's
    app.css styles `.cm-editor` for the main note editor — neutralize the bits
    that would draw a border/background box or a gutter inside the source panel.
-   Metrics that move text live in edit.ts's EditorView.theme. */
-.dgmo-source-inner .cm-editor {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
+   Metrics that move text live in edit.ts's EditorView.theme.
+   Selectors are deliberately deep (`.dgmo .dgmo-source-inner .cm-editor…`)
+   so they out-specify Obsidian's app.css `.cm-editor` rules without
+   `!important` — the reset wins on specificity, not force. */
+.dgmo .dgmo-source-inner .cm-editor,
+.dgmo .dgmo-source-inner .cm-editor.cm-focused {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
 }
-.dgmo-source-inner .cm-editor.cm-focused {
-  outline: none !important;
-  box-shadow: none !important;
-}
-.dgmo-source-inner .cm-scroller {
+.dgmo .dgmo-source-inner .cm-scroller {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 /* No gutter/line-numbers in the compact block editor. */
-.dgmo-source-inner .cm-gutters {
-  display: none !important;
+.dgmo .dgmo-source-inner .cm-gutters {
+  display: none;
 }
 
 /* `![[foo.dgmo]]` transclusion (BL-101): strip Obsidian's default embed chrome
@@ -501,12 +501,12 @@ body.theme-dark .dgmo-dark {
  * while closed — so opening the panel only paints the border in. It never
  * reflows the diagram or shifts the toolbar: the SVG box and toolbar position
  * are identical open vs closed. */
-.dgmo:has(> .dgmo-source-wrap) {
+.dgmo.dgmo-has-source {
   border: 1px solid transparent;
   border-radius: 0.6em;
   padding: 0.75em 0.75em 0.5em;
 }
-.dgmo:has(> .dgmo-source-wrap[open]) {
+.dgmo.dgmo-source-open {
   border-color: rgba(127, 127, 127, 0.3);
 }
 

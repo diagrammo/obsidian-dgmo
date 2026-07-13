@@ -67,7 +67,7 @@
     "name": "Countdown",
     "family": "life",
     "description": "Live \"N days until X\" that ticks every second and is accurate on every load — trip dates, launches, deadlines; the only dynamic chart type",
-    "source": "countdown Voyage to Tortuga\n\ntarget 2099-08-21"
+    "source": "countdown New Year\nevery year on Jan 1\non-day 🎉 Happy New Year!"
   },
   {
     "id": "cycle",

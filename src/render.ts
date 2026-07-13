@@ -102,6 +102,7 @@ function mountBlock(
   const html = buildDgmoBlockHtml(source, svgsHtml, { mode: 'showcase' });
   const block = appendBlockHtml(container, html);
   if (!block) return null;
+  frameSourcePanel(block);
   retargetOpenLink(block, source, isDark, paletteId);
   injectExpandButton(block);
   injectDocsButton(block, source);
@@ -115,6 +116,25 @@ function mountBlock(
     });
   }
   return { block, flush };
+}
+
+/**
+ * Frame state as classes instead of `:has()` selectors. When the block carries
+ * a source `<details>`, mark it `dgmo-has-source` (reserves the border frame)
+ * and mirror the panel's open/closed state onto `dgmo-source-open` (paints the
+ * border in). The `<details>` and these classes outlive edit re-renders —
+ * `updateDiagram` only swaps the `.dgmo-svg` slot, not the block or its panel.
+ */
+function frameSourcePanel(block: HTMLElement): void {
+  const details = block.querySelector<HTMLDetailsElement>(
+    'details.dgmo-source-wrap'
+  );
+  if (!details) return;
+  block.classList.add('dgmo-has-source');
+  block.classList.toggle('dgmo-source-open', details.open);
+  details.addEventListener('toggle', () => {
+    block.classList.toggle('dgmo-source-open', details.open);
+  });
 }
 
 /**
