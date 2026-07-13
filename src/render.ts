@@ -29,6 +29,17 @@ function resolvePalette(id: string): PaletteConfig {
   return resolvePaletteOrFallback(id);
 }
 
+// Mirrors the `transparentBackground` setting so the three embed-normalize call
+// sites don't each need it threaded through their (differing) signatures. Set
+// from main.ts on load and on every settings change. `map` never reaches these
+// sites — it branches earlier via `looksLikeMap` — so no type-awareness needed.
+let embedBackground: 'transparent' | 'opaque' = 'transparent';
+
+/** Called by the plugin when settings load or change. */
+export function setEmbedBackground(transparent: boolean): void {
+  embedBackground = transparent ? 'transparent' : 'opaque';
+}
+
 /**
  * Parse an HTML string produced by `@diagrammo/dgmo/block` and append its
  * root element to `container`. DOMParser + importNode rather than innerHTML —
@@ -417,7 +428,7 @@ export async function renderDiagramThumbnail(
     if (!container.isConnected) return;
     appendBlockHtml(
       container,
-      `<div class="dgmo-svg">${normalizeSvgForEmbed(result.svg)}</div>`
+      `<div class="dgmo-svg">${normalizeSvgForEmbed(result.svg, { background: embedBackground })}</div>`
     );
   } catch {
     /* thumbnail best-effort — leave the tile label */
@@ -489,7 +500,7 @@ export async function renderDgmo(
   const mounted = mountBlock(
     container,
     source,
-    `<div class="dgmo-svg">${normalizeSvgForEmbed(svg)}</div>`,
+    `<div class="dgmo-svg">${normalizeSvgForEmbed(svg, { background: embedBackground })}</div>`,
     isDark,
     paletteId,
     onSave,
@@ -541,7 +552,7 @@ export async function updateDiagram(
     } else if (!result.svg) {
       html = errorBlockHtml(new Error('No SVG output from dgmo render().'), '');
     } else {
-      html = normalizeSvgForEmbed(result.svg);
+      html = normalizeSvgForEmbed(result.svg, { background: embedBackground });
     }
   } catch (err) {
     html = errorBlockHtml(

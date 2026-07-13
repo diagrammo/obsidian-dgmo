@@ -15,6 +15,7 @@ Havana yellow     430`;
 export interface DgmoSettings {
   palette: string;
   theme: 'auto' | 'light' | 'dark';
+  transparentBackground: boolean;
   align: 'left' | 'center';
   maxWidth: 'full' | '720' | '560';
 }
@@ -22,6 +23,7 @@ export interface DgmoSettings {
 export const DEFAULT_SETTINGS: DgmoSettings = {
   palette: 'slate',
   theme: 'auto',
+  transparentBackground: true,
   align: 'left',
   maxWidth: 'full',
 };
@@ -223,6 +225,20 @@ export class DgmoSettingTab extends PluginSettingTab {
         dropdown.setValue(this.plugin.settings.theme);
         dropdown.onChange(async (value) => {
           this.plugin.settings.theme = value as DgmoSettings['theme'];
+          await this.plugin.saveSettings();
+          this.plugin.refreshAll();
+        });
+      });
+
+    new Setting(containerEl)
+      .setName('Transparent background')
+      .setDesc(
+        'Let diagrams blend into the note background instead of painting their own. Turn off to give every diagram a solid backdrop.'
+      )
+      .addToggle((toggle) => {
+        toggle.setValue(this.plugin.settings.transparentBackground);
+        toggle.onChange(async (value) => {
+          this.plugin.settings.transparentBackground = value;
           await this.plugin.saveSettings();
           this.plugin.refreshAll();
         });

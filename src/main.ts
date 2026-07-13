@@ -14,7 +14,7 @@ import {
   openBlockInEditor,
 } from './new-diagram';
 import { templates } from './templates';
-import { renderDgmo } from './render';
+import { renderDgmo, setEmbedBackground } from './render';
 import { tickCountdowns } from '@diagrammo/dgmo/countdown';
 import { tickClocks } from '@diagrammo/dgmo/clock';
 import { containsFence, replaceFencedSource } from './edit';
@@ -164,10 +164,12 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
   async loadSettings() {
     const loaded = (await this.loadData()) as Partial<DgmoSettings> | null;
     this.settings = { ...DEFAULT_SETTINGS, ...(loaded ?? {}) };
+    setEmbedBackground(this.settings.transparentBackground);
   }
 
   async saveSettings() {
     await this.saveData(this.settings);
+    setEmbedBackground(this.settings.transparentBackground);
   }
 
   private resolveIsDark(): boolean {
