@@ -266,11 +266,11 @@ series
 x-label Port of Call
 y-label Doubloons (thousands)
 
-Nassau     4.2  1.1  0.6
-Tortuga    6.5  1.9  0.9
-Port Royal 9.1  3.4  1.7
-Isla Muerta 7.8  4.2  2.3
-Kingston   11.4  5.1  3.0
+Nassau       4.2 1.1 0.6
+Tortuga      6.5 1.9 0.9
+Port Royal   9.1 3.4 1.7
+Isla Muerta  7.8 4.2 2.3
+Kingston    11.4 5.1 3.0
 ```
 
 ### Pie Chart
@@ -514,9 +514,9 @@ Black Pearl beats Flying Dutchman 4-3
 ```dgmo
 clock Crew standups
 
-London        as Quartermaster
-New York      as Dani (NY)
-Los Angeles   as West coast
+London as Quartermaster
+New York as Dani (NY)
+Los Angeles as West coast
 ```
 
 ### Countdown
