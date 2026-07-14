@@ -514,9 +514,9 @@ Black Pearl beats Flying Dutchman 4-3
 ```dgmo
 clock Crew standups
 
-London        Europe/London        as Quartermaster
-New York      America/New_York     as Dani (NY)
-Los Angeles   America/Los_Angeles  as West coast
+London        as Quartermaster
+New York      as Dani (NY)
+Los Angeles   as West coast
 ```
 
 ### Countdown

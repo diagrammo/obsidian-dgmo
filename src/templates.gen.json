@@ -60,7 +60,7 @@
     "name": "Clock",
     "family": "life",
     "description": "Live world clocks — current local time for people or places across time zones, ticking every second; single person or whole-team overlap",
-    "source": "clock Crew standups\n\nLondon        Europe/London        as Quartermaster\nNew York      America/New_York     as Dani (NY)\nLos Angeles   America/Los_Angeles  as West coast"
+    "source": "clock Crew standups\n\nLondon as Quartermaster\nNew York as Dani (NY)\nLos Angeles as West coast"
   },
   {
     "id": "countdown",
