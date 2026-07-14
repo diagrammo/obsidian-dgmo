@@ -353,11 +353,13 @@ function openDgmoLightbox(block: HTMLElement): void {
 
   const wrappers = block.querySelectorAll('.dgmo-light, .dgmo-dark, .dgmo-svg');
   let svg: SVGSVGElement | null = null;
+  let bg: string | null = null;
   for (const w of Array.from(wrappers)) {
     if (win.getComputedStyle(w).display === 'none') continue;
     const found = w.querySelector('svg');
     if (found) {
       svg = found as SVGSVGElement;
+      bg = w.getAttribute('data-dgmo-bg');
       break;
     }
   }
@@ -380,6 +382,10 @@ function openDgmoLightbox(block: HTMLElement): void {
 
   const host = doc.createElement('div');
   host.className = 'dgmo-lightbox-svg';
+  // Always paint an opaque surface behind the enlarged diagram — transparent
+  // embeds strip the chart bg from the SVG, so without this the note shows
+  // through the expanded view. Use the block's own palette bg when stashed.
+  if (bg) host.style.background = bg;
   host.appendChild(clone);
 
   dialog.appendChild(closeBtn);
@@ -428,7 +434,7 @@ export async function renderDiagramThumbnail(
     if (!container.isConnected) return;
     appendBlockHtml(
       container,
-      `<div class="dgmo-svg">${normalizeSvgForEmbed(result.svg, { background: embedBackground })}</div>`
+      `<div class="dgmo-svg" data-dgmo-bg="${resolvePalette(paletteId)[isDark ? 'dark' : 'light'].bg}">${normalizeSvgForEmbed(result.svg, { background: embedBackground })}</div>`
     );
   } catch {
     /* thumbnail best-effort — leave the tile label */
@@ -500,7 +506,7 @@ export async function renderDgmo(
   const mounted = mountBlock(
     container,
     source,
-    `<div class="dgmo-svg">${normalizeSvgForEmbed(svg, { background: embedBackground })}</div>`,
+    `<div class="dgmo-svg" data-dgmo-bg="${resolvePalette(paletteId)[isDark ? 'dark' : 'light'].bg}">${normalizeSvgForEmbed(svg, { background: embedBackground })}</div>`,
     isDark,
     paletteId,
     onSave,
