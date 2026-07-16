@@ -11,14 +11,14 @@
     "name": "Bar",
     "family": "data",
     "description": "Categorical comparisons for 3 - 5 figures",
-    "source": "bar Treasure Hauls by Port\n\nPort Royal blue   850\nTortuga green     620\nNassau red       1100\nHavana yellow     430\nCartagena purple  780"
+    "source": "bar Plunder by Voyage\nx-label Voyage\ny-label Doubloons\n\nstack\n  Gold red\n  Silver orange\n  Spices yellow\n  Rum green\n\nSpanish Main     480 320 210 150\nBarbary Coast    360 290 340 180\nWindward Passage 520 410 160 240\nCoral Run        300 260 380 200"
   },
   {
     "id": "block",
     "name": "Block",
     "family": "software",
     "description": "",
-    "source": "block Web Service Architecture\n\nsolid-fill\n\ntag Layer as l\n  Edge blue\n  Service green\n  Data orange\n\n[Clients] l: Edge\n  [Browser] [Mobile] [CLI]\n\n[Backend] l: Service\n  [Auth] [Orders]\n  [Inventory] [Billing]\n\n[Data] l: Data collapsed\n  [Postgres] [Redis]"
+    "source": "block Web Service Architecture\n\ntag Layer as l\n  Edge red\n  Service green\n  Data blue\n\n[Clients] l: Edge\n  [Browser] [Mobile] [CLI]\n\n[Backend] l: Service\n  [Auth] [Orders]\n  [Inventory] [Billing]\n\n[Data] l: Data collapsed\n  [Postgres] [Redis]"
   },
   {
     "id": "body",
@@ -32,35 +32,35 @@
     "name": "Boxes and Lines",
     "family": "software",
     "description": "General-purpose node-edge diagrams with groups and tags",
-    "source": "boxes-and-lines Pirate Fleet Command\n\ntag Status as s\n  Operational green\n  Damaged orange\n  Sunk red\n  Building blue default\n\nheat Crew red green\nshow-values\nactive-tag Status\n\nFlagship s: Operational, heat: 120\n  -> [Harbor Defenses]\n  -> IntelNetwork\n\n[Harbor Defenses]\n  FortCannon s: Operational, heat: 40\n    -> Watchtower\n  Watchtower s: Operational, heat: 12\n  SeaMines s: Building, heat: 6\n\nIntelNetwork s: Operational, heat: 35\n  -> SpyRing\n  -> SignalFlags\n\nSpyRing s: Operational, heat: 18\n  -> [Harbor Defenses]\n\nSignalFlags s: Damaged, heat: 8"
+    "source": "boxes-and-lines Pirate Fleet Command\n\ntag Status as s\n  Operational green\n  Damaged red\n  Building blue default\n\nheat Crew red green\nshow-values\nactive-tag Status\n\nFlagship s: Operational, heat: 120\n  -> [Harbor Defenses]\n  -> IntelNetwork\n\n[Harbor Defenses]\n  FortCannon s: Operational, heat: 40\n    -> Watchtower\n  Watchtower s: Operational, heat: 12\n  SeaMines s: Building, heat: 6\n\nIntelNetwork s: Operational, heat: 35\n  -> SpyRing\n  -> SignalFlags\n\nSpyRing s: Operational, heat: 18\n  -> [Harbor Defenses]\n\nSignalFlags s: Damaged, heat: 8"
   },
   {
     "id": "bracket",
     "name": "Bracket",
     "family": "life",
     "description": "Single-elimination tournament bracket — winners auto-advance to a championship",
-    "source": "bracket Buccaneer Brawl\n\nBlack Pearl beats Sea Serpent 5-3\nSalty Dog beats Kraken 4-2\nQueen Anne beats Jolly Roger 6-1\nFlying Dutchman beats Barnacle Betty 3-2\nBlack Pearl beats Salty Dog 2-1\nQueen Anne beats Flying Dutchman 4-3\nBlack Pearl beats Queen Anne 7-5"
+    "source": "bracket Grand Line Cup\nrounds \n  Skirmish orange \n  Clash green\n  Fleet Final yellow\n\n[Red Fleet] red\n  seed 1 Black Pearl\n  seed 2 Queen Anne\n  seed 3 Sea Serpent\n  seed 4 Jolly Roger\n  seed 5 Kraken\n  seed 6 Barnacle Betty\n  Sea Serpent beats Barnacle Betty 2-1\n  Jolly Roger beats Kraken 2-0\n  Black Pearl beats Jolly Roger 3-1\n  Queen Anne beats Sea Serpent 3-2\n  Black Pearl beats Queen Anne 4-2\n\n[Blue Fleet] blue\n  seed 1 Flying Dutchman\n  seed 2 Salty Dog\n  seed 3 Grog Hound\n  seed 4 Marauder\n  seed 5 Tidewater\n  seed 6 Coral Cutlass\n  Grog Hound beats Coral Cutlass 2-1\n  Marauder beats Tidewater 2-1\n  Flying Dutchman beats Marauder 3-0\n  Salty Dog beats Grog Hound 3-2\n  Flying Dutchman beats Salty Dog 4-1\n\nBlack Pearl beats Flying Dutchman 4-3"
   },
   {
     "id": "c4",
     "name": "C4",
     "family": "software",
     "description": "System architecture (context, container, component, deployment)",
-    "source": "c4 Pirate Treasure Map System\nsolid-fill\n\ntag Scope as sc\n  Crew blue\n  External gray\n\nCaptain is a person description: Commands the fleet and plans raids\n\nTreasureMap is a system description: Tracks buried treasure locations and raid intelligence\n  -Views treasure locations-> Captain\n  -Sends raid alerts [carrier pigeon]-> Lookout\n\n  containers\n    ChartRoom is a container description: Interactive sea chart with treasure markers, tech: Parchment\n      -Queries treasure data [secret code]-> Vault\n\n    Vault is a container description: Encrypted treasure ledger and coordinates, tech: Iron Chest\n      -Reads/writes [quill and ink]-> TreasureLog\n\n    TreasureLog is a container description: \"Stores locations, guard counts, and loot inventories\", tech: Leather-Bound Tome\n\nLookout is an external description: Crow's nest spotter on allied ships, sc: External\n  ~Relays sightings to~> Captain\n\ndeployment\n  Flagship\n    container ChartRoom\n    container Vault\n  SecretCave\n    container TreasureLog"
+    "source": "c4 Pirate Treasure Map System\n\ntag Scope as sc\n  Crew blue\n  External gray\n\nCaptain is a person description: Commands the fleet and plans raids\n\nTreasureMap is a system description: Tracks buried treasure locations and raid intelligence\n  -Views treasure locations-> Captain\n  -Sends raid alerts [carrier pigeon]-> Lookout\n\n  containers\n    ChartRoom is a container description: Interactive sea chart with treasure markers, tech: Parchment\n      -Queries treasure data [secret code]-> Vault\n\n    Vault is a container description: Encrypted treasure ledger and coordinates, tech: Iron Chest\n      -Reads/writes [quill and ink]-> TreasureLog\n\n    TreasureLog is a container description: \"Stores locations, guard counts, and loot inventories\", tech: Leather-Bound Tome\n\nLookout is an external description: Crow's nest spotter on allied ships, sc: External\n  ~Relays sightings to~> Captain\n\ndeployment\n  Flagship\n    container ChartRoom\n    container Vault\n  SecretCave\n    container TreasureLog"
   },
   {
     "id": "class",
     "name": "Class",
     "family": "software",
     "description": "UML class hierarchies",
-    "source": "class Ship Class Hierarchy\n\nsolid-fill \n\ninterface Vessel\n  + sail(): void\n  + anchor(): void\n\nabstract Ship implements Vessel\n  # name: string\n  # crew: number\n  + getName(): string\n\nGalleon extends Ship\n  - cannons: number\n  + fire(): void\n\nSloop extends Ship\n  - speed: number\n  + flee(): void\n\nenum ShipType\n  Galleon\n  Sloop\n  Frigate\n\nShip\n  -> ShipType has type"
+    "source": "class Ship Class Hierarchy\n\ninterface Vessel\n  + sail(): void\n  + anchor(): void\n\nabstract Ship implements Vessel\n  # name: string\n  # crew: number\n  + getName(): string\n\nGalleon extends Ship\n  - cannons: number\n  + fire(): void\n\nSloop extends Ship\n  - speed: number\n  + flee(): void\n\nenum ShipType\n  Galleon\n  Sloop\n  Frigate\n\nShip\n  -> ShipType has type"
   },
   {
     "id": "clock",
     "name": "Clock",
     "family": "life",
     "description": "Live world clocks — current local time for people or places across time zones, ticking every second; single person or whole-team overlap",
-    "source": "clock Crew standups\n\nLondon as Quartermaster\nNew York as Dani (NY)\nLos Angeles as West coast"
+    "source": "clock Crew standups\ndirection lr \n\nTokyo as Deckhand\nLos Angeles as West coast\nNew York as Dani (NY)\nLondon as Quartermaster"
   },
   {
     "id": "countdown",
@@ -74,7 +74,7 @@
     "name": "Cycle",
     "family": "business",
     "description": "Cyclical process visualization (PDCA, OODA, DevOps loops)",
-    "source": "cycle The Pirate Raid Cycle\nsolid-fill\n\nScout blue\n  Spot merchant vessels from afar\n\nPursue green\n  Raise the colors, trim the sails\n\nBoard orange\n  Swing across and seize the deck\n\nCelebrate red\n  Divide the spoils, then repair"
+    "source": "cycle The Pirate Raid Cycle\n\nScout blue\n  Spot merchant vessels from afar\n\nPursue green\n  Raise the colors, trim the sails\n\nBoard orange\n  Swing across and seize the deck\n\nCelebrate red\n  Divide the spoils, then repair"
   },
   {
     "id": "er",
@@ -109,7 +109,7 @@
     "name": "Function Plot",
     "family": "data",
     "description": "Mathematical expressions",
-    "source": "function Cannonball Trajectories by Elevation\nx-label Distance (meters)\ny-label Height (meters)\nx 0 to 250\n\n15 degrees blue: -0.001*x^2 + 0.27*x\n30 degrees green: -0.002*x^2 + 0.58*x\n45 degrees red: -0.003*x^2 + 0.75*x"
+    "source": "function Trig & Exponential Curves\nx-label x\ny-label f(x)\nx 0 to 10\n\nSine blue: sin(x)\nCosine green: cos(x)"
   },
   {
     "id": "funnel",
@@ -151,7 +151,7 @@
     "name": "Journey Map",
     "family": "business",
     "description": "User experience flow with emotion scores, phases, and annotations",
-    "source": "journey-map A Cabin Boy's First Voyage\nsolid-fill\n\npersona Squidlips Sam color: blue\n  Greenhorn cabin boy, first time at sea\n  Sworn to the crew but quietly terrified\n\n[Signing On]\n  Sign the articles score: 4, emotion: Hopeful\n    description: Captain reads the code aloud — pay shares, no women aboard, lights out at 8\n\n[The Tempest]\n  Caught in a squall off the reef score: 1, emotion: Terrified\n    pain: Two crewmates lost overboard before dawn\n    thought: Maybe the merchant fleet wasn't so bad after all\n  Dawn, and she still floats score: 3, emotion: Relieved\n\n[The Prize]\n  Strike the colors score: 5, emotion: Triumphant\n    description: Heavy with silver from the Veracruz mines\n\n[Homecoming]\n  Bury a share on the island score: 5, emotion: Proud\n    thought: Three doubloons hidden where only he can find them\n  Back to the Rusty Anchor score: 4, emotion: Content\n    opportunity: Next time he signs on as a full hand, not a boy"
+    "source": "journey-map A Cabin Boy's First Voyage\n\npersona Squidlips Sam color: blue\n  Greenhorn cabin boy, first time at sea\n  Sworn to the crew but quietly terrified\n\n[Signing On]\n  Sign the articles score: 4, emotion: Hopeful\n    description: Captain reads the code aloud — pay shares, no women aboard, lights out at 8\n\n[The Tempest]\n  Caught in a squall off the reef score: 1, emotion: Terrified\n    pain: Two crewmates lost overboard before dawn\n    thought: Maybe the merchant fleet wasn't so bad after all\n  Dawn, and she still floats score: 3, emotion: Relieved\n\n[The Prize]\n  Strike the colors score: 5, emotion: Triumphant\n    description: Heavy with silver from the Veracruz mines\n\n[Homecoming]\n  Bury a share on the island score: 5, emotion: Proud\n    thought: Three doubloons hidden where only he can find them\n  Back to the Rusty Anchor score: 4, emotion: Content\n    opportunity: Next time he signs on as a full hand, not a boy"
   },
   {
     "id": "kanban",
@@ -165,28 +165,28 @@
     "name": "Line",
     "family": "data",
     "description": "",
-    "source": "line Ship Speed Over Voyage\nseries Knots\nx-label Day\ny-label Speed\n\nera Day 1 -> Day 3 Rough Seas red \nera Day 3 -> Day 7 Fair Winds blue\n\nDay 1  8\nDay 2 10\nDay 3  7\nDay 4 12\nDay 5  9\nDay 6 11\nDay 7  6"
+    "source": "line Plunder by Crew Over the Voyage\nseries\n  Cutlass Crew blue\n  Powder Monkeys green\n  Rigging Rats orange\nx-label Port of Call\ny-label Doubloons (thousands)\n\nera Nassau -> Port Royal Shakedown Run teal\nera Port Royal -> Kingston Golden Haul orange\n\nNassau       4.2 1.1 0.6\nTortuga      6.5 1.9 0.9\nPort Royal   9.1 3.4 1.7\nIsla Muerta  7.8 4.2 2.3\nKingston    11.4 5.1 3.0"
   },
   {
     "id": "map",
     "name": "Map",
     "family": "business",
     "description": "Geographic concept map: highlight/score regions, drop points of interest, connect with routes or edges",
-    "source": "map The Brethren's Caribbean\n\ntag Port as p\n  Home Port red\n  Friendly green\n  Spanish Prize orange\n\ntag Passage as l\n  Open Sea blue\n  Coastal Run teal\n\npoi Kingston p: Home Port, size: 120\npoi Havana p: Spanish Prize, size: 90\npoi Santo Domingo p: Friendly, size: 70\n\nroute Kingston\n  ~weigh anchor~> Havana l: Open Sea\n  ~raid the galleons~> Santo Domingo l: Coastal Run\n  ~careen & resupply~> Kingston l: Open Sea"
+    "source": "map Follow-the-Sun Support Desk\n\nhours 9-17\ndays mon-fri\n\npoi San Francisco clock label: West\npoi Denver US-CO clock label: Central\npoi Miami clock label: East \n\nroute Houston\n  ~> Chicago\n  ~> Washington"
   },
   {
     "id": "mindmap",
     "name": "Mind Map",
     "family": "business",
     "description": "Radial hierarchy of ideas branching from a central topic",
-    "source": "mindmap Product Strategy\n\ntag Priority as p\n  High red\n  Medium yellow\n  Low green\n\ntag Department as d\n  Engineering blue\n  Design purple\n  Marketing orange\n\nResearch d: Marketing\n  User Interviews p: High\n    Surveys description: Quarterly NPS survey\n    Focus Groups\n  Competitor Analysis d: Engineering\n    Feature Matrix\n    Pricing Review\nDevelopment p: High, d: Engineering\n  MVP Features\n    Auth System\n      description: Handle login, signup, OAuth flows\n    Dashboard\n  Nice-to-haves p: Low, collapsed: true\n    Dark Mode\n    Export PDF\nGo-to-Market d: Marketing\n  Launch Plan\n    Blog Post\n    Demo Video description: 2-min product walkthrough"
+    "source": "mindmap A Pirate's Preferred Booty\n\ntag Worth as w\n  Priceless red\n  Prized orange\n  Trifling green\n\ntag Hold as h\n  Treasury blue\n  Galley teal\n  Armory purple\n  Cargo yellow\n\nTreasure w: Priceless, h: Treasury\n  Gold collapsed: true\n    Doubloons description: Spanish-minted, coin of the realm\n    Ingots\n    Rings\n  Gems\n    Rubies w: Priceless\n    Emeralds\n    Pearls\n      Black Pearls w: Priceless\n  Pieces of Eight\nSpirits w: Prized, h: Galley\n  Rum w: Prized\n    Dark Rum\n    Spiced Rum\n    Grog description: Watered rum, the crew's daily ration\n  Whiskey\n  Wine w: Prized, collapsed: true\n    Port\n    Madeira\nShips w: Priceless, collapsed: true\n  Galleons description: Fat treasure haulers\n  Sloops\n  Frigates\nArmaments w: Prized, h: Armory, collapsed: true\n  Cannons w: Priceless\n    Powder w: Prized\n    Shot\n  Cutlasses\n  Muskets\nDry Goods w: Trifling, h: Cargo\n  Spices w: Prized, collapsed: true\n    Nutmeg\n    Pepper\n    Cloves\n  Silk\n  Salt Cod\n  Tobacco"
   },
   {
     "id": "org",
     "name": "Org",
     "family": "business",
     "description": "Reporting hierarchy",
-    "source": "org The Dread Fleet\nsolid-fill\nsub-node-label Crew\nshow-sub-node-count\n\ntag Rank as r\n  Sailor blue\n  Captain red\n  FirstMate orange\n  Quartermaster yellow\n  Bosun green\n  Gunner teal\n  Jester cyan\n  Swab purple\n\ntag Ship as s\n  Revenge blue\n  Serpent green\n  Phantom purple\n\ntag Status as st\n  Loyal green\n  Turncoat red\n  NewRecruit yellow\n\nBlackbeard r: Captain, s: Revenge\n  Anne Bonny r: FirstMate\n    [Gun Deck]\n      Cannonball Pete r: Gunner\n      Smokey Jack r: Gunner, st: NewRecruit\n      Powder Meg r: Swab, st: NewRecruit\n    [Boarding Party]\n      Cutlass Jim r: Bosun\n      Red Mary\n      One-Eyed Dan st: Turncoat\n  Calico Rackham r: Quartermaster\n    [Cargo Hold]\n      Barnacle Bob\n      Slippery Sal st: Turncoat\n  Long John r: FirstMate, s: Serpent\n    [Rigging Crew]\n      Monkey Fist r: Bosun\n      Pegleg Pete\n      Crow Jane\n    [Navigation]\n      Stargazer Quinn r: Quartermaster\n      Compass Rose st: NewRecruit"
+    "source": "org The Dread Fleet\nactive-tag Rank\nsub-node-label Crew\nshow-sub-node-count\n\ntag Rank as r\n  Sailor blue\n  Captain red\n  FirstMate orange\n  Quartermaster yellow\n  Bosun green\n  Gunner teal\n  Jester cyan\n  Swab purple\n\ntag Ship as s\n  Revenge blue\n  Serpent green\n  Phantom purple\n\ntag Status as st\n  Loyal green\n  Turncoat red\n  NewRecruit yellow\n\nBlackbeard r: Captain, s: Revenge\n  Anne Bonny r: FirstMate\n    [Gun Deck]\n      Cannonball Pete r: Gunner\n      Smokey Jack r: Gunner, st: NewRecruit\n      Powder Meg r: Swab, st: NewRecruit\n    [Boarding Party]\n      Cutlass Jim r: Bosun\n      Red Mary\n      One-Eyed Dan st: Turncoat\n  Calico Rackham r: Quartermaster\n    [Cargo Hold]\n      Barnacle Bob\n      Slippery Sal st: Turncoat\n  Long John r: FirstMate, s: Serpent\n    [Rigging Crew]\n      Monkey Fist r: Bosun\n      Pegleg Pete\n      Crow Jane\n    [Navigation]\n      Stargazer Quinn r: Quartermaster\n      Compass Rose st: NewRecruit"
   },
   {
     "id": "pert",
@@ -200,7 +200,7 @@
     "name": "Pie",
     "family": "data",
     "description": "",
-    "source": "pie Crew Roles Distribution\nsolid-fill\n//no-percent\n//no-value\n\nSailors          45\nGunners          20\nMarines          15\nOfficers          8\nSpecialists       7\nCooks & Surgeons  5"
+    "source": "pie Crew Roles Distribution\n\nSailors          45\nGunners          20\nMarines          15\nOfficers          8\nSpecialists       7\nCooks & Surgeons  5"
   },
   {
     "id": "polar-area",
@@ -214,7 +214,7 @@
     "name": "Pyramid",
     "family": "business",
     "description": "Stacked hierarchy of layers with descriptions (Maslow, DIKW)",
-    "source": "pyramid Pirate Crew Hierarchy\nsolid-fill\n\nCaptain purple\n  Final word on heading and plunder,\n  keeper of the ship's charter.\n\nQuartermaster blue\n  Second-in-command, arbitrates\n  disputes, divvies the booty.\n\nBoatswain & Gunner green\n  Keep the rigging tight and\n  the cannons ready.\n\nAble Seamen yellow\n  Haul lines, swab decks,\n  and stand watch.\n\nPowder Monkeys orange\n  Ferry shot and charges to the guns\n  during a broadside."
+    "source": "pyramid Pirate Crew Hierarchy\n\nCaptain purple\n  Final word on heading and plunder,\n  keeper of the ship's charter.\n\nQuartermaster blue\n  Second-in-command, arbitrates\n  disputes, divvies the booty.\n\nBoatswain & Gunner green\n  Keep the rigging tight and\n  the cannons ready.\n\nAble Seamen yellow\n  Haul lines, swab decks,\n  and stand watch.\n\nPowder Monkeys orange\n  Ferry shot and charges to the guns\n  during a broadside."
   },
   {
     "id": "quadrant",
@@ -235,14 +235,14 @@
     "name": "Radar",
     "family": "data",
     "description": "",
-    "source": "radar Ship Combat Rating\nsolid-fill\n\nFirepower       85\nSpeed           70\nArmor           60\nManeuverability 90\nCrew Morale     75"
+    "source": "radar Ship Combat Ratings by Vessel\nseries\n  Black Pearl blue\n  Queen Anne's Revenge green\n  Flying Dutchman purple\n\nFirepower       85 70 95\nSpeed           90 65 55\nArmor           60 80 90\nManeuverability 88 62 50\nCrew Morale     75 85 70\nCannon Range    70 78 92"
   },
   {
     "id": "ring",
     "name": "Ring",
     "family": "business",
     "description": "Concentric rings showing nested or hierarchical categories (read core-out)",
-    "source": "ring Captain's Sphere of Influence\n\nsolid-fill \n\nCaptain  red\n  Final word on heading and plunder,\n  keeper of the ship's charter.\n\nQuartermaster orange\n  Second-in-command, arbitrates disputes and divvies the booty\n\nCrew yellow\n  Deckhands, gunners, and powder\n  monkeys aboard the ship.\n\nAllied Crews green\n  Loose alliances kept by oath\n  or shared bounty in fair seas.\n\nThe Open Sea blue\n  Weather, currents, and rival\n  flags beyond any captain's reach."
+    "source": "ring Captain's Sphere of Influence\n\nCaptain  red\n  Final word on heading and plunder,\n  keeper of the ship's charter.\n\nQuartermaster orange\n  Second-in-command, arbitrates disputes and divvies the booty\n\nCrew yellow\n  Deckhands, gunners, and powder\n  monkeys aboard the ship.\n\nAllied Crews green\n  Loose alliances kept by oath\n  or shared bounty in fair seas.\n\nThe Open Sea blue\n  Weather, currents, and rival\n  flags beyond any captain's reach."
   },
   {
     "id": "sankey",
@@ -256,7 +256,7 @@
     "name": "Scatter Plot",
     "family": "data",
     "description": "2D data points or bubble chart",
-    "source": "scatter Pirate Captains\nx-label Ruthlessness\ny-label Treasure\n\n[Caribbean] red\n  Blackbeard   90  8500\n  Calico Jack  55  3200\n  Anne Bonny   70  2800\n  Henry Morgan 85 12000\n  Charles Vane 75  4100\n\n\n[Atlantic] blue\n  Black Sam Bellamy   60  9200\n  Bartholomew Roberts 88 11000\n  Edward Low          95  5500\n  Stede Bonnet        30  1800\n\n\n\n[Indian Ocean] green\n  Henry Every  80 14000\n  William Kidd 65  6800\n  Thomas Tew   50  7200"
+    "source": "scatter Pirate Fleets of the Caribbean\nx-label Ruthlessness\ny-label Plunder (chests)\nsize-label Crew\n\n[English Pirates] red\n  Blackbeard  90 85 300\n  Calico Jack 55 32 110\n  Anne Bonny  70 28  90\n\n[French Buccaneers] blue\n  L'Olonnais      80 60 220\n  Pierre le Grand 45 25  70\n\n[Welsh Privateers] green\n  Henry Morgan        85 120 470\n  Bartholomew Roberts 88 110 510"
   },
   {
     "id": "sequence",
@@ -277,7 +277,7 @@
     "name": "Sketch",
     "family": "software",
     "description": "GUI-first constrained canvas — place shapes, connect, tag",
-    "source": "sketch Plunder Pipeline\n\ntag Crew\n  Deck\n  Hold\n\nSpyglass Feed shape: database, at: 0 0, crew: Deck\n  -sightings-> con\nCaptain's Console as con at: 2 0, crew: Deck\n  -orders-> bq\n  -supplies-> armory\nDivvy Service as dvy at: 4 0, crew: Hold\n  -entries-> ledger\n\n[Below Decks] at: 2 2, crew: Hold\n  Booty Queue as bq shape: queue, at: 0 0\n    ~haul~> dvy\n  Ship Ledger as ledger shape: database, at: 2 0\n\n[Armory] as armory at: 0 2, collapsed\n  Powder Store at: 0 0\n  Cutlass Rack at: 0 1"
+    "source": "sketch Plunder Pipeline\n\ntag Crew\n  Deck\n  Hold\n\nSpyglass Feed shape: database, at: 0 0, crew: Deck\n  -sightings-> con\n\n[Below Decks] crew: Hold\n  Divvy Service as dvy at: 1 -3\n    -entries-> ledger\n  Captain's Console as con at: -3 0, crew: Deck\n    -orders-> bq\n  Booty Queue as bq shape: queue, at: 0 0\n    ~haul~> dvy\n  Ship Ledger as ledger shape: database, at: 2 0\n  Powder Store at: -6 0"
   },
   {
     "id": "slope",
@@ -291,7 +291,7 @@
     "name": "State",
     "family": "software",
     "description": "State machine / lifecycle transitions",
-    "source": "state Ship Battle Lifecycle\nsolid-fill\n\n[*] -> Sailing\n\nSailing\n  -enemy spotted-> BattleStations\n\nBattleStations\n  -in range-> Engaging\n  -enemy retreats-> Sailing\n\n[Combat]\n  Engaging\n    -alongside-> Boarding\n    -hull breach-> Sinking\n    -outgunned-> Retreating\n\n  Boarding\n    -crew wins-> Victorious\n    -crew loses-> Captured\n\n[Aftermath]\n  Victorious\n    -loot taken-> Sailing\n\n  Retreating\n    -escaped-> Sailing\n    -caught-> Captured\n\nCaptured -> [*]\nSinking -> [*]"
+    "source": "state Ship Battle Lifecycle\n\n[*] -> Sailing\n\nSailing\n  -enemy spotted-> BattleStations\n\n[Losses] gray\n  Captured -> [*]\n  Sinking -> [*]\n\n[Aftermath] teal\n  Victorious\n    -loot taken-> Sailing\n\n  Retreating\n    -escaped-> Sailing\n    -caught-> Captured\n\n[Combat] red\n  Engaging\n    -alongside-> Boarding\n    -hull breach-> Sinking\n    -outgunned-> Retreating\n\n  Boarding\n    -crew wins-> Victorious\n    -crew loses-> Captured\n\nBattleStations\n  -in range-> Engaging\n  -enemy retreats-> Sailing"
   },
   {
     "id": "swimlane",
@@ -347,6 +347,6 @@
     "name": "Word Cloud",
     "family": "business",
     "description": "Term frequency visualization",
-    "source": "wordcloud Pirate Skills\n\n// word weight (higher = larger)\nswordsmanship 95\nnavigation    88\nseamanship    85\ngunnery       80\nleadership    75\ncartography   70\nintimidation  68\nsailing       65\nplundering    60\nknot-tying    55\nlookout       50\ncooking       45\ncarpentry     40\nfishing       35"
+    "source": "wordcloud Pirate Skills\n\n// word weight (higher = larger)\nswordsmanship 100\nnavigation    72\ngunnery       54\nseamanship    46\nplundering    34\nleadership    28\ncartography   24\nintimidation  20\nsailing       17\nknot-tying    14\nlookout       12\ncooking       10\ncarpentry     8\nparley        7\nfishing       6\nrum-rationing 5\nmutiny        4\npatch-sails   4\nswabbing      3\nshanties      3"
   }
 ]

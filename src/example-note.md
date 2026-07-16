@@ -110,18 +110,6 @@ Dec 690
 ### Bar Chart
 
 ```dgmo
-bar Treasure Hauls by Port
-
-Port Royal blue   850
-Tortuga green     620
-Nassau red       1100
-Havana yellow     430
-Cartagena purple  780
-```
-
-### Bar Chart (stacked)
-
-```dgmo
 bar Plunder by Voyage
 x-label Voyage
 y-label Doubloons
@@ -136,28 +124,6 @@ Spanish Main     480 320 210 150
 Barbary Coast    360 290 340 180
 Windward Passage 520 410 160 240
 Coral Run        300 260 380 200
-```
-
-### Bubble Chart (scatter + size)
-
-```dgmo
-scatter Pirate Fleets of the Caribbean
-x-label Ruthlessness
-y-label Plunder (chests)
-size-label Crew
-
-[English Pirates] red
-  Blackbeard    90  85  300
-  Calico Jack   55  32  110
-  Anne Bonny    70  28   90
-
-[French Buccaneers] blue
-  L'Olonnais         80  60  220
-  Pierre le Grand    45  25   70
-
-[Welsh Privateers] green
-  Henry Morgan  85  120  470
-  Bartholomew Roberts  88  110  510
 ```
 
 ### Arc — Chord Layout
@@ -187,25 +153,24 @@ Rackham    -> Roberts   100
 pie Plunder Hold Contents
 hole 0.5
 
-Gold Doubloons   420
-Silver Pieces    260
-Spices & Silk    180
-Rum Casks        140
-Gunpowder         90
+Gold Doubloons    420
+Silver Pieces     260
+Spices & Silk     180
+Rum Casks         140
+Gunpowder          90
 Navigation Charts  30
 ```
 
 ### Function Plot
 
 ```dgmo
-function Cannonball Trajectories by Elevation
-x-label Distance (meters)
-y-label Height (meters)
-x 0 to 250
+function Trig & Exponential Curves
+x-label x
+y-label f(x)
+x 0 to 10
 
-15 degrees blue: -0.001*x^2 + 0.27*x
-30 degrees green: -0.002*x^2 + 0.58*x
-45 degrees red: -0.003*x^2 + 0.75*x
+Sine blue: sin(x)
+Cosine green: cos(x)
 ```
 
 ### Funnel Chart
@@ -238,26 +203,6 @@ West Africa     3 3 4 3 5 4
 ### Line Chart
 
 ```dgmo
-line Ship Speed Over Voyage
-series Knots
-x-label Day
-y-label Speed
-
-era Day 1 -> Day 3 Rough Seas red 
-era Day 3 -> Day 7 Fair Winds blue
-
-Day 1  8
-Day 2 10
-Day 3  7
-Day 4 12
-Day 5  9
-Day 6 11
-Day 7  6
-```
-
-### Line Chart (Multi-series)
-
-```dgmo
 line Plunder by Crew Over the Voyage
 series
   Cutlass Crew blue
@@ -265,6 +210,9 @@ series
   Rigging Rats orange
 x-label Port of Call
 y-label Doubloons (thousands)
+
+era Nassau -> Port Royal Shakedown Run teal
+era Port Royal -> Kingston Golden Haul orange
 
 Nassau       4.2 1.1 0.6
 Tortuga      6.5 1.9 0.9
@@ -277,9 +225,6 @@ Kingston    11.4 5.1 3.0
 
 ```dgmo
 pie Crew Roles Distribution
-solid-fill
-//no-percent
-//no-value
 
 Sailors          45
 Gunners          20
@@ -304,14 +249,18 @@ Seamanship    80
 ### Radar Chart
 
 ```dgmo
-radar Ship Combat Rating
-solid-fill
+radar Ship Combat Ratings by Vessel
+series
+  Black Pearl blue
+  Queen Anne's Revenge green
+  Flying Dutchman purple
 
-Firepower       85
-Speed           70
-Armor           60
-Maneuverability 90
-Crew Morale     75
+Firepower       85 70 95
+Speed           90 65 55
+Armor           60 80 90
+Maneuverability 88 62 50
+Crew Morale     75 85 70
+Cannon Range    70 78 92
 ```
 
 ### Sankey Diagram
@@ -349,30 +298,23 @@ Ship Provisions -> Long Voyages 1000
 ### Scatter Plot
 
 ```dgmo
-scatter Pirate Captains
+scatter Pirate Fleets of the Caribbean
 x-label Ruthlessness
-y-label Treasure
+y-label Plunder (chests)
+size-label Crew
 
-[Caribbean] red
-  Blackbeard   90  8500
-  Calico Jack  55  3200
-  Anne Bonny   70  2800
-  Henry Morgan 85 12000
-  Charles Vane 75  4100
+[English Pirates] red
+  Blackbeard  90 85 300
+  Calico Jack 55 32 110
+  Anne Bonny  70 28  90
 
+[French Buccaneers] blue
+  L'Olonnais      80 60 220
+  Pierre le Grand 45 25  70
 
-[Atlantic] blue
-  Black Sam Bellamy   60  9200
-  Bartholomew Roberts 88 11000
-  Edward Low          95  5500
-  Stede Bonnet        30  1800
-
-
-
-[Indian Ocean] green
-  Henry Every  80 14000
-  William Kidd 65  6800
-  Thomas Tew   50  7200
+[Welsh Privateers] green
+  Henry Morgan        85 120 470
+  Bartholomew Roberts 88 110 510
 ```
 
 ### Slope Chart
@@ -463,22 +405,11 @@ abs          e: Warm-up
 ### Bracket
 
 ```dgmo
-bracket Buccaneer Brawl
-
-Black Pearl beats Sea Serpent 5-3
-Salty Dog beats Kraken 4-2
-Queen Anne beats Jolly Roger 6-1
-Flying Dutchman beats Barnacle Betty 3-2
-Black Pearl beats Salty Dog 2-1
-Queen Anne beats Flying Dutchman 4-3
-Black Pearl beats Queen Anne 7-5
-```
-
-### Bracket (seeded, two sides)
-
-```dgmo
 bracket Grand Line Cup
-rounds Skirmish, Clash, Fleet Final
+rounds 
+  Skirmish orange 
+  Clash green
+  Fleet Final yellow
 
 [Red Fleet] red
   seed 1 Black Pearl
@@ -513,10 +444,12 @@ Black Pearl beats Flying Dutchman 4-3
 
 ```dgmo
 clock Crew standups
+direction lr 
 
-London as Quartermaster
-New York as Dani (NY)
+Tokyo as Deckhand
 Los Angeles as West coast
+New York as Dani (NY)
+London as Quartermaster
 ```
 
 ### Countdown
@@ -599,7 +532,6 @@ target 100
 
 ```dgmo
 cycle The Pirate Raid Cycle
-solid-fill
 
 Scout blue
   Spot merchant vessels from afar
@@ -618,7 +550,6 @@ Celebrate red
 
 ```dgmo
 journey-map A Cabin Boy's First Voyage
-solid-fill
 
 persona Squidlips Sam color: blue
   Greenhorn cabin boy, first time at sea
@@ -648,32 +579,25 @@ persona Squidlips Sam color: blue
 ### Map
 
 ```dgmo
-map The Brethren's Caribbean
+map Follow-the-Sun Support Desk
 
-tag Port as p
-  Home Port red
-  Friendly green
-  Spanish Prize orange
+hours 9-17
+days mon-fri
 
-tag Passage as l
-  Open Sea blue
-  Coastal Run teal
+poi San Francisco clock label: West
+poi Denver US-CO clock label: Central
+poi Miami clock label: East 
 
-poi Kingston p: Home Port, size: 120
-poi Havana p: Spanish Prize, size: 90
-poi Santo Domingo p: Friendly, size: 70
-
-route Kingston
-  ~weigh anchor~> Havana l: Open Sea
-  ~raid the galleons~> Santo Domingo l: Coastal Run
-  ~careen & resupply~> Kingston l: Open Sea
+route Houston
+  ~> Chicago
+  ~> Washington
 ```
 
 ### Org Chart
 
 ```dgmo
 org The Dread Fleet
-solid-fill
+active-tag Rank
 sub-node-label Crew
 show-sub-node-count
 
@@ -725,7 +649,6 @@ Blackbeard r: Captain, s: Revenge
 
 ```dgmo
 pyramid Pirate Crew Hierarchy
-solid-fill
 
 Captain purple
   Final word on heading and plunder,
@@ -775,8 +698,6 @@ Spy            0.8  0.1
 
 ```dgmo
 ring Captain's Sphere of Influence
-
-solid-fill 
 
 Captain  red
   Final word on heading and plunder,
@@ -970,20 +891,26 @@ sw + nav + lead Legendary Pirates
 wordcloud Pirate Skills
 
 // word weight (higher = larger)
-swordsmanship 95
-navigation    88
-seamanship    85
-gunnery       80
-leadership    75
-cartography   70
-intimidation  68
-sailing       65
-plundering    60
-knot-tying    55
-lookout       50
-cooking       45
-carpentry     40
-fishing       35
+swordsmanship 100
+navigation    72
+gunnery       54
+seamanship    46
+plundering    34
+leadership    28
+cartography   24
+intimidation  20
+sailing       17
+knot-tying    14
+lookout       12
+cooking       10
+carpentry     8
+parley        7
+fishing       6
+rum-rationing 5
+mutiny        4
+patch-sails   4
+swabbing      3
+shanties      3
 ```
 
 ## Project
@@ -1249,8 +1176,7 @@ boxes-and-lines Pirate Fleet Command
 
 tag Status as s
   Operational green
-  Damaged orange
-  Sunk red
+  Damaged red
   Building blue default
 
 heat Crew red green
@@ -1281,7 +1207,6 @@ SignalFlags s: Damaged, heat: 8
 
 ```dgmo
 c4 Pirate Treasure Map System
-solid-fill
 
 tag Scope as sc
   Crew blue
@@ -1317,8 +1242,6 @@ deployment
 
 ```dgmo
 class Ship Class Hierarchy
-
-solid-fill 
 
 interface Vessel
   + sail(): void
@@ -1460,37 +1383,57 @@ RumRunner f: Bonny
 ### Mindmap
 
 ```dgmo
-mindmap Product Strategy
+mindmap A Pirate's Preferred Booty
 
-tag Priority as p
-  High red
-  Medium yellow
-  Low green
+tag Worth as w
+  Priceless red
+  Prized orange
+  Trifling green
 
-tag Department as d
-  Engineering blue
-  Design purple
-  Marketing orange
+tag Hold as h
+  Treasury blue
+  Galley teal
+  Armory purple
+  Cargo yellow
 
-Research d: Marketing
-  User Interviews p: High
-    Surveys description: Quarterly NPS survey
-    Focus Groups
-  Competitor Analysis d: Engineering
-    Feature Matrix
-    Pricing Review
-Development p: High, d: Engineering
-  MVP Features
-    Auth System
-      description: Handle login, signup, OAuth flows
-    Dashboard
-  Nice-to-haves p: Low, collapsed: true
-    Dark Mode
-    Export PDF
-Go-to-Market d: Marketing
-  Launch Plan
-    Blog Post
-    Demo Video description: 2-min product walkthrough
+Treasure w: Priceless, h: Treasury
+  Gold collapsed: true
+    Doubloons description: Spanish-minted, coin of the realm
+    Ingots
+    Rings
+  Gems
+    Rubies w: Priceless
+    Emeralds
+    Pearls
+      Black Pearls w: Priceless
+  Pieces of Eight
+Spirits w: Prized, h: Galley
+  Rum w: Prized
+    Dark Rum
+    Spiced Rum
+    Grog description: Watered rum, the crew's daily ration
+  Whiskey
+  Wine w: Prized, collapsed: true
+    Port
+    Madeira
+Ships w: Priceless, collapsed: true
+  Galleons description: Fat treasure haulers
+  Sloops
+  Frigates
+Armaments w: Prized, h: Armory, collapsed: true
+  Cannons w: Priceless
+    Powder w: Prized
+    Shot
+  Cutlasses
+  Muskets
+Dry Goods w: Trifling, h: Cargo
+  Spices w: Prized, collapsed: true
+    Nutmeg
+    Pepper
+    Cloves
+  Silk
+  Salt Cod
+  Tobacco
 ```
 
 ### Sequence Diagram
@@ -1577,18 +1520,25 @@ Home Access: Public, Page: Landing
 
 ```dgmo
 state Ship Battle Lifecycle
-solid-fill
 
 [*] -> Sailing
 
 Sailing
   -enemy spotted-> BattleStations
 
-BattleStations
-  -in range-> Engaging
-  -enemy retreats-> Sailing
+[Losses] gray
+  Captured -> [*]
+  Sinking -> [*]
 
-[Combat]
+[Aftermath] teal
+  Victorious
+    -loot taken-> Sailing
+
+  Retreating
+    -escaped-> Sailing
+    -caught-> Captured
+
+[Combat] red
   Engaging
     -alongside-> Boarding
     -hull breach-> Sinking
@@ -1598,16 +1548,9 @@ BattleStations
     -crew wins-> Victorious
     -crew loses-> Captured
 
-[Aftermath]
-  Victorious
-    -loot taken-> Sailing
-
-  Retreating
-    -escaped-> Sailing
-    -caught-> Captured
-
-Captured -> [*]
-Sinking -> [*]
+BattleStations
+  -in range-> Engaging
+  -enemy retreats-> Sailing
 ```
 
 ### Version Control
@@ -1715,12 +1658,10 @@ tag Track as t
 ```dgmo
 block Web Service Architecture
 
-solid-fill
-
 tag Layer as l
-  Edge blue
+  Edge red
   Service green
-  Data orange
+  Data blue
 
 [Clients] l: Edge
   [Browser] [Mobile] [CLI]
@@ -1744,20 +1685,20 @@ tag Crew
 
 Spyglass Feed shape: database, at: 0 0, crew: Deck
   -sightings-> con
-Captain's Console as con at: 2 0, crew: Deck
-  -orders-> bq
-  -supplies-> armory
-Divvy Service as dvy at: 4 0, crew: Hold
+Divvy Service as dvy at: 14 0, crew: Hold
   -entries-> ledger
 
-[Below Decks] at: 2 2, crew: Hold
+[Below Decks] crew: Hold
+  Captain's Console as con at: -3 -2, crew: Deck
+    -orders-> bq
+    -supplies-> armory
   Booty Queue as bq shape: queue, at: 0 0
     ~haul~> dvy
   Ship Ledger as ledger shape: database, at: 2 0
 
-[Armory] as armory at: 0 2, collapsed
-  Powder Store at: 0 0
-  Cutlass Rack at: 0 1
+[Armory] as armory at: 3 0, collapsed
+  Powder Store
+  Cutlass Rack
 ```
 
 ---
