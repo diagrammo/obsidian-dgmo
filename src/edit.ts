@@ -36,10 +36,42 @@ import {
   defaultKeymap,
   indentWithTab,
 } from '@codemirror/commands';
-import { indentUnit } from '@codemirror/language';
+import {
+  indentUnit,
+  HighlightStyle,
+  syntaxHighlighting,
+} from '@codemirror/language';
+import { tags as t } from '@lezer/highlight';
 import { dgmoExtension } from '@diagrammo/dgmo/editor';
 
 const DEBOUNCE_MS = 300;
+
+/**
+ * `dgmoExtension` only assigns highlight *tags* to the syntax tree — a
+ * standalone `EditorView` (unlike Obsidian's own editors) ships no
+ * `HighlightStyle`, so without this the expanded in-block editor renders the
+ * source as flat, uncolored text. Map each tag to the same `.dgmo-tok-<role>`
+ * class the static `<pre>` panel uses, so styles.css (light + `body.theme-dark`)
+ * paints the live editor identically — single-sourced, no duplicated colors.
+ */
+const dgmoInBlockHighlight = HighlightStyle.define([
+  { tag: t.lineComment, class: 'dgmo-tok-comment' },
+  { tag: t.typeName, class: 'dgmo-tok-chartType' },
+  { tag: t.definitionKeyword, class: 'dgmo-tok-definitionKeyword' },
+  { tag: t.keyword, class: 'dgmo-tok-keyword' },
+  { tag: t.controlKeyword, class: 'dgmo-tok-controlKeyword' },
+  { tag: t.modifier, class: 'dgmo-tok-modifier' },
+  { tag: t.operator, class: 'dgmo-tok-operator' },
+  { tag: t.number, class: 'dgmo-tok-number' },
+  { tag: t.heading, class: 'dgmo-tok-heading' },
+  { tag: t.squareBracket, class: 'dgmo-tok-bracket' },
+  { tag: t.paren, class: 'dgmo-tok-bracket' },
+  { tag: t.angleBracket, class: 'dgmo-tok-bracket' },
+  { tag: t.url, class: 'dgmo-tok-url' },
+  { tag: t.string, class: 'dgmo-tok-string' },
+  { tag: t.separator, class: 'dgmo-tok-separator' },
+  { tag: t.punctuation, class: 'dgmo-tok-punctuation' },
+]);
 
 export interface BlockEditOpts {
   /** Re-render the diagram hero from a draft (live preview while typing). */
@@ -184,6 +216,7 @@ export function enableBlockEditing(
         vimSlot.of([]),
         escRevert,
         dgmoExtension,
+        syntaxHighlighting(dgmoInBlockHighlight),
         history(),
         indentUnit.of('  '), // DGMO is indent-significant; indent in 2-space steps
         keymap.of([...defaultKeymap, ...historyKeymap, indentWithTab]),

@@ -112,12 +112,26 @@ describe('enableBlockEditing', () => {
   });
 
   it('renders the source inside a CodeMirror content region', () => {
-    // dgmoExtension supplies the native syntax highlighting; the painted token
-    // spans need real layout (viewport measurement), so they're an e2e/in-app
-    // concern — here we assert the editor content mounts with the source text.
     const content = block.querySelector('.dgmo-source-inner .cm-content')!;
     expect(content).not.toBeNull();
     expect(content.textContent).toContain('bar chart');
+  });
+
+  it('paints dgmo-tok token classes on the live editor', () => {
+    // Regression guard: dgmoExtension only assigns highlight *tags*; a standalone
+    // EditorView ships no HighlightStyle, so without our class-based
+    // `syntaxHighlighting(...)` the expanded editor renders as flat, uncolored
+    // text (the bug this test exists to prevent). Classes reuse styles.css's
+    // `.dgmo-tok-*` rules so the live editor matches the static <pre> panel.
+    const view = editor(block);
+    view.dispatch({}); // flush the highlighter over the mounted viewport
+    const html = view.contentDOM.innerHTML;
+    const painted = new Set(
+      [...html.matchAll(/dgmo-tok-[a-zA-Z]+/g)].map((m) => m[0])
+    );
+    // "bar chart" → chartType; "42"/"37" → number.
+    expect(painted.has('dgmo-tok-chartType')).toBe(true);
+    expect(painted.has('dgmo-tok-number')).toBe(true);
   });
 
   it('typing live-updates the diagram after the debounce, without saving', () => {
