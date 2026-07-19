@@ -444,7 +444,7 @@ Black Pearl beats Flying Dutchman 4-3
 
 ```dgmo
 clock Crew standups
-direction lr 
+direction-lr
 
 Tokyo as Deckhand
 Los Angeles as West coast
@@ -582,7 +582,7 @@ persona Squidlips Sam color: blue
 map Follow-the-Sun Support Desk
 
 hours 9-17
-days mon-fri
+workweek mon-fri
 
 poi San Francisco clock label: West
 poi Denver US-CO clock label: Central
@@ -723,7 +723,7 @@ The Open Sea blue
 
 ```dgmo
 swimlane Weekly Publishing
-direction LR
+direction-lr
 
 lane Writer gray
   Draft Post -> Review
@@ -954,7 +954,7 @@ roles
 ```dgmo
  gantt Blackbeard's Blockade — 1718
 
-start 1718-05-01
+start-date 1718-05-01
 today-marker 1718-05-15
 
 tag Role as r
@@ -1180,7 +1180,6 @@ tag Status as s
   Building blue default
 
 heat Crew red green
-show-values
 active-tag Status
 
 Flagship s: Operational, heat: 120
@@ -1397,7 +1396,7 @@ tag Hold as h
   Cargo yellow
 
 Treasure w: Priceless, h: Treasury
-  Gold collapsed: true
+  Gold collapsed
     Doubloons description: Spanish-minted, coin of the realm
     Ingots
     Rings
@@ -1413,21 +1412,21 @@ Spirits w: Prized, h: Galley
     Spiced Rum
     Grog description: Watered rum, the crew's daily ration
   Whiskey
-  Wine w: Prized, collapsed: true
+  Wine w: Prized, collapsed
     Port
     Madeira
-Ships w: Priceless, collapsed: true
+Ships w: Priceless, collapsed
   Galleons description: Fat treasure haulers
   Sloops
   Frigates
-Armaments w: Prized, h: Armory, collapsed: true
+Armaments w: Prized, h: Armory, collapsed
   Cannons w: Priceless
     Powder w: Prized
     Shot
   Cutlasses
   Muskets
 Dry Goods w: Trifling, h: Cargo
-  Spices w: Prized, collapsed: true
+  Spices w: Prized, collapsed
     Nutmeg
     Pepper
     Cloves
@@ -1685,20 +1684,16 @@ tag Crew
 
 Spyglass Feed shape: database, at: 0 0, crew: Deck
   -sightings-> con
-Divvy Service as dvy at: 14 0, crew: Hold
-  -entries-> ledger
 
 [Below Decks] crew: Hold
-  Captain's Console as con at: -3 -2, crew: Deck
+  Divvy Service as dvy at: 1 -3
+    -entries-> ledger
+  Captain's Console as con at: -3 0, crew: Deck
     -orders-> bq
-    -supplies-> armory
   Booty Queue as bq shape: queue, at: 0 0
     ~haul~> dvy
   Ship Ledger as ledger shape: database, at: 2 0
-
-[Armory] as armory at: 3 0, collapsed
-  Powder Store
-  Cutlass Rack
+  Powder Store at: -6 0
 ```
 
 ---

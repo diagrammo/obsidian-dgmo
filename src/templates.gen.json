@@ -32,7 +32,7 @@
     "name": "Boxes and Lines",
     "family": "software",
     "description": "General-purpose node-edge diagrams with groups and tags",
-    "source": "boxes-and-lines Pirate Fleet Command\n\ntag Status as s\n  Operational green\n  Damaged red\n  Building blue default\n\nheat Crew red green\nshow-values\nactive-tag Status\n\nFlagship s: Operational, heat: 120\n  -> [Harbor Defenses]\n  -> IntelNetwork\n\n[Harbor Defenses]\n  FortCannon s: Operational, heat: 40\n    -> Watchtower\n  Watchtower s: Operational, heat: 12\n  SeaMines s: Building, heat: 6\n\nIntelNetwork s: Operational, heat: 35\n  -> SpyRing\n  -> SignalFlags\n\nSpyRing s: Operational, heat: 18\n  -> [Harbor Defenses]\n\nSignalFlags s: Damaged, heat: 8"
+    "source": "boxes-and-lines Pirate Fleet Command\n\ntag Status as s\n  Operational green\n  Damaged red\n  Building blue default\n\nheat Crew red green\nactive-tag Status\n\nFlagship s: Operational, heat: 120\n  -> [Harbor Defenses]\n  -> IntelNetwork\n\n[Harbor Defenses]\n  FortCannon s: Operational, heat: 40\n    -> Watchtower\n  Watchtower s: Operational, heat: 12\n  SeaMines s: Building, heat: 6\n\nIntelNetwork s: Operational, heat: 35\n  -> SpyRing\n  -> SignalFlags\n\nSpyRing s: Operational, heat: 18\n  -> [Harbor Defenses]\n\nSignalFlags s: Damaged, heat: 8"
   },
   {
     "id": "bracket",
@@ -60,7 +60,7 @@
     "name": "Clock",
     "family": "life",
     "description": "Live world clocks — current local time for people or places across time zones, ticking every second; single person or whole-team overlap",
-    "source": "clock Crew standups\ndirection lr \n\nTokyo as Deckhand\nLos Angeles as West coast\nNew York as Dani (NY)\nLondon as Quartermaster"
+    "source": "clock Crew standups\ndirection-lr\n\nTokyo as Deckhand\nLos Angeles as West coast\nNew York as Dani (NY)\nLondon as Quartermaster"
   },
   {
     "id": "countdown",
@@ -123,7 +123,7 @@
     "name": "Gantt",
     "family": "project",
     "description": "Project scheduling with task dependencies and milestones",
-    "source": " gantt Blackbeard's Blockade — 1718\n\nstart 1718-05-01\ntoday-marker 1718-05-15\n\ntag Role as r\n  Command red\n  Crew blue\n  Captives orange\n\nmarker 1718-05-14 Ransom Deadline red\nera 1718-05-08 -> 1718-05-17 Blockade Active blue\n\n[Preparation] r: Command\n  Provision Ship 3d r: Crew, progress: 100\n    -> Anchor Fleet 2d r: Crew, progress: 100\n  Scout Harbor 3d r: Crew, progress: 100\n    -> Position Cannons 3d r: Crew, progress: 100\n  Recruit Hands 5d r: Crew, progress: 100\n\n+7d [Blockade] r: Crew\n  Seize Merchants 4d progress: 100\n    -> Hold Hostages 5d r: Captives, progress: 60\n  Patrol Perimeter 9d progress: 75\n  Demand Medicine 4d r: Command, progress: 100\n    -> Threaten Executions 3d? r: Command, progress: 90\n\n+17d [Resolution] r: Command\n  Receive Ransom 2d r: Captives\n    -> Release Prisoners 1d r: Captives\n      -> Set Sail 0d\n  Burn Evidence 2d r: Crew"
+    "source": " gantt Blackbeard's Blockade — 1718\n\nstart-date 1718-05-01\ntoday-marker 1718-05-15\n\ntag Role as r\n  Command red\n  Crew blue\n  Captives orange\n\nmarker 1718-05-14 Ransom Deadline red\nera 1718-05-08 -> 1718-05-17 Blockade Active blue\n\n[Preparation] r: Command\n  Provision Ship 3d r: Crew, progress: 100\n    -> Anchor Fleet 2d r: Crew, progress: 100\n  Scout Harbor 3d r: Crew, progress: 100\n    -> Position Cannons 3d r: Crew, progress: 100\n  Recruit Hands 5d r: Crew, progress: 100\n\n+7d [Blockade] r: Crew\n  Seize Merchants 4d progress: 100\n    -> Hold Hostages 5d r: Captives, progress: 60\n  Patrol Perimeter 9d progress: 75\n  Demand Medicine 4d r: Command, progress: 100\n    -> Threaten Executions 3d? r: Command, progress: 90\n\n+17d [Resolution] r: Command\n  Receive Ransom 2d r: Captives\n    -> Release Prisoners 1d r: Captives\n      -> Set Sail 0d\n  Burn Evidence 2d r: Crew"
   },
   {
     "id": "goal",
@@ -172,14 +172,14 @@
     "name": "Map",
     "family": "business",
     "description": "Geographic concept map: highlight/score regions, drop points of interest, connect with routes or edges",
-    "source": "map Follow-the-Sun Support Desk\n\nhours 9-17\ndays mon-fri\n\npoi San Francisco clock label: West\npoi Denver US-CO clock label: Central\npoi Miami clock label: East \n\nroute Houston\n  ~> Chicago\n  ~> Washington"
+    "source": "map Follow-the-Sun Support Desk\n\nhours 9-17\nworkweek mon-fri\n\npoi San Francisco clock label: West\npoi Denver US-CO clock label: Central\npoi Miami clock label: East \n\nroute Houston\n  ~> Chicago\n  ~> Washington"
   },
   {
     "id": "mindmap",
     "name": "Mind Map",
     "family": "business",
     "description": "Radial hierarchy of ideas branching from a central topic",
-    "source": "mindmap A Pirate's Preferred Booty\n\ntag Worth as w\n  Priceless red\n  Prized orange\n  Trifling green\n\ntag Hold as h\n  Treasury blue\n  Galley teal\n  Armory purple\n  Cargo yellow\n\nTreasure w: Priceless, h: Treasury\n  Gold collapsed: true\n    Doubloons description: Spanish-minted, coin of the realm\n    Ingots\n    Rings\n  Gems\n    Rubies w: Priceless\n    Emeralds\n    Pearls\n      Black Pearls w: Priceless\n  Pieces of Eight\nSpirits w: Prized, h: Galley\n  Rum w: Prized\n    Dark Rum\n    Spiced Rum\n    Grog description: Watered rum, the crew's daily ration\n  Whiskey\n  Wine w: Prized, collapsed: true\n    Port\n    Madeira\nShips w: Priceless, collapsed: true\n  Galleons description: Fat treasure haulers\n  Sloops\n  Frigates\nArmaments w: Prized, h: Armory, collapsed: true\n  Cannons w: Priceless\n    Powder w: Prized\n    Shot\n  Cutlasses\n  Muskets\nDry Goods w: Trifling, h: Cargo\n  Spices w: Prized, collapsed: true\n    Nutmeg\n    Pepper\n    Cloves\n  Silk\n  Salt Cod\n  Tobacco"
+    "source": "mindmap A Pirate's Preferred Booty\n\ntag Worth as w\n  Priceless red\n  Prized orange\n  Trifling green\n\ntag Hold as h\n  Treasury blue\n  Galley teal\n  Armory purple\n  Cargo yellow\n\nTreasure w: Priceless, h: Treasury\n  Gold collapsed\n    Doubloons description: Spanish-minted, coin of the realm\n    Ingots\n    Rings\n  Gems\n    Rubies w: Priceless\n    Emeralds\n    Pearls\n      Black Pearls w: Priceless\n  Pieces of Eight\nSpirits w: Prized, h: Galley\n  Rum w: Prized\n    Dark Rum\n    Spiced Rum\n    Grog description: Watered rum, the crew's daily ration\n  Whiskey\n  Wine w: Prized, collapsed\n    Port\n    Madeira\nShips w: Priceless, collapsed\n  Galleons description: Fat treasure haulers\n  Sloops\n  Frigates\nArmaments w: Prized, h: Armory, collapsed\n  Cannons w: Priceless\n    Powder w: Prized\n    Shot\n  Cutlasses\n  Muskets\nDry Goods w: Trifling, h: Cargo\n  Spices w: Prized, collapsed\n    Nutmeg\n    Pepper\n    Cloves\n  Silk\n  Salt Cod\n  Tobacco"
   },
   {
     "id": "org",
@@ -298,7 +298,7 @@
     "name": "Swimlane",
     "family": "business",
     "description": "",
-    "source": "swimlane Weekly Publishing\ndirection LR\n\nlane Writer gray\n  Draft Post -> Review\n  Revise -> Review\nlane Editor blue\n  <Review>\n    -changes-> Revise\n    -ok-> Schedule\n  Schedule -> Publish\n  Publish -> Promote\nlane Social green\n  Promote"
+    "source": "swimlane Weekly Publishing\ndirection-lr\n\nlane Writer gray\n  Draft Post -> Review\n  Revise -> Review\nlane Editor blue\n  <Review>\n    -changes-> Revise\n    -ok-> Schedule\n  Schedule -> Publish\n  Publish -> Promote\nlane Social green\n  Promote"
   },
   {
     "id": "tech-radar",
