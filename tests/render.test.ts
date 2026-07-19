@@ -12,7 +12,7 @@ const mapFixture = readFileSync(
   'utf8'
 );
 
-const CHART = 'bar chart\ntitle Booty by Ship\nBlack Pearl 42\nQueen Anne 37';
+const CHART = 'bar chart\nBlack Pearl 42\nQueen Anne 37';
 
 // BL-114: rendering mounts the standard embed block from @diagrammo/dgmo/block
 // — diagram hero in `.dgmo-svg`, hover-reveal toolbar as the <summary> of a

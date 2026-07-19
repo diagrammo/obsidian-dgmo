@@ -17,7 +17,7 @@ import {
 } from '../src/edit';
 import { renderDgmo, updateDiagram } from '../src/render';
 
-const SOURCE = 'bar chart\ntitle Booty by Ship\nBlack Pearl 42\nQueen Anne 37';
+const SOURCE = 'bar chart\nBlack Pearl 42\nQueen Anne 37';
 
 /** Minimal standard-block skeleton (matches @diagrammo/dgmo/block markup). */
 function makeBlock(): HTMLElement {
