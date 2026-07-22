@@ -180,7 +180,9 @@ export class DiagramGalleryModal extends Modal {
       return groups
         .flatMap((g) => g.items)
         .filter((t) =>
-          `${t.name} ${t.description} ${t.id}`.toLowerCase().includes(this.query)
+          `${t.name} ${t.description} ${t.id}`
+            .toLowerCase()
+            .includes(this.query)
         );
     }
     return groups.find((g) => g.family === this.activeFamily)?.items ?? [];

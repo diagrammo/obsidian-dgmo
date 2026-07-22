@@ -189,10 +189,7 @@ function injectExpandButton(block: HTMLElement): void {
   btn.setAttribute('aria-label', 'View full screen');
   btn.title = 'Expand';
   // No innerHTML (plugin review guidelines): parse the icon and import it.
-  const iconDoc = new DOMParser().parseFromString(
-    EXPAND_ICON,
-    'image/svg+xml'
-  );
+  const iconDoc = new DOMParser().parseFromString(EXPAND_ICON, 'image/svg+xml');
   const icon = iconDoc.documentElement;
   if (icon) btn.appendChild(doc.importNode(icon, true));
   // Sit just left of copy/open — right after the source toggle.

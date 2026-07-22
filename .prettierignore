@@ -1,0 +1,4 @@
+# Generated file — synced verbatim from the sibling dgmo-content repo
+# (scripts/copy-example-note.mjs). dgmo-content is the source of truth and is
+# not prettier-governed, so checking it here would re-break CI on every resync.
+src/example-note.md

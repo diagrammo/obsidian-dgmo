@@ -217,7 +217,9 @@ export class DgmoSettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName('Theme')
-      .setDesc("Auto follows Obsidian’s light/dark mode. Override to force one.")
+      .setDesc(
+        'Auto follows Obsidian’s light/dark mode. Override to force one.'
+      )
       .addDropdown((dropdown) => {
         dropdown.addOption('auto', 'Auto (follow Obsidian)');
         dropdown.addOption('light', 'Light');
@@ -322,12 +324,28 @@ export class DgmoSettingTab extends PluginSettingTab {
     new Setting(containerEl).setName('Learn more').setHeading();
 
     const links: Array<[string, string, string]> = [
-      ['Documentation', DOCS_URL, 'Guides and per-chart-type docs for every diagram.'],
-      ['Obsidian setup guide', SETUP_URL, 'Install, embed, and syntax basics for this plugin.'],
-      ['Online editor', EDITOR_URL, 'Author diagrams in any browser, nothing to install.'],
+      [
+        'Documentation',
+        DOCS_URL,
+        'Guides and per-chart-type docs for every diagram.',
+      ],
+      [
+        'Obsidian setup guide',
+        SETUP_URL,
+        'Install, embed, and syntax basics for this plugin.',
+      ],
+      [
+        'Online editor',
+        EDITOR_URL,
+        'Author diagrams in any browser, nothing to install.',
+      ],
       ['Desktop app', APP_URL, 'Native editor with export and offline use.'],
       ['AI & MCP', AI_URL, 'Let AI assistants draft diagrams for you.'],
-      ['Syntax reference', REFERENCE_URL, 'The complete DGMO grammar — handy for power users and AI.'],
+      [
+        'Syntax reference',
+        REFERENCE_URL,
+        'The complete DGMO grammar — handy for power users and AI.',
+      ],
     ];
     for (const [name, href, desc] of links) {
       new Setting(containerEl)

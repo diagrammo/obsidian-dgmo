@@ -182,7 +182,10 @@ figure.dgmo {
   color: var(--text-normal);
 }
 .dgmo-gallery-nav-item.is-active {
-  background: var(--background-modifier-active-hover, var(--background-modifier-hover));
+  background: var(
+    --background-modifier-active-hover,
+    var(--background-modifier-hover)
+  );
   color: var(--text-normal);
   font-weight: 600;
 }
@@ -204,7 +207,9 @@ figure.dgmo {
   border-radius: 8px;
   background: var(--background-secondary);
   cursor: pointer;
-  transition: border-color 0.12s ease, transform 0.12s ease;
+  transition:
+    border-color 0.12s ease,
+    transform 0.12s ease;
 }
 .dgmo-gallery-tile:hover {
   border-color: var(--interactive-accent);
