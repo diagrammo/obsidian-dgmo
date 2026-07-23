@@ -164,13 +164,16 @@ Navigation Charts  30
 ### Function Plot
 
 ```dgmo
-function Trig & Exponential Curves
-x-label x
-y-label f(x)
-x 0 to 10
+function Ship Roll After a Full Broadside
 
-Sine blue: sin(x)
-Cosine green: cos(x)
+x-label Seconds after broadside
+y-label Roll (degrees)
+x 0 to 12
+
+// Recoil heels the ship 30° — the roll rings down as the sea damps it.
+Roll blue: 30*exp(-0.25*x)*sin(2*x)
+Decay envelope gray: 30*exp(-0.25*x)
+Mirror envelope gray: -30*exp(-0.25*x)
 ```
 
 ### Funnel Chart
@@ -1618,6 +1621,7 @@ wireframe Pirate Crew Portal
 ```dgmo
 event-line Product Milestones
 //no-scale
+now 2022-06
 no-box
 
 tag Track as t
