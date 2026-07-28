@@ -35,18 +35,18 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js
 var FONT_FAMILY;
 var init_chunk_6KFWC4CO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js"() {
     FONT_FAMILY = "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif";
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js
 var __create2, __defProp2, __getOwnPropDesc2, __getOwnPropNames2, __getProtoOf2, __hasOwnProp2, __commonJS2, __copyProps2, __toESM2;
 var init_chunk_5WRI5ZAA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js"() {
     __create2 = Object.create;
     __defProp2 = Object.defineProperty;
     __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -75,7 +75,7 @@ var init_chunk_5WRI5ZAA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js
 function figureKey(sex, view) {
   return `${sex}${view === "front" ? "Front" : "Back"}`;
 }
@@ -113,7 +113,7 @@ function getPartGeom(figure, key) {
 }
 var FIGURES, SURFACE, FIG_KEY, surfaceFor, ANATOMICAL, ALIAS, BODY_TERMS;
 var init_chunk_BDXC7MDK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js"() {
     FIGURES = {
       maleFront: {
         viewBox: "0 0 724 1448",
@@ -2464,7 +2464,7 @@ var init_chunk_BDXC7MDK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4W2PE66Q.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OLMWTJVU.js
 function makeDgmoError(line, message, severity = "error", code) {
   return code !== void 0 ? { line, message, severity, code } : { line, message, severity };
 }
@@ -2537,9 +2537,9 @@ function nameMergedMessage(args) {
 function emptyMetadataValueMessage(key) {
   return `Metadata key '${key}:' has no value \u2014 the pair is dropped. Provide a value or remove the key.`;
 }
-var NAME_DIAGNOSTIC_CODES, METADATA_DIAGNOSTIC_CODES, TITLE_DIRECTIVE_DX;
-var init_chunk_4W2PE66Q = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4W2PE66Q.js"() {
+var NAME_DIAGNOSTIC_CODES, METADATA_DIAGNOSTIC_CODES, NEGATIVE_VALUE_DX, TITLE_DIRECTIVE_DX;
+var init_chunk_OLMWTJVU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OLMWTJVU.js"() {
     NAME_DIAGNOSTIC_CODES = {
       /**
        * Warning: two source-distinct names normalized to the same key
@@ -2567,6 +2567,15 @@ var init_chunk_4W2PE66Q = __esm({
        */
       EMPTY_METADATA_VALUE: "W_EMPTY_METADATA_VALUE"
     };
+    NEGATIVE_VALUE_DX = {
+      code: "E_VALUE_NEGATIVE",
+      severity: "error",
+      chartType: null,
+      title: "Negative value on a magnitude channel",
+      message: (p2) => `Negative value ${p2.value ?? -300} on "${p2.label ?? "Refunds"}" \u2014 ${p2.channel ?? "this chart's values"} encode magnitude and can't be negative.`,
+      hint: 'Restate the data as positive magnitudes (e.g. "decline %"). If direction matters, use a bar chart \u2014 bars support negative values.',
+      example: "pie Budget\nRent 1200\nRefunds -300"
+    };
     TITLE_DIRECTIVE_DX = {
       code: "E_TITLE_DIRECTIVE",
       severity: "error",
@@ -2579,7 +2588,7 @@ var init_chunk_4W2PE66Q = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZKPPI6BF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EXNKNJ65.js
 function isRecognizedColorName(name) {
   return Object.prototype.hasOwnProperty.call(colorNames, name.toLowerCase());
 }
@@ -2606,9 +2615,9 @@ function nearestNamedColor(input) {
   const g = parseInt(h.slice(2, 4), 16) / 255;
   const b = parseInt(h.slice(4, 6), 16) / 255;
   const max3 = Math.max(r, g, b);
-  const min2 = Math.min(r, g, b);
-  const delta = max3 - min2;
-  const l = (max3 + min2) / 2;
+  const min3 = Math.min(r, g, b);
+  const delta = max3 - min3;
+  const l = (max3 + min3) / 2;
   const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
   if (s < 0.15) {
     if (l < 0.2) return "black";
@@ -2687,9 +2696,9 @@ function resolveColorWithDiagnostic(color2, line, diagnostics, palette) {
   return void 0;
 }
 var nord, colorNames, RECOGNIZED_COLOR_NAMES, CATEGORICAL_COLOR_ORDER, INVALID_COLOR_CODE, INVALID_CSS_COLOR_HEX, seriesColors;
-var init_chunk_ZKPPI6BF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZKPPI6BF.js"() {
-    init_chunk_4W2PE66Q();
+var init_chunk_EXNKNJ65 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EXNKNJ65.js"() {
+    init_chunk_OLMWTJVU();
     nord = {
       // Polar Night (dark)
       nord0: "#2e3440",
@@ -2860,7 +2869,7 @@ var init_chunk_ZKPPI6BF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A2ARDILY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3KOPPSUQ.js
 function tokensWhere(pred) {
   const out = /* @__PURE__ */ new Set();
   for (const e of DIRECTIVES_REGISTRY) if (pred(e)) out.add(e.token);
@@ -3321,10 +3330,10 @@ function warnUnknownMetaKeys(meta, registry, warn, nameToScan) {
   }
 }
 var DIRECTIVES_REGISTRY, ALL_REGISTRY_TOKENS, INFRA_TOP_LEVEL_OPTION_SET, INFRA_BEHAVIOR_KEY_SET, INFRA_EDGE_ONLY_KEY_SET, GANTT_OPTION_SET, GANTT_BOOLEAN_SET, MAP_DIRECTIVE_KEY_SET, REGISTRY_DIRECTIVE_TOKENS, REGISTRY_CONTROL_TOKENS, REGISTRY_STATUS_TOKENS, REGISTRY_MODIFIER_TOKENS, REGISTRY_COLON_KEY_TOKENS, REGISTRY_NON_HIGHLIGHT_TOKENS, SEQUENCE_REGISTRY, INFRA_REGISTRY, MAP_REGISTRY, ORG_REGISTRY, C4_REGISTRY, ER_REGISTRY, EVENT_LINE_REGISTRY, KANBAN_REGISTRY, SITEMAP_REGISTRY, GANTT_REGISTRY, PERT_REGISTRY, BOXES_AND_LINES_REGISTRY, STATE_REGISTRY, SKETCH_REGISTRY, TIMELINE_REGISTRY, MINDMAP_REGISTRY, TECH_RADAR_REGISTRY, CYCLE_REGISTRY, JOURNEY_MAP_REGISTRY, PYRAMID_REGISTRY, RING_REGISTRY, TREEMAP_REGISTRY, RACI_REGISTRY, FAMILY_PERSON_REGISTRY, FAMILY_UNION_REGISTRY, RECOGNIZED_COLOR_SET, ALL_CHART_TYPES, OPTION_NOCOLON_RE, GLOBAL_BOOLEANS, FILL_FAMILY_TOKENS, CHART_TYPE_TOKEN_RE, TITLE_LIKE_RE, RESERVED_KEY_RE, AS_ALIAS_RE, POTENTIAL_META_RE;
-var init_chunk_A2ARDILY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A2ARDILY.js"() {
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+var init_chunk_3KOPPSUQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3KOPPSUQ.js"() {
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     DIRECTIVES_REGISTRY = [
       // ── Universal date handling (§ BL-121) ───────────────────
       // Accepted in every date-bearing chart (gantt, pert, countdown, timeline,
@@ -3956,7 +3965,7 @@ var init_chunk_A2ARDILY = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JR7Q6GHE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D5FANMSG.js
 function tagAttrKey(name) {
   return name.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -4179,10 +4188,10 @@ function matchTagBlockHeading(trimmed) {
   return parseTagDeclaration(trimmed);
 }
 var AUTO_TAG_COLOR_SENTINEL, autoTagColorCycle, TAG_BLOCK_NOCOLON_RE, VALID_TAG_IDENT_RE;
-var init_chunk_JR7Q6GHE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JR7Q6GHE.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+var init_chunk_D5FANMSG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D5FANMSG.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     AUTO_TAG_COLOR_SENTINEL = "";
     autoTagColorCycle = CATEGORICAL_COLOR_ORDER;
     TAG_BLOCK_NOCOLON_RE = /^tag\s+/i;
@@ -4190,7 +4199,7 @@ var init_chunk_JR7Q6GHE = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-O4CZDTQA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EEKGMS63.js
 function parseBody(content, palette) {
   const lines = content.split("\n");
   const diagnostics = [];
@@ -4382,12 +4391,12 @@ function extractSymbols(docText) {
   return { kind: "body", entities };
 }
 var BODY_DX, BODY_DIAGNOSTICS, FORM_RE, SEX_RE, VIEW_RE, PART_RE, META_PAIR_RE;
-var init_chunk_O4CZDTQA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-O4CZDTQA.js"() {
+var init_chunk_EEKGMS63 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EEKGMS63.js"() {
     init_chunk_BDXC7MDK();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     BODY_DX = {
       // parser.ts: header line is not `body …`
       EXPECTED_HEADER: {
@@ -4436,7 +4445,7 @@ back`
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js
 function isEmphasisToken(token) {
   return EMPHASIS_TOKENS.includes(token.toLowerCase());
 }
@@ -4483,7 +4492,7 @@ function resolveEmphasis(directive, elementNames, expandHighlight) {
 }
 var EMPHASIS_DIM_OPACITY, EMPHASIS_DIM_TEXT_OPACITY, EMPHASIS_TOKENS, EMPTY;
 var init_chunk_2CW5ZTNH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js"() {
     EMPHASIS_DIM_OPACITY = 0.28;
     EMPHASIS_DIM_TEXT_OPACITY = 0.5;
     EMPHASIS_TOKENS = Object.freeze(["highlight", "dim"]);
@@ -4491,7 +4500,7 @@ var init_chunk_2CW5ZTNH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PCVXXPYU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CY5KE2P5.js
 function rejectSeriesHeader(result, keyword, lineNumber) {
   if (result.type === "bar" && keyword === "series") {
     const diag = makeDgmoError(
@@ -4787,6 +4796,19 @@ function parseChart(content, palette) {
         lineNumber
       );
       const [first, ...rest] = dataValues.values;
+      if (result.type === "pie" || result.type === "polar-area" || result.type === "radar") {
+        const neg = dataValues.values.find((v2) => v2 < 0);
+        if (neg !== void 0) {
+          result.diagnostics.push(
+            emit(NEGATIVE_VALUE_DX, lineNumber, {
+              value: neg,
+              label: rawLabel,
+              channel: CHANNEL_NAME[result.type]
+            })
+          );
+          continue;
+        }
+      }
       result.data.push({
         label: rawLabel,
         // parseDataRowValues guarantees values.length >= 1.
@@ -5117,11 +5139,22 @@ function parseExtendedChartFull(content, palette) {
         result.diagnostics,
         palette
       ) : void 0;
+      const linkValue = parseFloat(val);
+      if (linkValue < 0) {
+        result.diagnostics.push(
+          emit(NEGATIVE_VALUE_DX, lineNumber, {
+            value: linkValue,
+            label: `${source} -> ${target}`,
+            channel: "flow widths"
+          })
+        );
+        continue;
+      }
       if (!result.links) result.links = [];
       result.links.push({
         source,
         target,
-        value: parseFloat(val),
+        value: linkValue,
         ...linkColor && { color: linkColor },
         directed: arrow === "->",
         lineNumber
@@ -5159,12 +5192,22 @@ function parseExtendedChartFull(content, palette) {
               if (!result.nodeColors) result.nodeColors = {};
               result.nodeColors[target] = targetColor;
             }
+            const childValue = dataRow2.values[0];
+            if (childValue < 0) {
+              result.diagnostics.push(
+                emit(NEGATIVE_VALUE_DX, lineNumber, {
+                  value: childValue,
+                  label: `${source} -> ${target}`,
+                  channel: "flow widths"
+                })
+              );
+              continue;
+            }
             if (!result.links) result.links = [];
             result.links.push({
               source,
               target,
-              // In-bounds by values.length === 1 guard above.
-              value: dataRow2.values[0],
+              value: childValue,
               ...linkColor && { color: linkColor },
               lineNumber
             });
@@ -5412,6 +5455,16 @@ function parseExtendedChartFull(content, palette) {
         result.diagnostics,
         lineNumber
       );
+      if (result.type === "funnel" && dataRow.values[0] < 0) {
+        result.diagnostics.push(
+          emit(NEGATIVE_VALUE_DX, lineNumber, {
+            value: dataRow.values[0],
+            label: rawLabel,
+            channel: "funnel stage sizes"
+          })
+        );
+        continue;
+      }
       result.data.push({
         label: rawLabel,
         // In-bounds by values.length === 1 guard above.
@@ -5526,13 +5579,18 @@ function getExtendedChartLegendGroups(parsed, colors) {
   }
   return [];
 }
-var VALID_TYPES, KNOWN_OPTIONS, DEFAULT_HOLE, KNOWN_BOOLEANS, KNOWN_FIRST_TOKENS, VALID_EXTENDED_TYPES, KNOWN_EXTENDED_OPTIONS, KNOWN_EXTENDED_FIRST_TOKENS, EXTENDED_CHART_DOORS;
-var init_chunk_PCVXXPYU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PCVXXPYU.js"() {
+var CHANNEL_NAME, VALID_TYPES, KNOWN_OPTIONS, DEFAULT_HOLE, KNOWN_BOOLEANS, KNOWN_FIRST_TOKENS, VALID_EXTENDED_TYPES, KNOWN_EXTENDED_OPTIONS, KNOWN_EXTENDED_FIRST_TOKENS, EXTENDED_CHART_DOORS;
+var init_chunk_CY5KE2P5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CY5KE2P5.js"() {
     init_chunk_2CW5ZTNH();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
+    CHANNEL_NAME = {
+      pie: "pie slices",
+      "polar-area": "polar-area wedges",
+      radar: "radar axis values"
+    };
     VALID_TYPES = /* @__PURE__ */ new Set([
       "bar",
       "line",
@@ -5614,7 +5672,7 @@ var init_chunk_PCVXXPYU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PSIDVCBA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RV2N7COG.js
 function parseRing(content) {
   const options = {};
   const result = {
@@ -5758,17 +5816,17 @@ function parseRing(content) {
   return result;
 }
 var MAX_LAYERS, KNOWN_PIPE_KEYS;
-var init_chunk_PSIDVCBA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PSIDVCBA.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+var init_chunk_RV2N7COG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RV2N7COG.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     MAX_LAYERS = 15;
     KNOWN_PIPE_KEYS = /* @__PURE__ */ new Set(["color", "description"]);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NYOOPQFD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VSFAJUEF.js
 function isFullyQuoted(s) {
   return s.length >= 2 && (s.startsWith('"') && s.endsWith('"') || s.startsWith("'") && s.endsWith("'"));
 }
@@ -6114,8 +6172,8 @@ function parseNodeLine(trimmed, lineNumber, counter, aliasMap, diagnostics, badV
 }
 function attachNode(node, indent, indentStack, result) {
   while (indentStack.length > 0) {
-    const top = indentStack[indentStack.length - 1];
-    if (top.indent < indent) break;
+    const top2 = indentStack[indentStack.length - 1];
+    if (top2.indent < indent) break;
     indentStack.pop();
   }
   if (indentStack.length > 0) {
@@ -6127,11 +6185,11 @@ function attachNode(node, indent, indentStack, result) {
   indentStack.push({ node, indent });
 }
 var TREEMAP_DX, TREEMAP_DIAGNOSTICS, VALUE_TOKEN_RE;
-var init_chunk_NYOOPQFD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NYOOPQFD.js"() {
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_VSFAJUEF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VSFAJUEF.js"() {
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     TREEMAP_DX = {
       NEGATIVE_VALUE: {
         code: "E_TREEMAP_NEGATIVE_VALUE",
@@ -6181,16 +6239,16 @@ var init_chunk_NYOOPQFD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js
 function isBlockNode(cell) {
   return cell.empty !== true;
 }
 var init_chunk_XSVWUOUZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WITOJZGL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5J2RQGFG.js
 function parseBlock(content, palette) {
   const options = { noLegend: false };
   const result = {
@@ -6505,16 +6563,16 @@ function parseBlockTail(tail, aliasMap) {
   }
   return { meta, ...span !== void 0 && { span }, collapsed };
 }
-var init_chunk_WITOJZGL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WITOJZGL.js"() {
+var init_chunk_5J2RQGFG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5J2RQGFG.js"() {
     init_chunk_XSVWUOUZ();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-P5XXIVEU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5XMDSXZT.js
 function parseGoalNumber(token) {
   const normalized = normalizeNumericToken(token);
   if (normalized === null && /[,_]/.test(token)) return null;
@@ -6657,14 +6715,14 @@ function parseGoal(content, palette) {
   }
   return result;
 }
-var init_chunk_P5XXIVEU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-P5XXIVEU.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_5XMDSXZT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5XMDSXZT.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js
 function zoneFields(ms, tz) {
   const d = new Date(ms);
   if (!tz) {
@@ -7036,7 +7094,7 @@ function formatFooter(resolvedMs, hasTime, tz = null) {
 }
 var DAY_MS, WEEK_MS, ZONE_WD, DATE_ONLY_RE, LOCAL_DT_RE, WEEKDAY_ABBR, MONTH_ABBR;
 var init_chunk_OQKP2X3D = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js"() {
     DAY_MS = 864e5;
     WEEK_MS = 7 * DAY_MS;
     ZONE_WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -7060,7 +7118,7 @@ var init_chunk_OQKP2X3D = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js
 function monthNameToNum(raw) {
   const t3 = raw.toLowerCase().replace(/\.$/, "");
   let i = MONTHS_FULL.indexOf(t3);
@@ -7300,7 +7358,7 @@ function normalizeDate(raw, opts = {}) {
 }
 var MONTHS_FULL, MONTHS_ABBR, MONTH_NAME_SCAN_RE, ERA_RE, ISO_RE, MONTH_D_RE, D_MONTH_RE, SLASH_RE, TIME_RE;
 var init_chunk_DAOFNU6J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js"() {
     MONTHS_FULL = [
       "january",
       "february",
@@ -7339,7 +7397,7 @@ var init_chunk_DAOFNU6J = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HLGOG44K.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QWUYFUNO.js
 function targetToMs2(target, tz = null) {
   const ms = targetToMs(target, tz);
   return Number.isFinite(ms) ? ms : null;
@@ -7861,18 +7919,18 @@ function emitFreeProseError(lineNum, rest, softError) {
   );
 }
 var TIME_24H_RE, AMPM_RE;
-var init_chunk_HLGOG44K = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HLGOG44K.js"() {
+var init_chunk_QWUYFUNO = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QWUYFUNO.js"() {
     init_chunk_OQKP2X3D();
     init_chunk_DAOFNU6J();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     TIME_24H_RE = /^(\d{1,2}):(\d{2})$/;
     AMPM_RE = /^(\d{1,2})(?::(\d{2}))?\s*([ap]m)$/i;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js
 function hexLerp(a, b, t3) {
   const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16));
   const pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
@@ -7996,21 +8054,21 @@ function fmtDelta(ms) {
 }
 function workStatus(parts, work) {
   if (!work) return null;
-  const min2 = parts.h * 60 + parts.m;
+  const min3 = parts.h * 60 + parts.m;
   if (!work.days[parts.weekday]) return { cls: "off", text: "Weekend" };
-  if (min2 < work.startMin) {
-    const d = work.startMin - min2;
+  if (min3 < work.startMin) {
+    const d = work.startMin - min3;
     return {
       cls: d <= SOON_MIN ? "soon" : "off",
       text: `starts in ${fmtDelta(d * 6e4)}`
     };
   }
-  if (min2 < work.endMin) {
-    return { cls: "ok", text: `${fmtDelta((work.endMin - min2) * 6e4)} left` };
+  if (min3 < work.endMin) {
+    return { cls: "ok", text: `${fmtDelta((work.endMin - min3) * 6e4)} left` };
   }
   return {
     cls: "off",
-    text: `ended ${fmtDelta((min2 - work.endMin) * 6e4)} ago`
+    text: `ended ${fmtDelta((min3 - work.endMin) * 6e4)} ago`
   };
 }
 function toJulian(ms) {
@@ -8067,7 +8125,7 @@ function handAngles(h, m, s) {
 }
 var CLOCK_RAMP, SOON_MIN, RAD, DAY_MS2, J1970, J2000, WEEKDAY_SHORT;
 var init_chunk_A2RUBBVT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js"() {
     CLOCK_RAMP = [
       [0, "#3d478f"],
       [4, "#4a4d8c"],
@@ -8096,7 +8154,7 @@ var init_chunk_A2RUBBVT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-AU75JHSR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YNAHUNMA.js
 function coordsFor(zone) {
   return ZONE_COORDS[zone] ?? null;
 }
@@ -8172,8 +8230,8 @@ function parseClockTime(token) {
   const m = token.trim().toLowerCase().match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?$/);
   if (!m) return null;
   let h = Number(m[1]);
-  const min2 = m[2] ? Number(m[2]) : 0;
-  if (min2 > 59) return null;
+  const min3 = m[2] ? Number(m[2]) : 0;
+  if (min3 > 59) return null;
   const mer = m[3];
   if (mer) {
     if (h < 1 || h > 12) return null;
@@ -8182,7 +8240,7 @@ function parseClockTime(token) {
   } else if (h > 24) {
     return null;
   }
-  return { min: h * 60 + min2, mer: Boolean(mer) };
+  return { min: h * 60 + min3, mer: Boolean(mer) };
 }
 function isValidZone3(zone) {
   try {
@@ -8487,11 +8545,11 @@ function parseClock(content, palette) {
   return result;
 }
 var ZONE_COORDS, ALIAS_SEED, NAME_INDEX, CITY_LABEL, ALL_ENTRIES, DIRECTIVES, WEEKDAY_ABBR2;
-var init_chunk_AU75JHSR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-AU75JHSR.js"() {
+var init_chunk_YNAHUNMA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YNAHUNMA.js"() {
     init_chunk_A2RUBBVT();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     ZONE_COORDS = {
       // ── North America ──
       "America/New_York": { lat: 40.71, lon: -74.01 },
@@ -8725,7 +8783,7 @@ var init_chunk_AU75JHSR = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js
 function tryStripDescriptionKeyword(line) {
   const colonMatch = line.match(/^description\s*:\s+(.+)$/i);
   if (colonMatch) return { isKeyword: true, text: colonMatch[1] };
@@ -8743,11 +8801,11 @@ function preprocessDescriptionLine(line) {
   return line;
 }
 var init_chunk_IYULMRBE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3BZJ5KD5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NFAHDPCG.js
 function splitMatch(body) {
   let rest = body;
   let home = null;
@@ -9109,12 +9167,12 @@ function parseBracket(content, palette) {
   return result;
 }
 var BEATS_RE, VS_RE, SCORE_RE, HOME_RE, SEED_RE, MODE_FLAGS;
-var init_chunk_3BZJ5KD5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3BZJ5KD5.js"() {
+var init_chunk_NFAHDPCG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NFAHDPCG.js"() {
     init_chunk_IYULMRBE();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     BEATS_RE = /^(.+?)\s+beats\s+(.+)$/i;
     VS_RE = /^(.+?)\s+vs\s+(.+)$/i;
     SCORE_RE = /\s+(\d+\s*[-–]\s*\d+)$/;
@@ -9124,7 +9182,7 @@ var init_chunk_3BZJ5KD5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BEOAKGNA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-I55PVEIX.js
 function inferVariant(markers) {
   let hasD = false;
   let hasS = false;
@@ -9161,9 +9219,9 @@ function findFirstAssignmentLineWithMarker(task, marker, skipFirst) {
   return task.lineNumber;
 }
 var RACI_DX, RACI_DIAGNOSTICS, ALL_MARKERS, TOO_MANY_RESPONSIBLE_THRESHOLD, multiAccountableRule, daciMultiDriverRule, daciMultiAccountableRule, emptyTaskRule, missingAccountableRule, missingResponsibleRule, daciMissingDriverRule, daciMissingAccountableRule, ACTIVE_MARKERS, PASSIVE_MARKERS, conflictingMarkersRule, tooManyResponsibleRule, VARIANTS;
-var init_chunk_BEOAKGNA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BEOAKGNA.js"() {
-    init_chunk_4W2PE66Q();
+var init_chunk_I55PVEIX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-I55PVEIX.js"() {
+    init_chunk_OLMWTJVU();
     RACI_DX = {
       // ── Errors ──────────────────────────────────────────────────
       MULTI_ACCOUNTABLE: {
@@ -9579,7 +9637,7 @@ Task
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js
 function normalizeName(input) {
   return input.normalize("NFC").replace(WHITESPACE_RUN_RE, " ").trim().toLocaleLowerCase("en-US");
 }
@@ -9588,12 +9646,12 @@ function displayName(input) {
 }
 var WHITESPACE_RUN_RE;
 var init_chunk_NOTA6TEI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js"() {
     WHITESPACE_RUN_RE = /\s+/gu;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZXNHHO6D.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GG7TK3IA.js
 function parseRoleAssignmentLine(trimmed) {
   const colonMatch = trimmed.match(ROLE_ASSIGNMENT_RE);
   if (colonMatch) {
@@ -10036,13 +10094,13 @@ function* allTasks(parsed) {
   }
 }
 var KNOWN_OPTIONS2, KNOWN_BOOLEANS2, REMOVED_BOOLEANS, PHASE_RE, PHASE_PALETTE_COLOR_RE, ROLE_ASSIGNMENT_RE;
-var init_chunk_ZXNHHO6D = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZXNHHO6D.js"() {
-    init_chunk_BEOAKGNA();
+var init_chunk_GG7TK3IA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GG7TK3IA.js"() {
+    init_chunk_I55PVEIX();
     init_chunk_NOTA6TEI();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     KNOWN_OPTIONS2 = /* @__PURE__ */ new Set(["roles", "palette", "theme", "active-tag"]);
     KNOWN_BOOLEANS2 = /* @__PURE__ */ new Set(["no-title"]);
     REMOVED_BOOLEANS = {
@@ -10054,7 +10112,7 @@ var init_chunk_ZXNHHO6D = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-FBP33UM6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5VLUAAAE.js
 function normKey(label) {
   return label.trim().replace(/\s+/g, " ").toLowerCase();
 }
@@ -10645,11 +10703,11 @@ function parseSwimlane(content, palette) {
   };
 }
 var SWIMLANE_DX, SWIMLANE_DIAGNOSTICS, ARROW_RE;
-var init_chunk_FBP33UM6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-FBP33UM6.js"() {
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_5VLUAAAE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5VLUAAAE.js"() {
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     SWIMLANE_DX = {
       DUPLICATE_NODE: {
         code: "E_SWIMLANE_DUPLICATE_NODE",
@@ -10733,7 +10791,7 @@ L
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js
 function buildCoupleQuotient(persons, unions) {
   const uf = new UnionFind();
   for (const id of persons.keys()) uf.add(id);
@@ -10792,17 +10850,17 @@ function hasCycle(n, edges) {
     stack.push({ v: s, i: 0 });
     color2[s] = 1;
     while (stack.length) {
-      const top = stack[stack.length - 1];
-      const nbrs = adj.get(top.v) ?? [];
-      if (top.i < nbrs.length) {
-        const w2 = nbrs[top.i++];
+      const top2 = stack[stack.length - 1];
+      const nbrs = adj.get(top2.v) ?? [];
+      if (top2.i < nbrs.length) {
+        const w2 = nbrs[top2.i++];
         if (color2[w2] === 1) return true;
         if (color2[w2] === 0) {
           color2[w2] = 1;
           stack.push({ v: w2, i: 0 });
         }
       } else {
-        color2[top.v] = 2;
+        color2[top2.v] = 2;
         stack.pop();
       }
     }
@@ -10838,7 +10896,7 @@ function rankClasses(q2) {
 }
 var UnionFind;
 var init_chunk_QQJUTGQH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js"() {
     UnionFind = class {
       constructor() {
         __publicField(this, "parent", /* @__PURE__ */ new Map());
@@ -10870,7 +10928,7 @@ var init_chunk_QQJUTGQH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2HX6ZGY7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES3MUYRX.js
 function normKey2(label) {
   return label.trim().replace(/\s+/g, " ").toLowerCase();
 }
@@ -11312,14 +11370,14 @@ function parseFamily(content, palette) {
   };
 }
 var FAMILY_DX, FAMILY_DIAGNOSTICS;
-var init_chunk_2HX6ZGY7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2HX6ZGY7.js"() {
+var init_chunk_ES3MUYRX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES3MUYRX.js"() {
     init_chunk_QQJUTGQH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     FAMILY_DX = {
       SELF_UNION: {
         code: "E_FAMILY_SELF_UNION",
@@ -11411,7 +11469,7 @@ Anne + Bob`
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HX7QNHC6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KF575IXC.js
 function parseMindmap(content, palette) {
   const options = {};
   const result = {
@@ -11673,8 +11731,8 @@ function parseNodeLine2(trimmed, lineNumber, _palette, counter, aliasMap, diagno
 }
 function attachNode2(node, indent, indentStack, result, nodesWithChildren) {
   while (indentStack.length > 0) {
-    const top = indentStack[indentStack.length - 1];
-    if (top.indent < indent) break;
+    const top2 = indentStack[indentStack.length - 1];
+    if (top2.indent < indent) break;
     indentStack.pop();
   }
   if (indentStack.length > 0) {
@@ -11700,17 +11758,17 @@ function findMetadataParent(indent, indentStack) {
   return null;
 }
 var KNOWN_OPTIONS3;
-var init_chunk_HX7QNHC6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HX7QNHC6.js"() {
+var init_chunk_KF575IXC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KF575IXC.js"() {
     init_chunk_IYULMRBE();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     KNOWN_OPTIONS3 = /* @__PURE__ */ new Set(["active-tag"]);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A2PTRSAO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CXI6X54X.js
 function parseTechRadar(content) {
   const result = {
     type: "tech-radar",
@@ -12008,10 +12066,10 @@ function assignGlobalNumbers(result) {
   }
 }
 var VALID_POSITIONS, VALID_TRENDS, POSITION_ORDER, KNOWN_OPTIONS4, KNOWN_BOOLEANS3;
-var init_chunk_A2PTRSAO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A2PTRSAO.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_CXI6X54X = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CXI6X54X.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     VALID_POSITIONS = [
       "top-left",
       "top-right",
@@ -12040,7 +12098,7 @@ var init_chunk_A2PTRSAO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JQLSFZZP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MB4UOT5.js
 function parseCycle(content) {
   const options = {};
   const result = {
@@ -12298,16 +12356,16 @@ function parseCycle(content) {
   return result;
 }
 var BARE_EDGE_RE, LABELED_EDGE_RE;
-var init_chunk_JQLSFZZP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JQLSFZZP.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_4MB4UOT5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MB4UOT5.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     BARE_EDGE_RE = /^->\s*(.*)?$/;
     LABELED_EDGE_RE = /^-(.+?)->\s*(.*)?$/;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HUTP35XT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RQGNELB3.js
 function parseJourneyMap(content, palette) {
   const options = {};
   const result = {
@@ -12668,13 +12726,13 @@ function parseStepLine(trimmed, lineNumber, counter, aliasMap, warn, diagnostics
   };
 }
 var PHASE_RE2, ANNOTATION_RE, KNOWN_OPTIONS5, KNOWN_BOOLEANS4;
-var init_chunk_HUTP35XT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HUTP35XT.js"() {
+var init_chunk_RQGNELB3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RQGNELB3.js"() {
     init_chunk_IYULMRBE();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     PHASE_RE2 = /^\[(.+?)\]$/;
     ANNOTATION_RE = /^(pain|opportunity|thought)\s*:\s*(.+)$/i;
     KNOWN_OPTIONS5 = /* @__PURE__ */ new Set(["active-tag"]);
@@ -12689,7 +12747,7 @@ var init_chunk_HUTP35XT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ETYF5QZR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MGLJA5TK.js
 function parsePyramid(content) {
   const options = {};
   const result = {
@@ -12801,15 +12859,15 @@ function parsePyramid(content) {
   return result;
 }
 var MAX_LAYERS2;
-var init_chunk_ETYF5QZR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ETYF5QZR.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_MGLJA5TK = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MGLJA5TK.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     MAX_LAYERS2 = 15;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MSWIBF6J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D64FRGKU.js
 function parseVersionControl(content, palette) {
   const options = {
     direction: "LR",
@@ -13261,10 +13319,10 @@ function peelMeta(s) {
   return out;
 }
 var VERSION_CONTROL_DX, VERSION_CONTROL_DIAGNOSTICS;
-var init_chunk_MSWIBF6J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MSWIBF6J.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_D64FRGKU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D64FRGKU.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     VERSION_CONTROL_DX = {
       NO_COMMITS: {
         code: "E_VERSION_CONTROL_NO_COMMITS",
@@ -13307,7 +13365,7 @@ var init_chunk_MSWIBF6J = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RSBH2C7O.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-X32RDWT5.js
 function parseKanban(content, palette) {
   const options = {};
   const result = {
@@ -13644,13 +13702,13 @@ function parseCardLine(trimmed, lineNumber, counter, metaAliasMap, _palette, dia
   };
 }
 var COLUMN_RE, PALETTE_COLOR_WORD_RE, AS_ALIAS_TOKEN_RE, KNOWN_OPTIONS6, KNOWN_BOOLEANS5, REMOVED_BOOLEANS2;
-var init_chunk_RSBH2C7O = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RSBH2C7O.js"() {
+var init_chunk_X32RDWT5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-X32RDWT5.js"() {
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     COLUMN_RE = /^\[(.+?)\]\s*(.*)$/;
     PALETTE_COLOR_WORD_RE = /^(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white)\b/;
     AS_ALIAS_TOKEN_RE = /^as\s+([A-Za-z][A-Za-z0-9_]{0,11})\b/;
@@ -13668,7 +13726,7 @@ var init_chunk_RSBH2C7O = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js
 function inferParticipantType(name) {
   for (const rule of PARTICIPANT_RULES) {
     if (rule.pattern.test(name)) {
@@ -13679,7 +13737,7 @@ function inferParticipantType(name) {
 }
 var PARTICIPANT_RULES, RULE_COUNT;
 var init_chunk_C3Z4DX3V = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js"() {
     PARTICIPANT_RULES = [
       // ── 0. Conflict overrides ────────────────────────────────
       // Names that would incorrectly match general patterns in later groups
@@ -13780,7 +13838,7 @@ var init_chunk_C3Z4DX3V = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WF64MW5G.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RRX4Z4TH.js
 function validateLabelCharacters(label, lineNumber) {
   const out = [];
   if (label.includes("->") || label.includes("~>")) {
@@ -13854,9 +13912,9 @@ function parseArrow(line) {
   return null;
 }
 var ARROW_DIAGNOSTIC_CODES, SYNC_LABELED_RE, ASYNC_LABELED_RE, RETURN_SYNC_LABELED_RE, RETURN_ASYNC_LABELED_RE, BIDI_SYNC_RE, BIDI_ASYNC_RE;
-var init_chunk_WF64MW5G = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WF64MW5G.js"() {
-    init_chunk_4W2PE66Q();
+var init_chunk_RRX4Z4TH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RRX4Z4TH.js"() {
+    init_chunk_OLMWTJVU();
     ARROW_DIAGNOSTIC_CODES = {
       /** Active: label contains `->` or `~>` substring (TD-13). */
       ARROW_SUBSTRING_IN_LABEL: "E_ARROW_SUBSTRING_IN_LABEL",
@@ -13872,7 +13930,7 @@ var init_chunk_WF64MW5G = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YXKNXIWA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FCA2UGJT.js
 function participantTypeToC4Shape(pType) {
   switch (pType) {
     case "database":
@@ -14081,8 +14139,8 @@ function parseC4(content, palette) {
     const indent = measureIndent(line);
     if (inDeployment) {
       while (deployStack.length > 0) {
-        const top = deployStack[deployStack.length - 1];
-        if (top.indent < indent) break;
+        const top2 = deployStack[deployStack.length - 1];
+        if (top2.indent < indent) break;
         deployStack.pop();
       }
       if (indent === 0 && (C4_IS_A_RE.test(trimmed) || ELEMENT_RE.test(trimmed))) {
@@ -14160,8 +14218,8 @@ function parseC4(content, palette) {
       continue;
     }
     while (stack.length > 0) {
-      const top = stack[stack.length - 1];
-      if (top.indent < indent) break;
+      const top2 = stack[stack.length - 1];
+      if (top2.indent < indent) break;
       stack.pop();
     }
     const containerMatch = trimmed.match(CONTAINER_RE);
@@ -14604,15 +14662,15 @@ function validateDeploymentRefs(result, knownNames, pushWarning) {
   walkDeploy(result.deployment);
 }
 var CONTAINER_RE, ELEMENT_RE, IS_A_RE, C4_IS_A_RE, RELATIONSHIP_RE, C4_LABELED_SYNC_RE, C4_LABELED_ASYNC_RE, C4_LABELED_BIDI_SYNC_RE, C4_LABELED_BIDI_ASYNC_RE, SECTION_HEADER_RE, CONTAINER_REF_RE, METADATA_RE, VALID_ELEMENT_TYPES, VALID_SHAPES, KNOWN_C4_OPTIONS, KNOWN_C4_BOOLEANS, ALL_CHART_TYPES2;
-var init_chunk_YXKNXIWA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YXKNXIWA.js"() {
+var init_chunk_FCA2UGJT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FCA2UGJT.js"() {
     init_chunk_IYULMRBE();
     init_chunk_C3Z4DX3V();
-    init_chunk_WF64MW5G();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     CONTAINER_RE = /^\[([^\]]+)\](?:\s+(collapsed)|\s+collapsed:\s*(\S+))?$/;
     ELEMENT_RE = /^(person|system|container|component)\s+(.+)$/i;
     IS_A_RE = /\s+is\s+a(?:n)?\s+(\w+)\s*$/i;
@@ -14671,10 +14729,10 @@ var init_chunk_YXKNXIWA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js
 var GRAPH_DX, GRAPH_DIAGNOSTICS;
 var init_chunk_7TF3QOOD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js"() {
     GRAPH_DX = {
       INFRA_NO_ENTRY: {
         // src/infra/parser.ts:1094 — makeDgmoError(..., 'warning', 'W_INFRA_NO_ENTRY')
@@ -14754,7 +14812,7 @@ B
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RZWIPDZ2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FXVPSTDT.js
 function nodeId(name) {
   return normalizeName(name);
 }
@@ -15631,16 +15689,16 @@ function extractSymbols2(docText) {
   return { kind: "infra", entities };
 }
 var INFRA_BEHAVIOR_KEYS, EDGE_ONLY_KEYS, CONNECTION_RE, SIMPLE_CONNECTION_RE, ASYNC_CONNECTION_RE, ASYNC_SIMPLE_CONNECTION_RE, DEPRECATED_FANOUT_RE, GROUP_RE, TAG_VALUE_RE, COMPONENT_RE, PIPE_META_RE, SAMELINE_META_RE, PROPERTY_RE, PERCENT_RE, RANGE_RE, EDGE_NODE_NAMES, INFRA_TOP_LEVEL_OPTIONS, TOP_LEVEL_OPTIONS, UNPARSED_SPLIT_RE;
-var init_chunk_RZWIPDZ2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RZWIPDZ2.js"() {
+var init_chunk_FXVPSTDT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FXVPSTDT.js"() {
     init_chunk_7TF3QOOD();
     init_chunk_IYULMRBE();
-    init_chunk_WF64MW5G();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     INFRA_BEHAVIOR_KEYS = INFRA_BEHAVIOR_KEY_SET;
     EDGE_ONLY_KEYS = INFRA_EDGE_ONLY_KEY_SET;
     CONNECTION_RE = /^-(?:([^-].*?))?->\s*(.+?)\s*$/;
@@ -15663,7 +15721,7 @@ var init_chunk_RZWIPDZ2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js
 function isWorkday(date, workweek, holidaySet) {
   const dayName = JS_DAY_TO_WEEKDAY[date.getDay()];
   if (!workweek.includes(dayName)) return false;
@@ -15843,7 +15901,7 @@ function parseGanttDate(s) {
 }
 var JS_DAY_TO_WEEKDAY;
 var init_chunk_EQW6HOP4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js"() {
     JS_DAY_TO_WEEKDAY = [
       "sun",
       "mon",
@@ -15856,7 +15914,7 @@ var init_chunk_EQW6HOP4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JYDMBWRP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-42IT4BG2.js
 function hexToHSL(hex2) {
   const cached = HEX_TO_HSL_CACHE.get(hex2);
   if (cached) return { ...cached };
@@ -15866,14 +15924,14 @@ function hexToHSL(hex2) {
   const g = parseInt(full.substring(2, 4), 16) / 255;
   const b = parseInt(full.substring(4, 6), 16) / 255;
   const max3 = Math.max(r, g, b);
-  const min2 = Math.min(r, g, b);
-  const l = (max3 + min2) / 2;
+  const min3 = Math.min(r, g, b);
+  const l = (max3 + min3) / 2;
   let result;
-  if (max3 === min2) {
+  if (max3 === min3) {
     result = { h: 0, s: 0, l: Math.round(l * 100) };
   } else {
-    const d = max3 - min2;
-    const s = l > 0.5 ? d / (2 - max3 - min2) : d / (max3 + min2);
+    const d = max3 - min3;
+    const s = l > 0.5 ? d / (2 - max3 - min3) : d / (max3 + min3);
     let h;
     if (max3 === r) {
       h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
@@ -16069,9 +16127,9 @@ function politicalTints(palette, count2, isDark) {
   return out.slice(0, count2);
 }
 var HEX_TO_HSL_CACHE, HEX_TO_HSL_CACHE_MAX, MIX_CACHE, MIX_CACHE_MAX, POLITICAL_TINT_BANDS;
-var init_chunk_JYDMBWRP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JYDMBWRP.js"() {
-    init_chunk_ZKPPI6BF();
+var init_chunk_42IT4BG2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-42IT4BG2.js"() {
+    init_chunk_EXNKNJ65();
     HEX_TO_HSL_CACHE = /* @__PURE__ */ new Map();
     HEX_TO_HSL_CACHE_MAX = 5e3;
     MIX_CACHE = /* @__PURE__ */ new Map();
@@ -16083,7 +16141,7 @@ var init_chunk_JYDMBWRP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RYNCWA5X.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-Y2L2LET6.js
 function prescanGanttYear(lines, order) {
   for (const raw of lines) {
     let cand = raw.trim();
@@ -16413,11 +16471,11 @@ function parseGantt(content, palette) {
       let hadDeeperPop = false;
       let lastPoppedTaskRef = null;
       while (blockStack.length > 0) {
-        const top = blockStack[blockStack.length - 1];
-        if (indent <= top.indent) {
-          if (top.indent > indent) hadDeeperPop = true;
-          if (top.containerType === "task" && top.taskRef) {
-            lastPoppedTaskRef = top.taskRef;
+        const top2 = blockStack[blockStack.length - 1];
+        if (indent <= top2.indent) {
+          if (top2.indent > indent) hadDeeperPop = true;
+          if (top2.containerType === "task" && top2.taskRef) {
+            lastPoppedTaskRef = top2.taskRef;
           }
           blockStack.pop();
         } else {
@@ -17358,15 +17416,15 @@ function hasSprintDurationUnit(nodes) {
   return false;
 }
 var GROUP_RE2, DEPENDENCY_RE, COMMENT_RE, WORKWEEK_RE, OFFSET_PREFIX_RE, DURATION_TOKEN_RE, LAG_ARROW_RE, LEAD_ARROW_RE, BASIC_ARROW_RE, ERA_OFFSET_RE, MARKER_OFFSET_RE, WEEKDAY_MAP, GANTT_KNOWN_OPTIONS, KNOWN_OPTIONS7, GANTT_KNOWN_BOOLEANS, KNOWN_BOOLEANS6;
-var init_chunk_RYNCWA5X = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RYNCWA5X.js"() {
+var init_chunk_Y2L2LET6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-Y2L2LET6.js"() {
     init_chunk_EQW6HOP4();
     init_chunk_DAOFNU6J();
-    init_chunk_JYDMBWRP();
+    init_chunk_42IT4BG2();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     GROUP_RE2 = /^\[(.+?)\]\s*(.*)$/;
     DEPENDENCY_RE = /^(?:-(.+?))?->\s*(.+)$/;
     COMMENT_RE = /^\/\//;
@@ -17401,7 +17459,7 @@ var init_chunk_RYNCWA5X = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IF4KYSJZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WOMXS5R7.js
 function looksLikeMap(content) {
   for (const raw of content.split("\n")) {
     const t3 = stripInlineComment(raw).trim();
@@ -17578,6 +17636,19 @@ function parseMap(content, palette) {
           `\`${k2}:\` is not a valid channel here \u2014 ${CHANNEL_HINT[own]} (\xA724B).`
         );
         delete meta[k2];
+      }
+    }
+    if (own !== "heat" && meta[own] !== void 0) {
+      const n = Number(meta[own]);
+      if (Number.isFinite(n) && n < 0) {
+        diagnostics.push(
+          emit(NEGATIVE_VALUE_DX, line, {
+            value: n,
+            label: `${own}: ${meta[own]}`,
+            channel: own === "size" ? "marker sizes" : "edge widths"
+          })
+        );
+        delete meta[own];
       }
     }
   }
@@ -17990,12 +18061,12 @@ function poiName(pos) {
   return pos.kind === "name" ? pos.name : void 0;
 }
 var COORD_RE, NUMERIC_LEAD_RE, SCOPE_RE, ARROW_TOKENS, ARROW_SPLIT, HUB_RE, LEG_ARROW_RE, AT_RE, CHANNEL_FOREIGN, CHANNEL_HINT, MAP_DIRECTIVE_SET, DIRECTIVE_SET;
-var init_chunk_IF4KYSJZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IF4KYSJZ.js"() {
-    init_chunk_WF64MW5G();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_WOMXS5R7 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WOMXS5R7.js"() {
+    init_chunk_RRX4Z4TH();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     COORD_RE = /^[+-]?\d+(?:\.\d+)?\s+[+-]?\d+(?:\.\d+)?$/;
     NUMERIC_LEAD_RE = /^[+-]?\d/;
     SCOPE_RE = /^[A-Z]{2}(?:-[A-Z0-9]{1,3})?$/;
@@ -18019,7 +18090,7 @@ var init_chunk_IF4KYSJZ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4R5KIPNX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ST3ZNEUQ.js
 function parseNoteHeader(rest) {
   const t3 = rest.trim();
   const quoted = t3.match(/^"([^"]+)"\s*(.*)$/);
@@ -18082,14 +18153,14 @@ function tryCollectNote(lines, index, indent, palette, diagnostics) {
     lastIndex: collected.lastIndex
   };
 }
-var init_chunk_4R5KIPNX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4R5KIPNX.js"() {
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_ST3ZNEUQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ST3ZNEUQ.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QZAW5SFH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7NK42OIB.js
 function resolveNotes(notes, targets, diagnostics) {
   const byNodeId = /* @__PURE__ */ new Map();
   if (notes.length === 0) return byNodeId;
@@ -18144,14 +18215,14 @@ function resolveNotes(notes, targets, diagnostics) {
   }
   return byNodeId;
 }
-var init_chunk_QZAW5SFH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QZAW5SFH.js"() {
+var init_chunk_7NK42OIB = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7NK42OIB.js"() {
     init_chunk_NOTA6TEI();
-    init_chunk_4W2PE66Q();
+    init_chunk_OLMWTJVU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-S52F62GW.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NHZAYL2X.js
 function looksLikeBoxesAndLines(_content) {
   return false;
 }
@@ -18943,23 +19014,23 @@ function parseEdgeLine(trimmed, lineNum, metaAliasMap, diagnostics, nameAliasMap
   };
 }
 var MAX_GROUP_DEPTH;
-var init_chunk_S52F62GW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-S52F62GW.js"() {
-    init_chunk_4R5KIPNX();
-    init_chunk_QZAW5SFH();
-    init_chunk_WF64MW5G();
+var init_chunk_NHZAYL2X = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NHZAYL2X.js"() {
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     MAX_GROUP_DEPTH = 2;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js
 var SKETCH_DIAGNOSTIC_CODES, SKETCH_DIAGNOSTICS;
 var init_chunk_RT7ACF77 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js"() {
     SKETCH_DIAGNOSTIC_CODES = {
       NESTED_BOX: "E_SKETCH_NESTED_BOX",
       AMBIGUOUS_TARGET: "E_SKETCH_AMBIGUOUS_TARGET",
@@ -19017,7 +19088,7 @@ var init_chunk_RT7ACF77 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YP2T5YUP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-USFZQPJ2.js
 function isSketchShapeKind(value) {
   return SKETCH_SHAPE_KINDS.includes(value);
 }
@@ -19577,14 +19648,14 @@ ${descLine}`;
   return result;
 }
 var SKETCH_SHAPE_KINDS, EDGE_FORMS, EDGE_START_RE, LEFT_ARROW_RE, BOX_RE, BOX_TAIL_ALIAS_RE, AT_VALUE_RE, SKETCH_AT_MAX;
-var init_chunk_YP2T5YUP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YP2T5YUP.js"() {
+var init_chunk_USFZQPJ2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-USFZQPJ2.js"() {
     init_chunk_RT7ACF77();
-    init_chunk_WF64MW5G();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     SKETCH_SHAPE_KINDS = [
       "rectangle",
       "database",
@@ -19616,7 +19687,7 @@ var init_chunk_YP2T5YUP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZWVKTWK6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LV5BFA24.js
 function nodeId2(shape, label) {
   return `${shape}:${normalizeName(label)}`;
 }
@@ -19821,8 +19892,8 @@ function parseFlowchart(content, palette) {
   function processContentLine(trimmed, lineNumber, indent) {
     contentStarted = true;
     while (indentStack.length > 0) {
-      const top = indentStack[indentStack.length - 1];
-      if (top.indent >= indent) {
+      const top2 = indentStack[indentStack.length - 1];
+      if (top2.indent >= indent) {
         indentStack.pop();
       } else {
         break;
@@ -20049,20 +20120,20 @@ function extractSymbols3(docText) {
   return { kind: "flowchart", entities };
 }
 var NODE_ID_RE;
-var init_chunk_ZWVKTWK6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZWVKTWK6.js"() {
+var init_chunk_LV5BFA24 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LV5BFA24.js"() {
     init_chunk_7TF3QOOD();
-    init_chunk_4R5KIPNX();
-    init_chunk_QZAW5SFH();
-    init_chunk_WF64MW5G();
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     NODE_ID_RE = /^([a-zA-Z_][\w-]*)[\s([</{]/;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MEH4TJEX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-APD52YJV.js
 function splitArrows2(line) {
   const segments = [];
   const arrowPositions = [];
@@ -20403,8 +20474,8 @@ function parseState(content, palette) {
       groupIndent = -1;
     }
     while (indentStack.length > 0) {
-      const top = indentStack[indentStack.length - 1];
-      if (top.indent >= indent) {
+      const top2 = indentStack[indentStack.length - 1];
+      if (top2.indent >= indent) {
         indentStack.pop();
       } else {
         break;
@@ -20554,23 +20625,23 @@ function looksLikeState(content) {
   return content.includes("[*]") && content.includes("->");
 }
 var PSEUDOSTATE_ID, PSEUDOSTATE_LABEL, GROUP_BRACKET_RE;
-var init_chunk_MEH4TJEX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MEH4TJEX.js"() {
-    init_chunk_4R5KIPNX();
-    init_chunk_QZAW5SFH();
-    init_chunk_WF64MW5G();
+var init_chunk_APD52YJV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-APD52YJV.js"() {
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     PSEUDOSTATE_ID = "pseudostate:[*]";
     PSEUDOSTATE_LABEL = "[*]";
     GROUP_BRACKET_RE = /^\[([^\]]+)\](?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:,?\s+(collapsed)(?::\s*(\S+))?)?\s*$/;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IIUYKQ5J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VYEQPPS6.js
 function classId(name) {
   return normalizeName(name);
 }
@@ -20968,15 +21039,15 @@ function extractSymbols4(docText) {
   };
 }
 var CLASS_DECL_RE, INDENT_REL_ARROW_RE, REL_ARROW_RE, VISIBILITY_RE, STATIC_SUFFIX_RE, METHOD_RE, FIELD_RE, ARROW_TO_TYPE;
-var init_chunk_IIUYKQ5J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IIUYKQ5J.js"() {
-    init_chunk_4R5KIPNX();
-    init_chunk_QZAW5SFH();
-    init_chunk_WF64MW5G();
+var init_chunk_VYEQPPS6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VYEQPPS6.js"() {
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     CLASS_DECL_RE = /^(?:(abstract|interface|enum)\s+)?(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+extends\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+implements\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+\[(abstract|interface|enum)\])?(?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11}))?\s*$/;
     INDENT_REL_ARROW_RE = /^(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Za-z][^":]*?))(?:\s+:?\s*(.+))?$/;
     REL_ARROW_RE = /^(?:"([^"]+)"|([A-Z][^":]*?))\s*(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+:?\s*(.+))?$/;
@@ -20995,7 +21066,7 @@ var init_chunk_IIUYKQ5J = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NL7FUIVD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULR3BVNH.js
 function tableId(name) {
   return normalizeName(name);
 }
@@ -21450,16 +21521,16 @@ function extractSymbols5(docText) {
   };
 }
 var TABLE_DECL_RE, INDENT_REL_RE, CONSTRAINT_MAP, KNOWN_OPTIONS8, REL_SYMBOLIC_RE, REL_KEYWORD_RE, KEYWORD_TO_SYMBOL, CONSTRAINT_KEYWORD_RE;
-var init_chunk_NL7FUIVD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NL7FUIVD.js"() {
-    init_chunk_4R5KIPNX();
-    init_chunk_QZAW5SFH();
-    init_chunk_WF64MW5G();
+var init_chunk_ULR3BVNH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULR3BVNH.js"() {
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     TABLE_DECL_RE = /^(?:"([^"]+)"|([a-zA-Z_][^|":(]*?))(?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:\s*\|(.+))?$/;
     INDENT_REL_RE = /^([1*?])-{1,2}(?:(.+?)-{1,2})?([1*?])\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s*$/;
     CONSTRAINT_MAP = {
@@ -21480,7 +21551,7 @@ var init_chunk_NL7FUIVD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MNS2ENXF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PFG3EVRD.js
 function looksLikeOrg(content) {
   for (const line of content.split("\n")) {
     const trimmed = line.trim();
@@ -21766,8 +21837,8 @@ function parseNodeLabel(trimmed, _indent, lineNumber, _palette, counter, metaAli
 }
 function attachNode3(node, indent, indentStack, result) {
   while (indentStack.length > 0) {
-    const top = indentStack[indentStack.length - 1];
-    if (top.indent < indent) break;
+    const top2 = indentStack[indentStack.length - 1];
+    if (top2.indent < indent) break;
     indentStack.pop();
   }
   if (indentStack.length > 0) {
@@ -21792,12 +21863,12 @@ function findMetadataParent2(indent, indentStack) {
   return null;
 }
 var CONTAINER_RE2, METADATA_RE2, KNOWN_OPTIONS9, KNOWN_BOOLEANS7;
-var init_chunk_MNS2ENXF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MNS2ENXF.js"() {
+var init_chunk_PFG3EVRD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PFG3EVRD.js"() {
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     CONTAINER_RE2 = /^\[([^\]]+)\]$/;
     METADATA_RE2 = /^([^:]+):\s*(.+)$/;
     KNOWN_OPTIONS9 = /* @__PURE__ */ new Set([
@@ -21819,7 +21890,7 @@ var init_chunk_MNS2ENXF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PC4YLEKA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OHBIN74X.js
 function parseArrowLine(trimmed, _palette, _lineNumber, _diagnostics) {
   const bareMatch = trimmed.match(BARE_ARROW_RE);
   if (bareMatch) {
@@ -22260,8 +22331,8 @@ function parseSitemapMetaTail(tail, metaAliasMap) {
 }
 function attachNode4(node, indent, indentStack, result) {
   while (indentStack.length > 0) {
-    const top = indentStack[indentStack.length - 1];
-    if (top.indent < indent) break;
+    const top2 = indentStack[indentStack.length - 1];
+    if (top2.indent < indent) break;
     indentStack.pop();
   }
   if (indentStack.length > 0) {
@@ -22298,13 +22369,13 @@ function findParentNode(indent, indentStack) {
   return null;
 }
 var CONTAINER_RE3, METADATA_RE3, ARROW_RE2, BARE_ARROW_RE;
-var init_chunk_PC4YLEKA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PC4YLEKA.js"() {
+var init_chunk_OHBIN74X = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OHBIN74X.js"() {
     init_chunk_IYULMRBE();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     CONTAINER_RE3 = /^\[([^\]]+)\]\s*(.*)$/;
     METADATA_RE3 = /^([^:]+):\s*(.+)$/;
     ARROW_RE2 = /^-([^>][^>]*?)?\s*->\s*(.+)$/;
@@ -22312,7 +22383,7 @@ var init_chunk_PC4YLEKA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js
 function resolveConfidence(value) {
   const trimmed = value.trim().toLowerCase();
   if (trimmed in CONFIDENCE_TABLE) {
@@ -22377,7 +22448,7 @@ function formatSlackValue(value, projectStart, unit2, nullLabel) {
 }
 var CONFIDENCE_TABLE, UNIT_TO_DAYS_LOCAL, ISO_DATE_RE;
 var init_chunk_3TYUXC7D = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js"() {
     init_chunk_EQW6HOP4();
     CONFIDENCE_TABLE = {
       high: { oFactor: 0.9, pFactor: 1.5 },
@@ -22401,7 +22472,7 @@ var init_chunk_3TYUXC7D = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5K5XBEXT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DIKIHU52.js
 function parseEdgeLabel(label, defaultUnit) {
   const trimmed = label.trim();
   if (trimmed === "") return null;
@@ -22641,8 +22712,8 @@ function parsePert(content, parseOpts = {}) {
     if (trimmed.startsWith("#") || trimmed.startsWith("//")) continue;
     const indent = measureIndent(rawLine);
     while (groupStack.length > 0) {
-      const top = groupStack[groupStack.length - 1];
-      if (indent <= top.indent) groupStack.pop();
+      const top2 = groupStack[groupStack.length - 1];
+      if (indent <= top2.indent) groupStack.pop();
       else break;
     }
     if (currentSourceIndent >= 0 && indent <= currentSourceIndent && !trimmed.startsWith("-")) {
@@ -23434,15 +23505,15 @@ function looksLikePert(content) {
   return false;
 }
 var PERT_DX, PERT_DIAGNOSTICS, DIRECTIVE_KEYS, RESERVED_PIPE_KEYS, NEAR_DIRECTIVE_HINTS, GROUP_HEADER_RE, ARROW_RE3, INDENTED_META_RE, LABELED_ARROW_RE, VALID_DURATION_UNITS, ALIAS_SUFFIX_RE, ESTIMATE_TOKEN_RE, DEFAULT_OPTIONS;
-var init_chunk_5K5XBEXT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5K5XBEXT.js"() {
+var init_chunk_DIKIHU52 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DIKIHU52.js"() {
     init_chunk_3TYUXC7D();
     init_chunk_EQW6HOP4();
     init_chunk_DAOFNU6J();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     PERT_DX = {
       BOTH_ANCHORS: {
         code: "E_PERT_BOTH_ANCHORS",
@@ -23624,7 +23695,7 @@ var init_chunk_5K5XBEXT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ITXL2KU5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MJOBVY7.js
 function parseDateWithOptionalTime(input, ctx) {
   const res = parseDateToken(input, { dateOrder: ctx?.order });
   if (!res) return null;
@@ -23918,17 +23989,17 @@ function parseTimelineEventLine(line, lineNumber, currentGroup, groupMetadata, a
   return { event, diagnostics };
 }
 var TIMELINE_DURATION_RE, ARROW_RE4;
-var init_chunk_ITXL2KU5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ITXL2KU5.js"() {
+var init_chunk_4MJOBVY7 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MJOBVY7.js"() {
     init_chunk_DAOFNU6J();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     TIMELINE_DURATION_RE = /^(\d+(?:\.\d{1,2})?)(min|[dwmyhs])(\?)?$/;
     ARROW_RE4 = /^\s*(?:->|–>)\s*/;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3BFXELBL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WFX6AUQO.js
 function parseEventLine(content, palette) {
   const options = {
     scale: true,
@@ -24299,10 +24370,10 @@ function resolveFutureEvents(events) {
         e.futureSpan = [lo, hi];
       });
     } else if (lo === null && hi !== null) {
-      const left = hi - pad3;
+      const left2 = hi - pad3;
       group.forEach((e, k2) => {
-        e.dateValue = left + (hi - left) * (k2 + 1) / (g + 1);
-        e.futureSpan = [left, hi];
+        e.dateValue = left2 + (hi - left2) * (k2 + 1) / (g + 1);
+        e.futureSpan = [left2, hi];
       });
     } else {
       group.forEach((e, k2) => {
@@ -24454,13 +24525,13 @@ function parseEventHeader(trimmed, lineNumber, era, aliasMap, diagnostics, pushW
   };
 }
 var EVENT_LINE_DX, EVENT_LINE_DIAGNOSTICS, NON_ISO_DATE_RE, TBD_RE, SIDE_RE, ERA_RE2, ERA_COLLAPSED_RE, NOW_RE, SECTION_SEAM_RE, DIRECTION_RE;
-var init_chunk_3BFXELBL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3BFXELBL.js"() {
-    init_chunk_ITXL2KU5();
+var init_chunk_WFX6AUQO = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WFX6AUQO.js"() {
+    init_chunk_4MJOBVY7();
     init_chunk_DAOFNU6J();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     EVENT_LINE_DX = {
       // parser.ts: 'event-line has no events.'
       NO_EVENTS: {
@@ -24561,10 +24632,10 @@ direction-tb
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js
 var chartTypes;
 var init_chunk_TGOMHUOV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js"() {
     chartTypes = [
       // ── Tier 1 — Narrative / architecture diagrams ────────────
       {
@@ -24780,7 +24851,7 @@ var init_chunk_TGOMHUOV = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-KK3L5NVK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FZECLCCU.js
 function genId(lineNumber, indent, suffix = "") {
   return `wf-${lineNumber}-${indent}${suffix ? "-" + suffix : ""}`;
 }
@@ -25439,11 +25510,11 @@ function hasBracketMnemonic(segment) {
   return /^\[/.test(s) || /^\(/.test(s) || /^\{/.test(s) || /^<\s*x?\s*>/i.test(s);
 }
 var KNOWN_OPTIONS10, GROUP_ONLY_METADATA, STATE_KEYWORDS, ELEMENT_KEYWORDS, BRACKET_RE, BUTTON_RE, DROPDOWN_RE, CHECKBOX_CHECKED_RE, CHECKBOX_UNCHECKED_RE, RADIO_SELECTED_RE, RADIO_UNSELECTED_RE, HEADING_RE, DIVIDER_RE, LIST_ITEM_RE, TABLE_SKELETON_RE;
-var init_chunk_KK3L5NVK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-KK3L5NVK.js"() {
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+var init_chunk_FZECLCCU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FZECLCCU.js"() {
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     KNOWN_OPTIONS10 = /* @__PURE__ */ new Set(["palette", "theme", "active-tag"]);
     GROUP_ONLY_METADATA = /* @__PURE__ */ new Set([
       "horizontal",
@@ -25493,7 +25564,7 @@ var init_chunk_KK3L5NVK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VMWSZCAK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FERE46TP.js
 function isSequenceBlock(el) {
   return el.kind === "block";
 }
@@ -25772,9 +25843,9 @@ function parseSequenceDgmo(content, palette) {
   const blockStack = [];
   const currentContainer = () => {
     if (blockStack.length === 0) return result.elements;
-    const top = blockStack[blockStack.length - 1];
-    if (top.activeElseIfBranch) return top.activeElseIfBranch.children;
-    return top.inElse ? top.block.elseChildren : top.block.children;
+    const top2 = blockStack[blockStack.length - 1];
+    if (top2.activeElseIfBranch) return top2.activeElseIfBranch.children;
+    return top2.inElse ? top2.block.elseChildren : top2.block.children;
   };
   let lastMsgFrom = null;
   for (let i = 0; i < lines.length; i++) {
@@ -25912,8 +25983,8 @@ function parseSequenceDgmo(content, palette) {
     if (sectionMatch) {
       const sectionIndent = measureIndent(raw);
       while (blockStack.length > 0) {
-        const top = blockStack[blockStack.length - 1];
-        if (sectionIndent > top.indent) break;
+        const top2 = blockStack[blockStack.length - 1];
+        if (sectionIndent > top2.indent) break;
         blockStack.pop();
       }
       const labelRaw = sectionMatch[1].trim();
@@ -26113,9 +26184,9 @@ function parseSequenceDgmo(content, palette) {
     }
     const indent = measureIndent(raw);
     while (blockStack.length > 0) {
-      const top = blockStack[blockStack.length - 1];
-      if (indent > top.indent) break;
-      if (indent === top.indent && (top.block.type === "if" || top.block.type === "parallel")) {
+      const top2 = blockStack[blockStack.length - 1];
+      if (indent > top2.indent) break;
+      if (indent === top2.indent && (top2.block.type === "if" || top2.block.type === "parallel")) {
         const lower2 = trimmed.toLowerCase();
         if (lower2 === "else" || lower2.startsWith("else if ")) break;
       }
@@ -26272,26 +26343,26 @@ function parseSequenceDgmo(content, palette) {
     if (elseIfMatch) {
       if (blockStack.length > 0 && // In-bounds by the length check above.
       blockStack[blockStack.length - 1].indent === indent) {
-        const top = blockStack[blockStack.length - 1];
-        if (top.block.type === "parallel") {
+        const top2 = blockStack[blockStack.length - 1];
+        if (top2.block.type === "parallel") {
           pushError(
             lineNumber,
             "parallel blocks don't support else if \u2014 list all concurrent messages directly inside the block"
           );
           continue;
         }
-        if (top.block.type === "if") {
+        if (top2.block.type === "if") {
           const branch = {
             // Capture group 1 guaranteed present after successful match.
             label: elseIfMatch[1].trim(),
             children: [],
             lineNumber
           };
-          if (!top.block.elseIfBranches) top.block.elseIfBranches = [];
-          const branches = top.block.elseIfBranches;
+          if (!top2.block.elseIfBranches) top2.block.elseIfBranches = [];
+          const branches = top2.block.elseIfBranches;
           branches.push(branch);
-          top.activeElseIfBranch = branch;
-          top.inElse = false;
+          top2.activeElseIfBranch = branch;
+          top2.inElse = false;
         }
       }
       continue;
@@ -26299,18 +26370,18 @@ function parseSequenceDgmo(content, palette) {
     if (trimmed.toLowerCase() === "else") {
       if (blockStack.length > 0 && // In-bounds by the length check above.
       blockStack[blockStack.length - 1].indent === indent) {
-        const top = blockStack[blockStack.length - 1];
-        if (top.block.type === "parallel") {
+        const top2 = blockStack[blockStack.length - 1];
+        if (top2.block.type === "parallel") {
           pushError(
             lineNumber,
             "parallel blocks don't support else \u2014 list all concurrent messages directly inside the block"
           );
           continue;
         }
-        if (top.block.type === "if") {
-          top.inElse = true;
-          delete top.activeElseIfBranch;
-          top.block.elseLineNumber = lineNumber;
+        if (top2.block.type === "if") {
+          top2.inElse = true;
+          delete top2.activeElseIfBranch;
+          top2.block.elseLineNumber = lineNumber;
         }
       }
       continue;
@@ -26464,14 +26535,14 @@ function looksLikeSequence(content) {
   });
 }
 var KNOWN_SEQ_OPTIONS, KNOWN_SEQ_BOOLEANS, NO_PREFIX_ONLY_BOOLEANS, VALID_PARTICIPANT_TYPES, IS_A_PATTERN, COLORED_PARTICIPANT_PATTERN, GROUP_HEADING_PATTERN, GROUP_HEADING_FALLBACK, SECTION_PATTERN, ARROW_PATTERN, NOTE_BARE, NOTE_MULTI;
-var init_chunk_VMWSZCAK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VMWSZCAK.js"() {
+var init_chunk_FERE46TP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FERE46TP.js"() {
     init_chunk_C3Z4DX3V();
-    init_chunk_WF64MW5G();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_4W2PE66Q();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
     KNOWN_SEQ_OPTIONS = /* @__PURE__ */ new Set(["active-tag"]);
     KNOWN_SEQ_BOOLEANS = /* @__PURE__ */ new Set([
       "fill-tint",
@@ -26499,7 +26570,7 @@ var init_chunk_VMWSZCAK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-XKKH2DPG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GDGOVO2I.js
 function parseVisualization(content, palette) {
   return parseVisualizationFull(content, palette);
 }
@@ -26828,6 +26899,16 @@ function parseVisualizationFull(content, palette) {
           palette
         ) ?? null : null;
         const arcValue = linkMatch[4] ? parseFloat(normalizeNumericToken(linkMatch[4]) ?? linkMatch[4]) : 1;
+        if (arcValue < 0) {
+          result.diagnostics.push(
+            emit(NEGATIVE_VALUE_DX, lineNumber, {
+              value: arcValue,
+              label: `${source} -> ${target}`,
+              channel: "arc link weights"
+            })
+          );
+          continue;
+        }
         result.links.push({
           source,
           target,
@@ -27447,6 +27528,14 @@ function parseVisualizationFull(content, palette) {
             weight: maybeWeight,
             lineNumber
           });
+        } else if (lastSpace >= 0 && !isNaN(maybeWeight) && maybeWeight < 0) {
+          result.diagnostics.push(
+            emit(NEGATIVE_VALUE_DX, lineNumber, {
+              value: maybeWeight,
+              label: line.substring(0, lastSpace).trim(),
+              channel: "wordcloud weights"
+            })
+          );
         } else {
           freeformLines.push(line);
         }
@@ -27996,50 +28085,50 @@ function detectEmptyContent(content) {
   return [];
 }
 var DEFAULT_CLOUD_OPTIONS, STOP_WORDS, CHART_TYPE_REGISTRY, REGISTRY_BY_ID, GANTT_DURATION_RE, GANTT_DATE_RE, C4_TYPE_RE, CHART_TYPE_DESCRIPTIONS, chartTypeParsers, knownChartTypeIds, PARSER_BY_ID, ALL_KNOWN_TYPES;
-var init_chunk_XKKH2DPG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-XKKH2DPG.js"() {
-    init_chunk_O4CZDTQA();
-    init_chunk_PCVXXPYU();
-    init_chunk_PSIDVCBA();
-    init_chunk_NYOOPQFD();
-    init_chunk_WITOJZGL();
-    init_chunk_P5XXIVEU();
-    init_chunk_HLGOG44K();
-    init_chunk_AU75JHSR();
-    init_chunk_3BZJ5KD5();
-    init_chunk_ZXNHHO6D();
-    init_chunk_FBP33UM6();
-    init_chunk_2HX6ZGY7();
-    init_chunk_HX7QNHC6();
-    init_chunk_A2PTRSAO();
-    init_chunk_JQLSFZZP();
-    init_chunk_HUTP35XT();
-    init_chunk_ETYF5QZR();
-    init_chunk_MSWIBF6J();
-    init_chunk_RSBH2C7O();
-    init_chunk_YXKNXIWA();
-    init_chunk_RZWIPDZ2();
-    init_chunk_RYNCWA5X();
-    init_chunk_IF4KYSJZ();
-    init_chunk_S52F62GW();
-    init_chunk_YP2T5YUP();
-    init_chunk_ZWVKTWK6();
-    init_chunk_MEH4TJEX();
-    init_chunk_IIUYKQ5J();
-    init_chunk_NL7FUIVD();
-    init_chunk_MNS2ENXF();
-    init_chunk_PC4YLEKA();
-    init_chunk_5K5XBEXT();
-    init_chunk_3BFXELBL();
-    init_chunk_ITXL2KU5();
+var init_chunk_GDGOVO2I = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GDGOVO2I.js"() {
+    init_chunk_EEKGMS63();
+    init_chunk_CY5KE2P5();
+    init_chunk_RV2N7COG();
+    init_chunk_VSFAJUEF();
+    init_chunk_5J2RQGFG();
+    init_chunk_5XMDSXZT();
+    init_chunk_QWUYFUNO();
+    init_chunk_YNAHUNMA();
+    init_chunk_NFAHDPCG();
+    init_chunk_GG7TK3IA();
+    init_chunk_5VLUAAAE();
+    init_chunk_ES3MUYRX();
+    init_chunk_KF575IXC();
+    init_chunk_CXI6X54X();
+    init_chunk_4MB4UOT5();
+    init_chunk_RQGNELB3();
+    init_chunk_MGLJA5TK();
+    init_chunk_D64FRGKU();
+    init_chunk_X32RDWT5();
+    init_chunk_FCA2UGJT();
+    init_chunk_FXVPSTDT();
+    init_chunk_Y2L2LET6();
+    init_chunk_WOMXS5R7();
+    init_chunk_NHZAYL2X();
+    init_chunk_USFZQPJ2();
+    init_chunk_LV5BFA24();
+    init_chunk_APD52YJV();
+    init_chunk_VYEQPPS6();
+    init_chunk_ULR3BVNH();
+    init_chunk_PFG3EVRD();
+    init_chunk_OHBIN74X();
+    init_chunk_DIKIHU52();
+    init_chunk_WFX6AUQO();
+    init_chunk_4MJOBVY7();
     init_chunk_DAOFNU6J();
     init_chunk_TGOMHUOV();
-    init_chunk_KK3L5NVK();
-    init_chunk_VMWSZCAK();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_FZECLCCU();
+    init_chunk_FERE46TP();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     DEFAULT_CLOUD_OPTIONS = {
       rotate: "none",
       max: 0,
@@ -28363,7 +28452,7 @@ var init_chunk_XKKH2DPG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js
 function extendWidth(acc, text, fontSize) {
   let w2 = acc;
   for (let i = 0; i < text.length; i++) {
@@ -28451,7 +28540,7 @@ function wrapTextToWidth(text, fontSize, maxWidth, opts) {
 }
 var CHAR_W, DEFAULT_W, CHAR_WIDTH_RATIO, MEASURE_CACHE, MEASURE_CACHE_MAX;
 var init_chunk_4ASYQ347 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js"() {
     CHAR_W = {
       " ": 0.28,
       "!": 0.28,
@@ -28546,10 +28635,10 @@ var init_chunk_4ASYQ347 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js
 var MAP_DX, MAP_DIAGNOSTICS;
 var init_chunk_4B5YISOR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js"() {
     MAP_DX = {
       // Runtime severity: 'error' (matches E_ prefix). ONE code, THREE distinct
       // emit sites in resolver.ts. The builder switches on params:
@@ -28707,7 +28796,7 @@ var init_chunk_4B5YISOR = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js
 function rectsOverlap(a, b) {
   return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
 }
@@ -28919,15 +29008,35 @@ function computeQuadrantPointLabels(points, chartBounds, obstacles, pointRadius,
   return results;
 }
 var init_chunk_VHO3YBTB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js"() {
     init_chunk_4ASYQ347();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NZ5QVASG.js
+function escapeAttributeAngleBrackets(svg) {
+  return svg.replace(
+    // ` name="value"` / ` xlink:href="value"` — attribute names in SVG may carry
+    // a namespace prefix, a dot, or a dash.
+    /(\s[\w:.-]+=")([^"]*)"/g,
+    (match, prefix, value) => {
+      if (!value.includes("<") && !value.includes(">")) return match;
+      return `${prefix}${value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}"`;
+    }
+  );
+}
+function serializeSvg(svgEl) {
+  return escapeAttributeAngleBrackets(svgEl.outerHTML);
+}
+var init_chunk_NZ5QVASG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NZ5QVASG.js"() {
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js
 var TITLE_FONT_SIZE, TITLE_FONT_WEIGHT, TITLE_Y, TITLE_OFFSET, CAPTION_FONT_SIZE, CAPTION_FONT_WEIGHT, CAPTION_LINE_HEIGHT, CAPTION_TOP_GAP, CAPTION_BOX_PADDING_X, CAPTION_BOX_PADDING_Y;
 var init_chunk_A4GOY3PE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js"() {
     TITLE_FONT_SIZE = 20;
     TITLE_FONT_WEIGHT = "700";
     TITLE_Y = 30;
@@ -29985,7 +30094,7 @@ var init_src = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js
 function isValidHex(value) {
   return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value);
 }
@@ -30030,7 +30139,7 @@ function getAvailablePalettes() {
 }
 var PALETTE_REGISTRY, DEFAULT_PALETTE_ID, COLOR_KEYS, SEMANTIC_KEYS, atlasPalette, blueprintPalette, catppuccinPalette, nordPalette, slatePalette, tidewaterPalette, tokyoNightPalette, palettes;
 var init_chunk_R3XI2VC7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js"() {
     PALETTE_REGISTRY = /* @__PURE__ */ new Map();
     DEFAULT_PALETTE_ID = "slate";
     COLOR_KEYS = [
@@ -30759,9 +30868,9 @@ var init_chunk_R3XI2VC7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/palettes-FGTNFARW.js
-var palettes_FGTNFARW_exports = {};
-__export(palettes_FGTNFARW_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/palettes-WO3VA6NU.js
+var palettes_WO3VA6NU_exports = {};
+__export(palettes_WO3VA6NU_exports, {
   atlasPalette: () => atlasPalette,
   blueprintPalette: () => blueprintPalette,
   catppuccinPalette: () => catppuccinPalette,
@@ -30786,14 +30895,14 @@ __export(palettes_FGTNFARW_exports, {
   tint: () => tint,
   tokyoNightPalette: () => tokyoNightPalette
 });
-var init_palettes_FGTNFARW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/palettes-FGTNFARW.js"() {
+var init_palettes_WO3VA6NU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/palettes-WO3VA6NU.js"() {
     init_chunk_R3XI2VC7();
-    init_chunk_JYDMBWRP();
+    init_chunk_42IT4BG2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ADYKAKE3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQ7Y3O67.js
 function renderChartTitle(svg, title, titleLineNumber, width, textColor, onClickItem) {
   if (!title) return;
   const titleEl = svg.append("text").attr("class", "chart-title").attr("x", width / 2).attr("y", TITLE_Y).attr("text-anchor", "middle").attr("fill", textColor).attr("font-size", TITLE_FONT_SIZE).attr("font-weight", TITLE_FONT_WEIGHT).style("cursor", onClickItem && titleLineNumber ? "pointer" : "default").text(title);
@@ -30852,22 +30961,22 @@ function showTooltip(tooltip, html, event) {
   tooltip.style.display = "block";
   const container = tooltip.parentElement;
   const rect2 = container.getBoundingClientRect();
-  let left = event.clientX - rect2.left + 12;
-  let top = event.clientY - rect2.top - 28;
+  let left2 = event.clientX - rect2.left + 12;
+  let top2 = event.clientY - rect2.top - 28;
   const tipW = tooltip.offsetWidth;
   const tipH = tooltip.offsetHeight;
-  if (left + tipW > rect2.width) left = rect2.width - tipW - 4;
-  if (top < 0) top = event.clientY - rect2.top + 16;
-  if (top + tipH > rect2.height) top = rect2.height - tipH - 4;
-  tooltip.style.left = `${left}px`;
-  tooltip.style.top = `${top}px`;
+  if (left2 + tipW > rect2.width) left2 = rect2.width - tipW - 4;
+  if (top2 < 0) top2 = event.clientY - rect2.top + 16;
+  if (top2 + tipH > rect2.height) top2 = rect2.height - tipH - 4;
+  tooltip.style.left = `${left2}px`;
+  tooltip.style.top = `${top2}px`;
 }
 function hideTooltip(tooltip) {
   tooltip.style.display = "none";
 }
 async function resolveExportPalette(theme, palette) {
   if (palette) return palette;
-  const { getPalette: getPalette2 } = await Promise.resolve().then(() => (init_palettes_FGTNFARW(), palettes_FGTNFARW_exports));
+  const { getPalette: getPalette2 } = await Promise.resolve().then(() => (init_palettes_WO3VA6NU(), palettes_WO3VA6NU_exports));
   return theme === "dark" ? getPalette2("nord").dark : getPalette2("nord").light;
 }
 function createExportContainer(width, height) {
@@ -30890,23 +30999,24 @@ function finalizeSvgExport(container, theme, palette) {
   svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   svgEl.style.fontFamily = FONT_FAMILY;
   svgEl.querySelectorAll("[data-export-ignore]").forEach((el) => el.remove());
-  const svgHtml = svgEl.outerHTML;
+  const svgHtml = serializeSvg(svgEl);
   document.body.removeChild(container);
   return svgHtml;
 }
 var EXPORT_WIDTH, EXPORT_HEIGHT;
-var init_chunk_ADYKAKE3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ADYKAKE3.js"() {
+var init_chunk_CQ7Y3O67 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQ7Y3O67.js"() {
+    init_chunk_NZ5QVASG();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_JYDMBWRP();
+    init_chunk_42IT4BG2();
     init_src();
     EXPORT_WIDTH = 1200;
     EXPORT_HEIGHT = 800;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-Q5IHQ4NW.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SCJ7CAJF.js
 function legendChromeColors(palette, isDark) {
   return {
     groupBg: isDark ? mix(palette.surface, palette.bg, 50) : mix(palette.surface, palette.textMuted, 98),
@@ -30914,10 +31024,10 @@ function legendChromeColors(palette, isDark) {
   };
 }
 var LEGEND_HEIGHT, LEGEND_PILL_PAD, LEGEND_PILL_FONT_SIZE, LEGEND_CAPSULE_PAD, LEGEND_DOT_R, LEGEND_ENTRY_FONT_SIZE, LEGEND_ENTRY_DOT_GAP, LEGEND_ENTRY_TRAIL, LEGEND_GROUP_GAP, LEGEND_EYE_SIZE, LEGEND_EYE_GAP, LEGEND_ICON_W, LEGEND_MAX_ENTRY_ROWS, measureLegendText, truncateLegendText, EYE_OPEN_PATH, EYE_CLOSED_PATH, CONTROLS_ICON_PATH, LEGEND_TOGGLE_DOT_R, LEGEND_TOGGLE_OFF_OPACITY, LEGEND_GEAR_PILL_W;
-var init_chunk_Q5IHQ4NW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-Q5IHQ4NW.js"() {
+var init_chunk_SCJ7CAJF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SCJ7CAJF.js"() {
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
+    init_chunk_42IT4BG2();
     LEGEND_HEIGHT = 28;
     LEGEND_PILL_PAD = 16;
     LEGEND_PILL_FONT_SIZE = 11;
@@ -30942,7 +31052,7 @@ var init_chunk_Q5IHQ4NW = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-US3P2DQO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6VJCURWU.js
 function legendInlineSupported(type) {
   return LEGEND_INLINE_SUPPORTED.has(type.toLowerCase());
 }
@@ -30981,10 +31091,10 @@ function layoutInlineHeader(input) {
   };
 }
 var LEGEND_INLINE_SUPPORTED, INLINE_HEADER_PAD, INLINE_HEADER_GAP, BOLD_WIDTH_FACTOR, MIN_INLINE_LEGEND_W;
-var init_chunk_US3P2DQO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-US3P2DQO.js"() {
+var init_chunk_6VJCURWU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6VJCURWU.js"() {
     init_chunk_A4GOY3PE();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     LEGEND_INLINE_SUPPORTED = /* @__PURE__ */ new Set([
       // data charts
@@ -31020,7 +31130,7 @@ var init_chunk_US3P2DQO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-GRXPFBYC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES66QH6J.js
 function compactNumber(n) {
   if (!Number.isFinite(n)) return String(n);
   const abs3 = Math.abs(n);
@@ -31531,13 +31641,13 @@ function getMaxLegendReservedHeight(config, containerWidth) {
 }
 function getLegendExtent(config, state, containerWidth) {
   const layout = computeLegendLayout(config, state, containerWidth);
-  let left = Infinity;
-  let right = 0;
-  let bottom = 0;
+  let left2 = Infinity;
+  let right2 = 0;
+  let bottom2 = 0;
   const track = (x3, y2, w2, h) => {
-    left = Math.min(left, x3);
-    right = Math.max(right, x3 + w2);
-    bottom = Math.max(bottom, y2 + h);
+    left2 = Math.min(left2, x3);
+    right2 = Math.max(right2, x3 + w2);
+    bottom2 = Math.max(bottom2, y2 + h);
   };
   if (layout.activeCapsule) {
     const c = layout.activeCapsule;
@@ -31545,14 +31655,14 @@ function getLegendExtent(config, state, containerWidth) {
   }
   for (const pill of layout.pills) track(pill.x, pill.y, pill.width, pill.height);
   return {
-    width: right - (left === Infinity ? 0 : left),
-    height: bottom || LEGEND_HEIGHT
+    width: right2 - (left2 === Infinity ? 0 : left2),
+    height: bottom2 || LEGEND_HEIGHT
   };
 }
 var CONTROL_PILL_PAD, CONTROL_FONT_SIZE, CONTROL_ICON_GAP, CONTROL_GAP, RAMP_LEGEND_W, RAMP_LEGEND_H, RAMP_LABEL_GAP;
-var init_chunk_GRXPFBYC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-GRXPFBYC.js"() {
-    init_chunk_Q5IHQ4NW();
+var init_chunk_ES66QH6J = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES66QH6J.js"() {
+    init_chunk_SCJ7CAJF();
     CONTROL_PILL_PAD = 16;
     CONTROL_FONT_SIZE = 11;
     CONTROL_ICON_GAP = 4;
@@ -31593,7 +31703,7 @@ function bisector(f) {
     compare2 = f;
     delta = f;
   }
-  function left(a, x3, lo = 0, hi = a.length) {
+  function left2(a, x3, lo = 0, hi = a.length) {
     if (lo < hi) {
       if (compare1(x3, x3) !== 0) return hi;
       do {
@@ -31604,7 +31714,7 @@ function bisector(f) {
     }
     return lo;
   }
-  function right(a, x3, lo = 0, hi = a.length) {
+  function right2(a, x3, lo = 0, hi = a.length) {
     if (lo < hi) {
       if (compare1(x3, x3) !== 0) return hi;
       do {
@@ -31616,10 +31726,10 @@ function bisector(f) {
     return lo;
   }
   function center(a, x3, lo = 0, hi = a.length) {
-    const i = left(a, x3, lo, hi - 1);
+    const i = left2(a, x3, lo, hi - 1);
     return i > lo && delta(a[i - 1], x3) > -delta(a[i], x3) ? i - 1 : i;
   }
-  return { left, center, right };
+  return { left: left2, center, right: right2 };
 }
 function zero() {
   return 0;
@@ -31657,15 +31767,15 @@ var init_bisect = __esm({
 
 // node_modules/.pnpm/d3-array@3.2.4/node_modules/d3-array/src/extent.js
 function extent(values, valueof) {
-  let min2;
+  let min3;
   let max3;
   if (valueof === void 0) {
     for (const value of values) {
       if (value != null) {
-        if (min2 === void 0) {
-          if (value >= value) min2 = max3 = value;
+        if (min3 === void 0) {
+          if (value >= value) min3 = max3 = value;
         } else {
-          if (min2 > value) min2 = value;
+          if (min3 > value) min3 = value;
           if (max3 < value) max3 = value;
         }
       }
@@ -31674,16 +31784,16 @@ function extent(values, valueof) {
     let index = -1;
     for (let value of values) {
       if ((value = valueof(value, ++index, values)) != null) {
-        if (min2 === void 0) {
-          if (value >= value) min2 = max3 = value;
+        if (min3 === void 0) {
+          if (value >= value) min3 = max3 = value;
         } else {
-          if (min2 > value) min2 = value;
+          if (min3 > value) min3 = value;
           if (max3 < value) max3 = value;
         }
       }
     }
   }
-  return [min2, max3];
+  return [min3, max3];
 }
 var init_extent = __esm({
   "node_modules/.pnpm/d3-array@3.2.4/node_modules/d3-array/src/extent.js"() {
@@ -31861,6 +31971,30 @@ var init_max = __esm({
   }
 });
 
+// node_modules/.pnpm/d3-array@3.2.4/node_modules/d3-array/src/min.js
+function min(values, valueof) {
+  let min3;
+  if (valueof === void 0) {
+    for (const value of values) {
+      if (value != null && (min3 > value || min3 === void 0 && value >= value)) {
+        min3 = value;
+      }
+    }
+  } else {
+    let index = -1;
+    for (let value of values) {
+      if ((value = valueof(value, ++index, values)) != null && (min3 > value || min3 === void 0 && value >= value)) {
+        min3 = value;
+      }
+    }
+  }
+  return min3;
+}
+var init_min = __esm({
+  "node_modules/.pnpm/d3-array@3.2.4/node_modules/d3-array/src/min.js"() {
+  }
+});
+
 // node_modules/.pnpm/d3-array@3.2.4/node_modules/d3-array/src/merge.js
 function* flatten(arrays) {
   for (const array2 of arrays) {
@@ -31897,6 +32031,7 @@ var init_src3 = __esm({
     init_fsum();
     init_max();
     init_merge2();
+    init_min();
     init_range();
     init_ticks();
     init_src2();
@@ -32124,12 +32259,12 @@ function hslConvert(o) {
   if (!o) return new Hsl();
   if (o instanceof Hsl) return o;
   o = o.rgb();
-  var r = o.r / 255, g = o.g / 255, b = o.b / 255, min2 = Math.min(r, g, b), max3 = Math.max(r, g, b), h = NaN, s = max3 - min2, l = (max3 + min2) / 2;
+  var r = o.r / 255, g = o.g / 255, b = o.b / 255, min3 = Math.min(r, g, b), max3 = Math.max(r, g, b), h = NaN, s = max3 - min3, l = (max3 + min3) / 2;
   if (s) {
     if (r === max3) h = (g - b) / s + (g < b) * 6;
     else if (g === max3) h = (b - r) / s + 2;
     else h = (r - g) / s + 4;
-    s /= l < 0.5 ? max3 + min2 : 2 - max3 - min2;
+    s /= l < 0.5 ? max3 + min3 : 2 - max3 - min3;
     h *= 60;
   } else {
     s = l > 0 && l < 1 ? 0 : h;
@@ -33289,14 +33424,14 @@ function acos(x3) {
 function asin(x3) {
   return x3 >= 1 ? halfPi : x3 <= -1 ? -halfPi : Math.asin(x3);
 }
-var abs, atan2, cos, max2, min, sin, sqrt2, epsilon, pi, halfPi, tau;
+var abs, atan2, cos, max2, min2, sin, sqrt2, epsilon, pi, halfPi, tau;
 var init_math = __esm({
   "node_modules/.pnpm/d3-shape@3.2.0/node_modules/d3-shape/src/math.js"() {
     abs = Math.abs;
     atan2 = Math.atan2;
     cos = Math.cos;
     max2 = Math.max;
-    min = Math.min;
+    min2 = Math.min;
     sin = Math.sin;
     sqrt2 = Math.sqrt;
     epsilon = 1e-12;
@@ -33483,7 +33618,7 @@ function arc_default() {
         context.arc(0, 0, r0, a1, a0, cw);
       }
     } else {
-      var a01 = a0, a11 = a1, a00 = a0, a10 = a1, da0 = da, da1 = da, ap = padAngle.apply(this, arguments) / 2, rp = ap > epsilon && (padRadius ? +padRadius.apply(this, arguments) : sqrt2(r0 * r0 + r1 * r1)), rc = min(abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)), rc0 = rc, rc1 = rc, t0, t1;
+      var a01 = a0, a11 = a1, a00 = a0, a10 = a1, da0 = da, da1 = da, ap = padAngle.apply(this, arguments) / 2, rp = ap > epsilon && (padRadius ? +padRadius.apply(this, arguments) : sqrt2(r0 * r0 + r1 * r1)), rc = min2(abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)), rc0 = rc, rc1 = rc, t0, t1;
       if (rp > epsilon) {
         var p02 = asin(rp / r0 * sin(ap)), p1 = asin(rp / r1 * sin(ap));
         if ((da0 -= p02 * 2) > epsilon) p02 *= cw ? 1 : -1, a00 += p02, a10 -= p02;
@@ -33497,8 +33632,8 @@ function arc_default() {
         if (da < pi) {
           if (oc = intersect(x01, y01, x004, y004, x11, y11, x10, y10)) {
             var ax = x01 - oc[0], ay = y01 - oc[1], bx = x11 - oc[0], by = y11 - oc[1], kc = 1 / sin(acos((ax * bx + ay * by) / (sqrt2(ax * ax + ay * ay) * sqrt2(bx * bx + by * by))) / 2), lc = sqrt2(oc[0] * oc[0] + oc[1] * oc[1]);
-            rc0 = min(rc, (r0 - lc) / (kc - 1));
-            rc1 = min(rc, (r1 - lc) / (kc + 1));
+            rc0 = min2(rc, (r0 - lc) / (kc - 1));
+            rc1 = min2(rc, (r1 - lc) / (kc + 1));
           } else {
             rc0 = rc1 = 0;
           }
@@ -34232,7 +34367,7 @@ var init_src9 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QQXFYTLC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BR2VSKHI.js
 function esc(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -34280,13 +34415,13 @@ function renderLegendSvg(groups, options) {
   }
   const { groupBg, pillBorder } = legendChromeColors(palette, isDark);
   const parts = [];
-  let bottom = 0;
-  let left = Infinity;
-  let right = 0;
+  let bottom2 = 0;
+  let left2 = Infinity;
+  let right2 = 0;
   const track = (x3, y2, w2, h) => {
-    left = Math.min(left, x3);
-    right = Math.max(right, x3 + w2);
-    bottom = Math.max(bottom, y2 + h);
+    left2 = Math.min(left2, x3);
+    right2 = Math.max(right2, x3 + w2);
+    bottom2 = Math.max(bottom2, y2 + h);
   };
   if (layout.activeCapsule) {
     const c = layout.activeCapsule;
@@ -34302,8 +34437,8 @@ function renderLegendSvg(groups, options) {
   const svg = `<g${classAttr}${activeAttr}>${parts.join("")}</g>`;
   return {
     svg,
-    height: bottom,
-    width: right - (left === Infinity ? 0 : left)
+    height: bottom2,
+    width: right2 - (left2 === Infinity ? 0 : left2)
   };
 }
 function fmtNum(n) {
@@ -34456,7 +34591,7 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
     return multiSeries ? chart.seriesNameColors?.[seriesIdx] ?? colors[seriesIdx % colors.length] : colors[catIdx % colors.length];
   };
   const fillOf = (c) => shapeFill(palette, c, isDark, { mode: fillMode });
-  const top = reserveHeader(
+  const top2 = reserveHeader(
     svg,
     chart,
     colors,
@@ -34467,11 +34602,20 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
     inlineTitle
   );
   const perCat = data.map((d) => seriesValues(d, seriesCount));
-  const maxVal = stacked ? max(perCat, (vals) => vals.reduce((a, b) => a + b, 0)) ?? 0 : max(perCat, (vals) => max(vals) ?? 0) ?? 0;
-  const niceMax = maxVal === 0 ? 1 : maxVal;
-  const leftLabels = horizontal ? data.map((d) => d.label) : [fmtNum(niceMax), fmtNum(niceMax / 2)];
+  const maxVal = stacked ? max(
+    perCat,
+    (vals) => vals.filter((v2) => v2 > 0).reduce((a, b) => a + b, 0)
+  ) ?? 0 : max(perCat, (vals) => max(vals) ?? 0) ?? 0;
+  const minVal = stacked ? min(
+    perCat,
+    (vals) => vals.filter((v2) => v2 < 0).reduce((a, b) => a + b, 0)
+  ) ?? 0 : min(perCat, (vals) => min(vals) ?? 0) ?? 0;
+  const hiVal = Math.max(0, maxVal);
+  const loVal = Math.min(0, minVal);
+  const niceMax = hiVal === 0 && loVal === 0 ? 1 : hiVal;
+  const leftLabels = horizontal ? data.map((d) => d.label) : [fmtNum(niceMax), fmtNum(niceMax / 2), fmtNum(loVal), fmtNum(loVal / 2)];
   const m = {
-    top: top + 8,
+    top: top2 + 8,
     right: 32,
     bottom: 64,
     left: computeLeftMargin(chart.ylabel, leftLabels)
@@ -34482,7 +34626,7 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
   const catRange = horiz ? [m.top, m.top + plotH] : [m.left, m.left + plotW];
   const cat = band().domain(data.map((d) => d.label)).range(catRange).padding(0.3);
   const valRange = horiz ? [m.left, m.left + plotW] : [m.top + plotH, m.top];
-  const val = linear2().domain([0, niceMax]).nice().range(valRange);
+  const val = linear2().domain([loVal, niceMax]).nice().range(valRange);
   for (const t3 of val.ticks(6)) {
     if (horiz) {
       const x3 = val(t3);
@@ -34507,7 +34651,8 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
   data.forEach((d, ci) => {
     const base = cat(d.label) ?? 0;
     const vals = seriesValues(d, seriesCount);
-    let acc = 0;
+    let accPos = 0;
+    let accNeg = 0;
     vals.forEach((v2, s) => {
       const stroke2 = colorFor(s, ci, seriesCount === 1 ? d.color : void 0);
       const fill2 = fillOf(stroke2);
@@ -34521,6 +34666,7 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
         seriesName: multiSeries ? sName : void 0
       };
       if (stacked) {
+        const acc = v2 < 0 ? accNeg : accPos;
         if (horiz) {
           const x05 = val(acc);
           const x12 = val(acc + v2);
@@ -34564,7 +34710,8 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
               textColor
             );
         }
-        acc += v2;
+        if (v2 < 0) accNeg += v2;
+        else accPos += v2;
       } else {
         const off2 = inner(s) ?? 0;
         const bw = inner.bandwidth();
@@ -34580,13 +34727,16 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
             stroke2,
             tag
           );
+          const txt = fmtNum(v2);
+          const approxW = txt.length * 7 + 6;
+          const inside = v2 < 0 ? x12 - approxW < m.left : x12 + approxW > m.left + plotW;
           drawValueLabel(
             svg,
-            fmtNum(v2),
-            x12 + 6,
+            txt,
+            v2 < 0 ? inside ? x12 + 6 : x12 - 6 : inside ? x12 - 6 : x12 + 6,
             base + off2 + bw / 2 + 4,
             textColor,
-            "start"
+            v2 < 0 !== inside ? "end" : "start"
           );
         } else {
           const y12 = val(v2);
@@ -34600,11 +34750,13 @@ function renderBar(svg, chart, width, height, colors, palette, isDark, textColor
             stroke2,
             tag
           );
+          const yOut = v2 < 0 ? y12 + 14 : y12 - 6;
+          const yInside = v2 < 0 ? yOut > m.top + plotH - 2 : yOut < m.top + 2;
           drawValueLabel(
             svg,
             fmtNum(v2),
             base + off2 + bw / 2,
-            y12 - 6,
+            yInside ? v2 < 0 ? y12 - 6 : y12 + 14 : yOut,
             textColor
           );
         }
@@ -34646,7 +34798,7 @@ function renderLine(svg, chart, width, height, colors, palette, isDark, textColo
       if (axisOf(s) === side) owners.push(s);
     return owners.length === 1 ? seriesColor(owners[0]) : void 0;
   };
-  const top = reserveHeader(
+  const top2 = reserveHeader(
     svg,
     chart,
     colors,
@@ -34681,7 +34833,7 @@ function renderLine(svg, chart, width, height, colors, palette, isDark, textColo
   const [loL, hiL] = extentFor("left");
   const [loR, hiR] = dual ? extentFor("right") : [0, 1];
   const m = {
-    top: top + 8,
+    top: top2 + 8,
     right: dual ? computeLeftMargin(chart.yrlabel, [fmtNum(hiR), fmtNum(loR)]) : 32,
     bottom: 64,
     left: computeLeftMargin(chart.ylabel, [fmtNum(hiL), fmtNum(loL)])
@@ -34786,9 +34938,9 @@ function renderPie(svg, chart, width, height, palette, isDark, textColor, topIns
   const fillMode = chart.fillMode;
   const total = data.reduce((a, d) => a + d.value, 0);
   const cx = width / 2;
-  const top = topInset + 12;
-  const availH = height - top;
-  const cy = top + availH / 2;
+  const top2 = topInset + 12;
+  const availH = height - top2;
+  const cy = top2 + availH / 2;
   const labels = data.map((d) => {
     const pct = Math.round(d.value / total * 100);
     const nm = chart.noName ? "" : d.label;
@@ -34799,8 +34951,8 @@ function renderPie(svg, chart, width, height, palette, isDark, textColor, topIns
     return [nm, tail].filter(Boolean).join(" \u2014 ");
   });
   const maxLabelLen = labels.reduce((m, s) => Math.max(m, s.length), 0);
-  const MARGIN22 = 6;
-  const halfW = width / 2 - MARGIN22;
+  const MARGIN23 = 6;
+  const halfW = width / 2 - MARGIN23;
   const rH = availH / 2 - availH * 0.06;
   const labelExtent = 1.27 + 0.06 * maxLabelLen;
   const rLabeled = Math.min(rH, halfW / labelExtent);
@@ -34915,9 +35067,9 @@ function renderRadar(svg, chart, width, height, colors, palette, isDark, textCol
     for (let s = 0; s < seriesCount; s++) allValues.push(seriesValue2(d, s));
   const maxValue = Math.max(...allValues) * 1.15 || 1;
   const cx = width / 2;
-  const top = topInset + 8;
-  const cy = top + (height - top) / 2;
-  const radius = Math.min(width / 2 - 130, (height - top) / 2 - 50);
+  const top2 = topInset + 8;
+  const cy = top2 + (height - top2) / 2;
+  const radius = Math.min(width / 2 - 130, (height - top2) / 2 - 50);
   const angle2 = (i) => -Math.PI / 2 + i * 2 * Math.PI / n;
   const pt = (i, r) => [
     cx + Math.cos(angle2(i)) * r,
@@ -34980,9 +35132,9 @@ function renderPolarArea(svg, chart, width, height, palette, isDark, textColor, 
   const total = data.reduce((a, d) => a + d.value, 0);
   const maxValue = Math.max(...data.map((d) => d.value)) || 1;
   const cx = width / 2;
-  const top = topInset + 8;
-  const cy = top + (height - top) / 2;
-  const outerR = Math.min(width / 2 - 200, (height - top) / 2 - 40);
+  const top2 = topInset + 8;
+  const cy = top2 + (height - top2) / 2;
+  const outerR = Math.min(width / 2 - 200, (height - top2) / 2 - 40);
   const innerR = outerR * 0.14;
   const segColors = getSegmentColors(palette, n);
   const g = svg.append("g").attr("transform", `translate(${cx},${cy})`);
@@ -35022,9 +35174,9 @@ function renderFunnel(svg, chart, width, height, colors, palette, isDark, topIns
   const n = sorted.length;
   if (n === 0) return;
   const fillMode = chart.fillMode;
-  const top = topInset + 8;
-  const bottom = height - 30;
-  const H3 = bottom - top;
+  const top2 = topInset + 8;
+  const bottom2 = height - 30;
+  const H3 = bottom2 - top2;
   const bandH = H3 / n;
   const maxValue = sorted[0].value || 1;
   const sideFont = Math.max(11, Math.min(21, width / 52));
@@ -35081,7 +35233,7 @@ function renderFunnel(svg, chart, width, height, colors, palette, isDark, topIns
     const stroke2 = d.color ?? colors[chart.data.indexOf(d) % colors.length];
     const fill2 = shapeFill(palette, stroke2, isDark, { mode: fillMode });
     const { topW, botW } = bandWidthsAt(plotW, i);
-    const y05 = top + i * bandH;
+    const y05 = top2 + i * bandH;
     const y12 = y05 + bandH;
     const seg = svg.append("polygon").attr(
       "points",
@@ -35157,12 +35309,12 @@ function renderHeatmap(svg, chart, width, height, palette, isDark, textColor, bg
     return hslToHex(h, targetS, targetL);
   };
   const rowLabelW = Math.max(0, ...rows.map((r) => measureText(r.label, 13))) + 16;
-  const left = 20 + rowLabelW;
-  const top = topInset + 28;
-  const right = 24;
-  const bottom = 24;
-  const plotW = width - left - right;
-  const plotH = height - top - bottom;
+  const left2 = 20 + rowLabelW;
+  const top2 = topInset + 28;
+  const right2 = 24;
+  const bottom2 = 24;
+  const plotW = width - left2 - right2;
+  const plotH = height - top2 - bottom2;
   const cw = plotW / ncols;
   const ch = plotH / nrows;
   const REF2 = 100;
@@ -35176,26 +35328,26 @@ function renderHeatmap(svg, chart, width, height, palette, isDark, textColor, bg
   );
   const rotate = cols.some((c) => measureText(c, 12) > cw * 0.85);
   cols.forEach((c, ci) => {
-    const x3 = left + ci * cw + cw / 2;
+    const x3 = left2 + ci * cw + cw / 2;
     const t3 = svg.append("text").attr("class", "dgmo-axis-label").attr("data-filter-attr", "data-col-key").attr("data-filter-value", c).attr("fill", textColor).attr("font-size", 12).attr("font-family", FONT_FAMILY).text(c);
     if (rotate) {
-      t3.attr("transform", `translate(${x3},${top - 8}) rotate(-40)`).attr(
+      t3.attr("transform", `translate(${x3},${top2 - 8}) rotate(-40)`).attr(
         "text-anchor",
         "start"
       );
     } else {
-      t3.attr("x", x3).attr("y", top - 8).attr("text-anchor", "middle");
+      t3.attr("x", x3).attr("y", top2 - 8).attr("text-anchor", "middle");
     }
   });
   rows.forEach((row, ri) => {
-    svg.append("text").attr("class", "dgmo-axis-label").attr("data-filter-attr", "data-row-key").attr("data-filter-value", row.label).attr("x", left - 10).attr("y", top + ri * ch + ch / 2 + 4).attr("text-anchor", "end").attr("fill", textColor).attr("font-size", 13).attr("font-family", FONT_FAMILY).text(row.label);
+    svg.append("text").attr("class", "dgmo-axis-label").attr("data-filter-attr", "data-row-key").attr("data-filter-value", row.label).attr("x", left2 - 10).attr("y", top2 + ri * ch + ch / 2 + 4).attr("text-anchor", "end").attr("fill", textColor).attr("font-size", 13).attr("font-family", FONT_FAMILY).text(row.label);
     row.values.forEach((v2, ci) => {
       const t3 = maxValue === minValue ? 0.5 : (v2 - minValue) / (maxValue - minValue);
       const ramp = gradientAt(t3);
       const cell = outline ? baseBg : ramp;
       const colLabel = cols[ci] ?? `Col ${ci + 1}`;
       const cellKey = `${row.label} \xB7 ${colLabel}`;
-      const r = svg.append("rect").attr("x", left + ci * cw).attr("y", top + ri * ch).attr("width", cw).attr("height", ch).attr("fill", cell).attr("stroke", outline ? ramp : bgColor).attr("stroke-width", outline ? 1.5 : 2).attr("data-row-key", row.label).attr("data-col-key", colLabel);
+      const r = svg.append("rect").attr("x", left2 + ci * cw).attr("y", top2 + ri * ch).attr("width", cw).attr("height", ch).attr("fill", cell).attr("stroke", outline ? ramp : bgColor).attr("stroke-width", outline ? 1.5 : 2).attr("data-row-key", row.label).attr("data-col-key", colLabel);
       tagDatum(r, {
         line: row.lineNumber,
         key: cellKey,
@@ -35204,7 +35356,7 @@ function renderHeatmap(svg, chart, width, height, palette, isDark, textColor, bg
         color: ramp
       });
       if (!chart.noValue) {
-        const label = svg.append("text").attr("x", left + ci * cw + cw / 2).attr("y", top + ri * ch + ch / 2 + cellFont / 3).attr("text-anchor", "middle").attr("fill", labelTint(ramp)).attr("font-size", cellFont).attr("font-weight", 600).attr("font-family", FONT_FAMILY).text(fmtNum(v2));
+        const label = svg.append("text").attr("x", left2 + ci * cw + cw / 2).attr("y", top2 + ri * ch + ch / 2 + cellFont / 3).attr("text-anchor", "middle").attr("fill", labelTint(ramp)).attr("font-size", cellFont).attr("font-weight", 600).attr("font-family", FONT_FAMILY).text(fmtNum(v2));
         tagDatum(label, {
           line: row.lineNumber,
           key: cellKey,
@@ -35456,9 +35608,9 @@ function renderSankey(svg, chart, width, height, colors, bgColor, textColor, top
   const layers = Array.from({ length: maxRank + 1 }, () => []);
   for (const n of node.values()) layers[n.rank].push(n);
   const plotLeft = 16;
-  const top = topInset + 8;
+  const top2 = topInset + 8;
   const plotW = width - plotLeft - 16 - measureText("M", 14);
-  const plotH = height - top - 24;
+  const plotH = height - top2 - 24;
   let valueScale = Infinity;
   for (const layer of layers) {
     const tot = layer.reduce((a, n) => a + n.value, 0);
@@ -35470,7 +35622,7 @@ function renderSankey(svg, chart, width, height, colors, bgColor, textColor, top
   const placeLayer = (layer) => {
     layer.sort((a, b) => a.order - b.order);
     const totH = layer.reduce((a, n) => a + n.value * valueScale, 0) + (layer.length - 1) * NODE_GAP;
-    let y2 = top + (plotH - totH) / 2;
+    let y2 = top2 + (plotH - totH) / 2;
     for (const n of layer) {
       n.h = n.value * valueScale;
       n.x = layerX(n.rank);
@@ -35560,11 +35712,11 @@ function renderChord(svg, chart, width, height, colors, palette, isDark, textCol
   const n = names.length;
   const idx = new Map(names.map((nm, i) => [nm, i]));
   const colorOf2 = (i) => colors[i % colors.length];
-  const top = topInset + 8;
+  const top2 = topInset + 8;
   const cx = width / 2;
-  const cy = top + (height - top) / 2;
+  const cy = top2 + (height - top2) / 2;
   const maxLabel = Math.max(0, ...names.map((nm) => measureText(nm, 14)));
-  const radius = Math.min(width / 2 - maxLabel - 60, (height - top) / 2 - 50);
+  const radius = Math.min(width / 2 - maxLabel - 60, (height - top2) / 2 - 50);
   const angle2 = (i) => -Math.PI / 2 + i * 2 * Math.PI / n;
   const pos = (i) => [
     cx + Math.cos(angle2(i)) * radius,
@@ -35860,7 +36012,7 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
         return true;
       case "radar": {
         const groups = std.noLegend ? [] : getSimpleChartLegendGroups(std, colors);
-        const top = injectLegendGroups(
+        const top2 = injectLegendGroups(
           s,
           groups,
           palette,
@@ -35879,7 +36031,7 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
           isDark,
           textColor,
           mutedColor,
-          top
+          top2
         );
         return true;
       }
@@ -35932,7 +36084,7 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
       return true;
     case "scatter": {
       const groups = ext.noLegend ? [] : getExtendedChartLegendGroups(ext, seriesColors2);
-      const top = injectLegendGroups(
+      const top2 = injectLegendGroups(
         s,
         groups,
         palette,
@@ -35951,7 +36103,7 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
         isDark,
         textColor,
         mutedColor,
-        top
+        top2
       );
       return true;
     }
@@ -35982,7 +36134,7 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
       return true;
     case "function": {
       const groups = ext.noLegend ? [] : getExtendedChartLegendGroups(ext, seriesColors2);
-      const top = injectLegendGroups(
+      const top2 = injectLegendGroups(
         s,
         groups,
         palette,
@@ -35999,7 +36151,7 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
         seriesColors2,
         textColor,
         mutedColor,
-        top,
+        top2,
         palette,
         isDark
       );
@@ -36010,20 +36162,20 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
   }
 }
 var AXIS_LABEL_FONT, TICK_FONT, VALUE_FONT, LABEL_FONT, RINGS, PAD2, MARGIN, FILL_OPACITY, DEFAULT_SIZE, LABEL_FONT2, SIZEVAL_FONT, SIZEVAL_LINE, SIZEVAL_LABEL_FONT, SIZEVAL_LABEL_LINE, SIZEVAL_BOLD_FACTOR, NODE_W, NODE_GAP, RIBBON_FILL_OPACITY, FUNCS, Parser, SAMPLES, STANDARD, EXTENDED, D3_DATA_CHART_TYPES, INLINE_LEGEND_TYPES;
-var init_chunk_QQXFYTLC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QQXFYTLC.js"() {
+var init_chunk_BR2VSKHI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BR2VSKHI.js"() {
     init_chunk_VHO3YBTB();
-    init_chunk_ADYKAKE3();
-    init_chunk_US3P2DQO();
-    init_chunk_GRXPFBYC();
+    init_chunk_CQ7Y3O67();
+    init_chunk_6VJCURWU();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_PCVXXPYU();
+    init_chunk_CY5KE2P5();
     init_chunk_2CW5ZTNH();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     init_src7();
     init_src3();
     init_src7();
@@ -36181,7 +36333,7 @@ var init_chunk_QQXFYTLC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js
 function fractionalYearToDate(frac) {
   const year = Math.floor(frac);
   const remainder = frac - year;
@@ -36349,7 +36501,7 @@ function computeTimeTicks(domainMin, domainMax, scale, boundaryStart, boundaryEn
 }
 var MONTH_ABBR2;
 var init_chunk_YRYKTYMQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js"() {
     MONTH_ABBR2 = [
       "Jan",
       "Feb",
@@ -36367,10 +36519,10 @@ var init_chunk_YRYKTYMQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js
 var DEFAULT_MIN_SCALE_FACTOR, TEXT_FLOOR, ScaleContext;
 var init_chunk_YYVTBZZC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js"() {
     DEFAULT_MIN_SCALE_FACTOR = 0.5;
     TEXT_FLOOR = 9;
     ScaleContext = class _ScaleContext {
@@ -36429,7 +36581,7 @@ var init_chunk_YYVTBZZC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ASPS5O6F.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QDOYT6UW.js
 function centerText(sel) {
   return sel.attr("dy", LEGEND_TEXT_DY);
 }
@@ -36687,13 +36839,13 @@ function renderIntegratedLegend(container, opts) {
   );
 }
 var LEGEND_TEXT_DY, DEFAULT_POSITION;
-var init_chunk_ASPS5O6F = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ASPS5O6F.js"() {
-    init_chunk_GRXPFBYC();
+var init_chunk_QDOYT6UW = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QDOYT6UW.js"() {
+    init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
-    init_chunk_Q5IHQ4NW();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_SCJ7CAJF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     LEGEND_TEXT_DY = "0.32em";
     DEFAULT_POSITION = {
       placement: "top-center",
@@ -36702,7 +36854,7 @@ var init_chunk_ASPS5O6F = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZP265ICS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HIMDUQT7.js
 function getEraColors(palette) {
   return [
     palette.colors.blue,
@@ -38320,17 +38472,17 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
   );
 }
 var timelineCollapseState, tlBandClipCounter;
-var init_chunk_ZP265ICS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZP265ICS.js"() {
+var init_chunk_HIMDUQT7 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HIMDUQT7.js"() {
     init_chunk_YRYKTYMQ();
     init_chunk_YYVTBZZC();
-    init_chunk_ADYKAKE3();
-    init_chunk_ASPS5O6F();
+    init_chunk_CQ7Y3O67();
+    init_chunk_QDOYT6UW();
     init_chunk_6KFWC4CO();
-    init_chunk_ITXL2KU5();
-    init_chunk_Q5IHQ4NW();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_4MJOBVY7();
+    init_chunk_SCJ7CAJF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     init_src7();
     init_src();
     timelineCollapseState = /* @__PURE__ */ new WeakMap();
@@ -38711,9 +38863,9 @@ var require_d3_cloud = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/dgmo-router-T4HGLIGA.js
-var dgmo_router_T4HGLIGA_exports = {};
-__export(dgmo_router_T4HGLIGA_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dgmo-router-GSWUPLP2.js
+var dgmo_router_GSWUPLP2_exports = {};
+__export(dgmo_router_GSWUPLP2_exports, {
   CHART_TYPE_DESCRIPTIONS: () => CHART_TYPE_DESCRIPTIONS,
   chartTypeParsers: () => chartTypeParsers,
   getAllChartTypes: () => getAllChartTypes,
@@ -38725,37 +38877,37 @@ __export(dgmo_router_T4HGLIGA_exports, {
   parseDgmo: () => parseDgmo,
   parseDgmoChartType: () => parseDgmoChartType
 });
-var init_dgmo_router_T4HGLIGA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/dgmo-router-T4HGLIGA.js"() {
-    init_chunk_XKKH2DPG();
+var init_dgmo_router_GSWUPLP2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dgmo-router-GSWUPLP2.js"() {
+    init_chunk_GDGOVO2I();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/charts-d3-KZ6V4OP2.js
-var charts_d3_KZ6V4OP2_exports = {};
-__export(charts_d3_KZ6V4OP2_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/charts-d3-D67V6KHE.js
+var charts_d3_D67V6KHE_exports = {};
+__export(charts_d3_D67V6KHE_exports, {
   D3_DATA_CHART_TYPES: () => D3_DATA_CHART_TYPES,
   renderDataChartD3: () => renderDataChartD3,
   supportsD3DataChart: () => supportsD3DataChart
 });
-var init_charts_d3_KZ6V4OP2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/charts-d3-KZ6V4OP2.js"() {
-    init_chunk_QQXFYTLC();
+var init_charts_d3_D67V6KHE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/charts-d3-D67V6KHE.js"() {
+    init_chunk_BR2VSKHI();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-2AXPSKWB.js
-var parser_2AXPSKWB_exports = {};
-__export(parser_2AXPSKWB_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-GGCDY65M.js
+var parser_GGCDY65M_exports = {};
+__export(parser_GGCDY65M_exports, {
   parseEventLine: () => parseEventLine
 });
-var init_parser_2AXPSKWB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-2AXPSKWB.js"() {
-    init_chunk_3BFXELBL();
+var init_parser_GGCDY65M = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-GGCDY65M.js"() {
+    init_chunk_WFX6AUQO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js
 function renderNodeCard(container, opts) {
   const rect2 = container.append("rect").attr("x", 0).attr("y", 0).attr("width", opts.width).attr("height", opts.height).attr("rx", opts.rx).attr("fill", opts.fill).attr("stroke", opts.stroke).attr("stroke-width", opts.strokeWidth);
   if (opts.dashed) {
@@ -38793,12 +38945,12 @@ function renderCollapseBar(container, opts) {
   container.append("rect").attr("x", opts.inset).attr("y", opts.height - opts.barHeight).attr("width", opts.width - opts.inset * 2).attr("height", opts.barHeight).attr("fill", opts.fill).attr("clip-path", `url(#${opts.clipId})`).attr("class", opts.className);
 }
 var init_chunk_H3HFC3SQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js"() {
     init_chunk_4ASYQ347();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js
 function safeHref(url) {
   if (typeof url !== "string") return null;
   const trimmed = url.replace(LEADING_TRIM_RE, "");
@@ -38872,7 +39024,7 @@ function renderInlineText(textEl, text, palette, fontSize) {
 }
 var ALLOWED_SCHEMES, SCHEME_RE, LEADING_TRIM_RE, BARE_URL_MAX_DISPLAY;
 var init_chunk_3HDBAXF5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js"() {
     ALLOWED_SCHEMES = ["http", "https", "mailto"];
     SCHEME_RE = /^([a-z][a-z0-9+.-]*):/i;
     LEADING_TRIM_RE = /^[\x00-\x20]+/;
@@ -38880,10 +39032,10 @@ var init_chunk_3HDBAXF5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js
 var NODE_STROKE_WIDTH, EDGE_STROKE_WIDTH, CARD_RADIUS, CONTAINER_RADIUS, COLLAPSE_BAR_INSET, HEADER_HEIGHT, LABEL_FONT_SIZE, META_FONT_SIZE, META_LINE_HEIGHT, SEPARATOR_GAP, COLLAPSE_BAR_HEIGHT, CONTAINER_HEADER_HEIGHT, CONTAINER_LABEL_FONT_SIZE, CONTAINER_META_FONT_SIZE, CONTAINER_META_LINE_HEIGHT;
 var init_chunk_3CIOJ5YJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js"() {
     NODE_STROKE_WIDTH = 1.5;
     EDGE_STROKE_WIDTH = 1.5;
     CARD_RADIUS = 6;
@@ -38902,7 +39054,7 @@ var init_chunk_3CIOJ5YJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js
 function wrapDescriptionLines(lines, charsPerLine, lengthFn = (s) => s.length) {
   const result = [];
   for (const line of lines) {
@@ -38938,13 +39090,13 @@ function wrapPlainLine(line, charsPerLine, lengthFn) {
 }
 var BULLET_PREFIX, BULLET_INDENT_CHARS;
 var init_chunk_BMR4CIEO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js"() {
     BULLET_PREFIX = "\u2022 ";
     BULLET_INDENT_CHARS = 2;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PKUWYPI5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YG5KQ55U.js
 function renderEventLine(container, parsed, palette, isDark, onClickItem, exportDims, tagOverride, nowDate) {
   if (parsed.events.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -39241,17 +39393,17 @@ function renderEventLine(container, parsed, palette, isDark, onClickItem, export
         const maxLeft = p2.x - CARD_INSET;
         const minLeft = p2.x - CARD_W + CARD_INSET;
         let lane = laneRight.length;
-        let left = Math.max(preferred, minLeft);
+        let left2 = Math.max(preferred, minLeft);
         for (let l = 0; l < laneRight.length; l++) {
           const want = Math.max(preferred, laneRight[l] + FAN_GAP, minLeft);
           if (want <= maxLeft) {
             lane = l;
-            left = want;
+            left2 = want;
             break;
           }
         }
         p2.lane = lane;
-        p2.left = Math.max(6, left);
+        p2.left = Math.max(6, left2);
         laneRight[lane] = p2.left + CARD_W;
       }
     }
@@ -39383,8 +39535,8 @@ function renderEventLine(container, parsed, palette, isDark, onClickItem, export
   }
   const geo = placed.map((p2) => {
     const near = p2.side === "above" ? spineY - laneNear(p2) : spineY + laneNear(p2);
-    const top = p2.side === "above" ? near - p2.cardH : near;
-    return { p: p2, near, top };
+    const top2 = p2.side === "above" ? near - p2.cardH : near;
+    return { p: p2, near, top: top2 };
   });
   const leaderCrossesBox = (owner, near) => {
     const lo = Math.min(spineY, near);
@@ -39403,9 +39555,9 @@ function renderEventLine(container, parsed, palette, isDark, onClickItem, export
     applyHoverHooks(leader, p2);
   }
   let shelfClipSeq = 0;
-  for (const { p: p2, top } of geo) {
-    const left = p2.left;
-    const cardG = svg.append("g").attr("class", "dgmo-event-card").attr("transform", `translate(${left}, ${top})`).attr("data-line-number", p2.lineNumber);
+  for (const { p: p2, top: top2 } of geo) {
+    const left2 = p2.left;
+    const cardG = svg.append("g").attr("class", "dgmo-event-card").attr("transform", `translate(${left2}, ${top2})`).attr("data-line-number", p2.lineNumber);
     applyHoverHooks(cardG, p2);
     if (p2.kind === "era") {
       cardG.attr("data-era", p2.era.name).attr("data-era-collapsed", "true");
@@ -40004,23 +40156,23 @@ function renderBody(cardG, lines, bodyColor, palette, startBaseline = CARD_BODY_
   }
 }
 var CARD_W, H_MARGIN, TITLE_AREA, LEGEND_BAND, LEADER_ABOVE, LEADER_BELOW, DESC_FONT, DESC_LINE_H, CARD_PAD, CARD_BODY_TOP, TITLE_LINE_H, TITLE_MAX_W, DOT_R, MIN_SPACING, LANE_GAP, NEUTRAL_TAG, CARD_INSET, FAN_GAP, DATE_SUBTITLE_H, DATE_SUBTITLE_FONT, SHELF_TINT, SHELF_EDGE, SHELF_EDGE_STYLE, SHELF_LIP, ERA_BLOCK, ERA_BRACKET_CAP, ERA_BRACKET_PAD, ERA_SEAM_GAP, BREAK_HALF_H, BREAK_AMP, BREAK_GAP, ERA_LEG, ERA_LABEL_FONT, HL, DIM, ERA_HL, COLLAPSED, OFF, HIDDEN_ATTR, HOVER_CSS, DIMMABLE_SEL, PIN_ATTR;
-var init_chunk_PKUWYPI5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PKUWYPI5.js"() {
+var init_chunk_YG5KQ55U = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YG5KQ55U.js"() {
     init_chunk_H3HFC3SQ();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_BMR4CIEO();
-    init_chunk_ZP265ICS();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_HIMDUQT7();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_ITXL2KU5();
+    init_chunk_4MJOBVY7();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_EXNKNJ65();
     init_src();
     CARD_W = 210;
     H_MARGIN = 58;
@@ -40067,33 +40219,33 @@ var init_chunk_PKUWYPI5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-HTDS4FED.js
-var renderer_HTDS4FED_exports = {};
-__export(renderer_HTDS4FED_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YVCD55ZX.js
+var renderer_YVCD55ZX_exports = {};
+__export(renderer_YVCD55ZX_exports, {
   clearEventLineMuted: () => clearEventLineMuted,
   focusEventLine: () => focusEventLine,
   renderEventLine: () => renderEventLine,
   renderEventLineForExport: () => renderEventLineForExport
 });
-var init_renderer_HTDS4FED = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-HTDS4FED.js"() {
-    init_chunk_PKUWYPI5();
+var init_renderer_YVCD55ZX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YVCD55ZX.js"() {
+    init_chunk_YG5KQ55U();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-OOYNI2UT.js
-var parser_OOYNI2UT_exports = {};
-__export(parser_OOYNI2UT_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-RBNOWHGM.js
+var parser_RBNOWHGM_exports = {};
+__export(parser_RBNOWHGM_exports, {
   extractSymbols: () => extractSymbols,
   parseBody: () => parseBody
 });
-var init_parser_OOYNI2UT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-OOYNI2UT.js"() {
-    init_chunk_O4CZDTQA();
+var init_parser_RBNOWHGM = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-RBNOWHGM.js"() {
+    init_chunk_EEKGMS63();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-Q5CMQVWF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3BWDEYN.js
 function pathStartX(d) {
   const m = d.match(/[Mm]\s*(-?[\d.]+)/);
   return m ? parseFloat(m[1]) : 0;
@@ -40115,27 +40267,27 @@ function renderFigureBody(fig, view, parts, partColor, emphKey, form, palette, i
   const muscleFill = mix(palette.bg, palette.border, 0.7);
   const seam = palette.bg;
   const outlineStroke = palette.textMuted;
-  const gid = `body-skin-${vx}-${vy}`;
+  const gid2 = `body-skin-${vx}-${vy}`;
   defs.push(
-    `<linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${mix(palette.surface, palette.bg, 0.4)}"/><stop offset="1" stop-color="${mix(palette.border, palette.bg, 0.3)}"/></linearGradient>`
+    `<linearGradient id="${gid2}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${mix(palette.surface, palette.bg, 0.4)}"/><stop offset="1" stop-color="${mix(palette.border, palette.bg, 0.3)}"/></linearGradient>`
   );
   let out = "";
   if (form === "skin") {
-    out += `<path d="${fig.outline}" fill="url(#${gid})"/>`;
+    out += `<path d="${fig.outline}" fill="url(#${gid2})"/>`;
     for (const d of fig.headPaths) {
-      out += `<path d="${d}" fill="url(#${gid})" stroke="${outlineStroke}" stroke-width="2.5"/>`;
+      out += `<path d="${d}" fill="url(#${gid2})" stroke="${outlineStroke}" stroke-width="2.5"/>`;
     }
     const hairFill = mix(palette.text, palette.bg, 0.6);
     for (const d of fig.hairPaths) {
       out += `<path d="${d}" fill="${hairFill}" stroke="${outlineStroke}" stroke-width="1.5"/>`;
     }
   } else {
-    out += `<path d="${fig.outline}" fill="url(#${gid})"/>`;
+    out += `<path d="${fig.outline}" fill="url(#${gid2})"/>`;
     for (const d of fig.base) {
       out += `<path d="${d}" fill="${muscleFill}" fill-opacity="0.55" stroke="${seam}" stroke-width="1"/>`;
     }
     for (const d of fig.headPaths) {
-      out += `<path d="${d}" fill="url(#${gid})" stroke="${outlineStroke}" stroke-width="2.5"/>`;
+      out += `<path d="${d}" fill="url(#${gid2})" stroke="${outlineStroke}" stroke-width="2.5"/>`;
     }
     for (const d of fig.hairPaths) {
       out += `<path d="${d}" fill="none" stroke="${outlineStroke}" stroke-width="2.5"/>`;
@@ -40208,10 +40360,10 @@ function gutterLabels(r, palette) {
   const cx = vx + vw / 2;
   const list = [...r.anchors.values()];
   const band2 = vw * 0.1;
-  const left = list.filter((a) => a.x < cx - band2);
-  const right = list.filter((a) => a.x > cx + band2);
+  const left2 = list.filter((a) => a.x < cx - band2);
+  const right2 = list.filter((a) => a.x > cx + band2);
   const mid = list.filter((a) => a.x >= cx - band2 && a.x <= cx + band2).sort((a, b) => a.y - b.y);
-  for (const a of mid) (left.length <= right.length ? left : right).push(a);
+  for (const a of mid) (left2.length <= right2.length ? left2 : right2).push(a);
   let labels = "";
   const place = (arr, side) => {
     const gx = side === "L" ? vx - 14 : vx + vw + 14;
@@ -40231,8 +40383,8 @@ function gutterLabels(r, palette) {
       }
     }
   };
-  place(left, "L");
-  place(right, "R");
+  place(left2, "L");
+  place(right2, "R");
   return labels;
 }
 function renderBody2(container, parsed, palette, _isDark, _onClickItem, exportDims, tagOverride) {
@@ -40303,17 +40455,17 @@ function renderBody2(container, parsed, palette, _isDark, _onClickItem, exportDi
       const aR = fR.anchors.get(nm);
       if (!aL && !aR) continue;
       seen.add(nm);
-      const left = aL ? mapL(nearestCenter(aL, fL.vx + fL.vw)) : void 0;
-      const right = aR ? mapR(nearestCenter(aR, fR.vx)) : void 0;
-      const ys = [left?.y, right?.y].filter((v2) => v2 != null);
+      const left2 = aL ? mapL(nearestCenter(aL, fL.vx + fL.vw)) : void 0;
+      const right2 = aR ? mapR(nearestCenter(aR, fR.vx)) : void 0;
+      const ys = [left2?.y, right2?.y].filter((v2) => v2 != null);
       items.push({
         name: partLabel(part),
         note: part.notes.length ? part.notes[0] : "",
         color: (aL ?? aR).color,
         emph: (aL ?? aR).emph,
         line: part.lineNumber,
-        ...left && { left },
-        ...right && { right },
+        ...left2 && { left: left2 },
+        ...right2 && { right: right2 },
         y: ys.reduce((s, v2) => s + v2, 0) / ys.length
       });
     }
@@ -40388,14 +40540,14 @@ function renderBodyForExport(container, parsed, palette, isDark, exportDims, tag
   );
 }
 var esc2, TITLE_H, LEGEND_SCALE, LEGEND_BAND2, TITLE_PAD, BOTTOM_PAD, PAGE_MARGIN, OUTER_MARGIN, CENTER_COL, LABEL_FONT3, NOTE_FONT;
-var init_chunk_Q5CMQVWF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-Q5CMQVWF.js"() {
-    init_chunk_ASPS5O6F();
+var init_chunk_C3BWDEYN = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3BWDEYN.js"() {
+    init_chunk_QDOYT6UW();
     init_chunk_6KFWC4CO();
     init_chunk_BDXC7MDK();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_EXNKNJ65();
     init_src();
     esc2 = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     TITLE_H = 60;
@@ -40411,30 +40563,30 @@ var init_chunk_Q5CMQVWF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-W6I6T2TA.js
-var renderer_W6I6T2TA_exports = {};
-__export(renderer_W6I6T2TA_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-M6AFKVLS.js
+var renderer_M6AFKVLS_exports = {};
+__export(renderer_M6AFKVLS_exports, {
   renderBody: () => renderBody2,
   renderBodyForExport: () => renderBodyForExport
 });
-var init_renderer_W6I6T2TA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-W6I6T2TA.js"() {
-    init_chunk_Q5CMQVWF();
+var init_renderer_M6AFKVLS = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-M6AFKVLS.js"() {
+    init_chunk_C3BWDEYN();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-DM2APTKB.js
-var parser_DM2APTKB_exports = {};
-__export(parser_DM2APTKB_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4TX6U4ZU.js
+var parser_4TX6U4ZU_exports = {};
+__export(parser_4TX6U4ZU_exports, {
   parseVersionControl: () => parseVersionControl
 });
-var init_parser_DM2APTKB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-DM2APTKB.js"() {
-    init_chunk_MSWIBF6J();
+var init_parser_4TX6U4ZU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4TX6U4ZU.js"() {
+    init_chunk_D64FRGKU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-EFUQENO5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IMXG673Y.js
 function clip(s, max3) {
   return s.length > max3 ? s.slice(0, max3 - 1) + "\u2026" : s;
 }
@@ -40526,25 +40678,25 @@ function renderVersionControl(container, parsed, palette, isDark, onClickItem, e
     for (const n of sorted) {
       const p2 = pos.get(n.key);
       const w2 = label.get(n.key).lw + SHELF_PAD * 2;
-      const left = p2.x - w2 / 2;
+      const left2 = p2.x - w2 / 2;
       let row = rowRight.length;
       for (let l = 0; l < rowRight.length; l++)
-        if (rowRight[l] + shelfGap <= left) {
+        if (rowRight[l] + shelfGap <= left2) {
           row = l;
           break;
         }
-      const top = bandTop + row * (SHELF_H + ROW_GAP);
-      rowRight[row] = left + w2;
+      const top2 = bandTop + row * (SHELF_H + ROW_GAP);
+      rowRight[row] = left2 + w2;
       placements.push({
         node: n,
         kind: "msg",
         x: p2.x,
-        y: top,
+        y: top2,
         anchor: "start",
-        shelfLeft: Math.max(4, left),
-        shelfTop: top,
+        shelfLeft: Math.max(4, left2),
+        shelfTop: top2,
         shelfW: w2,
-        leader: { x1: p2.x, y1: p2.y + DOT, x2: p2.x, y2: top }
+        leader: { x1: p2.x, y1: p2.y + DOT, x2: p2.x, y2: top2 }
       });
       const stack = above.get(n.key) ?? [];
       stack.forEach(
@@ -40807,15 +40959,15 @@ function drawGraph(g, parsed, palette, TB, pos, placements, label, colorOf2, byK
       let ty = pl.y + 4;
       let anchor = pl.anchor;
       if (pl.shelfW != null) {
-        const left = pl.shelfLeft;
-        const top = pl.shelfTop;
+        const left2 = pl.shelfLeft;
+        const top2 = pl.shelfTop;
         const w2 = pl.shelfW;
         const clipId = `dgmo-vc-shelf-${shelfSeq++}`;
-        g.append("clipPath").attr("id", clipId).append("rect").attr("x", left).attr("y", top).attr("width", w2).attr("height", SHELF_H).attr("rx", SHELF_EDGE2);
-        g.append("rect").attr("x", left).attr("y", top).attr("width", w2).attr("height", SHELF_H).attr("rx", SHELF_EDGE2).attr("fill", gh ? palette.bg : mix(c, palette.bg, SHELF_TINT2)).attr("data-branch", n.branch).attr("opacity", gh ? 0.5 : 1);
-        g.append("rect").attr("x", left).attr("y", top).attr("width", w2).attr("height", SHELF_LIP2).attr("clip-path", `url(#${clipId})`).attr("fill", c).attr("data-branch", n.branch).attr("opacity", gh ? 0.4 : 1);
-        tx = left + SHELF_PAD;
-        ty = top + SHELF_H / 2 + 4;
+        g.append("clipPath").attr("id", clipId).append("rect").attr("x", left2).attr("y", top2).attr("width", w2).attr("height", SHELF_H).attr("rx", SHELF_EDGE2);
+        g.append("rect").attr("x", left2).attr("y", top2).attr("width", w2).attr("height", SHELF_H).attr("rx", SHELF_EDGE2).attr("fill", gh ? palette.bg : mix(c, palette.bg, SHELF_TINT2)).attr("data-branch", n.branch).attr("opacity", gh ? 0.5 : 1);
+        g.append("rect").attr("x", left2).attr("y", top2).attr("width", w2).attr("height", SHELF_LIP2).attr("clip-path", `url(#${clipId})`).attr("fill", c).attr("data-branch", n.branch).attr("opacity", gh ? 0.4 : 1);
+        tx = left2 + SHELF_PAD;
+        ty = top2 + SHELF_H / 2 + 4;
         anchor = "start";
       }
       const t3 = g.append("text").attr("x", tx).attr("y", ty).attr("text-anchor", anchor).attr("font-size", 12).attr("data-branch", n.branch).attr("opacity", gh ? 0.6 : 1);
@@ -40845,12 +40997,12 @@ function renderVersionControlForExport(container, parsed, palette, isDark, expor
   );
 }
 var LINE, DOT, CORNER, STACK, CIRCLED, TITLE_AREA2, SHELF_TINT2, SHELF_EDGE2, SHELF_LIP2, SHELF_PAD, SHELF_H, LEADER_GAP, ROW_GAP;
-var init_chunk_EFUQENO5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-EFUQENO5.js"() {
+var init_chunk_IMXG673Y = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IMXG673Y.js"() {
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_JYDMBWRP();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_EXNKNJ65();
     init_src();
     LINE = 3;
     DOT = 5.5;
@@ -40868,27 +41020,27 @@ var init_chunk_EFUQENO5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-QZESC66H.js
-var renderer_QZESC66H_exports = {};
-__export(renderer_QZESC66H_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-RJT3MOUU.js
+var renderer_RJT3MOUU_exports = {};
+__export(renderer_RJT3MOUU_exports, {
   renderVersionControl: () => renderVersionControl,
   renderVersionControlForExport: () => renderVersionControlForExport
 });
-var init_renderer_QZESC66H = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-QZESC66H.js"() {
-    init_chunk_EFUQENO5();
+var init_renderer_RJT3MOUU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-RJT3MOUU.js"() {
+    init_chunk_IMXG673Y();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-XDSPOXSE.js
-var parser_XDSPOXSE_exports = {};
-__export(parser_XDSPOXSE_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-CCAUZLYI.js
+var parser_CCAUZLYI_exports = {};
+__export(parser_CCAUZLYI_exports, {
   looksLikeOrg: () => looksLikeOrg,
   parseOrg: () => parseOrg
 });
-var init_parser_XDSPOXSE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-XDSPOXSE.js"() {
-    init_chunk_MNS2ENXF();
+var init_parser_CCAUZLYI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-CCAUZLYI.js"() {
+    init_chunk_PFG3EVRD();
   }
 });
 
@@ -41342,13 +41494,13 @@ function tree_default() {
     t3.eachBefore(secondWalk);
     if (nodeSize2) root2.eachBefore(sizeNode);
     else {
-      var left = root2, right = root2, bottom = root2;
+      var left2 = root2, right2 = root2, bottom2 = root2;
       root2.eachBefore(function(node) {
-        if (node.x < left.x) left = node;
-        if (node.x > right.x) right = node;
-        if (node.depth > bottom.depth) bottom = node;
+        if (node.x < left2.x) left2 = node;
+        if (node.x > right2.x) right2 = node;
+        if (node.depth > bottom2.depth) bottom2 = node;
       });
-      var s = left === right ? 1 : separation(left, right) / 2, tx = s - left.x, kx = dx / (right.x + s + tx), ky = dy / (bottom.depth || 1);
+      var s = left2 === right2 ? 1 : separation(left2, right2) / 2, tx = s - left2.x, kx = dx / (right2.x + s + tx), ky = dy / (bottom2.depth || 1);
       root2.eachBefore(function(node) {
         node.x = (node.x + tx) * kx;
         node.y = node.depth * ky;
@@ -41573,7 +41725,7 @@ var init_src10 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UBQU2BY6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RBIX3HQQ.js
 function countDescendantNodes(node, hiddenCounts) {
   let count2 = 0;
   for (const child of node.children) {
@@ -41654,18 +41806,18 @@ function centerHeavyChildren(node) {
   const weighted = node.children.map((child) => ({ child, weight: countDescendants(child) })).sort((a, b) => b.weight - a.weight);
   const result = new Array(weighted.length);
   const mid = Math.floor((weighted.length - 1) / 2);
-  let left = mid;
-  let right = mid;
+  let left2 = mid;
+  let right2 = mid;
   for (let i = 0; i < weighted.length; i++) {
     const w2 = weighted[i];
     if (i === 0) {
       result[mid] = w2.child;
     } else if (i % 2 === 1) {
-      right++;
-      result[right] = w2.child;
+      right2++;
+      result[right2] = w2.child;
     } else {
-      left--;
-      result[left] = w2.child;
+      left2--;
+      result[left2] = w2.child;
     }
   }
   node.children = result;
@@ -41914,24 +42066,24 @@ function layoutOrg(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, expan
   }
   {
     const subtreeExtent = (node) => {
-      let min2 = node.x - crossExtent(node.data) / 2;
+      let min3 = node.x - crossExtent(node.data) / 2;
       let max3 = node.x + crossExtent(node.data) / 2;
       if (node.children) {
         for (const child of node.children) {
           const childExt = subtreeExtent(child);
-          if (childExt.minX < min2) min2 = childExt.minX;
+          if (childExt.minX < min3) min3 = childExt.minX;
           if (childExt.maxX > max3) max3 = childExt.maxX;
         }
       }
       if (node.data.orgNode.isContainer) {
-        min2 -= CONTAINER_PAD_X;
+        min3 -= CONTAINER_PAD_X;
         max3 += CONTAINER_PAD_X;
         if (isLR) {
           const metaCount = Object.keys(node.data.orgNode.metadata).length;
-          min2 -= CONTAINER_LABEL_HEIGHT + metaCount * CONTAINER_META_LINE_HEIGHT2;
+          min3 -= CONTAINER_LABEL_HEIGHT + metaCount * CONTAINER_META_LINE_HEIGHT2;
         }
       }
-      return { minX: min2, maxX: max3 };
+      return { minX: min3, maxX: max3 };
     };
     const shiftX = (node, dx) => {
       node.x += dx;
@@ -42000,8 +42152,8 @@ function layoutOrg(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, expan
     }
   }
   const screenRect = (ax, ay, w2, h2) => {
-    const { left, top } = screenTopLeft(ax, ay, w2, h2);
-    return { left, top, right: left + w2, bottom: top + h2 };
+    const { left: left2, top: top2 } = screenTopLeft(ax, ay, w2, h2);
+    return { left: left2, top: top2, right: left2 + w2, bottom: top2 + h2 };
   };
   const growBBox = (r) => {
     if (r.left < minX) minX = r.left;
@@ -42215,11 +42367,11 @@ function layoutOrg(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, expan
     let descMaxX = -Infinity;
     let descMinY = Infinity;
     let descMaxY = -Infinity;
-    const growDesc = (left, top, right, bottom) => {
-      if (left < descMinX) descMinX = left;
-      if (right > descMaxX) descMaxX = right;
-      if (top < descMinY) descMinY = top;
-      if (bottom > descMaxY) descMaxY = bottom;
+    const growDesc = (left2, top2, right2, bottom2) => {
+      if (left2 < descMinX) descMinX = left2;
+      if (right2 > descMaxX) descMaxX = right2;
+      if (top2 < descMinY) descMinY = top2;
+      if (bottom2 > descMaxY) descMaxY = bottom2;
     };
     for (const desc of allDesc) {
       const innerBounds = containerBoundsMap.get(desc.data.orgNode.id);
@@ -42399,12 +42551,12 @@ function layoutOrg(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, expan
   };
 }
 var LABEL_FONT_SIZE2, META_FONT_SIZE2, META_LINE_HEIGHT2, HEADER_HEIGHT2, SEPARATOR_GAP2, CARD_H_PAD, CARD_V_PAD, MIN_CARD_WIDTH, H_GAP, V_GAP, MARGIN2, CONTAINER_PAD_X, CONTAINER_PAD_BOTTOM, CONTAINER_LABEL_HEIGHT, CONTAINER_META_LINE_HEIGHT2, STACK_V_GAP;
-var init_chunk_UBQU2BY6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UBQU2BY6.js"() {
-    init_chunk_Q5IHQ4NW();
+var init_chunk_RBIX3HQQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RBIX3HQQ.js"() {
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src10();
     LABEL_FONT_SIZE2 = 13;
     META_FONT_SIZE2 = 11;
@@ -42425,18 +42577,18 @@ var init_chunk_UBQU2BY6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-GHWRJKZQ.js
-var layout_GHWRJKZQ_exports = {};
-__export(layout_GHWRJKZQ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-WDXNSQQF.js
+var layout_WDXNSQQF_exports = {};
+__export(layout_WDXNSQQF_exports, {
   layoutOrg: () => layoutOrg
 });
-var init_layout_GHWRJKZQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-GHWRJKZQ.js"() {
-    init_chunk_UBQU2BY6();
+var init_layout_WDXNSQQF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-WDXNSQQF.js"() {
+    init_chunk_RBIX3HQQ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js
 function countDescendants2(node, shape) {
   let count2 = 0;
   for (const child of shape.getChildren(node)) {
@@ -42482,11 +42634,11 @@ function collectTreeIds(roots, shape) {
   return ids;
 }
 var init_chunk_BS7SV7C3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js
 function cloneNode(node) {
   return {
     id: node.id,
@@ -42555,7 +42707,7 @@ function focusOrgTree(original, focusNodeId) {
 }
 var ORG_SHAPE;
 var init_chunk_UJ4FJLBF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js"() {
     init_chunk_BS7SV7C3();
     ORG_SHAPE = {
       getId: (node) => node.id,
@@ -42569,19 +42721,19 @@ var init_chunk_UJ4FJLBF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js
 var collapse_CLPJD2RL_exports = {};
 __export(collapse_CLPJD2RL_exports, {
   collapseOrgTree: () => collapseOrgTree,
   focusOrgTree: () => focusOrgTree
 });
 var init_collapse_CLPJD2RL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js"() {
     init_chunk_UJ4FJLBF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JTSMEYIZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-L43KTQTW.js
 function runInExportContainer(width, height, fn2) {
   const container = document.createElement("div");
   container.style.width = `${width}px`;
@@ -42606,15 +42758,16 @@ function extractExportSvg(container, theme, palette) {
   svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   svgEl.style.fontFamily = FONT_FAMILY;
   svgEl.querySelectorAll("[data-export-ignore]").forEach((el) => el.remove());
-  return svgEl.outerHTML;
+  return serializeSvg(svgEl);
 }
-var init_chunk_JTSMEYIZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JTSMEYIZ.js"() {
+var init_chunk_L43KTQTW = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-L43KTQTW.js"() {
+    init_chunk_NZ5QVASG();
     init_chunk_6KFWC4CO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JGCEFKZP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HKKPUUNK.js
 function nodeFill(palette, isDark, nodeColor2, fillMode) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, { mode: fillMode });
@@ -43016,23 +43169,23 @@ function renderOrgForExport(content, theme, palette) {
   });
 }
 var DIAGRAM_PADDING, MAX_SCALE, TITLE_HEIGHT, ANCESTOR_DOT_R, ANCESTOR_LABEL_FONT_SIZE, ANCESTOR_ROW_HEIGHT, ANCESTOR_TRAIL_BOTTOM_GAP, LEGEND_FIXED_GAP;
-var init_chunk_JGCEFKZP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-JGCEFKZP.js"() {
-    init_chunk_JTSMEYIZ();
+var init_chunk_HKKPUUNK = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HKKPUUNK.js"() {
+    init_chunk_L43KTQTW();
     init_chunk_H3HFC3SQ();
     init_chunk_3CIOJ5YJ();
-    init_chunk_UBQU2BY6();
+    init_chunk_RBIX3HQQ();
     init_chunk_YYVTBZZC();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_MNS2ENXF();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_PFG3EVRD();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     DIAGRAM_PADDING = 20;
     MAX_SCALE = 3;
@@ -43045,27 +43198,27 @@ var init_chunk_JGCEFKZP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-BEW3AYFT.js
-var renderer_BEW3AYFT_exports = {};
-__export(renderer_BEW3AYFT_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5MMVCGN.js
+var renderer_J5MMVCGN_exports = {};
+__export(renderer_J5MMVCGN_exports, {
   renderOrg: () => renderOrg,
   renderOrgForExport: () => renderOrgForExport
 });
-var init_renderer_BEW3AYFT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-BEW3AYFT.js"() {
-    init_chunk_JGCEFKZP();
+var init_renderer_J5MMVCGN = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5MMVCGN.js"() {
+    init_chunk_HKKPUUNK();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-S6NWSIJO.js
-var parser_S6NWSIJO_exports = {};
-__export(parser_S6NWSIJO_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-5UZWYSIV.js
+var parser_5UZWYSIV_exports = {};
+__export(parser_5UZWYSIV_exports, {
   looksLikeSitemap: () => looksLikeSitemap,
   parseSitemap: () => parseSitemap
 });
-var init_parser_S6NWSIJO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-S6NWSIJO.js"() {
-    init_chunk_PC4YLEKA();
+var init_parser_5UZWYSIV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-5UZWYSIV.js"() {
+    init_chunk_OHBIN74X();
   }
 });
 
@@ -44725,7 +44878,7 @@ var init_dagre_esm = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LW7STMYZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KIGV66SP.js
 function clipToRectBorder(cx, cy, w2, h, tx, ty) {
   const dx = tx - cx;
   const dy = ty - cy;
@@ -45239,16 +45392,16 @@ function layoutSitemap(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, e
   let totalWidth = 0;
   let totalHeight = 0;
   for (const node of layoutNodes) {
-    const right = node.x + node.width / 2;
-    const bottom = node.y + node.height;
-    if (right > totalWidth) totalWidth = right;
-    if (bottom > totalHeight) totalHeight = bottom;
+    const right2 = node.x + node.width / 2;
+    const bottom2 = node.y + node.height;
+    if (right2 > totalWidth) totalWidth = right2;
+    if (bottom2 > totalHeight) totalHeight = bottom2;
   }
   for (const c of layoutContainers) {
-    const right = c.x + c.width;
-    const bottom = c.y + c.height;
-    if (right > totalWidth) totalWidth = right;
-    if (bottom > totalHeight) totalHeight = bottom;
+    const right2 = c.x + c.width;
+    const bottom2 = c.y + c.height;
+    if (right2 > totalWidth) totalWidth = right2;
+    if (bottom2 > totalHeight) totalHeight = bottom2;
   }
   for (const edge of layoutEdges) {
     for (const p2 of edge.points) {
@@ -45301,11 +45454,11 @@ function layoutSitemap(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, e
   };
 }
 var LABEL_FONT_SIZE3, META_FONT_SIZE3, CONTAINER_LABEL_FONT_SIZE2, META_LINE_HEIGHT3, HEADER_HEIGHT3, SEPARATOR_GAP3, CARD_H_PAD2, CARD_V_PAD2, MIN_CARD_WIDTH2, MARGIN3, CONTAINER_PAD_X2, CONTAINER_PAD_TOP, CONTAINER_PAD_BOTTOM2, CONTAINER_LABEL_HEIGHT2, CONTAINER_META_LINE_HEIGHT3, OVERLAP_GAP;
-var init_chunk_LW7STMYZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LW7STMYZ.js"() {
-    init_chunk_Q5IHQ4NW();
+var init_chunk_KIGV66SP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KIGV66SP.js"() {
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JR7Q6GHE();
+    init_chunk_D5FANMSG();
     init_dagre_esm();
     LABEL_FONT_SIZE3 = 13;
     META_FONT_SIZE3 = 11;
@@ -45326,18 +45479,18 @@ var init_chunk_LW7STMYZ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-UTMEVFHN.js
-var layout_UTMEVFHN_exports = {};
-__export(layout_UTMEVFHN_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-A5UVXINF.js
+var layout_A5UVXINF_exports = {};
+__export(layout_A5UVXINF_exports, {
   layoutSitemap: () => layoutSitemap
 });
-var init_layout_UTMEVFHN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-UTMEVFHN.js"() {
-    init_chunk_LW7STMYZ();
+var init_layout_A5UVXINF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-A5UVXINF.js"() {
+    init_chunk_KIGV66SP();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js
 function buildParentMap(roots, shape) {
   const map2 = /* @__PURE__ */ new Map();
   const walk = (nodes) => {
@@ -45436,7 +45589,7 @@ function collapseSitemapTree(original, collapsedIds) {
 }
 var SITEMAP_SHAPE, SITEMAP_EDGE_SHAPE;
 var init_chunk_UNCCZ3NU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js"() {
     init_chunk_BS7SV7C3();
     SITEMAP_SHAPE = {
       getId: (node) => node.id,
@@ -45459,18 +45612,18 @@ var init_chunk_UNCCZ3NU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js
 var collapse_ZWUFFCK2_exports = {};
 __export(collapse_ZWUFFCK2_exports, {
   collapseSitemapTree: () => collapseSitemapTree
 });
 var init_collapse_ZWUFFCK2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js"() {
     init_chunk_UNCCZ3NU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IG6J7JWH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W2I2EXSC.js
 function nodeFill2(palette, isDark, nodeColor2, fillMode) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, { mode: fillMode });
@@ -45836,9 +45989,9 @@ function renderLegend(parent, legendGroups, palette, isDark, activeTagGroup, fix
   }
 }
 async function renderSitemapForExport(content, theme, palette) {
-  const { parseSitemap: parseSitemap2 } = await Promise.resolve().then(() => (init_parser_S6NWSIJO(), parser_S6NWSIJO_exports));
-  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_UTMEVFHN(), layout_UTMEVFHN_exports));
-  const { getPalette: getPalette2 } = await Promise.resolve().then(() => (init_palettes_FGTNFARW(), palettes_FGTNFARW_exports));
+  const { parseSitemap: parseSitemap2 } = await Promise.resolve().then(() => (init_parser_5UZWYSIV(), parser_5UZWYSIV_exports));
+  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_A5UVXINF(), layout_A5UVXINF_exports));
+  const { getPalette: getPalette2 } = await Promise.resolve().then(() => (init_palettes_WO3VA6NU(), palettes_WO3VA6NU_exports));
   const isDark = theme === "dark";
   const effectivePalette = palette ?? (isDark ? getPalette2("nord").dark : getPalette2("nord").light);
   const parsed = parseSitemap2(content, effectivePalette);
@@ -45878,28 +46031,29 @@ async function renderSitemapForExport(content, theme, palette) {
   }
   svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   svgEl.style.fontFamily = FONT_FAMILY;
-  const svgHtml = svgEl.outerHTML;
+  const svgHtml = serializeSvg(svgEl);
   document.body.removeChild(container);
   return svgHtml;
 }
 var DIAGRAM_PADDING2, MAX_SCALE2, TITLE_HEIGHT2, ARROWHEAD_W, ARROWHEAD_H, EDGE_LABEL_FONT_SIZE, LEGEND_FIXED_GAP2, lineGenerator, lineGeneratorLinear;
-var init_chunk_IG6J7JWH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IG6J7JWH.js"() {
+var init_chunk_W2I2EXSC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W2I2EXSC.js"() {
     init_chunk_H3HFC3SQ();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_NZ5QVASG();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_IYULMRBE();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     DIAGRAM_PADDING2 = 20;
@@ -45914,21 +46068,21 @@ var init_chunk_IG6J7JWH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-IRAFJNTK.js
-var renderer_IRAFJNTK_exports = {};
-__export(renderer_IRAFJNTK_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CRAIC4ER.js
+var renderer_CRAIC4ER_exports = {};
+__export(renderer_CRAIC4ER_exports, {
   renderSitemap: () => renderSitemap,
   renderSitemapForExport: () => renderSitemapForExport
 });
-var init_renderer_IRAFJNTK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-IRAFJNTK.js"() {
-    init_chunk_IG6J7JWH();
+var init_renderer_CRAIC4ER = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CRAIC4ER.js"() {
+    init_chunk_W2I2EXSC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/legend-constants-B77VKB3R.js
-var legend_constants_B77VKB3R_exports = {};
-__export(legend_constants_B77VKB3R_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/legend-constants-QQU3QYBF.js
+var legend_constants_QQU3QYBF_exports = {};
+__export(legend_constants_QQU3QYBF_exports, {
   CONTROLS_ICON_PATH: () => CONTROLS_ICON_PATH,
   EYE_CLOSED_PATH: () => EYE_CLOSED_PATH,
   EYE_OPEN_PATH: () => EYE_OPEN_PATH,
@@ -45952,24 +46106,24 @@ __export(legend_constants_B77VKB3R_exports, {
   measureLegendText: () => measureLegendText,
   truncateLegendText: () => truncateLegendText
 });
-var init_legend_constants_B77VKB3R = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/legend-constants-B77VKB3R.js"() {
-    init_chunk_Q5IHQ4NW();
+var init_legend_constants_QQU3QYBF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/legend-constants-QQU3QYBF.js"() {
+    init_chunk_SCJ7CAJF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-TVAMC7CQ.js
-var parser_TVAMC7CQ_exports = {};
-__export(parser_TVAMC7CQ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-IPBEW2DG.js
+var parser_IPBEW2DG_exports = {};
+__export(parser_IPBEW2DG_exports, {
   parseKanban: () => parseKanban
 });
-var init_parser_TVAMC7CQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-TVAMC7CQ.js"() {
-    init_chunk_RSBH2C7O();
+var init_parser_IPBEW2DG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-IPBEW2DG.js"() {
+    init_chunk_X32RDWT5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VVIRAGID.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4DAZO3U.js
 function isArchiveColumn(name) {
   return name.toLowerCase() === ARCHIVE_COLUMN_NAME;
 }
@@ -46360,7 +46514,7 @@ function renderKanbanForExport(content, theme, palette) {
     exportMode: true
   });
   const svgEl = container.querySelector("svg");
-  return svgEl?.outerHTML ?? "";
+  return svgEl ? serializeSvg(svgEl) : "";
 }
 function drawSwimlaneIcon(parent, x3, y2, isActive, palette) {
   const iconG = parent.append("g").attr("class", "kanban-swimlane-icon").attr("transform", `translate(${x3}, ${y2})`);
@@ -46693,21 +46847,22 @@ function renderSwimlaneCard(parent, cardLayout, tagGroups, activeTagGroup, palet
   }
 }
 var ARCHIVE_COLUMN_NAME, DIAGRAM_PADDING3, COLUMN_GAP, COLUMN_HEADER_HEIGHT, COLUMN_PADDING, COLUMN_MIN_WIDTH, CARD_HEADER_HEIGHT, CARD_META_LINE_HEIGHT, CARD_SEPARATOR_GAP, CARD_GAP, CARD_PADDING_X, CARD_PADDING_Y, CARD_STROKE_WIDTH, TITLE_HEIGHT3, COLUMN_HEADER_FONT_SIZE, CARD_TITLE_FONT_SIZE, CARD_META_FONT_SIZE, WIP_FONT_SIZE, COLUMN_RADIUS, COLUMN_HEADER_RADIUS, COLLAPSED_COLUMN_WIDTH, COLLAPSED_LANE_HEIGHT, LANE_HEADER_WIDTH, LANE_GAP2;
-var init_chunk_VVIRAGID = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VVIRAGID.js"() {
+var init_chunk_A4DAZO3U = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4DAZO3U.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_NZ5QVASG();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_RSBH2C7O();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_X32RDWT5();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     ARCHIVE_COLUMN_NAME = "archive";
     DIAGRAM_PADDING3 = 20;
@@ -46736,35 +46891,35 @@ var init_chunk_VVIRAGID = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-Q5P72O4A.js
-var renderer_Q5P72O4A_exports = {};
-__export(renderer_Q5P72O4A_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5CU6GYF2.js
+var renderer_5CU6GYF2_exports = {};
+__export(renderer_5CU6GYF2_exports, {
   renderKanban: () => renderKanban,
   renderKanbanForExport: () => renderKanbanForExport
 });
-var init_renderer_Q5P72O4A = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-Q5P72O4A.js"() {
-    init_chunk_VVIRAGID();
+var init_renderer_5CU6GYF2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5CU6GYF2.js"() {
+    init_chunk_A4DAZO3U();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-SFEK6Q7Z.js
-var parser_SFEK6Q7Z_exports = {};
-__export(parser_SFEK6Q7Z_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-HMQZPPOK.js
+var parser_HMQZPPOK_exports = {};
+__export(parser_HMQZPPOK_exports, {
   extractSymbols: () => extractSymbols4,
   looksLikeClassDiagram: () => looksLikeClassDiagram,
   parseClassDiagram: () => parseClassDiagram
 });
-var init_parser_SFEK6Q7Z = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-SFEK6Q7Z.js"() {
-    init_chunk_IIUYKQ5J();
+var init_parser_HMQZPPOK = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-HMQZPPOK.js"() {
+    init_chunk_VYEQPPS6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js
 var NOTE_MAX_W, NOTE_FOLD, NOTE_PAD_H, NOTE_PAD_V, NOTE_FONT_SIZE, NOTE_LINE_H, NOTE_GAP, NOTE_BULLET_INDENT;
 var init_chunk_5DH3KYFH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js"() {
     NOTE_MAX_W = 200;
     NOTE_FOLD = 10;
     NOTE_PAD_H = 8;
@@ -46776,7 +46931,7 @@ var init_chunk_5DH3KYFH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js
 function placeNotes(obstacles, requests, direction) {
   const placements = /* @__PURE__ */ new Map();
   const occupied = obstacles.map((p2) => ({
@@ -46806,25 +46961,25 @@ function placeNotes(obstacles, requests, direction) {
     const rectFor = (side) => {
       switch (side) {
         case "right": {
-          const left = nodeRight + NOTE_GAP;
-          const top = cy - noteH / 2;
-          return { left, top, right: left + noteW, bottom: top + noteH };
+          const left2 = nodeRight + NOTE_GAP;
+          const top2 = cy - noteH / 2;
+          return { left: left2, top: top2, right: left2 + noteW, bottom: top2 + noteH };
         }
         case "left": {
-          const right = nodeLeft - NOTE_GAP;
-          const top = cy - noteH / 2;
-          return { left: right - noteW, top, right, bottom: top + noteH };
+          const right2 = nodeLeft - NOTE_GAP;
+          const top2 = cy - noteH / 2;
+          return { left: right2 - noteW, top: top2, right: right2, bottom: top2 + noteH };
         }
         case "below": {
-          const left = cx - noteW / 2;
-          const top = nodeBottom + NOTE_GAP;
-          return { left, top, right: left + noteW, bottom: top + noteH };
+          const left2 = cx - noteW / 2;
+          const top2 = nodeBottom + NOTE_GAP;
+          return { left: left2, top: top2, right: left2 + noteW, bottom: top2 + noteH };
         }
         case "above":
         default: {
-          const left = cx - noteW / 2;
-          const bottom = nodeTop - NOTE_GAP;
-          return { left, top: bottom - noteH, right: left + noteW, bottom };
+          const left2 = cx - noteW / 2;
+          const bottom2 = nodeTop - NOTE_GAP;
+          return { left: left2, top: bottom2 - noteH, right: left2 + noteW, bottom: bottom2 };
         }
       }
     };
@@ -46848,17 +47003,17 @@ function placeNotes(obstacles, requests, direction) {
         );
         if (blockers.length === 0) break;
         if (axisIsY && outward > 0) {
-          const top = Math.max(...blockers.map((b) => b.bottom)) + NOTE_CLEAR;
-          rect2 = { ...rect2, top, bottom: top + noteH };
+          const top2 = Math.max(...blockers.map((b) => b.bottom)) + NOTE_CLEAR;
+          rect2 = { ...rect2, top: top2, bottom: top2 + noteH };
         } else if (axisIsY) {
-          const bottom = Math.min(...blockers.map((b) => b.top)) - NOTE_CLEAR;
-          rect2 = { ...rect2, bottom, top: bottom - noteH };
+          const bottom2 = Math.min(...blockers.map((b) => b.top)) - NOTE_CLEAR;
+          rect2 = { ...rect2, bottom: bottom2, top: bottom2 - noteH };
         } else if (outward > 0) {
-          const left = Math.max(...blockers.map((b) => b.right)) + NOTE_CLEAR;
-          rect2 = { ...rect2, left, right: left + noteW };
+          const left2 = Math.max(...blockers.map((b) => b.right)) + NOTE_CLEAR;
+          rect2 = { ...rect2, left: left2, right: left2 + noteW };
         } else {
-          const right = Math.min(...blockers.map((b) => b.left)) - NOTE_CLEAR;
-          rect2 = { ...rect2, right, left: right - noteW };
+          const right2 = Math.min(...blockers.map((b) => b.left)) - NOTE_CLEAR;
+          rect2 = { ...rect2, right: right2, left: right2 - noteW };
         }
       }
       chosen = { rect: rect2, side };
@@ -46881,14 +47036,14 @@ function noteCanvasShift(minX, minY, margin = 20) {
 }
 var NOTE_CLEAR, intersects;
 var init_chunk_6EK55ART = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js"() {
     init_chunk_5DH3KYFH();
     NOTE_CLEAR = 14;
     intersects = (a, b, pad3) => !(a.right + pad3 <= b.left || b.right + pad3 <= a.left || a.bottom + pad3 <= b.top || b.bottom + pad3 <= a.top);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UU6LUYUH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UU6LUYUH.js
 function normalizeBulletLine(line) {
   return line.replace(/^\s*[-*]\s+/, "\u2022 ");
 }
@@ -46919,14 +47074,14 @@ function noteBoxSize(body, opts = {}) {
   return { width, height, lines };
 }
 var init_chunk_UU6LUYUH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UU6LUYUH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UU6LUYUH.js"() {
     init_chunk_5DH3KYFH();
     init_chunk_BMR4CIEO();
     init_chunk_4ASYQ347();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5HWPEYWB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5HWPEYWB.js
 function buildPlacedNotes(anchors, noteByNode, direction, collapsedNotes) {
   const placed = /* @__PURE__ */ new Map();
   if (noteByNode.size === 0) return placed;
@@ -46988,13 +47143,13 @@ function buildPlacedNotes(anchors, noteByNode, direction, collapsedNotes) {
   return placed;
 }
 var init_chunk_5HWPEYWB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5HWPEYWB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5HWPEYWB.js"() {
     init_chunk_6EK55ART();
     init_chunk_UU6LUYUH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-COVYNAKJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D3WTEBGT.js
 function computeNodeDimensions(node) {
   const fields = node.members.filter((m) => !m.isMethod);
   const methods = node.members.filter((m) => m.isMethod);
@@ -47171,11 +47326,11 @@ function layoutClassDiagram(parsed, options) {
   };
 }
 var MIN_WIDTH, PADDING_X, HEADER_BASE, CLASS_FONT_SIZE, MEMBER_FONT_SIZE, MODIFIER_BADGE, MEMBER_LINE_HEIGHT, COMPARTMENT_PADDING_Y, SEPARATOR_HEIGHT;
-var init_chunk_COVYNAKJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-COVYNAKJ.js"() {
+var init_chunk_D3WTEBGT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D3WTEBGT.js"() {
     init_chunk_5HWPEYWB();
     init_chunk_6EK55ART();
-    init_chunk_QZAW5SFH();
+    init_chunk_7NK42OIB();
     init_chunk_4ASYQ347();
     init_dagre_esm();
     MIN_WIDTH = 140;
@@ -47190,18 +47345,18 @@ var init_chunk_COVYNAKJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-SP7HJWKA.js
-var layout_SP7HJWKA_exports = {};
-__export(layout_SP7HJWKA_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UFZQI6SX.js
+var layout_UFZQI6SX_exports = {};
+__export(layout_UFZQI6SX_exports, {
   layoutClassDiagram: () => layoutClassDiagram
 });
-var init_layout_SP7HJWKA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-SP7HJWKA.js"() {
-    init_chunk_COVYNAKJ();
+var init_layout_UFZQI6SX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UFZQI6SX.js"() {
+    init_chunk_D3WTEBGT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3IUHKMJI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U2BKSEKU.js
 function renderNoteConnector(parent, x12, y12, x22, y2, palette) {
   parent.append("line").attr("x1", x12).attr("y1", y12).attr("x2", x22).attr("y2", y2).attr("stroke", palette.textMuted).attr("stroke-width", NOTE_STROKE_WIDTH).attr("stroke-opacity", NOTE_STROKE_OPACITY).attr("class", "note-connector").style("pointer-events", "none");
 }
@@ -47310,11 +47465,11 @@ function renderNoteBadge(parent, center, palette, opts) {
   return g;
 }
 var NOTE_STROKE_WIDTH, NOTE_STROKE_OPACITY, NOTE_BADGE_RADIUS, NOTE_BADGE_OPACITY;
-var init_chunk_3IUHKMJI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3IUHKMJI.js"() {
+var init_chunk_U2BKSEKU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U2BKSEKU.js"() {
     init_chunk_5DH3KYFH();
     init_chunk_3HDBAXF5();
-    init_chunk_JYDMBWRP();
+    init_chunk_42IT4BG2();
     NOTE_STROKE_WIDTH = 0.6;
     NOTE_STROKE_OPACITY = 0.6;
     NOTE_BADGE_RADIUS = 7;
@@ -47322,7 +47477,7 @@ var init_chunk_3IUHKMJI = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3FUTFYSP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YJUF2N3C.js
 function modifierColor(modifier, palette, colorOff) {
   if (colorOff) return palette.textMuted;
   switch (modifier) {
@@ -47692,23 +47847,23 @@ function renderClassDiagramForExport(content, theme, palette) {
   });
 }
 var DIAGRAM_PADDING4, MAX_SCALE3, CLASS_FONT_SIZE2, MEMBER_FONT_SIZE2, EDGE_LABEL_FONT_SIZE2, MEMBER_LINE_HEIGHT2, COMPARTMENT_PADDING_Y2, MEMBER_PADDING_X, CLASS_TYPE_MAP, CLASS_TYPE_ORDER, LEGEND_GROUP_NAME, lineGenerator2;
-var init_chunk_3FUTFYSP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3FUTFYSP.js"() {
-    init_chunk_3IUHKMJI();
-    init_chunk_JTSMEYIZ();
-    init_chunk_COVYNAKJ();
+var init_chunk_YJUF2N3C = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YJUF2N3C.js"() {
+    init_chunk_U2BKSEKU();
+    init_chunk_L43KTQTW();
+    init_chunk_D3WTEBGT();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_IIUYKQ5J();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_VYEQPPS6();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     DIAGRAM_PADDING4 = 20;
@@ -47731,32 +47886,32 @@ var init_chunk_3FUTFYSP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-MFTTFW32.js
-var renderer_MFTTFW32_exports = {};
-__export(renderer_MFTTFW32_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-4VLQKKTV.js
+var renderer_4VLQKKTV_exports = {};
+__export(renderer_4VLQKKTV_exports, {
   renderClassDiagram: () => renderClassDiagram,
   renderClassDiagramForExport: () => renderClassDiagramForExport
 });
-var init_renderer_MFTTFW32 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-MFTTFW32.js"() {
-    init_chunk_3FUTFYSP();
+var init_renderer_4VLQKKTV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-4VLQKKTV.js"() {
+    init_chunk_YJUF2N3C();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-JBEWNLAV.js
-var parser_JBEWNLAV_exports = {};
-__export(parser_JBEWNLAV_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q62VR2UJ.js
+var parser_Q62VR2UJ_exports = {};
+__export(parser_Q62VR2UJ_exports, {
   extractSymbols: () => extractSymbols5,
   looksLikeERDiagram: () => looksLikeERDiagram,
   parseERDiagram: () => parseERDiagram
 });
-var init_parser_JBEWNLAV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-JBEWNLAV.js"() {
-    init_chunk_NL7FUIVD();
+var init_parser_Q62VR2UJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q62VR2UJ.js"() {
+    init_chunk_ULR3BVNH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-SSHS42QG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AN465MXC.js
 function computeNodeDimensions2(table) {
   let maxTextWidth = measureText(table.name, TABLE_FONT_SIZE);
   for (const col of table.columns) {
@@ -48055,11 +48210,11 @@ function layoutERDiagram(parsed, options) {
   };
 }
 var MIN_WIDTH2, PADDING_X2, HEADER_BASE2, TABLE_FONT_SIZE, COLUMN_FONT_SIZE, EDGE_LABEL_FONT_SIZE3, CONSTRAINT_ICON_WIDTH, MEMBER_LINE_HEIGHT3, COMPARTMENT_PADDING_Y3, SEPARATOR_HEIGHT2, HALF_MARGIN, COMP_GAP;
-var init_chunk_SSHS42QG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-SSHS42QG.js"() {
+var init_chunk_AN465MXC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AN465MXC.js"() {
     init_chunk_5HWPEYWB();
     init_chunk_6EK55ART();
-    init_chunk_QZAW5SFH();
+    init_chunk_7NK42OIB();
     init_chunk_4ASYQ347();
     init_dagre_esm();
     MIN_WIDTH2 = 140;
@@ -48077,18 +48232,18 @@ var init_chunk_SSHS42QG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-NF4EWFLT.js
-var layout_NF4EWFLT_exports = {};
-__export(layout_NF4EWFLT_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-3XFPPFXI.js
+var layout_3XFPPFXI_exports = {};
+__export(layout_3XFPPFXI_exports, {
   layoutERDiagram: () => layoutERDiagram
 });
-var init_layout_NF4EWFLT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-NF4EWFLT.js"() {
-    init_chunk_SSHS42QG();
+var init_layout_3XFPPFXI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-3XFPPFXI.js"() {
+    init_chunk_AN465MXC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-L2DIXZUT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-N2KO445N.js
 function classifyEREntities(tables, relationships) {
   const result = /* @__PURE__ */ new Map();
   if (tables.length === 0) return result;
@@ -48576,29 +48731,30 @@ function renderERDiagramForExport(content, theme, palette) {
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(container);
   }
 }
 var ROLE_COLORS, ROLE_LABELS, ROLE_ORDER, LOOKUP_NAME_SUFFIXES, DIAGRAM_PADDING5, MAX_SCALE4, TABLE_FONT_SIZE2, COLUMN_FONT_SIZE2, EDGE_LABEL_FONT_SIZE4, MEMBER_LINE_HEIGHT4, COMPARTMENT_PADDING_Y4, MEMBER_PADDING_X2, lineGenerator3;
-var init_chunk_L2DIXZUT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-L2DIXZUT.js"() {
-    init_chunk_3IUHKMJI();
-    init_chunk_SSHS42QG();
+var init_chunk_N2KO445N = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-N2KO445N.js"() {
+    init_chunk_U2BKSEKU();
+    init_chunk_AN465MXC();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_NZ5QVASG();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_NL7FUIVD();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_ULR3BVNH();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     ROLE_COLORS = {
@@ -48644,30 +48800,30 @@ var init_chunk_L2DIXZUT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-V72VJIGG.js
-var renderer_V72VJIGG_exports = {};
-__export(renderer_V72VJIGG_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5TL5ZX4.js
+var renderer_J5TL5ZX4_exports = {};
+__export(renderer_J5TL5ZX4_exports, {
   renderERDiagram: () => renderERDiagram,
   renderERDiagramForExport: () => renderERDiagramForExport
 });
-var init_renderer_V72VJIGG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-V72VJIGG.js"() {
-    init_chunk_L2DIXZUT();
+var init_renderer_J5TL5ZX4 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5TL5ZX4.js"() {
+    init_chunk_N2KO445N();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-M5BUHULF.js
-var parser_M5BUHULF_exports = {};
-__export(parser_M5BUHULF_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QEWSTNEJ.js
+var parser_QEWSTNEJ_exports = {};
+__export(parser_QEWSTNEJ_exports, {
   parseSketch: () => parseSketch
 });
-var init_parser_M5BUHULF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-M5BUHULF.js"() {
-    init_chunk_YP2T5YUP();
+var init_parser_QEWSTNEJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QEWSTNEJ.js"() {
+    init_chunk_USFZQPJ2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MEQYZZFR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6IVXRTXH.js
 function collapseSketch(parsed, collapsedLabels) {
   const collapsed = collapsedLabels ?? new Set(parsed.boxes.filter((b) => b.collapsed).map((b) => b.label));
   if (collapsed.size === 0) {
@@ -48701,6 +48857,16 @@ function collapseSketch(parsed, collapsedLabels) {
   }
   return { nodes, boxes, virtualBoxes, edges, collapsedChildCounts };
 }
+function resolveAutoFlags(f = {}) {
+  return {
+    normalizeOrigin: f.normalizeOrigin ?? true,
+    sortRootsBySource: f.sortRootsBySource ?? true,
+    resolveOverlap: f.resolveOverlap ?? true,
+    groupCollisionAsRect: f.groupCollisionAsRect ?? true,
+    flowPlaceUnpositioned: f.flowPlaceUnpositioned ?? true,
+    avoidEdges: f.avoidEdges ?? true
+  };
+}
 function unitRect(c, r) {
   return { c, r, w: SKETCH_SEP, h: SKETCH_SEP };
 }
@@ -48733,7 +48899,7 @@ function nearestFree(base, occupied) {
   }
   return { c: base.c, r: base.r };
 }
-function layoutChildren(box, nodesById, warn) {
+function layoutChildren(box, nodesById, warn, flags) {
   const occupied = [];
   const children2 = [];
   const pending = [];
@@ -48745,12 +48911,16 @@ function layoutChildren(box, nodesById, warn) {
       continue;
     }
     const target = unitRect(node.at.c, node.at.r);
-    const spot = nearestFree(target, occupied);
+    const spot = flags.resolveOverlap ? nearestFree(target, occupied) : { c: node.at.c, r: node.at.r };
     if (spot.c !== node.at.c || spot.r !== node.at.r) {
       warn(node.lineNumber, node.label);
     }
     occupied.push(unitRect(spot.c, spot.r));
     children2.push({ node, c: spot.c, r: spot.r });
+  }
+  if (!flags.flowPlaceUnpositioned) {
+    for (const node of pending) children2.push({ node, c: 0, r: 0 });
+    pending.length = 0;
   }
   let flowRow = occupied.length > 0 ? Math.max(...occupied.map((o) => o.r)) + SKETCH_SEP : 0;
   let flowCol = 0;
@@ -48798,6 +48968,7 @@ function layoutSketch(parsed, options = {}) {
       )
     );
   };
+  const flags = resolveAutoFlags(options.autoLayout);
   const collapsed = collapseSketch(parsed, options.collapsedBoxes);
   const nodesById = new Map(collapsed.nodes.map((n) => [n.id, n]));
   const padHsX = SKETCH_GEOMETRY.boxPadPx / SKETCH_HALF_SLOT_X;
@@ -48806,10 +48977,39 @@ function layoutSketch(parsed, options = {}) {
   const boxLocal = /* @__PURE__ */ new Map();
   const inExpandedBox = /* @__PURE__ */ new Set();
   for (const box of collapsed.boxes) {
-    const local = layoutChildren(box, nodesById, overlapWarn);
+    const local = layoutChildren(box, nodesById, overlapWarn, flags);
     boxLocal.set(box.id, local);
     for (const child of local.children) inExpandedBox.add(child.node.id);
   }
+  const allNodesById = new Map(parsed.nodes.map((n) => [n.id, n]));
+  const noWarn = () => {
+  };
+  const virtualLocal = /* @__PURE__ */ new Map();
+  for (const box of collapsed.virtualBoxes) {
+    virtualLocal.set(box.id, layoutChildren(box, allNodesById, noWarn, flags));
+  }
+  const footWs = SKETCH_FOOT_W / SKETCH_HALF_SLOT_X;
+  const footHs = SKETCH_FOOT_H / SKETCH_HALF_SLOT_Y;
+  const virtualCardSpot = (boxId, spot) => {
+    const local = virtualLocal.get(boxId);
+    if (local.children.length === 0) return { c: spot.c, r: spot.r };
+    let minC = Infinity;
+    let minR = Infinity;
+    let maxC = -Infinity;
+    let maxR = -Infinity;
+    for (const ch of local.children) {
+      minC = Math.min(minC, ch.c);
+      minR = Math.min(minR, ch.r);
+      maxC = Math.max(maxC, ch.c + footWs);
+      maxR = Math.max(maxR, ch.r + footHs);
+    }
+    const cx = spot.c + (minC + maxC) / 2;
+    const cy = spot.r + (minR + maxR) / 2 + (padHsY - bandHs) / 2;
+    return {
+      c: Math.round(cx - footWs / 2),
+      r: Math.round(cy - footHs / 2)
+    };
+  };
   const rootUnits = [];
   for (const node of collapsed.nodes) {
     if (!inExpandedBox.has(node.id)) rootUnits.push({ kind: "shape", node });
@@ -48820,14 +49020,27 @@ function layoutSketch(parsed, options = {}) {
   for (const box of collapsed.boxes) {
     rootUnits.push({ kind: "box", box });
   }
-  rootUnits.sort((a, b) => {
-    const la = a.kind === "shape" ? a.node.lineNumber : a.box.lineNumber;
-    const lb = b.kind === "shape" ? b.node.lineNumber : b.box.lineNumber;
-    return la - lb;
-  });
+  const lineOf = (u) => u.kind === "shape" ? u.node.lineNumber : u.box.lineNumber;
+  const atOf = (u) => u.kind === "shape" ? u.node.at : u.box.at;
+  if (flags.sortRootsBySource) {
+    rootUnits.sort((a, b) => lineOf(a) - lineOf(b));
+  } else {
+    rootUnits.sort((a, b) => {
+      const aa = atOf(a);
+      const ba = atOf(b);
+      if (aa && ba) {
+        return aa.r - ba.r || aa.c - ba.c || lineOf(a) - lineOf(b);
+      }
+      if (aa) return -1;
+      if (ba) return 1;
+      return lineOf(a) - lineOf(b);
+    });
+  }
   const rectFor = (unit2, c, r) => {
-    if (unit2.kind === "box") {
-      const local = boxLocal.get(unit2.box.id);
+    if (unit2.kind !== "shape" && flags.groupCollisionAsRect) {
+      const local = (unit2.kind === "box" ? boxLocal : virtualLocal).get(
+        unit2.box.id
+      );
       return {
         c: c + local.extent.c - padHsX,
         r: r + local.extent.r - bandHs,
@@ -48841,25 +49054,30 @@ function layoutSketch(parsed, options = {}) {
   const placedAt = /* @__PURE__ */ new Map();
   const pending = [];
   for (const unit2 of rootUnits) {
-    const at2 = unit2.kind === "shape" ? unit2.node.at : unit2.box.at;
+    const at2 = atOf(unit2);
     if (at2 === null) {
       pending.push(unit2);
       continue;
     }
     const base = rectFor(unit2, at2.c, at2.r);
     let spot = { c: at2.c, r: at2.r };
-    if (collidesAny(base, occupied)) {
+    if (flags.resolveOverlap && unit2.kind === "shape" && collidesAny(base, occupied)) {
       const freed = nearestFree(base, occupied);
       spot = {
         c: at2.c + (freed.c - base.c),
         r: at2.r + (freed.r - base.r)
       };
-      const line = unit2.kind === "shape" ? unit2.node.lineNumber : unit2.box.lineNumber;
-      const label = unit2.kind === "shape" ? unit2.node.label : unit2.box.label;
-      overlapWarn(line, label);
+      overlapWarn(unit2.node.lineNumber, unit2.node.label);
     }
     occupied.push(rectFor(unit2, spot.c, spot.r));
     placedAt.set(unit2, spot);
+  }
+  if (!flags.flowPlaceUnpositioned) {
+    for (const unit2 of pending) {
+      occupied.push(rectFor(unit2, 0, 0));
+      placedAt.set(unit2, { c: 0, r: 0 });
+    }
+    pending.length = 0;
   }
   let flowRow = occupied.length > 0 ? Math.ceil(Math.max(...occupied.map((o) => o.r + o.h))) : 0;
   let flowCol = 0;
@@ -48887,8 +49105,10 @@ function layoutSketch(parsed, options = {}) {
     const spot = placedAt.get(u);
     return rectFor(u, spot.c, spot.r);
   });
-  const cMin = allRects.length > 0 ? Math.min(...allRects.map((r) => r.c)) : 0;
-  const rMin = allRects.length > 0 ? Math.min(...allRects.map((r) => r.r)) : 0;
+  const liveCMin = allRects.length > 0 ? Math.min(...allRects.map((r) => r.c)) : 0;
+  const liveRMin = allRects.length > 0 ? Math.min(...allRects.map((r) => r.r)) : 0;
+  const cMin = flags.normalizeOrigin ? liveCMin : Math.min(options.frozenOrigin?.c ?? liveCMin, liveCMin);
+  const rMin = flags.normalizeOrigin ? liveRMin : Math.min(options.frozenOrigin?.r ?? liveRMin, liveRMin);
   const toPx = (c, r) => ({
     x: (c - cMin) * SKETCH_HALF_SLOT_X,
     y: (r - rMin) * SKETCH_HALF_SLOT_Y
@@ -48913,14 +49133,15 @@ function layoutSketch(parsed, options = {}) {
         h: SKETCH_FOOT_H
       });
     } else if (unit2.kind === "virtual") {
-      const { x: x3, y: y2 } = toPx(spot.c, spot.r);
+      const cardSpot = virtualCardSpot(unit2.box.id, spot);
+      const { x: x3, y: y2 } = toPx(cardSpot.c, cardSpot.r);
       nodes.push({
         id: unit2.box.id,
         label: unit2.box.label,
         shape: "rectangle",
         metadata: unit2.box.metadata,
         lineNumber: unit2.box.lineNumber,
-        slot: spot,
+        slot: cardSpot,
         x: x3,
         y: y2,
         w: SKETCH_FOOT_W,
@@ -48977,7 +49198,13 @@ function layoutSketch(parsed, options = {}) {
       });
     }
   }
-  {
+  if (flags.avoidEdges) {
+    const authored = /* @__PURE__ */ new Set();
+    for (const unit2 of rootUnits) {
+      if (atOf(unit2) !== null) {
+        authored.add(unit2.kind === "shape" ? unit2.node.id : unit2.box.id);
+      }
+    }
     const centerOf = (id) => {
       const n = nodes.find((nd) => nd.id === id);
       if (n) return { x: n.x + n.w / 2, y: n.y + n.h / 2 };
@@ -49011,6 +49238,7 @@ function layoutSketch(parsed, options = {}) {
       let moved = false;
       for (const n of nodes) {
         if (n.boxLabel) continue;
+        if (authored.has(n.id)) continue;
         for (const e of collapsed.edges) {
           if (e.sourceId === n.id || e.targetId === n.id) continue;
           const a = centerOf(e.sourceId);
@@ -49061,14 +49289,15 @@ function layoutSketch(parsed, options = {}) {
     edges: collapsed.edges,
     width,
     height,
-    diagnostics
+    diagnostics,
+    origin: { c: cMin, r: rMin }
   };
 }
 var SKETCH_PHI, SKETCH_GEOMETRY, SKETCH_FOOT_W, SKETCH_FOOT_H, SKETCH_HALF_SLOT_X, SKETCH_HALF_SLOT_Y, SKETCH_SEP, SKETCH_SLOT_X, SKETCH_SLOT_Y;
-var init_chunk_MEQYZZFR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-MEQYZZFR.js"() {
+var init_chunk_6IVXRTXH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6IVXRTXH.js"() {
     init_chunk_RT7ACF77();
-    init_chunk_4W2PE66Q();
+    init_chunk_OLMWTJVU();
     SKETCH_PHI = (1 + Math.sqrt(5)) / 2;
     SKETCH_GEOMETRY = {
       /** px per grid cell (the dot-grid pitch) */
@@ -49098,18 +49327,18 @@ var init_chunk_MEQYZZFR = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-CB3XWCOI.js
-var layout_CB3XWCOI_exports = {};
-__export(layout_CB3XWCOI_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-NX37NSRY.js
+var layout_NX37NSRY_exports = {};
+__export(layout_NX37NSRY_exports, {
   layoutSketch: () => layoutSketch
 });
-var init_layout_CB3XWCOI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-CB3XWCOI.js"() {
-    init_chunk_MEQYZZFR();
+var init_layout_NX37NSRY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-NX37NSRY.js"() {
+    init_chunk_6IVXRTXH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ETTDF3S2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3R67RRPC.js
 function segWidth(seg, fontSize) {
   const w2 = measureText(seg.text, fontSize);
   return seg.bold ? w2 * BOLD_WIDTH_FACTOR2 : w2;
@@ -49279,7 +49508,7 @@ function drawMarkdownBlock(container, text, opts) {
     const textEl = container.append("text").attr("x", line.x).attr("y", y2).attr("font-size", fontSize);
     let cursorX = line.x;
     const segs = line.segments.slice();
-    if (clamped && isLast) {
+    if (clamped && isLast && !opts.noEllipsis) {
       segs.push({ text: ELLIPSIS, bold: false });
     }
     for (const seg of segs) {
@@ -49293,7 +49522,11 @@ function drawMarkdownBlock(container, text, opts) {
       cursorX += w2;
     }
   }
-  return shown.length * lineHeight;
+  return {
+    height: shown.length * lineHeight,
+    shown: shown.length,
+    total: visualLines.length
+  };
 }
 function drawNoteBody(g, w2, h, colors) {
   const f = 14;
@@ -49325,14 +49558,6 @@ function drawTypeBadge(g, kind, color2, bx, by) {
       return;
   }
 }
-function metaRows(metadata, tagGroups) {
-  const rows = [];
-  for (const grp of tagGroups) {
-    const v2 = metadata[tagAttrKey(grp.name)];
-    if (v2 !== void 0) rows.push([grp.name, v2]);
-  }
-  return rows;
-}
 function fitWrapped(label, maxWidth, maxFont = CARD_LABEL_MAX, minFont = CARD_LABEL_MIN, maxLines = 2) {
   for (let fs = maxFont; fs >= minFont; fs--) {
     const lines2 = wrapTextToWidth(label, fs, maxWidth, { hardBreak: true });
@@ -49351,7 +49576,8 @@ function renderSketch(container, parsed, layout, palette, isDark, options = {}) 
   const {
     activeTagGroup,
     exportMode = false,
-    hideDescriptions = false
+    hideDescriptions = false,
+    splitCardIds
   } = options;
   const hideDesc = hideDescriptions || parsed.options.noDescriptions;
   const neutralFill = parsed.options.fillMode === "outline" ? themeBaseBg(palette, isDark) : mix(palette.textMuted, palette.bg, 12);
@@ -49616,7 +49842,7 @@ function renderSketch(container, parsed, layout, palette, isDark, options = {}) 
       colorsFor(node.metadata),
       palette,
       isDark,
-      hideDesc ? [] : tagGroups
+      !hideDesc && (splitCardIds?.includes(node.id) ?? false)
     );
   }
   const labelLayer = root2.append("g").attr("class", "sk-edge-labels");
@@ -49643,7 +49869,7 @@ function drawBoxFrame(layer, box, colors, palette) {
     g.append("text").attr("x", box.x + box.w / 2).attr("y", startY + li * lineH).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("font-size", fit2.fontSize).attr("font-weight", 800).attr("fill", palette.text).attr("opacity", BAND_LABEL_OPACITY).text(fit2.lines[li]);
   }
 }
-function drawNode(layer, node, colors, palette, isDark, tagGroups) {
+function drawNode(layer, node, colors, palette, isDark, splitCard) {
   void isDark;
   const g = layer.append("g").attr("class", node.isCollapsedBox ? "sk-node sk-box-collapsed" : "sk-node").attr("transform", `translate(${node.x},${node.y})`).attr("data-node-id", node.id).attr("data-line-number", node.lineNumber);
   for (const [k2, v2] of Object.entries(node.metadata)) {
@@ -49660,12 +49886,11 @@ function drawNode(layer, node, colors, palette, isDark, tagGroups) {
       g.append("text").attr("x", 10).attr("y", 20 + i * lineHeight).attr("font-size", NOTE_FONT_SIZE2).attr("fill", colors.text).text(line);
     });
   } else {
-    const rows = node.isCollapsedBox ? [] : metaRows(node.metadata, tagGroups);
     const badge = node.shape !== "rectangle";
     const labelInset = badge ? 22 : 0;
     const solidLike = colors.stroke === colors.fill;
     const ruleColor = solidLike ? colors.text : colors.stroke;
-    if (node.description && !node.isCollapsedBox) {
+    if (!node.isCollapsedBox && (node.description || splitCard)) {
       const fitH = fitWrapped(
         node.label,
         node.w - 24 - labelInset,
@@ -49686,33 +49911,37 @@ function drawNode(layer, node, colors, palette, isDark, tagGroups) {
         headerHeight: CARD_HEADER_H
       });
       g.append("line").attr("x1", 0).attr("y1", CARD_HEADER_H).attr("x2", node.w).attr("y2", CARD_HEADER_H).attr("stroke", ruleColor).attr("stroke-opacity", 0.3).attr("stroke-width", 1);
-      const inset = 12;
-      const bodyGap = 8;
-      const lh = CARD_META_FONT + 4;
-      const avail = node.h - CARD_HEADER_H - bodyGap - 8;
-      const body = g.append("g").attr("class", "sk-desc").attr("transform", `translate(${inset} ${CARD_HEADER_H + bodyGap})`);
-      drawMarkdownBlock(body, node.description, {
-        width: node.w - inset * 2,
-        fontSize: CARD_META_FONT,
-        lineHeight: lh,
-        color: colors.text,
-        // match the header label (contrast-aware in solid)
-        linkColor: colors.text,
-        maxLines: Math.max(1, Math.floor(avail / lh))
-      });
+      if (node.description) {
+        const inset = 12;
+        const bodyGap = 8;
+        const lh = CARD_META_FONT + 4;
+        const avail = node.h - CARD_HEADER_H - bodyGap - 8;
+        const body = g.append("g").attr("class", "sk-desc").attr("transform", `translate(${inset} ${CARD_HEADER_H + bodyGap})`);
+        const block = drawMarkdownBlock(body, node.description, {
+          width: node.w - inset * 2,
+          fontSize: CARD_META_FONT,
+          lineHeight: lh,
+          color: colors.text,
+          // match the header label (contrast-aware in solid)
+          linkColor: colors.text,
+          maxLines: Math.max(1, Math.floor(avail / lh)),
+          noEllipsis: true
+        });
+        if (block.total > block.shown) {
+          g.append("text").attr("class", "sk-desc-more").attr("x", node.w - 8).attr("y", node.h - 5).attr("text-anchor", "end").attr("font-size", 9).attr("fill", palette.textMuted).attr("data-line-number", node.lineNumber).style("cursor", "pointer").text(`+${block.total - block.shown} more in source`);
+        }
+      }
       if (badge) {
         drawTypeBadge(g, node.shape, colors.text, 10, (CARD_HEADER_H - 16) / 2);
       }
       return;
     }
-    const headerH = rows.length ? CARD_HEADER_H : node.h;
-    const fillTitle = rows.length === 0;
     const fit2 = fitWrapped(
       node.label,
       node.w - 24 - labelInset,
-      fillTitle ? CARD_TITLE_MAX : CARD_LABEL_MAX,
+      CARD_TITLE_MAX,
       CARD_LABEL_MIN,
-      fillTitle ? 3 : 2
+      3
     );
     renderNodeCard(g, {
       width: node.w,
@@ -49725,18 +49954,7 @@ function drawNode(layer, node, colors, palette, isDark, tagGroups) {
       labelLines: fit2.lines,
       labelColor: colors.text,
       labelFontSize: fit2.fontSize,
-      headerHeight: headerH,
-      ...rows.length ? {
-        meta: {
-          rows,
-          fontSize: CARD_META_FONT,
-          lineHeight: CARD_META_FONT + 5,
-          separatorGap: 8,
-          separatorColor: ruleColor,
-          textColor: solidLike ? colors.text : palette.text,
-          keyX: 12
-        }
-      } : {}
+      headerHeight: node.h
     });
     if (badge) {
       drawTypeBadge(g, node.shape, colors.text, 10, (CARD_HEADER_H - 16) / 2);
@@ -49772,8 +49990,8 @@ function assignEdgeSides(edges, rectById) {
       return { s: below ? "B" : "T", t: below ? "T" : "B" };
     }
     if (yOverlap >= 0 && yOverlap >= xOverlap) {
-      const right = dx >= 0;
-      return { s: right ? "R" : "L", t: right ? "L" : "R" };
+      const right2 = dx >= 0;
+      return { s: right2 ? "R" : "L", t: right2 ? "L" : "R" };
     }
     return { s: facing(dx, dy), t: facing(-dx, -dy) };
   });
@@ -49989,6 +50207,8 @@ function sketchEdgeGeometry(layout, offsets) {
     const n = normalOf(side);
     return 1 - (n.x * dx + n.y * dy) / len;
   };
+  const W_BACK = 2.6;
+  const backFacingCost = (from, to, side) => W_BACK * Math.max(0, facingCost(from, to, side) - 1);
   const ctx = layout.edges.map((edge) => {
     const source = rectById.get(edge.sourceId);
     const target = rectById.get(edge.targetId);
@@ -50023,6 +50243,7 @@ function sketchEdgeGeometry(layout, offsets) {
   const W_NODE = 100;
   const W_EDGE = 8;
   const W_PORT = 1.5;
+  const W_PORT_SAME = 0.6;
   const isBox = (id) => portsById.has(id);
   const portClashCount = (self2, s, t3) => {
     const e = layout.edges[self2];
@@ -50040,6 +50261,44 @@ function sketchEdgeGeometry(layout, offsets) {
     }
     return n;
   };
+  const portStackCount = (self2, _s, t3) => {
+    const e = layout.edges[self2];
+    if (isBox(e.targetId)) return 0;
+    let n = 0;
+    for (let j2 = 0; j2 < layout.edges.length; j2++) {
+      if (j2 === self2) continue;
+      const ej = layout.edges[j2];
+      if (ej.targetId === e.targetId && ej.sourceId !== e.sourceId && // not reciprocal
+      chosen[j2].t === t3)
+        n++;
+    }
+    return n;
+  };
+  const W_TURN = 0.55;
+  const W_SCURVE = 1.8;
+  const CURVE_STRAIGHT = 0.35;
+  const curveCostPoly = (pts) => {
+    let totalTurn = 0;
+    let inflections = 0;
+    let prevSign = 0;
+    for (let i = 1; i < pts.length - 1; i++) {
+      const ax = pts[i].x - pts[i - 1].x;
+      const ay = pts[i].y - pts[i - 1].y;
+      const bx = pts[i + 1].x - pts[i].x;
+      const by = pts[i + 1].y - pts[i].y;
+      const cross = ax * by - ay * bx;
+      const dot = ax * bx + ay * by;
+      if (ax === 0 && ay === 0) continue;
+      if (bx === 0 && by === 0) continue;
+      totalTurn += Math.abs(Math.atan2(cross, dot));
+      const sign3 = cross > 1e-6 ? 1 : cross < -1e-6 ? -1 : 0;
+      if (sign3 !== 0) {
+        if (prevSign !== 0 && sign3 !== prevSign) inflections++;
+        prevSign = sign3;
+      }
+    }
+    return totalTurn * W_TURN + inflections * W_SCURVE;
+  };
   const scoreOf = (c, g, poly, self2, polys2, s, t3) => {
     let edgeCross = 0;
     for (let j2 = 0; j2 < polys2.length; j2++) {
@@ -50047,7 +50306,7 @@ function sketchEdgeGeometry(layout, offsets) {
       const pj = polys2[j2];
       if (pj) edgeCross += polyCrossings(poly, pj);
     }
-    return pathCrossings(g, c.obstacleRects) * W_NODE + edgeCross * W_EDGE + portClashCount(self2, s, t3) * W_PORT + facingCost(c.source, c.target, s) + facingCost(c.target, c.source, t3);
+    return pathCrossings(g, c.obstacleRects) * W_NODE + edgeCross * W_EDGE + portClashCount(self2, s, t3) * W_PORT + portStackCount(self2, s, t3) * W_PORT_SAME + curveCostPoly(poly) + facingCost(c.source, c.target, s) + facingCost(c.target, c.source, t3) + backFacingCost(c.source, c.target, s) + backFacingCost(c.target, c.source, t3);
   };
   const chosen = layout.edges.map(
     (_2, i) => sides[i] ?? { s: "R", t: "L" }
@@ -50072,7 +50331,8 @@ function sketchEdgeGeometry(layout, offsets) {
       if (!c || !g || !p2) continue;
       const cur = chosen[i];
       const curScore = scoreOf(c, g, p2, i, polys, cur.s, cur.t);
-      if (curScore < W_EDGE && portClashCount(i, cur.s, cur.t) === 0) continue;
+      if (curScore < W_EDGE && portClashCount(i, cur.s, cur.t) === 0 && portStackCount(i, cur.s, cur.t) === 0 && curveCostPoly(p2) < CURVE_STRAIGHT && backFacingCost(c.source, c.target, cur.s) === 0 && backFacingCost(c.target, c.source, cur.t) === 0)
+        continue;
       let bestScore = curScore;
       let bestG = g;
       let bestP = p2;
@@ -50130,17 +50390,17 @@ function renderSketchForExport(container, parsed, layout, palette, isDark, optio
   });
 }
 var BOLD_WIDTH_FACTOR2, INDENT_PX, BULLET_HANG_PX, ELLIPSIS, BULLET, DIAGRAM_PADDING6, TITLE_Y2, TITLE_FONT_SIZE2, NODE_STROKE_WIDTH2, EDGE_STROKE_WIDTH2, EDGE_HIT_WIDTH, ARROWHEAD_W2, ARROWHEAD_H2, DASH, BAND_LABEL_FONT_SIZE, BAND_LABEL_OPACITY, NOTE_FONT_SIZE2, COLLAPSE_BAR_HEIGHT2, EDGE_LABEL_FONT_SIZE5, CURVE_HANDLE_MIN, CURVE_HANDLE_MAX, CARD_HEADER_H, CARD_LABEL_MAX, CARD_LABEL_MIN, CARD_META_FONT, CARD_TITLE_MAX, SIDES, EDGE_OBSTACLE_INSET, EDGE_SAMPLES, POLY_SAMPLES, HOP_R;
-var init_chunk_ETTDF3S2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ETTDF3S2.js"() {
+var init_chunk_3R67RRPC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3R67RRPC.js"() {
     init_chunk_H3HFC3SQ();
     init_chunk_3CIOJ5YJ();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     init_src();
     BOLD_WIDTH_FACTOR2 = 1.06;
     INDENT_PX = 12;
@@ -50153,8 +50413,8 @@ var init_chunk_ETTDF3S2 = __esm({
     NODE_STROKE_WIDTH2 = 2;
     EDGE_STROKE_WIDTH2 = 2;
     EDGE_HIT_WIDTH = 18;
-    ARROWHEAD_W2 = 12;
-    ARROWHEAD_H2 = 8;
+    ARROWHEAD_W2 = 18;
+    ARROWHEAD_H2 = 12;
     DASH = "6 3";
     BAND_LABEL_FONT_SIZE = 19;
     BAND_LABEL_OPACITY = 0.55;
@@ -50176,32 +50436,32 @@ var init_chunk_ETTDF3S2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-C3UYAXA6.js
-var renderer_C3UYAXA6_exports = {};
-__export(renderer_C3UYAXA6_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-DZ5N6BHW.js
+var renderer_DZ5N6BHW_exports = {};
+__export(renderer_DZ5N6BHW_exports, {
   renderSketch: () => renderSketch,
   renderSketchForExport: () => renderSketchForExport,
   sketchEdgeGeometry: () => sketchEdgeGeometry
 });
-var init_renderer_C3UYAXA6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-C3UYAXA6.js"() {
-    init_chunk_ETTDF3S2();
+var init_renderer_DZ5N6BHW = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-DZ5N6BHW.js"() {
+    init_chunk_3R67RRPC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-QKRBSQLJ.js
-var parser_QKRBSQLJ_exports = {};
-__export(parser_QKRBSQLJ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PQXN6SBB.js
+var parser_PQXN6SBB_exports = {};
+__export(parser_PQXN6SBB_exports, {
   looksLikeBoxesAndLines: () => looksLikeBoxesAndLines,
   parseBoxesAndLines: () => parseBoxesAndLines
 });
-var init_parser_QKRBSQLJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-QKRBSQLJ.js"() {
-    init_chunk_S52F62GW();
+var init_parser_PQXN6SBB = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PQXN6SBB.js"() {
+    init_chunk_NHZAYL2X();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-SCOHNGPG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQOC2MD6.js
 function splitCamelCase(word) {
   const parts = [];
   let start = 0;
@@ -50538,6 +50798,18 @@ function renderBoxesAndLines(container, parsed, layout, palette, isDark, options
       const totalH = fitted.lines.length * lineH;
       for (let li = 0; li < fitted.lines.length; li++) {
         groupG.append("text").attr("class", "bl-group-label").attr("x", group.x).attr("y", group.y - totalH / 2 + lineH / 2 + li * lineH).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("font-family", FONT_FAMILY).attr("font-size", fitted.fontSize).attr("font-weight", "600").attr("fill", palette.text).text(fitted.lines[li]);
+      }
+      if (group.childCount !== void 0 && group.childCount > 0) {
+        const chipFont = Math.max(9, sMinNodeFontSize - 2);
+        const chipH = chipFont + 7;
+        const chipW = Math.max(
+          chipH,
+          String(group.childCount).length * chipFont * 0.62 + 10
+        );
+        const chipCx = gx + group.width - chipW / 2 - 6;
+        const chipCy = gy + chipH / 2 + 6;
+        groupG.append("rect").attr("class", "bl-collapse-count").attr("x", chipCx - chipW / 2).attr("y", chipCy - chipH / 2).attr("width", chipW).attr("height", chipH).attr("rx", chipH / 2).attr("ry", chipH / 2).attr("fill", palette.textMuted).attr("fill-opacity", 0.18);
+        groupG.append("text").attr("class", "bl-collapse-count").attr("x", chipCx).attr("y", chipCy).attr("text-anchor", "middle").attr("dominant-baseline", "central").attr("font-family", FONT_FAMILY).attr("font-size", chipFont).attr("font-weight", "600").attr("fill", palette.text).text(String(group.childCount));
       }
     } else {
       groupG.append("rect").attr("x", gx).attr("y", gy).attr("width", group.width).attr("height", groupHeight).attr("rx", GROUP_RX).attr("ry", GROUP_RX).attr("fill", mix(palette.surface, palette.bg, 40)).attr("stroke", palette.textMuted).attr("stroke-width", 1).attr("stroke-opacity", 0.35);
@@ -50915,23 +51187,23 @@ function renderBoxesAndLinesForExport(container, parsed, layout, palette, isDark
   });
 }
 var DIAGRAM_PADDING7, NODE_FONT_SIZE, MIN_NODE_FONT_SIZE, EDGE_LABEL_FONT_SIZE6, NODE_RX, COLLAPSE_BAR_HEIGHT3, ARROWHEAD_W3, ARROWHEAD_H3, DESC_FONT_SIZE, DESC_LINE_HEIGHT, MAX_DESC_LINES, NODE_TEXT_PADDING, GROUP_RX, GROUP_LABEL_FONT_SIZE, GROUP_LABEL_ZONE, RAMP_FLOOR, VALUE_FONT_SIZE, lineGeneratorLR, lineGeneratorTB;
-var init_chunk_SCOHNGPG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-SCOHNGPG.js"() {
-    init_chunk_3IUHKMJI();
+var init_chunk_CQOC2MD6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQOC2MD6.js"() {
+    init_chunk_U2BKSEKU();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_BMR4CIEO();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     init_src();
     init_src9();
     DIAGRAM_PADDING7 = 20;
@@ -50956,19 +51228,29 @@ var init_chunk_SCOHNGPG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-UZIU4AHK.js
-var renderer_UZIU4AHK_exports = {};
-__export(renderer_UZIU4AHK_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-52S6JM5R.js
+var renderer_52S6JM5R_exports = {};
+__export(renderer_52S6JM5R_exports, {
   renderBoxesAndLines: () => renderBoxesAndLines,
   renderBoxesAndLinesForExport: () => renderBoxesAndLinesForExport
 });
-var init_renderer_UZIU4AHK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-UZIU4AHK.js"() {
-    init_chunk_SCOHNGPG();
+var init_renderer_52S6JM5R = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-52S6JM5R.js"() {
+    init_chunk_CQOC2MD6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WB3NA3JJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WTTIODDV.js
+var PHI, NODE_HEIGHT, NODE_WIDTH;
+var init_chunk_WTTIODDV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WTTIODDV.js"() {
+    PHI = 1.618;
+    NODE_HEIGHT = 60;
+    NODE_WIDTH = Math.round(NODE_HEIGHT * PHI);
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W4EKQ2P6.js
 function rng(s) {
   return () => {
     s |= 0;
@@ -50984,9 +51266,9 @@ function median(vals) {
   const m = Math.floor(vals.length / 2);
   if (vals.length % 2 === 1) return vals[m];
   if (vals.length === 2) return (vals[0] + vals[1]) / 2;
-  const left = vals[m - 1] - vals[0];
-  const right = vals[vals.length - 1] - vals[m];
-  return left + right === 0 ? (vals[m - 1] + vals[m]) / 2 : (vals[m - 1] * right + vals[m] * left) / (left + right);
+  const left2 = vals[m - 1] - vals[0];
+  const right2 = vals[vals.length - 1] - vals[m];
+  return left2 + right2 === 0 ? (vals[m - 1] + vals[m]) / 2 : (vals[m - 1] * right2 + vals[m] * left2) / (left2 + right2);
 }
 function acyclicOrient(ids, edges) {
   const adj = /* @__PURE__ */ new Map();
@@ -51639,9 +51921,9 @@ function groupedTierCandidates(parsed, sizes, opts) {
   }
 }
 var NODESEP, RANKSEP, DUMMY_THICK, MARGIN4, GROUP_PAD, GROUP_LABEL_ZONE2, GROUP_GAP, TIER_GAP, W_REAL_REAL, W_REAL_DUMMY, W_DUMMY_DUMMY;
-var init_chunk_WB3NA3JJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WB3NA3JJ.js"() {
-    init_chunk_IWG2ECAO();
+var init_chunk_W4EKQ2P6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W4EKQ2P6.js"() {
+    init_chunk_WTTIODDV();
     NODESEP = 50;
     RANKSEP = 60;
     DUMMY_THICK = 10;
@@ -51656,9 +51938,9 @@ var init_chunk_WB3NA3JJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-search-U2H4ORFJ.js
-var layout_search_U2H4ORFJ_exports = {};
-__export(layout_search_U2H4ORFJ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-search-I4VNIRGT.js
+var layout_search_I4VNIRGT_exports = {};
+__export(layout_search_I4VNIRGT_exports, {
   countEdgeNearMiss: () => countEdgeNearMiss,
   countEdgeNodePierces: () => countEdgeNodePierces,
   countEdgeOverlaps: () => countEdgeOverlaps,
@@ -51835,9 +52117,9 @@ function layeredCandidates(parsed, sizes, opts) {
     const m = Math.floor(vals.length / 2);
     if (vals.length % 2 === 1) return vals[m];
     if (vals.length === 2) return (vals[0] + vals[1]) / 2;
-    const left = vals[m - 1] - vals[0];
-    const right = vals[vals.length - 1] - vals[m];
-    return left + right === 0 ? (vals[m - 1] + vals[m]) / 2 : (vals[m - 1] * right + vals[m] * left) / (left + right);
+    const left2 = vals[m - 1] - vals[0];
+    const right2 = vals[vals.length - 1] - vals[m];
+    return left2 + right2 === 0 ? (vals[m - 1] + vals[m]) / 2 : (vals[m - 1] * right2 + vals[m] * left2) / (left2 + right2);
   };
   const wmedianRank = (r, useUp) => {
     const ids = ranks[r];
@@ -52158,6 +52440,264 @@ function layeredCandidates(parsed, sizes, opts) {
       for (let k2 = 0; k2 < b.count; k2++) xs[b.first + k2] = b.pos;
     for (let i = 0; i < n; i++) node.get(ids[i]).cross = xs[i] + off2[i];
   }
+}
+function bboxOf(rects) {
+  let x05 = Infinity, y05 = Infinity, x12 = -Infinity, y12 = -Infinity;
+  for (const r of rects) {
+    x05 = Math.min(x05, left(r));
+    y05 = Math.min(y05, top(r));
+    x12 = Math.max(x12, right(r));
+    y12 = Math.max(y12, bottom(r));
+  }
+  return {
+    x: (x05 + x12) / 2,
+    y: (y05 + y12) / 2,
+    width: x12 - x05,
+    height: y12 - y05
+  };
+}
+function borderPoint(rect2, toward) {
+  const dx = toward.x - rect2.x;
+  const dy = toward.y - rect2.y;
+  const sx = dx === 0 ? Infinity : rect2.width / 2 / Math.abs(dx);
+  const sy = dy === 0 ? Infinity : rect2.height / 2 / Math.abs(dy);
+  const s = Math.min(sx, sy);
+  if (!Number.isFinite(s)) return { x: rect2.x, y: rect2.y };
+  return { x: rect2.x + dx * s, y: rect2.y + dy * s };
+}
+function tryStableCollapseLayout(input) {
+  const {
+    parsed,
+    collapseInfo,
+    collapsedGroupLabels,
+    previousPositions,
+    sizes
+  } = input;
+  const prev = previousPositions;
+  const rects = /* @__PURE__ */ new Map();
+  for (const n of parsed.nodes) {
+    const p2 = prev.get(n.label);
+    const s = sizes.get(n.label);
+    if (!p2 || !s) return null;
+    rects.set(n.label, { x: p2.x, y: p2.y, width: s.width, height: s.height });
+  }
+  const ogByLabel = /* @__PURE__ */ new Map();
+  for (const g of collapseInfo.originalGroups) ogByLabel.set(g.label, g);
+  const descendantNodes = (label, seen = /* @__PURE__ */ new Set()) => {
+    if (seen.has(label)) return [];
+    seen.add(label);
+    const g = ogByLabel.get(label);
+    if (!g) return [];
+    const out = [];
+    for (const c of g.children) {
+      if (ogByLabel.has(c)) out.push(...descendantNodes(c, seen));
+      else out.push(c);
+    }
+    return out;
+  };
+  const newlyCollapsed = [];
+  for (const label of collapsedGroupLabels) {
+    const own = prev.get(gid(label));
+    if (own) {
+      rects.set(gid(label), {
+        x: own.x,
+        y: own.y,
+        width: NODE_WIDTH,
+        height: NODE_HEIGHT
+      });
+      continue;
+    }
+    const members = descendantNodes(label);
+    if (members.length === 0) return null;
+    const memberRects = [];
+    for (const m of members) {
+      const p2 = prev.get(m);
+      if (!p2) return null;
+      memberRects.push({
+        x: p2.x,
+        y: p2.y,
+        width: NODE_WIDTH,
+        height: NODE_HEIGHT
+      });
+    }
+    const bbox = bboxOf(memberRects);
+    rects.set(gid(label), {
+      x: bbox.x,
+      y: bbox.y,
+      width: NODE_WIDTH,
+      height: NODE_HEIGHT
+    });
+    newlyCollapsed.push({ label, memberBbox: bbox });
+  }
+  const groupByLabel = new Map(parsed.groups.map((g) => [g.label, g]));
+  const inUnit = /* @__PURE__ */ new Set();
+  const unitKeys = (label, seen = /* @__PURE__ */ new Set()) => {
+    if (seen.has(label)) return [];
+    seen.add(label);
+    const g = groupByLabel.get(label);
+    if (!g) return [];
+    const out = [];
+    for (const c of g.children) {
+      if (groupByLabel.has(c)) out.push(...unitKeys(c, seen));
+      else if (rects.has(c)) out.push(c);
+      else if (rects.has(gid(c))) out.push(gid(c));
+    }
+    return out;
+  };
+  const units = [];
+  for (const g of parsed.groups) {
+    if (g.parentGroup) continue;
+    const keys2 = unitKeys(g.label);
+    if (keys2.length === 0) continue;
+    for (const k2 of keys2) inUnit.add(k2);
+    units.push(keys2);
+  }
+  for (const key of rects.keys()) if (!inUnit.has(key)) units.push([key]);
+  const axes = ["x", "y"];
+  for (const { label, memberBbox } of newlyCollapsed) {
+    const pill = rects.get(gid(label));
+    for (const axis of axes) {
+      const size = axis === "x" ? "width" : "height";
+      const perpMin = axis === "x" ? top : left;
+      const perpMax = axis === "x" ? bottom : right;
+      const axMin = axis === "x" ? left : top;
+      const axMax = axis === "x" ? right : bottom;
+      const reclaim = memberBbox[size] - pill[size];
+      if (reclaim <= 0) continue;
+      const unitBbox = (keys2) => bboxOf(keys2.map((k2) => rects.get(k2)));
+      const sliding = [];
+      const staticRects = [];
+      for (const u of units) {
+        const b = unitBbox(u);
+        if (axMin(b) >= pill[axis] && !u.includes(gid(label))) sliding.push(u);
+        else staticRects.push(...u.map((k2) => rects.get(k2)));
+      }
+      if (sliding.length === 0) continue;
+      let delta = reclaim;
+      for (const u of sliding) {
+        const b = unitBbox(u);
+        for (const s of staticRects) {
+          const overlaps = perpMin(b) < perpMax(s) - 4 && perpMax(b) > perpMin(s) + 4;
+          if (!overlaps || axMax(s) > axMin(b)) continue;
+          delta = Math.min(delta, axMin(b) - axMax(s) - MIN_GAP);
+        }
+      }
+      if (delta <= 0) continue;
+      for (const u of sliding)
+        for (const k2 of u) {
+          const r = rects.get(k2);
+          rects.set(k2, { ...r, [axis]: r[axis] - delta });
+        }
+    }
+  }
+  const groupRect = /* @__PURE__ */ new Map();
+  const buildGroupRect = (label, seen = /* @__PURE__ */ new Set()) => {
+    if (groupRect.has(label)) return groupRect.get(label);
+    if (seen.has(label)) return null;
+    seen.add(label);
+    const g = groupByLabel.get(label);
+    if (!g) return null;
+    const memberRects = [];
+    for (const c of g.children) {
+      if (groupByLabel.has(c)) {
+        const sub = buildGroupRect(c, seen);
+        if (sub) memberRects.push(sub);
+      } else if (rects.has(c)) memberRects.push(rects.get(c));
+      else if (rects.has(gid(c))) memberRects.push(rects.get(gid(c)));
+    }
+    if (memberRects.length === 0) return null;
+    const b = bboxOf(memberRects);
+    const rect2 = {
+      x: b.x,
+      y: b.y - GROUP_LABEL_ZONE3 / 2,
+      width: b.width + 2 * GROUP_PAD2,
+      height: b.height + 2 * GROUP_PAD2 + GROUP_LABEL_ZONE3
+    };
+    groupRect.set(label, rect2);
+    return rect2;
+  };
+  for (const g of parsed.groups) if (!buildGroupRect(g.label)) return null;
+  const boxes = [...rects.values()];
+  for (let i = 0; i < boxes.length; i++)
+    for (let j2 = i + 1; j2 < boxes.length; j2++) {
+      const a = boxes[i];
+      const b = boxes[j2];
+      if (Math.abs(a.x - b.x) < (a.width + b.width) / 2 - 4 && Math.abs(a.y - b.y) < (a.height + b.height) / 2 - 4)
+        return null;
+    }
+  const endpointRect = (key) => {
+    const direct = rects.get(key);
+    if (direct) return direct;
+    if (key.startsWith("__group_")) {
+      const label = key.slice("__group_".length);
+      return groupRect.get(label) ?? null;
+    }
+    return groupRect.get(key) ?? null;
+  };
+  const edges = [];
+  for (const e of parsed.edges) {
+    const sr2 = endpointRect(e.source);
+    const tr2 = endpointRect(e.target);
+    if (!sr2 || !tr2) return null;
+    edges.push({
+      source: e.source,
+      target: e.target,
+      ...e.label !== void 0 && { label: e.label },
+      bidirectional: e.bidirectional,
+      lineNumber: e.lineNumber,
+      points: [borderPoint(sr2, tr2), borderPoint(tr2, sr2)],
+      yOffset: 0,
+      parallelCount: 1,
+      metadata: e.metadata
+    });
+  }
+  const allRects = [...rects.values(), ...groupRect.values()];
+  const total = bboxOf(allRects);
+  const dx = MARGIN22 - left(total);
+  const dy = MARGIN22 - top(total);
+  const shift = (r) => ({ ...r, x: r.x + dx, y: r.y + dy });
+  const nodes = parsed.nodes.map((n) => {
+    const r = shift(rects.get(n.label));
+    return { label: n.label, x: r.x, y: r.y, width: r.width, height: r.height };
+  });
+  const groups = parsed.groups.map((g) => {
+    const r = shift(groupRect.get(g.label));
+    return {
+      label: g.label,
+      lineNumber: g.lineNumber,
+      x: r.x,
+      y: r.y,
+      width: r.width,
+      height: r.height,
+      collapsed: false,
+      childCount: g.children.length
+    };
+  });
+  for (const label of collapsedGroupLabels) {
+    const r = shift(rects.get(gid(label)));
+    groups.push({
+      label,
+      lineNumber: 0,
+      x: r.x,
+      y: r.y,
+      width: r.width,
+      height: r.height,
+      collapsed: true,
+      childCount: collapseInfo.collapsedChildCounts.get(label) ?? 0
+    });
+  }
+  const shiftedEdges = edges.map((e) => ({
+    ...e,
+    points: e.points.map((p2) => ({ x: p2.x + dx, y: p2.y + dy }))
+  }));
+  const shiftedTotal = shift(total);
+  return {
+    nodes,
+    edges: shiftedEdges,
+    groups,
+    width: right(shiftedTotal) + MARGIN22,
+    height: bottom(shiftedTotal) + MARGIN22
+  };
 }
 function rng22(s) {
   return () => {
@@ -52514,7 +53054,7 @@ function detectGroupOverlaps(layout, opts) {
   const contains = (outer, inner) => outer.l <= inner.l + margin && outer.r >= inner.r - margin && outer.t <= inner.t + margin && outer.b >= inner.b - margin;
   const rend = raw.map((a, i) => {
     const parent = raw.some((b, j2) => j2 !== i && contains(a, b));
-    return parent ? { ...a, t: a.t - GROUP_LABEL_ZONE3 } : a;
+    return parent ? { ...a, t: a.t - GROUP_LABEL_ZONE22 } : a;
   });
   const hit = /* @__PURE__ */ new Set();
   for (let i = 0; i < raw.length; i++)
@@ -52541,7 +53081,7 @@ function countGroupOverlaps(layout, opts) {
   const contains = (outer, inner) => outer.l <= inner.l + margin && outer.r >= inner.r - margin && outer.t <= inner.t + margin && outer.b >= inner.b - margin;
   const rend = raw.map((a, i) => {
     const parent = raw.some((b, j2) => j2 !== i && contains(a, b));
-    return parent ? { ...a, t: a.t - GROUP_LABEL_ZONE3 } : a;
+    return parent ? { ...a, t: a.t - GROUP_LABEL_ZONE22 } : a;
   });
   let count2 = 0;
   for (let i = 0; i < raw.length; i++)
@@ -52584,7 +53124,7 @@ function separateGroupBands(layout, parsed) {
     let lo = (axis === "y" ? g.y : g.x) - half2;
     const hi = (axis === "y" ? g.y : g.x) + half2;
     const isParent = parsed.groups.some((c) => c.parentGroup === label);
-    if (axis === "y" && isParent) lo -= GROUP_LABEL_ZONE3;
+    if (axis === "y" && isParent) lo -= GROUP_LABEL_ZONE22;
     return { label, lo, hi, c: (lo + hi) / 2 };
   });
   bands.sort((a, b) => a.c - b.c);
@@ -52620,8 +53160,8 @@ function separateGroupBands(layout, parsed) {
   const nodeDelta = (label) => {
     if (label.startsWith("__group_"))
       return delta.get(topOf(label.slice("__group_".length))) ?? 0;
-    const top = nodeTop.get(label);
-    return top ? delta.get(top) ?? 0 : 0;
+    const top2 = nodeTop.get(label);
+    return top2 ? delta.get(top2) ?? 0 : 0;
   };
   const shift = (p2, d) => axis === "y" ? { x: p2.x, y: p2.y + d } : { x: p2.x + d, y: p2.y };
   const nodes = layout.nodes.map((n) => {
@@ -52655,7 +53195,7 @@ function separateGroupBands(layout, parsed) {
     acc(n.x + n.width / 2, n.y + n.height / 2);
   }
   for (const g of groups) {
-    acc(g.x - g.width / 2, g.y - g.height / 2 - GROUP_LABEL_ZONE3);
+    acc(g.x - g.width / 2, g.y - g.height / 2 - GROUP_LABEL_ZONE22);
     acc(g.x + g.width / 2, g.y + g.height / 2);
   }
   for (const e of edges) for (const p2 of e.points) acc(p2.x, p2.y);
@@ -52774,8 +53314,19 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
         sizes.set(node.label, { width: s.width, height: maxDescH });
       }
   }
-  const gid = (label) => `__group_${label}`;
+  const gid2 = (label) => `__group_${label}`;
   const rankdir = parsed.direction === "TB" ? "TB" : "LR";
+  if (opts?.stableCollapse && collapseInfo && collapsedGroupLabels.size > 0 && opts.previousPositions) {
+    const stable = tryStableCollapseLayout({
+      parsed,
+      collapseInfo,
+      collapsedGroupLabels,
+      previousPositions: opts.previousPositions,
+      sizes,
+      rankdir
+    });
+    if (stable) return stable;
+  }
   const nodeLabelSet = new Set(parsed.nodes.map((n2) => n2.label));
   const directNodeChildren = /* @__PURE__ */ new Map();
   const childGroupsOf = /* @__PURE__ */ new Map();
@@ -52833,8 +53384,8 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
       if (rankOf(mem) > rankOf(exit)) exit = mem;
       if (rankOf(mem) < rankOf(entry)) entry = mem;
     }
-    gidSourceRep.set(gid(grp.label), exit);
-    gidTargetRep.set(gid(grp.label), entry);
+    gidSourceRep.set(gid2(grp.label), exit);
+    gidTargetRep.set(gid2(grp.label), entry);
   }
   const srcRep = (label) => gidSourceRep.get(label) ?? label;
   const tgtRep = (label) => gidTargetRep.get(label) ?? label;
@@ -52864,25 +53415,25 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
     });
     g.setDefaultEdgeLabel(() => ({}));
     for (const grp of ord(parsed.groups))
-      g.setNode(gid(grp.label), { label: grp.label });
+      g.setNode(gid2(grp.label), { label: grp.label });
     for (const node of ord(parsed.nodes)) {
       const s = sizes.get(node.label);
       g.setNode(node.label, { width: s.width, height: s.height });
     }
     for (const label of collapsedGroupLabels)
-      g.setNode(gid(label), { width: NODE_WIDTH, height: NODE_HEIGHT });
+      g.setNode(gid2(label), { width: NODE_WIDTH, height: NODE_HEIGHT });
     for (const grp of parsed.groups) {
-      if (grp.parentGroup && g.hasNode(gid(grp.parentGroup)))
-        g.setParent(gid(grp.label), gid(grp.parentGroup));
+      if (grp.parentGroup && g.hasNode(gid2(grp.parentGroup)))
+        g.setParent(gid2(grp.label), gid2(grp.parentGroup));
       for (const c of ord(grp.children)) {
-        if (g.hasNode(c)) g.setParent(c, gid(grp.label));
+        if (g.hasNode(c)) g.setParent(c, gid2(grp.label));
       }
     }
     if (collapseInfo)
       for (const label of collapsedGroupLabels) {
         const og = collapseInfo.originalGroups.find((x3) => x3.label === label);
-        if (og?.parentGroup && !collapsedGroupLabels.has(og.parentGroup) && g.hasNode(gid(og.parentGroup)))
-          g.setParent(gid(label), gid(og.parentGroup));
+        if (og?.parentGroup && !collapsedGroupLabels.has(og.parentGroup) && g.hasNode(gid2(og.parentGroup)))
+          g.setParent(gid2(label), gid2(og.parentGroup));
       }
     for (const e of ord(parsed.edges)) {
       const s = srcRep(e.source);
@@ -52909,7 +53460,7 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
     });
     const groups = parsed.groups.map(
       (grp) => {
-        const p2 = g.node(gid(grp.label));
+        const p2 = g.node(gid2(grp.label));
         return {
           label: grp.label,
           lineNumber: grp.lineNumber,
@@ -52923,7 +53474,7 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
       }
     );
     for (const label of collapsedGroupLabels) {
-      const p2 = g.node(gid(label));
+      const p2 = g.node(gid2(label));
       groups.push({
         label,
         lineNumber: 0,
@@ -52937,9 +53488,9 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
     }
     const groupRectByGid = /* @__PURE__ */ new Map();
     for (const grp of parsed.groups) {
-      const p2 = g.node(gid(grp.label));
+      const p2 = g.node(gid2(grp.label));
       if (p2)
-        groupRectByGid.set(gid(grp.label), {
+        groupRectByGid.set(gid2(grp.label), {
           x: p2.x,
           y: p2.y,
           w: p2.width,
@@ -53139,11 +53690,12 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
   opts?.onTopConfigs?.(topConfigs);
   return best;
 }
-var NODESEP2, RANKSEP2, DUMMY_THICK2, MARGIN5, W_REAL_REAL2, W_REAL_DUMMY2, W_DUMMY_DUMMY2, DEFAULT_LAMBDA, ESCALATE_THRESHOLD, ESCALATE_MAX_N, ESCALATE_SEEDS, ESCALATE_REFINE, DEFAULT_SEARCH_BUDGET_MS, splineGen, PATH_TOKEN_RE, FLAT_CACHE, GROUP_LABEL_ZONE3;
-var init_layout_search_U2H4ORFJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-search-U2H4ORFJ.js"() {
-    init_chunk_WB3NA3JJ();
-    init_chunk_IWG2ECAO();
+var NODESEP2, RANKSEP2, DUMMY_THICK2, MARGIN5, W_REAL_REAL2, W_REAL_DUMMY2, W_DUMMY_DUMMY2, GROUP_PAD2, GROUP_LABEL_ZONE3, MARGIN22, MIN_GAP, gid, left, right, top, bottom, DEFAULT_LAMBDA, ESCALATE_THRESHOLD, ESCALATE_MAX_N, ESCALATE_SEEDS, ESCALATE_REFINE, DEFAULT_SEARCH_BUDGET_MS, splineGen, PATH_TOKEN_RE, FLAT_CACHE, GROUP_LABEL_ZONE22;
+var init_layout_search_I4VNIRGT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-search-I4VNIRGT.js"() {
+    init_chunk_R7ECJQTB();
+    init_chunk_W4EKQ2P6();
+    init_chunk_WTTIODDV();
     init_dagre_esm();
     init_src9();
     NODESEP2 = 50;
@@ -53153,6 +53705,15 @@ var init_layout_search_U2H4ORFJ = __esm({
     W_REAL_REAL2 = 1;
     W_REAL_DUMMY2 = 2;
     W_DUMMY_DUMMY2 = 8;
+    GROUP_PAD2 = 16;
+    GROUP_LABEL_ZONE3 = 32;
+    MARGIN22 = 40;
+    MIN_GAP = 36;
+    gid = (label) => `__group_${label}`;
+    left = (r) => r.x - r.width / 2;
+    right = (r) => r.x + r.width / 2;
+    top = (r) => r.y - r.height / 2;
+    bottom = (r) => r.y + r.height / 2;
     DEFAULT_LAMBDA = 4;
     ESCALATE_THRESHOLD = 4;
     ESCALATE_MAX_N = 45;
@@ -53162,11 +53723,11 @@ var init_layout_search_U2H4ORFJ = __esm({
     splineGen = line_default().x((d) => d.x).y((d) => d.y).curve(basis_default2);
     PATH_TOKEN_RE = /[MLQC]|-?\d*\.?\d+(?:e-?\d+)?/gi;
     FLAT_CACHE = /* @__PURE__ */ new WeakMap();
-    GROUP_LABEL_ZONE3 = 32;
+    GROUP_LABEL_ZONE22 = 32;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IWG2ECAO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R7ECJQTB.js
 function measureEdgeLabel(label, fontSize = EDGE_LABEL_FONT_SIZE7, maxWidth = LABEL_MAX_WIDTH) {
   let lines = wrapTextToWidth(label, fontSize, maxWidth, { hardBreak: true });
   if (lines.length > MAX_LABEL_LINES) {
@@ -53435,13 +53996,16 @@ function computeNodeSize(node, reserveValueRow) {
   return { width: w2, height: Math.max(NODE_HEIGHT, totalHeight) };
 }
 async function layoutBoxesAndLines(parsed, collapseInfo, layoutOptions) {
-  const { layoutBoxesAndLinesSearch: layoutBoxesAndLinesSearch2 } = await Promise.resolve().then(() => (init_layout_search_U2H4ORFJ(), layout_search_U2H4ORFJ_exports));
+  const { layoutBoxesAndLinesSearch: layoutBoxesAndLinesSearch2 } = await Promise.resolve().then(() => (init_layout_search_I4VNIRGT(), layout_search_I4VNIRGT_exports));
   const searchOpts = {
     ...layoutOptions?.hideDescriptions !== void 0 && {
       hideDescriptions: layoutOptions.hideDescriptions
     },
     ...layoutOptions?.previousPositions !== void 0 && {
       previousPositions: layoutOptions.previousPositions
+    },
+    ...layoutOptions?.stableCollapse !== void 0 && {
+      stableCollapse: layoutOptions.stableCollapse
     },
     ...layoutOptions?.onProgress !== void 0 && {
       onProgress: layoutOptions.onProgress
@@ -53581,12 +54145,13 @@ function applyParallelEdgeOffsets(layout) {
     }))
   };
 }
-var EDGE_LABEL_FONT_SIZE7, LABEL_MAX_WIDTH, MAX_LABEL_LINES, LABEL_LINE_HEIGHT, H_PAD, V_PAD, BOX_CLEAR_PAD, PERP_STEP, PERP_MAX, SLIDE_SAMPLES, MARGIN6, MAX_PARALLEL_EDGES, PARALLEL_SPACING, PHI, NODE_HEIGHT, NODE_WIDTH, DESC_NODE_WIDTH, DESC_FONT_SIZE2, DESC_LINE_HEIGHT2, DESC_PADDING, SEPARATOR_GAP4, MAX_DESC_LINES2, MAX_LABEL_LINES2, LABEL_LINE_HEIGHT2, LABEL_PAD, VALUE_ROW_FONT, VALUE_ROW_H;
-var init_chunk_IWG2ECAO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IWG2ECAO.js"() {
+var EDGE_LABEL_FONT_SIZE7, LABEL_MAX_WIDTH, MAX_LABEL_LINES, LABEL_LINE_HEIGHT, H_PAD, V_PAD, BOX_CLEAR_PAD, PERP_STEP, PERP_MAX, SLIDE_SAMPLES, MARGIN6, MAX_PARALLEL_EDGES, PARALLEL_SPACING, DESC_NODE_WIDTH, DESC_FONT_SIZE2, DESC_LINE_HEIGHT2, DESC_PADDING, SEPARATOR_GAP4, MAX_DESC_LINES2, MAX_LABEL_LINES2, LABEL_LINE_HEIGHT2, LABEL_PAD, VALUE_ROW_FONT, VALUE_ROW_H;
+var init_chunk_R7ECJQTB = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R7ECJQTB.js"() {
+    init_chunk_WTTIODDV();
     init_chunk_5HWPEYWB();
     init_chunk_6EK55ART();
-    init_chunk_QZAW5SFH();
+    init_chunk_7NK42OIB();
     init_chunk_4ASYQ347();
     EDGE_LABEL_FONT_SIZE7 = 11;
     LABEL_MAX_WIDTH = 160;
@@ -53601,9 +54166,6 @@ var init_chunk_IWG2ECAO = __esm({
     MARGIN6 = 40;
     MAX_PARALLEL_EDGES = 5;
     PARALLEL_SPACING = 22;
-    PHI = 1.618;
-    NODE_HEIGHT = 60;
-    NODE_WIDTH = Math.round(NODE_HEIGHT * PHI);
     DESC_NODE_WIDTH = 140;
     DESC_FONT_SIZE2 = 10;
     DESC_LINE_HEIGHT2 = 1.4;
@@ -53618,32 +54180,30 @@ var init_chunk_IWG2ECAO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-UR7CYAHL.js
-var layout_UR7CYAHL_exports = {};
-__export(layout_UR7CYAHL_exports, {
-  NODE_HEIGHT: () => NODE_HEIGHT,
-  NODE_WIDTH: () => NODE_WIDTH,
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-2BJDECLZ.js
+var layout_2BJDECLZ_exports = {};
+__export(layout_2BJDECLZ_exports, {
   computeNodeSize: () => computeNodeSize,
   layoutBoxesAndLines: () => layoutBoxesAndLines
 });
-var init_layout_UR7CYAHL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-UR7CYAHL.js"() {
-    init_chunk_IWG2ECAO();
+var init_layout_2BJDECLZ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-2BJDECLZ.js"() {
+    init_chunk_R7ECJQTB();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-GOUGUTPU.js
-var parser_GOUGUTPU_exports = {};
-__export(parser_GOUGUTPU_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PEBXIOPX.js
+var parser_PEBXIOPX_exports = {};
+__export(parser_PEBXIOPX_exports, {
   parseSwimlane: () => parseSwimlane
 });
-var init_parser_GOUGUTPU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-GOUGUTPU.js"() {
-    init_chunk_FBP33UM6();
+var init_parser_PEBXIOPX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PEBXIOPX.js"() {
+    init_chunk_5VLUAAAE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-X3X4LZDC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-S6QDCFEU.js
 function nodeSize(shape) {
   if (shape === "exclusive" || shape === "parallel")
     return { w: DIAMOND, h: DIAMOND };
@@ -54044,9 +54604,9 @@ function layoutSwimlane(parsed) {
   };
 }
 var MARGIN7, COL_GAP, NODE_W2, NODE_H, DIAMOND, TERM_D, INTRA_GAP, LANE_PAD, MIN_LANE, LANE_HEADER, PHASE_HEADER, BACK_CHANNEL, BACK_STEP;
-var init_chunk_X3X4LZDC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-X3X4LZDC.js"() {
-    init_chunk_WB3NA3JJ();
+var init_chunk_S6QDCFEU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-S6QDCFEU.js"() {
+    init_chunk_W4EKQ2P6();
     MARGIN7 = 30;
     COL_GAP = 64;
     NODE_W2 = 124;
@@ -54063,18 +54623,18 @@ var init_chunk_X3X4LZDC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-FNZDJGKF.js
-var layout_FNZDJGKF_exports = {};
-__export(layout_FNZDJGKF_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-OHAIIXBC.js
+var layout_OHAIIXBC_exports = {};
+__export(layout_OHAIIXBC_exports, {
   layoutSwimlane: () => layoutSwimlane
 });
-var init_layout_FNZDJGKF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-FNZDJGKF.js"() {
-    init_chunk_X3X4LZDC();
+var init_layout_OHAIIXBC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-OHAIIXBC.js"() {
+    init_chunk_S6QDCFEU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js
 function appendArrowheadMarkers(defs, opts) {
   const { idPrefix, width, height, baseFill, colors } = opts;
   const appendMarker = (id, fill2) => {
@@ -54086,11 +54646,11 @@ function appendArrowheadMarkers(defs, opts) {
   }
 }
 var init_chunk_LP7EC4MI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LKGQ46P4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PECYPUJJ.js
 function roundedPolyline(pts, radius) {
   if (pts.length < 3) {
     return pts.map((p2, i) => `${i ? "L" : "M"}${p2.x} ${p2.y}`).join(" ");
@@ -54347,9 +54907,9 @@ function renderSwimlaneForExport(container, parsed, layout, palette, isDark, opt
         anchor = "middle";
         baseline = below ? "hanging" : "auto";
       } else {
-        const right = clearance(mid.x + LABEL_GAP2, mid.y, 1);
-        const left = clearance(mid.x - LABEL_GAP2, mid.y, -1);
-        const toLeft = right < CROWD && left > right;
+        const right2 = clearance(mid.x + LABEL_GAP2, mid.y, 1);
+        const left2 = clearance(mid.x - LABEL_GAP2, mid.y, -1);
+        const toLeft = right2 < CROWD && left2 > right2;
         tx = mid.x + (toLeft ? -LABEL_GAP2 : LABEL_GAP2);
         ty = mid.y;
         anchor = toLeft ? "end" : "start";
@@ -54449,15 +55009,15 @@ function drawCenteredLabel(g, label, cx, cy, fill2, fontSize, tight = false, hal
   });
 }
 var NODE_FONT_SIZE2, LANE_LABEL_FONT, PHASE_LABEL_FONT, EDGE_LABEL_FONT, NODE_RX2, NODE_STROKE, EDGE_STROKE, EDGE_CORNER_R, ARROW_W, ARROW_H, LANE_RADIUS, LANE_INSET;
-var init_chunk_LKGQ46P4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LKGQ46P4.js"() {
+var init_chunk_PECYPUJJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PECYPUJJ.js"() {
     init_chunk_LP7EC4MI();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     init_src();
     NODE_FONT_SIZE2 = 12;
     LANE_LABEL_FONT = 12;
@@ -54474,29 +55034,29 @@ var init_chunk_LKGQ46P4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-5PODNLYP.js
-var renderer_5PODNLYP_exports = {};
-__export(renderer_5PODNLYP_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YWYX6WAI.js
+var renderer_YWYX6WAI_exports = {};
+__export(renderer_YWYX6WAI_exports, {
   renderSwimlaneForExport: () => renderSwimlaneForExport
 });
-var init_renderer_5PODNLYP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-5PODNLYP.js"() {
-    init_chunk_LKGQ46P4();
+var init_renderer_YWYX6WAI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YWYX6WAI.js"() {
+    init_chunk_PECYPUJJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-7LYJFZCP.js
-var parser_7LYJFZCP_exports = {};
-__export(parser_7LYJFZCP_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-6CM27UPA.js
+var parser_6CM27UPA_exports = {};
+__export(parser_6CM27UPA_exports, {
   parseFamily: () => parseFamily
 });
-var init_parser_7LYJFZCP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-7LYJFZCP.js"() {
-    init_chunk_2HX6ZGY7();
+var init_parser_6CM27UPA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-6CM27UPA.js"() {
+    init_chunk_ES3MUYRX();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js
 function familyDisplayLabel(p2) {
   return !p2.placeholder && p2.metadata["d"] ? `\u2020 ${p2.label}` : p2.label;
 }
@@ -54515,7 +55075,7 @@ function familyCardRows(p2) {
 }
 var LABELED_KEYS;
 var init_chunk_IVKC4GID = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js"() {
     LABELED_KEYS = [
       ["bp", "Born"],
       ["dp", "Died"],
@@ -54528,7 +55088,7 @@ var init_chunk_IVKC4GID = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js
 function birthYear(persons, id) {
   const b = persons.get(id)?.metadata["b"];
   if (b === void 0) return null;
@@ -54586,8 +55146,8 @@ function cardSize(p2) {
   const valueX = KEY_X + maxKeyW + KEY_VALUE_GAP;
   let contentRight = 0;
   for (const r of rows) {
-    const right = r.year ? KEY_X + measureText(r.value, META_FONT_SIZE) : valueX + measureText(r.value, META_FONT_SIZE);
-    contentRight = Math.max(contentRight, right);
+    const right2 = r.year ? KEY_X + measureText(r.value, META_FONT_SIZE) : valueX + measureText(r.value, META_FONT_SIZE);
+    contentRight = Math.max(contentRight, right2);
   }
   const labelW = measureText(p2.label, LABEL_FONT_SIZE);
   const width = Math.max(
@@ -54836,11 +55396,11 @@ function layoutFamily(parsed, focusId) {
         if (kids.length === 0 || u.parents.every((p2) => !centerX.has(p2)))
           continue;
         const blockW = kids.reduce((s, id) => s + sizes.get(id).width, 0) + H_GAP2 * (kids.length - 1);
-        let left = unionMid(u) - blockW / 2;
+        let left2 = unionMid(u) - blockW / 2;
         for (const id of kids) {
           const w2 = sizes.get(id).width;
-          desired.set(id, left + w2 / 2);
-          left += w2 + H_GAP2;
+          desired.set(id, left2 + w2 / 2);
+          left2 += w2 + H_GAP2;
         }
       }
       resolveRow(rowPersons.get(r) ?? [], desired);
@@ -54989,7 +55549,7 @@ function layoutFamily(parsed, focusId) {
 }
 var MARGIN8, MIN_CARD_W, CARD_H_PAD3, CARD_TEXT_PAD, H_GAP2, ROW_GAP2, KEY_VALUE_GAP, KEY_X, GUTTER_WIDTH;
 var init_chunk_GRM2A4BG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js"() {
     init_chunk_IVKC4GID();
     init_chunk_3CIOJ5YJ();
     init_chunk_QQJUTGQH();
@@ -55006,19 +55566,19 @@ var init_chunk_GRM2A4BG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js
 var layout_CAAKQX4W_exports = {};
 __export(layout_CAAKQX4W_exports, {
   focusFamily: () => focusFamily,
   layoutFamily: () => layoutFamily
 });
 var init_layout_CAAKQX4W = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js"() {
     init_chunk_GRM2A4BG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PV7ND5WL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WK3UFCZC.js
 function toRoman(n) {
   let out = "";
   let v2 = n;
@@ -55260,22 +55820,22 @@ function renderFamily(container, parsed, layout, palette, isDark, opts = {}) {
   renderFamilyForExport(container, parsed, layout, palette, isDark, opts);
 }
 var KEY_X2, KEY_VALUE_GAP2, BAR_DOT_R, TITLE_RESERVE, DIM_OPACITY, ROMAN;
-var init_chunk_PV7ND5WL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PV7ND5WL.js"() {
+var init_chunk_WK3UFCZC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WK3UFCZC.js"() {
     init_chunk_IVKC4GID();
     init_chunk_3CIOJ5YJ();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_2CW5ZTNH();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     init_src();
     KEY_X2 = 10;
     KEY_VALUE_GAP2 = 6;
@@ -55292,30 +55852,30 @@ var init_chunk_PV7ND5WL = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-VEGOEZOI.js
-var renderer_VEGOEZOI_exports = {};
-__export(renderer_VEGOEZOI_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CB2DOQ2O.js
+var renderer_CB2DOQ2O_exports = {};
+__export(renderer_CB2DOQ2O_exports, {
   renderFamily: () => renderFamily,
   renderFamilyForExport: () => renderFamilyForExport
 });
-var init_renderer_VEGOEZOI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-VEGOEZOI.js"() {
-    init_chunk_PV7ND5WL();
+var init_renderer_CB2DOQ2O = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CB2DOQ2O.js"() {
+    init_chunk_WK3UFCZC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-SZHGLOOZ.js
-var parser_SZHGLOOZ_exports = {};
-__export(parser_SZHGLOOZ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-SJ7ECFAP.js
+var parser_SJ7ECFAP_exports = {};
+__export(parser_SJ7ECFAP_exports, {
   parseMindmap: () => parseMindmap
 });
-var init_parser_SZHGLOOZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-SZHGLOOZ.js"() {
-    init_chunk_HX7QNHC6();
+var init_parser_SJ7ECFAP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-SJ7ECFAP.js"() {
+    init_chunk_KF575IXC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-INTAQV2Y.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-23THM67F.js
 function tokenize2(text) {
   const tokens = [];
   const parts = text.split(/(\s+)/);
@@ -55765,20 +56325,20 @@ function balancedSplitS(children2, hideDescriptions, sc) {
     node: c,
     height: computeSubtreeHeightS(c, 1, hideDescriptions, sc)
   }));
-  const right = [];
-  const left = [];
+  const right2 = [];
+  const left2 = [];
   let rightWeight = 0;
   let leftWeight = 0;
   for (const w2 of weights) {
     if (rightWeight <= leftWeight) {
-      right.push(w2.node);
+      right2.push(w2.node);
       rightWeight += w2.height;
     } else {
-      left.push(w2.node);
+      left2.push(w2.node);
       leftWeight += w2.height;
     }
   }
-  return { right, left };
+  return { right: right2, left: left2 };
 }
 function offsetPath(path2, dx, dy) {
   if (dx === 0 && dy === 0) return path2;
@@ -55824,12 +56384,12 @@ function populateDepthCache(roots) {
   walk(roots, 0);
 }
 var H_PAD2, MAX_LABEL_LINES3, MAX_DESC_LINES3, ROOT_FONT_SIZE, MIN_FONT_SIZE, FONT_STEP, DESC_FONT_SIZE3, ROOT_WIDTH, DEPTH1_WIDTH, LEAF_WIDTH, SINGLE_LABEL_HEIGHT, LABEL_LINE_HEIGHT3, DESC_LINE_HEIGHT3, NODE_V_PAD, H_GAP3, V_GAP2, MARGIN9, MULTI_ROOT_GAP, nodeDepthCache;
-var init_chunk_INTAQV2Y = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-INTAQV2Y.js"() {
+var init_chunk_23THM67F = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-23THM67F.js"() {
     init_chunk_YYVTBZZC();
     init_chunk_IYULMRBE();
     init_chunk_4ASYQ347();
-    init_chunk_JR7Q6GHE();
+    init_chunk_D5FANMSG();
     H_PAD2 = 16;
     MAX_LABEL_LINES3 = 3;
     MAX_DESC_LINES3 = 2;
@@ -55852,18 +56412,18 @@ var init_chunk_INTAQV2Y = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-AUKTWGYL.js
-var layout_AUKTWGYL_exports = {};
-__export(layout_AUKTWGYL_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HIK4ZJFQ.js
+var layout_HIK4ZJFQ_exports = {};
+__export(layout_HIK4ZJFQ_exports, {
   layoutMindmap: () => layoutMindmap
 });
-var init_layout_AUKTWGYL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-AUKTWGYL.js"() {
-    init_chunk_INTAQV2Y();
+var init_layout_HIK4ZJFQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HIK4ZJFQ.js"() {
+    init_chunk_23THM67F();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js
 function cloneNode3(node) {
   return {
     id: node.id,
@@ -55887,7 +56447,7 @@ function collapseMindmapTree(roots, collapsedIds) {
 }
 var MINDMAP_SHAPE;
 var init_chunk_UZ7EZW3B = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js"() {
     init_chunk_BS7SV7C3();
     MINDMAP_SHAPE = {
       getId: (node) => node.id,
@@ -55901,18 +56461,18 @@ var init_chunk_UZ7EZW3B = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js
 var collapse_SLINJQW6_exports = {};
 __export(collapse_SLINJQW6_exports, {
   collapseMindmapTree: () => collapseMindmapTree
 });
 var init_collapse_SLINJQW6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js"() {
     init_chunk_UZ7EZW3B();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5H5GWWA4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JXFB3APA.js
 function nodeFill4(palette, isDark, nodeColor2, fillMode) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, { mode: fillMode });
@@ -56260,24 +56820,24 @@ function renderMindmapForExport(content, theme, palette) {
   });
 }
 var DIAGRAM_PADDING8, TITLE_HEIGHT4, SINGLE_LABEL_HEIGHT2, LABEL_LINE_HEIGHT4, DESC_LINE_HEIGHT4, NODE_RADIUS, ROOT_STROKE_WIDTH, DEPTH_COLOR_KEYS;
-var init_chunk_5H5GWWA4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5H5GWWA4.js"() {
-    init_chunk_INTAQV2Y();
-    init_chunk_JTSMEYIZ();
+var init_chunk_JXFB3APA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JXFB3APA.js"() {
+    init_chunk_23THM67F();
+    init_chunk_L43KTQTW();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_HX7QNHC6();
+    init_chunk_KF575IXC();
     init_chunk_IYULMRBE();
-    init_chunk_Q5IHQ4NW();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_SCJ7CAJF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     DIAGRAM_PADDING8 = 20;
     TITLE_HEIGHT4 = 30;
@@ -56299,33 +56859,33 @@ var init_chunk_5H5GWWA4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-G5ESLCJB.js
-var renderer_G5ESLCJB_exports = {};
-__export(renderer_G5ESLCJB_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-3IETIUZB.js
+var renderer_3IETIUZB_exports = {};
+__export(renderer_3IETIUZB_exports, {
   renderMindmap: () => renderMindmap,
   renderMindmapForExport: () => renderMindmapForExport
 });
-var init_renderer_G5ESLCJB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-G5ESLCJB.js"() {
-    init_chunk_5H5GWWA4();
+var init_renderer_3IETIUZB = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-3IETIUZB.js"() {
+    init_chunk_JXFB3APA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-2LF33IS2.js
-var parser_2LF33IS2_exports = {};
-__export(parser_2LF33IS2_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-MH62NYKM.js
+var parser_MH62NYKM_exports = {};
+__export(parser_MH62NYKM_exports, {
   GROUP_ONLY_METADATA: () => GROUP_ONLY_METADATA,
   STATE_KEYWORDS: () => STATE_KEYWORDS,
   parseWireframe: () => parseWireframe,
   resetWireframeIds: () => resetWireframeIds
 });
-var init_parser_2LF33IS2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-2LF33IS2.js"() {
-    init_chunk_KK3L5NVK();
+var init_parser_MH62NYKM = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-MH62NYKM.js"() {
+    init_chunk_FZECLCCU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js
 function layoutWireframe(parsed, _options, overrideWidth, showGroupLabels = true) {
   GROUP_PADDING_TOP = showGroupLabels ? GROUP_PADDING_TOP_WITH_LABEL : GROUP_PADDING_TOP_NO_LABEL;
   const defaultWidth = parsed.formFactor === "mobile" ? MOBILE_WIDTH : DESKTOP_WIDTH;
@@ -56559,7 +57119,7 @@ function computeFieldAlignX(children2) {
 }
 var DESKTOP_WIDTH, MOBILE_WIDTH, LABEL_PADDING, LABEL_FIELD_FONT_SIZE, ELEMENT_HEIGHTS, SPACING_AFTER, GROUP_PADDING_TOP_WITH_LABEL, GROUP_PADDING_TOP_NO_LABEL, GROUP_PADDING_BOTTOM, GROUP_PADDING_TOP, GROUP_PADDING_X, FRAME_PADDING, TITLE_HEIGHT5, REGION_SIZES, FULL_WIDTH_REGIONS, HEADER_REGION_HEIGHT, FOOTER_REGION_HEIGHT;
 var init_chunk_ODUT5WMC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js"() {
     init_chunk_4ASYQ347();
     DESKTOP_WIDTH = 1200;
     MOBILE_WIDTH = 375;
@@ -56628,18 +57188,18 @@ var init_chunk_ODUT5WMC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js
 var layout_5XGYNYVT_exports = {};
 __export(layout_5XGYNYVT_exports, {
   layoutWireframe: () => layoutWireframe
 });
 var init_layout_5XGYNYVT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js"() {
     init_chunk_ODUT5WMC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-DS4MDEQ7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HE57UQHL.js
 function getSemanticColor(state, palette) {
   const fn2 = SEMANTIC_COLORS[state];
   return fn2 ? fn2(palette) : null;
@@ -57160,14 +57720,14 @@ function renderModal(parent, node, ctx) {
   }
 }
 var INPUT_CORNER, BUTTON_CORNER, GROUP_CORNER, SEMANTIC_COLORS;
-var init_chunk_DS4MDEQ7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-DS4MDEQ7.js"() {
+var init_chunk_HE57UQHL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HE57UQHL.js"() {
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
     init_src();
     INPUT_CORNER = 4;
     BUTTON_CORNER = 6;
@@ -57181,29 +57741,29 @@ var init_chunk_DS4MDEQ7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-5EMHIQL5.js
-var renderer_5EMHIQL5_exports = {};
-__export(renderer_5EMHIQL5_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-SYT4L7GE.js
+var renderer_SYT4L7GE_exports = {};
+__export(renderer_SYT4L7GE_exports, {
   renderWireframe: () => renderWireframe
 });
-var init_renderer_5EMHIQL5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-5EMHIQL5.js"() {
-    init_chunk_DS4MDEQ7();
+var init_renderer_SYT4L7GE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-SYT4L7GE.js"() {
+    init_chunk_HE57UQHL();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-LUXS7J32.js
-var parser_LUXS7J32_exports = {};
-__export(parser_LUXS7J32_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-VVTCMQWY.js
+var parser_VVTCMQWY_exports = {};
+__export(parser_VVTCMQWY_exports, {
   parseC4: () => parseC4
 });
-var init_parser_LUXS7J32 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-LUXS7J32.js"() {
-    init_chunk_YXKNXIWA();
+var init_parser_VVTCMQWY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-VVTCMQWY.js"() {
+    init_chunk_FCA2UGJT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-AKE6C2D7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XN4ZSACM.js
 function transposeGraph(g) {
   for (const name of g.nodes()) {
     const pos = gNode(g, name);
@@ -57717,14 +58277,14 @@ function layoutC4Context(parsed, activeTagGroup) {
   );
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   for (const node of nodes) {
-    const left = node.x - node.width / 2;
-    const top = node.y - node.height / 2;
-    const right = node.x + node.width / 2;
-    const bottom = node.y + node.height / 2;
-    if (left < minX) minX = left;
-    if (top < minY) minY = top;
-    if (right > maxX) maxX = right;
-    if (bottom > maxY) maxY = bottom;
+    const left2 = node.x - node.width / 2;
+    const top2 = node.y - node.height / 2;
+    const right2 = node.x + node.width / 2;
+    const bottom2 = node.y + node.height / 2;
+    if (left2 < minX) minX = left2;
+    if (top2 < minY) minY = top2;
+    if (right2 > maxX) maxX = right2;
+    if (bottom2 > maxY) maxY = bottom2;
   }
   for (const edge of edges) {
     for (const pt of edge.points) {
@@ -58006,14 +58566,14 @@ function layoutC4Containers(parsed, systemName, activeTagGroup) {
   const containerNodes = nodes.filter((n) => n.type === "container");
   let bMinX = Infinity, bMinY = Infinity, bMaxX = -Infinity, bMaxY = -Infinity;
   for (const n of containerNodes) {
-    const left = n.x - n.width / 2;
-    const top = n.y - n.height / 2;
-    const right = n.x + n.width / 2;
-    const bottom = n.y + n.height / 2;
-    if (left < bMinX) bMinX = left;
-    if (top < bMinY) bMinY = top;
-    if (right > bMaxX) bMaxX = right;
-    if (bottom > bMaxY) bMaxY = bottom;
+    const left2 = n.x - n.width / 2;
+    const top2 = n.y - n.height / 2;
+    const right2 = n.x + n.width / 2;
+    const bottom2 = n.y + n.height / 2;
+    if (left2 < bMinX) bMinX = left2;
+    if (top2 < bMinY) bMinY = top2;
+    if (right2 > bMaxX) bMaxX = right2;
+    if (bottom2 > bMaxY) bMaxY = bottom2;
   }
   const boundary = {
     label: system.name,
@@ -58040,14 +58600,14 @@ function layoutC4Containers(parsed, systemName, activeTagGroup) {
       if (members.length === 0) continue;
       let gMinX = Infinity, gMinY = Infinity, gMaxX = -Infinity, gMaxY = -Infinity;
       for (const m of members) {
-        const left = m.x - m.width / 2;
-        const top = m.y - m.height / 2;
-        const right = m.x + m.width / 2;
-        const bottom = m.y + m.height / 2;
-        if (left < gMinX) gMinX = left;
-        if (top < gMinY) gMinY = top;
-        if (right > gMaxX) gMaxX = right;
-        if (bottom > gMaxY) gMaxY = bottom;
+        const left2 = m.x - m.width / 2;
+        const top2 = m.y - m.height / 2;
+        const right2 = m.x + m.width / 2;
+        const bottom2 = m.y + m.height / 2;
+        if (left2 < gMinX) gMinX = left2;
+        if (top2 < gMinY) gMinY = top2;
+        if (right2 > gMaxX) gMaxX = right2;
+        if (bottom2 > gMaxY) gMaxY = bottom2;
       }
       groupBoundaries.push({
         label: groupName,
@@ -58062,14 +58622,14 @@ function layoutC4Containers(parsed, systemName, activeTagGroup) {
   }
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   for (const node of nodes) {
-    const left = node.x - node.width / 2;
-    const top = node.y - node.height / 2;
-    const right = node.x + node.width / 2;
-    const bottom = node.y + node.height / 2;
-    if (left < minX) minX = left;
-    if (top < minY) minY = top;
-    if (right > maxX) maxX = right;
-    if (bottom > maxY) maxY = bottom;
+    const left2 = node.x - node.width / 2;
+    const top2 = node.y - node.height / 2;
+    const right2 = node.x + node.width / 2;
+    const bottom2 = node.y + node.height / 2;
+    if (left2 < minX) minX = left2;
+    if (top2 < minY) minY = top2;
+    if (right2 > maxX) maxX = right2;
+    if (bottom2 > maxY) maxY = bottom2;
   }
   if (boundary.x < minX) minX = boundary.x;
   if (boundary.y < minY) minY = boundary.y;
@@ -58425,14 +58985,14 @@ function layoutC4Components(parsed, systemName, containerName, activeTagGroup) {
   const componentNodes = nodes.filter((n) => n.type === "component");
   let bMinX = Infinity, bMinY = Infinity, bMaxX = -Infinity, bMaxY = -Infinity;
   for (const n of componentNodes) {
-    const left = n.x - n.width / 2;
-    const top = n.y - n.height / 2;
-    const right = n.x + n.width / 2;
-    const bottom = n.y + n.height / 2;
-    if (left < bMinX) bMinX = left;
-    if (top < bMinY) bMinY = top;
-    if (right > bMaxX) bMaxX = right;
-    if (bottom > bMaxY) bMaxY = bottom;
+    const left2 = n.x - n.width / 2;
+    const top2 = n.y - n.height / 2;
+    const right2 = n.x + n.width / 2;
+    const bottom2 = n.y + n.height / 2;
+    if (left2 < bMinX) bMinX = left2;
+    if (top2 < bMinY) bMinY = top2;
+    if (right2 > bMaxX) bMaxX = right2;
+    if (bottom2 > bMaxY) bMaxY = bottom2;
   }
   const boundary = {
     label: targetContainer.name,
@@ -58459,14 +59019,14 @@ function layoutC4Components(parsed, systemName, containerName, activeTagGroup) {
       if (members.length === 0) continue;
       let gMinX = Infinity, gMinY = Infinity, gMaxX = -Infinity, gMaxY = -Infinity;
       for (const m of members) {
-        const left = m.x - m.width / 2;
-        const top = m.y - m.height / 2;
-        const right = m.x + m.width / 2;
-        const bottom = m.y + m.height / 2;
-        if (left < gMinX) gMinX = left;
-        if (top < gMinY) gMinY = top;
-        if (right > gMaxX) gMaxX = right;
-        if (bottom > gMaxY) gMaxY = bottom;
+        const left2 = m.x - m.width / 2;
+        const top2 = m.y - m.height / 2;
+        const right2 = m.x + m.width / 2;
+        const bottom2 = m.y + m.height / 2;
+        if (left2 < gMinX) gMinX = left2;
+        if (top2 < gMinY) gMinY = top2;
+        if (right2 > gMaxX) gMaxX = right2;
+        if (bottom2 > gMaxY) gMaxY = bottom2;
       }
       groupBoundaries.push({
         label: groupName,
@@ -58481,14 +59041,14 @@ function layoutC4Components(parsed, systemName, containerName, activeTagGroup) {
   }
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   for (const node of nodes) {
-    const left = node.x - node.width / 2;
-    const top = node.y - node.height / 2;
-    const right = node.x + node.width / 2;
-    const bottom = node.y + node.height / 2;
-    if (left < minX) minX = left;
-    if (top < minY) minY = top;
-    if (right > maxX) maxX = right;
-    if (bottom > maxY) maxY = bottom;
+    const left2 = node.x - node.width / 2;
+    const top2 = node.y - node.height / 2;
+    const right2 = node.x + node.width / 2;
+    const bottom2 = node.y + node.height / 2;
+    if (left2 < minX) minX = left2;
+    if (top2 < minY) minY = top2;
+    if (right2 > maxX) maxX = right2;
+    if (bottom2 > maxY) maxY = bottom2;
   }
   if (boundary.x < minX) minX = boundary.x;
   if (boundary.y < minY) minY = boundary.y;
@@ -58752,14 +59312,14 @@ function layoutC4Deployment(parsed, activeTagGroup) {
     const members = infraMembers.get(infraId) ?? [];
     for (const m of members) {
       hasContent = true;
-      const left = m.x - m.width / 2;
-      const top = m.y - m.height / 2;
-      const right = m.x + m.width / 2;
-      const bottom = m.y + m.height / 2;
-      if (left < bMinX) bMinX = left;
-      if (top < bMinY) bMinY = top;
-      if (right > bMaxX) bMaxX = right;
-      if (bottom > bMaxY) bMaxY = bottom;
+      const left2 = m.x - m.width / 2;
+      const top2 = m.y - m.height / 2;
+      const right2 = m.x + m.width / 2;
+      const bottom2 = m.y + m.height / 2;
+      if (left2 < bMinX) bMinX = left2;
+      if (top2 < bMinY) bMinY = top2;
+      if (right2 > bMaxX) bMaxX = right2;
+      if (bottom2 > bMaxY) bMaxY = bottom2;
     }
     for (const [childId, parentId] of infraParents) {
       if (parentId === infraId) {
@@ -58800,14 +59360,14 @@ function layoutC4Deployment(parsed, activeTagGroup) {
   groupBoundaries.sort((a, b) => b.width * b.height - a.width * a.height);
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   for (const node of nodes) {
-    const left = node.x - node.width / 2;
-    const top = node.y - node.height / 2;
-    const right = node.x + node.width / 2;
-    const bottom = node.y + node.height / 2;
-    if (left < minX) minX = left;
-    if (top < minY) minY = top;
-    if (right > maxX) maxX = right;
-    if (bottom > maxY) maxY = bottom;
+    const left2 = node.x - node.width / 2;
+    const top2 = node.y - node.height / 2;
+    const right2 = node.x + node.width / 2;
+    const bottom2 = node.y + node.height / 2;
+    if (left2 < minX) minX = left2;
+    if (top2 < minY) minY = top2;
+    if (right2 > maxX) maxX = right2;
+    if (bottom2 > maxY) maxY = bottom2;
   }
   for (const gb of groupBoundaries) {
     if (gb.x < minX) minX = gb.x;
@@ -58867,12 +59427,12 @@ function layoutC4Deployment(parsed, activeTagGroup) {
   };
 }
 var gNode, gEdge, MIN_NODE_WIDTH, MAX_NODE_WIDTH, TYPE_LABEL_HEIGHT, DIVIDER_GAP, NAME_HEIGHT, NAME_FONT_SIZE, DESC_LINE_HEIGHT5, DESC_FONT_SIZE4, CARD_V_PAD3, CARD_H_PAD4, META_LINE_HEIGHT4, META_FONT_SIZE4, MARGIN10, BOUNDARY_PAD, GROUP_BOUNDARY_PAD, EDGE_NODE_COLLISION_WEIGHT, META_EXCLUDE_KEYS;
-var init_chunk_AKE6C2D7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-AKE6C2D7.js"() {
-    init_chunk_Q5IHQ4NW();
+var init_chunk_XN4ZSACM = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XN4ZSACM.js"() {
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_dagre_esm();
     gNode = (g, name) => g.node(name);
     gEdge = (g, v2, w2) => g.edge(v2, w2);
@@ -58901,9 +59461,9 @@ var init_chunk_AKE6C2D7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-LGXOKUCD.js
-var layout_LGXOKUCD_exports = {};
-__export(layout_LGXOKUCD_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-SNIEAZ2I.js
+var layout_SNIEAZ2I_exports = {};
+__export(layout_SNIEAZ2I_exports, {
   collectCardMetadata: () => collectCardMetadata,
   computeC4NodeDimensions: () => computeC4NodeDimensions,
   layoutC4Components: () => layoutC4Components,
@@ -58912,13 +59472,13 @@ __export(layout_LGXOKUCD_exports, {
   layoutC4Deployment: () => layoutC4Deployment,
   rollUpContextRelationships: () => rollUpContextRelationships
 });
-var init_layout_LGXOKUCD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-LGXOKUCD.js"() {
-    init_chunk_AKE6C2D7();
+var init_layout_SNIEAZ2I = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-SNIEAZ2I.js"() {
+    init_chunk_XN4ZSACM();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4MZCJV4M.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YH62K5D4.js
 function typeColor(type, palette, nodeColor2) {
   if (nodeColor2) return nodeColor2;
   switch (type) {
@@ -59169,7 +59729,7 @@ function renderC4ContextForExport(content, theme, palette) {
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(container);
   }
@@ -59785,7 +60345,7 @@ function renderC4ContainersForExport(content, systemName, theme, palette) {
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(el);
   }
@@ -59817,7 +60377,7 @@ function renderC4ComponentsForExport(content, systemName, containerName, theme, 
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(el);
   }
@@ -59862,27 +60422,28 @@ function renderC4DeploymentForExport(content, theme, palette) {
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(el);
   }
 }
 var DIAGRAM_PADDING9, MAX_SCALE5, TITLE_HEIGHT6, TYPE_FONT_SIZE, NAME_FONT_SIZE2, DESC_FONT_SIZE5, DESC_LINE_HEIGHT6, EDGE_LABEL_FONT_SIZE8, TECH_FONT_SIZE, CARD_H_PAD5, CARD_V_PAD4, TYPE_LABEL_HEIGHT2, DIVIDER_GAP2, NAME_HEIGHT2, BOUNDARY_LABEL_FONT_SIZE, BOUNDARY_STROKE_WIDTH, BOUNDARY_RADIUS, DRILL_BAR_HEIGHT, CYLINDER_RY, PERSON_HEAD_R, PERSON_ARM_SPAN, PERSON_LEG_SPAN, PERSON_ICON_W, PERSON_SW, lineGenerator4;
-var init_chunk_4MZCJV4M = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4MZCJV4M.js"() {
-    init_chunk_AKE6C2D7();
+var init_chunk_YH62K5D4 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YH62K5D4.js"() {
+    init_chunk_XN4ZSACM();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
-    init_chunk_ASPS5O6F();
+    init_chunk_NZ5QVASG();
+    init_chunk_QDOYT6UW();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_YXKNXIWA();
+    init_chunk_FCA2UGJT();
     init_chunk_IYULMRBE();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     DIAGRAM_PADDING9 = 20;
@@ -59913,9 +60474,9 @@ var init_chunk_4MZCJV4M = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-IO4KCFVL.js
-var renderer_IO4KCFVL_exports = {};
-__export(renderer_IO4KCFVL_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-OZIPP7VF.js
+var renderer_OZIPP7VF_exports = {};
+__export(renderer_OZIPP7VF_exports, {
   renderC4ComponentsForExport: () => renderC4ComponentsForExport,
   renderC4Containers: () => renderC4Containers,
   renderC4ContainersForExport: () => renderC4ContainersForExport,
@@ -59924,26 +60485,26 @@ __export(renderer_IO4KCFVL_exports, {
   renderC4Deployment: () => renderC4Deployment,
   renderC4DeploymentForExport: () => renderC4DeploymentForExport
 });
-var init_renderer_IO4KCFVL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-IO4KCFVL.js"() {
-    init_chunk_4MZCJV4M();
+var init_renderer_OZIPP7VF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-OZIPP7VF.js"() {
+    init_chunk_YH62K5D4();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/flowchart-parser-M7KKTLX7.js
-var flowchart_parser_M7KKTLX7_exports = {};
-__export(flowchart_parser_M7KKTLX7_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-parser-DA3V2SLH.js
+var flowchart_parser_DA3V2SLH_exports = {};
+__export(flowchart_parser_DA3V2SLH_exports, {
   extractSymbols: () => extractSymbols3,
   looksLikeFlowchart: () => looksLikeFlowchart,
   parseFlowchart: () => parseFlowchart
 });
-var init_flowchart_parser_M7KKTLX7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/flowchart-parser-M7KKTLX7.js"() {
-    init_chunk_ZWVKTWK6();
+var init_flowchart_parser_DA3V2SLH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-parser-DA3V2SLH.js"() {
+    init_chunk_LV5BFA24();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3B2GXZCX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SK7PCW4F.js
 function computeNodeWidth(label, shape) {
   if (shape === "pseudostate") return 24;
   const base = Math.max(120, label.length * 9 + 40);
@@ -60165,14 +60726,14 @@ function layoutGraph(graph, options) {
       let maxX = -Infinity;
       let maxY = -Infinity;
       for (const member of members) {
-        const left = member.x - member.width / 2;
-        const right = member.x + member.width / 2;
-        const top = member.y - member.height / 2;
-        const bottom = member.y + member.height / 2;
-        if (left < minX) minX = left;
-        if (right > maxX) maxX = right;
-        if (top < minY) minY = top;
-        if (bottom > maxY) maxY = bottom;
+        const left2 = member.x - member.width / 2;
+        const right2 = member.x + member.width / 2;
+        const top2 = member.y - member.height / 2;
+        const bottom2 = member.y + member.height / 2;
+        if (left2 < minX) minX = left2;
+        if (right2 > maxX) maxX = right2;
+        if (top2 < minY) minY = top2;
+        if (bottom2 > maxY) maxY = bottom2;
       }
       layoutGroups.push({
         id: group.id,
@@ -60240,28 +60801,28 @@ function layoutGraph(graph, options) {
   };
 }
 var GROUP_PADDING;
-var init_chunk_3B2GXZCX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-3B2GXZCX.js"() {
+var init_chunk_SK7PCW4F = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SK7PCW4F.js"() {
     init_chunk_6EK55ART();
     init_chunk_UU6LUYUH();
-    init_chunk_QZAW5SFH();
+    init_chunk_7NK42OIB();
     init_dagre_esm();
     GROUP_PADDING = 20;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-3ZZBKUQC.js
-var layout_3ZZBKUQC_exports = {};
-__export(layout_3ZZBKUQC_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UXMNKETK.js
+var layout_UXMNKETK_exports = {};
+__export(layout_UXMNKETK_exports, {
   layoutGraph: () => layoutGraph
 });
-var init_layout_3ZZBKUQC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-3ZZBKUQC.js"() {
-    init_chunk_3B2GXZCX();
+var init_layout_UXMNKETK = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UXMNKETK.js"() {
+    init_chunk_SK7PCW4F();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js
 function fitDiagramToCanvas(p2) {
   const scaleX = (p2.width - p2.padding * 2) / p2.diagramW;
   let scale;
@@ -60288,13 +60849,13 @@ function edgeSplinePath(points) {
 }
 var lineGenerator5;
 var init_chunk_PDKUANDZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js"() {
     init_src9();
     lineGenerator5 = line_default().x((d) => d.x).y((d) => d.y).curve(basis_default2);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HGKOVKAX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VKN7YW4Q.js
 function clipPointToDiamond(cx, cy, halfW, halfH, towardX, towardY) {
   const dx = towardX - cx;
   const dy = towardY - cy;
@@ -60438,15 +60999,15 @@ function renderDocument(g, node, palette, isDark, colorOff, fillMode, sNodeStrok
   const w2 = node.width;
   const h = node.height;
   const waveH = sDocWaveHeight;
-  const left = -w2 / 2;
-  const right = w2 / 2;
-  const top = -h / 2;
-  const bottom = h / 2 - waveH;
+  const left2 = -w2 / 2;
+  const right2 = w2 / 2;
+  const top2 = -h / 2;
+  const bottom2 = h / 2 - waveH;
   const d = [
-    `M ${left} ${top}`,
-    `L ${right} ${top}`,
-    `L ${right} ${bottom}`,
-    `C ${right - w2 * 0.25} ${bottom + waveH * 2}, ${left + w2 * 0.25} ${bottom - waveH}, ${left} ${bottom}`,
+    `M ${left2} ${top2}`,
+    `L ${right2} ${top2}`,
+    `L ${right2} ${bottom2}`,
+    `C ${right2 - w2 * 0.25} ${bottom2 + waveH * 2}, ${left2 + w2 * 0.25} ${bottom2 - waveH}, ${left2} ${bottom2}`,
     "Z"
   ].join(" ");
   g.append("path").attr("d", d).attr(
@@ -60812,26 +61373,27 @@ function renderFlowchartForExport(content, theme, palette) {
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(container);
   }
 }
 var DIAGRAM_PADDING10, MAX_SCALE6, NODE_FONT_SIZE3, EDGE_LABEL_FONT_SIZE9, ARROWHEAD_W4, ARROWHEAD_H4, IO_SKEW, SUBROUTINE_INSET, DOC_WAVE_HEIGHT;
-var init_chunk_HGKOVKAX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HGKOVKAX.js"() {
+var init_chunk_VKN7YW4Q = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VKN7YW4Q.js"() {
     init_chunk_PDKUANDZ();
-    init_chunk_3B2GXZCX();
+    init_chunk_SK7PCW4F();
     init_chunk_LP7EC4MI();
-    init_chunk_3IUHKMJI();
+    init_chunk_U2BKSEKU();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
+    init_chunk_NZ5QVASG();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_ZWVKTWK6();
+    init_chunk_LV5BFA24();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
     init_src();
     DIAGRAM_PADDING10 = 20;
     MAX_SCALE6 = 3;
@@ -60845,32 +61407,32 @@ var init_chunk_HGKOVKAX = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-FFEQFQEU.js
-var flowchart_renderer_FFEQFQEU_exports = {};
-__export(flowchart_renderer_FFEQFQEU_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-UQVXOUW4.js
+var flowchart_renderer_UQVXOUW4_exports = {};
+__export(flowchart_renderer_UQVXOUW4_exports, {
   renderFlowchart: () => renderFlowchart,
   renderFlowchartForExport: () => renderFlowchartForExport
 });
-var init_flowchart_renderer_FFEQFQEU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-FFEQFQEU.js"() {
-    init_chunk_HGKOVKAX();
+var init_flowchart_renderer_UQVXOUW4 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-UQVXOUW4.js"() {
+    init_chunk_VKN7YW4Q();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-TO7IENWL.js
-var parser_TO7IENWL_exports = {};
-__export(parser_TO7IENWL_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-JWAGGYLL.js
+var parser_JWAGGYLL_exports = {};
+__export(parser_JWAGGYLL_exports, {
   INFRA_TOP_LEVEL_OPTIONS: () => INFRA_TOP_LEVEL_OPTIONS,
   extractSymbols: () => extractSymbols2,
   parseInfra: () => parseInfra
 });
-var init_parser_TO7IENWL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-TO7IENWL.js"() {
-    init_chunk_RZWIPDZ2();
+var init_parser_JWAGGYLL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-JWAGGYLL.js"() {
+    init_chunk_FXVPSTDT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js
 function getNumProp(node, key, fallback) {
   const prop = node.properties.find((p2) => p2.key === key);
   if (!prop) return fallback;
@@ -60886,9 +61448,9 @@ function getInstanceRange(node) {
   const str = String(prop.value);
   const dash = str.indexOf("-");
   if (dash >= 0) {
-    const min2 = parseInt(str.substring(0, dash), 10);
+    const min3 = parseInt(str.substring(0, dash), 10);
     const max3 = parseInt(str.substring(dash + 1), 10);
-    return { min: isNaN(min2) ? 1 : min2, max: isNaN(max3) ? min2 : max3 };
+    return { min: isNaN(min3) ? 1 : min3, max: isNaN(max3) ? min3 : max3 };
   }
   const num = parseInt(str, 10);
   return { min: isNaN(num) ? 1 : num, max: isNaN(num) ? 1 : num };
@@ -60905,11 +61467,11 @@ function serverlessCapacity(node) {
   return concurrency / (durationMs / 1e3);
 }
 function computeDynamicInstances(node, computedRps) {
-  const { min: min2, max: max3 } = getInstanceRange(node);
+  const { min: min3, max: max3 } = getInstanceRange(node);
   const maxRps = getNumProp(node, "max-rps", 0);
-  if (maxRps <= 0 || min2 === max3) return min2;
+  if (maxRps <= 0 || min3 === max3) return min3;
   const needed = Math.ceil(computedRps / maxRps);
-  return Math.min(Math.max(needed, min2), max3);
+  return Math.min(Math.max(needed, min3), max3);
 }
 function computeCbState(node, computedRps, computedLatencyMs, instanceOverride, groupMultiplier = 1) {
   const errorThreshold = getNumProp(node, "cb-error-threshold", 0);
@@ -61795,22 +62357,22 @@ function computeInfra(parsed, params = {}) {
   };
 }
 var init_chunk_ICZ7M6IZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js
 var compute_JAP5E2E4_exports = {};
 __export(compute_JAP5E2E4_exports, {
   computeInfra: () => computeInfra
 });
 var init_compute_JAP5E2E4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js"() {
     init_chunk_ICZ7M6IZ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js
 function countDisplayProps(node, expanded, options) {
   if (!expanded) return 0;
   let count2 = node.properties.filter((p2) => DISPLAY_KEYS.has(p2.key)).length;
@@ -62250,14 +62812,14 @@ function layoutInfra(computed, expandedNodeIds, collapsedNodes) {
       }
       let minX2 = Infinity, minY2 = Infinity, maxX2 = -Infinity, maxY2 = -Infinity;
       for (const child of childNodes) {
-        const left = child.x - child.width / 2;
-        const right = child.x + child.width / 2;
-        const top = child.y - child.height / 2;
-        const bottom = child.y + child.height / 2;
-        if (left < minX2) minX2 = left;
-        if (right > maxX2) maxX2 = right;
-        if (top < minY2) minY2 = top;
-        if (bottom > maxY2) maxY2 = bottom;
+        const left2 = child.x - child.width / 2;
+        const right2 = child.x + child.width / 2;
+        const top2 = child.y - child.height / 2;
+        const bottom2 = child.y + child.height / 2;
+        if (left2 < minX2) minX2 = left2;
+        if (right2 > maxX2) maxX2 = right2;
+        if (top2 < minY2) minY2 = top2;
+        if (bottom2 > maxY2) maxY2 = bottom2;
       }
       return {
         id: group.id,
@@ -62275,14 +62837,14 @@ function layoutInfra(computed, expandedNodeIds, collapsedNodes) {
   fixEdgeWaypoints(layoutEdges, layoutNodes, groupDeltas);
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   for (const node of layoutNodes) {
-    const left = node.x - node.width / 2;
-    const right = node.x + node.width / 2;
-    const top = node.y - node.height / 2;
-    const bottom = node.y + node.height / 2;
-    if (left < minX) minX = left;
-    if (right > maxX) maxX = right;
-    if (top < minY) minY = top;
-    if (bottom > maxY) maxY = bottom;
+    const left2 = node.x - node.width / 2;
+    const right2 = node.x + node.width / 2;
+    const top2 = node.y - node.height / 2;
+    const bottom2 = node.y + node.height / 2;
+    if (left2 < minX) minX = left2;
+    if (right2 > maxX) maxX = right2;
+    if (top2 < minY) minY = top2;
+    if (bottom2 > maxY) maxY = bottom2;
   }
   for (const group of layoutGroups) {
     if (group.x < minX) minX = group.x;
@@ -62337,7 +62899,7 @@ function layoutInfra(computed, expandedNodeIds, collapsedNodes) {
 }
 var MIN_NODE_WIDTH2, NODE_HEADER_HEIGHT, META_LINE_HEIGHT5, NODE_SEPARATOR_GAP, NODE_PAD_BOTTOM, ROLE_DOT_ROW, COLLAPSE_BAR_HEIGHT4, NODE_FONT_SIZE4, META_FONT_SIZE5, EDGE_LABEL_FONT_SIZE10, PADDING_X3, GROUP_PADDING2, GROUP_HEADER_HEIGHT, EDGE_MARGIN, DISPLAY_KEYS, DISPLAY_NAMES, GROUP_GAP2;
 var init_chunk_43E26CDA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js"() {
     init_chunk_4ASYQ347();
     init_dagre_esm();
     MIN_NODE_WIDTH2 = 140;
@@ -62394,7 +62956,7 @@ var init_chunk_43E26CDA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js
 var layout_HBWT2G23_exports = {};
 __export(layout_HBWT2G23_exports, {
   fixEdgeWaypoints: () => fixEdgeWaypoints,
@@ -62402,12 +62964,12 @@ __export(layout_HBWT2G23_exports, {
   separateGroups: () => separateGroups
 });
 var init_layout_HBWT2G23 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js"() {
     init_chunk_43E26CDA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A4UJP4IS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AMC2OGXF.js
 function inferRoles(properties) {
   const propKeys = new Set(properties.map((p2) => p2.key));
   const roles = [];
@@ -62589,7 +63151,7 @@ function findRoutingLane(blocking, targetY, margin) {
     }
   }
   if (merged.length === 0) return targetY;
-  const MIN_GAP = 10;
+  const MIN_GAP2 = 10;
   const candidates = [
     // In-bounds: merged.length > 0 guarded above.
     merged[0][0] - margin,
@@ -62600,7 +63162,7 @@ function findRoutingLane(blocking, targetY, margin) {
   for (let i = 0; i < merged.length - 1; i++) {
     const gapLo = merged[i][1];
     const gapHi = merged[i + 1][0];
-    if (gapHi - gapLo >= MIN_GAP) {
+    if (gapHi - gapLo >= MIN_GAP2) {
       candidates.push((gapLo + gapHi) / 2);
     }
   }
@@ -63840,26 +64402,26 @@ function parseAndLayoutInfra(content) {
   return { parsed, computed, layout };
 }
 var ROLE_RULES, FANOUT_ROLE, NODE_FONT_SIZE5, META_FONT_SIZE6, META_LINE_HEIGHT6, EDGE_LABEL_FONT_SIZE11, GROUP_LABEL_FONT_SIZE2, NODE_BORDER_RADIUS, OVERLOAD_STROKE_WIDTH, ROLE_DOT_RADIUS, NODE_HEADER_HEIGHT2, NODE_SEPARATOR_GAP2, NODE_PAD_BOTTOM2, LEGEND_FIXED_GAP3, SPEED_BADGE_H_PAD, SPEED_BADGE_V_PAD, SPEED_BADGE_GAP, COLOR_HEALTHY, COLOR_WARNING, COLOR_OVERLOADED, FLOW_SPEED_MIN, FLOW_SPEED_MAX, PARTICLE_R, PARTICLE_COUNT_MIN, PARTICLE_COUNT_MAX, NODE_PULSE_SPEED, NODE_PULSE_OVERLOAD, REJECT_DROP_DISTANCE, REJECT_DURATION_MIN, REJECT_DURATION_MAX, REJECT_COUNT_MIN, REJECT_COUNT_MAX, GROUP_PSEUDO_NODE_DEFAULTS, PROP_DISPLAY, DESC_MAX_CHARS, DESC_MAX_WIDTH, RPS_FORMAT_KEYS, MS_FORMAT_KEYS, PCT_FORMAT_KEYS;
-var init_chunk_A4UJP4IS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-A4UJP4IS.js"() {
+var init_chunk_AMC2OGXF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AMC2OGXF.js"() {
     init_chunk_ICZ7M6IZ();
     init_chunk_43E26CDA();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_RZWIPDZ2();
+    init_chunk_FXVPSTDT();
     init_chunk_IYULMRBE();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     init_src();
     init_src9();
     ROLE_RULES = [
@@ -63954,34 +64516,34 @@ var init_chunk_A4UJP4IS = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-TKTM2SL4.js
-var renderer_TKTM2SL4_exports = {};
-__export(renderer_TKTM2SL4_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-P7O6OUYC.js
+var renderer_P7O6OUYC_exports = {};
+__export(renderer_P7O6OUYC_exports, {
   computeInfraLegendGroups: () => computeInfraLegendGroups,
   parseAndLayoutInfra: () => parseAndLayoutInfra,
   renderInfra: () => renderInfra
 });
-var init_renderer_TKTM2SL4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-TKTM2SL4.js"() {
-    init_chunk_A4UJP4IS();
+var init_renderer_P7O6OUYC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-P7O6OUYC.js"() {
+    init_chunk_AMC2OGXF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-DYYTPLBL.js
-var parser_DYYTPLBL_exports = {};
-__export(parser_DYYTPLBL_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4ZIJDGPG.js
+var parser_4ZIJDGPG_exports = {};
+__export(parser_4ZIJDGPG_exports, {
   extractPertSymbols: () => extractPertSymbols,
   looksLikePert: () => looksLikePert,
   parseEdgeLabel: () => parseEdgeLabel,
   parsePert: () => parsePert
 });
-var init_parser_DYYTPLBL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-DYYTPLBL.js"() {
-    init_chunk_5K5XBEXT();
+var init_parser_4ZIJDGPG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4ZIJDGPG.js"() {
+    init_chunk_DIKIHU52();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HO3RCNF6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CGLBK5Q4.js
 function lagDays(lag) {
   return lag === null ? 0 : lag.amount * unitToDays(lag.unit);
 }
@@ -64992,10 +65554,10 @@ function emptyResolved(parsed, diagnostics) {
   };
 }
 var UNIT_TO_DAYS, UNIT_WORDS;
-var init_chunk_HO3RCNF6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HO3RCNF6.js"() {
+var init_chunk_CGLBK5Q4 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CGLBK5Q4.js"() {
     init_chunk_3TYUXC7D();
-    init_chunk_4W2PE66Q();
+    init_chunk_OLMWTJVU();
     UNIT_TO_DAYS = {
       min: 1 / (60 * 24),
       h: 1 / 24,
@@ -65024,20 +65586,20 @@ var init_chunk_HO3RCNF6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/analyzer-TDN5KJFP.js
-var analyzer_TDN5KJFP_exports = {};
-__export(analyzer_TDN5KJFP_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/analyzer-HQUXKZ5J.js
+var analyzer_HQUXKZ5J_exports = {};
+__export(analyzer_HQUXKZ5J_exports, {
   analyzePert: () => analyzePert,
   buildProjectSubtitle: () => buildProjectSubtitle,
   buildSummary: () => buildSummary
 });
-var init_analyzer_TDN5KJFP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/analyzer-TDN5KJFP.js"() {
-    init_chunk_HO3RCNF6();
+var init_analyzer_HQUXKZ5J = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/analyzer-HQUXKZ5J.js"() {
+    init_chunk_CGLBK5Q4();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js
 function computeNodeSizing(resolved) {
   const unit2 = resolved.options.timeUnit;
   const sprintMode = resolved.options.sprintMode;
@@ -65276,14 +65838,14 @@ function relayoutPert(resolved, overrides, collapsedGroupIds = /* @__PURE__ */ n
     let maxX = -Infinity;
     let maxY = -Infinity;
     for (const m of members) {
-      const left = m.x - m.width / 2;
-      const right = m.x + m.width / 2;
-      const top = m.y - m.height / 2;
-      const bottom = m.y + m.height / 2;
-      if (left < minX) minX = left;
-      if (right > maxX) maxX = right;
-      if (top < minY) minY = top;
-      if (bottom > maxY) maxY = bottom;
+      const left2 = m.x - m.width / 2;
+      const right2 = m.x + m.width / 2;
+      const top2 = m.y - m.height / 2;
+      const bottom2 = m.y + m.height / 2;
+      if (left2 < minX) minX = left2;
+      if (right2 > maxX) maxX = right2;
+      if (top2 < minY) minY = top2;
+      if (bottom2 > maxY) maxY = bottom2;
     }
     return {
       id: rg.group.id,
@@ -65297,10 +65859,10 @@ function relayoutPert(resolved, overrides, collapsedGroupIds = /* @__PURE__ */ n
   let totalW = 0;
   let totalH = 0;
   for (const n of nodes) {
-    const right = n.x + n.width / 2;
-    const bottom = n.y + n.height / 2;
-    if (right > totalW) totalW = right;
-    if (bottom > totalH) totalH = bottom;
+    const right2 = n.x + n.width / 2;
+    const bottom2 = n.y + n.height / 2;
+    if (right2 > totalW) totalW = right2;
+    if (bottom2 > totalH) totalH = bottom2;
   }
   for (const grp of groups) {
     if (grp.x + grp.width > totalW) totalW = grp.x + grp.width;
@@ -65473,15 +66035,15 @@ function centerByCriticality(g, resolved, memberToGroup, collapsedGroupIds) {
       if (cb !== ca) return cb - ca;
       return (currentSlot.get(a) ?? 0) - (currentSlot.get(b) ?? 0);
     });
-    const top = [];
-    const bottom = [];
+    const top2 = [];
+    const bottom2 = [];
     let middle = null;
     sortedDesc.forEach((id, i) => {
       if (i === 0) middle = id;
-      else if (i % 2 === 1) top.unshift(id);
-      else bottom.push(id);
+      else if (i % 2 === 1) top2.unshift(id);
+      else bottom2.push(id);
     });
-    const newOrder = middle ? [...top, middle, ...bottom] : [...top, ...bottom];
+    const newOrder = middle ? [...top2, middle, ...bottom2] : [...top2, ...bottom2];
     newOrder.forEach((id, i) => {
       const node = g.node(id);
       const oldVal = node[slotAxis];
@@ -65608,7 +66170,7 @@ function segmentsCross3(a1, a2, b1, b2) {
 }
 var DEFAULT_NODE_HEIGHT, MILESTONE_NODE_HEIGHT, COLLAPSED_GROUP_HEIGHT, DIAGRAM_PADDING11, GROUP_PADDING3, GROUP_TOP_PADDING, SWIMLANE_SLOT_SEP, SWIMLANE_GAP, NODE_CELL_FONT_SIZE, NODE_NAME_FONT_SIZE, MILESTONE_NAME_FONT_SIZE, CELL_PAD_X, NAME_PAD_X, NAME_PIN_WIDTH, MIN_CELL_WIDTH, MIN_NODE_WIDTH3, MAX_NODE_WIDTH2, MIN_MILESTONE_WIDTH, MAX_MILESTONE_WIDTH;
 var init_chunk_QXGACPS2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js"() {
     init_chunk_3TYUXC7D();
     init_chunk_4ASYQ347();
     init_dagre_esm();
@@ -65634,7 +66196,7 @@ var init_chunk_QXGACPS2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js
 var layout_AZUPXWSK_exports = {};
 __export(layout_AZUPXWSK_exports, {
   computeNodeSizing: () => computeNodeSizing,
@@ -65642,12 +66204,12 @@ __export(layout_AZUPXWSK_exports, {
   relayoutPert: () => relayoutPert
 });
 var init_layout_AZUPXWSK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js"() {
     init_chunk_QXGACPS2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-32HUNA33.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5ZDHXS5N.js
 function analysisBlockChrome(palette, isDark) {
   const surfaceBg = themeBaseBg(palette, isDark);
   return {
@@ -65913,7 +66475,7 @@ function renderPertForExport(content, theme, palette, now) {
     else svgEl.style.background = palette.bg;
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(container);
   }
@@ -66798,10 +67360,10 @@ function drawMilestonePill(g, a) {
     drawCenteredText(x3 + w2 / 2, y2 + h - botRowH / 2, a.slack, "normal", sNCFS);
   }
 }
-function drawAnchorPin(g, left, centerY, color2, pinW = PIN_ICON_W, pinH = PIN_ICON_H) {
+function drawAnchorPin(g, left2, centerY, color2, pinW = PIN_ICON_W, pinH = PIN_ICON_H) {
   const scale = pinW / 24;
-  const top = centerY - pinH / 2;
-  const pin = g.append("g").attr("class", "pert-pin").attr("data-pert-pin", "").attr("transform", `translate(${left}, ${top}) scale(${scale})`);
+  const top2 = centerY - pinH / 2;
+  const pin = g.append("g").attr("class", "pert-pin").attr("data-pert-pin", "").attr("transform", `translate(${left2}, ${top2}) scale(${scale})`);
   pin.append("path").attr("d", "M12 22V8 M5 12H2a10 10 0 0 0 20 0h-3").attr("fill", "none").attr("stroke", color2).attr("stroke-width", 2).attr("stroke-linecap", "round").attr("stroke-linejoin", "round");
   pin.append("circle").attr("cx", 12).attr("cy", 5).attr("r", 3).attr("fill", "none").attr("stroke", color2).attr("stroke-width", 2);
 }
@@ -67332,23 +67894,24 @@ function formatScurveDate(iso) {
   return `${SCURVE_MONTH_NAMES[month]} ${day}`;
 }
 var DIAGRAM_PADDING12, NODE_FONT_SIZE6, NODE_CELL_FONT_SIZE2, NODE_RADIUS2, NODE_TOP_ROW_HEIGHT, NODE_BOTTOM_ROW_HEIGHT, ARROWHEAD_W5, ARROWHEAD_H5, DURATION_FADE_OPACITY, PIN_ICON_W, PIN_ICON_H, LEGEND_PILL_HEIGHT, LEGEND_TOP_GAP, LEGEND_BOTTOM_GAP, FIELD_LEGEND_HEADER_BAND_HEIGHT, FIELD_LEGEND_CELL_VPAD, FIELD_LEGEND_LABEL_FONT_SIZE, FIELD_LEGEND_DESC_FONT_SIZE, FIELD_LEGEND_DESC_LINE_HEIGHT, FIELD_LEGEND_LABEL_DESC_GAP, FIELD_LEGEND_CELLS, lineGenerator6, FIELD_LEGEND_MIN_W, SUB_BULLET_INDENT, CAPTION_HEADER_BAND_HEIGHT, TORNADO_TOP_N, TORNADO_ROW_HEIGHT, TORNADO_NAME_COL_W, TORNADO_BAR_FONT_SIZE, TORNADO_BAR_HEIGHT, SUMMARY_MIN_W, SUMMARY_MAX_W, ANALYSIS_GAP, COL1_VSTACK_GAP, TORNADO_MIN_W, SCURVE_MIN_W, SCURVE_BOX_HEIGHT, SCURVE_PLOT_PADDING_X, SCURVE_PLOT_PADDING_RIGHT, SCURVE_PLOT_PADDING_BOTTOM, SCURVE_TICK_FONT_SIZE, SCURVE_PERCENTILE_RADIUS, DAYS_PER_UNIT, SCURVE_MONTH_NAMES, UNIT_TO_DAYS_LOCAL2;
-var init_chunk_32HUNA33 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-32HUNA33.js"() {
-    init_chunk_HO3RCNF6();
+var init_chunk_5ZDHXS5N = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5ZDHXS5N.js"() {
+    init_chunk_CGLBK5Q4();
     init_chunk_QXGACPS2();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_NZ5QVASG();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_5K5XBEXT();
+    init_chunk_DIKIHU52();
     init_chunk_3TYUXC7D();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     init_src();
     init_src9();
     DIAGRAM_PADDING12 = 20;
@@ -67457,34 +68020,34 @@ var init_chunk_32HUNA33 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-TXTTV4HA.js
-var renderer_TXTTV4HA_exports = {};
-__export(renderer_TXTTV4HA_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-2NU7M5PN.js
+var renderer_2NU7M5PN_exports = {};
+__export(renderer_2NU7M5PN_exports, {
   measurePertAnalysisBlock: () => measurePertAnalysisBlock,
   renderPert: () => renderPert,
   renderPertAnalysisBlock: () => renderPertAnalysisBlock,
   renderPertForExport: () => renderPertForExport
 });
-var init_renderer_TXTTV4HA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-TXTTV4HA.js"() {
-    init_chunk_32HUNA33();
+var init_renderer_2NU7M5PN = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-2NU7M5PN.js"() {
+    init_chunk_5ZDHXS5N();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-PVBUAVRR.js
-var parser_PVBUAVRR_exports = {};
-__export(parser_PVBUAVRR_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LNEAHGXF.js
+var parser_LNEAHGXF_exports = {};
+__export(parser_LNEAHGXF_exports, {
   GANTT_KNOWN_BOOLEANS: () => GANTT_KNOWN_BOOLEANS,
   GANTT_KNOWN_OPTIONS: () => GANTT_KNOWN_OPTIONS,
   parseGantt: () => parseGantt
 });
-var init_parser_PVBUAVRR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-PVBUAVRR.js"() {
-    init_chunk_RYNCWA5X();
+var init_parser_LNEAHGXF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LNEAHGXF.js"() {
+    init_chunk_Y2L2LET6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UJRTPOHH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DUI5SMFX.js
 function isResolverError(r) {
   return "kind" in r;
 }
@@ -68250,27 +68813,27 @@ function findGroupOffset(nodes, groupPath) {
   return search(nodes);
 }
 var BRACKET_GROUP_RE;
-var init_chunk_UJRTPOHH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UJRTPOHH.js"() {
+var init_chunk_DUI5SMFX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DUI5SMFX.js"() {
     init_chunk_EQW6HOP4();
     init_chunk_NOTA6TEI();
-    init_chunk_4W2PE66Q();
+    init_chunk_OLMWTJVU();
     BRACKET_GROUP_RE = /^\[(.+?)\]\.(.+)$/;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/calculator-VBIT6GQF.js
-var calculator_VBIT6GQF_exports = {};
-__export(calculator_VBIT6GQF_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/calculator-BBKAAQGD.js
+var calculator_BBKAAQGD_exports = {};
+__export(calculator_BBKAAQGD_exports, {
   calculateSchedule: () => calculateSchedule
 });
-var init_calculator_VBIT6GQF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/calculator-VBIT6GQF.js"() {
-    init_chunk_UJRTPOHH();
+var init_calculator_BBKAAQGD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/calculator-BBKAAQGD.js"() {
+    init_chunk_DUI5SMFX();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-FGAMFJNJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HODUM6LY.js
 function computeBarLabel(label, x12, barWidth, innerWidth, textColor, onFillColor, fontSize = 10, labelPad = LABEL_PAD2, labelGap = LABEL_GAP) {
   const textWidth = measureText(label, fontSize);
   const x22 = x12 + barWidth;
@@ -70321,20 +70884,20 @@ function renderTimeScaleHorizontal(g, scale, _innerWidth, innerHeight, textColor
   }
 }
 var BAR_H, ROW_GAP3, GROUP_GAP3, MILESTONE_SIZE, MIN_LEFT_MARGIN, BOTTOM_MARGIN, RIGHT_MARGIN, LABEL_PAD2, LABEL_GAP, BAND_ACCENT_W, BAND_RADIUS, bandClipCounter, JS_DAY_TO_WEEKDAY2, ERA_COLORS, SPRINT_BAND_OPACITY, SPRINT_HOVER_OPACITY, SPRINT_BOUNDARY_OPACITY, FADE_OPACITY;
-var init_chunk_FGAMFJNJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-FGAMFJNJ.js"() {
+var init_chunk_HODUM6LY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HODUM6LY.js"() {
     init_chunk_YRYKTYMQ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
+    init_chunk_42IT4BG2();
     init_chunk_NOTA6TEI();
-    init_chunk_JR7Q6GHE();
+    init_chunk_D5FANMSG();
     init_src7();
     init_src();
     BAR_H = 22;
@@ -70366,31 +70929,31 @@ var init_chunk_FGAMFJNJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-SIWEEWJ5.js
-var renderer_SIWEEWJ5_exports = {};
-__export(renderer_SIWEEWJ5_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-I5MAFUKX.js
+var renderer_I5MAFUKX_exports = {};
+__export(renderer_I5MAFUKX_exports, {
   buildTagLaneRowList: () => buildTagLaneRowList,
   renderGantt: () => renderGantt
 });
-var init_renderer_SIWEEWJ5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-SIWEEWJ5.js"() {
-    init_chunk_FGAMFJNJ();
+var init_renderer_I5MAFUKX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-I5MAFUKX.js"() {
+    init_chunk_HODUM6LY();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/state-parser-KIPZGIB4.js
-var state_parser_KIPZGIB4_exports = {};
-__export(state_parser_KIPZGIB4_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-parser-NQGVYSM3.js
+var state_parser_NQGVYSM3_exports = {};
+__export(state_parser_NQGVYSM3_exports, {
   looksLikeState: () => looksLikeState,
   parseState: () => parseState
 });
-var init_state_parser_KIPZGIB4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/state-parser-KIPZGIB4.js"() {
-    init_chunk_MEH4TJEX();
+var init_state_parser_NQGVYSM3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-parser-NQGVYSM3.js"() {
+    init_chunk_APD52YJV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-F5ZNUMSY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RK3Y4WMV.js
 function stateDefaultColor(palette, colorOff) {
   return colorOff ? palette.textMuted : palette.colors.blue;
 }
@@ -70784,30 +71347,31 @@ function renderStateForExport(content, theme, palette) {
     }
     svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgEl.style.fontFamily = FONT_FAMILY;
-    return svgEl.outerHTML;
+    return serializeSvg(svgEl);
   } finally {
     document.body.removeChild(container);
   }
 }
 var DIAGRAM_PADDING13, MAX_SCALE7, NODE_FONT_SIZE7, EDGE_LABEL_FONT_SIZE12, GROUP_LABEL_FONT_SIZE3, ARROWHEAD_W6, ARROWHEAD_H6, PSEUDOSTATE_RADIUS, STATE_CORNER_RADIUS, GROUP_EXTRA_PADDING;
-var init_chunk_F5ZNUMSY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-F5ZNUMSY.js"() {
+var init_chunk_RK3Y4WMV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RK3Y4WMV.js"() {
     init_chunk_PDKUANDZ();
-    init_chunk_3B2GXZCX();
+    init_chunk_SK7PCW4F();
     init_chunk_LP7EC4MI();
-    init_chunk_3IUHKMJI();
+    init_chunk_U2BKSEKU();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_NZ5QVASG();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_MEH4TJEX();
+    init_chunk_APD52YJV();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     DIAGRAM_PADDING13 = 20;
     MAX_SCALE7 = 3;
@@ -70822,19 +71386,19 @@ var init_chunk_F5ZNUMSY = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/state-renderer-U6OSJG52.js
-var state_renderer_U6OSJG52_exports = {};
-__export(state_renderer_U6OSJG52_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-renderer-NKV5B3KH.js
+var state_renderer_NKV5B3KH_exports = {};
+__export(state_renderer_NKV5B3KH_exports, {
   renderState: () => renderState,
   renderStateForExport: () => renderStateForExport
 });
-var init_state_renderer_U6OSJG52 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/state-renderer-U6OSJG52.js"() {
-    init_chunk_F5ZNUMSY();
+var init_state_renderer_NKV5B3KH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-renderer-NKV5B3KH.js"() {
+    init_chunk_RK3Y4WMV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js
 function collapseStateGroups(parsed, collapsedGroups) {
   const originalGroups = parsed.groups ?? [];
   if (collapsedGroups.size === 0 || originalGroups.length === 0) {
@@ -70874,33 +71438,33 @@ function collapseStateGroups(parsed, collapsedGroups) {
   };
 }
 var init_chunk_SQ7IY53Q = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js
 var state_collapse_HCGD6IVJ_exports = {};
 __export(state_collapse_HCGD6IVJ_exports, {
   collapseStateGroups: () => collapseStateGroups
 });
 var init_state_collapse_HCGD6IVJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js"() {
     init_chunk_SQ7IY53Q();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-HGVUVD6J.js
-var parser_HGVUVD6J_exports = {};
-__export(parser_HGVUVD6J_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-O5XCVGZG.js
+var parser_O5XCVGZG_exports = {};
+__export(parser_O5XCVGZG_exports, {
   parseTechRadar: () => parseTechRadar
 });
-var init_parser_HGVUVD6J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-HGVUVD6J.js"() {
-    init_chunk_A2PTRSAO();
+var init_parser_O5XCVGZG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-O5XCVGZG.js"() {
+    init_chunk_CXI6X54X();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NPPUZ4SK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AOJJSGXE.js
 function getQuadrantArc(position) {
   switch (position) {
     case "top-right":
@@ -72082,14 +72646,14 @@ function positionPopover(popover, event) {
   const cursorY = event.clientY - rect2.top;
   const centerX = rect2.width / 2;
   const centerY = rect2.height / 2;
-  let left = cursorX < centerX ? cursorX + 16 : cursorX - tipW - 16;
-  let top = cursorY < centerY ? cursorY + 16 : cursorY - tipH - 16;
-  if (left + tipW > rect2.width - 4) left = rect2.width - tipW - 4;
-  if (left < 4) left = 4;
-  if (top + tipH > rect2.height - 4) top = rect2.height - tipH - 4;
-  if (top < 4) top = 4;
-  popover.style.left = `${left}px`;
-  popover.style.top = `${top}px`;
+  let left2 = cursorX < centerX ? cursorX + 16 : cursorX - tipW - 16;
+  let top2 = cursorY < centerY ? cursorY + 16 : cursorY - tipH - 16;
+  if (left2 + tipW > rect2.width - 4) left2 = rect2.width - tipW - 4;
+  if (left2 < 4) left2 = 4;
+  if (top2 + tipH > rect2.height - 4) top2 = rect2.height - tipH - 4;
+  if (top2 < 4) top2 = 4;
+  popover.style.left = `${left2}px`;
+  popover.style.top = `${top2}px`;
 }
 function hideBlipPopover(popover) {
   popover.style.display = "none";
@@ -72200,16 +72764,16 @@ function renderTechRadarForExport(container, parsed, palette, isDark, exportDims
   );
 }
 var POSITION_ORDER2, BASE_BLIP_RADIUS, MIN_BLIP_RADIUS, DEFAULT_QUADRANT_COLORS, DIM_OPACITY2, TREND_ITEMS, BLIP_RADIUS, BLIP_FONT_SIZE, TITLE_FONT_SIZE3, NARROW_BREAKPOINT, BLIP_RADIUS2, BLIP_FONT_SIZE2, RING_LABEL_FONT_SIZE, QUADRANT_LABEL_FONT_SIZE, TITLE_FONT_SIZE22, LISTING_FONT_SIZE, LISTING_HEADER_FONT_SIZE, LISTING_TOP_MARGIN, LISTING_COL_GAP, LISTING_LINE_HEIGHT, LISTING_BLIP_R;
-var init_chunk_NPPUZ4SK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-NPPUZ4SK.js"() {
+var init_chunk_AOJJSGXE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AOJJSGXE.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_YYVTBZZC();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
     init_src();
     init_src();
     POSITION_ORDER2 = [
@@ -72251,30 +72815,30 @@ var init_chunk_NPPUZ4SK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-WSHJRR2T.js
-var renderer_WSHJRR2T_exports = {};
-__export(renderer_WSHJRR2T_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-QRX7Q2YN.js
+var renderer_QRX7Q2YN_exports = {};
+__export(renderer_QRX7Q2YN_exports, {
   renderTechRadar: () => renderTechRadar,
   renderTechRadarForExport: () => renderTechRadarForExport
 });
-var init_renderer_WSHJRR2T = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-WSHJRR2T.js"() {
-    init_chunk_NPPUZ4SK();
+var init_renderer_QRX7Q2YN = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-QRX7Q2YN.js"() {
+    init_chunk_AOJJSGXE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-JMXSQY3K.js
-var parser_JMXSQY3K_exports = {};
-__export(parser_JMXSQY3K_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-KTVDCWHG.js
+var parser_KTVDCWHG_exports = {};
+__export(parser_KTVDCWHG_exports, {
   parseJourneyMap: () => parseJourneyMap
 });
-var init_parser_JMXSQY3K = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-JMXSQY3K.js"() {
-    init_chunk_HUTP35XT();
+var init_parser_KTVDCWHG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-KTVDCWHG.js"() {
+    init_chunk_RQGNELB3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-W4TSD3IP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VU3DOZ6C.js
 function scoreToColor(score, palette) {
   const s = Math.max(1, Math.min(5, score));
   const { red, yellow, green } = palette.colors;
@@ -72527,11 +73091,11 @@ function layoutJourneyMap(parsed, palette, options) {
   };
 }
 var PADDING, TITLE_HEIGHT7, PERSONA_HEIGHT, PERSONA_PANEL_WIDTH, HEADER_GAP, CURVE_AREA_HEIGHT, CARD_GAP2, STEP_CARD_WIDTH, CARD_HEADER_HEIGHT2, CARD_META_LINE_HEIGHT2, PHASE_HEADER_HEIGHT, CARD_PADDING_X2, CARD_PADDING_Y2, ANNO_ICON_SIZE, ANNO_ICON_GAP, TAG_STRIP_HEIGHT, PHASE_GAP, COLUMN_PADDING2, FACE_ICON_SIZE, EMOTION_CAPTION_BAND, CURVE_TOP_RESERVE;
-var init_chunk_W4TSD3IP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-W4TSD3IP.js"() {
+var init_chunk_VU3DOZ6C = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VU3DOZ6C.js"() {
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
     PADDING = 24;
     TITLE_HEIGHT7 = 36;
     PERSONA_HEIGHT = 48;
@@ -72556,7 +73120,7 @@ var init_chunk_W4TSD3IP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LCRPGGGS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HPJITTF7.js
 function renderJourneyMap(container, parsed, palette, isDark, options) {
   const exportDims = options?.exportDims;
   const onNavigateToLine = options?.onNavigateToLine;
@@ -73330,24 +73894,25 @@ function renderJourneyMapForExport(content, theme, palette) {
     const bgRect = svgEl.querySelector("rect:first-child");
     if (bgRect) bgRect.remove();
   }
-  return svgEl.outerHTML;
+  return serializeSvg(svgEl);
 }
 var DIAGRAM_PADDING14, PADDING2, CARD_PADDING_X3, CARD_PADDING_Y3, CARD_HEADER_HEIGHT3, CARD_STROKE_WIDTH2, CARD_META_LINE_HEIGHT3, CARD_GAP_INTERNAL, COLUMN_RADIUS2, COLUMN_HEADER_HEIGHT2, COLUMN_PADDING3, FONT_SIZE_TITLE, FONT_SIZE_PHASE, FONT_SIZE_STEP, FONT_SIZE_META, GRID_LINE_OPACITY, CURVE_STROKE_WIDTH, FACE_RADIUS, CURVE_AREA_BOTTOM_GAP, FACE_HOVER_SCALE, FACE_HOVER_R, DIM_HOVER, TITLE_LINE_HEIGHT, EMOTION_LABEL_MAX_WIDTH, EMOTION_LABEL_FONT_SIZE, ICON_THUMBS_DOWN, ICON_THUMBS_UP, ICON_THOUGHT;
-var init_chunk_LCRPGGGS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-LCRPGGGS.js"() {
-    init_chunk_W4TSD3IP();
+var init_chunk_HPJITTF7 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HPJITTF7.js"() {
+    init_chunk_VU3DOZ6C();
     init_chunk_UU6LUYUH();
     init_chunk_5DH3KYFH();
     init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
-    init_chunk_ASPS5O6F();
+    init_chunk_NZ5QVASG();
+    init_chunk_QDOYT6UW();
     init_chunk_6KFWC4CO();
-    init_chunk_HUTP35XT();
+    init_chunk_RQGNELB3();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     DIAGRAM_PADDING14 = 20;
@@ -73391,44 +73956,44 @@ var init_chunk_LCRPGGGS = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-3PWLOJPD.js
-var renderer_3PWLOJPD_exports = {};
-__export(renderer_3PWLOJPD_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-O4ECS2BI.js
+var renderer_O4ECS2BI_exports = {};
+__export(renderer_O4ECS2BI_exports, {
   renderJourneyMap: () => renderJourneyMap,
   renderJourneyMapForExport: () => renderJourneyMapForExport
 });
-var init_renderer_3PWLOJPD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-3PWLOJPD.js"() {
-    init_chunk_LCRPGGGS();
+var init_renderer_O4ECS2BI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-O4ECS2BI.js"() {
+    init_chunk_HPJITTF7();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-CRLTSFYQ.js
-var layout_CRLTSFYQ_exports = {};
-__export(layout_CRLTSFYQ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-QRVYYYZ3.js
+var layout_QRVYYYZ3_exports = {};
+__export(layout_QRVYYYZ3_exports, {
   TAG_STRIP_HEIGHT: () => TAG_STRIP_HEIGHT,
   layoutJourneyMap: () => layoutJourneyMap,
   scoreToColor: () => scoreToColor,
   scoreToCurveY: () => scoreToCurveY
 });
-var init_layout_CRLTSFYQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/layout-CRLTSFYQ.js"() {
-    init_chunk_W4TSD3IP();
+var init_layout_QRVYYYZ3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-QRVYYYZ3.js"() {
+    init_chunk_VU3DOZ6C();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-62OHBRU5.js
-var parser_62OHBRU5_exports = {};
-__export(parser_62OHBRU5_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-AYZTKZC3.js
+var parser_AYZTKZC3_exports = {};
+__export(parser_AYZTKZC3_exports, {
   parseCycle: () => parseCycle
 });
-var init_parser_62OHBRU5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-62OHBRU5.js"() {
-    init_chunk_JQLSFZZP();
+var init_parser_AYZTKZC3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-AYZTKZC3.js"() {
+    init_chunk_4MB4UOT5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-KC3WBBI7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JE3SMHRZ.js
 function arrowHeadLength(strokeWidth) {
   return BASE_ARROW_SIZE + ARROW_SCALE * Math.sqrt(strokeWidth);
 }
@@ -74318,19 +74883,19 @@ function ensureArrowMarker(defs, color2, strokeWidth) {
   defs.append("marker").attr("id", id).attr("viewBox", `0 0 ${mw} ${mh}`).attr("refX", mw * 0.1).attr("refY", mh / 2).attr("markerWidth", mw).attr("markerHeight", mh).attr("orient", "auto").append("polygon").attr("points", `0,0 ${mw},${mh / 2} 0,${mh}`).attr("fill", color2);
 }
 var DEFAULT_EDGE_WIDTH, MIN_EDGE_WIDTH, BASE_ARROW_SIZE, ARROW_SCALE, MIN_ARC_ANGLE, LABEL_FONT_SIZE4, CIRCLE_LABEL_FONT_SIZE, DESC_FONT_SIZE6, EDGE_LABEL_FONT_SIZE13, MIN_NODE_WIDTH4, MAX_NODE_WIDTH3, DESC_MIN_WIDTH, DESC_WIDTH_STEP, DESC_TARGET_RATIO, PLAIN_NODE_HEIGHT, HEADER_HEIGHT4, DESC_LINE_HEIGHT7, DESC_PAD_Y, NODE_PAD_X, MIN_CIRCLE_RADIUS, CIRCLE_PAD, RENDERER_DESC_FONT, RENDERER_DESC_FONT_MIN, RENDERER_DESC_LINE_H, RENDERER_DESC_LINE_H_MIN, EDGE_LABEL_MAX_WIDTH, NODE_FONT_SIZE8, DESC_FONT_SIZE22, EDGE_LABEL_FONT_SIZE22, DESC_LINE_HEIGHT22, TITLE_AREA_HEIGHT;
-var init_chunk_KC3WBBI7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-KC3WBBI7.js"() {
+var init_chunk_JE3SMHRZ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JE3SMHRZ.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_YYVTBZZC();
-    init_chunk_ASPS5O6F();
+    init_chunk_QDOYT6UW();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     init_src();
     DEFAULT_EDGE_WIDTH = 3;
     MIN_EDGE_WIDTH = 2;
@@ -74366,28 +74931,28 @@ var init_chunk_KC3WBBI7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-MPXI4FVL.js
-var renderer_MPXI4FVL_exports = {};
-__export(renderer_MPXI4FVL_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-JNC6VJMN.js
+var renderer_JNC6VJMN_exports = {};
+__export(renderer_JNC6VJMN_exports, {
   renderCycle: () => renderCycle,
   renderCycleForExport: () => renderCycleForExport
 });
-var init_renderer_MPXI4FVL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-MPXI4FVL.js"() {
-    init_chunk_KC3WBBI7();
+var init_renderer_JNC6VJMN = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-JNC6VJMN.js"() {
+    init_chunk_JE3SMHRZ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-MESRHUS4.js
-var parser_MESRHUS4_exports = {};
-__export(parser_MESRHUS4_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-OPOGIKFR.js
+var parser_OPOGIKFR_exports = {};
+__export(parser_OPOGIKFR_exports, {
   MAP_DIRECTIVE_SET: () => MAP_DIRECTIVE_SET,
   looksLikeMap: () => looksLikeMap,
   parseMap: () => parseMap
 });
-var init_parser_MESRHUS4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-MESRHUS4.js"() {
-    init_chunk_IF4KYSJZ();
+var init_parser_OPOGIKFR = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-OPOGIKFR.js"() {
+    init_chunk_WOMXS5R7();
   }
 });
 
@@ -76623,7 +77188,7 @@ var init_src12 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js
 function geomObject(topo) {
   const key = Object.keys(topo.objects)[0];
   return topo.objects[key];
@@ -76899,7 +77464,7 @@ function unionLongitudes(lons) {
 }
 var fold, adjacencyCache, EDGE_EPS, planarBboxCache, DETACH_GAP_DEG, DETACH_AREA_FRAC;
 var init_chunk_4QV26TEG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js"() {
     init_src11();
     init_src12();
     fold = (s) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().trim();
@@ -76911,7 +77476,7 @@ var init_chunk_4QV26TEG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-EMSOFHEN.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DNSEG6P2.js
 function containerOvershoot(span, usOriented) {
   if (usOriented) return CONTAINER_OVERSHOOT_MAX;
   return Math.max(
@@ -77571,12 +78136,12 @@ function firstError(diags) {
   return e ? formatDgmoError(e) : null;
 }
 var WORLD_SPAN, MERCATOR_MAX_LAT, PAD_FRACTION, REGION_PAD_FRACTION, WORLD_LAT_SOUTH, WORLD_LAT_NORTH, POI_ZOOM_FLOOR_DEG, CONTAINER_OVERSHOOT_MAX, CONTAINER_OVERSHOOT_MIN, CONTAINER_OVERSHOOT_DECAY, US_NATIONAL_LON_SPAN, CONUS_BBOX, US_SUBNATIONAL_AREA_FRACTION, REGION_ALIASES, US_STATE_POSTAL;
-var init_chunk_EMSOFHEN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-EMSOFHEN.js"() {
+var init_chunk_DNSEG6P2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DNSEG6P2.js"() {
     init_chunk_4QV26TEG();
     init_chunk_4B5YISOR();
     init_chunk_A2RUBBVT();
-    init_chunk_4W2PE66Q();
+    init_chunk_OLMWTJVU();
     WORLD_SPAN = 90;
     MERCATOR_MAX_LAT = 80;
     PAD_FRACTION = 0.05;
@@ -77670,19 +78235,19 @@ var init_chunk_EMSOFHEN = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/resolver-ZSFQQRTH.js
-var resolver_ZSFQQRTH_exports = {};
-__export(resolver_ZSFQQRTH_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/resolver-W3WKLWDP.js
+var resolver_W3WKLWDP_exports = {};
+__export(resolver_W3WKLWDP_exports, {
   isSubNationalUsExtent: () => isSubNationalUsExtent,
   resolveMap: () => resolveMap
 });
-var init_resolver_ZSFQQRTH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/resolver-ZSFQQRTH.js"() {
-    init_chunk_EMSOFHEN();
+var init_resolver_W3WKLWDP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/resolver-W3WKLWDP.js"() {
+    init_chunk_DNSEG6P2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-B4XS2AF2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FWVKPEG3.js
 function buildSwatches(palette, muted) {
   const bg = palette.bg;
   const day = resolveColor("orange", palette) ?? "#d98a1f";
@@ -77705,14 +78270,14 @@ function buildSwatches(palette, muted) {
     moonIcon: night
   };
 }
-var init_chunk_B4XS2AF2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-B4XS2AF2.js"() {
-    init_chunk_JYDMBWRP();
-    init_chunk_ZKPPI6BF();
+var init_chunk_FWVKPEG3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FWVKPEG3.js"() {
+    init_chunk_42IT4BG2();
+    init_chunk_EXNKNJ65();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZGIBV36U.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U7ZQTUZT.js
 function mapLegendGroups(legend) {
   const ramp = legend.ramp;
   const scoreGroup = ramp ? {
@@ -78002,13 +78567,13 @@ function placeContextLabels(args) {
     if (!rectFits(rect2, width, height)) return null;
     if (cand.italic && overLand) {
       const inset = 2;
-      const top = cy - (cand.lines.length - 1) / 2 * LINE_HEIGHT;
+      const top2 = cy - (cand.lines.length - 1) / 2 * LINE_HEIGHT;
       const touchesLand = cand.lines.some((line, li) => {
         const lw = labelWidth(line, cand.letterSpacing);
         const x05 = cx - lw / 2 + inset;
         const x12 = cx + lw / 2 - inset;
         const xs = [x05, (x05 + cx) / 2, cx, (cx + x12) / 2, x12];
-        const base = top + li * LINE_HEIGHT;
+        const base = top2 + li * LINE_HEIGHT;
         return [base, base - FONT * 0.4, base - FONT * 0.8].some(
           (y2) => xs.some((x3) => overLand(x3, y2))
         );
@@ -78789,12 +79354,12 @@ function layoutMap(resolvedIn, data, size, opts) {
       const sh = Number.isFinite(bb[0][0]) ? bb[1][1] - bb[0][1] : iw;
       const needH = sh + 2 * PAD3;
       let topFit = topGuess;
-      const bottom = Math.min(topFit + needH, yB);
-      if (bottom - topFit < needH) topFit = bottom - needH;
+      const bottom2 = Math.min(topFit + needH, yB);
+      if (bottom2 - topFit < needH) topFit = bottom2 - needH;
       proj.fitExtent(
         [
           [x05 + PAD3, topFit + PAD3],
-          [xr - PAD3, bottom - PAD3]
+          [xr - PAD3, bottom2 - PAD3]
         ],
         f
       );
@@ -78822,12 +79387,12 @@ function layoutMap(resolvedIn, data, size, opts) {
         x: x05,
         y: topFit,
         w: xr - x05,
-        h: bottom - topFit,
+        h: bottom2 - topFit,
         points: [
           [x05, topFit],
           [xr, topFit],
-          [xr, bottom],
-          [x05, bottom]
+          [xr, bottom2],
+          [x05, bottom2]
         ],
         // The FITTED inset projection (just fit to this box) — captured so the
         // geo-query can invert pixels inside the frame back to AK/HI coords.
@@ -80148,11 +80713,11 @@ function layoutMap(resolvedIn, data, size, opts) {
     const COL_GAP2 = 16;
     const makeItems = (group) => group.map((p2) => ({ p: p2, ...labelInfo(p2) })).sort((a, b) => a.p.cy - b.p.cy || (a.text < b.text ? -1 : 1));
     const columnRows = (items, side) => {
-      const left = Math.min(...items.map((o) => o.p.cx - o.p.r));
-      const right = Math.max(...items.map((o) => o.p.cx + o.p.r));
+      const left2 = Math.min(...items.map((o) => o.p.cx - o.p.r));
+      const right2 = Math.max(...items.map((o) => o.p.cx + o.p.r));
       const maxW = Math.max(...items.map((o) => o.w));
       const cyMid = (Math.min(...items.map((o) => o.p.cy)) + Math.max(...items.map((o) => o.p.cy))) / 2;
-      const colX = side === "right" ? Math.min(right + COL_GAP2, width - POI_EDGE_CLEAR - maxW) : Math.max(left - COL_GAP2, POI_EDGE_CLEAR + maxW);
+      const colX = side === "right" ? Math.min(right2 + COL_GAP2, width - POI_EDGE_CLEAR - maxW) : Math.max(left2 - COL_GAP2, POI_EDGE_CLEAR + maxW);
       const totalH = items.length * step;
       let startY = cyMid - totalH / 2;
       startY = Math.max(
@@ -80350,11 +80915,11 @@ function layoutMap(resolvedIn, data, size, opts) {
         pushInline(p2, text, w2, side);
         continue;
       }
-      const left = Math.min(...items.map((o) => o.p.cx - o.p.r));
-      const right = Math.max(...items.map((o) => o.p.cx + o.p.r));
+      const left2 = Math.min(...items.map((o) => o.p.cx - o.p.r));
+      const right2 = Math.max(...items.map((o) => o.p.cx + o.p.r));
       const minCy = Math.min(...items.map((o) => o.p.cy));
       const maxCy = Math.max(...items.map((o) => o.p.cy));
-      const diag = Math.hypot(right - left, maxCy - minCy);
+      const diag = Math.hypot(right2 - left2, maxCy - minCy);
       if (diag > maxExtent || items.length > MAX_COLUMN_ROWS) {
         items.forEach((o) => pushHidden(o.p));
       } else {
@@ -80414,18 +80979,18 @@ function layoutMap(resolvedIn, data, size, opts) {
       needBottom = Math.min(Math.max(0, Math.ceil(needBottom)), capV);
       if (needLeft >= 1 || needRight >= 1 || needTop >= 1 || needBottom >= 1) {
         const prev = opts._calloutReserve;
-        const left = Math.min((prev?.left ?? 0) + needLeft, capH);
-        const right = Math.min((prev?.right ?? 0) + needRight, capH);
-        const top = Math.min((prev?.top ?? 0) + needTop, capV);
-        const bottom = Math.min((prev?.bottom ?? 0) + needBottom, capV);
+        const left2 = Math.min((prev?.left ?? 0) + needLeft, capH);
+        const right2 = Math.min((prev?.right ?? 0) + needRight, capH);
+        const top2 = Math.min((prev?.top ?? 0) + needTop, capV);
+        const bottom2 = Math.min((prev?.bottom ?? 0) + needBottom, capV);
         return layoutMap(resolved, data, size, {
           ...opts,
           _poiClearancePass: clearancePass + 1,
           _calloutReserve: {
-            ...left > 0 && { left },
-            ...right > 0 && { right },
-            ...top > 0 && { top },
-            ...bottom > 0 && { bottom }
+            ...left2 > 0 && { left: left2 },
+            ...right2 > 0 && { right: right2 },
+            ...top2 > 0 && { top: top2 },
+            ...bottom2 > 0 && { bottom: bottom2 }
           }
         });
       }
@@ -80707,16 +81272,16 @@ function layoutMap(resolvedIn, data, size, opts) {
   };
 }
 var LEGEND_TOP_GAP2, LEGEND_BOTTOM_GAP2, FONT, LINE_HEIGHT, PADX, PADY, WATER_LETTER_SPACING, CONTEXT_PAD, EDGE_CLAMP_MARGIN, EDGE_CLAMP_OVERSHOOT, COUNTRY_FONT_MAX, COUNTRY_SIZE_FRAC_MIN, COUNTRY_SIZE_FRAC_MAX, MAX_COUNTRY_POSITIONS, COUNTRY_POS_GRID, COUNTRY_POS_TOPN_MARGIN, KIND_ORDER, FIT_PAD, PATH_DIGITS, THIN_TOL, ALBERS_SKEW_MAX, RAMP_FLOOR2, R_DEFAULT, R_MIN, R_MAX, POI_FILL_OPACITY_MAX, POI_FILL_OPACITY_MIN, W_MIN, W_MAX, FONT2, WORLD_LABEL_ANCHORS, MAX_CLUSTER_EXTENT_FACTOR, MAX_COLUMN_ROWS, REGION_LABEL_HALO_RATIO, LAND_TINT_LIGHT, LAND_TINT_DARK, TAG_TINT_LIGHT, TAG_TINT_DARK, WATER_TINT_LIGHT, WATER_TINT_DARK, RIVER_WIDTH, COMPACT_WIDTH_PX, RELIEF_MIN_AREA, RELIEF_MIN_DIM, RELIEF_HATCH_SPACING, RELIEF_HATCH_WIDTH, RELIEF_HATCH_STRENGTH, COASTLINE_RING_COUNT, COASTLINE_D0, COASTLINE_STEP, COASTLINE_THICKNESS, COASTLINE_OPACITY_NEAR, COASTLINE_OPACITY_FAR, COASTLINE_MIN_EXTENT, COASTLINE_MIN_EXTENT_GLOBAL, COASTLINE_STROKE_MIX, FOREIGN_TINT_LIGHT, FOREIGN_TINT_DARK, MUTED_FOREIGN_LIGHT, MUTED_FOREIGN_DARK, COLO_R, GOLDEN_ANGLE, STACK_OVERLAP, STACK_RING_MAX, STACK_RING_GAP, FAN_STEP, ARC_CURVE_FRAC, decodeCache, usConusProjection, alaskaProjection, hawaiiProjection, INSET_STATES, inAlaska, inHawaii, FOREIGN_BORDER, US_NON_CONUS, REGION_GEO_MEMO, REGION_GEO_MAX_FITS;
-var init_chunk_ZGIBV36U = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-ZGIBV36U.js"() {
+var init_chunk_U7ZQTUZT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U7ZQTUZT.js"() {
     init_chunk_4QV26TEG();
     init_chunk_VHO3YBTB();
-    init_chunk_GRXPFBYC();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
-    init_chunk_Q5IHQ4NW();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_ZKPPI6BF();
+    init_chunk_SCJ7CAJF();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_EXNKNJ65();
     init_src12();
     init_src11();
     LEGEND_TOP_GAP2 = 8;
@@ -80841,7 +81406,7 @@ var init_chunk_ZGIBV36U = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UXXLE6AH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AIH6M5J6.js
 function workFromDirectives(d) {
   if (d.clockHours === void 0) return null;
   const src = `clock
@@ -81573,17 +82138,17 @@ function emitText(g, x3, y2, text, anchor, color2, halo, withHalo, fontSize, ita
   return t3;
 }
 var WEEKDAY_ABBR3, clamp, LABEL_FONT4, mapInstanceCounter;
-var init_chunk_UXXLE6AH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UXXLE6AH.js"() {
-    init_chunk_B4XS2AF2();
-    init_chunk_ZGIBV36U();
-    init_chunk_ASPS5O6F();
+var init_chunk_AIH6M5J6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AIH6M5J6.js"() {
+    init_chunk_FWVKPEG3();
+    init_chunk_U7ZQTUZT();
+    init_chunk_QDOYT6UW();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_AU75JHSR();
+    init_chunk_YNAHUNMA();
     init_chunk_A2RUBBVT();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
+    init_chunk_42IT4BG2();
     init_src();
     WEEKDAY_ABBR3 = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     clamp = (v2, lo, hi) => Math.max(lo, Math.min(hi, v2));
@@ -81592,19 +82157,19 @@ var init_chunk_UXXLE6AH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-S4XB3JR2.js
-var renderer_S4XB3JR2_exports = {};
-__export(renderer_S4XB3JR2_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-WWC5VGHH.js
+var renderer_WWC5VGHH_exports = {};
+__export(renderer_WWC5VGHH_exports, {
   renderMap: () => renderMap,
   renderMapForExport: () => renderMapForExport
 });
-var init_renderer_S4XB3JR2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-S4XB3JR2.js"() {
-    init_chunk_UXXLE6AH();
+var init_renderer_WWC5VGHH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-WWC5VGHH.js"() {
+    init_chunk_AIH6M5J6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-Y4BBGFKY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YWPWRR7W.js
 function mapContentAspect(resolved, data, ref = REF) {
   const { projection: projection2, fitTarget } = buildMapProjection(resolved, data);
   projection2.fitSize([ref, ref], fitTarget);
@@ -81636,9 +82201,9 @@ function mapExportDimensions(resolved, data, baseWidth = 1200, aspectOverride) {
   return { width, height, preferContain };
 }
 var FIT_PAD2, TITLE_GAP, ASPECT_MAX, ASPECT_MIN, GLOBAL_HEIGHT_BOOST, MIN_MAP_BAND, FALLBACK_ASPECT, REF;
-var init_chunk_Y4BBGFKY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-Y4BBGFKY.js"() {
-    init_chunk_ZGIBV36U();
+var init_chunk_YWPWRR7W = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YWPWRR7W.js"() {
+    init_chunk_U7ZQTUZT();
     init_chunk_A4GOY3PE();
     init_src12();
     FIT_PAD2 = 24;
@@ -81652,19 +82217,19 @@ var init_chunk_Y4BBGFKY = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/dimensions-3JINHSYK.js
-var dimensions_3JINHSYK_exports = {};
-__export(dimensions_3JINHSYK_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dimensions-PLECMFTR.js
+var dimensions_PLECMFTR_exports = {};
+__export(dimensions_PLECMFTR_exports, {
   mapContentAspect: () => mapContentAspect,
   mapExportDimensions: () => mapExportDimensions
 });
-var init_dimensions_3JINHSYK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/dimensions-3JINHSYK.js"() {
-    init_chunk_Y4BBGFKY();
+var init_dimensions_PLECMFTR = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dimensions-PLECMFTR.js"() {
+    init_chunk_YWPWRR7W();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js
 async function loadNodeBuiltins() {
   const [{ readFile }, { fileURLToPath }, { dirname, resolve }] = await Promise.all([
     import("fs/promises"),
@@ -81762,7 +82327,7 @@ function loadMapData() {
 }
 var import_meta, FILES, CANDIDATE_DIRS, cache;
 var init_chunk_6MTWIQVO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js"() {
     import_meta = {};
     FILES = {
       worldCoarse: "world-coarse.json",
@@ -81786,29 +82351,29 @@ var init_chunk_6MTWIQVO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js
 var load_data_EHDDZ5ZS_exports = {};
 __export(load_data_EHDDZ5ZS_exports, {
   loadMapData: () => loadMapData
 });
 var init_load_data_EHDDZ5ZS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js"() {
     init_chunk_6MTWIQVO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-IEJD3CZB.js
-var parser_IEJD3CZB_exports = {};
-__export(parser_IEJD3CZB_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-73YUU35J.js
+var parser_73YUU35J_exports = {};
+__export(parser_73YUU35J_exports, {
   parsePyramid: () => parsePyramid
 });
-var init_parser_IEJD3CZB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-IEJD3CZB.js"() {
-    init_chunk_ETYF5QZR();
+var init_parser_73YUU35J = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-73YUU35J.js"() {
+    init_chunk_MGLJA5TK();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UES4P7FN.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YM2ZQIVG.js
 function renderPyramid(container, parsed, palette, isDark, onClickItem, exportDims) {
   if (parsed.layers.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -82193,17 +82758,17 @@ function clamp2(x3, lo, hi) {
   return Math.max(lo, Math.min(hi, x3));
 }
 var TITLE_AREA_HEIGHT2, H_MARGIN_FRAC, V_MARGIN, BASE_WIDTH_FRAC_NO_DESC, PYRAMID_SHARE_WITH_DESC, PYRAMID_SHARE_ALTERNATE, PITCH_RATIO, DESC_GAP, DESC_ACCENT_WIDTH, DESC_ACCENT_GAP, BULLET_BODY_INDENT, LABEL_FONT_MIN, LABEL_FONT_MAX, DESC_FONT_MIN, DESC_FONT_MAX;
-var init_chunk_UES4P7FN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-UES4P7FN.js"() {
+var init_chunk_YM2ZQIVG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YM2ZQIVG.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     init_src();
     TITLE_AREA_HEIGHT2 = 50;
     H_MARGIN_FRAC = 0.03;
@@ -82223,30 +82788,30 @@ var init_chunk_UES4P7FN = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-CENXCMWG.js
-var renderer_CENXCMWG_exports = {};
-__export(renderer_CENXCMWG_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-KUIZNLAQ.js
+var renderer_KUIZNLAQ_exports = {};
+__export(renderer_KUIZNLAQ_exports, {
   renderPyramid: () => renderPyramid,
   renderPyramidForExport: () => renderPyramidForExport
 });
-var init_renderer_CENXCMWG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-CENXCMWG.js"() {
-    init_chunk_UES4P7FN();
+var init_renderer_KUIZNLAQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-KUIZNLAQ.js"() {
+    init_chunk_YM2ZQIVG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-D2UL2G5U.js
-var parser_D2UL2G5U_exports = {};
-__export(parser_D2UL2G5U_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-A6M25MLK.js
+var parser_A6M25MLK_exports = {};
+__export(parser_A6M25MLK_exports, {
   parseRing: () => parseRing
 });
-var init_parser_D2UL2G5U = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-D2UL2G5U.js"() {
-    init_chunk_PSIDVCBA();
+var init_parser_A6M25MLK = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-A6M25MLK.js"() {
+    init_chunk_RV2N7COG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IALX52TR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SOBGK35Z.js
 function renderRing(container, parsed, palette, isDark, onClickItem, exportDims) {
   if (parsed.layers.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -82489,17 +83054,17 @@ function clamp3(x3, lo, hi) {
   return Math.max(lo, Math.min(hi, x3));
 }
 var TITLE_AREA_HEIGHT3, H_MARGIN_FRAC2, V_MARGIN2, RING_AREA_FRAC_NO_DESC, RING_AREA_FRAC_WITH_DESC, DESC_GAP2, DESC_ACCENT_WIDTH2, DESC_ACCENT_GAP2, BULLET_BODY_INDENT2, RING_STROKE_WIDTH, RING_STROKE_OPACITY, DESC_LINE_CAP, LABEL_FONT_MIN2, LABEL_FONT_MAX2, DESC_FONT_MIN2, DESC_FONT_MAX2, MAX_LABEL_ARC;
-var init_chunk_IALX52TR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-IALX52TR.js"() {
+var init_chunk_SOBGK35Z = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SOBGK35Z.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
     init_src();
     TITLE_AREA_HEIGHT3 = 50;
     H_MARGIN_FRAC2 = 0.03;
@@ -82521,30 +83086,30 @@ var init_chunk_IALX52TR = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-FXK6ZL3P.js
-var renderer_FXK6ZL3P_exports = {};
-__export(renderer_FXK6ZL3P_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-TOKGYFTG.js
+var renderer_TOKGYFTG_exports = {};
+__export(renderer_TOKGYFTG_exports, {
   renderRing: () => renderRing,
   renderRingForExport: () => renderRingForExport
 });
-var init_renderer_FXK6ZL3P = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-FXK6ZL3P.js"() {
-    init_chunk_IALX52TR();
+var init_renderer_TOKGYFTG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-TOKGYFTG.js"() {
+    init_chunk_SOBGK35Z();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-JMXPHNZD.js
-var parser_JMXPHNZD_exports = {};
-__export(parser_JMXPHNZD_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q3KNFXQR.js
+var parser_Q3KNFXQR_exports = {};
+__export(parser_Q3KNFXQR_exports, {
   parseTreemap: () => parseTreemap
 });
-var init_parser_JMXPHNZD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-JMXPHNZD.js"() {
-    init_chunk_NYOOPQFD();
+var init_parser_Q3KNFXQR = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q3KNFXQR.js"() {
+    init_chunk_VSFAJUEF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WVGNXDEE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2UZVMWSQ.js
 function depthTint(hue, depth, bg) {
   if (depth <= 1) return hue;
   const keepPct = Math.max(55, 100 - (depth - 1) * 18);
@@ -82597,33 +83162,33 @@ function buildHeatScale(parsed, palette) {
   };
   collect(parsed.roots);
   if (values.length === 0) return null;
-  const min2 = Math.min(...values);
+  const min3 = Math.min(...values);
   const max3 = Math.max(...values);
-  const signed = min2 < 0 && max3 > 0;
+  const signed = min3 < 0 && max3 > 0;
   const neutral = palette.surface;
   const explicit = parsed.options.heatColors.map((c) => resolveColor(c, palette) ?? c).filter((c) => !!c);
   let stops;
   let domain;
   if (explicit.length >= 2) {
     stops = [explicit[0], neutral, explicit[1]];
-    const mid = signed ? 0 : (min2 + max3) / 2;
-    domain = [min2, mid, max3];
+    const mid = signed ? 0 : (min3 + max3) / 2;
+    domain = [min3, mid, max3];
   } else if (explicit.length === 1) {
     stops = [neutral, explicit[0]];
-    domain = [min2, max3];
+    domain = [min3, max3];
   } else if (signed) {
     stops = [palette.colors.red, neutral, palette.colors.green];
-    domain = [min2, 0, max3];
+    domain = [min3, 0, max3];
   } else {
     stops = [neutral, palette.primary];
-    domain = [min2, max3];
+    domain = [min3, max3];
   }
   if (domain[0] === domain[domain.length - 1]) {
     const last = stops[stops.length - 1];
-    return { scale: () => last, min: min2, max: max3, stops, signed };
+    return { scale: () => last, min: min3, max: max3, stops, signed };
   }
   const linear3 = linear2().domain(domain).range(stops).clamp(true);
-  return { scale: (v2) => toHex(linear3(v2)), min: min2, max: max3, stops, signed };
+  return { scale: (v2) => toHex(linear3(v2)), min: min3, max: max3, stops, signed };
 }
 function toHex(c) {
   if (c.startsWith("#")) return c;
@@ -82700,17 +83265,17 @@ function buildLegend(activeMode, parsed, heat, seriesColors2, colorOffset) {
   return { groups, activeGroup, modeByName };
 }
 var MUTED_FILL;
-var init_chunk_WVGNXDEE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-WVGNXDEE.js"() {
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_ZKPPI6BF();
+var init_chunk_2UZVMWSQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2UZVMWSQ.js"() {
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_EXNKNJ65();
     init_src7();
     MUTED_FILL = "#cbd5e1";
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2R6HG6D5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KSPCR75O.js
 function toDatum(node) {
   if (node.children.length === 0) {
     return {
@@ -82771,8 +83336,8 @@ function layoutTreemapRadial(roots, opts) {
   );
   const ringSpan = Math.max(1, radius - discRadius);
   const ringWidth = ringSpan / Math.max(1, treeDepth);
-  (hroot.children ?? []).forEach((top, i) => {
-    top.each((d) => {
+  (hroot.children ?? []).forEach((top2, i) => {
+    top2.each((d) => {
       d._topIndex = i;
     });
   });
@@ -83025,14 +83590,14 @@ function fitFs(text, maxFs, availLen) {
   return Math.max(MIN_LABEL_FS, Math.floor(maxFs * availLen / w2));
 }
 function drawCurvedLine(g, defs, pathId, cell, centerR, fs, weight, text, ink) {
-  const bottom = isBottomHalf(cell);
-  const rPath = bottom ? centerR + fs * 0.32 : centerR - fs * 0.32;
-  const [a0, a1] = bottom ? [cell.endAngle, cell.startAngle] : [cell.startAngle, cell.endAngle];
+  const bottom2 = isBottomHalf(cell);
+  const rPath = bottom2 ? centerR + fs * 0.32 : centerR - fs * 0.32;
+  const [a0, a1] = bottom2 ? [cell.endAngle, cell.startAngle] : [cell.startAngle, cell.endAngle];
   const p0x = Math.sin(a0) * rPath;
   const p0y = -Math.cos(a0) * rPath;
   const p1x = Math.sin(a1) * rPath;
   const p1y = -Math.cos(a1) * rPath;
-  const sweepFlag = bottom ? 0 : 1;
+  const sweepFlag = bottom2 ? 0 : 1;
   const largeArc = cell.endAngle - cell.startAngle > Math.PI ? 1 : 0;
   const d = `M ${p0x.toFixed(2)} ${p0y.toFixed(2)} A ${rPath.toFixed(2)} ${rPath.toFixed(2)} 0 ${largeArc} ${sweepFlag} ${p1x.toFixed(2)} ${p1y.toFixed(2)}`;
   defs.append("path").attr("id", pathId).attr("d", d);
@@ -83074,16 +83639,16 @@ function clip2(s, maxWidth, fs) {
   return lo <= 0 ? "" : s.slice(0, lo) + "\u2026";
 }
 var PADDING3, LEGEND_POSITION, MIN_LABEL_SWEEP, MIN_LABEL_FS, LABEL_BASE_FS, INK_MIN_CONTRAST;
-var init_chunk_2R6HG6D5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2R6HG6D5.js"() {
-    init_chunk_WVGNXDEE();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+var init_chunk_KSPCR75O = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KSPCR75O.js"() {
+    init_chunk_2UZVMWSQ();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     init_src();
     init_src9();
     init_src10();
@@ -83099,19 +83664,19 @@ var init_chunk_2R6HG6D5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-radial-AG75PBYD.js
-var renderer_radial_AG75PBYD_exports = {};
-__export(renderer_radial_AG75PBYD_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-radial-QG644QYY.js
+var renderer_radial_QG644QYY_exports = {};
+__export(renderer_radial_QG644QYY_exports, {
   renderTreemapRadial: () => renderTreemapRadial,
   renderTreemapRadialForExport: () => renderTreemapRadialForExport
 });
-var init_renderer_radial_AG75PBYD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-radial-AG75PBYD.js"() {
-    init_chunk_2R6HG6D5();
+var init_renderer_radial_QG644QYY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-radial-QG644QYY.js"() {
+    init_chunk_KSPCR75O();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VXTUWXFB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULONXAOD.js
 function toDatum2(node) {
   if (node.children.length === 0) {
     return {
@@ -83165,8 +83730,8 @@ function layoutTreemap(roots, opts) {
   const h = hierarchy(rootDatum).sum((d) => d.children?.length ? 0 : d.value ?? 0).sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
   const hroot = treemap_default().tile(squarify_default).size([opts.width, opts.height]).paddingOuter(opts.paddingOuter ?? 3).paddingTop(opts.headerH > 0 ? opts.headerH : opts.paddingInner ?? 2).paddingInner(opts.paddingInner ?? 2).round(true)(h);
   const total = hroot.value ?? 0;
-  (hroot.children ?? []).forEach((top, i) => {
-    top.each((d) => {
+  (hroot.children ?? []).forEach((top2, i) => {
+    top2.each((d) => {
       d._topIndex = i;
     });
   });
@@ -83485,18 +84050,18 @@ function clipLabel(s, maxWidth, fs) {
   return lo <= 0 ? "" : s.slice(0, lo) + "\u2026";
 }
 var PADDING4, HEADER_H, TITLE_BAND, LEAF_MUTE_PCT, LEGEND_POSITION2;
-var init_chunk_VXTUWXFB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-VXTUWXFB.js"() {
-    init_chunk_WVGNXDEE();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+var init_chunk_ULONXAOD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULONXAOD.js"() {
+    init_chunk_2UZVMWSQ();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     init_src();
     init_src10();
     PADDING4 = 12;
@@ -83510,30 +84075,30 @@ var init_chunk_VXTUWXFB = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-CXM3ARYN.js
-var renderer_CXM3ARYN_exports = {};
-__export(renderer_CXM3ARYN_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-MLDGFZDW.js
+var renderer_MLDGFZDW_exports = {};
+__export(renderer_MLDGFZDW_exports, {
   renderTreemap: () => renderTreemap,
   renderTreemapForExport: () => renderTreemapForExport
 });
-var init_renderer_CXM3ARYN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-CXM3ARYN.js"() {
-    init_chunk_VXTUWXFB();
+var init_renderer_MLDGFZDW = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-MLDGFZDW.js"() {
+    init_chunk_ULONXAOD();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-5GCQFSTQ.js
-var parser_5GCQFSTQ_exports = {};
-__export(parser_5GCQFSTQ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-XWNSCDY6.js
+var parser_XWNSCDY6_exports = {};
+__export(parser_XWNSCDY6_exports, {
   parseBlock: () => parseBlock
 });
-var init_parser_5GCQFSTQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-5GCQFSTQ.js"() {
-    init_chunk_WITOJZGL();
+var init_parser_XWNSCDY6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-XWNSCDY6.js"() {
+    init_chunk_5J2RQGFG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6NJWBMJV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OWLGERJL.js
 function layoutBlock(grid, opts = {}) {
   const collapsed = opts.collapsed ?? /* @__PURE__ */ new Set();
   const node = layoutGrid(grid, 0, 0, null, collapsed);
@@ -83867,18 +84432,18 @@ function buildBlockLegend(parsed) {
   return { groups: [{ name: tg.name, entries }], activeGroup: tg.name };
 }
 var BLOCK_GAP, BLOCK_PAD, BLOCK_LEAF_H, BLOCK_HEADER_H, BLOCK_COLLAPSED_H, BLOCK_BAR_H, MIN_COL, MAX_COL, LABEL_FS, PADDING5, TITLE_BAND2, MIN_EXPORT_WIDTH, LEGEND_POSITION3, clipCounter;
-var init_chunk_6NJWBMJV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-6NJWBMJV.js"() {
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+var init_chunk_OWLGERJL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OWLGERJL.js"() {
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_XSVWUOUZ();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
     init_src();
     BLOCK_GAP = 12;
     BLOCK_PAD = 10;
@@ -83900,31 +84465,31 @@ var init_chunk_6NJWBMJV = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-FE5M6SEZ.js
-var renderer_FE5M6SEZ_exports = {};
-__export(renderer_FE5M6SEZ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-Q3A7572V.js
+var renderer_Q3A7572V_exports = {};
+__export(renderer_Q3A7572V_exports, {
   authoredCollapsedIds: () => authoredCollapsedIds,
   renderBlock: () => renderBlock,
   renderBlockForExport: () => renderBlockForExport
 });
-var init_renderer_FE5M6SEZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-FE5M6SEZ.js"() {
-    init_chunk_6NJWBMJV();
+var init_renderer_Q3A7572V = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-Q3A7572V.js"() {
+    init_chunk_OWLGERJL();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-3QJ2Z4H4.js
-var parser_3QJ2Z4H4_exports = {};
-__export(parser_3QJ2Z4H4_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-DQ2DGDYO.js
+var parser_DQ2DGDYO_exports = {};
+__export(parser_DQ2DGDYO_exports, {
   parseGoal: () => parseGoal
 });
-var init_parser_3QJ2Z4H4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-3QJ2Z4H4.js"() {
-    init_chunk_P5XXIVEU();
+var init_parser_DQ2DGDYO = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-DQ2DGDYO.js"() {
+    init_chunk_5XMDSXZT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-M53MDBIW.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ6L5VQJ.js
 function clamp5(x3, lo, hi) {
   return Math.max(lo, Math.min(hi, x3));
 }
@@ -84048,13 +84613,13 @@ function renderWrappedMarkdown(textEl, lines, lineH) {
     }
   });
 }
-function drawNote(svg, description, paint, left, top, width) {
+function drawNote(svg, description, paint, left2, top2, width) {
   const descSize = 15;
   const lineH = descSize * 1.4;
   const maxChars = Math.max(8, Math.floor(width / (descSize * 0.46)));
-  const firstY = top + descSize;
-  const lines = layoutDescription(description, left, maxChars);
-  const desc = svg.append("text").attr("x", left).attr("y", firstY).attr("text-anchor", "start").attr("fill", paint.muted).attr("font-family", FONT_FAMILY).attr("font-size", descSize).attr("font-weight", 500);
+  const firstY = top2 + descSize;
+  const lines = layoutDescription(description, left2, maxChars);
+  const desc = svg.append("text").attr("x", left2).attr("y", firstY).attr("text-anchor", "start").attr("fill", paint.muted).attr("font-family", FONT_FAMILY).attr("font-size", descSize).attr("font-weight", 500);
   renderWrappedMarkdown(desc, lines, lineH);
   return firstY + lines.length * lineH;
 }
@@ -84092,15 +84657,15 @@ function renderBar2(svg, parsed, metrics, paint) {
   if (parsed.hasTarget) {
     g.append("text").attr("x", barRight + gap).attr("y", barCy + 26 * 0.35).attr("text-anchor", "start").attr("fill", paint.text).attr("font-family", FONT_FAMILY).attr("font-size", 26).attr("font-weight", 700).text(compactNumber2(parsed.target));
   }
-  let bottom = y2 + trackH;
+  let bottom2 = y2 + trackH;
   if (parsed.description && !parsed.options.noNote) {
-    bottom = drawNote(svg, parsed.description, paint, x3, bottom + 40, trackW);
+    bottom2 = drawNote(svg, parsed.description, paint, x3, bottom2 + 40, trackW);
   }
   return {
     minX: 0,
     minY: 0,
     maxX: barRight + gap + targetLabelW,
-    maxY: bottom
+    maxY: bottom2
   };
 }
 function renderThermometer(svg, parsed, metrics, paint) {
@@ -84201,12 +84766,12 @@ function renderGauge(svg, parsed, metrics, paint) {
   let colBottom = crestTop;
   if (hasNote) {
     const titleSize = GOAL_TITLE_SIZE;
-    let top = crestTop;
+    let top2 = crestTop;
     if (parsed.title && !parsed.options.noTitle) {
-      svg.append("text").attr("class", "chart-title").attr("x", colLeft).attr("y", top + titleSize * 0.78).attr("text-anchor", "start").attr("fill", paint.text).attr("font-family", FONT_FAMILY).attr("font-size", titleSize).attr("font-weight", TITLE_FONT_WEIGHT).attr("data-line-number", parsed.titleLineNumber).text(parsed.title);
-      top += titleSize * 0.78 + 16;
+      svg.append("text").attr("class", "chart-title").attr("x", colLeft).attr("y", top2 + titleSize * 0.78).attr("text-anchor", "start").attr("fill", paint.text).attr("font-family", FONT_FAMILY).attr("font-size", titleSize).attr("font-weight", TITLE_FONT_WEIGHT).attr("data-line-number", parsed.titleLineNumber).text(parsed.title);
+      top2 += titleSize * 0.78 + 16;
     }
-    colBottom = drawNote(svg, parsed.description, paint, colLeft, top, colW);
+    colBottom = drawNote(svg, parsed.description, paint, colLeft, top2, colW);
   } else if (hasTopTitle) {
     faceTitle(svg, parsed, paint, cx, GOAL_TITLE_SIZE);
   }
@@ -84259,44 +84824,44 @@ function renderGauge(svg, parsed, metrics, paint) {
   };
 }
 var GOAL_TITLE_SIZE;
-var init_chunk_M53MDBIW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-M53MDBIW.js"() {
-    init_chunk_WVGNXDEE();
+var init_chunk_UZ6L5VQJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ6L5VQJ.js"() {
+    init_chunk_2UZVMWSQ();
     init_chunk_3HDBAXF5();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_JYDMBWRP();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_EXNKNJ65();
     init_src();
     GOAL_TITLE_SIZE = 30;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-NVBEMQ6L.js
-var renderer_NVBEMQ6L_exports = {};
-__export(renderer_NVBEMQ6L_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-53FU55KK.js
+var renderer_53FU55KK_exports = {};
+__export(renderer_53FU55KK_exports, {
   renderGoal: () => renderGoal,
   renderGoalForExport: () => renderGoalForExport
 });
-var init_renderer_NVBEMQ6L = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-NVBEMQ6L.js"() {
-    init_chunk_M53MDBIW();
+var init_renderer_53FU55KK = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-53FU55KK.js"() {
+    init_chunk_UZ6L5VQJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-BMOTF72G.js
-var parser_BMOTF72G_exports = {};
-__export(parser_BMOTF72G_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QN3GJJ3J.js
+var parser_QN3GJJ3J_exports = {};
+__export(parser_QN3GJJ3J_exports, {
   parseCountdown: () => parseCountdown,
   targetToMs: () => targetToMs2
 });
-var init_parser_BMOTF72G = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-BMOTF72G.js"() {
-    init_chunk_HLGOG44K();
+var init_parser_QN3GJJ3J = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QN3GJJ3J.js"() {
+    init_chunk_QWUYFUNO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PIXZTCKH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NVQXIDLE.js
 function bakedHero(parsed, now) {
   const resolved = parsed.resolvedMs;
   if (resolved === null) return "\u2014";
@@ -84750,7 +85315,7 @@ function vizMonthGrid(svg, g, nowMs, resolvedMs, C2) {
   const gridW = mw - 2 * padX;
   const cols = 7;
   const cellW = gridW / cols;
-  const top = g.top;
+  const top2 = g.top;
   const headH = 26;
   const cellH = (g.height - headH - 8) / 6;
   const gridH = 6 * cellH;
@@ -84760,8 +85325,8 @@ function vizMonthGrid(svg, g, nowMs, resolvedMs, C2) {
   months.forEach((m, mi) => {
     const mt2 = isContext[mi] ? svg.append("g").attr("opacity", 0.42) : svg;
     const mx = g.left + mi * (mw + gap);
-    aRect(mt2, mx, top, mw, g.height, 14, C2.inert, C2.inertBorder, 1.25);
-    const gy = top + headH;
+    aRect(mt2, mx, top2, mw, g.height, 14, C2.inert, C2.inertBorder, 1.25);
+    const gy = top2 + headH;
     for (const wcol of [0, 6])
       aRect(
         mt2,
@@ -84775,14 +85340,14 @@ function vizMonthGrid(svg, g, nowMs, resolvedMs, C2) {
     aText(
       mt2,
       mx + mw / 2,
-      top + 16,
+      top2 + 16,
       14,
       C2.text,
       700,
       "middle",
       `${MON_ABBR[m.getMonth()]} ${m.getFullYear()}`
     );
-    aLine(mt2, mx, top + headH - 6, mx + mw, top + headH - 6, C2.rule, 1.25);
+    aLine(mt2, mx, top2 + headH - 6, mx + mw, top2 + headH - 6, C2.rule, 1.25);
     const first = new Date(m.getFullYear(), m.getMonth(), 1).getDay();
     const dim = new Date(m.getFullYear(), m.getMonth() + 1, 0).getDate();
     for (let day = 1; day <= dim; day++) {
@@ -85092,9 +85657,9 @@ function renderCountdown(container, parsed, palette, isDark, exportDims) {
   `);
   const bgRect = svg.append("rect").attr("width", width).attr("fill", palette.bg);
   const estWidth2 = (t3, fs) => t3.length * fs * 0.58;
-  const fitFont2 = (t3, base, maxW, min2) => {
+  const fitFont2 = (t3, base, maxW, min3) => {
     const w2 = estWidth2(t3, base);
-    return w2 <= maxW ? base : Math.max(min2, Math.floor(base * maxW / w2));
+    return w2 <= maxW ? base : Math.max(min3, Math.floor(base * maxW / w2));
   };
   const dispLen = (s) => parseInlineMarkdown(s).reduce((n, sp) => n + sp.text.length, 0);
   const padX = Math.max(30, Math.round(width * 0.045));
@@ -85263,14 +85828,14 @@ function renderCountdownForExport(container, parsed, palette, isDark, exportDims
   renderCountdown(container, parsed, palette, isDark, exportDims);
 }
 var MON_ABBR, WD_ABBR, DAY_START, dayDelta, keyOf, REPEAT_ICON_PATH, MONTH_TARGET_PX;
-var init_chunk_PIXZTCKH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-PIXZTCKH.js"() {
+var init_chunk_NVQXIDLE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NVQXIDLE.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_6KFWC4CO();
     init_chunk_OQKP2X3D();
-    init_chunk_JYDMBWRP();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_EXNKNJ65();
     init_src();
     MON_ABBR = [
       "Jan",
@@ -85301,30 +85866,30 @@ var init_chunk_PIXZTCKH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-K7XLVPH5.js
-var renderer_K7XLVPH5_exports = {};
-__export(renderer_K7XLVPH5_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-IWNHBIZ6.js
+var renderer_IWNHBIZ6_exports = {};
+__export(renderer_IWNHBIZ6_exports, {
   renderCountdown: () => renderCountdown,
   renderCountdownForExport: () => renderCountdownForExport
 });
-var init_renderer_K7XLVPH5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-K7XLVPH5.js"() {
-    init_chunk_PIXZTCKH();
+var init_renderer_IWNHBIZ6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-IWNHBIZ6.js"() {
+    init_chunk_NVQXIDLE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-2AZ2KQTO.js
-var parser_2AZ2KQTO_exports = {};
-__export(parser_2AZ2KQTO_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-D7YZX3CH.js
+var parser_D7YZX3CH_exports = {};
+__export(parser_D7YZX3CH_exports, {
   parseClock: () => parseClock
 });
-var init_parser_2AZ2KQTO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-2AZ2KQTO.js"() {
-    init_chunk_AU75JHSR();
+var init_parser_D7YZX3CH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-D7YZX3CH.js"() {
+    init_chunk_YNAHUNMA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HES4K6DV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MD2KWAXJ.js
 function partsFor2(entry, now) {
   return entry.kind === "fixed" ? fixedParts(entry.fixedOffsetMin ?? 0, now) : zoneParts(entry.zone, now);
 }
@@ -85358,9 +85923,9 @@ function resolveColorBy(mode, entry, index, ctx) {
 function estWidth(t3, fs) {
   return t3.length * fs * 0.6;
 }
-function fitFont(t3, base, maxW, min2) {
+function fitFont(t3, base, maxW, min3) {
   const w2 = estWidth(t3, base);
-  return w2 <= maxW ? base : Math.max(min2, Math.floor(base * maxW / w2));
+  return w2 <= maxW ? base : Math.max(min3, Math.floor(base * maxW / w2));
 }
 function ellipsize(t3, fs, maxW) {
   if (maxW <= 0) return "";
@@ -85405,9 +85970,9 @@ function drawSunMoon(parent, cx, cy, up, sw, scale = 1) {
     "M1.85,-3.32 A3.8,3.8 0 1,0 1.85,3.32 A3.4,3.4 0 0,1 1.85,-3.32 Z"
   ).attr("fill", sw.moonIcon);
 }
-function hourLabel(min2, hours12) {
-  const h = Math.floor(min2 / 60);
-  const m = min2 % 60;
+function hourLabel(min3, hours12) {
+  const h = Math.floor(min3 / 60);
+  const m = min3 % 60;
   const mm = m ? `:${String(m).padStart(2, "0")}` : "";
   if (!hours12) return `${h}${mm}`;
   const ap = h < 12 ? "am" : "pm";
@@ -85641,9 +86206,9 @@ function drawRow(svg, entry, index, parsed, now, rowTop, rowH, geom, col) {
   if (status) lines.push({ kind: "avail" });
   if (sun) lines.push({ kind: "sun" });
   const lh = 23;
-  const top = center + 10 - (lines.length - 1) * lh / 2;
+  const top2 = center + 10 - (lines.length - 1) * lh / 2;
   lines.forEach((ln2, i) => {
-    const yy = top + i * lh;
+    const yy = top2 + i * lh;
     if (ln2.kind === "place") {
       g.append("path").attr("transform", `translate(${iconX},${yy - 5}) scale(1.25)`).attr("d", "M0,4 L-2.3,-0.6 A2.6,2.6 0 1 1 2.3,-0.6 Z").attr("fill", muted);
       g.append("text").attr("x", textX).attr("y", yy).attr("fill", muted).attr("font-family", FONT_FAMILY).attr("font-size", 14).attr("font-weight", 500).text(ellipsize(entry.place, 14, textMax));
@@ -85683,15 +86248,15 @@ function bakeAnchors(g, entry, parsed, sun, sw) {
     );
   }
 }
-function drawColumns(body, parsed, now, top, geom, col) {
+function drawColumns(body, parsed, now, top2, geom, col) {
   const { width, cardM } = geom;
   const { text, muted, line2, tick, cardFill, sw } = col;
   const n = Math.max(1, parsed.entries.length);
   const colW = (width - 2 * cardM) / n;
   const tints = [];
-  let maxBottom = top;
+  let maxBottom = top2;
   const deferred = [];
-  let detailTop = top;
+  let detailTop = top2;
   parsed.entries.forEach((entry, i) => {
     const x05 = cardM + i * colW;
     const cx = x05 + colW / 2;
@@ -85730,13 +86295,13 @@ function drawColumns(body, parsed, now, top, geom, col) {
     bakeAnchors(g, entry, parsed, sun, sw);
     if (auto)
       tints.push(
-        g.append("rect").attr("data-dgmo-clock-lane", "").attr("x", x05).attr("y", top).attr("width", colW).attr("fill", fm === "outline" ? col.baseBg : auto.laneTint)
+        g.append("rect").attr("data-dgmo-clock-lane", "").attr("x", x05).attr("y", top2).attr("width", colW).attr("fill", fm === "outline" ? col.baseBg : auto.laneTint)
       );
     if (auto) {
       g.attr("data-dgmo-clock-auto-solid", auto.solid).attr("data-dgmo-clock-auto-face", faceFill).attr("data-dgmo-clock-auto-mode", parsed.colorBy).attr("data-dgmo-clock-cardfill", cardFill);
     }
     if (fm) g.attr("data-dgmo-clock-fill-mode", fm);
-    let cy = top + (parsed.face === "analog" ? 22 : 36);
+    let cy = top2 + (parsed.face === "analog" ? 22 : 36);
     const innerW = colW - 16;
     if (parsed.face === "analog") {
       const size = Math.min(innerW, 96);
@@ -85827,29 +86392,29 @@ function drawColumns(body, parsed, now, top, geom, col) {
   });
   deferred.forEach((d) => {
     d.draw(detailTop);
-    const bottom = d.kinds ? detailTop + (d.kinds - 1) * 20 + 8 : detailTop;
-    if (bottom > maxBottom) maxBottom = bottom;
+    const bottom2 = d.kinds ? detailTop + (d.kinds - 1) * 20 + 8 : detailTop;
+    if (bottom2 > maxBottom) maxBottom = bottom2;
   });
-  const colBodyH = maxBottom - top + 14;
+  const colBodyH = maxBottom - top2 + 14;
   tints.forEach((r) => r.attr("height", colBodyH));
   const dividerColor = mix(col.palette.text, col.palette.bg, 40);
   for (let i = 1; i < n; i++) {
     const x3 = cardM + i * colW;
-    body.append("line").attr("data-dgmo-clock-col-divider", "").attr("x1", x3).attr("x2", x3).attr("y1", top).attr("y2", top + colBodyH).attr("stroke", dividerColor).attr("stroke-width", 1);
+    body.append("line").attr("data-dgmo-clock-col-divider", "").attr("x1", x3).attr("x2", x3).attr("y1", top2).attr("y2", top2 + colBodyH).attr("stroke", dividerColor).attr("stroke-width", 1);
   }
-  return top + colBodyH + cardM;
+  return top2 + colBodyH + cardM;
 }
 function renderClockForExport(container, parsed, palette, isDark, exportDims) {
   renderClock(container, parsed, palette, isDark, exportDims);
 }
 var PLACE_ACCENTS, clipSeq, WEEKDAY_ABBR4;
-var init_chunk_HES4K6DV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-HES4K6DV.js"() {
-    init_chunk_B4XS2AF2();
+var init_chunk_MD2KWAXJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MD2KWAXJ.js"() {
+    init_chunk_FWVKPEG3();
     init_chunk_6KFWC4CO();
     init_chunk_A2RUBBVT();
-    init_chunk_JYDMBWRP();
-    init_chunk_ZKPPI6BF();
+    init_chunk_42IT4BG2();
+    init_chunk_EXNKNJ65();
     init_src();
     PLACE_ACCENTS = [
       "blue",
@@ -85865,30 +86430,30 @@ var init_chunk_HES4K6DV = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-OOGDCR6K.js
-var renderer_OOGDCR6K_exports = {};
-__export(renderer_OOGDCR6K_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-HGWKAXS6.js
+var renderer_HGWKAXS6_exports = {};
+__export(renderer_HGWKAXS6_exports, {
   renderClock: () => renderClock,
   renderClockForExport: () => renderClockForExport
 });
-var init_renderer_OOGDCR6K = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-OOGDCR6K.js"() {
-    init_chunk_HES4K6DV();
+var init_renderer_HGWKAXS6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-HGWKAXS6.js"() {
+    init_chunk_MD2KWAXJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-VAW46R57.js
-var parser_VAW46R57_exports = {};
-__export(parser_VAW46R57_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-WT3DSNPQ.js
+var parser_WT3DSNPQ_exports = {};
+__export(parser_WT3DSNPQ_exports, {
   parseBracket: () => parseBracket
 });
-var init_parser_VAW46R57 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-VAW46R57.js"() {
-    init_chunk_3BZJ5KD5();
+var init_parser_WT3DSNPQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-WT3DSNPQ.js"() {
+    init_chunk_NFAHDPCG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5D5VHDJM.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HOPTF3ZP.js
 function stripInline(s) {
   return s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*|__|\*|_|`/g, "");
 }
@@ -86276,36 +86841,36 @@ function layoutBracket(parsed) {
       champion = winnerNameOf(finalNode);
     }
   } else {
-    const left = groups[0];
-    const right = groups[1];
-    const L2 = left.built.rounds;
-    const R2 = right.built.rounds;
+    const left2 = groups[0];
+    const right2 = groups[1];
+    const L2 = left2.built.rounds;
+    const R2 = right2.built.rounds;
     const centerX = L2 * COL_W + BOX_W / 2;
-    for (const n of left.built.nodes) {
+    for (const n of left2.built.nodes) {
       n.x = (n.round - 1) * COL_W + BOX_W / 2;
       n.y = n.y * rowScale;
       allNodes.push(n);
       nodeById.set(n.id, n);
       addColLabel(n.x, roundLabel(n.round, L2, parsed.roundNames, true));
     }
-    for (const n of right.built.nodes) {
+    for (const n of right2.built.nodes) {
       n.x = centerX + (R2 - n.round + 1) * COL_W;
       n.y = n.y * rowScale;
       allNodes.push(n);
       nodeById.set(n.id, n);
       addColLabel(n.x, roundLabel(n.round, R2, parsed.roundNames, true));
     }
-    if (left.label)
-      pushSide(0, (L2 - 1) * COL_W + BOX_W, left.label, left.color);
-    if (right.label)
+    if (left2.label)
+      pushSide(0, (L2 - 1) * COL_W + BOX_W, left2.label, left2.color);
+    if (right2.label)
       pushSide(
         centerX + COL_W - BOX_W / 2,
         centerX + R2 * COL_W + BOX_W / 2,
-        right.label,
-        right.color
+        right2.label,
+        right2.color
       );
-    const leftRoot = left.built.rootId !== null ? nodeById.get(left.built.rootId) : null;
-    const rightRoot = right.built.rootId !== null ? nodeById.get(right.built.rootId) : null;
+    const leftRoot = left2.built.rootId !== null ? nodeById.get(left2.built.rootId) : null;
+    const rightRoot = right2.built.rootId !== null ? nodeById.get(right2.built.rootId) : null;
     const cid = nextId();
     const champNode = {
       id: cid,
@@ -86615,9 +87180,9 @@ function renderBracket(container, parsed, palette, isDark, exportDims) {
     const covered = layout.sideLabels.some(
       (s) => col.x >= s.x0 && col.x <= s.x1
     );
-    const top = covered ? bandTop : 2;
+    const top2 = covered ? bandTop : 2;
     const c = resolveColor(col.color, palette) ?? col.color;
-    root2.append("rect").attr("x", col.x - BOX_W / 2 - 10).attr("y", top).attr("width", BOX_W + 20).attr("height", Math.max(0, layout.height - top)).attr("rx", 10).attr(
+    root2.append("rect").attr("x", col.x - BOX_W / 2 - 10).attr("y", top2).attr("width", BOX_W + 20).attr("height", Math.max(0, layout.height - top2)).attr("rx", 10).attr(
       "fill",
       fillMode === "outline" ? themeBaseBg(palette, isDark) : mix(c, palette.bg, isDark ? 12 : 8)
     ).call((sel) => {
@@ -86813,20 +87378,20 @@ function renderBracketForExport(container, parsed, palette, isDark, exportDims) 
   renderBracket(container, parsed, palette, isDark, exportDims);
 }
 var BOX_W, BOX_H, PAIR_GAP, ROW, COL_W, COMMENT_W, HALF_SPAN, PADDING6, TITLE_BAND3, HALF_SPAN2, COMMENT_LH, LEGEND_POSITION4;
-var init_chunk_5D5VHDJM = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-5D5VHDJM.js"() {
+var init_chunk_HOPTF3ZP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HOPTF3ZP.js"() {
     init_chunk_3HDBAXF5();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_Q5IHQ4NW();
+    init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_JR7Q6GHE();
-    init_chunk_ZKPPI6BF();
-    init_chunk_4W2PE66Q();
+    init_chunk_42IT4BG2();
+    init_chunk_D5FANMSG();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
     init_src();
     BOX_W = 176;
     BOX_H = 30;
@@ -86846,32 +87411,32 @@ var init_chunk_5D5VHDJM = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-AQJIQ2XU.js
-var renderer_AQJIQ2XU_exports = {};
-__export(renderer_AQJIQ2XU_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-FRBPMKPP.js
+var renderer_FRBPMKPP_exports = {};
+__export(renderer_FRBPMKPP_exports, {
   bracketExportDimensions: () => bracketExportDimensions,
   renderBracket: () => renderBracket,
   renderBracketForExport: () => renderBracketForExport
 });
-var init_renderer_AQJIQ2XU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-AQJIQ2XU.js"() {
-    init_chunk_5D5VHDJM();
+var init_renderer_FRBPMKPP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-FRBPMKPP.js"() {
+    init_chunk_HOPTF3ZP();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-CIFLYZYP.js
-var parser_CIFLYZYP_exports = {};
-__export(parser_CIFLYZYP_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LQDEU22S.js
+var parser_LQDEU22S_exports = {};
+__export(parser_LQDEU22S_exports, {
   allTasks: () => allTasks,
   parseRaci: () => parseRaci
 });
-var init_parser_CIFLYZYP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-CIFLYZYP.js"() {
-    init_chunk_ZXNHHO6D();
+var init_parser_LQDEU22S = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LQDEU22S.js"() {
+    init_chunk_GG7TK3IA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-GTO5VCYG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GUVVQW3Y.js
 function groupDiagnosticsByTask(parsed) {
   const map2 = /* @__PURE__ */ new Map();
   if (parsed.diagnostics.length === 0) return map2;
@@ -87566,17 +88131,17 @@ function parseQuotedSegments(message) {
   return out;
 }
 var MARKER_LABELS, TITLE_AREA_HEIGHT4, H_MARGIN2, V_MARGIN3, LEGEND_HEIGHT2, LEGEND_CHIP_GAP, LEGEND_CHIP_LABEL_MIN, LEGEND_LETTER_CHIP_W, TITLE_LEGEND_GAP, LEGEND_LABEL_FONT, LEGEND_LETTER_FONT, HEADER_HEIGHT5, ROW_HEIGHT, PHASE_HEIGHT, TASK_LABEL_MIN, TASK_LABEL_MAX, ROLE_COL_MIN, ROLE_COL_MAX, CELL_PAD, VIOLATION_LINE_HEIGHT, STACK_TOP_GAP, DESC_FONT2, COLUMN_RADIUS3, COLUMN_INSET, COLUMN_BOTTOM_PAD, MARKER_FONT, MARKER_FONT_WEIGHT, LABEL_FONT5, ROLE_HEADER_FONT, PHASE_FONT, TINT_PCT, NODE_RADIUS3, AUTO_ACCENTS, SLICE_GAP, NAME_LINE_HEIGHT, DESC_LINE_HEIGHT8;
-var init_chunk_GTO5VCYG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-GTO5VCYG.js"() {
+var init_chunk_GUVVQW3Y = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GUVVQW3Y.js"() {
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_ZXNHHO6D();
-    init_chunk_BEOAKGNA();
+    init_chunk_GG7TK3IA();
+    init_chunk_I55PVEIX();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_3KOPPSUQ();
     init_src();
     MARKER_LABELS = {
       raci: { R: "Responsible", A: "Accountable", C: "Consulted", I: "Informed" },
@@ -87636,35 +88201,35 @@ var init_chunk_GTO5VCYG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-RDBUXW7P.js
-var renderer_RDBUXW7P_exports = {};
-__export(renderer_RDBUXW7P_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CL4SAUA5.js
+var renderer_CL4SAUA5_exports = {};
+__export(renderer_CL4SAUA5_exports, {
   MARKER_LABELS: () => MARKER_LABELS,
   renderRaci: () => renderRaci,
   renderRaciForExport: () => renderRaciForExport
 });
-var init_renderer_RDBUXW7P = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-RDBUXW7P.js"() {
-    init_chunk_GTO5VCYG();
+var init_renderer_CL4SAUA5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CL4SAUA5.js"() {
+    init_chunk_GUVVQW3Y();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-SUV52NQW.js
-var parser_SUV52NQW_exports = {};
-__export(parser_SUV52NQW_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QL2LBPFE.js
+var parser_QL2LBPFE_exports = {};
+__export(parser_QL2LBPFE_exports, {
   isSequenceBlock: () => isSequenceBlock,
   isSequenceNote: () => isSequenceNote,
   isSequenceSection: () => isSequenceSection,
   looksLikeSequence: () => looksLikeSequence,
   parseSequenceDgmo: () => parseSequenceDgmo
 });
-var init_parser_SUV52NQW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/parser-SUV52NQW.js"() {
-    init_chunk_VMWSZCAK();
+var init_parser_QL2LBPFE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QL2LBPFE.js"() {
+    init_chunk_FERE46TP();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2ZJXKJSI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-P6XFQVYY.js
 function applyCollapseProjection(parsed, collapsedGroups) {
   if (collapsedGroups.size === 0) {
     return {
@@ -87987,20 +88552,20 @@ function buildRenderSequence(messages) {
   for (let mi = 0; mi < messages.length; mi++) {
     const msg = messages[mi];
     while (stack.length > 0) {
-      const top = stack[stack.length - 1];
-      if (top.to === msg.from) break;
+      const top2 = stack[stack.length - 1];
+      if (top2.to === msg.from) break;
       stack.pop();
       steps.push({
         type: "return",
-        from: top.to,
-        to: top.from,
+        from: top2.to,
+        to: top2.from,
         label: "",
-        messageIndex: top.messageIndex
+        messageIndex: top2.messageIndex
       });
     }
     if (stack.length > 0 && !msg.async && msg.from !== msg.to) {
-      const top = stack[stack.length - 1];
-      if (top.from === msg.to && top.to === msg.from) {
+      const top2 = stack[stack.length - 1];
+      if (top2.from === msg.to && top2.to === msg.from) {
         stack.pop();
         steps.push({
           type: "return",
@@ -88040,13 +88605,13 @@ function buildRenderSequence(messages) {
     }
   }
   while (stack.length > 0) {
-    const top = stack.pop();
+    const top2 = stack.pop();
     steps.push({
       type: "return",
-      from: top.to,
-      to: top.from,
+      from: top2.to,
+      to: top2.from,
       label: "",
-      messageIndex: top.messageIndex
+      messageIndex: top2.messageIndex
     });
   }
   return steps;
@@ -88152,11 +88717,11 @@ function applyGroupOrdering(participants, groups, messages = []) {
     const group = idToGroup.get(id);
     if (group && !placedGroups.has(group)) {
       placedGroups.add(group);
-      for (const gid of group.participantIds) {
-        const p2 = participants.find((pp) => pp.id === gid);
-        if (p2 && !placed.has(gid)) {
+      for (const gid2 of group.participantIds) {
+        const p2 = participants.find((pp) => pp.id === gid2);
+        if (p2 && !placed.has(gid2)) {
           result.push(p2);
-          placed.add(gid);
+          placed.add(gid2);
         }
       }
     } else if (!group) {
@@ -89477,21 +90042,21 @@ function renderParticipant(svg, participant, cx, cy, palette, isDark, color2, ta
   }
 }
 var PARTICIPANT_GAP, PARTICIPANT_BOX_WIDTH, PARTICIPANT_BOX_HEIGHT, LABEL_FONT_SIZE5, TOP_MARGIN, TITLE_HEIGHT8, PARTICIPANT_Y_OFFSET, MESSAGE_START_OFFSET, LIFELINE_TAIL, ARROWHEAD_SIZE, NOTE_MAX_W2, NOTE_FOLD2, NOTE_PAD_H2, NOTE_PAD_V2, NOTE_FONT_SIZE3, NOTE_LINE_H2, NOTE_GAP2, ACTIVATION_WIDTH, SELF_CALL_HEIGHT, SELF_CALL_WIDTH, ACTOR_LABEL_CLEARANCE, labelTextWidth, fill, stroke, SW, W3, H2;
-var init_chunk_2ZJXKJSI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-2ZJXKJSI.js"() {
+var init_chunk_P6XFQVYY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-P6XFQVYY.js"() {
     init_chunk_3HDBAXF5();
     init_chunk_BMR4CIEO();
     init_chunk_YYVTBZZC();
-    init_chunk_US3P2DQO();
-    init_chunk_ASPS5O6F();
-    init_chunk_GRXPFBYC();
+    init_chunk_6VJCURWU();
+    init_chunk_QDOYT6UW();
+    init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_4ASYQ347();
-    init_chunk_JYDMBWRP();
-    init_chunk_VMWSZCAK();
-    init_chunk_JR7Q6GHE();
-    init_chunk_A2ARDILY();
+    init_chunk_42IT4BG2();
+    init_chunk_FERE46TP();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_src();
     PARTICIPANT_GAP = 160;
     PARTICIPANT_BOX_WIDTH = 120;
@@ -89523,9 +90088,9 @@ var init_chunk_2ZJXKJSI = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-DW6TEBLA.js
-var renderer_DW6TEBLA_exports = {};
-__export(renderer_DW6TEBLA_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5G3PORFD.js
+var renderer_5G3PORFD_exports = {};
+__export(renderer_5G3PORFD_exports, {
   applyGroupOrdering: () => applyGroupOrdering,
   applyPositionOverrides: () => applyPositionOverrides,
   buildNoteMessageMap: () => buildNoteMessageMap,
@@ -89536,9 +90101,9 @@ __export(renderer_DW6TEBLA_exports, {
   renderSequenceDiagram: () => renderSequenceDiagram,
   truncateBareUrl: () => truncateBareUrl
 });
-var init_renderer_DW6TEBLA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/renderer-DW6TEBLA.js"() {
-    init_chunk_2ZJXKJSI();
+var init_renderer_5G3PORFD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5G3PORFD.js"() {
+    init_chunk_P6XFQVYY();
     init_chunk_3HDBAXF5();
   }
 });
@@ -92146,9 +92711,9 @@ function initVim(CM) {
       }
       var repeat = actionArgs.repeat || 1;
       var lineHeight = cm.defaultTextHeight();
-      var top = cm.getScrollInfo().top;
+      var top2 = cm.getScrollInfo().top;
       var delta = lineHeight * repeat;
-      var newPos = actionArgs.forward ? top + delta : top - delta;
+      var newPos = actionArgs.forward ? top2 + delta : top2 - delta;
       var cursor = copyCursor(cm.getCursor());
       var cursorCoords = cm.charCoords(cursor, "local");
       if (actionArgs.forward) {
@@ -93003,19 +93568,19 @@ function initVim(CM) {
         primary: 0
       };
     } else if (mode == "block") {
-      var top = Math.min(anchor.line, head.line), fromCh = anchor.ch, bottom = Math.max(anchor.line, head.line), toCh = head.ch;
+      var top2 = Math.min(anchor.line, head.line), fromCh = anchor.ch, bottom2 = Math.max(anchor.line, head.line), toCh = head.ch;
       if (fromCh < toCh) {
         toCh += 1;
       } else {
         fromCh += 1;
       }
-      var height = bottom - top + 1;
-      var primary = head.line == top ? 0 : height - 1;
+      var height = bottom2 - top2 + 1;
+      var primary = head.line == top2 ? 0 : height - 1;
       var ranges2 = [];
       for (var i = 0; i < height; i++) {
         ranges2.push({
-          anchor: new Pos2(top + i, fromCh),
-          head: new Pos2(top + i, toCh)
+          anchor: new Pos2(top2 + i, fromCh),
+          head: new Pos2(top2 + i, toCh)
         });
       }
       return {
@@ -93431,7 +93996,7 @@ function initVim(CM) {
   }
   function findParagraph(cm, head, repeat, dir, inclusive) {
     var line = head.line;
-    var min2 = cm.firstLine();
+    var min3 = cm.firstLine();
     var max3 = cm.lastLine();
     var start, end, i = line;
     function isEmpty(i2) {
@@ -93444,7 +94009,7 @@ function initVim(CM) {
       return !isEmpty(i2) && isEmpty(i2 + dir2);
     }
     if (dir) {
-      while (min2 <= i && i <= max3 && repeat > 0) {
+      while (min3 <= i && i <= max3 && repeat > 0) {
         if (isBoundary(i, dir)) {
           repeat--;
         }
@@ -93475,7 +94040,7 @@ function initVim(CM) {
     } else {
       inclusive = false;
     }
-    for (i = line; i > min2; i--) {
+    for (i = line; i > min3; i--) {
       if (!inclusive || isEmpty(i) == startState || i == line) {
         if (isBoundary(i, -1, true)) {
           break;
@@ -95702,7 +96267,7 @@ function runHistoryCommand(cm, revert) {
     cm.cm6.dispatch({ selection: { anchor: changeStartIndex } });
   }
 }
-function dialogDiv(cm, template, bottom) {
+function dialogDiv(cm, template, bottom2) {
   var dialog = document.createElement("div");
   dialog.appendChild(template);
   return dialog;
@@ -95913,7 +96478,7 @@ function hardWrap(cm, options) {
     row++;
   }
   return row;
-  function findSpace(line2, max4, min2) {
+  function findSpace(line2, max4, min3) {
     if (line2.length < max4)
       return;
     var before = line2.slice(0, max4);
@@ -95937,7 +96502,7 @@ function hardWrap(cm, options) {
         end
       };
     }
-    if (spaceBefore && spaceBefore[2] && spaceBefore.index > min2) {
+    if (spaceBefore && spaceBefore[2] && spaceBefore.index > min3) {
       return {
         start: spaceBefore.index,
         end: spaceBefore.index + spaceBefore[2].length
@@ -95957,8 +96522,8 @@ function configChanged(update) {
 }
 function getBase(view) {
   let rect2 = view.scrollDOM.getBoundingClientRect();
-  let left = view.textDirection == import_view.Direction.LTR ? rect2.left : rect2.right - view.scrollDOM.clientWidth;
-  return { left: left - view.scrollDOM.scrollLeft * view.scaleX, top: rect2.top - view.scrollDOM.scrollTop * view.scaleY };
+  let left2 = view.textDirection == import_view.Direction.LTR ? rect2.left : rect2.right - view.scrollDOM.clientWidth;
+  return { left: left2 - view.scrollDOM.scrollLeft * view.scaleX, top: rect2.top - view.scrollDOM.scrollTop * view.scaleY };
 }
 function measureCursor(cm, view, cursor, primary) {
   var _a, _b, _c, _d;
@@ -96008,10 +96573,10 @@ function measureCursor(cm, view, cursor, primary) {
       node = node.parentNode;
     }
     let style = getComputedStyle(node);
-    let left = pos.left;
+    let left2 = pos.left;
     let charCoords = (_d = (_c = view).coordsForChar) === null || _d === void 0 ? void 0 : _d.call(_c, head);
     if (charCoords) {
-      left = charCoords.left;
+      left2 = charCoords.left;
     }
     if (!letter || letter == "\n" || letter == "\r") {
       letter = "\xA0";
@@ -96019,13 +96584,13 @@ function measureCursor(cm, view, cursor, primary) {
       letter = "\xA0";
       var nextPos = view.coordsAtPos(head + 1, -1);
       if (nextPos) {
-        left = nextPos.left - (nextPos.left - pos.left) / parseInt(style.tabSize);
+        left2 = nextPos.left - (nextPos.left - pos.left) / parseInt(style.tabSize);
       }
     } else if (/[\uD800-\uDBFF]/.test(letter) && head < view.state.doc.length - 1) {
       letter += view.state.sliceDoc(head + 1, head + 2);
     }
     let h = pos.bottom - pos.top;
-    return new Piece((left - base.left) / view.scaleX, (pos.top - base.top + h * (1 - hCoeff)) / view.scaleY, h * hCoeff / view.scaleY, style.fontFamily, style.fontSize, style.fontWeight, style.color, primary ? "cm-fat-cursor cm-cursor-primary" : "cm-fat-cursor cm-cursor-secondary", letter, hCoeff != 1);
+    return new Piece((left2 - base.left) / view.scaleX, (pos.top - base.top + h * (1 - hCoeff)) / view.scaleY, h * hCoeff / view.scaleY, style.fontFamily, style.fontSize, style.fontWeight, style.color, primary ? "cm-fat-cursor cm-cursor-primary" : "cm-fat-cursor cm-cursor-secondary", letter, hCoeff != 1);
   } else {
     return null;
   }
@@ -96789,9 +97354,9 @@ var init_dist = __esm({
       };
     })();
     Piece = class {
-      constructor(left, top, height, fontFamily, fontSize, fontWeight, color2, className, letter, partial) {
-        this.left = left;
-        this.top = top;
+      constructor(left2, top2, height, fontFamily, fontSize, fontWeight, color2, className, letter, partial) {
+        this.left = left2;
+        this.top = top2;
         this.height = height;
         this.fontFamily = fontFamily;
         this.fontSize = fontSize;
@@ -97225,10 +97790,10 @@ var import_obsidian4 = require("obsidian");
 // src/new-diagram.ts
 var import_obsidian = require("obsidian");
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RKBCKCSF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ZMMYCERO.js
 init_chunk_6KFWC4CO();
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-U7VO6JAA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U7VO6JAA.js
 init_chunk_5WRI5ZAA();
 var require_lz_string = __commonJS2({
   "node_modules/.pnpm/lz-string@1.5.0/node_modules/lz-string/libs/lz-string.js"(exports, module2) {
@@ -97723,8 +98288,8 @@ function encodeDiagramUrl(dsl, options) {
   return { url: `${baseUrl}?${hash}#${hash}` };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-RKBCKCSF.js
-init_chunk_XKKH2DPG();
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ZMMYCERO.js
+init_chunk_GDGOVO2I();
 init_chunk_4ASYQ347();
 var DOCS_BASE = "https://diagrammo.app/docs";
 function docsLink(source) {
@@ -98082,10 +98647,10 @@ function computeBBox(svg) {
       })();
       const w2 = text.length * fontSize * 0.5;
       const anchor = tag.match(/\btext-anchor="([^"]*)"/)?.[1] ?? "start";
-      const left = anchor === "middle" ? x3 - w2 / 2 : anchor === "end" ? x3 - w2 : x3;
-      const right = anchor === "middle" ? x3 + w2 / 2 : anchor === "end" ? x3 : x3 + w2;
-      push(left, y2 - fontSize * 0.9);
-      push(right, y2 + fontSize * 0.25);
+      const left2 = anchor === "middle" ? x3 - w2 / 2 : anchor === "end" ? x3 - w2 : x3;
+      const right2 = anchor === "middle" ? x3 + w2 / 2 : anchor === "end" ? x3 : x3 + w2;
+      push(left2, y2 - fontSize * 0.9);
+      push(right2, y2 + fontSize * 0.25);
     }
   }
   for (const m of svg.matchAll(/<path\b[^>]*?>/g)) {
@@ -98117,23 +98682,23 @@ function computeBBox(svg) {
   return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/index.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/index.js
 init_chunk_4B5YISOR();
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/chunk-QZYGRDMM.js
-init_chunk_QQXFYTLC();
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2JMNOEAU.js
+init_chunk_BR2VSKHI();
 init_chunk_VHO3YBTB();
-init_chunk_ZP265ICS();
+init_chunk_HIMDUQT7();
 init_chunk_YYVTBZZC();
-init_chunk_ADYKAKE3();
-init_chunk_US3P2DQO();
+init_chunk_CQ7Y3O67();
+init_chunk_6VJCURWU();
 init_chunk_6KFWC4CO();
-init_chunk_XKKH2DPG();
+init_chunk_GDGOVO2I();
 init_chunk_R3XI2VC7();
 init_chunk_4ASYQ347();
-init_chunk_JYDMBWRP();
-init_chunk_JR7Q6GHE();
-init_chunk_4W2PE66Q();
+init_chunk_42IT4BG2();
+init_chunk_D5FANMSG();
+init_chunk_OLMWTJVU();
 init_src7();
 init_src9();
 init_src3();
@@ -98151,12 +98716,12 @@ function resolveVerticalCollisions(items, minGap, maxY) {
   let prevBottom = -Infinity;
   for (const item of sorted) {
     const halfH = item.height / 2;
-    let top = Math.max(item.naturalY - halfH, prevBottom + minGap);
+    let top2 = Math.max(item.naturalY - halfH, prevBottom + minGap);
     if (maxY !== void 0) {
-      top = Math.min(top, maxY - item.height);
+      top2 = Math.min(top2, maxY - item.height);
     }
-    adjustedY[item.idx] = top + halfH;
-    prevBottom = top + item.height;
+    adjustedY[item.idx] = top2 + halfH;
+    prevBottom = top2 + item.height;
   }
   return adjustedY;
 }
@@ -99184,8 +99749,8 @@ function renderVenn(container, parsed, palette, _isDark, onClickItem, exportDims
     const cci = circles[ci];
     const dy = py - cci.y;
     const halfChord = Math.sqrt(Math.max(0, cci.r * cci.r - dy * dy));
-    let left = cci.x - halfChord;
-    let right = cci.x + halfChord;
+    let left2 = cci.x - halfChord;
+    let right2 = cci.x + halfChord;
     for (let j2 = 0; j2 < n; j2++) {
       if (j2 === ci) continue;
       const cj = circles[j2];
@@ -99194,11 +99759,11 @@ function renderVenn(container, parsed, palette, _isDark, onClickItem, exportDims
       const hc = Math.sqrt(cj.r * cj.r - djy * djy);
       const jLeft = cj.x - hc;
       const jRight = cj.x + hc;
-      if (jLeft <= left && jRight >= right) return 0;
-      if (jLeft <= left && jRight > left) left = jRight;
-      if (jRight >= right && jLeft < right) right = jLeft;
+      if (jLeft <= left2 && jRight >= right2) return 0;
+      if (jLeft <= left2 && jRight > left2) left2 = jRight;
+      if (jRight >= right2 && jLeft < right2) right2 = jLeft;
     }
-    return Math.max(0, right - left);
+    return Math.max(0, right2 - left2);
   }
   const MIN_FONT = ctx.text(10);
   const MAX_FONT = ctx.text(22);
@@ -99933,13 +100498,13 @@ function resolveArcChordOverride(content, detectedType, palette) {
 }
 async function renderForExport(content, theme, palette, viewState, options) {
   const exportMode = options?.exportMode ?? false;
-  const { parseDgmoChartType: parseDgmoChartType2 } = await Promise.resolve().then(() => (init_dgmo_router_T4HGLIGA(), dgmo_router_T4HGLIGA_exports));
+  const { parseDgmoChartType: parseDgmoChartType2 } = await Promise.resolve().then(() => (init_dgmo_router_GSWUPLP2(), dgmo_router_GSWUPLP2_exports));
   const detectedTypeRaw = parseDgmoChartType2(content);
   const override = resolveArcChordOverride(content, detectedTypeRaw, palette);
   const renderContent = override?.content ?? content;
   const detectedType = override?.type ?? detectedTypeRaw;
   if (detectedType !== null) {
-    const { supportsD3DataChart: supportsD3DataChart2, renderDataChartD3: renderDataChartD32 } = await Promise.resolve().then(() => (init_charts_d3_KZ6V4OP2(), charts_d3_KZ6V4OP2_exports));
+    const { supportsD3DataChart: supportsD3DataChart2, renderDataChartD3: renderDataChartD32 } = await Promise.resolve().then(() => (init_charts_d3_D67V6KHE(), charts_d3_D67V6KHE_exports));
     if (supportsD3DataChart2(detectedType)) {
       return renderDataChartD32(renderContent, theme, palette);
     }
@@ -99961,8 +100526,8 @@ function ctxTagOverride(ctx) {
 }
 async function exportEventLine(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseEventLine: parseEventLine2 } = await Promise.resolve().then(() => (init_parser_2AXPSKWB(), parser_2AXPSKWB_exports));
-  const { renderEventLineForExport: renderEventLineForExport2 } = await Promise.resolve().then(() => (init_renderer_HTDS4FED(), renderer_HTDS4FED_exports));
+  const { parseEventLine: parseEventLine2 } = await Promise.resolve().then(() => (init_parser_GGCDY65M(), parser_GGCDY65M_exports));
+  const { renderEventLineForExport: renderEventLineForExport2 } = await Promise.resolve().then(() => (init_renderer_YVCD55ZX(), renderer_YVCD55ZX_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseEventLine2(content, effectivePalette);
   if (parsed.error || parsed.events.length === 0) return "";
@@ -99980,8 +100545,8 @@ async function exportEventLine(ctx) {
 }
 async function exportBody(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseBody: parseBody2 } = await Promise.resolve().then(() => (init_parser_OOYNI2UT(), parser_OOYNI2UT_exports));
-  const { renderBodyForExport: renderBodyForExport2 } = await Promise.resolve().then(() => (init_renderer_W6I6T2TA(), renderer_W6I6T2TA_exports));
+  const { parseBody: parseBody2 } = await Promise.resolve().then(() => (init_parser_RBNOWHGM(), parser_RBNOWHGM_exports));
+  const { renderBodyForExport: renderBodyForExport2 } = await Promise.resolve().then(() => (init_renderer_M6AFKVLS(), renderer_M6AFKVLS_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseBody2(content, effectivePalette);
   if (parsed.error) return "";
@@ -99998,8 +100563,8 @@ async function exportBody(ctx) {
 }
 async function exportVersionControl(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseVersionControl: parseVersionControl2 } = await Promise.resolve().then(() => (init_parser_DM2APTKB(), parser_DM2APTKB_exports));
-  const { renderVersionControlForExport: renderVersionControlForExport2 } = await Promise.resolve().then(() => (init_renderer_QZESC66H(), renderer_QZESC66H_exports));
+  const { parseVersionControl: parseVersionControl2 } = await Promise.resolve().then(() => (init_parser_4TX6U4ZU(), parser_4TX6U4ZU_exports));
+  const { renderVersionControlForExport: renderVersionControlForExport2 } = await Promise.resolve().then(() => (init_renderer_RJT3MOUU(), renderer_RJT3MOUU_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseVersionControl2(content, effectivePalette);
   if (parsed.error || parsed.nodes.length === 0) return "";
@@ -100023,10 +100588,10 @@ function unionHiddenAttributes(hideOption, ha) {
 }
 async function exportOrg(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseOrg: parseOrg2 } = await Promise.resolve().then(() => (init_parser_XDSPOXSE(), parser_XDSPOXSE_exports));
-  const { layoutOrg: layoutOrg2 } = await Promise.resolve().then(() => (init_layout_GHWRJKZQ(), layout_GHWRJKZQ_exports));
+  const { parseOrg: parseOrg2 } = await Promise.resolve().then(() => (init_parser_CCAUZLYI(), parser_CCAUZLYI_exports));
+  const { layoutOrg: layoutOrg2 } = await Promise.resolve().then(() => (init_layout_WDXNSQQF(), layout_WDXNSQQF_exports));
   const { collapseOrgTree: collapseOrgTree2 } = await Promise.resolve().then(() => (init_collapse_CLPJD2RL(), collapse_CLPJD2RL_exports));
-  const { renderOrg: renderOrg2 } = await Promise.resolve().then(() => (init_renderer_BEW3AYFT(), renderer_BEW3AYFT_exports));
+  const { renderOrg: renderOrg2 } = await Promise.resolve().then(() => (init_renderer_J5MMVCGN(), renderer_J5MMVCGN_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const orgParsed = parseOrg2(content, effectivePalette);
@@ -100072,10 +100637,10 @@ async function exportOrg(ctx) {
 }
 async function exportSitemap(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseSitemap: parseSitemap2 } = await Promise.resolve().then(() => (init_parser_S6NWSIJO(), parser_S6NWSIJO_exports));
-  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_UTMEVFHN(), layout_UTMEVFHN_exports));
+  const { parseSitemap: parseSitemap2 } = await Promise.resolve().then(() => (init_parser_5UZWYSIV(), parser_5UZWYSIV_exports));
+  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_A5UVXINF(), layout_A5UVXINF_exports));
   const { collapseSitemapTree: collapseSitemapTree2 } = await Promise.resolve().then(() => (init_collapse_ZWUFFCK2(), collapse_ZWUFFCK2_exports));
-  const { renderSitemap: renderSitemap2 } = await Promise.resolve().then(() => (init_renderer_IRAFJNTK(), renderer_IRAFJNTK_exports));
+  const { renderSitemap: renderSitemap2 } = await Promise.resolve().then(() => (init_renderer_CRAIC4ER(), renderer_CRAIC4ER_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const sitemapParsed = parseSitemap2(content, effectivePalette);
@@ -100103,7 +100668,7 @@ async function exportSitemap(ctx) {
   const {
     LEGEND_HEIGHT: SITEMAP_LEGEND_HEIGHT,
     LEGEND_GROUP_GAP: SITEMAP_LEGEND_GROUP_GAP
-  } = await Promise.resolve().then(() => (init_legend_constants_B77VKB3R(), legend_constants_B77VKB3R_exports));
+  } = await Promise.resolve().then(() => (init_legend_constants_QQU3QYBF(), legend_constants_QQU3QYBF_exports));
   const suppressedLegendBand = sitemapLayout.legend.length > 0 && effectiveParsed.options["no-legend"] === "on" ? SITEMAP_LEGEND_HEIGHT + SITEMAP_LEGEND_GROUP_GAP : 0;
   const exportWidth = sitemapLayout.width + PADDING7 * 2;
   const exportHeight = sitemapLayout.height + PADDING7 * 2 + titleOffset - suppressedLegendBand;
@@ -100124,8 +100689,8 @@ async function exportSitemap(ctx) {
 }
 async function exportKanban(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseKanban: parseKanban2 } = await Promise.resolve().then(() => (init_parser_TVAMC7CQ(), parser_TVAMC7CQ_exports));
-  const { renderKanban: renderKanban2 } = await Promise.resolve().then(() => (init_renderer_Q5P72O4A(), renderer_Q5P72O4A_exports));
+  const { parseKanban: parseKanban2 } = await Promise.resolve().then(() => (init_parser_IPBEW2DG(), parser_IPBEW2DG_exports));
+  const { renderKanban: renderKanban2 } = await Promise.resolve().then(() => (init_renderer_5CU6GYF2(), renderer_5CU6GYF2_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const kanbanParsed = parseKanban2(content, effectivePalette);
   if (kanbanParsed.error || kanbanParsed.columns.length === 0) return "";
@@ -100156,9 +100721,9 @@ async function exportKanban(ctx) {
 }
 async function exportClass(ctx) {
   const { content, theme, palette, exportMode } = ctx;
-  const { parseClassDiagram: parseClassDiagram2 } = await Promise.resolve().then(() => (init_parser_SFEK6Q7Z(), parser_SFEK6Q7Z_exports));
-  const { layoutClassDiagram: layoutClassDiagram2 } = await Promise.resolve().then(() => (init_layout_SP7HJWKA(), layout_SP7HJWKA_exports));
-  const { renderClassDiagram: renderClassDiagram2 } = await Promise.resolve().then(() => (init_renderer_MFTTFW32(), renderer_MFTTFW32_exports));
+  const { parseClassDiagram: parseClassDiagram2 } = await Promise.resolve().then(() => (init_parser_HMQZPPOK(), parser_HMQZPPOK_exports));
+  const { layoutClassDiagram: layoutClassDiagram2 } = await Promise.resolve().then(() => (init_layout_UFZQI6SX(), layout_UFZQI6SX_exports));
+  const { renderClassDiagram: renderClassDiagram2 } = await Promise.resolve().then(() => (init_renderer_4VLQKKTV(), renderer_4VLQKKTV_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const classParsed = parseClassDiagram2(content, effectivePalette);
   if (classParsed.error || classParsed.classes.length === 0) return "";
@@ -100183,9 +100748,9 @@ async function exportClass(ctx) {
 }
 async function exportEr(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseERDiagram: parseERDiagram2 } = await Promise.resolve().then(() => (init_parser_JBEWNLAV(), parser_JBEWNLAV_exports));
-  const { layoutERDiagram: layoutERDiagram2 } = await Promise.resolve().then(() => (init_layout_NF4EWFLT(), layout_NF4EWFLT_exports));
-  const { renderERDiagram: renderERDiagram2 } = await Promise.resolve().then(() => (init_renderer_V72VJIGG(), renderer_V72VJIGG_exports));
+  const { parseERDiagram: parseERDiagram2 } = await Promise.resolve().then(() => (init_parser_Q62VR2UJ(), parser_Q62VR2UJ_exports));
+  const { layoutERDiagram: layoutERDiagram2 } = await Promise.resolve().then(() => (init_layout_3XFPPFXI(), layout_3XFPPFXI_exports));
+  const { renderERDiagram: renderERDiagram2 } = await Promise.resolve().then(() => (init_renderer_J5TL5ZX4(), renderer_J5TL5ZX4_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const erParsed = parseERDiagram2(content, effectivePalette);
   if (erParsed.error || erParsed.tables.length === 0) return "";
@@ -100217,14 +100782,14 @@ async function exportEr(ctx) {
 }
 async function exportSketch(ctx) {
   const { content, theme, viewState, exportMode } = ctx;
-  const { parseSketch: parseSketch2 } = await Promise.resolve().then(() => (init_parser_M5BUHULF(), parser_M5BUHULF_exports));
+  const { parseSketch: parseSketch2 } = await Promise.resolve().then(() => (init_parser_QEWSTNEJ(), parser_QEWSTNEJ_exports));
   const effectivePalette = await resolveExportPalette(theme, ctx.palette);
   const parsed = parseSketch2(content, effectivePalette);
   if (parsed.error || parsed.nodes.length === 0 && parsed.boxes.length === 0) {
     return "";
   }
-  const { layoutSketch: layoutSketch2 } = await Promise.resolve().then(() => (init_layout_CB3XWCOI(), layout_CB3XWCOI_exports));
-  const { renderSketchForExport: renderSketchForExport2 } = await Promise.resolve().then(() => (init_renderer_C3UYAXA6(), renderer_C3UYAXA6_exports));
+  const { layoutSketch: layoutSketch2 } = await Promise.resolve().then(() => (init_layout_NX37NSRY(), layout_NX37NSRY_exports));
+  const { renderSketchForExport: renderSketchForExport2 } = await Promise.resolve().then(() => (init_renderer_DZ5N6BHW(), renderer_DZ5N6BHW_exports));
   const collapsedBoxes = viewState?.cg ? new Set(viewState.cg) : void 0;
   const skLayout = layoutSketch2(parsed, {
     ...collapsedBoxes !== void 0 && { collapsedBoxes }
@@ -100251,7 +100816,7 @@ async function exportSketch(ctx) {
 }
 async function exportBoxesAndLines(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseBoxesAndLines: parseBoxesAndLines2 } = await Promise.resolve().then(() => (init_parser_QKRBSQLJ(), parser_QKRBSQLJ_exports));
+  const { parseBoxesAndLines: parseBoxesAndLines2 } = await Promise.resolve().then(() => (init_parser_PQXN6SBB(), parser_PQXN6SBB_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const blParsed = parseBoxesAndLines2(content, effectivePalette);
   if (blParsed.error || blParsed.nodes.length === 0) return "";
@@ -100262,8 +100827,8 @@ async function exportBoxesAndLines(ctx) {
       blHiddenTagValues.set(k2, new Set(v2));
     }
   }
-  const { renderBoxesAndLinesForExport: renderBoxesAndLinesForExport2 } = await Promise.resolve().then(() => (init_renderer_UZIU4AHK(), renderer_UZIU4AHK_exports));
-  const { layoutBoxesAndLines: layoutBoxesAndLines2 } = await Promise.resolve().then(() => (init_layout_UR7CYAHL(), layout_UR7CYAHL_exports));
+  const { renderBoxesAndLinesForExport: renderBoxesAndLinesForExport2 } = await Promise.resolve().then(() => (init_renderer_52S6JM5R(), renderer_52S6JM5R_exports));
+  const { layoutBoxesAndLines: layoutBoxesAndLines2 } = await Promise.resolve().then(() => (init_layout_2BJDECLZ(), layout_2BJDECLZ_exports));
   const blLayout = await layoutBoxesAndLines2(blParsed);
   const PADDING7 = 20;
   const titleOffset = blParsed.title ? 40 : 0;
@@ -100292,9 +100857,9 @@ async function exportBoxesAndLines(ctx) {
 }
 async function exportSwimlane(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseSwimlane: parseSwimlane2 } = await Promise.resolve().then(() => (init_parser_GOUGUTPU(), parser_GOUGUTPU_exports));
-  const { layoutSwimlane: layoutSwimlane2 } = await Promise.resolve().then(() => (init_layout_FNZDJGKF(), layout_FNZDJGKF_exports));
-  const { renderSwimlaneForExport: renderSwimlaneForExport2 } = await Promise.resolve().then(() => (init_renderer_5PODNLYP(), renderer_5PODNLYP_exports));
+  const { parseSwimlane: parseSwimlane2 } = await Promise.resolve().then(() => (init_parser_PEBXIOPX(), parser_PEBXIOPX_exports));
+  const { layoutSwimlane: layoutSwimlane2 } = await Promise.resolve().then(() => (init_layout_OHAIIXBC(), layout_OHAIIXBC_exports));
+  const { renderSwimlaneForExport: renderSwimlaneForExport2 } = await Promise.resolve().then(() => (init_renderer_YWYX6WAI(), renderer_YWYX6WAI_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const swimParsed = parseSwimlane2(content, effectivePalette);
   if (swimParsed.error || swimParsed.nodes.length === 0) return "";
@@ -100324,9 +100889,9 @@ async function exportSwimlane(ctx) {
 }
 async function exportFamily(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseFamily: parseFamily2 } = await Promise.resolve().then(() => (init_parser_7LYJFZCP(), parser_7LYJFZCP_exports));
+  const { parseFamily: parseFamily2 } = await Promise.resolve().then(() => (init_parser_6CM27UPA(), parser_6CM27UPA_exports));
   const { layoutFamily: layoutFamily2 } = await Promise.resolve().then(() => (init_layout_CAAKQX4W(), layout_CAAKQX4W_exports));
-  const { renderFamilyForExport: renderFamilyForExport2 } = await Promise.resolve().then(() => (init_renderer_VEGOEZOI(), renderer_VEGOEZOI_exports));
+  const { renderFamilyForExport: renderFamilyForExport2 } = await Promise.resolve().then(() => (init_renderer_CB2DOQ2O(), renderer_CB2DOQ2O_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseFamily2(content, effectivePalette);
   if (parsed.error || parsed.persons.size === 0) return "";
@@ -100356,10 +100921,10 @@ async function exportFamily(ctx) {
 }
 async function exportMindmap(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseMindmap: parseMindmap2 } = await Promise.resolve().then(() => (init_parser_SZHGLOOZ(), parser_SZHGLOOZ_exports));
-  const { layoutMindmap: layoutMindmap2 } = await Promise.resolve().then(() => (init_layout_AUKTWGYL(), layout_AUKTWGYL_exports));
+  const { parseMindmap: parseMindmap2 } = await Promise.resolve().then(() => (init_parser_SJ7ECFAP(), parser_SJ7ECFAP_exports));
+  const { layoutMindmap: layoutMindmap2 } = await Promise.resolve().then(() => (init_layout_HIK4ZJFQ(), layout_HIK4ZJFQ_exports));
   const { collapseMindmapTree: collapseMindmapTree2 } = await Promise.resolve().then(() => (init_collapse_SLINJQW6(), collapse_SLINJQW6_exports));
-  const { renderMindmap: renderMindmap2 } = await Promise.resolve().then(() => (init_renderer_G5ESLCJB(), renderer_G5ESLCJB_exports));
+  const { renderMindmap: renderMindmap2 } = await Promise.resolve().then(() => (init_renderer_3IETIUZB(), renderer_3IETIUZB_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const mmParsed = parseMindmap2(content, effectivePalette);
@@ -100409,9 +100974,9 @@ async function exportMindmap(ctx) {
 }
 async function exportWireframe(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseWireframe: parseWireframe2 } = await Promise.resolve().then(() => (init_parser_2LF33IS2(), parser_2LF33IS2_exports));
+  const { parseWireframe: parseWireframe2 } = await Promise.resolve().then(() => (init_parser_MH62NYKM(), parser_MH62NYKM_exports));
   const { layoutWireframe: layoutWireframe2 } = await Promise.resolve().then(() => (init_layout_5XGYNYVT(), layout_5XGYNYVT_exports));
-  const { renderWireframe: renderWireframe2 } = await Promise.resolve().then(() => (init_renderer_5EMHIQL5(), renderer_5EMHIQL5_exports));
+  const { renderWireframe: renderWireframe2 } = await Promise.resolve().then(() => (init_renderer_SYT4L7GE(), renderer_SYT4L7GE_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const wireframeParsed = parseWireframe2(content);
   if (wireframeParsed.error || wireframeParsed.roots.length === 0 && wireframeParsed.modals.length === 0)
@@ -100434,14 +100999,14 @@ async function exportWireframe(ctx) {
 }
 async function exportC4(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseC4: parseC42 } = await Promise.resolve().then(() => (init_parser_LUXS7J32(), parser_LUXS7J32_exports));
+  const { parseC4: parseC42 } = await Promise.resolve().then(() => (init_parser_VVTCMQWY(), parser_VVTCMQWY_exports));
   const {
     layoutC4Context: layoutC4Context2,
     layoutC4Containers: layoutC4Containers2,
     layoutC4Components: layoutC4Components2,
     layoutC4Deployment: layoutC4Deployment2
-  } = await Promise.resolve().then(() => (init_layout_LGXOKUCD(), layout_LGXOKUCD_exports));
-  const { renderC4Context: renderC4Context2, renderC4Containers: renderC4Containers2 } = await Promise.resolve().then(() => (init_renderer_IO4KCFVL(), renderer_IO4KCFVL_exports));
+  } = await Promise.resolve().then(() => (init_layout_SNIEAZ2I(), layout_SNIEAZ2I_exports));
+  const { renderC4Context: renderC4Context2, renderC4Containers: renderC4Containers2 } = await Promise.resolve().then(() => (init_renderer_OZIPP7VF(), renderer_OZIPP7VF_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const c4Parsed = parseC42(content, effectivePalette);
   if (c4Parsed.error || c4Parsed.elements.length === 0) return "";
@@ -100475,9 +101040,9 @@ async function exportC4(ctx) {
 }
 async function exportFlowchart(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseFlowchart: parseFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_parser_M7KKTLX7(), flowchart_parser_M7KKTLX7_exports));
-  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_3ZZBKUQC(), layout_3ZZBKUQC_exports));
-  const { renderFlowchart: renderFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_renderer_FFEQFQEU(), flowchart_renderer_FFEQFQEU_exports));
+  const { parseFlowchart: parseFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_parser_DA3V2SLH(), flowchart_parser_DA3V2SLH_exports));
+  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_UXMNKETK(), layout_UXMNKETK_exports));
+  const { renderFlowchart: renderFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_renderer_UQVXOUW4(), flowchart_renderer_UQVXOUW4_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const fcParsed = parseFlowchart2(content, effectivePalette);
   if (fcParsed.error || fcParsed.nodes.length === 0) return "";
@@ -100496,10 +101061,10 @@ async function exportFlowchart(ctx) {
 }
 async function exportInfra(ctx) {
   const { content, theme, palette, viewState } = ctx;
-  const { parseInfra: parseInfra2 } = await Promise.resolve().then(() => (init_parser_TO7IENWL(), parser_TO7IENWL_exports));
+  const { parseInfra: parseInfra2 } = await Promise.resolve().then(() => (init_parser_JWAGGYLL(), parser_JWAGGYLL_exports));
   const { computeInfra: computeInfra2 } = await Promise.resolve().then(() => (init_compute_JAP5E2E4(), compute_JAP5E2E4_exports));
   const { layoutInfra: layoutInfra2 } = await Promise.resolve().then(() => (init_layout_HBWT2G23(), layout_HBWT2G23_exports));
-  const { renderInfra: renderInfra2, computeInfraLegendGroups: computeInfraLegendGroups2 } = await Promise.resolve().then(() => (init_renderer_TKTM2SL4(), renderer_TKTM2SL4_exports));
+  const { renderInfra: renderInfra2, computeInfraLegendGroups: computeInfraLegendGroups2 } = await Promise.resolve().then(() => (init_renderer_P7O6OUYC(), renderer_P7O6OUYC_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const infraParsed = parseInfra2(content);
   if (infraParsed.error || infraParsed.nodes.length === 0) return "";
@@ -100546,10 +101111,10 @@ async function exportInfra(ctx) {
 }
 async function exportPert(ctx) {
   const { content, theme, palette, viewState } = ctx;
-  const { parsePert: parsePert2 } = await Promise.resolve().then(() => (init_parser_DYYTPLBL(), parser_DYYTPLBL_exports));
-  const { analyzePert: analyzePert2 } = await Promise.resolve().then(() => (init_analyzer_TDN5KJFP(), analyzer_TDN5KJFP_exports));
+  const { parsePert: parsePert2 } = await Promise.resolve().then(() => (init_parser_4ZIJDGPG(), parser_4ZIJDGPG_exports));
+  const { analyzePert: analyzePert2 } = await Promise.resolve().then(() => (init_analyzer_HQUXKZ5J(), analyzer_HQUXKZ5J_exports));
   const { layoutPert: layoutPert2 } = await Promise.resolve().then(() => (init_layout_AZUPXWSK(), layout_AZUPXWSK_exports));
-  const { renderPert: renderPert2, measurePertAnalysisBlock: measurePertAnalysisBlock2 } = await Promise.resolve().then(() => (init_renderer_TXTTV4HA(), renderer_TXTTV4HA_exports));
+  const { renderPert: renderPert2, measurePertAnalysisBlock: measurePertAnalysisBlock2 } = await Promise.resolve().then(() => (init_renderer_2NU7M5PN(), renderer_2NU7M5PN_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const pertParsed = parsePert2(content, { palette: effectivePalette });
   if (pertParsed.error || pertParsed.activities.length === 0) return "";
@@ -100587,9 +101152,9 @@ async function exportPert(ctx) {
 }
 async function exportGantt(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseGantt: parseGantt2 } = await Promise.resolve().then(() => (init_parser_PVBUAVRR(), parser_PVBUAVRR_exports));
-  const { calculateSchedule: calculateSchedule2 } = await Promise.resolve().then(() => (init_calculator_VBIT6GQF(), calculator_VBIT6GQF_exports));
-  const { renderGantt: renderGantt2 } = await Promise.resolve().then(() => (init_renderer_SIWEEWJ5(), renderer_SIWEEWJ5_exports));
+  const { parseGantt: parseGantt2 } = await Promise.resolve().then(() => (init_parser_LNEAHGXF(), parser_LNEAHGXF_exports));
+  const { calculateSchedule: calculateSchedule2 } = await Promise.resolve().then(() => (init_calculator_BBKAAQGD(), calculator_BBKAAQGD_exports));
+  const { renderGantt: renderGantt2 } = await Promise.resolve().then(() => (init_renderer_I5MAFUKX(), renderer_I5MAFUKX_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const ganttParsed = parseGantt2(content, effectivePalette);
   const resolved = calculateSchedule2(ganttParsed);
@@ -100630,9 +101195,9 @@ async function exportGantt(ctx) {
 }
 async function exportState(ctx) {
   const { content, theme, palette, viewState } = ctx;
-  const { parseState: parseState2 } = await Promise.resolve().then(() => (init_state_parser_KIPZGIB4(), state_parser_KIPZGIB4_exports));
-  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_3ZZBKUQC(), layout_3ZZBKUQC_exports));
-  const { renderState: renderState2 } = await Promise.resolve().then(() => (init_state_renderer_U6OSJG52(), state_renderer_U6OSJG52_exports));
+  const { parseState: parseState2 } = await Promise.resolve().then(() => (init_state_parser_NQGVYSM3(), state_parser_NQGVYSM3_exports));
+  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_UXMNKETK(), layout_UXMNKETK_exports));
+  const { renderState: renderState2 } = await Promise.resolve().then(() => (init_state_renderer_NKV5B3KH(), state_renderer_NKV5B3KH_exports));
   const { collapseStateGroups: collapseStateGroups2 } = await Promise.resolve().then(() => (init_state_collapse_HCGD6IVJ(), state_collapse_HCGD6IVJ_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const stateParsed = parseState2(content, effectivePalette);
@@ -100669,8 +101234,8 @@ async function exportState(ctx) {
 }
 async function exportTechRadar(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseTechRadar: parseTechRadar2 } = await Promise.resolve().then(() => (init_parser_HGVUVD6J(), parser_HGVUVD6J_exports));
-  const { renderTechRadarForExport: renderTechRadarForExport2 } = await Promise.resolve().then(() => (init_renderer_WSHJRR2T(), renderer_WSHJRR2T_exports));
+  const { parseTechRadar: parseTechRadar2 } = await Promise.resolve().then(() => (init_parser_O5XCVGZG(), parser_O5XCVGZG_exports));
+  const { renderTechRadarForExport: renderTechRadarForExport2 } = await Promise.resolve().then(() => (init_renderer_QRX7Q2YN(), renderer_QRX7Q2YN_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const radarParsed = parseTechRadar2(content);
   if (radarParsed.error || radarParsed.quadrants.length === 0) return "";
@@ -100690,9 +101255,9 @@ async function exportTechRadar(ctx) {
 }
 async function exportJourneyMap(ctx) {
   const { content, theme, palette, exportMode } = ctx;
-  const { parseJourneyMap: parseJourneyMap2 } = await Promise.resolve().then(() => (init_parser_JMXSQY3K(), parser_JMXSQY3K_exports));
-  const { renderJourneyMap: renderJourneyMap2 } = await Promise.resolve().then(() => (init_renderer_3PWLOJPD(), renderer_3PWLOJPD_exports));
-  const { layoutJourneyMap: layoutJourneyMap2 } = await Promise.resolve().then(() => (init_layout_CRLTSFYQ(), layout_CRLTSFYQ_exports));
+  const { parseJourneyMap: parseJourneyMap2 } = await Promise.resolve().then(() => (init_parser_KTVDCWHG(), parser_KTVDCWHG_exports));
+  const { renderJourneyMap: renderJourneyMap2 } = await Promise.resolve().then(() => (init_renderer_O4ECS2BI(), renderer_O4ECS2BI_exports));
+  const { layoutJourneyMap: layoutJourneyMap2 } = await Promise.resolve().then(() => (init_layout_QRVYYYZ3(), layout_QRVYYYZ3_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const jmParsed = parseJourneyMap2(content, effectivePalette);
   if (jmParsed.error || jmParsed.phases.length === 0 && jmParsed.steps.length === 0)
@@ -100712,8 +101277,8 @@ async function exportJourneyMap(ctx) {
 }
 async function exportCycle(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseCycle: parseCycle2 } = await Promise.resolve().then(() => (init_parser_62OHBRU5(), parser_62OHBRU5_exports));
-  const { renderCycleForExport: renderCycleForExport2 } = await Promise.resolve().then(() => (init_renderer_MPXI4FVL(), renderer_MPXI4FVL_exports));
+  const { parseCycle: parseCycle2 } = await Promise.resolve().then(() => (init_parser_AYZTKZC3(), parser_AYZTKZC3_exports));
+  const { renderCycleForExport: renderCycleForExport2 } = await Promise.resolve().then(() => (init_renderer_JNC6VJMN(), renderer_JNC6VJMN_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const cycleParsed = parseCycle2(content);
   if (cycleParsed.error || cycleParsed.nodes.length === 0) return "";
@@ -100731,10 +101296,10 @@ async function exportCycle(ctx) {
 }
 async function exportMap(ctx) {
   const { content, theme, palette, options } = ctx;
-  const { parseMap: parseMap2 } = await Promise.resolve().then(() => (init_parser_MESRHUS4(), parser_MESRHUS4_exports));
-  const { resolveMap: resolveMap2 } = await Promise.resolve().then(() => (init_resolver_ZSFQQRTH(), resolver_ZSFQQRTH_exports));
-  const { renderMapForExport: renderMapForExport2 } = await Promise.resolve().then(() => (init_renderer_S4XB3JR2(), renderer_S4XB3JR2_exports));
-  const { mapExportDimensions: mapExportDimensions2 } = await Promise.resolve().then(() => (init_dimensions_3JINHSYK(), dimensions_3JINHSYK_exports));
+  const { parseMap: parseMap2 } = await Promise.resolve().then(() => (init_parser_OPOGIKFR(), parser_OPOGIKFR_exports));
+  const { resolveMap: resolveMap2 } = await Promise.resolve().then(() => (init_resolver_W3WKLWDP(), resolver_W3WKLWDP_exports));
+  const { renderMapForExport: renderMapForExport2 } = await Promise.resolve().then(() => (init_renderer_WWC5VGHH(), renderer_WWC5VGHH_exports));
+  const { mapExportDimensions: mapExportDimensions2 } = await Promise.resolve().then(() => (init_dimensions_PLECMFTR(), dimensions_PLECMFTR_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const mapParsed = parseMap2(content, effectivePalette);
   let mapData2 = options?.mapData;
@@ -100767,8 +101332,8 @@ async function exportMap(ctx) {
 }
 async function exportPyramid(ctx) {
   const { content, theme, palette } = ctx;
-  const { parsePyramid: parsePyramid2 } = await Promise.resolve().then(() => (init_parser_IEJD3CZB(), parser_IEJD3CZB_exports));
-  const { renderPyramidForExport: renderPyramidForExport2 } = await Promise.resolve().then(() => (init_renderer_CENXCMWG(), renderer_CENXCMWG_exports));
+  const { parsePyramid: parsePyramid2 } = await Promise.resolve().then(() => (init_parser_73YUU35J(), parser_73YUU35J_exports));
+  const { renderPyramidForExport: renderPyramidForExport2 } = await Promise.resolve().then(() => (init_renderer_KUIZNLAQ(), renderer_KUIZNLAQ_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const pyramidParsed = parsePyramid2(content);
   if (pyramidParsed.error || pyramidParsed.layers.length === 0) return "";
@@ -100784,8 +101349,8 @@ async function exportPyramid(ctx) {
 }
 async function exportRing(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseRing: parseRing2 } = await Promise.resolve().then(() => (init_parser_D2UL2G5U(), parser_D2UL2G5U_exports));
-  const { renderRingForExport: renderRingForExport2 } = await Promise.resolve().then(() => (init_renderer_FXK6ZL3P(), renderer_FXK6ZL3P_exports));
+  const { parseRing: parseRing2 } = await Promise.resolve().then(() => (init_parser_A6M25MLK(), parser_A6M25MLK_exports));
+  const { renderRingForExport: renderRingForExport2 } = await Promise.resolve().then(() => (init_renderer_TOKGYFTG(), renderer_TOKGYFTG_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const ringParsed = parseRing2(content);
   if (ringParsed.error || ringParsed.layers.length === 0) return "";
@@ -100798,14 +101363,14 @@ async function exportRing(ctx) {
 }
 async function exportTreemap(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseTreemap: parseTreemap2 } = await Promise.resolve().then(() => (init_parser_JMXPHNZD(), parser_JMXPHNZD_exports));
+  const { parseTreemap: parseTreemap2 } = await Promise.resolve().then(() => (init_parser_Q3KNFXQR(), parser_Q3KNFXQR_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const treemapParsed = parseTreemap2(content, effectivePalette);
   if (treemapParsed.error || treemapParsed.roots.length === 0) return "";
   const container = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
   const dims = { width: EXPORT_WIDTH, height: EXPORT_HEIGHT };
   if (treemapParsed.options.radial) {
-    const { renderTreemapRadialForExport: renderTreemapRadialForExport2 } = await Promise.resolve().then(() => (init_renderer_radial_AG75PBYD(), renderer_radial_AG75PBYD_exports));
+    const { renderTreemapRadialForExport: renderTreemapRadialForExport2 } = await Promise.resolve().then(() => (init_renderer_radial_QG644QYY(), renderer_radial_QG644QYY_exports));
     renderTreemapRadialForExport2(
       container,
       treemapParsed,
@@ -100814,7 +101379,7 @@ async function exportTreemap(ctx) {
       dims
     );
   } else {
-    const { renderTreemapForExport: renderTreemapForExport2 } = await Promise.resolve().then(() => (init_renderer_CXM3ARYN(), renderer_CXM3ARYN_exports));
+    const { renderTreemapForExport: renderTreemapForExport2 } = await Promise.resolve().then(() => (init_renderer_MLDGFZDW(), renderer_MLDGFZDW_exports));
     renderTreemapForExport2(
       container,
       treemapParsed,
@@ -100827,8 +101392,8 @@ async function exportTreemap(ctx) {
 }
 async function exportBlock(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseBlock: parseBlock2 } = await Promise.resolve().then(() => (init_parser_5GCQFSTQ(), parser_5GCQFSTQ_exports));
-  const { renderBlockForExport: renderBlockForExport2 } = await Promise.resolve().then(() => (init_renderer_FE5M6SEZ(), renderer_FE5M6SEZ_exports));
+  const { parseBlock: parseBlock2 } = await Promise.resolve().then(() => (init_parser_XWNSCDY6(), parser_XWNSCDY6_exports));
+  const { renderBlockForExport: renderBlockForExport2 } = await Promise.resolve().then(() => (init_renderer_Q3A7572V(), renderer_Q3A7572V_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const blockParsed = parseBlock2(content, effectivePalette);
   if (blockParsed.error || blockParsed.top.rows.length === 0) return "";
@@ -100841,8 +101406,8 @@ async function exportBlock(ctx) {
 }
 async function exportGoal(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseGoal: parseGoal2 } = await Promise.resolve().then(() => (init_parser_3QJ2Z4H4(), parser_3QJ2Z4H4_exports));
-  const { renderGoalForExport: renderGoalForExport2 } = await Promise.resolve().then(() => (init_renderer_NVBEMQ6L(), renderer_NVBEMQ6L_exports));
+  const { parseGoal: parseGoal2 } = await Promise.resolve().then(() => (init_parser_DQ2DGDYO(), parser_DQ2DGDYO_exports));
+  const { renderGoalForExport: renderGoalForExport2 } = await Promise.resolve().then(() => (init_renderer_53FU55KK(), renderer_53FU55KK_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseGoal2(content, effectivePalette);
   if (parsed.error) return "";
@@ -100855,8 +101420,8 @@ async function exportGoal(ctx) {
 }
 async function exportCountdown(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseCountdown: parseCountdown2 } = await Promise.resolve().then(() => (init_parser_BMOTF72G(), parser_BMOTF72G_exports));
-  const { renderCountdownForExport: renderCountdownForExport2 } = await Promise.resolve().then(() => (init_renderer_K7XLVPH5(), renderer_K7XLVPH5_exports));
+  const { parseCountdown: parseCountdown2 } = await Promise.resolve().then(() => (init_parser_QN3GJJ3J(), parser_QN3GJJ3J_exports));
+  const { renderCountdownForExport: renderCountdownForExport2 } = await Promise.resolve().then(() => (init_renderer_IWNHBIZ6(), renderer_IWNHBIZ6_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseCountdown2(content, effectivePalette);
   if (parsed.error) return "";
@@ -100869,8 +101434,8 @@ async function exportCountdown(ctx) {
 }
 async function exportClock(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseClock: parseClock2 } = await Promise.resolve().then(() => (init_parser_2AZ2KQTO(), parser_2AZ2KQTO_exports));
-  const { renderClockForExport: renderClockForExport2 } = await Promise.resolve().then(() => (init_renderer_OOGDCR6K(), renderer_OOGDCR6K_exports));
+  const { parseClock: parseClock2 } = await Promise.resolve().then(() => (init_parser_D7YZX3CH(), parser_D7YZX3CH_exports));
+  const { renderClockForExport: renderClockForExport2 } = await Promise.resolve().then(() => (init_renderer_HGWKAXS6(), renderer_HGWKAXS6_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseClock2(content, effectivePalette);
   if (parsed.error) return "";
@@ -100883,8 +101448,8 @@ async function exportClock(ctx) {
 }
 async function exportBracket(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseBracket: parseBracket2 } = await Promise.resolve().then(() => (init_parser_VAW46R57(), parser_VAW46R57_exports));
-  const { renderBracketForExport: renderBracketForExport2, bracketExportDimensions: bracketExportDimensions2 } = await Promise.resolve().then(() => (init_renderer_AQJIQ2XU(), renderer_AQJIQ2XU_exports));
+  const { parseBracket: parseBracket2 } = await Promise.resolve().then(() => (init_parser_WT3DSNPQ(), parser_WT3DSNPQ_exports));
+  const { renderBracketForExport: renderBracketForExport2, bracketExportDimensions: bracketExportDimensions2 } = await Promise.resolve().then(() => (init_renderer_FRBPMKPP(), renderer_FRBPMKPP_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseBracket2(content, effectivePalette);
   if (parsed.error) return "";
@@ -100898,8 +101463,8 @@ async function exportBracket(ctx) {
 }
 async function exportRaci(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseRaci: parseRaci2 } = await Promise.resolve().then(() => (init_parser_CIFLYZYP(), parser_CIFLYZYP_exports));
-  const { renderRaciForExport: renderRaciForExport2 } = await Promise.resolve().then(() => (init_renderer_RDBUXW7P(), renderer_RDBUXW7P_exports));
+  const { parseRaci: parseRaci2 } = await Promise.resolve().then(() => (init_parser_LQDEU22S(), parser_LQDEU22S_exports));
+  const { renderRaciForExport: renderRaciForExport2 } = await Promise.resolve().then(() => (init_renderer_CL4SAUA5(), renderer_CL4SAUA5_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const raciParsed = parseRaci2(content, effectivePalette);
   if (raciParsed.error) return "";
@@ -101031,8 +101596,8 @@ async function exportVisualization(ctx) {
   const effectivePalette = await resolveExportPalette(theme, palette);
   const isDark = ctx.isDark;
   const container = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
-  const { parseSequenceDgmo: parseSequenceDgmo2 } = await Promise.resolve().then(() => (init_parser_SUV52NQW(), parser_SUV52NQW_exports));
-  const { renderSequenceDiagram: renderSequenceDiagram2 } = await Promise.resolve().then(() => (init_renderer_DW6TEBLA(), renderer_DW6TEBLA_exports));
+  const { parseSequenceDgmo: parseSequenceDgmo2 } = await Promise.resolve().then(() => (init_parser_QL2LBPFE(), parser_QL2LBPFE_exports));
+  const { renderSequenceDiagram: renderSequenceDiagram2 } = await Promise.resolve().then(() => (init_renderer_5G3PORFD(), renderer_5G3PORFD_exports));
   const seqParsed = parseSequenceDgmo2(content, effectivePalette);
   if (seqParsed.error || seqParsed.participants.length === 0) return "";
   const collapsedSections = viewState?.cs ? new Set(viewState.cs) : void 0;
@@ -101668,20 +102233,20 @@ async function render(content, options) {
   return { svg, diagnostics: withLegendInlineWarning(diagnostics), chartType: chartType ?? void 0 };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/index.js
-init_chunk_O4CZDTQA();
-init_chunk_NYOOPQFD();
-init_chunk_FBP33UM6();
-init_chunk_2HX6ZGY7();
-init_chunk_MSWIBF6J();
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/index.js
+init_chunk_EEKGMS63();
+init_chunk_VSFAJUEF();
+init_chunk_5VLUAAAE();
+init_chunk_ES3MUYRX();
+init_chunk_D64FRGKU();
 init_chunk_RT7ACF77();
 init_chunk_7TF3QOOD();
-init_chunk_5K5XBEXT();
-init_chunk_3BFXELBL();
-init_chunk_BEOAKGNA();
+init_chunk_DIKIHU52();
+init_chunk_WFX6AUQO();
+init_chunk_I55PVEIX();
 init_chunk_R3XI2VC7();
-init_chunk_WF64MW5G();
-init_chunk_4W2PE66Q();
+init_chunk_RRX4Z4TH();
+init_chunk_OLMWTJVU();
 var ARROW_DIAGNOSTICS = [
   // --- ACTIVE (TD-13): emitted by validateLabelCharacters ---
   {
@@ -101781,7 +102346,10 @@ var UNIVERSAL_DIAGNOSTICS = [
     example: "pie Share\nApples 30\nPears 70"
   },
   // ── Data-chart `title` directive (decision #48) ──
-  TITLE_DIRECTIVE_DX
+  TITLE_DIRECTIVE_DX,
+  // ── Negative value on a magnitude channel (pie/polar-area/radar/funnel/
+  //    sankey/arc/wordcloud/treemap size/map size:/width:) ──
+  NEGATIVE_VALUE_DX
 ];
 var REGISTRY = [
   ...UNIVERSAL_DIAGNOSTICS,
@@ -101836,10 +102404,10 @@ function encodeDiagramUrl2(text, options) {
   return "error" in result && result.error ? null : result.url ?? null;
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/block.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/block.js
 init_chunk_OQKP2X3D();
 init_chunk_DAOFNU6J();
-init_chunk_A2ARDILY();
+init_chunk_3KOPPSUQ();
 var import_lr = require("@lezer/lr");
 var ChartType = 1;
 var TagKeyword = 2;
@@ -102432,12 +103000,12 @@ function highlightedSource(source) {
   return `<pre class="dgmo-pre"><span class="dgmo-code">${inner}</span></pre>`;
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/advanced.js
-init_chunk_EMSOFHEN();
-init_chunk_UXXLE6AH();
-init_chunk_Y4BBGFKY();
-init_chunk_XKKH2DPG();
-init_chunk_IF4KYSJZ();
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/advanced.js
+init_chunk_DNSEG6P2();
+init_chunk_AIH6M5J6();
+init_chunk_YWPWRR7W();
+init_chunk_GDGOVO2I();
+init_chunk_WOMXS5R7();
 var EARTH_R_KM = 6371;
 var DEG = Math.PI / 180;
 var BAND_DEG = 5;
@@ -102499,7 +103067,7 @@ var import_commands2 = require("@codemirror/commands");
 var import_language3 = require("@codemirror/language");
 var import_highlight2 = require("@lezer/highlight");
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/editor.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/editor.js
 var import_language = require("@codemirror/language");
 var import_lr2 = require("@lezer/lr");
 var import_highlight = require("@lezer/highlight");
@@ -104329,7 +104897,7 @@ function openBlockInEditor(editor, paletteId, isDark) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/countdown.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/countdown.js
 var DAY_MS3 = 864e5;
 var WEEK_MS2 = 7 * DAY_MS3;
 var ZONE_WD2 = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -104891,7 +105459,7 @@ function tickCountdowns(root2 = document) {
   root2.querySelectorAll("[data-dgmo-countdown]").forEach((node) => updateNode(node, now));
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.55.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_dc9f970a0710411d0870639f5210861c/node_modules/@diagrammo/dgmo/dist/clock.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/clock.js
 var CLOCK_RAMP2 = [
   [0, "#3d478f"],
   [4, "#4a4d8c"],
@@ -105019,21 +105587,21 @@ function fmtDelta2(ms) {
 }
 function workStatus2(parts, work) {
   if (!work) return null;
-  const min2 = parts.h * 60 + parts.m;
+  const min3 = parts.h * 60 + parts.m;
   if (!work.days[parts.weekday]) return { cls: "off", text: "Weekend" };
-  if (min2 < work.startMin) {
-    const d = work.startMin - min2;
+  if (min3 < work.startMin) {
+    const d = work.startMin - min3;
     return {
       cls: d <= SOON_MIN2 ? "soon" : "off",
       text: `starts in ${fmtDelta2(d * 6e4)}`
     };
   }
-  if (min2 < work.endMin) {
-    return { cls: "ok", text: `${fmtDelta2((work.endMin - min2) * 6e4)} left` };
+  if (min3 < work.endMin) {
+    return { cls: "ok", text: `${fmtDelta2((work.endMin - min3) * 6e4)} left` };
   }
   return {
     cls: "off",
-    text: `ended ${fmtDelta2((min2 - work.endMin) * 6e4)} ago`
+    text: `ended ${fmtDelta2((min3 - work.endMin) * 6e4)} ago`
   };
 }
 function toJulian2(ms) {
