@@ -35,18 +35,18 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js
 var FONT_FAMILY;
 var init_chunk_6KFWC4CO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6KFWC4CO.js"() {
     FONT_FAMILY = "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif";
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js
 var __create2, __defProp2, __getOwnPropDesc2, __getOwnPropNames2, __getProtoOf2, __hasOwnProp2, __commonJS2, __copyProps2, __toESM2;
 var init_chunk_5WRI5ZAA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5WRI5ZAA.js"() {
     __create2 = Object.create;
     __defProp2 = Object.defineProperty;
     __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -75,7 +75,2438 @@ var init_chunk_5WRI5ZAA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js
+function normalizeName(input) {
+  return input.normalize("NFC").replace(WHITESPACE_RUN_RE, " ").trim().toLocaleLowerCase("en-US");
+}
+function displayName(input) {
+  return input.normalize("NFC").trim();
+}
+var WHITESPACE_RUN_RE;
+var init_chunk_NOTA6TEI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js"() {
+    WHITESPACE_RUN_RE = /\s+/gu;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OLMWTJVU.js
+function makeDgmoError(line, message, severity = "error", code) {
+  return code !== void 0 ? { line, message, severity, code } : { line, message, severity };
+}
+function emit(spec, line, params = {}, opts = {}) {
+  const message = typeof spec.message === "function" ? spec.message(params) : spec.message;
+  const err = {
+    line,
+    message,
+    severity: spec.severity,
+    code: spec.code
+  };
+  if (opts.column !== void 0) err.column = opts.column;
+  return err;
+}
+function dedupeDiagnostics(diagnostics) {
+  const seen = /* @__PURE__ */ new Set();
+  const out = [];
+  for (const d of diagnostics) {
+    const key = `${d.line}\0${d.column ?? ""}\0${d.severity}\0${d.code ?? ""}\0${d.message}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(d);
+  }
+  return out;
+}
+function formatDgmoError(err) {
+  return err.line > 0 ? `Line ${err.line}: ${err.message}` : err.message;
+}
+function makeFail(result) {
+  return (line, message) => {
+    const diag = makeDgmoError(line, message);
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+    return result;
+  };
+}
+function levenshtein(a, b) {
+  const m = a.length;
+  const n = b.length;
+  const dp = Array(n + 1).fill(0).map((_2, i) => i);
+  for (let i = 1; i <= m; i++) {
+    let prev = dp[0];
+    dp[0] = i;
+    for (let j2 = 1; j2 <= n; j2++) {
+      const tmp = dp[j2];
+      dp[j2] = a[i - 1] === b[j2 - 1] ? prev : 1 + Math.min(prev, dp[j2], dp[j2 - 1]);
+      prev = tmp;
+    }
+  }
+  return dp[n];
+}
+function suggest(input, candidates) {
+  if (!input || candidates.length === 0) return null;
+  const lower2 = input.toLowerCase();
+  const threshold = Math.max(2, Math.floor(lower2.length / 3));
+  let best = null;
+  let bestDist = Infinity;
+  for (const c of candidates) {
+    const dist = levenshtein(lower2, c.toLowerCase());
+    if (dist < bestDist && dist <= threshold && dist > 0) {
+      bestDist = dist;
+      best = c;
+    }
+  }
+  return best ? `Did you mean '${best}'?` : null;
+}
+function nameMergedMessage(args) {
+  return `merged '${args.incomingDisplay}' (line ${args.incomingLine}) into '${args.existingDisplay}' (line ${args.existingLine}) \u2014 names differ only in case/whitespace`;
+}
+function emptyMetadataValueMessage(key) {
+  return `Metadata key '${key}:' has no value \u2014 the pair is dropped. Provide a value or remove the key.`;
+}
+var NAME_DIAGNOSTIC_CODES, METADATA_DIAGNOSTIC_CODES, NEGATIVE_VALUE_DX, TITLE_DIRECTIVE_DX;
+var init_chunk_OLMWTJVU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OLMWTJVU.js"() {
+    NAME_DIAGNOSTIC_CODES = {
+      /**
+       * Warning: two source-distinct names normalized to the same key
+       * (case- or whitespace-only difference). The first occurrence wins
+       * for display; subsequent occurrences fold into it. Suppressible
+       * per-line via `# allow-merge` annotation when intentional.
+       *
+       * Note: the `I_` prefix is intentionally preserved for stability —
+       * callers may have pinned this string. The diagnostic emits at
+       * `warning` severity (no `info` severity exists in DgmoError).
+       */
+      NAME_MERGED: "I_NAME_MERGED"
+    };
+    METADATA_DIAGNOSTIC_CODES = {
+      /**
+       * Error: a `tag` declaration appears after the first non-tag
+       * content line. The reserved-key registry is finalized before
+       * content-line mode begins; downstream-declared tag aliases
+       * cannot retroactively apply to earlier lines.
+       */
+      TAG_DECLARED_AFTER_CONTENT: "E_TAG_DECLARED_AFTER_CONTENT",
+      /**
+       * Warning: a metadata pair has an empty value (`Foo c:`). The
+       * pair is dropped from the entity's metadata.
+       */
+      EMPTY_METADATA_VALUE: "W_EMPTY_METADATA_VALUE"
+    };
+    NEGATIVE_VALUE_DX = {
+      code: "E_VALUE_NEGATIVE",
+      severity: "error",
+      chartType: null,
+      title: "Negative value on a magnitude channel",
+      message: (p2) => `Negative value ${p2.value ?? -300} on "${p2.label ?? "Refunds"}" \u2014 ${p2.channel ?? "this chart's values"} encode magnitude and can't be negative.`,
+      hint: 'Restate the data as positive magnitudes (e.g. "decline %"). If direction matters, use a bar chart \u2014 bars support negative values.',
+      example: "pie Budget\nRent 1200\nRefunds -300"
+    };
+    TITLE_DIRECTIVE_DX = {
+      code: "E_TITLE_DIRECTIVE",
+      severity: "error",
+      chartType: null,
+      title: "title directive on a data chart",
+      message: "The `title` directive is not supported \u2014 the chart title is line 1 \u2014 remove the title directive.",
+      hint: "Put the title on the declaration line (`bar My Chart`) and delete the `title` line.",
+      example: "bar Revenue\ntitle Revenue\nQ1 100"
+    };
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-I55PVEIX.js
+function inferVariant(markers) {
+  let hasD = false;
+  let hasS = false;
+  for (const m of markers) {
+    if (m === "D") hasD = true;
+    else if (m === "S") hasS = true;
+  }
+  if (hasD && hasS) return null;
+  if (hasD) return "daci";
+  if (hasS) return "rasci";
+  return "raci";
+}
+function countMarker(task, marker) {
+  let count2 = 0;
+  for (const assignment of task.roleAssignments) {
+    for (const m of assignment.markers) if (m === marker) count2++;
+  }
+  return count2;
+}
+function totalMarkerCount(task) {
+  let n = 0;
+  for (const a of task.roleAssignments) n += a.markers.length;
+  return n;
+}
+function findFirstAssignmentLineWithMarker(task, marker, skipFirst) {
+  let seen = 0;
+  for (const assignment of task.roleAssignments) {
+    if (assignment.markers.includes(marker)) {
+      seen++;
+      if (skipFirst && seen === 1) continue;
+      return assignment.lineNumber;
+    }
+  }
+  return task.lineNumber;
+}
+var RACI_DX, RACI_DIAGNOSTICS, ALL_MARKERS, TOO_MANY_RESPONSIBLE_THRESHOLD, multiAccountableRule, daciMultiDriverRule, daciMultiAccountableRule, emptyTaskRule, missingAccountableRule, missingResponsibleRule, daciMissingDriverRule, daciMissingAccountableRule, ACTIVE_MARKERS, PASSIVE_MARKERS, conflictingMarkersRule, tooManyResponsibleRule, VARIANTS;
+var init_chunk_I55PVEIX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-I55PVEIX.js"() {
+    init_chunk_OLMWTJVU();
+    RACI_DX = {
+      // ── Errors ──────────────────────────────────────────────────
+      MULTI_ACCOUNTABLE: {
+        code: "E_RACI_MULTI_ACCOUNTABLE",
+        severity: "error",
+        chartType: "raci",
+        title: "Multiple Accountable",
+        // variants.ts › multiAccountableRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has more than one Accountable \u2014 RACI requires exactly one.`,
+        hint: "Assign the A marker to exactly one role per task; make the others Responsible or Consulted.",
+        example: `raci
+
+Task
+  Cap: A
+  QM: A`
+      },
+      DACI_MULTI_DRIVER: {
+        code: "E_DACI_MULTI_DRIVER",
+        severity: "error",
+        chartType: "raci",
+        title: "Multiple Driver (DACI)",
+        // variants.ts › daciMultiDriverRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has more than one Driver \u2014 DACI requires exactly one.`,
+        hint: "A DACI decision has a single Driver; give the extra D roles another marker.",
+        example: `raci
+
+Decision
+  PM: D
+  Cap: D`
+      },
+      DACI_MULTI_ACCOUNTABLE: {
+        code: "E_DACI_MULTI_ACCOUNTABLE",
+        severity: "error",
+        chartType: "raci",
+        title: "Multiple Approver (DACI)",
+        // variants.ts › daciMultiAccountableRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has more than one Approver \u2014 DACI requires exactly one.`,
+        hint: "A DACI decision has a single Approver (A); reduce to one.",
+        example: `raci
+
+Decision
+  Lead: D
+  PM: A
+  Cap: A`
+      },
+      INVALID_MARKER: {
+        code: "E_RACI_INVALID_MARKER",
+        severity: "error",
+        chartType: "raci",
+        // Two emit sites share this code: parser.ts first-pass (default form,
+        // rejects letters outside the union alphabet) and parser.ts post-pass
+        // (variant-aware form, passed `variant`+`alphabet`, rejects union
+        // letters outside the resolved variant). The `{}` default renders the
+        // first-pass wording.
+        title: "Invalid marker",
+        // parser.ts first-pass tokenizer
+        message: (p2) => p2.variant !== void 0 && p2.variant !== null ? `Marker '${p2.marker ?? "X"}' is not in the ${p2.variant} alphabet (${p2.alphabet}).` : `Marker '${p2.marker ?? "X"}' is not a recognized RACI marker (R A S C I D).`,
+        hint: "Use only R, A, S, C, I (or D for DACI). Wrong-variant letters (e.g. S in a DACI chart) trigger the variant-alphabet form of this diagnostic.",
+        example: `raci
+
+Task
+  Cap: X`
+      },
+      UNEXPECTED_LINE: {
+        code: "E_RACI_UNEXPECTED_LINE",
+        severity: "error",
+        chartType: "raci",
+        title: "Unexpected line under task",
+        // parser.ts — free-text after first role assignment
+        message: (p2) => `Unexpected line after role assignments under task '${p2.task ?? "Task"}'. Lines under a task must be either a description (before the first 'Role: markers' line) or another role assignment.`,
+        hint: "Put all description text before the first role assignment; nothing but assignments may follow.",
+        example: `raci
+
+Task
+  Cap: A
+  This is an unexpected description.`
+      },
+      MIXED_VARIANTS: {
+        code: "E_RACI_MIXED_VARIANTS",
+        severity: "error",
+        chartType: "raci",
+        title: "Mixed RASCI/DACI markers",
+        // parser.ts — variant resolution, inferVariant() returned null
+        message: "Chart uses both 'D' and 'S' markers but neither RASCI nor DACI covers both. Use only RACI/RASCI markers (R, A, S, C, I) or only DACI markers (D, A, C, I).",
+        hint: "Pick one convention: R/A/S/C/I (RACI/RASCI) or D/A/C/I (DACI). Do not mix D and S in one chart.",
+        example: `raci
+
+Task
+  Cap: D
+  Crew: S`
+      },
+      // ── Warnings ────────────────────────────────────────────────
+      MISSING_ACCOUNTABLE: {
+        code: "W_RACI_MISSING_ACCOUNTABLE",
+        severity: "warning",
+        chartType: "raci",
+        title: "Missing Accountable",
+        // variants.ts › missingAccountableRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has no Accountable assigned.`,
+        hint: "Every RACI task should have exactly one Accountable (A).",
+        example: `raci
+
+Task
+  Cap: R`
+      },
+      MISSING_RESPONSIBLE: {
+        code: "W_RACI_MISSING_RESPONSIBLE",
+        severity: "warning",
+        chartType: "raci",
+        title: "Missing Responsible",
+        // variants.ts › missingResponsibleRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has no Responsible assigned.`,
+        hint: "Assign at least one Responsible (R) \u2014 someone has to do the work.",
+        example: `raci
+
+Task
+  Cap: A`
+      },
+      DACI_MISSING_DRIVER: {
+        code: "W_DACI_MISSING_DRIVER",
+        severity: "warning",
+        chartType: "raci",
+        title: "Missing Driver (DACI)",
+        // variants.ts › daciMissingDriverRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has no Driver assigned.`,
+        hint: "A DACI decision needs a Driver (D) to move it forward.",
+        example: `raci
+
+Pick Vendor
+  Lead: D
+  PM: A
+Sign Off
+  Cap: C`
+      },
+      DACI_MISSING_ACCOUNTABLE: {
+        code: "W_DACI_MISSING_ACCOUNTABLE",
+        severity: "warning",
+        chartType: "raci",
+        title: "Missing Approver (DACI)",
+        // variants.ts › daciMissingAccountableRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has no Approver assigned.`,
+        hint: "A DACI decision needs an Approver (A) to sign off.",
+        example: `raci
+
+Pick Vendor
+  Lead: D
+  PM: A
+Sign Off
+  Cap: C`
+      },
+      UNKNOWN_ROLE: {
+        code: "W_RACI_UNKNOWN_ROLE",
+        severity: "warning",
+        chartType: "raci",
+        title: "Undeclared role",
+        // parser.ts — only when `roles:` is declared. Live message appends a
+        // ` Did you mean 'X'?` suggestion when a near match exists.
+        message: (p2) => {
+          const role = p2.role ?? "Role";
+          const hint = p2.hint ?? "";
+          return `Role '${role}' is not declared in the 'roles:' directive.${hint ? " " + hint : ""}`;
+        },
+        hint: "Add the role to the `roles` directive, or fix the typo to match a declared role.",
+        example: `raci
+roles Cap, QM
+
+Task
+  Cap: A
+  Stranger: R`
+      },
+      EMPTY_TASK: {
+        code: "W_RACI_EMPTY_TASK",
+        severity: "warning",
+        chartType: "raci",
+        title: "Empty task",
+        // variants.ts › emptyTaskRule
+        message: (p2) => `Task '${p2.task ?? "Task"}' has no role assignments.`,
+        hint: "Add at least one `Role: markers` line, or remove the empty task.",
+        example: `raci
+
+Task
+  Just a description with no assignments`
+      },
+      CONFLICTING_MARKERS: {
+        code: "W_RACI_CONFLICTING_MARKERS",
+        severity: "warning",
+        chartType: "raci",
+        title: "Conflicting markers",
+        // variants.ts › conflictingMarkersRule
+        message: (p2) => {
+          const role = p2.role ?? "Role";
+          const task = p2.task ?? "Task";
+          const markers = p2.markers ?? "A C";
+          return `Role '${role}' on task '${task}' has conflicting markers (${markers}). A role can be either active (R/A/D) or passive (C/I), not both.`;
+        },
+        hint: "Give the role either an active marker (R/A/D) or a passive one (C/I), not both.",
+        example: `raci
+
+Task
+  Cap: A C`
+      },
+      TOO_MANY_RESPONSIBLE: {
+        code: "W_RACI_TOO_MANY_RESPONSIBLE",
+        severity: "warning",
+        chartType: "raci",
+        title: "Too many Responsible",
+        // variants.ts › tooManyResponsibleRule (threshold = 3)
+        message: (p2) => {
+          const task = p2.task ?? "Task";
+          const count2 = p2.count ?? 4;
+          const threshold = p2.threshold ?? 3;
+          return `Task '${task}' has ${count2} Responsibles \u2014 more than ${threshold} dilutes ownership. Consider splitting the task or marking some as Consulted.`;
+        },
+        hint: "Keep Responsibles at or below 3 \u2014 split the task or downgrade some roles to Consulted.",
+        example: `raci
+
+Task
+  W: R
+  X: R
+  Y: R
+  Z: R
+  Lead: A`
+      },
+      ORPHAN_ROLE: {
+        code: "W_RACI_ORPHAN_ROLE",
+        severity: "warning",
+        chartType: "raci",
+        title: "Orphan role",
+        // parser.ts — role declared/seen but never assigned any marker
+        message: (p2) => `Role '${p2.role ?? "Role"}' is declared but never assigned to any task.`,
+        hint: "Assign the role a marker somewhere, or remove it from the `roles` directive.",
+        example: `raci
+roles Cap, Ghost
+
+Task
+  Cap: A R`
+      }
+    };
+    RACI_DIAGNOSTICS = Object.values(RACI_DX);
+    ALL_MARKERS = /* @__PURE__ */ new Set([
+      "R",
+      "A",
+      "S",
+      "C",
+      "I",
+      "D"
+    ]);
+    TOO_MANY_RESPONSIBLE_THRESHOLD = 3;
+    multiAccountableRule = (task) => {
+      if (countMarker(task, "A") > 1) {
+        return [
+          emit(
+            RACI_DX.MULTI_ACCOUNTABLE,
+            findFirstAssignmentLineWithMarker(task, "A", true),
+            {
+              task: task.displayName
+            }
+          )
+        ];
+      }
+      return [];
+    };
+    daciMultiDriverRule = (task) => {
+      if (countMarker(task, "D") > 1) {
+        return [
+          emit(
+            RACI_DX.DACI_MULTI_DRIVER,
+            findFirstAssignmentLineWithMarker(task, "D", true),
+            {
+              task: task.displayName
+            }
+          )
+        ];
+      }
+      return [];
+    };
+    daciMultiAccountableRule = (task) => {
+      if (countMarker(task, "A") > 1) {
+        return [
+          emit(
+            RACI_DX.DACI_MULTI_ACCOUNTABLE,
+            findFirstAssignmentLineWithMarker(task, "A", true),
+            {
+              task: task.displayName
+            }
+          )
+        ];
+      }
+      return [];
+    };
+    emptyTaskRule = (task) => {
+      if (totalMarkerCount(task) === 0) {
+        return [
+          emit(RACI_DX.EMPTY_TASK, task.lineNumber, { task: task.displayName })
+        ];
+      }
+      return [];
+    };
+    missingAccountableRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "A") === 0) {
+        return [
+          emit(RACI_DX.MISSING_ACCOUNTABLE, task.lineNumber, {
+            task: task.displayName
+          })
+        ];
+      }
+      return [];
+    };
+    missingResponsibleRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "R") === 0) {
+        return [
+          emit(RACI_DX.MISSING_RESPONSIBLE, task.lineNumber, {
+            task: task.displayName
+          })
+        ];
+      }
+      return [];
+    };
+    daciMissingDriverRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "D") === 0) {
+        return [
+          emit(RACI_DX.DACI_MISSING_DRIVER, task.lineNumber, {
+            task: task.displayName
+          })
+        ];
+      }
+      return [];
+    };
+    daciMissingAccountableRule = (task) => {
+      if (totalMarkerCount(task) === 0) return [];
+      if (countMarker(task, "A") === 0) {
+        return [
+          emit(RACI_DX.DACI_MISSING_ACCOUNTABLE, task.lineNumber, {
+            task: task.displayName
+          })
+        ];
+      }
+      return [];
+    };
+    ACTIVE_MARKERS = /* @__PURE__ */ new Set(["R", "A", "D"]);
+    PASSIVE_MARKERS = /* @__PURE__ */ new Set(["C", "I"]);
+    conflictingMarkersRule = (task) => {
+      const out = [];
+      for (const a of task.roleAssignments) {
+        let hasActive = false;
+        let hasPassive = false;
+        for (const m of a.markers) {
+          if (ACTIVE_MARKERS.has(m)) hasActive = true;
+          if (PASSIVE_MARKERS.has(m)) hasPassive = true;
+        }
+        if (hasActive && hasPassive) {
+          out.push(
+            emit(RACI_DX.CONFLICTING_MARKERS, a.lineNumber, {
+              role: a.displayName,
+              task: task.displayName,
+              markers: a.markers.join(" ")
+            })
+          );
+        }
+      }
+      return out;
+    };
+    tooManyResponsibleRule = (task) => {
+      const n = countMarker(task, "R");
+      if (n > TOO_MANY_RESPONSIBLE_THRESHOLD) {
+        return [
+          emit(RACI_DX.TOO_MANY_RESPONSIBLE, task.lineNumber, {
+            task: task.displayName,
+            count: n,
+            threshold: TOO_MANY_RESPONSIBLE_THRESHOLD
+          })
+        ];
+      }
+      return [];
+    };
+    VARIANTS = {
+      raci: {
+        alphabet: ["R", "A", "C", "I"],
+        errorRules: [multiAccountableRule],
+        warningRules: [
+          emptyTaskRule,
+          missingAccountableRule,
+          missingResponsibleRule,
+          conflictingMarkersRule,
+          tooManyResponsibleRule
+        ]
+      },
+      rasci: {
+        alphabet: ["R", "A", "S", "C", "I"],
+        errorRules: [multiAccountableRule],
+        warningRules: [
+          emptyTaskRule,
+          missingAccountableRule,
+          missingResponsibleRule,
+          conflictingMarkersRule,
+          tooManyResponsibleRule
+        ]
+      },
+      daci: {
+        alphabet: ["D", "A", "C", "I"],
+        errorRules: [daciMultiDriverRule, daciMultiAccountableRule],
+        warningRules: [
+          emptyTaskRule,
+          daciMissingDriverRule,
+          daciMissingAccountableRule,
+          conflictingMarkersRule
+        ]
+      }
+    };
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-EXNKNJ65.js
+function isRecognizedColorName(name) {
+  return Object.prototype.hasOwnProperty.call(colorNames, name.toLowerCase());
+}
+function resolveColor(color2, palette) {
+  if (!color2) return null;
+  if (color2.startsWith("#")) return null;
+  const lower2 = color2.toLowerCase();
+  if (!isRecognizedColorName(lower2)) return null;
+  if (palette) {
+    const named2 = palette.colors[lower2];
+    if (named2) return named2;
+  }
+  return colorNames[lower2] ?? null;
+}
+function nearestNamedColor(input) {
+  const cssHex = INVALID_CSS_COLOR_HEX[input.trim().toLowerCase()];
+  if (cssHex) input = cssHex;
+  const m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(input.trim());
+  if (!m) return null;
+  let h = m[1].toLowerCase();
+  if (h.length === 3)
+    h = h.split("").map((c) => c + c).join("");
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  const max3 = Math.max(r, g, b);
+  const min3 = Math.min(r, g, b);
+  const delta = max3 - min3;
+  const l = (max3 + min3) / 2;
+  const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+  if (s < 0.15) {
+    if (l < 0.2) return "black";
+    if (l > 0.85) return "white";
+    return "gray";
+  }
+  let hue;
+  if (max3 === r) hue = 60 * ((g - b) / delta % 6);
+  else if (max3 === g) hue = 60 * ((b - r) / delta + 2);
+  else hue = 60 * ((r - g) / delta + 4);
+  if (hue < 0) hue += 360;
+  const anchors = [
+    ["red", 0],
+    ["orange", 30],
+    ["yellow", 55],
+    ["green", 120],
+    ["teal", 170],
+    ["cyan", 190],
+    ["blue", 225],
+    ["purple", 285],
+    ["red", 360]
+  ];
+  let best = "red";
+  let bestD = Infinity;
+  for (const [name, deg] of anchors) {
+    const d = Math.abs(hue - deg);
+    if (d < bestD) {
+      bestD = d;
+      best = name;
+    }
+  }
+  return best;
+}
+function isInvalidColorToken(token) {
+  if (/^(#|rgba?\(|hsla?\()/i.test(token)) return true;
+  const lower2 = token.toLowerCase();
+  return INVALID_CSS_COLOR_HEX[lower2] !== void 0 && !isRecognizedColorName(lower2);
+}
+function invalidColorDiagnostic(token, line) {
+  if (!isInvalidColorToken(token)) return null;
+  const nearest = nearestNamedColor(token);
+  const near = nearest ? ` Nearest: ${nearest}.` : "";
+  return makeDgmoError(
+    line,
+    `Color "${token}" is not a valid DGMO color \u2014 DGMO accepts only these 11 named colors: ${RECOGNIZED_COLOR_NAMES.join(", ")} (no hex, no CSS color names).${near}`,
+    "warning",
+    INVALID_COLOR_CODE
+  );
+}
+function resolveColorWithDiagnostic(color2, line, diagnostics, palette) {
+  const resolved = resolveColor(color2, palette);
+  if (resolved !== null) return resolved;
+  if (/^(#|rgba?\(|hsla?\()/i.test(color2)) {
+    const nearest = nearestNamedColor(color2);
+    const near = nearest ? ` Nearest: ${nearest}.` : "";
+    diagnostics.push(
+      makeDgmoError(
+        line,
+        `Color "${color2}" is not supported \u2014 DGMO does not accept hex or CSS color values. Use a named palette color: ${RECOGNIZED_COLOR_NAMES.join(", ")}.${near}`,
+        "error",
+        INVALID_COLOR_CODE
+      )
+    );
+    return void 0;
+  }
+  const hint = suggest(color2, RECOGNIZED_COLOR_NAMES);
+  const suggestion = hint ? ` ${hint}` : "";
+  diagnostics.push(
+    makeDgmoError(
+      line,
+      `Unknown color "${color2}". DGMO accepts only these 11 named colors: ${RECOGNIZED_COLOR_NAMES.join(", ")} (no hex, no CSS color names).${suggestion}`,
+      "warning",
+      INVALID_COLOR_CODE
+    )
+  );
+  return void 0;
+}
+var nord, colorNames, RECOGNIZED_COLOR_NAMES, CATEGORICAL_COLOR_ORDER, INVALID_COLOR_CODE, INVALID_CSS_COLOR_HEX, seriesColors;
+var init_chunk_EXNKNJ65 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-EXNKNJ65.js"() {
+    init_chunk_OLMWTJVU();
+    nord = {
+      // Polar Night (dark)
+      nord0: "#2e3440",
+      nord1: "#3b4252",
+      nord2: "#434c5e",
+      nord3: "#4c566a",
+      // Snow Storm (light)
+      nord4: "#d8dee9",
+      nord5: "#e5e9f0",
+      nord6: "#eceff4",
+      // Frost (accent blues)
+      nord7: "#8fbcbb",
+      nord8: "#88c0d0",
+      nord9: "#81a1c1",
+      nord10: "#5e81ac",
+      // Aurora (colors)
+      nord11: "#bf616a",
+      // red
+      nord12: "#d08770",
+      // orange
+      nord13: "#ebcb8b",
+      // yellow
+      nord14: "#a3be8c",
+      // green
+      nord15: "#b48ead"
+      // purple
+    };
+    colorNames = {
+      red: nord.nord11,
+      orange: nord.nord12,
+      yellow: nord.nord13,
+      green: nord.nord14,
+      blue: nord.nord10,
+      purple: nord.nord15,
+      teal: nord.nord7,
+      cyan: nord.nord8,
+      gray: nord.nord3,
+      black: nord.nord0,
+      white: nord.nord6
+    };
+    RECOGNIZED_COLOR_NAMES = Object.freeze([
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "purple",
+      "teal",
+      "cyan",
+      "gray",
+      "black",
+      "white"
+    ]);
+    CATEGORICAL_COLOR_ORDER = Object.freeze([
+      "red",
+      "green",
+      "blue",
+      "yellow",
+      "teal",
+      "purple",
+      "orange",
+      "cyan"
+    ]);
+    INVALID_COLOR_CODE = "E_INVALID_COLOR";
+    INVALID_CSS_COLOR_HEX = Object.freeze({
+      pink: "#ffc0cb",
+      hotpink: "#ff69b4",
+      deeppink: "#ff1493",
+      lightpink: "#ffb6c1",
+      palevioletred: "#db7093",
+      crimson: "#dc143c",
+      scarlet: "#ff2400",
+      firebrick: "#b22222",
+      darkred: "#8b0000",
+      maroon: "#800000",
+      salmon: "#fa8072",
+      lightsalmon: "#ffa07a",
+      darksalmon: "#e9967a",
+      coral: "#ff7f50",
+      lightcoral: "#f08080",
+      tomato: "#ff6347",
+      orangered: "#ff4500",
+      darkorange: "#ff8c00",
+      gold: "#ffd700",
+      goldenrod: "#daa520",
+      darkgoldenrod: "#b8860b",
+      khaki: "#f0e68c",
+      darkkhaki: "#bdb76b",
+      amber: "#ffbf00",
+      lavender: "#e6e6fa",
+      violet: "#ee82ee",
+      magenta: "#ff00ff",
+      fuchsia: "#ff00ff",
+      orchid: "#da70d6",
+      plum: "#dda0dd",
+      indigo: "#4b0082",
+      navy: "#000080",
+      midnightblue: "#191970",
+      darkblue: "#00008b",
+      mediumblue: "#0000cd",
+      royalblue: "#4169e1",
+      cornflowerblue: "#6495ed",
+      dodgerblue: "#1e90ff",
+      deepskyblue: "#00bfff",
+      skyblue: "#87ceeb",
+      lightskyblue: "#87cefa",
+      lightblue: "#add8e6",
+      powderblue: "#b0e0e6",
+      steelblue: "#4682b4",
+      slateblue: "#6a5acd",
+      cadetblue: "#5f9ea0",
+      turquoise: "#40e0d0",
+      aqua: "#00ffff",
+      aquamarine: "#7fffd4",
+      lime: "#00ff00",
+      limegreen: "#32cd32",
+      lightgreen: "#90ee90",
+      palegreen: "#98fb98",
+      seagreen: "#2e8b57",
+      mediumseagreen: "#3cb371",
+      forestgreen: "#228b22",
+      darkgreen: "#006400",
+      olive: "#808000",
+      olivedrab: "#6b8e23",
+      darkolivegreen: "#556b2f",
+      chartreuse: "#7fff00",
+      lawngreen: "#7cfc00",
+      springgreen: "#00ff7f",
+      greenyellow: "#adff2f",
+      brown: "#a52a2a",
+      sienna: "#a0522d",
+      chocolate: "#d2691e",
+      peru: "#cd853f",
+      tan: "#d2b48c",
+      beige: "#f5f5dc",
+      wheat: "#f5deb3",
+      ivory: "#fffff0",
+      silver: "#c0c0c0",
+      lightgray: "#d3d3d3",
+      lightgrey: "#d3d3d3",
+      darkgray: "#a9a9a9",
+      darkgrey: "#a9a9a9",
+      dimgray: "#696969",
+      dimgrey: "#696969",
+      slategray: "#708090",
+      slategrey: "#708090",
+      gainsboro: "#dcdcdc",
+      grey: "#808080"
+    });
+    seriesColors = [
+      nord.nord10,
+      // blue
+      nord.nord14,
+      // green
+      nord.nord13,
+      // yellow
+      nord.nord12,
+      // orange
+      nord.nord15,
+      // purple
+      nord.nord11,
+      // red
+      nord.nord7,
+      // teal
+      nord.nord8
+      // light blue
+    ];
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3KOPPSUQ.js
+function tokensWhere(pred) {
+  const out = /* @__PURE__ */ new Set();
+  for (const e of DIRECTIVES_REGISTRY) if (pred(e)) out.add(e.token);
+  return out;
+}
+function staticRegistry(keys2) {
+  return { keys: new Set(keys2), tagAliases: /* @__PURE__ */ new Set() };
+}
+function withTagAliases(base, aliases) {
+  return { keys: base.keys, tagAliases: aliases };
+}
+function isReservedKey(registry, key) {
+  return registry.keys.has(key) || registry.tagAliases.has(key);
+}
+function measureIndent(line) {
+  let indent = 0;
+  for (const ch of line) {
+    if (ch === " ") indent++;
+    else if (ch === "	") indent += 4;
+    else break;
+  }
+  return indent;
+}
+function extractColor(label, palette, diagnostics, line) {
+  const lastSpaceIdx = Math.max(
+    label.lastIndexOf(" "),
+    label.lastIndexOf("	")
+  );
+  if (lastSpaceIdx < 0) return { label };
+  const trailing = label.substring(lastSpaceIdx + 1);
+  if (!RECOGNIZED_COLOR_SET.has(trailing)) {
+    if (diagnostics && line !== void 0) {
+      const diag = invalidColorDiagnostic(trailing, line);
+      if (diag) diagnostics.push(diag);
+    }
+    return { label };
+  }
+  let color2;
+  if (diagnostics && line !== void 0) {
+    color2 = resolveColorWithDiagnostic(trailing, line, diagnostics, palette);
+  } else {
+    color2 = resolveColor(trailing, palette) ?? void 0;
+  }
+  return {
+    label: label.substring(0, lastSpaceIdx).trimEnd(),
+    ...color2 !== void 0 && { color: color2 }
+  };
+}
+function legendSuppressed(options) {
+  return options["no-legend"] === "on";
+}
+function legendInlineRequested(options) {
+  return options["legend-inline"] === "on";
+}
+function fillModeFromToken(token) {
+  switch (token.trim().toLowerCase()) {
+    case "fill-solid":
+      return "solid";
+    case "fill-outline":
+      return "outline";
+    case "fill-tint":
+      return "tint";
+    default:
+      return null;
+  }
+}
+function fillModeFromOptions(options) {
+  if (options["fill-solid"] === "on") return "solid";
+  if (options["fill-outline"] === "on") return "outline";
+  return void 0;
+}
+function recognizeGlobalBoolean(token) {
+  const t3 = token.trim().toLowerCase();
+  return GLOBAL_BOOLEANS.has(t3) ? t3 : null;
+}
+function tryParseSharedOption(line, options) {
+  const key = recognizeGlobalBoolean(line);
+  if (key) {
+    if (FILL_FAMILY_TOKENS.has(key)) {
+      for (const t3 of FILL_FAMILY_TOKENS) delete options[t3];
+    }
+    options[key] = "on";
+    return true;
+  }
+  return false;
+}
+function parseFirstLine(line) {
+  const trimmed = line.trim();
+  if (!trimmed || trimmed.startsWith("//")) return null;
+  const spaceIdx = trimmed.indexOf(" ");
+  if (spaceIdx === -1) {
+    const ct2 = trimmed.toLowerCase();
+    return ALL_CHART_TYPES.has(ct2) ? { chartType: ct2, title: void 0 } : null;
+  }
+  const firstToken = trimmed.substring(0, spaceIdx).toLowerCase();
+  if (!ALL_CHART_TYPES.has(firstToken)) return null;
+  return {
+    chartType: firstToken,
+    title: trimmed.substring(spaceIdx + 1).trim() || void 0
+  };
+}
+function detectBadChartTypeDeclaration(line, knownOptionKeys) {
+  const trimmed = line.trim();
+  if (!trimmed || trimmed.includes(":")) return null;
+  const spaceIdx = trimmed.indexOf(" ");
+  const token = spaceIdx === -1 ? trimmed : trimmed.substring(0, spaceIdx);
+  if (!CHART_TYPE_TOKEN_RE.test(token)) return null;
+  const lower2 = token.toLowerCase();
+  if (knownOptionKeys.has(lower2) || ALL_REGISTRY_TOKENS.has(lower2)) return null;
+  if (spaceIdx === -1) return /\d/.test(token) ? null : token;
+  const rest = trimmed.substring(spaceIdx + 1).trim();
+  if (!rest || !TITLE_LIKE_RE.test(rest)) return null;
+  return token;
+}
+function normalizeNumericToken(token) {
+  if (!token.includes(",") && !token.includes("_")) return null;
+  if (token.includes(",") && token.includes("_")) return null;
+  let sign3 = "";
+  let unsigned = token;
+  if (unsigned.startsWith("-")) {
+    sign3 = "-";
+    unsigned = unsigned.substring(1);
+  }
+  if (!unsigned) return null;
+  if (unsigned.includes(",")) {
+    if (/^\d{1,3}(,\d{3})+$/.test(unsigned))
+      return sign3 + unsigned.replace(/,/g, "");
+    if (/^\d{1,3}(,\d{3})+\.\d+$/.test(unsigned))
+      return sign3 + unsigned.replace(/,/g, "");
+    return null;
+  }
+  if (/^\d+(_\d+)+$/.test(unsigned)) return sign3 + unsigned.replace(/_/g, "");
+  if (/^\d+(_\d+)*\.\d+$/.test(unsigned) && unsigned.includes("_"))
+    return sign3 + unsigned.replace(/_/g, "");
+  return null;
+}
+function stripQuotes(token) {
+  if (token.length >= 2) {
+    if (token[0] === '"' && token[token.length - 1] === '"' || token[0] === "'" && token[token.length - 1] === "'") {
+      return token.substring(1, token.length - 1);
+    }
+  }
+  return token;
+}
+function tokenizeQuoteAware(input) {
+  const tokens = [];
+  let i = 0;
+  while (i < input.length) {
+    if (input[i] === " " || input[i] === "	") {
+      i++;
+      continue;
+    }
+    if (input[i] === '"' || input[i] === "'") {
+      const quote = input[i];
+      const start2 = i;
+      i++;
+      while (i < input.length && input[i] !== quote) i++;
+      if (i < input.length) i++;
+      tokens.push(input.substring(start2, i));
+      continue;
+    }
+    const start = i;
+    while (i < input.length && input[i] !== " " && input[i] !== "	") i++;
+    tokens.push(input.substring(start, i));
+  }
+  return tokens;
+}
+function collectIndentedValues(lines, startIndex) {
+  const values = [];
+  const lineNumbers = [];
+  let j2 = startIndex + 1;
+  for (; j2 < lines.length; j2++) {
+    const raw = lines[j2];
+    const trimmed = raw.trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("//")) continue;
+    if (raw[0] !== " " && raw[0] !== "	") break;
+    values.push(trimmed.replace(/,\s*$/, ""));
+    lineNumbers.push(j2 + 1);
+  }
+  return { values, lineNumbers, newIndex: j2 - 1 };
+}
+function parseSeriesNames(value, lines, lineIndex, palette, diagnostics) {
+  let rawNames;
+  let series;
+  let newIndex = lineIndex;
+  let nameLineNumbers = [];
+  if (value) {
+    series = value;
+    rawNames = value.split(",").map((s) => s.trim()).filter(Boolean);
+    nameLineNumbers = rawNames.map(() => lineIndex + 1);
+  } else {
+    const collected = collectIndentedValues(lines, lineIndex);
+    newIndex = collected.newIndex;
+    rawNames = collected.values;
+    nameLineNumbers = collected.lineNumbers;
+    series = rawNames.join(", ");
+  }
+  const isHeader = (s) => {
+    const tok = s.split(/\s+/, 1)[0];
+    if (tok === "y-label") return "left";
+    if (tok === "y-right-label") return "right";
+    return null;
+  };
+  if (rawNames.some((r) => isHeader(r) !== null)) {
+    const names2 = [];
+    const nameColors2 = [];
+    const axes = [];
+    const memberLineNumbers = [];
+    let leftLabel;
+    let rightLabel;
+    let currentAxis = "left";
+    for (let i = 0; i < rawNames.length; i++) {
+      const raw = rawNames[i];
+      const side = isHeader(raw);
+      if (side !== null) {
+        const label = raw.slice(raw.indexOf(" ") + 1).trim();
+        currentAxis = side;
+        if (side === "left") leftLabel = label || leftLabel;
+        else rightLabel = label || rightLabel;
+        continue;
+      }
+      const extracted = extractColor(
+        raw,
+        palette,
+        diagnostics,
+        nameLineNumbers[i]
+      );
+      names2.push(extracted.label);
+      nameColors2.push(extracted.color);
+      axes.push(currentAxis);
+      memberLineNumbers.push(nameLineNumbers[i]);
+    }
+    return {
+      series: names2.join(", "),
+      names: names2,
+      nameColors: nameColors2,
+      nameLineNumbers: memberLineNumbers,
+      newIndex,
+      axes,
+      ...leftLabel !== void 0 && { leftLabel },
+      ...rightLabel !== void 0 && { rightLabel }
+    };
+  }
+  const names = [];
+  const nameColors = [];
+  for (let i = 0; i < rawNames.length; i++) {
+    const raw = rawNames[i];
+    const extracted = extractColor(
+      raw,
+      palette,
+      diagnostics,
+      nameLineNumbers[i]
+    );
+    nameColors.push(extracted.color);
+    names.push(extracted.label);
+  }
+  if (names.length === 1) {
+    series = names[0];
+  }
+  return { series, names, nameColors, nameLineNumbers, newIndex };
+}
+function peelTrailingColorName(label) {
+  const lastSpaceIdx = Math.max(
+    label.lastIndexOf(" "),
+    label.lastIndexOf("	")
+  );
+  if (lastSpaceIdx < 0) return { label };
+  const trailing = label.substring(lastSpaceIdx + 1);
+  if (!RECOGNIZED_COLOR_SET.has(trailing)) return { label };
+  return {
+    label: label.substring(0, lastSpaceIdx).trimEnd(),
+    colorName: trailing
+  };
+}
+function peelTrailingCollapsedFlag(text) {
+  const t3 = text.trimEnd();
+  if (t3 === "collapsed") return { rest: "", collapsed: true };
+  if (/[ \t]collapsed$/.test(t3)) {
+    return {
+      rest: t3.slice(0, t3.length - "collapsed".length).trimEnd().replace(/,\s*$/, ""),
+      collapsed: true
+    };
+  }
+  return { rest: text, collapsed: false };
+}
+function peelRampColors(label) {
+  const peelOne = (s) => {
+    const idx = Math.max(s.lastIndexOf(" "), s.lastIndexOf("	"));
+    if (idx < 0) return { rest: s };
+    const trailing = s.substring(idx + 1);
+    if (!RECOGNIZED_COLOR_SET.has(trailing)) return { rest: s };
+    return { rest: s.substring(0, idx).trimEnd(), color: trailing };
+  };
+  const first = peelOne(label);
+  if (first.color === void 0) return { label };
+  const second = peelOne(first.rest);
+  if (second.color === void 0) {
+    return { label: first.rest, high: first.color };
+  }
+  return { label: second.rest, low: second.color, high: first.color };
+}
+function scanTokens(line) {
+  const tokens = [];
+  let i = 0;
+  while (i < line.length) {
+    if (line[i] === " " || line[i] === "	") {
+      i++;
+      continue;
+    }
+    if (line[i] === '"' || line[i] === "'") {
+      const quote = line[i];
+      const start2 = i;
+      i++;
+      while (i < line.length && line[i] !== quote) i++;
+      if (i < line.length) i++;
+      tokens.push({
+        text: line.substring(start2, i),
+        start: start2,
+        end: i,
+        quoted: true
+      });
+      continue;
+    }
+    const start = i;
+    while (i < line.length && line[i] !== " " && line[i] !== "	") i++;
+    tokens.push({
+      text: line.substring(start, i),
+      start,
+      end: i,
+      quoted: false
+    });
+  }
+  return tokens;
+}
+function findMetadataCutOffset(line, tokens, registry) {
+  for (let i = 0; i < tokens.length; i++) {
+    const tok = tokens[i];
+    if (tok.quoted) continue;
+    const inlineColon = tok.text.indexOf(":");
+    if (inlineColon > 0) {
+      const keyPart = tok.text.substring(0, inlineColon);
+      if (RESERVED_KEY_RE.test(keyPart) && isReservedKey(registry, keyPart.toLowerCase())) {
+        return tok.start;
+      }
+    } else if (inlineColon < 0) {
+      if (RESERVED_KEY_RE.test(tok.text) && isReservedKey(registry, tok.text.toLowerCase())) {
+        const tail = line.substring(tok.end).replace(/^[ \t]+/, "");
+        if (tail.startsWith(":")) {
+          return tok.start;
+        }
+      }
+    }
+  }
+  return -1;
+}
+function parseMetadataRegion(region, aliasMap, diagnostics, line) {
+  const meta = {};
+  let i = 0;
+  while (i < region.length) {
+    while (i < region.length && (region[i] === " " || region[i] === "	" || region[i] === ","))
+      i++;
+    if (i >= region.length) break;
+    const keyStart = i;
+    while (i < region.length && region[i] !== ":" && region[i] !== ",") i++;
+    if (i >= region.length || region[i] !== ":") break;
+    const rawKey = region.substring(keyStart, i).trim().toLowerCase();
+    if (!rawKey) break;
+    i++;
+    while (i < region.length && (region[i] === " " || region[i] === "	")) i++;
+    let value;
+    if (i < region.length && (region[i] === '"' || region[i] === "'")) {
+      const quote = region[i];
+      i++;
+      const vStart = i;
+      while (i < region.length && region[i] !== quote) i++;
+      value = region.substring(vStart, i);
+      if (i < region.length) i++;
+      while (i < region.length && (region[i] === " " || region[i] === "	"))
+        i++;
+    } else {
+      const vStart = i;
+      while (i < region.length && region[i] !== ",") i++;
+      value = region.substring(vStart, i).trim();
+    }
+    const key = aliasMap.get(rawKey) ?? rawKey;
+    if (!value) {
+      if (diagnostics && line !== void 0) {
+        diagnostics.push(
+          makeDgmoError(
+            line,
+            emptyMetadataValueMessage(rawKey),
+            "warning",
+            METADATA_DIAGNOSTIC_CODES.EMPTY_METADATA_VALUE
+          )
+        );
+      }
+      continue;
+    }
+    meta[key] = value;
+  }
+  return meta;
+}
+function cutUnionMetadata(line, registry) {
+  return findMetadataCutOffset(line, scanTokens(line), registry);
+}
+function splitNameAndMeta(line, registry, aliasMap = /* @__PURE__ */ new Map(), palette, diagnostics, lineNumber, options = {}) {
+  const tokens = scanTokens(line);
+  const cutOffset = findMetadataCutOffset(line, tokens, registry);
+  let nameRegion;
+  let metaRegion;
+  if (cutOffset === -1) {
+    nameRegion = line.trim();
+    metaRegion = "";
+  } else {
+    nameRegion = line.substring(0, cutOffset).trimEnd();
+    metaRegion = line.substring(cutOffset);
+  }
+  const colorResult = peelTrailingColorName(nameRegion);
+  let postColorName = colorResult.label;
+  let alias;
+  if (options.peelAlias !== false) {
+    const aliasMatch = postColorName.match(AS_ALIAS_RE);
+    if (aliasMatch) {
+      alias = aliasMatch[1];
+      postColorName = postColorName.substring(0, aliasMatch.index).trimEnd();
+    }
+  }
+  const meta = metaRegion.length > 0 ? parseMetadataRegion(metaRegion, aliasMap, diagnostics, lineNumber) : {};
+  void palette;
+  return {
+    name: postColorName,
+    meta,
+    ...colorResult.colorName !== void 0 && {
+      color: colorResult.colorName
+    },
+    ...alias !== void 0 && { alias }
+  };
+}
+function warnUnknownMetaKeys(meta, registry, warn, nameToScan) {
+  const candidates = Array.from(registry.keys);
+  for (const key of Object.keys(meta)) {
+    if (isReservedKey(registry, key)) continue;
+    const hint = suggest(key, candidates);
+    warn(`Unknown metadata key "${key}".${hint ? " " + hint : ""}`);
+  }
+  if (nameToScan) {
+    const m = nameToScan.match(POTENTIAL_META_RE);
+    if (m) {
+      const key = m[1].toLowerCase();
+      if (!isReservedKey(registry, key)) {
+        const hint = suggest(key, candidates);
+        if (hint) {
+          warn(`Unknown metadata key "${key}". ${hint}`);
+        }
+      }
+    }
+  }
+}
+var DIRECTIVES_REGISTRY, ALL_REGISTRY_TOKENS, INFRA_TOP_LEVEL_OPTION_SET, INFRA_BEHAVIOR_KEY_SET, INFRA_EDGE_ONLY_KEY_SET, GANTT_OPTION_SET, GANTT_BOOLEAN_SET, MAP_DIRECTIVE_KEY_SET, REGISTRY_DIRECTIVE_TOKENS, REGISTRY_CONTROL_TOKENS, REGISTRY_STATUS_TOKENS, REGISTRY_MODIFIER_TOKENS, REGISTRY_COLON_KEY_TOKENS, REGISTRY_NON_HIGHLIGHT_TOKENS, SEQUENCE_REGISTRY, INFRA_REGISTRY, MAP_REGISTRY, ORG_REGISTRY, C4_REGISTRY, ER_REGISTRY, EVENT_LINE_REGISTRY, KANBAN_REGISTRY, SITEMAP_REGISTRY, GANTT_REGISTRY, PERT_REGISTRY, BOXES_AND_LINES_REGISTRY, STATE_REGISTRY, SKETCH_REGISTRY, TIMELINE_REGISTRY, MINDMAP_REGISTRY, TECH_RADAR_REGISTRY, CYCLE_REGISTRY, JOURNEY_MAP_REGISTRY, PYRAMID_REGISTRY, RING_REGISTRY, TREEMAP_REGISTRY, RACI_REGISTRY, FAMILY_PERSON_REGISTRY, FAMILY_UNION_REGISTRY, RECOGNIZED_COLOR_SET, ALL_CHART_TYPES, OPTION_NOCOLON_RE, GLOBAL_BOOLEANS, FILL_FAMILY_TOKENS, CHART_TYPE_TOKEN_RE, TITLE_LIKE_RE, RESERVED_KEY_RE, AS_ALIAS_RE, POTENTIAL_META_RE;
+var init_chunk_3KOPPSUQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3KOPPSUQ.js"() {
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
+    DIRECTIVES_REGISTRY = [
+      // ── Universal date handling (§ BL-121) ───────────────────
+      // Accepted in every date-bearing chart (gantt, pert, countdown, timeline,
+      // event-line). Handled inline by each parser's prescan — no parser-Set
+      // membership here — so they only contribute highlighting (DIRECTIVE_KEYWORDS).
+      { token: "year", category: "directive" },
+      { token: "date-order", category: "directive" },
+      { token: "no-current-year", category: "directive" },
+      // ── Infra ────────────────────────────────────────────────
+      // Top-level SLO options that are ALSO accepted as node colon-properties
+      // (dual membership). Highlight bare (kept in DIRECTIVE_KEYWORDS) — their
+      // rarer colon form stays keyword, an accepted minor false-positive.
+      {
+        token: "slo-availability",
+        category: "directive",
+        infra: ["top-level", "behavior"]
+      },
+      {
+        token: "slo-p90-latency-ms",
+        category: "directive",
+        infra: ["top-level", "behavior"]
+      },
+      {
+        token: "slo-warning-margin",
+        category: "directive",
+        infra: ["top-level", "behavior"]
+      },
+      // Top-level-only options (space-separated, bare).
+      { token: "default-latency-ms", category: "directive", infra: ["top-level"] },
+      { token: "default-uptime", category: "directive", infra: ["top-level"] },
+      { token: "default-rps", category: "directive", infra: ["top-level"] },
+      // `active-tag` is shared with gantt + map (see below).
+      // Node behavior colon-keys — highlight as propertyName.
+      { token: "latency-ms", colonKey: true, infra: ["behavior"] },
+      { token: "uptime", colonKey: true, infra: ["behavior"] },
+      { token: "instances", colonKey: true, infra: ["behavior"] },
+      { token: "max-rps", colonKey: true, infra: ["behavior"] },
+      { token: "cache-hit", colonKey: true, infra: ["behavior"] },
+      { token: "firewall-block", colonKey: true, infra: ["behavior"] },
+      { token: "ratelimit-rps", colonKey: true, infra: ["behavior"] },
+      { token: "buffer", colonKey: true, infra: ["behavior"] },
+      { token: "drain-rate", colonKey: true, infra: ["behavior"] },
+      { token: "retention-hours", colonKey: true, infra: ["behavior"] },
+      { token: "partitions", colonKey: true, infra: ["behavior"] },
+      { token: "concurrency", colonKey: true, infra: ["behavior"] },
+      { token: "duration-ms", colonKey: true, infra: ["behavior"] },
+      { token: "cold-start-ms", colonKey: true, infra: ["behavior"] },
+      { token: "cb-error-threshold", colonKey: true, infra: ["behavior"] },
+      { token: "cb-latency-threshold-ms", colonKey: true, infra: ["behavior"] },
+      // Edge-only colon-key.
+      { token: "rps", colonKey: true, infra: ["edge"] },
+      // ── Gantt ────────────────────────────────────────────────
+      { token: "start", category: "directive", gantt: ["option"] },
+      {
+        token: "today-marker",
+        category: "directive",
+        gantt: ["option", "boolean"]
+      },
+      {
+        token: "critical-path",
+        category: "directive",
+        gantt: ["option", "boolean"]
+      },
+      { token: "sprint-length", category: "directive", gantt: ["option"] },
+      { token: "sprint-number", category: "directive", gantt: ["option"] },
+      { token: "sprint-start", category: "directive", gantt: ["option"] },
+      { token: "fill-tint", category: "directive", gantt: ["boolean"] },
+      { token: "fill-solid", category: "directive", gantt: ["boolean"] },
+      { token: "fill-outline", category: "directive", gantt: ["boolean"] },
+      // `chart` is a wireframe element keyword (CONTROL); gantt also accepts it as
+      // an option. Highlight family is control.
+      { token: "chart", category: "control", gantt: ["option"] },
+      // `dependencies` is ON by default → almost never written bare (authors write
+      // `no-dependencies`, which DOES highlight). Bare word collides with prose and
+      // the specializer is context-free, so it stays plain. Present for parser
+      // Set derivation only.
+      { token: "dependencies", noHighlight: true, gantt: ["option", "boolean"] },
+      // ── Map ──────────────────────────────────────────────────
+      // Per-element value→channel ramps (decision #20): the directive names the
+      // visual channel — `region-heat` (colour), `poi-size` (marker area),
+      // `flow-width` (stroke). The per-element key mirrors it (`heat:`/`size:`/`width:`).
+      { token: "region-heat", category: "directive", map: true },
+      { token: "poi-size", category: "directive", map: true },
+      { token: "flow-width", category: "directive", map: true },
+      { token: "locale", category: "directive", map: true },
+      { token: "caption", category: "directive", map: true },
+      { token: "no-coastline", category: "directive", map: true },
+      { token: "no-relief", category: "directive", map: true },
+      { token: "no-context-labels", category: "directive", map: true },
+      { token: "no-region-labels", category: "directive", map: true },
+      { token: "no-region-heat-value", category: "directive", map: true },
+      { token: "no-poi-labels", category: "directive", map: true },
+      { token: "no-colorize", category: "directive", map: true },
+      { token: "no-cities", category: "directive", map: true },
+      { token: "no-cluster-pois", category: "directive", map: true },
+      // ── Clock channel (BL-122): live local-time cards on POIs flagged `clock` ──
+      // Activation is the per-POI `clock` flag (peeled in the map parser, not a
+      // directive). `hours 9-17` / `days mon-fri` are the global availability
+      // window (reused verbatim from the clock chart type).
+      { token: "hours", category: "directive", map: true },
+      { token: "days", category: "directive", map: true },
+      // ── Shared across types ──────────────────────────────────
+      // `active-tag`: infra top-level option + gantt option + map directive.
+      // Treemap also accepts it (§24C.6, decision #48) — validated inline in its
+      // parser, so no chart-scoped Set is derived for it; highlighting comes from
+      // the global directive category here.
+      {
+        token: "active-tag",
+        category: "directive",
+        infra: ["top-level"],
+        gantt: ["option"],
+        map: true
+      },
+      // `title`: gantt option. (The data-chart `title` directive was removed in
+      // decision #48 — it now raises E_TITLE_DIRECTIVE; the token stays here for
+      // gantt.)
+      { token: "title", category: "directive", gantt: ["option"] },
+      // `sort`: gantt option (also general, hand-listed).
+      { token: "sort", category: "directive", gantt: ["option"] },
+      // `lane-by <group>`: swimlane axis (view-state). NB not `swimlane` — that's a
+      // chart type. Kanban reads it via its own KNOWN_OPTIONS; gantt via the switch.
+      { token: "lane-by", category: "directive", gantt: ["option"] },
+      // `no-title`: gantt boolean + map directive (also general, hand-listed).
+      { token: "no-title", category: "directive", gantt: ["boolean"], map: true },
+      // `no-legend`: universal (decision #48) — every chart that renders a legend
+      // accepts it, and charts without one take it as a harmless no-op. Parsed for
+      // most types via GLOBAL_BOOLEANS in utils/parsing; gantt derives its boolean
+      // Set from here, and map from `map: true`.
+      { token: "no-legend", category: "directive", gantt: ["boolean"], map: true },
+      // `legend-inline`: universal §1.9 boolean (decision #50) — the top-center-
+      // legend data charts (bar/line/radar/scatter/function) render the title and
+      // legend on one line; every other chart accepts it as a harmless no-op.
+      {
+        token: "legend-inline",
+        category: "directive",
+        gantt: ["boolean"],
+        map: true
+      },
+      // ══════════════════════════════════════════════════════════
+      // Highlight-only vocab (no extractable parser Set).
+      // ══════════════════════════════════════════════════════════
+      // These chart types validate their directives with inline checks rather than
+      // a literal Set, so there is no parser literal to delete — the registry is
+      // simply their single declaration site for highlighting. Grouped by chart
+      // type. Categories route to the specializer-read sets in keywords.ts.
+      // ── Gantt (extras beyond the option/boolean Sets) ────────
+      { token: "era", category: "directive" },
+      { token: "marker", category: "directive" },
+      { token: "holiday", category: "directive" },
+      // `workweek` is also the canonical weekday-window directive on clock and map
+      // clock-cards (decision #48; `days` stays as the legacy alias).
+      { token: "workweek", category: "directive", map: true },
+      { token: "no-dependencies", category: "directive" },
+      // ── Tech-radar ───────────────────────────────────────────
+      { token: "rings", category: "directive" },
+      // Blip listing is default-on everywhere (decision #48): `no-blip-legend`
+      // suppresses it; `show-blip-legend` stays as the parse-accepted legacy no-op.
+      { token: "no-blip-legend", category: "directive" },
+      { token: "show-blip-legend", category: "directive" },
+      { token: "trend", category: "directive" },
+      // ── Tags / shared directives ─────────────────────────────
+      { token: "tags", category: "directive" },
+      { token: "import", category: "directive" },
+      { token: "hide", category: "directive" },
+      { token: "direction", category: "directive" },
+      // ── Clock ────────────────────────────────────────────────
+      // The board's flat directives — highlight-only (the parser validates them
+      // inline, no extractable Set). `no-title` + `direction` are already listed
+      // above (shared). Values (analog is a bare flag; color-by's
+      // place|work|daylight|time|none) highlight as plain tokens.
+      { token: "analog", category: "directive" },
+      { token: "hours", category: "directive" },
+      { token: "days", category: "directive" },
+      { token: "no-sun", category: "directive" },
+      { token: "time-24", category: "directive" },
+      { token: "color-by", category: "directive" },
+      // ── Boxes-and-lines ──────────────────────────────────────
+      // `heat <Label> [low] [high]` is the value→colour ramp directive, but `heat`
+      // is NOT registered as a directive keyword: it is dual-use with the `heat:`
+      // metadata key (decision #20), and a token in DIRECTIVE_KEYWORDS would block the
+      // ATTRIBUTE_KEYS colon-gate from reclassifying `heat:` as a propertyName. So
+      // `heat` lives only in the reserved-key registry + ATTRIBUTE_KEYS and highlights
+      // as a property in both positions — exactly the treemap `heat` precedent.
+      // Box values render by default since decision #48; `show-values` stays as
+      // the parse-accepted legacy no-op (suppress with the shared `no-value`).
+      { token: "show-values", category: "directive" },
+      // Treemap's legacy plural spelling of the same suppression (decision #48
+      // made the shared singular `no-value` canonical). Registered so a legacy
+      // document still highlights it as a directive rather than plain text.
+      { token: "no-values", category: "directive" },
+      // ── Swimlane ─────────────────────────────────────────────
+      { token: "lane", category: "directive" },
+      // ── ER ───────────────────────────────────────────────────
+      { token: "notation", category: "directive" },
+      // ── Class ────────────────────────────────────────────────
+      { token: "extends", category: "directive" },
+      { token: "implements", category: "directive" },
+      { token: "abstract", category: "directive" },
+      { token: "interface", category: "directive" },
+      { token: "enum", category: "directive" },
+      // ── C4 ───────────────────────────────────────────────────
+      { token: "containers", category: "directive" },
+      { token: "components", category: "directive" },
+      { token: "deployment", category: "directive" },
+      { token: "technology", category: "directive" },
+      // ── Infra (directives beyond the option/behavior Sets) ───
+      { token: "sub-node-label", category: "directive" },
+      { token: "show-sub-node-count", category: "directive" },
+      { token: "animate", category: "directive" },
+      // ── Sequence ─────────────────────────────────────────────
+      { token: "activations", category: "directive" },
+      { token: "no-activations", category: "directive" },
+      // ── Map element leaders (not in DIRECTIVE_SET) ───────────
+      { token: "poi", category: "directive" },
+      { token: "route", category: "directive" },
+      // ── Data charts ──────────────────────────────────────────
+      { token: "stacked", category: "directive" },
+      { token: "no-name", category: "directive" },
+      { token: "no-value", category: "directive" },
+      { token: "no-percent", category: "directive" },
+      { token: "series", category: "directive" },
+      { token: "orientation", category: "directive" },
+      { token: "x-label", category: "directive" },
+      { token: "y-label", category: "directive" },
+      { token: "size-label", category: "directive" },
+      { token: "columns", category: "directive" },
+      { token: "rows", category: "directive" },
+      { token: "labels", category: "directive" },
+      { token: "rotate", category: "directive" },
+      { token: "scale", category: "directive" },
+      { token: "values", category: "directive" },
+      { token: "orientation-horizontal", category: "directive" },
+      // ── Slope ────────────────────────────────────────────────
+      { token: "period", category: "directive" },
+      // ── Quadrant ─────────────────────────────────────────────
+      { token: "x-axis", category: "directive" },
+      { token: "y-axis", category: "directive" },
+      { token: "top-right", category: "directive" },
+      { token: "top-left", category: "directive" },
+      { token: "bottom-right", category: "directive" },
+      { token: "bottom-left", category: "directive" },
+      // ── Layout (cross-chart) ─────────────────────────────────
+      { token: "direction-tb", category: "directive" },
+      { token: "direction-lr", category: "directive" },
+      { token: "orientation-vertical", category: "directive" },
+      // ── Pyramid ──────────────────────────────────────────────
+      { token: "inverted", category: "directive" },
+      // ── Color / notes (cross-chart) ──────────────────────────
+      { token: "color", category: "directive" },
+      { token: "no-notes", category: "directive" },
+      // ── Emphasis family (§1.11, decision #49) ────────────────
+      // `highlight <Name>…` / `dim <Name>…` — the figure/ground axis, orthogonal
+      // to color (§1.5) and to the chart-wide `fill-*` family (§1.9). Both are
+      // chart-level directives taking a name list, validated inline by each
+      // adopting parser (no extractable Set), so the registry is their single
+      // declaration site for highlighting.
+      //
+      // `highlight` shipped on `family` long before this entry existed and was
+      // never registered — it had completions but highlighted as plain text. Both
+      // tokens are registered together so the whole family lights up at once.
+      //
+      // Supported on `sankey` and `family` today; every further chart type is a
+      // separate decision. Registering them globally is correct regardless: the
+      // Lezer specializer is context-free (it cannot know the chart type), and the
+      // same is already true of every other chart-scoped token here.
+      { token: "highlight", category: "directive" },
+      { token: "dim", category: "directive" },
+      // ── RACI ─────────────────────────────────────────────────
+      { token: "roles", category: "directive" },
+      // ── Cycle ────────────────────────────────────────────────
+      { token: "direction-counterclockwise", category: "directive" },
+      { token: "circle-nodes", category: "directive" },
+      // ── Journey-map ──────────────────────────────────────────
+      { token: "persona", category: "directive" },
+      // ── Function ─────────────────────────────────────────────
+      { token: "x", category: "directive" },
+      { token: "fill", category: "directive" },
+      // ── Wordcloud ────────────────────────────────────────────
+      { token: "max", category: "directive" },
+      { token: "size", category: "directive" },
+      // ── Arc ──────────────────────────────────────────────────
+      { token: "order", category: "directive" },
+      // ── PERT ─────────────────────────────────────────────────
+      { token: "time-unit", category: "directive" },
+      { token: "default-confidence", category: "directive" },
+      { token: "node-detail", category: "directive" },
+      { token: "trials", category: "directive" },
+      { token: "seed", category: "directive" },
+      { token: "scrubber-trials", category: "directive" },
+      // `start-date` is also gantt's canonical project-start option (decision #48;
+      // bare `start` above stays as the legacy alias).
+      { token: "start-date", category: "directive", gantt: ["option"] },
+      { token: "end-date", category: "directive" },
+      // ── Goal ─────────────────────────────────────────────────
+      // Mode flags, value-key leaders, and opt-outs. `now`/`target` collide with
+      // label prose ("start now", "on target"), but the arrow-label demotion pass
+      // (see highlight-api LABEL_WORD_NODES) treats any keyword-bearing label as
+      // text and demotes them, so they highlight only as line leaders.
+      { token: "thermometer", category: "directive" },
+      { token: "gauge", category: "directive" },
+      { token: "now", category: "directive" },
+      { token: "target", category: "directive" },
+      { token: "no-note", category: "directive" },
+      { token: "no-auto-color", category: "directive" },
+      // ── Control-flow + wireframe element keywords (CONTROL) ──
+      { token: "if", category: "control" },
+      { token: "else", category: "control" },
+      { token: "loop", category: "control" },
+      { token: "parallel", category: "control" },
+      { token: "note", category: "control" },
+      { token: "nav", category: "control" },
+      { token: "tabs", category: "control" },
+      { token: "table", category: "control" },
+      { token: "image", category: "control" },
+      { token: "modal", category: "control" },
+      { token: "skeleton", category: "control" },
+      { token: "alert", category: "control" },
+      { token: "progress", category: "control" },
+      { token: "mobile", category: "control" },
+      // ── Kanban status keywords (STATUS) ──────────────────────
+      { token: "na", category: "status" },
+      { token: "todo", category: "status" },
+      { token: "wip", category: "status" },
+      { token: "done", category: "status" },
+      { token: "blocked", category: "status" },
+      { token: "in-progress", category: "status" },
+      { token: "backlog", category: "status" },
+      { token: "ready", category: "status" },
+      // ── Modifiers + ER column types/modifiers (MODIFIER) ─────
+      // `collapsed` is the bare trailing group-line flag made canonical by
+      // decision #48 (`[Fulfillment] collapsed`). It is deliberately a bare
+      // MODIFIER rather than a colon key: the legacy `collapsed: true` form still
+      // parses and still highlights (as `modifier` instead of `propertyName`),
+      // whereas leaving it colon-only left the canonical bare form as plain text.
+      { token: "collapsed", category: "modifier" },
+      { token: "as", category: "modifier" },
+      { token: "alias", category: "modifier" },
+      { token: "aka", category: "modifier" },
+      { token: "position", category: "modifier" },
+      { token: "default", category: "modifier" },
+      { token: "pk", category: "modifier" },
+      { token: "fk", category: "modifier" },
+      { token: "nullable", category: "modifier" },
+      { token: "unique", category: "modifier" },
+      { token: "int", category: "modifier" },
+      { token: "varchar", category: "modifier" },
+      { token: "text", category: "modifier" },
+      { token: "boolean", category: "modifier" },
+      { token: "date", category: "modifier" },
+      { token: "timestamp", category: "modifier" },
+      { token: "float", category: "modifier" },
+      { token: "decimal", category: "modifier" },
+      // ── Bracket ──────────────────────────────────────────────
+      // `beats` / `vs` are the infix match keywords; the rest are line directives.
+      // (`seed` and `no-legend` already appear above — shared, not re-listed.)
+      { token: "beats", category: "control" },
+      { token: "vs", category: "control" },
+      { token: "rounds", category: "directive" },
+      { token: "accent", category: "directive" },
+      { token: "no-round", category: "modifier" },
+      { token: "no-rounds", category: "modifier" },
+      { token: "single-elim", category: "modifier" },
+      { token: "double-elim", category: "modifier" },
+      { token: "seeded", category: "modifier" }
+    ];
+    ALL_REGISTRY_TOKENS = tokensWhere(() => true);
+    INFRA_TOP_LEVEL_OPTION_SET = tokensWhere(
+      (e) => !!e.infra?.includes("top-level")
+    );
+    INFRA_BEHAVIOR_KEY_SET = tokensWhere(
+      (e) => !!e.infra?.includes("behavior")
+    );
+    INFRA_EDGE_ONLY_KEY_SET = tokensWhere(
+      (e) => !!e.infra?.includes("edge")
+    );
+    GANTT_OPTION_SET = tokensWhere(
+      (e) => !!e.gantt?.includes("option")
+    );
+    GANTT_BOOLEAN_SET = tokensWhere(
+      (e) => !!e.gantt?.includes("boolean")
+    );
+    MAP_DIRECTIVE_KEY_SET = tokensWhere((e) => e.map === true);
+    REGISTRY_DIRECTIVE_TOKENS = tokensWhere(
+      (e) => e.category === "directive" && !e.colonKey && !e.noHighlight
+    );
+    REGISTRY_CONTROL_TOKENS = tokensWhere(
+      (e) => e.category === "control" && !e.colonKey && !e.noHighlight
+    );
+    REGISTRY_STATUS_TOKENS = tokensWhere(
+      (e) => e.category === "status" && !e.colonKey && !e.noHighlight
+    );
+    REGISTRY_MODIFIER_TOKENS = tokensWhere(
+      (e) => e.category === "modifier" && !e.colonKey && !e.noHighlight
+    );
+    REGISTRY_COLON_KEY_TOKENS = tokensWhere((e) => !!e.colonKey);
+    REGISTRY_NON_HIGHLIGHT_TOKENS = tokensWhere(
+      (e) => !!e.noHighlight
+    );
+    SEQUENCE_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "role",
+      "collapsed",
+      // Participant layout-order override (§2.2). Colon-keyed `position: N`.
+      "position"
+    ]);
+    INFRA_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "collapsed",
+      "icon"
+    ]);
+    MAP_REGISTRY = staticRegistry([
+      "heat",
+      "size",
+      "width",
+      "label",
+      "style",
+      // `clock` (BL-122): the time-card control. Bare (`poi Denver clock`) → a card
+      // with the zone auto-derived from the place; valued (`clock: Europe/Oslo`) →
+      // that IANA id or fixed offset (`clock: UTC+9`) as the zone, for bare-coord
+      // pins or to override a city. Reserved so the valued form peels off the POI
+      // name cleanly; the BARE flag is peeled separately in handlePoi (no colon).
+      "clock"
+      // `surface:` was removed in the 2026-06-02 defaults-on review — it is no longer
+      // a recognized metadata key (the route/edge surface feature was cut; §24B.7).
+      // A stray `surface: water` is no longer captured as a reserved key.
+    ]);
+    ORG_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "role",
+      "location",
+      "email",
+      "phone"
+    ]);
+    C4_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "tech",
+      "type",
+      "collapsed"
+    ]);
+    ER_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "domain"
+    ]);
+    EVENT_LINE_REGISTRY = staticRegistry([
+      "color"
+    ]);
+    KANBAN_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "wip",
+      "assignee",
+      "due",
+      "collapsed"
+      // `[Column] collapsed: true` view-state marker
+    ]);
+    SITEMAP_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "status"
+    ]);
+    GANTT_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "duration",
+      "offset",
+      "progress",
+      "start",
+      "collapsed"
+      // `[Group] collapsed: true` view-state marker
+    ]);
+    PERT_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "confidence",
+      "collapsed"
+    ]);
+    BOXES_AND_LINES_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "heat"
+    ]);
+    STATE_REGISTRY = staticRegistry([]);
+    SKETCH_REGISTRY = staticRegistry([
+      "shape",
+      "at",
+      "collapsed"
+    ]);
+    TIMELINE_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "duration"
+    ]);
+    MINDMAP_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "collapsed"
+    ]);
+    TECH_RADAR_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "quadrant",
+      "ring",
+      "trend"
+    ]);
+    CYCLE_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "width",
+      "span"
+    ]);
+    JOURNEY_MAP_REGISTRY = staticRegistry([
+      "color",
+      "description",
+      "score",
+      "emotion",
+      "pain",
+      "opportunity",
+      "thought"
+    ]);
+    PYRAMID_REGISTRY = staticRegistry([
+      "color",
+      "description"
+    ]);
+    RING_REGISTRY = staticRegistry([
+      "color",
+      "description"
+    ]);
+    TREEMAP_REGISTRY = staticRegistry(["heat"]);
+    RACI_REGISTRY = staticRegistry([
+      "color",
+      "description"
+    ]);
+    FAMILY_PERSON_REGISTRY = staticRegistry([
+      "sex",
+      "b",
+      "d",
+      "bp",
+      "dp",
+      "occupation",
+      "military",
+      "education",
+      "religion",
+      "burial"
+    ]);
+    FAMILY_UNION_REGISTRY = staticRegistry(["m"]);
+    RECOGNIZED_COLOR_SET = new Set(
+      RECOGNIZED_COLOR_NAMES
+    );
+    ALL_CHART_TYPES = /* @__PURE__ */ new Set([
+      // data charts
+      "bar",
+      "line",
+      "pie",
+      "polar-area",
+      "radar",
+      "scatter",
+      "sankey",
+      "function",
+      "heatmap",
+      "funnel",
+      // visualizations
+      "slope",
+      "wordcloud",
+      "arc",
+      "timeline",
+      "event-line",
+      "venn",
+      "quadrant",
+      // diagrams
+      "body",
+      "sequence",
+      "flowchart",
+      "class",
+      "er",
+      "org",
+      "kanban",
+      "c4",
+      "state",
+      "sitemap",
+      "infra",
+      "gantt",
+      "pert",
+      "boxes-and-lines",
+      "swimlane",
+      "version-control",
+      "mindmap",
+      "wireframe",
+      "tech-radar",
+      "cycle",
+      "journey-map",
+      "pyramid",
+      "ring",
+      "treemap",
+      "block",
+      "goal",
+      "countdown",
+      "clock",
+      "sketch",
+      "raci",
+      "map",
+      "family",
+      "bracket"
+    ]);
+    OPTION_NOCOLON_RE = /^([a-z][a-z0-9-]*)\s+(.+)$/i;
+    GLOBAL_BOOLEANS = /* @__PURE__ */ new Set([
+      "fill-tint",
+      "fill-solid",
+      "fill-outline",
+      "no-title",
+      "no-notes",
+      "no-legend",
+      "legend-inline"
+    ]);
+    FILL_FAMILY_TOKENS = /* @__PURE__ */ new Set([
+      "fill-tint",
+      "fill-solid",
+      "fill-outline"
+    ]);
+    CHART_TYPE_TOKEN_RE = /^[A-Za-z][A-Za-z0-9-]*$/;
+    TITLE_LIKE_RE = /^[A-Za-z][A-Za-z\s'&,.\-—–]*$/;
+    RESERVED_KEY_RE = /^[A-Za-z][A-Za-z0-9_-]*$/;
+    AS_ALIAS_RE = /\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})$/;
+    POTENTIAL_META_RE = /\b([\w-]+)\s*:/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BQLJAYVB.js
+function parseRoleAssignmentLine(trimmed) {
+  const colonMatch = trimmed.match(ROLE_ASSIGNMENT_RE);
+  if (colonMatch) {
+    return {
+      // Capture groups [1] and [2] guaranteed by ROLE_ASSIGNMENT_RE shape.
+      rawRole: colonMatch[1].trim(),
+      markersBlob: colonMatch[2].trim()
+    };
+  }
+  const tokens = trimmed.split(/\s+/).filter((t3) => t3.length > 0);
+  if (tokens.length < 2) return null;
+  const isAllMarkers = (tok) => {
+    if (tok.length === 0) return false;
+    for (const ch of tok) {
+      if (!ALL_MARKERS.has(ch)) return false;
+    }
+    return true;
+  };
+  let firstMarkerIdx = -1;
+  for (let j2 = 0; j2 < tokens.length; j2++) {
+    if (isAllMarkers(tokens[j2])) {
+      firstMarkerIdx = j2;
+      break;
+    }
+  }
+  if (firstMarkerIdx <= 0) return null;
+  return {
+    rawRole: tokens.slice(0, firstMarkerIdx).join(" "),
+    markersBlob: tokens.slice(firstMarkerIdx).join(" ")
+  };
+}
+function parseRaci(content, palette) {
+  const options = {};
+  const result = {
+    type: "raci",
+    variant: "raci",
+    roles: [],
+    roleDisplayNames: [],
+    roleColors: [],
+    phases: [],
+    tasksWithoutPhase: [],
+    options,
+    diagnostics: [],
+    error: null
+  };
+  const fail = makeFail(result);
+  const warn = (line, message, code) => {
+    result.diagnostics.push(makeDgmoError(line, message, "warning", code));
+  };
+  const errorAt = (line, message, code) => {
+    result.diagnostics.push(makeDgmoError(line, message, "error", code));
+  };
+  if (!content?.trim()) {
+    return fail(0, "No content provided");
+  }
+  const lines = content.split("\n");
+  let i = 0;
+  for (; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    const firstLine = parseFirstLine(trimmed);
+    if (firstLine?.chartType !== "raci") {
+      return fail(i + 1, 'Expected chart type "raci" on the first line.');
+    }
+    if (firstLine.title) {
+      result.title = firstLine.title;
+      result.titleLineNumber = i + 1;
+    }
+    i++;
+    break;
+  }
+  let bodyStarted = false;
+  const roleStore = /* @__PURE__ */ new Map();
+  const taskStore = /* @__PURE__ */ new Map();
+  let rolesExplicit = false;
+  let currentPhase = null;
+  let currentTask = null;
+  let taskIndent = 0;
+  let taskHasRoleAssignment = false;
+  const getOrAddRole = (label, line, color2) => {
+    const display = displayName(label);
+    if (!display) {
+      errorAt(line, "Role name is empty.");
+      return null;
+    }
+    const key = normalizeName(display);
+    const existing = roleStore.get(key);
+    if (existing) {
+      if (existing.displayName !== display) {
+        warn(
+          line,
+          nameMergedMessage({
+            incomingDisplay: display,
+            incomingLine: line,
+            existingDisplay: existing.displayName,
+            existingLine: existing.declaredLine
+          }),
+          NAME_DIAGNOSTIC_CODES.NAME_MERGED
+        );
+      }
+      if (color2 !== void 0) {
+        const idx = result.roles.indexOf(key);
+        if (idx >= 0) result.roleColors[idx] = color2;
+      }
+      return key;
+    }
+    roleStore.set(key, { displayName: display, declaredLine: line });
+    result.roles.push(key);
+    result.roleDisplayNames.push(display);
+    result.roleColors.push(color2);
+    return key;
+  };
+  const registerTask = (display, line) => {
+    const key = normalizeName(display);
+    const existing = taskStore.get(key);
+    if (existing) {
+      if (existing.displayName !== display) {
+        warn(
+          line,
+          nameMergedMessage({
+            incomingDisplay: display,
+            incomingLine: line,
+            existingDisplay: existing.displayName,
+            existingLine: existing.declaredLine
+          }),
+          NAME_DIAGNOSTIC_CODES.NAME_MERGED
+        );
+      }
+    } else {
+      taskStore.set(key, { displayName: display, declaredLine: line });
+    }
+    return key;
+  };
+  const finalizeTask = (uptoLineExclusive) => {
+    if (!currentTask) return;
+    let end = uptoLineExclusive - 1;
+    while (end > currentTask.lineNumber && !lines[end - 1].trim()) end--;
+    currentTask.endLineNumber = end;
+    if (currentPhase) currentPhase.endLineNumber = end;
+    currentTask = null;
+    taskHasRoleAssignment = false;
+  };
+  const finalizePhase = (uptoLineExclusive) => {
+    if (currentTask) finalizeTask(uptoLineExclusive);
+    if (currentPhase) {
+      let end = uptoLineExclusive - 1;
+      while (end > currentPhase.lineNumber && !lines[end - 1].trim()) end--;
+      currentPhase.endLineNumber = Math.max(currentPhase.endLineNumber, end);
+      currentPhase = null;
+    }
+  };
+  for (; i < lines.length; i++) {
+    const raw = lines[i];
+    const lineNumber = i + 1;
+    const trimmed = raw.trim();
+    const indent = measureIndent(raw);
+    if (!trimmed) continue;
+    if (trimmed.startsWith("//")) continue;
+    if (!bodyStarted && indent === 0 && !PHASE_RE.test(trimmed)) {
+      if (trimmed.toLowerCase() === "roles") {
+        rolesExplicit = true;
+        let j2 = i + 1;
+        for (; j2 < lines.length; j2++) {
+          const next = lines[j2];
+          const nextTrim = next.trim();
+          if (!nextTrim) continue;
+          if (nextTrim.startsWith("//")) continue;
+          if (next.length > 0 && next[0] !== " " && next[0] !== "	") break;
+          const stripped = nextTrim.replace(/,\s*$/, "");
+          const split = splitNameAndMeta(
+            stripped,
+            RACI_REGISTRY,
+            /* @__PURE__ */ new Map(),
+            void 0,
+            result.diagnostics,
+            j2 + 1
+          );
+          warnUnknownMetaKeys(
+            split.meta,
+            RACI_REGISTRY,
+            (msg) => warn(j2 + 1, msg),
+            split.name
+          );
+          const roleLabel = split.name;
+          let roleColor;
+          const colorRaw = split.color ?? split.meta["color"];
+          if (colorRaw) {
+            roleColor = resolveColorWithDiagnostic(
+              colorRaw,
+              j2 + 1,
+              result.diagnostics,
+              palette
+            );
+          }
+          if (roleLabel) getOrAddRole(roleLabel, j2 + 1, roleColor);
+        }
+        i = j2 - 1;
+        continue;
+      }
+      const lower2 = trimmed.toLowerCase();
+      const removedMsg = REMOVED_BOOLEANS[lower2];
+      if (removedMsg) {
+        warn(lineNumber, removedMsg);
+        continue;
+      }
+      if (KNOWN_BOOLEANS.has(lower2)) {
+        options[lower2] = "on";
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) continue;
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch) {
+        const key = optMatch[1].trim().toLowerCase();
+        if (KNOWN_OPTIONS.has(key)) {
+          const value = optMatch[2].trim();
+          if (key === "roles") {
+            rolesExplicit = true;
+            const declared = value.split(",").map((s) => s.trim()).filter((s) => s.length > 0);
+            for (const rawRole of declared) {
+              getOrAddRole(rawRole, lineNumber);
+            }
+          } else {
+            options[key] = value;
+          }
+          continue;
+        }
+      }
+    }
+    if (indent === 0) {
+      const phaseMatch = trimmed.match(PHASE_RE);
+      if (phaseMatch) {
+        bodyStarted = true;
+        finalizePhase(lineNumber);
+        const label = phaseMatch[1].trim();
+        const display = displayName(label);
+        if (!display) {
+          errorAt(lineNumber, "Phase label is empty.");
+          continue;
+        }
+        let phaseColor;
+        const tail = (phaseMatch[2] ?? "").trim();
+        const colorMatch = tail.match(PHASE_PALETTE_COLOR_RE);
+        if (colorMatch) {
+          phaseColor = resolveColorWithDiagnostic(
+            colorMatch[1],
+            lineNumber,
+            result.diagnostics,
+            palette
+          );
+        }
+        currentPhase = {
+          id: normalizeName(display),
+          displayName: display,
+          ...phaseColor !== void 0 && { color: phaseColor },
+          tasks: [],
+          lineNumber,
+          endLineNumber: lineNumber
+        };
+        result.phases.push(currentPhase);
+        continue;
+      }
+    }
+    const startTask = () => {
+      const display = displayName(trimmed);
+      if (!display) {
+        errorAt(lineNumber, "Task name is empty.");
+        return;
+      }
+      const taskId = registerTask(display, lineNumber);
+      const task = {
+        id: taskId,
+        displayName: display,
+        description: "",
+        roleAssignments: [],
+        lineNumber,
+        endLineNumber: lineNumber
+      };
+      if (currentPhase) {
+        currentPhase.tasks.push(task);
+      } else {
+        result.tasksWithoutPhase.push(task);
+      }
+      currentTask = task;
+      taskIndent = indent;
+      taskHasRoleAssignment = false;
+    };
+    if (indent === 0 && !currentPhase) {
+      bodyStarted = true;
+      finalizeTask(lineNumber);
+      startTask();
+      continue;
+    }
+    if (indent === 0 && currentPhase) {
+      bodyStarted = true;
+      finalizePhase(lineNumber);
+      startTask();
+      continue;
+    }
+    if (currentPhase && indent > 0 && (!currentTask || indent <= taskIndent)) {
+      bodyStarted = true;
+      finalizeTask(lineNumber);
+      startTask();
+      continue;
+    }
+    if (currentTask && indent > taskIndent) {
+      const task = currentTask;
+      const parsedAssign = parseRoleAssignmentLine(trimmed);
+      if (parsedAssign) {
+        const { rawRole, markersBlob } = parsedAssign;
+        const markers = [];
+        const tokens = [];
+        for (const tok of markersBlob.split(/\s+/)) {
+          if (!tok) continue;
+          for (const ch of tok) tokens.push(ch);
+        }
+        for (const tok of tokens) {
+          if (ALL_MARKERS.has(tok)) {
+            markers.push(tok);
+          } else {
+            result.diagnostics.push(
+              emit(RACI_DX.INVALID_MARKER, lineNumber, { marker: tok })
+            );
+          }
+        }
+        const roleId = getOrAddRole(rawRole, lineNumber);
+        if (roleId === null) continue;
+        if (rolesExplicit) {
+          const entry = roleStore.get(roleId);
+          if (entry?.declaredLine === lineNumber) {
+            const candidates = result.roleDisplayNames.filter(
+              (n) => n !== entry.displayName
+            );
+            const hint = suggest(rawRole, candidates);
+            result.diagnostics.push(
+              emit(RACI_DX.UNKNOWN_ROLE, lineNumber, {
+                role: rawRole,
+                hint: hint ?? ""
+              })
+            );
+          }
+        }
+        const assignment = {
+          id: roleId,
+          displayName: roleStore.get(roleId).displayName,
+          markers,
+          lineNumber,
+          endLineNumber: lineNumber
+        };
+        task.roleAssignments.push(assignment);
+        task.endLineNumber = lineNumber;
+        taskHasRoleAssignment = true;
+        continue;
+      }
+      if (!taskHasRoleAssignment) {
+        task.description = task.description ? task.description + "\n" + trimmed : trimmed;
+        task.endLineNumber = lineNumber;
+        continue;
+      }
+      result.diagnostics.push(
+        emit(RACI_DX.UNEXPECTED_LINE, lineNumber, { task: task.displayName })
+      );
+      continue;
+    }
+    if (bodyStarted) {
+      errorAt(
+        lineNumber,
+        `Unexpected line: '${trimmed}'. In the body expect a '[Phase]' header, an indented task name, or an assignment 'Role: A R C I' under a task. (\xA724A)`
+      );
+    } else {
+      warn(lineNumber, `Unrecognized directive: '${trimmed}'.`);
+    }
+  }
+  finalizePhase(lines.length + 1);
+  const usedMarkers = [];
+  for (const task of allTasks(result)) {
+    for (const a of task.roleAssignments) {
+      for (const m of a.markers) usedMarkers.push(m);
+    }
+  }
+  const inferred = inferVariant(usedMarkers);
+  if (inferred === null) {
+    const titleLine = result.titleLineNumber ?? 1;
+    result.diagnostics.push(emit(RACI_DX.MIXED_VARIANTS, titleLine));
+    result.variant = "rasci";
+  } else {
+    result.variant = inferred;
+  }
+  const resolvedAlphabet = VARIANTS[result.variant].alphabet;
+  for (const task of allTasks(result)) {
+    for (const a of task.roleAssignments) {
+      const kept = [];
+      for (const m of a.markers) {
+        if (resolvedAlphabet.includes(m)) {
+          kept.push(m);
+        } else {
+          result.diagnostics.push(
+            emit(RACI_DX.INVALID_MARKER, a.lineNumber, {
+              marker: m,
+              variant: result.variant.toUpperCase(),
+              alphabet: resolvedAlphabet.join(" ")
+            })
+          );
+        }
+      }
+      a.markers = kept;
+    }
+  }
+  const variantRules = VARIANTS[result.variant];
+  for (const task of allTasks(result)) {
+    for (const rule of variantRules.errorRules) {
+      result.diagnostics.push(...rule(task));
+    }
+    for (const rule of variantRules.warningRules) {
+      result.diagnostics.push(...rule(task));
+    }
+  }
+  const usedRoleIds = /* @__PURE__ */ new Set();
+  for (const task of allTasks(result)) {
+    for (const a of task.roleAssignments) {
+      if (a.markers.length > 0) usedRoleIds.add(a.id);
+    }
+  }
+  for (let i2 = 0; i2 < result.roles.length; i2++) {
+    const roleId = result.roles[i2];
+    if (usedRoleIds.has(roleId)) continue;
+    const declared = roleStore.get(roleId);
+    const displayName2 = result.roleDisplayNames[i2] ?? roleId;
+    result.diagnostics.push(
+      emit(RACI_DX.ORPHAN_ROLE, declared?.declaredLine ?? 1, {
+        role: displayName2
+      })
+    );
+  }
+  return result;
+}
+function* allTasks(parsed) {
+  for (const t3 of parsed.tasksWithoutPhase) yield t3;
+  for (const phase of parsed.phases) {
+    for (const t3 of phase.tasks) yield t3;
+  }
+}
+var KNOWN_OPTIONS, KNOWN_BOOLEANS, REMOVED_BOOLEANS, PHASE_RE, PHASE_PALETTE_COLOR_RE, ROLE_ASSIGNMENT_RE;
+var init_chunk_BQLJAYVB = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BQLJAYVB.js"() {
+    init_chunk_NOTA6TEI();
+    init_chunk_I55PVEIX();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
+    KNOWN_OPTIONS = /* @__PURE__ */ new Set(["roles", "palette", "theme", "active-tag"]);
+    KNOWN_BOOLEANS = /* @__PURE__ */ new Set(["no-title"]);
+    REMOVED_BOOLEANS = {
+      "no-rule-enforcement": '"no-rule-enforcement" has been removed \u2014 RACI validation is always active.'
+    };
+    PHASE_RE = /^\[(.+?)\]\s*(.*)$/;
+    PHASE_PALETTE_COLOR_RE = /^(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white)\b/;
+    ROLE_ASSIGNMENT_RE = /^([^:]+):\s*(.*)$/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js
 function figureKey(sex, view) {
   return `${sex}${view === "front" ? "Front" : "Back"}`;
 }
@@ -113,7 +2544,7 @@ function getPartGeom(figure, key) {
 }
 var FIGURES, SURFACE, FIG_KEY, surfaceFor, ANATOMICAL, ALIAS, BODY_TERMS;
 var init_chunk_BDXC7MDK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BDXC7MDK.js"() {
     FIGURES = {
       maleFront: {
         viewBox: "0 0 724 1448",
@@ -2464,1508 +4895,7 @@ var init_chunk_BDXC7MDK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OLMWTJVU.js
-function makeDgmoError(line, message, severity = "error", code) {
-  return code !== void 0 ? { line, message, severity, code } : { line, message, severity };
-}
-function emit(spec, line, params = {}, opts = {}) {
-  const message = typeof spec.message === "function" ? spec.message(params) : spec.message;
-  const err = {
-    line,
-    message,
-    severity: spec.severity,
-    code: spec.code
-  };
-  if (opts.column !== void 0) err.column = opts.column;
-  return err;
-}
-function dedupeDiagnostics(diagnostics) {
-  const seen = /* @__PURE__ */ new Set();
-  const out = [];
-  for (const d of diagnostics) {
-    const key = `${d.line}\0${d.column ?? ""}\0${d.severity}\0${d.code ?? ""}\0${d.message}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(d);
-  }
-  return out;
-}
-function formatDgmoError(err) {
-  return err.line > 0 ? `Line ${err.line}: ${err.message}` : err.message;
-}
-function makeFail(result) {
-  return (line, message) => {
-    const diag = makeDgmoError(line, message);
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-    return result;
-  };
-}
-function levenshtein(a, b) {
-  const m = a.length;
-  const n = b.length;
-  const dp = Array(n + 1).fill(0).map((_2, i) => i);
-  for (let i = 1; i <= m; i++) {
-    let prev = dp[0];
-    dp[0] = i;
-    for (let j2 = 1; j2 <= n; j2++) {
-      const tmp = dp[j2];
-      dp[j2] = a[i - 1] === b[j2 - 1] ? prev : 1 + Math.min(prev, dp[j2], dp[j2 - 1]);
-      prev = tmp;
-    }
-  }
-  return dp[n];
-}
-function suggest(input, candidates) {
-  if (!input || candidates.length === 0) return null;
-  const lower2 = input.toLowerCase();
-  const threshold = Math.max(2, Math.floor(lower2.length / 3));
-  let best = null;
-  let bestDist = Infinity;
-  for (const c of candidates) {
-    const dist = levenshtein(lower2, c.toLowerCase());
-    if (dist < bestDist && dist <= threshold && dist > 0) {
-      bestDist = dist;
-      best = c;
-    }
-  }
-  return best ? `Did you mean '${best}'?` : null;
-}
-function nameMergedMessage(args) {
-  return `merged '${args.incomingDisplay}' (line ${args.incomingLine}) into '${args.existingDisplay}' (line ${args.existingLine}) \u2014 names differ only in case/whitespace`;
-}
-function emptyMetadataValueMessage(key) {
-  return `Metadata key '${key}:' has no value \u2014 the pair is dropped. Provide a value or remove the key.`;
-}
-var NAME_DIAGNOSTIC_CODES, METADATA_DIAGNOSTIC_CODES, NEGATIVE_VALUE_DX, TITLE_DIRECTIVE_DX;
-var init_chunk_OLMWTJVU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OLMWTJVU.js"() {
-    NAME_DIAGNOSTIC_CODES = {
-      /**
-       * Warning: two source-distinct names normalized to the same key
-       * (case- or whitespace-only difference). The first occurrence wins
-       * for display; subsequent occurrences fold into it. Suppressible
-       * per-line via `# allow-merge` annotation when intentional.
-       *
-       * Note: the `I_` prefix is intentionally preserved for stability —
-       * callers may have pinned this string. The diagnostic emits at
-       * `warning` severity (no `info` severity exists in DgmoError).
-       */
-      NAME_MERGED: "I_NAME_MERGED"
-    };
-    METADATA_DIAGNOSTIC_CODES = {
-      /**
-       * Error: a `tag` declaration appears after the first non-tag
-       * content line. The reserved-key registry is finalized before
-       * content-line mode begins; downstream-declared tag aliases
-       * cannot retroactively apply to earlier lines.
-       */
-      TAG_DECLARED_AFTER_CONTENT: "E_TAG_DECLARED_AFTER_CONTENT",
-      /**
-       * Warning: a metadata pair has an empty value (`Foo c:`). The
-       * pair is dropped from the entity's metadata.
-       */
-      EMPTY_METADATA_VALUE: "W_EMPTY_METADATA_VALUE"
-    };
-    NEGATIVE_VALUE_DX = {
-      code: "E_VALUE_NEGATIVE",
-      severity: "error",
-      chartType: null,
-      title: "Negative value on a magnitude channel",
-      message: (p2) => `Negative value ${p2.value ?? -300} on "${p2.label ?? "Refunds"}" \u2014 ${p2.channel ?? "this chart's values"} encode magnitude and can't be negative.`,
-      hint: 'Restate the data as positive magnitudes (e.g. "decline %"). If direction matters, use a bar chart \u2014 bars support negative values.',
-      example: "pie Budget\nRent 1200\nRefunds -300"
-    };
-    TITLE_DIRECTIVE_DX = {
-      code: "E_TITLE_DIRECTIVE",
-      severity: "error",
-      chartType: null,
-      title: "title directive on a data chart",
-      message: "The `title` directive is not supported \u2014 the chart title is line 1 \u2014 remove the title directive.",
-      hint: "Put the title on the declaration line (`bar My Chart`) and delete the `title` line.",
-      example: "bar Revenue\ntitle Revenue\nQ1 100"
-    };
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EXNKNJ65.js
-function isRecognizedColorName(name) {
-  return Object.prototype.hasOwnProperty.call(colorNames, name.toLowerCase());
-}
-function resolveColor(color2, palette) {
-  if (!color2) return null;
-  if (color2.startsWith("#")) return null;
-  const lower2 = color2.toLowerCase();
-  if (!isRecognizedColorName(lower2)) return null;
-  if (palette) {
-    const named2 = palette.colors[lower2];
-    if (named2) return named2;
-  }
-  return colorNames[lower2] ?? null;
-}
-function nearestNamedColor(input) {
-  const cssHex = INVALID_CSS_COLOR_HEX[input.trim().toLowerCase()];
-  if (cssHex) input = cssHex;
-  const m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(input.trim());
-  if (!m) return null;
-  let h = m[1].toLowerCase();
-  if (h.length === 3)
-    h = h.split("").map((c) => c + c).join("");
-  const r = parseInt(h.slice(0, 2), 16) / 255;
-  const g = parseInt(h.slice(2, 4), 16) / 255;
-  const b = parseInt(h.slice(4, 6), 16) / 255;
-  const max3 = Math.max(r, g, b);
-  const min3 = Math.min(r, g, b);
-  const delta = max3 - min3;
-  const l = (max3 + min3) / 2;
-  const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-  if (s < 0.15) {
-    if (l < 0.2) return "black";
-    if (l > 0.85) return "white";
-    return "gray";
-  }
-  let hue;
-  if (max3 === r) hue = 60 * ((g - b) / delta % 6);
-  else if (max3 === g) hue = 60 * ((b - r) / delta + 2);
-  else hue = 60 * ((r - g) / delta + 4);
-  if (hue < 0) hue += 360;
-  const anchors = [
-    ["red", 0],
-    ["orange", 30],
-    ["yellow", 55],
-    ["green", 120],
-    ["teal", 170],
-    ["cyan", 190],
-    ["blue", 225],
-    ["purple", 285],
-    ["red", 360]
-  ];
-  let best = "red";
-  let bestD = Infinity;
-  for (const [name, deg] of anchors) {
-    const d = Math.abs(hue - deg);
-    if (d < bestD) {
-      bestD = d;
-      best = name;
-    }
-  }
-  return best;
-}
-function isInvalidColorToken(token) {
-  if (/^(#|rgba?\(|hsla?\()/i.test(token)) return true;
-  const lower2 = token.toLowerCase();
-  return INVALID_CSS_COLOR_HEX[lower2] !== void 0 && !isRecognizedColorName(lower2);
-}
-function invalidColorDiagnostic(token, line) {
-  if (!isInvalidColorToken(token)) return null;
-  const nearest = nearestNamedColor(token);
-  const near = nearest ? ` Nearest: ${nearest}.` : "";
-  return makeDgmoError(
-    line,
-    `Color "${token}" is not a valid DGMO color \u2014 DGMO accepts only these 11 named colors: ${RECOGNIZED_COLOR_NAMES.join(", ")} (no hex, no CSS color names).${near}`,
-    "warning",
-    INVALID_COLOR_CODE
-  );
-}
-function resolveColorWithDiagnostic(color2, line, diagnostics, palette) {
-  const resolved = resolveColor(color2, palette);
-  if (resolved !== null) return resolved;
-  if (/^(#|rgba?\(|hsla?\()/i.test(color2)) {
-    const nearest = nearestNamedColor(color2);
-    const near = nearest ? ` Nearest: ${nearest}.` : "";
-    diagnostics.push(
-      makeDgmoError(
-        line,
-        `Color "${color2}" is not supported \u2014 DGMO does not accept hex or CSS color values. Use a named palette color: ${RECOGNIZED_COLOR_NAMES.join(", ")}.${near}`,
-        "error",
-        INVALID_COLOR_CODE
-      )
-    );
-    return void 0;
-  }
-  const hint = suggest(color2, RECOGNIZED_COLOR_NAMES);
-  const suggestion = hint ? ` ${hint}` : "";
-  diagnostics.push(
-    makeDgmoError(
-      line,
-      `Unknown color "${color2}". DGMO accepts only these 11 named colors: ${RECOGNIZED_COLOR_NAMES.join(", ")} (no hex, no CSS color names).${suggestion}`,
-      "warning",
-      INVALID_COLOR_CODE
-    )
-  );
-  return void 0;
-}
-var nord, colorNames, RECOGNIZED_COLOR_NAMES, CATEGORICAL_COLOR_ORDER, INVALID_COLOR_CODE, INVALID_CSS_COLOR_HEX, seriesColors;
-var init_chunk_EXNKNJ65 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EXNKNJ65.js"() {
-    init_chunk_OLMWTJVU();
-    nord = {
-      // Polar Night (dark)
-      nord0: "#2e3440",
-      nord1: "#3b4252",
-      nord2: "#434c5e",
-      nord3: "#4c566a",
-      // Snow Storm (light)
-      nord4: "#d8dee9",
-      nord5: "#e5e9f0",
-      nord6: "#eceff4",
-      // Frost (accent blues)
-      nord7: "#8fbcbb",
-      nord8: "#88c0d0",
-      nord9: "#81a1c1",
-      nord10: "#5e81ac",
-      // Aurora (colors)
-      nord11: "#bf616a",
-      // red
-      nord12: "#d08770",
-      // orange
-      nord13: "#ebcb8b",
-      // yellow
-      nord14: "#a3be8c",
-      // green
-      nord15: "#b48ead"
-      // purple
-    };
-    colorNames = {
-      red: nord.nord11,
-      orange: nord.nord12,
-      yellow: nord.nord13,
-      green: nord.nord14,
-      blue: nord.nord10,
-      purple: nord.nord15,
-      teal: nord.nord7,
-      cyan: nord.nord8,
-      gray: nord.nord3,
-      black: nord.nord0,
-      white: nord.nord6
-    };
-    RECOGNIZED_COLOR_NAMES = Object.freeze([
-      "red",
-      "orange",
-      "yellow",
-      "green",
-      "blue",
-      "purple",
-      "teal",
-      "cyan",
-      "gray",
-      "black",
-      "white"
-    ]);
-    CATEGORICAL_COLOR_ORDER = Object.freeze([
-      "red",
-      "green",
-      "blue",
-      "yellow",
-      "teal",
-      "purple",
-      "orange",
-      "cyan"
-    ]);
-    INVALID_COLOR_CODE = "E_INVALID_COLOR";
-    INVALID_CSS_COLOR_HEX = Object.freeze({
-      pink: "#ffc0cb",
-      hotpink: "#ff69b4",
-      deeppink: "#ff1493",
-      lightpink: "#ffb6c1",
-      palevioletred: "#db7093",
-      crimson: "#dc143c",
-      scarlet: "#ff2400",
-      firebrick: "#b22222",
-      darkred: "#8b0000",
-      maroon: "#800000",
-      salmon: "#fa8072",
-      lightsalmon: "#ffa07a",
-      darksalmon: "#e9967a",
-      coral: "#ff7f50",
-      lightcoral: "#f08080",
-      tomato: "#ff6347",
-      orangered: "#ff4500",
-      darkorange: "#ff8c00",
-      gold: "#ffd700",
-      goldenrod: "#daa520",
-      darkgoldenrod: "#b8860b",
-      khaki: "#f0e68c",
-      darkkhaki: "#bdb76b",
-      amber: "#ffbf00",
-      lavender: "#e6e6fa",
-      violet: "#ee82ee",
-      magenta: "#ff00ff",
-      fuchsia: "#ff00ff",
-      orchid: "#da70d6",
-      plum: "#dda0dd",
-      indigo: "#4b0082",
-      navy: "#000080",
-      midnightblue: "#191970",
-      darkblue: "#00008b",
-      mediumblue: "#0000cd",
-      royalblue: "#4169e1",
-      cornflowerblue: "#6495ed",
-      dodgerblue: "#1e90ff",
-      deepskyblue: "#00bfff",
-      skyblue: "#87ceeb",
-      lightskyblue: "#87cefa",
-      lightblue: "#add8e6",
-      powderblue: "#b0e0e6",
-      steelblue: "#4682b4",
-      slateblue: "#6a5acd",
-      cadetblue: "#5f9ea0",
-      turquoise: "#40e0d0",
-      aqua: "#00ffff",
-      aquamarine: "#7fffd4",
-      lime: "#00ff00",
-      limegreen: "#32cd32",
-      lightgreen: "#90ee90",
-      palegreen: "#98fb98",
-      seagreen: "#2e8b57",
-      mediumseagreen: "#3cb371",
-      forestgreen: "#228b22",
-      darkgreen: "#006400",
-      olive: "#808000",
-      olivedrab: "#6b8e23",
-      darkolivegreen: "#556b2f",
-      chartreuse: "#7fff00",
-      lawngreen: "#7cfc00",
-      springgreen: "#00ff7f",
-      greenyellow: "#adff2f",
-      brown: "#a52a2a",
-      sienna: "#a0522d",
-      chocolate: "#d2691e",
-      peru: "#cd853f",
-      tan: "#d2b48c",
-      beige: "#f5f5dc",
-      wheat: "#f5deb3",
-      ivory: "#fffff0",
-      silver: "#c0c0c0",
-      lightgray: "#d3d3d3",
-      lightgrey: "#d3d3d3",
-      darkgray: "#a9a9a9",
-      darkgrey: "#a9a9a9",
-      dimgray: "#696969",
-      dimgrey: "#696969",
-      slategray: "#708090",
-      slategrey: "#708090",
-      gainsboro: "#dcdcdc",
-      grey: "#808080"
-    });
-    seriesColors = [
-      nord.nord10,
-      // blue
-      nord.nord14,
-      // green
-      nord.nord13,
-      // yellow
-      nord.nord12,
-      // orange
-      nord.nord15,
-      // purple
-      nord.nord11,
-      // red
-      nord.nord7,
-      // teal
-      nord.nord8
-      // light blue
-    ];
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3KOPPSUQ.js
-function tokensWhere(pred) {
-  const out = /* @__PURE__ */ new Set();
-  for (const e of DIRECTIVES_REGISTRY) if (pred(e)) out.add(e.token);
-  return out;
-}
-function staticRegistry(keys2) {
-  return { keys: new Set(keys2), tagAliases: /* @__PURE__ */ new Set() };
-}
-function withTagAliases(base, aliases) {
-  return { keys: base.keys, tagAliases: aliases };
-}
-function isReservedKey(registry, key) {
-  return registry.keys.has(key) || registry.tagAliases.has(key);
-}
-function measureIndent(line) {
-  let indent = 0;
-  for (const ch of line) {
-    if (ch === " ") indent++;
-    else if (ch === "	") indent += 4;
-    else break;
-  }
-  return indent;
-}
-function extractColor(label, palette, diagnostics, line) {
-  const lastSpaceIdx = Math.max(
-    label.lastIndexOf(" "),
-    label.lastIndexOf("	")
-  );
-  if (lastSpaceIdx < 0) return { label };
-  const trailing = label.substring(lastSpaceIdx + 1);
-  if (!RECOGNIZED_COLOR_SET.has(trailing)) {
-    if (diagnostics && line !== void 0) {
-      const diag = invalidColorDiagnostic(trailing, line);
-      if (diag) diagnostics.push(diag);
-    }
-    return { label };
-  }
-  let color2;
-  if (diagnostics && line !== void 0) {
-    color2 = resolveColorWithDiagnostic(trailing, line, diagnostics, palette);
-  } else {
-    color2 = resolveColor(trailing, palette) ?? void 0;
-  }
-  return {
-    label: label.substring(0, lastSpaceIdx).trimEnd(),
-    ...color2 !== void 0 && { color: color2 }
-  };
-}
-function legendSuppressed(options) {
-  return options["no-legend"] === "on";
-}
-function legendInlineRequested(options) {
-  return options["legend-inline"] === "on";
-}
-function fillModeFromToken(token) {
-  switch (token.trim().toLowerCase()) {
-    case "fill-solid":
-      return "solid";
-    case "fill-outline":
-      return "outline";
-    case "fill-tint":
-      return "tint";
-    default:
-      return null;
-  }
-}
-function fillModeFromOptions(options) {
-  if (options["fill-solid"] === "on") return "solid";
-  if (options["fill-outline"] === "on") return "outline";
-  return void 0;
-}
-function recognizeGlobalBoolean(token) {
-  const t3 = token.trim().toLowerCase();
-  return GLOBAL_BOOLEANS.has(t3) ? t3 : null;
-}
-function tryParseSharedOption(line, options) {
-  const key = recognizeGlobalBoolean(line);
-  if (key) {
-    if (FILL_FAMILY_TOKENS.has(key)) {
-      for (const t3 of FILL_FAMILY_TOKENS) delete options[t3];
-    }
-    options[key] = "on";
-    return true;
-  }
-  return false;
-}
-function parseFirstLine(line) {
-  const trimmed = line.trim();
-  if (!trimmed || trimmed.startsWith("//")) return null;
-  const spaceIdx = trimmed.indexOf(" ");
-  if (spaceIdx === -1) {
-    const ct2 = trimmed.toLowerCase();
-    return ALL_CHART_TYPES.has(ct2) ? { chartType: ct2, title: void 0 } : null;
-  }
-  const firstToken = trimmed.substring(0, spaceIdx).toLowerCase();
-  if (!ALL_CHART_TYPES.has(firstToken)) return null;
-  return {
-    chartType: firstToken,
-    title: trimmed.substring(spaceIdx + 1).trim() || void 0
-  };
-}
-function detectBadChartTypeDeclaration(line, knownOptionKeys) {
-  const trimmed = line.trim();
-  if (!trimmed || trimmed.includes(":")) return null;
-  const spaceIdx = trimmed.indexOf(" ");
-  const token = spaceIdx === -1 ? trimmed : trimmed.substring(0, spaceIdx);
-  if (!CHART_TYPE_TOKEN_RE.test(token)) return null;
-  const lower2 = token.toLowerCase();
-  if (knownOptionKeys.has(lower2) || ALL_REGISTRY_TOKENS.has(lower2)) return null;
-  if (spaceIdx === -1) return /\d/.test(token) ? null : token;
-  const rest = trimmed.substring(spaceIdx + 1).trim();
-  if (!rest || !TITLE_LIKE_RE.test(rest)) return null;
-  return token;
-}
-function normalizeNumericToken(token) {
-  if (!token.includes(",") && !token.includes("_")) return null;
-  if (token.includes(",") && token.includes("_")) return null;
-  let sign3 = "";
-  let unsigned = token;
-  if (unsigned.startsWith("-")) {
-    sign3 = "-";
-    unsigned = unsigned.substring(1);
-  }
-  if (!unsigned) return null;
-  if (unsigned.includes(",")) {
-    if (/^\d{1,3}(,\d{3})+$/.test(unsigned))
-      return sign3 + unsigned.replace(/,/g, "");
-    if (/^\d{1,3}(,\d{3})+\.\d+$/.test(unsigned))
-      return sign3 + unsigned.replace(/,/g, "");
-    return null;
-  }
-  if (/^\d+(_\d+)+$/.test(unsigned)) return sign3 + unsigned.replace(/_/g, "");
-  if (/^\d+(_\d+)*\.\d+$/.test(unsigned) && unsigned.includes("_"))
-    return sign3 + unsigned.replace(/_/g, "");
-  return null;
-}
-function stripQuotes(token) {
-  if (token.length >= 2) {
-    if (token[0] === '"' && token[token.length - 1] === '"' || token[0] === "'" && token[token.length - 1] === "'") {
-      return token.substring(1, token.length - 1);
-    }
-  }
-  return token;
-}
-function tokenizeQuoteAware(input) {
-  const tokens = [];
-  let i = 0;
-  while (i < input.length) {
-    if (input[i] === " " || input[i] === "	") {
-      i++;
-      continue;
-    }
-    if (input[i] === '"' || input[i] === "'") {
-      const quote = input[i];
-      const start2 = i;
-      i++;
-      while (i < input.length && input[i] !== quote) i++;
-      if (i < input.length) i++;
-      tokens.push(input.substring(start2, i));
-      continue;
-    }
-    const start = i;
-    while (i < input.length && input[i] !== " " && input[i] !== "	") i++;
-    tokens.push(input.substring(start, i));
-  }
-  return tokens;
-}
-function collectIndentedValues(lines, startIndex) {
-  const values = [];
-  const lineNumbers = [];
-  let j2 = startIndex + 1;
-  for (; j2 < lines.length; j2++) {
-    const raw = lines[j2];
-    const trimmed = raw.trim();
-    if (!trimmed) continue;
-    if (trimmed.startsWith("//")) continue;
-    if (raw[0] !== " " && raw[0] !== "	") break;
-    values.push(trimmed.replace(/,\s*$/, ""));
-    lineNumbers.push(j2 + 1);
-  }
-  return { values, lineNumbers, newIndex: j2 - 1 };
-}
-function parseSeriesNames(value, lines, lineIndex, palette, diagnostics) {
-  let rawNames;
-  let series;
-  let newIndex = lineIndex;
-  let nameLineNumbers = [];
-  if (value) {
-    series = value;
-    rawNames = value.split(",").map((s) => s.trim()).filter(Boolean);
-    nameLineNumbers = rawNames.map(() => lineIndex + 1);
-  } else {
-    const collected = collectIndentedValues(lines, lineIndex);
-    newIndex = collected.newIndex;
-    rawNames = collected.values;
-    nameLineNumbers = collected.lineNumbers;
-    series = rawNames.join(", ");
-  }
-  const isHeader = (s) => {
-    const tok = s.split(/\s+/, 1)[0];
-    if (tok === "y-label") return "left";
-    if (tok === "y-right-label") return "right";
-    return null;
-  };
-  if (rawNames.some((r) => isHeader(r) !== null)) {
-    const names2 = [];
-    const nameColors2 = [];
-    const axes = [];
-    const memberLineNumbers = [];
-    let leftLabel;
-    let rightLabel;
-    let currentAxis = "left";
-    for (let i = 0; i < rawNames.length; i++) {
-      const raw = rawNames[i];
-      const side = isHeader(raw);
-      if (side !== null) {
-        const label = raw.slice(raw.indexOf(" ") + 1).trim();
-        currentAxis = side;
-        if (side === "left") leftLabel = label || leftLabel;
-        else rightLabel = label || rightLabel;
-        continue;
-      }
-      const extracted = extractColor(
-        raw,
-        palette,
-        diagnostics,
-        nameLineNumbers[i]
-      );
-      names2.push(extracted.label);
-      nameColors2.push(extracted.color);
-      axes.push(currentAxis);
-      memberLineNumbers.push(nameLineNumbers[i]);
-    }
-    return {
-      series: names2.join(", "),
-      names: names2,
-      nameColors: nameColors2,
-      nameLineNumbers: memberLineNumbers,
-      newIndex,
-      axes,
-      ...leftLabel !== void 0 && { leftLabel },
-      ...rightLabel !== void 0 && { rightLabel }
-    };
-  }
-  const names = [];
-  const nameColors = [];
-  for (let i = 0; i < rawNames.length; i++) {
-    const raw = rawNames[i];
-    const extracted = extractColor(
-      raw,
-      palette,
-      diagnostics,
-      nameLineNumbers[i]
-    );
-    nameColors.push(extracted.color);
-    names.push(extracted.label);
-  }
-  if (names.length === 1) {
-    series = names[0];
-  }
-  return { series, names, nameColors, nameLineNumbers, newIndex };
-}
-function peelTrailingColorName(label) {
-  const lastSpaceIdx = Math.max(
-    label.lastIndexOf(" "),
-    label.lastIndexOf("	")
-  );
-  if (lastSpaceIdx < 0) return { label };
-  const trailing = label.substring(lastSpaceIdx + 1);
-  if (!RECOGNIZED_COLOR_SET.has(trailing)) return { label };
-  return {
-    label: label.substring(0, lastSpaceIdx).trimEnd(),
-    colorName: trailing
-  };
-}
-function peelTrailingCollapsedFlag(text) {
-  const t3 = text.trimEnd();
-  if (t3 === "collapsed") return { rest: "", collapsed: true };
-  if (/[ \t]collapsed$/.test(t3)) {
-    return {
-      rest: t3.slice(0, t3.length - "collapsed".length).trimEnd().replace(/,\s*$/, ""),
-      collapsed: true
-    };
-  }
-  return { rest: text, collapsed: false };
-}
-function peelRampColors(label) {
-  const peelOne = (s) => {
-    const idx = Math.max(s.lastIndexOf(" "), s.lastIndexOf("	"));
-    if (idx < 0) return { rest: s };
-    const trailing = s.substring(idx + 1);
-    if (!RECOGNIZED_COLOR_SET.has(trailing)) return { rest: s };
-    return { rest: s.substring(0, idx).trimEnd(), color: trailing };
-  };
-  const first = peelOne(label);
-  if (first.color === void 0) return { label };
-  const second = peelOne(first.rest);
-  if (second.color === void 0) {
-    return { label: first.rest, high: first.color };
-  }
-  return { label: second.rest, low: second.color, high: first.color };
-}
-function scanTokens(line) {
-  const tokens = [];
-  let i = 0;
-  while (i < line.length) {
-    if (line[i] === " " || line[i] === "	") {
-      i++;
-      continue;
-    }
-    if (line[i] === '"' || line[i] === "'") {
-      const quote = line[i];
-      const start2 = i;
-      i++;
-      while (i < line.length && line[i] !== quote) i++;
-      if (i < line.length) i++;
-      tokens.push({
-        text: line.substring(start2, i),
-        start: start2,
-        end: i,
-        quoted: true
-      });
-      continue;
-    }
-    const start = i;
-    while (i < line.length && line[i] !== " " && line[i] !== "	") i++;
-    tokens.push({
-      text: line.substring(start, i),
-      start,
-      end: i,
-      quoted: false
-    });
-  }
-  return tokens;
-}
-function findMetadataCutOffset(line, tokens, registry) {
-  for (let i = 0; i < tokens.length; i++) {
-    const tok = tokens[i];
-    if (tok.quoted) continue;
-    const inlineColon = tok.text.indexOf(":");
-    if (inlineColon > 0) {
-      const keyPart = tok.text.substring(0, inlineColon);
-      if (RESERVED_KEY_RE.test(keyPart) && isReservedKey(registry, keyPart.toLowerCase())) {
-        return tok.start;
-      }
-    } else if (inlineColon < 0) {
-      if (RESERVED_KEY_RE.test(tok.text) && isReservedKey(registry, tok.text.toLowerCase())) {
-        const tail = line.substring(tok.end).replace(/^[ \t]+/, "");
-        if (tail.startsWith(":")) {
-          return tok.start;
-        }
-      }
-    }
-  }
-  return -1;
-}
-function parseMetadataRegion(region, aliasMap, diagnostics, line) {
-  const meta = {};
-  let i = 0;
-  while (i < region.length) {
-    while (i < region.length && (region[i] === " " || region[i] === "	" || region[i] === ","))
-      i++;
-    if (i >= region.length) break;
-    const keyStart = i;
-    while (i < region.length && region[i] !== ":" && region[i] !== ",") i++;
-    if (i >= region.length || region[i] !== ":") break;
-    const rawKey = region.substring(keyStart, i).trim().toLowerCase();
-    if (!rawKey) break;
-    i++;
-    while (i < region.length && (region[i] === " " || region[i] === "	")) i++;
-    let value;
-    if (i < region.length && (region[i] === '"' || region[i] === "'")) {
-      const quote = region[i];
-      i++;
-      const vStart = i;
-      while (i < region.length && region[i] !== quote) i++;
-      value = region.substring(vStart, i);
-      if (i < region.length) i++;
-      while (i < region.length && (region[i] === " " || region[i] === "	"))
-        i++;
-    } else {
-      const vStart = i;
-      while (i < region.length && region[i] !== ",") i++;
-      value = region.substring(vStart, i).trim();
-    }
-    const key = aliasMap.get(rawKey) ?? rawKey;
-    if (!value) {
-      if (diagnostics && line !== void 0) {
-        diagnostics.push(
-          makeDgmoError(
-            line,
-            emptyMetadataValueMessage(rawKey),
-            "warning",
-            METADATA_DIAGNOSTIC_CODES.EMPTY_METADATA_VALUE
-          )
-        );
-      }
-      continue;
-    }
-    meta[key] = value;
-  }
-  return meta;
-}
-function cutUnionMetadata(line, registry) {
-  return findMetadataCutOffset(line, scanTokens(line), registry);
-}
-function splitNameAndMeta(line, registry, aliasMap = /* @__PURE__ */ new Map(), palette, diagnostics, lineNumber, options = {}) {
-  const tokens = scanTokens(line);
-  const cutOffset = findMetadataCutOffset(line, tokens, registry);
-  let nameRegion;
-  let metaRegion;
-  if (cutOffset === -1) {
-    nameRegion = line.trim();
-    metaRegion = "";
-  } else {
-    nameRegion = line.substring(0, cutOffset).trimEnd();
-    metaRegion = line.substring(cutOffset);
-  }
-  const colorResult = peelTrailingColorName(nameRegion);
-  let postColorName = colorResult.label;
-  let alias;
-  if (options.peelAlias !== false) {
-    const aliasMatch = postColorName.match(AS_ALIAS_RE);
-    if (aliasMatch) {
-      alias = aliasMatch[1];
-      postColorName = postColorName.substring(0, aliasMatch.index).trimEnd();
-    }
-  }
-  const meta = metaRegion.length > 0 ? parseMetadataRegion(metaRegion, aliasMap, diagnostics, lineNumber) : {};
-  void palette;
-  return {
-    name: postColorName,
-    meta,
-    ...colorResult.colorName !== void 0 && {
-      color: colorResult.colorName
-    },
-    ...alias !== void 0 && { alias }
-  };
-}
-function warnUnknownMetaKeys(meta, registry, warn, nameToScan) {
-  const candidates = Array.from(registry.keys);
-  for (const key of Object.keys(meta)) {
-    if (isReservedKey(registry, key)) continue;
-    const hint = suggest(key, candidates);
-    warn(`Unknown metadata key "${key}".${hint ? " " + hint : ""}`);
-  }
-  if (nameToScan) {
-    const m = nameToScan.match(POTENTIAL_META_RE);
-    if (m) {
-      const key = m[1].toLowerCase();
-      if (!isReservedKey(registry, key)) {
-        const hint = suggest(key, candidates);
-        if (hint) {
-          warn(`Unknown metadata key "${key}". ${hint}`);
-        }
-      }
-    }
-  }
-}
-var DIRECTIVES_REGISTRY, ALL_REGISTRY_TOKENS, INFRA_TOP_LEVEL_OPTION_SET, INFRA_BEHAVIOR_KEY_SET, INFRA_EDGE_ONLY_KEY_SET, GANTT_OPTION_SET, GANTT_BOOLEAN_SET, MAP_DIRECTIVE_KEY_SET, REGISTRY_DIRECTIVE_TOKENS, REGISTRY_CONTROL_TOKENS, REGISTRY_STATUS_TOKENS, REGISTRY_MODIFIER_TOKENS, REGISTRY_COLON_KEY_TOKENS, REGISTRY_NON_HIGHLIGHT_TOKENS, SEQUENCE_REGISTRY, INFRA_REGISTRY, MAP_REGISTRY, ORG_REGISTRY, C4_REGISTRY, ER_REGISTRY, EVENT_LINE_REGISTRY, KANBAN_REGISTRY, SITEMAP_REGISTRY, GANTT_REGISTRY, PERT_REGISTRY, BOXES_AND_LINES_REGISTRY, STATE_REGISTRY, SKETCH_REGISTRY, TIMELINE_REGISTRY, MINDMAP_REGISTRY, TECH_RADAR_REGISTRY, CYCLE_REGISTRY, JOURNEY_MAP_REGISTRY, PYRAMID_REGISTRY, RING_REGISTRY, TREEMAP_REGISTRY, RACI_REGISTRY, FAMILY_PERSON_REGISTRY, FAMILY_UNION_REGISTRY, RECOGNIZED_COLOR_SET, ALL_CHART_TYPES, OPTION_NOCOLON_RE, GLOBAL_BOOLEANS, FILL_FAMILY_TOKENS, CHART_TYPE_TOKEN_RE, TITLE_LIKE_RE, RESERVED_KEY_RE, AS_ALIAS_RE, POTENTIAL_META_RE;
-var init_chunk_3KOPPSUQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3KOPPSUQ.js"() {
-    init_chunk_EXNKNJ65();
-    init_chunk_OLMWTJVU();
-    DIRECTIVES_REGISTRY = [
-      // ── Universal date handling (§ BL-121) ───────────────────
-      // Accepted in every date-bearing chart (gantt, pert, countdown, timeline,
-      // event-line). Handled inline by each parser's prescan — no parser-Set
-      // membership here — so they only contribute highlighting (DIRECTIVE_KEYWORDS).
-      { token: "year", category: "directive" },
-      { token: "date-order", category: "directive" },
-      { token: "no-current-year", category: "directive" },
-      // ── Infra ────────────────────────────────────────────────
-      // Top-level SLO options that are ALSO accepted as node colon-properties
-      // (dual membership). Highlight bare (kept in DIRECTIVE_KEYWORDS) — their
-      // rarer colon form stays keyword, an accepted minor false-positive.
-      {
-        token: "slo-availability",
-        category: "directive",
-        infra: ["top-level", "behavior"]
-      },
-      {
-        token: "slo-p90-latency-ms",
-        category: "directive",
-        infra: ["top-level", "behavior"]
-      },
-      {
-        token: "slo-warning-margin",
-        category: "directive",
-        infra: ["top-level", "behavior"]
-      },
-      // Top-level-only options (space-separated, bare).
-      { token: "default-latency-ms", category: "directive", infra: ["top-level"] },
-      { token: "default-uptime", category: "directive", infra: ["top-level"] },
-      { token: "default-rps", category: "directive", infra: ["top-level"] },
-      // `active-tag` is shared with gantt + map (see below).
-      // Node behavior colon-keys — highlight as propertyName.
-      { token: "latency-ms", colonKey: true, infra: ["behavior"] },
-      { token: "uptime", colonKey: true, infra: ["behavior"] },
-      { token: "instances", colonKey: true, infra: ["behavior"] },
-      { token: "max-rps", colonKey: true, infra: ["behavior"] },
-      { token: "cache-hit", colonKey: true, infra: ["behavior"] },
-      { token: "firewall-block", colonKey: true, infra: ["behavior"] },
-      { token: "ratelimit-rps", colonKey: true, infra: ["behavior"] },
-      { token: "buffer", colonKey: true, infra: ["behavior"] },
-      { token: "drain-rate", colonKey: true, infra: ["behavior"] },
-      { token: "retention-hours", colonKey: true, infra: ["behavior"] },
-      { token: "partitions", colonKey: true, infra: ["behavior"] },
-      { token: "concurrency", colonKey: true, infra: ["behavior"] },
-      { token: "duration-ms", colonKey: true, infra: ["behavior"] },
-      { token: "cold-start-ms", colonKey: true, infra: ["behavior"] },
-      { token: "cb-error-threshold", colonKey: true, infra: ["behavior"] },
-      { token: "cb-latency-threshold-ms", colonKey: true, infra: ["behavior"] },
-      // Edge-only colon-key.
-      { token: "rps", colonKey: true, infra: ["edge"] },
-      // ── Gantt ────────────────────────────────────────────────
-      { token: "start", category: "directive", gantt: ["option"] },
-      {
-        token: "today-marker",
-        category: "directive",
-        gantt: ["option", "boolean"]
-      },
-      {
-        token: "critical-path",
-        category: "directive",
-        gantt: ["option", "boolean"]
-      },
-      { token: "sprint-length", category: "directive", gantt: ["option"] },
-      { token: "sprint-number", category: "directive", gantt: ["option"] },
-      { token: "sprint-start", category: "directive", gantt: ["option"] },
-      { token: "fill-tint", category: "directive", gantt: ["boolean"] },
-      { token: "fill-solid", category: "directive", gantt: ["boolean"] },
-      { token: "fill-outline", category: "directive", gantt: ["boolean"] },
-      // `chart` is a wireframe element keyword (CONTROL); gantt also accepts it as
-      // an option. Highlight family is control.
-      { token: "chart", category: "control", gantt: ["option"] },
-      // `dependencies` is ON by default → almost never written bare (authors write
-      // `no-dependencies`, which DOES highlight). Bare word collides with prose and
-      // the specializer is context-free, so it stays plain. Present for parser
-      // Set derivation only.
-      { token: "dependencies", noHighlight: true, gantt: ["option", "boolean"] },
-      // ── Map ──────────────────────────────────────────────────
-      // Per-element value→channel ramps (decision #20): the directive names the
-      // visual channel — `region-heat` (colour), `poi-size` (marker area),
-      // `flow-width` (stroke). The per-element key mirrors it (`heat:`/`size:`/`width:`).
-      { token: "region-heat", category: "directive", map: true },
-      { token: "poi-size", category: "directive", map: true },
-      { token: "flow-width", category: "directive", map: true },
-      { token: "locale", category: "directive", map: true },
-      { token: "caption", category: "directive", map: true },
-      { token: "no-coastline", category: "directive", map: true },
-      { token: "no-relief", category: "directive", map: true },
-      { token: "no-context-labels", category: "directive", map: true },
-      { token: "no-region-labels", category: "directive", map: true },
-      { token: "no-region-heat-value", category: "directive", map: true },
-      { token: "no-poi-labels", category: "directive", map: true },
-      { token: "no-colorize", category: "directive", map: true },
-      { token: "no-cities", category: "directive", map: true },
-      { token: "no-cluster-pois", category: "directive", map: true },
-      // ── Clock channel (BL-122): live local-time cards on POIs flagged `clock` ──
-      // Activation is the per-POI `clock` flag (peeled in the map parser, not a
-      // directive). `hours 9-17` / `days mon-fri` are the global availability
-      // window (reused verbatim from the clock chart type).
-      { token: "hours", category: "directive", map: true },
-      { token: "days", category: "directive", map: true },
-      // ── Shared across types ──────────────────────────────────
-      // `active-tag`: infra top-level option + gantt option + map directive.
-      // Treemap also accepts it (§24C.6, decision #48) — validated inline in its
-      // parser, so no chart-scoped Set is derived for it; highlighting comes from
-      // the global directive category here.
-      {
-        token: "active-tag",
-        category: "directive",
-        infra: ["top-level"],
-        gantt: ["option"],
-        map: true
-      },
-      // `title`: gantt option. (The data-chart `title` directive was removed in
-      // decision #48 — it now raises E_TITLE_DIRECTIVE; the token stays here for
-      // gantt.)
-      { token: "title", category: "directive", gantt: ["option"] },
-      // `sort`: gantt option (also general, hand-listed).
-      { token: "sort", category: "directive", gantt: ["option"] },
-      // `lane-by <group>`: swimlane axis (view-state). NB not `swimlane` — that's a
-      // chart type. Kanban reads it via its own KNOWN_OPTIONS; gantt via the switch.
-      { token: "lane-by", category: "directive", gantt: ["option"] },
-      // `no-title`: gantt boolean + map directive (also general, hand-listed).
-      { token: "no-title", category: "directive", gantt: ["boolean"], map: true },
-      // `no-legend`: universal (decision #48) — every chart that renders a legend
-      // accepts it, and charts without one take it as a harmless no-op. Parsed for
-      // most types via GLOBAL_BOOLEANS in utils/parsing; gantt derives its boolean
-      // Set from here, and map from `map: true`.
-      { token: "no-legend", category: "directive", gantt: ["boolean"], map: true },
-      // `legend-inline`: universal §1.9 boolean (decision #50) — the top-center-
-      // legend data charts (bar/line/radar/scatter/function) render the title and
-      // legend on one line; every other chart accepts it as a harmless no-op.
-      {
-        token: "legend-inline",
-        category: "directive",
-        gantt: ["boolean"],
-        map: true
-      },
-      // ══════════════════════════════════════════════════════════
-      // Highlight-only vocab (no extractable parser Set).
-      // ══════════════════════════════════════════════════════════
-      // These chart types validate their directives with inline checks rather than
-      // a literal Set, so there is no parser literal to delete — the registry is
-      // simply their single declaration site for highlighting. Grouped by chart
-      // type. Categories route to the specializer-read sets in keywords.ts.
-      // ── Gantt (extras beyond the option/boolean Sets) ────────
-      { token: "era", category: "directive" },
-      { token: "marker", category: "directive" },
-      { token: "holiday", category: "directive" },
-      // `workweek` is also the canonical weekday-window directive on clock and map
-      // clock-cards (decision #48; `days` stays as the legacy alias).
-      { token: "workweek", category: "directive", map: true },
-      { token: "no-dependencies", category: "directive" },
-      // ── Tech-radar ───────────────────────────────────────────
-      { token: "rings", category: "directive" },
-      // Blip listing is default-on everywhere (decision #48): `no-blip-legend`
-      // suppresses it; `show-blip-legend` stays as the parse-accepted legacy no-op.
-      { token: "no-blip-legend", category: "directive" },
-      { token: "show-blip-legend", category: "directive" },
-      { token: "trend", category: "directive" },
-      // ── Tags / shared directives ─────────────────────────────
-      { token: "tags", category: "directive" },
-      { token: "import", category: "directive" },
-      { token: "hide", category: "directive" },
-      { token: "direction", category: "directive" },
-      // ── Clock ────────────────────────────────────────────────
-      // The board's flat directives — highlight-only (the parser validates them
-      // inline, no extractable Set). `no-title` + `direction` are already listed
-      // above (shared). Values (analog is a bare flag; color-by's
-      // place|work|daylight|time|none) highlight as plain tokens.
-      { token: "analog", category: "directive" },
-      { token: "hours", category: "directive" },
-      { token: "days", category: "directive" },
-      { token: "no-sun", category: "directive" },
-      { token: "time-24", category: "directive" },
-      { token: "color-by", category: "directive" },
-      // ── Boxes-and-lines ──────────────────────────────────────
-      // `heat <Label> [low] [high]` is the value→colour ramp directive, but `heat`
-      // is NOT registered as a directive keyword: it is dual-use with the `heat:`
-      // metadata key (decision #20), and a token in DIRECTIVE_KEYWORDS would block the
-      // ATTRIBUTE_KEYS colon-gate from reclassifying `heat:` as a propertyName. So
-      // `heat` lives only in the reserved-key registry + ATTRIBUTE_KEYS and highlights
-      // as a property in both positions — exactly the treemap `heat` precedent.
-      // Box values render by default since decision #48; `show-values` stays as
-      // the parse-accepted legacy no-op (suppress with the shared `no-value`).
-      { token: "show-values", category: "directive" },
-      // Treemap's legacy plural spelling of the same suppression (decision #48
-      // made the shared singular `no-value` canonical). Registered so a legacy
-      // document still highlights it as a directive rather than plain text.
-      { token: "no-values", category: "directive" },
-      // ── Swimlane ─────────────────────────────────────────────
-      { token: "lane", category: "directive" },
-      // ── ER ───────────────────────────────────────────────────
-      { token: "notation", category: "directive" },
-      // ── Class ────────────────────────────────────────────────
-      { token: "extends", category: "directive" },
-      { token: "implements", category: "directive" },
-      { token: "abstract", category: "directive" },
-      { token: "interface", category: "directive" },
-      { token: "enum", category: "directive" },
-      // ── C4 ───────────────────────────────────────────────────
-      { token: "containers", category: "directive" },
-      { token: "components", category: "directive" },
-      { token: "deployment", category: "directive" },
-      { token: "technology", category: "directive" },
-      // ── Infra (directives beyond the option/behavior Sets) ───
-      { token: "sub-node-label", category: "directive" },
-      { token: "show-sub-node-count", category: "directive" },
-      { token: "animate", category: "directive" },
-      // ── Sequence ─────────────────────────────────────────────
-      { token: "activations", category: "directive" },
-      { token: "no-activations", category: "directive" },
-      // ── Map element leaders (not in DIRECTIVE_SET) ───────────
-      { token: "poi", category: "directive" },
-      { token: "route", category: "directive" },
-      // ── Data charts ──────────────────────────────────────────
-      { token: "stacked", category: "directive" },
-      { token: "no-name", category: "directive" },
-      { token: "no-value", category: "directive" },
-      { token: "no-percent", category: "directive" },
-      { token: "series", category: "directive" },
-      { token: "orientation", category: "directive" },
-      { token: "x-label", category: "directive" },
-      { token: "y-label", category: "directive" },
-      { token: "size-label", category: "directive" },
-      { token: "columns", category: "directive" },
-      { token: "rows", category: "directive" },
-      { token: "labels", category: "directive" },
-      { token: "rotate", category: "directive" },
-      { token: "scale", category: "directive" },
-      { token: "values", category: "directive" },
-      { token: "orientation-horizontal", category: "directive" },
-      // ── Slope ────────────────────────────────────────────────
-      { token: "period", category: "directive" },
-      // ── Quadrant ─────────────────────────────────────────────
-      { token: "x-axis", category: "directive" },
-      { token: "y-axis", category: "directive" },
-      { token: "top-right", category: "directive" },
-      { token: "top-left", category: "directive" },
-      { token: "bottom-right", category: "directive" },
-      { token: "bottom-left", category: "directive" },
-      // ── Layout (cross-chart) ─────────────────────────────────
-      { token: "direction-tb", category: "directive" },
-      { token: "direction-lr", category: "directive" },
-      { token: "orientation-vertical", category: "directive" },
-      // ── Pyramid ──────────────────────────────────────────────
-      { token: "inverted", category: "directive" },
-      // ── Color / notes (cross-chart) ──────────────────────────
-      { token: "color", category: "directive" },
-      { token: "no-notes", category: "directive" },
-      // ── Emphasis family (§1.11, decision #49) ────────────────
-      // `highlight <Name>…` / `dim <Name>…` — the figure/ground axis, orthogonal
-      // to color (§1.5) and to the chart-wide `fill-*` family (§1.9). Both are
-      // chart-level directives taking a name list, validated inline by each
-      // adopting parser (no extractable Set), so the registry is their single
-      // declaration site for highlighting.
-      //
-      // `highlight` shipped on `family` long before this entry existed and was
-      // never registered — it had completions but highlighted as plain text. Both
-      // tokens are registered together so the whole family lights up at once.
-      //
-      // Supported on `sankey` and `family` today; every further chart type is a
-      // separate decision. Registering them globally is correct regardless: the
-      // Lezer specializer is context-free (it cannot know the chart type), and the
-      // same is already true of every other chart-scoped token here.
-      { token: "highlight", category: "directive" },
-      { token: "dim", category: "directive" },
-      // ── RACI ─────────────────────────────────────────────────
-      { token: "roles", category: "directive" },
-      // ── Cycle ────────────────────────────────────────────────
-      { token: "direction-counterclockwise", category: "directive" },
-      { token: "circle-nodes", category: "directive" },
-      // ── Journey-map ──────────────────────────────────────────
-      { token: "persona", category: "directive" },
-      // ── Function ─────────────────────────────────────────────
-      { token: "x", category: "directive" },
-      { token: "fill", category: "directive" },
-      // ── Wordcloud ────────────────────────────────────────────
-      { token: "max", category: "directive" },
-      { token: "size", category: "directive" },
-      // ── Arc ──────────────────────────────────────────────────
-      { token: "order", category: "directive" },
-      // ── PERT ─────────────────────────────────────────────────
-      { token: "time-unit", category: "directive" },
-      { token: "default-confidence", category: "directive" },
-      { token: "node-detail", category: "directive" },
-      { token: "trials", category: "directive" },
-      { token: "seed", category: "directive" },
-      { token: "scrubber-trials", category: "directive" },
-      // `start-date` is also gantt's canonical project-start option (decision #48;
-      // bare `start` above stays as the legacy alias).
-      { token: "start-date", category: "directive", gantt: ["option"] },
-      { token: "end-date", category: "directive" },
-      // ── Goal ─────────────────────────────────────────────────
-      // Mode flags, value-key leaders, and opt-outs. `now`/`target` collide with
-      // label prose ("start now", "on target"), but the arrow-label demotion pass
-      // (see highlight-api LABEL_WORD_NODES) treats any keyword-bearing label as
-      // text and demotes them, so they highlight only as line leaders.
-      { token: "thermometer", category: "directive" },
-      { token: "gauge", category: "directive" },
-      { token: "now", category: "directive" },
-      { token: "target", category: "directive" },
-      { token: "no-note", category: "directive" },
-      { token: "no-auto-color", category: "directive" },
-      // ── Control-flow + wireframe element keywords (CONTROL) ──
-      { token: "if", category: "control" },
-      { token: "else", category: "control" },
-      { token: "loop", category: "control" },
-      { token: "parallel", category: "control" },
-      { token: "note", category: "control" },
-      { token: "nav", category: "control" },
-      { token: "tabs", category: "control" },
-      { token: "table", category: "control" },
-      { token: "image", category: "control" },
-      { token: "modal", category: "control" },
-      { token: "skeleton", category: "control" },
-      { token: "alert", category: "control" },
-      { token: "progress", category: "control" },
-      { token: "mobile", category: "control" },
-      // ── Kanban status keywords (STATUS) ──────────────────────
-      { token: "na", category: "status" },
-      { token: "todo", category: "status" },
-      { token: "wip", category: "status" },
-      { token: "done", category: "status" },
-      { token: "blocked", category: "status" },
-      { token: "in-progress", category: "status" },
-      { token: "backlog", category: "status" },
-      { token: "ready", category: "status" },
-      // ── Modifiers + ER column types/modifiers (MODIFIER) ─────
-      // `collapsed` is the bare trailing group-line flag made canonical by
-      // decision #48 (`[Fulfillment] collapsed`). It is deliberately a bare
-      // MODIFIER rather than a colon key: the legacy `collapsed: true` form still
-      // parses and still highlights (as `modifier` instead of `propertyName`),
-      // whereas leaving it colon-only left the canonical bare form as plain text.
-      { token: "collapsed", category: "modifier" },
-      { token: "as", category: "modifier" },
-      { token: "alias", category: "modifier" },
-      { token: "aka", category: "modifier" },
-      { token: "position", category: "modifier" },
-      { token: "default", category: "modifier" },
-      { token: "pk", category: "modifier" },
-      { token: "fk", category: "modifier" },
-      { token: "nullable", category: "modifier" },
-      { token: "unique", category: "modifier" },
-      { token: "int", category: "modifier" },
-      { token: "varchar", category: "modifier" },
-      { token: "text", category: "modifier" },
-      { token: "boolean", category: "modifier" },
-      { token: "date", category: "modifier" },
-      { token: "timestamp", category: "modifier" },
-      { token: "float", category: "modifier" },
-      { token: "decimal", category: "modifier" },
-      // ── Bracket ──────────────────────────────────────────────
-      // `beats` / `vs` are the infix match keywords; the rest are line directives.
-      // (`seed` and `no-legend` already appear above — shared, not re-listed.)
-      { token: "beats", category: "control" },
-      { token: "vs", category: "control" },
-      { token: "rounds", category: "directive" },
-      { token: "accent", category: "directive" },
-      { token: "no-round", category: "modifier" },
-      { token: "no-rounds", category: "modifier" },
-      { token: "single-elim", category: "modifier" },
-      { token: "double-elim", category: "modifier" },
-      { token: "seeded", category: "modifier" }
-    ];
-    ALL_REGISTRY_TOKENS = tokensWhere(() => true);
-    INFRA_TOP_LEVEL_OPTION_SET = tokensWhere(
-      (e) => !!e.infra?.includes("top-level")
-    );
-    INFRA_BEHAVIOR_KEY_SET = tokensWhere(
-      (e) => !!e.infra?.includes("behavior")
-    );
-    INFRA_EDGE_ONLY_KEY_SET = tokensWhere(
-      (e) => !!e.infra?.includes("edge")
-    );
-    GANTT_OPTION_SET = tokensWhere(
-      (e) => !!e.gantt?.includes("option")
-    );
-    GANTT_BOOLEAN_SET = tokensWhere(
-      (e) => !!e.gantt?.includes("boolean")
-    );
-    MAP_DIRECTIVE_KEY_SET = tokensWhere((e) => e.map === true);
-    REGISTRY_DIRECTIVE_TOKENS = tokensWhere(
-      (e) => e.category === "directive" && !e.colonKey && !e.noHighlight
-    );
-    REGISTRY_CONTROL_TOKENS = tokensWhere(
-      (e) => e.category === "control" && !e.colonKey && !e.noHighlight
-    );
-    REGISTRY_STATUS_TOKENS = tokensWhere(
-      (e) => e.category === "status" && !e.colonKey && !e.noHighlight
-    );
-    REGISTRY_MODIFIER_TOKENS = tokensWhere(
-      (e) => e.category === "modifier" && !e.colonKey && !e.noHighlight
-    );
-    REGISTRY_COLON_KEY_TOKENS = tokensWhere((e) => !!e.colonKey);
-    REGISTRY_NON_HIGHLIGHT_TOKENS = tokensWhere(
-      (e) => !!e.noHighlight
-    );
-    SEQUENCE_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "role",
-      "collapsed",
-      // Participant layout-order override (§2.2). Colon-keyed `position: N`.
-      "position"
-    ]);
-    INFRA_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "collapsed",
-      "icon"
-    ]);
-    MAP_REGISTRY = staticRegistry([
-      "heat",
-      "size",
-      "width",
-      "label",
-      "style",
-      // `clock` (BL-122): the time-card control. Bare (`poi Denver clock`) → a card
-      // with the zone auto-derived from the place; valued (`clock: Europe/Oslo`) →
-      // that IANA id or fixed offset (`clock: UTC+9`) as the zone, for bare-coord
-      // pins or to override a city. Reserved so the valued form peels off the POI
-      // name cleanly; the BARE flag is peeled separately in handlePoi (no colon).
-      "clock"
-      // `surface:` was removed in the 2026-06-02 defaults-on review — it is no longer
-      // a recognized metadata key (the route/edge surface feature was cut; §24B.7).
-      // A stray `surface: water` is no longer captured as a reserved key.
-    ]);
-    ORG_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "role",
-      "location",
-      "email",
-      "phone"
-    ]);
-    C4_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "tech",
-      "type",
-      "collapsed"
-    ]);
-    ER_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "domain"
-    ]);
-    EVENT_LINE_REGISTRY = staticRegistry([
-      "color"
-    ]);
-    KANBAN_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "wip",
-      "assignee",
-      "due",
-      "collapsed"
-      // `[Column] collapsed: true` view-state marker
-    ]);
-    SITEMAP_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "status"
-    ]);
-    GANTT_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "duration",
-      "offset",
-      "progress",
-      "start",
-      "collapsed"
-      // `[Group] collapsed: true` view-state marker
-    ]);
-    PERT_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "confidence",
-      "collapsed"
-    ]);
-    BOXES_AND_LINES_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "heat"
-    ]);
-    STATE_REGISTRY = staticRegistry([]);
-    SKETCH_REGISTRY = staticRegistry([
-      "shape",
-      "at",
-      "collapsed"
-    ]);
-    TIMELINE_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "duration"
-    ]);
-    MINDMAP_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "collapsed"
-    ]);
-    TECH_RADAR_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "quadrant",
-      "ring",
-      "trend"
-    ]);
-    CYCLE_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "width",
-      "span"
-    ]);
-    JOURNEY_MAP_REGISTRY = staticRegistry([
-      "color",
-      "description",
-      "score",
-      "emotion",
-      "pain",
-      "opportunity",
-      "thought"
-    ]);
-    PYRAMID_REGISTRY = staticRegistry([
-      "color",
-      "description"
-    ]);
-    RING_REGISTRY = staticRegistry([
-      "color",
-      "description"
-    ]);
-    TREEMAP_REGISTRY = staticRegistry(["heat"]);
-    RACI_REGISTRY = staticRegistry([
-      "color",
-      "description"
-    ]);
-    FAMILY_PERSON_REGISTRY = staticRegistry([
-      "sex",
-      "b",
-      "d",
-      "bp",
-      "dp",
-      "occupation",
-      "military",
-      "education",
-      "religion",
-      "burial"
-    ]);
-    FAMILY_UNION_REGISTRY = staticRegistry(["m"]);
-    RECOGNIZED_COLOR_SET = new Set(
-      RECOGNIZED_COLOR_NAMES
-    );
-    ALL_CHART_TYPES = /* @__PURE__ */ new Set([
-      // data charts
-      "bar",
-      "line",
-      "pie",
-      "polar-area",
-      "radar",
-      "scatter",
-      "sankey",
-      "function",
-      "heatmap",
-      "funnel",
-      // visualizations
-      "slope",
-      "wordcloud",
-      "arc",
-      "timeline",
-      "event-line",
-      "venn",
-      "quadrant",
-      // diagrams
-      "body",
-      "sequence",
-      "flowchart",
-      "class",
-      "er",
-      "org",
-      "kanban",
-      "c4",
-      "state",
-      "sitemap",
-      "infra",
-      "gantt",
-      "pert",
-      "boxes-and-lines",
-      "swimlane",
-      "version-control",
-      "mindmap",
-      "wireframe",
-      "tech-radar",
-      "cycle",
-      "journey-map",
-      "pyramid",
-      "ring",
-      "treemap",
-      "block",
-      "goal",
-      "countdown",
-      "clock",
-      "sketch",
-      "raci",
-      "map",
-      "family",
-      "bracket"
-    ]);
-    OPTION_NOCOLON_RE = /^([a-z][a-z0-9-]*)\s+(.+)$/i;
-    GLOBAL_BOOLEANS = /* @__PURE__ */ new Set([
-      "fill-tint",
-      "fill-solid",
-      "fill-outline",
-      "no-title",
-      "no-notes",
-      "no-legend",
-      "legend-inline"
-    ]);
-    FILL_FAMILY_TOKENS = /* @__PURE__ */ new Set([
-      "fill-tint",
-      "fill-solid",
-      "fill-outline"
-    ]);
-    CHART_TYPE_TOKEN_RE = /^[A-Za-z][A-Za-z0-9-]*$/;
-    TITLE_LIKE_RE = /^[A-Za-z][A-Za-z\s'&,.\-—–]*$/;
-    RESERVED_KEY_RE = /^[A-Za-z][A-Za-z0-9_-]*$/;
-    AS_ALIAS_RE = /\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})$/;
-    POTENTIAL_META_RE = /\b([\w-]+)\s*:/;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D5FANMSG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-D5FANMSG.js
 function tagAttrKey(name) {
   return name.trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -4189,7 +5119,7 @@ function matchTagBlockHeading(trimmed) {
 }
 var AUTO_TAG_COLOR_SENTINEL, autoTagColorCycle, TAG_BLOCK_NOCOLON_RE, VALID_TAG_IDENT_RE;
 var init_chunk_D5FANMSG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D5FANMSG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-D5FANMSG.js"() {
     init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
     AUTO_TAG_COLOR_SENTINEL = "";
@@ -4199,7 +5129,7 @@ var init_chunk_D5FANMSG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EEKGMS63.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-EEKGMS63.js
 function parseBody(content, palette) {
   const lines = content.split("\n");
   const diagnostics = [];
@@ -4392,7 +5322,7 @@ function extractSymbols(docText) {
 }
 var BODY_DX, BODY_DIAGNOSTICS, FORM_RE, SEX_RE, VIEW_RE, PART_RE, META_PAIR_RE;
 var init_chunk_EEKGMS63 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EEKGMS63.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-EEKGMS63.js"() {
     init_chunk_BDXC7MDK();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -4445,7 +5375,7 @@ back`
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js
 function isEmphasisToken(token) {
   return EMPHASIS_TOKENS.includes(token.toLowerCase());
 }
@@ -4492,7 +5422,7 @@ function resolveEmphasis(directive, elementNames, expandHighlight) {
 }
 var EMPHASIS_DIM_OPACITY, EMPHASIS_DIM_TEXT_OPACITY, EMPHASIS_TOKENS, EMPTY;
 var init_chunk_2CW5ZTNH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-2CW5ZTNH.js"() {
     EMPHASIS_DIM_OPACITY = 0.28;
     EMPHASIS_DIM_TEXT_OPACITY = 0.5;
     EMPHASIS_TOKENS = Object.freeze(["highlight", "dim"]);
@@ -4500,7 +5430,7 @@ var init_chunk_2CW5ZTNH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CY5KE2P5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CY5KE2P5.js
 function rejectSeriesHeader(result, keyword, lineNumber) {
   if (result.type === "bar" && keyword === "series") {
     const diag = makeDgmoError(
@@ -4626,7 +5556,7 @@ function parseChart(content, palette) {
     }
     const spaceIdx = trimmed.indexOf(" ");
     const firstToken = (spaceIdx >= 0 ? trimmed.substring(0, spaceIdx) : trimmed).toLowerCase();
-    if (KNOWN_BOOLEANS.has(firstToken) && spaceIdx < 0) {
+    if (KNOWN_BOOLEANS2.has(firstToken) && spaceIdx < 0) {
       if (firstToken === "orientation-horizontal") {
         result.orientation = "horizontal";
       } else if (fillModeFromToken(firstToken) !== null) {
@@ -4648,7 +5578,7 @@ function parseChart(content, palette) {
       }
       continue;
     }
-    if (KNOWN_OPTIONS.has(firstToken) && spaceIdx >= 0) {
+    if (KNOWN_OPTIONS2.has(firstToken) && spaceIdx >= 0) {
       const value = trimmed.substring(spaceIdx + 1).trim();
       if (firstToken === "chart") {
         const raw = value.toLowerCase();
@@ -4820,7 +5750,7 @@ function parseChart(content, palette) {
       continue;
     }
     let msg = `Unexpected line: '${trimmed}'.`;
-    const hint = suggest(firstToken, [...KNOWN_OPTIONS, ...KNOWN_BOOLEANS]);
+    const hint = suggest(firstToken, [...KNOWN_OPTIONS2, ...KNOWN_BOOLEANS2]);
     if (hint) msg += ` ${hint}`;
     result.diagnostics.push(makeDgmoError(lineNumber, msg, "warning"));
   }
@@ -5579,9 +6509,9 @@ function getExtendedChartLegendGroups(parsed, colors) {
   }
   return [];
 }
-var CHANNEL_NAME, VALID_TYPES, KNOWN_OPTIONS, DEFAULT_HOLE, KNOWN_BOOLEANS, KNOWN_FIRST_TOKENS, VALID_EXTENDED_TYPES, KNOWN_EXTENDED_OPTIONS, KNOWN_EXTENDED_FIRST_TOKENS, EXTENDED_CHART_DOORS;
+var CHANNEL_NAME, VALID_TYPES, KNOWN_OPTIONS2, DEFAULT_HOLE, KNOWN_BOOLEANS2, KNOWN_FIRST_TOKENS, VALID_EXTENDED_TYPES, KNOWN_EXTENDED_OPTIONS, KNOWN_EXTENDED_FIRST_TOKENS, EXTENDED_CHART_DOORS;
 var init_chunk_CY5KE2P5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CY5KE2P5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CY5KE2P5.js"() {
     init_chunk_2CW5ZTNH();
     init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
@@ -5598,7 +6528,7 @@ var init_chunk_CY5KE2P5 = __esm({
       "polar-area",
       "radar"
     ]);
-    KNOWN_OPTIONS = /* @__PURE__ */ new Set([
+    KNOWN_OPTIONS2 = /* @__PURE__ */ new Set([
       "chart",
       "title",
       "series",
@@ -5615,7 +6545,7 @@ var init_chunk_CY5KE2P5 = __esm({
       "color"
     ]);
     DEFAULT_HOLE = 0.6;
-    KNOWN_BOOLEANS = /* @__PURE__ */ new Set([
+    KNOWN_BOOLEANS2 = /* @__PURE__ */ new Set([
       "orientation-horizontal",
       "fill-tint",
       "fill-solid",
@@ -5628,8 +6558,8 @@ var init_chunk_CY5KE2P5 = __esm({
       "hole"
     ]);
     KNOWN_FIRST_TOKENS = /* @__PURE__ */ new Set([
-      ...KNOWN_OPTIONS,
-      ...KNOWN_BOOLEANS,
+      ...KNOWN_OPTIONS2,
+      ...KNOWN_BOOLEANS2,
       ...GLOBAL_BOOLEANS
     ]);
     VALID_EXTENDED_TYPES = /* @__PURE__ */ new Set([
@@ -5672,7 +6602,127 @@ var init_chunk_CY5KE2P5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RV2N7COG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-MGLJA5TK.js
+function parsePyramid(content) {
+  const options = {};
+  const result = {
+    type: "pyramid",
+    title: "",
+    titleLineNumber: 0,
+    layers: [],
+    inverted: false,
+    options,
+    diagnostics: [],
+    error: null
+  };
+  const lines = content.split("\n");
+  let headerParsed = false;
+  let currentLayer = null;
+  const fail = makeFail(result);
+  const warn = (line, message, severity = "warning") => {
+    result.diagnostics.push(makeDgmoError(line, message, severity));
+  };
+  const flushLayer = () => {
+    if (currentLayer) {
+      result.layers.push(currentLayer);
+      currentLayer = null;
+    }
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const lineNum = i + 1;
+    const raw = lines[i];
+    const trimmed = raw.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    const indent = measureIndent(raw);
+    if (!headerParsed) {
+      const firstLineResult = parseFirstLine(trimmed);
+      if (firstLineResult?.chartType === "pyramid") {
+        result.title = firstLineResult.title ?? "";
+        result.titleLineNumber = lineNum;
+        headerParsed = true;
+        continue;
+      }
+      return fail(lineNum, 'Expected "pyramid [Title]" as the first line.');
+    }
+    if (indent === 0 && trimmed.toLowerCase() === "inverted") {
+      result.inverted = true;
+      continue;
+    }
+    if (indent === 0 && tryParseSharedOption(trimmed, options)) {
+      continue;
+    }
+    if (indent === 0) {
+      flushLayer();
+      const split = splitNameAndMeta(
+        trimmed,
+        PYRAMID_REGISTRY,
+        /* @__PURE__ */ new Map(),
+        void 0,
+        result.diagnostics,
+        lineNum
+      );
+      warnUnknownMetaKeys(
+        split.meta,
+        PYRAMID_REGISTRY,
+        (msg) => warn(lineNum, msg),
+        split.name
+      );
+      const label = split.name;
+      const restMeta = { ...split.meta };
+      const color2 = split.color ?? restMeta["color"];
+      delete restMeta["color"];
+      const description = [];
+      const descFromMeta = restMeta["description"];
+      if (descFromMeta) description.push(descFromMeta);
+      delete restMeta["description"];
+      if (!label) {
+        warn(lineNum, "Empty layer label.");
+        continue;
+      }
+      currentLayer = {
+        label,
+        lineNumber: lineNum,
+        ...color2 !== void 0 && { color: color2 },
+        description,
+        metadata: restMeta
+      };
+      continue;
+    }
+    if (!currentLayer) {
+      warn(
+        lineNum,
+        `Indented description "${trimmed}" has no layer above it \u2014 add a layer name on a non-indented line first. (\xA723)`
+      );
+      continue;
+    }
+    const descLine = trimmed.startsWith("- ") ? `\u2022 ${trimmed.substring(2)}` : trimmed;
+    currentLayer.description.push(descLine);
+  }
+  flushLayer();
+  if (result.layers.length < 2) {
+    return fail(
+      result.titleLineNumber || 1,
+      "pyramid requires at least 2 layers."
+    );
+  }
+  if (result.layers.length > MAX_LAYERS) {
+    return fail(
+      result.titleLineNumber || 1,
+      `pyramid supports at most ${MAX_LAYERS} layers; got ${result.layers.length}.`
+    );
+  }
+  return result;
+}
+var MAX_LAYERS;
+var init_chunk_MGLJA5TK = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-MGLJA5TK.js"() {
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
+    MAX_LAYERS = 15;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RV2N7COG.js
 function parseRing(content) {
   const options = {};
   const result = {
@@ -5807,26 +6857,26 @@ function parseRing(content) {
       "ring requires at least 2 layers."
     );
   }
-  if (result.layers.length > MAX_LAYERS) {
+  if (result.layers.length > MAX_LAYERS2) {
     return fail(
       result.titleLineNumber || 1,
-      `ring supports at most ${MAX_LAYERS} layers; got ${result.layers.length}.`
+      `ring supports at most ${MAX_LAYERS2} layers; got ${result.layers.length}.`
     );
   }
   return result;
 }
-var MAX_LAYERS, KNOWN_PIPE_KEYS;
+var MAX_LAYERS2, KNOWN_PIPE_KEYS;
 var init_chunk_RV2N7COG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RV2N7COG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RV2N7COG.js"() {
     init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
     init_chunk_OLMWTJVU();
-    MAX_LAYERS = 15;
+    MAX_LAYERS2 = 15;
     KNOWN_PIPE_KEYS = /* @__PURE__ */ new Set(["color", "description"]);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VSFAJUEF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VSFAJUEF.js
 function isFullyQuoted(s) {
   return s.length >= 2 && (s.startsWith('"') && s.endsWith('"') || s.startsWith("'") && s.endsWith("'"));
 }
@@ -6186,7 +7236,7 @@ function attachNode(node, indent, indentStack, result) {
 }
 var TREEMAP_DX, TREEMAP_DIAGNOSTICS, VALUE_TOKEN_RE;
 var init_chunk_VSFAJUEF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VSFAJUEF.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VSFAJUEF.js"() {
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
@@ -6239,16 +7289,16 @@ var init_chunk_VSFAJUEF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js
 function isBlockNode(cell) {
   return cell.empty !== true;
 }
 var init_chunk_XSVWUOUZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-XSVWUOUZ.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5J2RQGFG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5J2RQGFG.js
 function parseBlock(content, palette) {
   const options = { noLegend: false };
   const result = {
@@ -6564,7 +7614,7 @@ function parseBlockTail(tail, aliasMap) {
   return { meta, ...span !== void 0 && { span }, collapsed };
 }
 var init_chunk_5J2RQGFG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5J2RQGFG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5J2RQGFG.js"() {
     init_chunk_XSVWUOUZ();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -6572,7 +7622,7 @@ var init_chunk_5J2RQGFG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5XMDSXZT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5XMDSXZT.js
 function parseGoalNumber(token) {
   const normalized = normalizeNumericToken(token);
   if (normalized === null && /[,_]/.test(token)) return null;
@@ -6716,13 +7766,13 @@ function parseGoal(content, palette) {
   return result;
 }
 var init_chunk_5XMDSXZT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5XMDSXZT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5XMDSXZT.js"() {
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js
 function zoneFields(ms, tz) {
   const d = new Date(ms);
   if (!tz) {
@@ -7094,7 +8144,7 @@ function formatFooter(resolvedMs, hasTime, tz = null) {
 }
 var DAY_MS, WEEK_MS, ZONE_WD, DATE_ONLY_RE, LOCAL_DT_RE, WEEKDAY_ABBR, MONTH_ABBR;
 var init_chunk_OQKP2X3D = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OQKP2X3D.js"() {
     DAY_MS = 864e5;
     WEEK_MS = 7 * DAY_MS;
     ZONE_WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -7118,7 +8168,7 @@ var init_chunk_OQKP2X3D = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js
 function monthNameToNum(raw) {
   const t3 = raw.toLowerCase().replace(/\.$/, "");
   let i = MONTHS_FULL.indexOf(t3);
@@ -7358,7 +8408,7 @@ function normalizeDate(raw, opts = {}) {
 }
 var MONTHS_FULL, MONTHS_ABBR, MONTH_NAME_SCAN_RE, ERA_RE, ISO_RE, MONTH_D_RE, D_MONTH_RE, SLASH_RE, TIME_RE;
 var init_chunk_DAOFNU6J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DAOFNU6J.js"() {
     MONTHS_FULL = [
       "january",
       "february",
@@ -7397,7 +8447,7 @@ var init_chunk_DAOFNU6J = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QWUYFUNO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QWUYFUNO.js
 function targetToMs2(target, tz = null) {
   const ms = targetToMs(target, tz);
   return Number.isFinite(ms) ? ms : null;
@@ -7920,7 +8970,7 @@ function emitFreeProseError(lineNum, rest, softError) {
 }
 var TIME_24H_RE, AMPM_RE;
 var init_chunk_QWUYFUNO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QWUYFUNO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QWUYFUNO.js"() {
     init_chunk_OQKP2X3D();
     init_chunk_DAOFNU6J();
     init_chunk_3KOPPSUQ();
@@ -7930,7 +8980,7 @@ var init_chunk_QWUYFUNO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js
 function hexLerp(a, b, t3) {
   const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16));
   const pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
@@ -8125,7 +9175,7 @@ function handAngles(h, m, s) {
 }
 var CLOCK_RAMP, SOON_MIN, RAD, DAY_MS2, J1970, J2000, WEEKDAY_SHORT;
 var init_chunk_A2RUBBVT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-A2RUBBVT.js"() {
     CLOCK_RAMP = [
       [0, "#3d478f"],
       [4, "#4a4d8c"],
@@ -8154,7 +9204,7 @@ var init_chunk_A2RUBBVT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YNAHUNMA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-YNAHUNMA.js
 function coordsFor(zone) {
   return ZONE_COORDS[zone] ?? null;
 }
@@ -8546,7 +9596,7 @@ function parseClock(content, palette) {
 }
 var ZONE_COORDS, ALIAS_SEED, NAME_INDEX, CITY_LABEL, ALL_ENTRIES, DIRECTIVES, WEEKDAY_ABBR2;
 var init_chunk_YNAHUNMA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YNAHUNMA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-YNAHUNMA.js"() {
     init_chunk_A2RUBBVT();
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
@@ -8783,7 +9833,7 @@ var init_chunk_YNAHUNMA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js
 function tryStripDescriptionKeyword(line) {
   const colonMatch = line.match(/^description\s*:\s+(.+)$/i);
   if (colonMatch) return { isKeyword: true, text: colonMatch[1] };
@@ -8801,11 +9851,11 @@ function preprocessDescriptionLine(line) {
   return line;
 }
 var init_chunk_IYULMRBE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-IYULMRBE.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NFAHDPCG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NFAHDPCG.js
 function splitMatch(body) {
   let rest = body;
   let home = null;
@@ -9168,7 +10218,7 @@ function parseBracket(content, palette) {
 }
 var BEATS_RE, VS_RE, SCORE_RE, HOME_RE, SEED_RE, MODE_FLAGS;
 var init_chunk_NFAHDPCG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NFAHDPCG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NFAHDPCG.js"() {
     init_chunk_IYULMRBE();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -9182,937 +10232,759 @@ var init_chunk_NFAHDPCG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-I55PVEIX.js
-function inferVariant(markers) {
-  let hasD = false;
-  let hasS = false;
-  for (const m of markers) {
-    if (m === "D") hasD = true;
-    else if (m === "S") hasS = true;
-  }
-  if (hasD && hasS) return null;
-  if (hasD) return "daci";
-  if (hasS) return "rasci";
-  return "raci";
-}
-function countMarker(task, marker) {
-  let count2 = 0;
-  for (const assignment of task.roleAssignments) {
-    for (const m of assignment.markers) if (m === marker) count2++;
-  }
-  return count2;
-}
-function totalMarkerCount(task) {
-  let n = 0;
-  for (const a of task.roleAssignments) n += a.markers.length;
-  return n;
-}
-function findFirstAssignmentLineWithMarker(task, marker, skipFirst) {
-  let seen = 0;
-  for (const assignment of task.roleAssignments) {
-    if (assignment.markers.includes(marker)) {
-      seen++;
-      if (skipFirst && seen === 1) continue;
-      return assignment.lineNumber;
-    }
-  }
-  return task.lineNumber;
-}
-var RACI_DX, RACI_DIAGNOSTICS, ALL_MARKERS, TOO_MANY_RESPONSIBLE_THRESHOLD, multiAccountableRule, daciMultiDriverRule, daciMultiAccountableRule, emptyTaskRule, missingAccountableRule, missingResponsibleRule, daciMissingDriverRule, daciMissingAccountableRule, ACTIVE_MARKERS, PASSIVE_MARKERS, conflictingMarkersRule, tooManyResponsibleRule, VARIANTS;
-var init_chunk_I55PVEIX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-I55PVEIX.js"() {
-    init_chunk_OLMWTJVU();
-    RACI_DX = {
-      // ── Errors ──────────────────────────────────────────────────
-      MULTI_ACCOUNTABLE: {
-        code: "E_RACI_MULTI_ACCOUNTABLE",
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js
+var SKETCH_DIAGNOSTIC_CODES, SKETCH_DIAGNOSTICS;
+var init_chunk_RT7ACF77 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js"() {
+    SKETCH_DIAGNOSTIC_CODES = {
+      NESTED_BOX: "E_SKETCH_NESTED_BOX",
+      AMBIGUOUS_TARGET: "E_SKETCH_AMBIGUOUS_TARGET",
+      UNKNOWN_SHAPE: "W_SKETCH_UNKNOWN_SHAPE",
+      OVERLAP_RESOLVED: "W_SKETCH_OVERLAP_RESOLVED",
+      AT_OUT_OF_RANGE: "W_SKETCH_AT_OUT_OF_RANGE"
+    };
+    SKETCH_DIAGNOSTICS = [
+      {
+        code: SKETCH_DIAGNOSTIC_CODES.NESTED_BOX,
         severity: "error",
-        chartType: "raci",
-        title: "Multiple Accountable",
-        // variants.ts › multiAccountableRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has more than one Accountable \u2014 RACI requires exactly one.`,
-        hint: "Assign the A marker to exactly one role per task; make the others Responsible or Consulted.",
-        example: `raci
-
-Task
-  Cap: A
-  QM: A`
+        chartType: "sketch",
+        title: "Nested box",
+        message: (p2) => `Box "${String(p2.label ?? "?")}" is nested inside another box \u2014 sketch boxes are one level only; its shapes join the outer box`,
+        hint: "Move the inner [Box] to the top level.",
+        example: "sketch\n[Outer]\n  [Inner]\n    Shape"
       },
-      DACI_MULTI_DRIVER: {
-        code: "E_DACI_MULTI_DRIVER",
+      {
+        code: SKETCH_DIAGNOSTIC_CODES.AMBIGUOUS_TARGET,
         severity: "error",
-        chartType: "raci",
-        title: "Multiple Driver (DACI)",
-        // variants.ts › daciMultiDriverRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has more than one Driver \u2014 DACI requires exactly one.`,
-        hint: "A DACI decision has a single Driver; give the extra D roles another marker.",
-        example: `raci
-
-Decision
-  PM: D
-  Cap: D`
+        chartType: "sketch",
+        title: "Ambiguous edge target",
+        message: (p2) => `Edge target "${String(p2.target ?? "?")}" matches more than one shape \u2014 give each duplicate an alias (as x) and target the alias`,
+        hint: "Alias duplicate-label shapes and reference the alias.",
+        example: "sketch\nCache as c1\nCache as c2\nApp\n  -> c1"
       },
-      DACI_MULTI_ACCOUNTABLE: {
-        code: "E_DACI_MULTI_ACCOUNTABLE",
-        severity: "error",
-        chartType: "raci",
-        title: "Multiple Approver (DACI)",
-        // variants.ts › daciMultiAccountableRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has more than one Approver \u2014 DACI requires exactly one.`,
-        hint: "A DACI decision has a single Approver (A); reduce to one.",
-        example: `raci
-
-Decision
-  Lead: D
-  PM: A
-  Cap: A`
-      },
-      INVALID_MARKER: {
-        code: "E_RACI_INVALID_MARKER",
-        severity: "error",
-        chartType: "raci",
-        // Two emit sites share this code: parser.ts first-pass (default form,
-        // rejects letters outside the union alphabet) and parser.ts post-pass
-        // (variant-aware form, passed `variant`+`alphabet`, rejects union
-        // letters outside the resolved variant). The `{}` default renders the
-        // first-pass wording.
-        title: "Invalid marker",
-        // parser.ts first-pass tokenizer
-        message: (p2) => p2.variant !== void 0 && p2.variant !== null ? `Marker '${p2.marker ?? "X"}' is not in the ${p2.variant} alphabet (${p2.alphabet}).` : `Marker '${p2.marker ?? "X"}' is not a recognized RACI marker (R A S C I D).`,
-        hint: "Use only R, A, S, C, I (or D for DACI). Wrong-variant letters (e.g. S in a DACI chart) trigger the variant-alphabet form of this diagnostic.",
-        example: `raci
-
-Task
-  Cap: X`
-      },
-      UNEXPECTED_LINE: {
-        code: "E_RACI_UNEXPECTED_LINE",
-        severity: "error",
-        chartType: "raci",
-        title: "Unexpected line under task",
-        // parser.ts — free-text after first role assignment
-        message: (p2) => `Unexpected line after role assignments under task '${p2.task ?? "Task"}'. Lines under a task must be either a description (before the first 'Role: markers' line) or another role assignment.`,
-        hint: "Put all description text before the first role assignment; nothing but assignments may follow.",
-        example: `raci
-
-Task
-  Cap: A
-  This is an unexpected description.`
-      },
-      MIXED_VARIANTS: {
-        code: "E_RACI_MIXED_VARIANTS",
-        severity: "error",
-        chartType: "raci",
-        title: "Mixed RASCI/DACI markers",
-        // parser.ts — variant resolution, inferVariant() returned null
-        message: "Chart uses both 'D' and 'S' markers but neither RASCI nor DACI covers both. Use only RACI/RASCI markers (R, A, S, C, I) or only DACI markers (D, A, C, I).",
-        hint: "Pick one convention: R/A/S/C/I (RACI/RASCI) or D/A/C/I (DACI). Do not mix D and S in one chart.",
-        example: `raci
-
-Task
-  Cap: D
-  Crew: S`
-      },
-      // ── Warnings ────────────────────────────────────────────────
-      MISSING_ACCOUNTABLE: {
-        code: "W_RACI_MISSING_ACCOUNTABLE",
+      {
+        code: SKETCH_DIAGNOSTIC_CODES.UNKNOWN_SHAPE,
         severity: "warning",
-        chartType: "raci",
-        title: "Missing Accountable",
-        // variants.ts › missingAccountableRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has no Accountable assigned.`,
-        hint: "Every RACI task should have exactly one Accountable (A).",
-        example: `raci
-
-Task
-  Cap: R`
+        chartType: "sketch",
+        title: "Unknown shape",
+        message: (p2) => `Unknown shape "${String(p2.shape ?? "?")}" \u2014 rendered as a rectangle (valid: database, queue, person, document, note)`,
+        hint: "Use one of the closed shape kinds, or drop shape: for a rectangle.",
+        example: "sketch\nStore shape: database"
       },
-      MISSING_RESPONSIBLE: {
-        code: "W_RACI_MISSING_RESPONSIBLE",
+      {
+        code: SKETCH_DIAGNOSTIC_CODES.OVERLAP_RESOLVED,
         severity: "warning",
-        chartType: "raci",
-        title: "Missing Responsible",
-        // variants.ts › missingResponsibleRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has no Responsible assigned.`,
-        hint: "Assign at least one Responsible (R) \u2014 someone has to do the work.",
-        example: `raci
-
-Task
-  Cap: A`
+        chartType: "sketch",
+        title: "Overlapping shapes auto-resolved",
+        message: (p2) => `Shape "${String(p2.label ?? "?")}" overlapped another at its authored position \u2014 moved to the nearest free slot`,
+        hint: "Keep shapes at least 2 half-slots apart on one axis, or omit at: to flow-place.",
+        example: "sketch\nA at: 0 0\nB at: 0 0"
       },
-      DACI_MISSING_DRIVER: {
-        code: "W_DACI_MISSING_DRIVER",
+      {
+        code: SKETCH_DIAGNOSTIC_CODES.AT_OUT_OF_RANGE,
         severity: "warning",
-        chartType: "raci",
-        title: "Missing Driver (DACI)",
-        // variants.ts › daciMissingDriverRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has no Driver assigned.`,
-        hint: "A DACI decision needs a Driver (D) to move it forward.",
-        example: `raci
-
-Pick Vendor
-  Lead: D
-  PM: A
-Sign Off
-  Cap: C`
-      },
-      DACI_MISSING_ACCOUNTABLE: {
-        code: "W_DACI_MISSING_ACCOUNTABLE",
-        severity: "warning",
-        chartType: "raci",
-        title: "Missing Approver (DACI)",
-        // variants.ts › daciMissingAccountableRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has no Approver assigned.`,
-        hint: "A DACI decision needs an Approver (A) to sign off.",
-        example: `raci
-
-Pick Vendor
-  Lead: D
-  PM: A
-Sign Off
-  Cap: C`
-      },
-      UNKNOWN_ROLE: {
-        code: "W_RACI_UNKNOWN_ROLE",
-        severity: "warning",
-        chartType: "raci",
-        title: "Undeclared role",
-        // parser.ts — only when `roles:` is declared. Live message appends a
-        // ` Did you mean 'X'?` suggestion when a near match exists.
-        message: (p2) => {
-          const role = p2.role ?? "Role";
-          const hint = p2.hint ?? "";
-          return `Role '${role}' is not declared in the 'roles:' directive.${hint ? " " + hint : ""}`;
-        },
-        hint: "Add the role to the `roles` directive, or fix the typo to match a declared role.",
-        example: `raci
-roles Cap, QM
-
-Task
-  Cap: A
-  Stranger: R`
-      },
-      EMPTY_TASK: {
-        code: "W_RACI_EMPTY_TASK",
-        severity: "warning",
-        chartType: "raci",
-        title: "Empty task",
-        // variants.ts › emptyTaskRule
-        message: (p2) => `Task '${p2.task ?? "Task"}' has no role assignments.`,
-        hint: "Add at least one `Role: markers` line, or remove the empty task.",
-        example: `raci
-
-Task
-  Just a description with no assignments`
-      },
-      CONFLICTING_MARKERS: {
-        code: "W_RACI_CONFLICTING_MARKERS",
-        severity: "warning",
-        chartType: "raci",
-        title: "Conflicting markers",
-        // variants.ts › conflictingMarkersRule
-        message: (p2) => {
-          const role = p2.role ?? "Role";
-          const task = p2.task ?? "Task";
-          const markers = p2.markers ?? "A C";
-          return `Role '${role}' on task '${task}' has conflicting markers (${markers}). A role can be either active (R/A/D) or passive (C/I), not both.`;
-        },
-        hint: "Give the role either an active marker (R/A/D) or a passive one (C/I), not both.",
-        example: `raci
-
-Task
-  Cap: A C`
-      },
-      TOO_MANY_RESPONSIBLE: {
-        code: "W_RACI_TOO_MANY_RESPONSIBLE",
-        severity: "warning",
-        chartType: "raci",
-        title: "Too many Responsible",
-        // variants.ts › tooManyResponsibleRule (threshold = 3)
-        message: (p2) => {
-          const task = p2.task ?? "Task";
-          const count2 = p2.count ?? 4;
-          const threshold = p2.threshold ?? 3;
-          return `Task '${task}' has ${count2} Responsibles \u2014 more than ${threshold} dilutes ownership. Consider splitting the task or marking some as Consulted.`;
-        },
-        hint: "Keep Responsibles at or below 3 \u2014 split the task or downgrade some roles to Consulted.",
-        example: `raci
-
-Task
-  W: R
-  X: R
-  Y: R
-  Z: R
-  Lead: A`
-      },
-      ORPHAN_ROLE: {
-        code: "W_RACI_ORPHAN_ROLE",
-        severity: "warning",
-        chartType: "raci",
-        title: "Orphan role",
-        // parser.ts — role declared/seen but never assigned any marker
-        message: (p2) => `Role '${p2.role ?? "Role"}' is declared but never assigned to any task.`,
-        hint: "Assign the role a marker somewhere, or remove it from the `roles` directive.",
-        example: `raci
-roles Cap, Ghost
-
-Task
-  Cap: A R`
+        chartType: "sketch",
+        title: "at: coordinate out of range",
+        message: (p2) => `at: coordinate "${String(p2.raw ?? "?")}" is out of range \u2014 half-slot coords must be whole numbers within \xB1${String(p2.max ?? "?")}; shape will flow-place`,
+        hint: "Use small integer half-slot coordinates near the origin, or omit at: to flow-place.",
+        example: "sketch\nA at: 2 0"
       }
-    };
-    RACI_DIAGNOSTICS = Object.values(RACI_DX);
-    ALL_MARKERS = /* @__PURE__ */ new Set([
-      "R",
-      "A",
-      "S",
-      "C",
-      "I",
-      "D"
-    ]);
-    TOO_MANY_RESPONSIBLE_THRESHOLD = 3;
-    multiAccountableRule = (task) => {
-      if (countMarker(task, "A") > 1) {
-        return [
-          emit(
-            RACI_DX.MULTI_ACCOUNTABLE,
-            findFirstAssignmentLineWithMarker(task, "A", true),
-            {
-              task: task.displayName
-            }
-          )
-        ];
-      }
-      return [];
-    };
-    daciMultiDriverRule = (task) => {
-      if (countMarker(task, "D") > 1) {
-        return [
-          emit(
-            RACI_DX.DACI_MULTI_DRIVER,
-            findFirstAssignmentLineWithMarker(task, "D", true),
-            {
-              task: task.displayName
-            }
-          )
-        ];
-      }
-      return [];
-    };
-    daciMultiAccountableRule = (task) => {
-      if (countMarker(task, "A") > 1) {
-        return [
-          emit(
-            RACI_DX.DACI_MULTI_ACCOUNTABLE,
-            findFirstAssignmentLineWithMarker(task, "A", true),
-            {
-              task: task.displayName
-            }
-          )
-        ];
-      }
-      return [];
-    };
-    emptyTaskRule = (task) => {
-      if (totalMarkerCount(task) === 0) {
-        return [
-          emit(RACI_DX.EMPTY_TASK, task.lineNumber, { task: task.displayName })
-        ];
-      }
-      return [];
-    };
-    missingAccountableRule = (task) => {
-      if (totalMarkerCount(task) === 0) return [];
-      if (countMarker(task, "A") === 0) {
-        return [
-          emit(RACI_DX.MISSING_ACCOUNTABLE, task.lineNumber, {
-            task: task.displayName
-          })
-        ];
-      }
-      return [];
-    };
-    missingResponsibleRule = (task) => {
-      if (totalMarkerCount(task) === 0) return [];
-      if (countMarker(task, "R") === 0) {
-        return [
-          emit(RACI_DX.MISSING_RESPONSIBLE, task.lineNumber, {
-            task: task.displayName
-          })
-        ];
-      }
-      return [];
-    };
-    daciMissingDriverRule = (task) => {
-      if (totalMarkerCount(task) === 0) return [];
-      if (countMarker(task, "D") === 0) {
-        return [
-          emit(RACI_DX.DACI_MISSING_DRIVER, task.lineNumber, {
-            task: task.displayName
-          })
-        ];
-      }
-      return [];
-    };
-    daciMissingAccountableRule = (task) => {
-      if (totalMarkerCount(task) === 0) return [];
-      if (countMarker(task, "A") === 0) {
-        return [
-          emit(RACI_DX.DACI_MISSING_ACCOUNTABLE, task.lineNumber, {
-            task: task.displayName
-          })
-        ];
-      }
-      return [];
-    };
-    ACTIVE_MARKERS = /* @__PURE__ */ new Set(["R", "A", "D"]);
-    PASSIVE_MARKERS = /* @__PURE__ */ new Set(["C", "I"]);
-    conflictingMarkersRule = (task) => {
-      const out = [];
-      for (const a of task.roleAssignments) {
-        let hasActive = false;
-        let hasPassive = false;
-        for (const m of a.markers) {
-          if (ACTIVE_MARKERS.has(m)) hasActive = true;
-          if (PASSIVE_MARKERS.has(m)) hasPassive = true;
-        }
-        if (hasActive && hasPassive) {
-          out.push(
-            emit(RACI_DX.CONFLICTING_MARKERS, a.lineNumber, {
-              role: a.displayName,
-              task: task.displayName,
-              markers: a.markers.join(" ")
-            })
-          );
-        }
-      }
-      return out;
-    };
-    tooManyResponsibleRule = (task) => {
-      const n = countMarker(task, "R");
-      if (n > TOO_MANY_RESPONSIBLE_THRESHOLD) {
-        return [
-          emit(RACI_DX.TOO_MANY_RESPONSIBLE, task.lineNumber, {
-            task: task.displayName,
-            count: n,
-            threshold: TOO_MANY_RESPONSIBLE_THRESHOLD
-          })
-        ];
-      }
-      return [];
-    };
-    VARIANTS = {
-      raci: {
-        alphabet: ["R", "A", "C", "I"],
-        errorRules: [multiAccountableRule],
-        warningRules: [
-          emptyTaskRule,
-          missingAccountableRule,
-          missingResponsibleRule,
-          conflictingMarkersRule,
-          tooManyResponsibleRule
-        ]
-      },
-      rasci: {
-        alphabet: ["R", "A", "S", "C", "I"],
-        errorRules: [multiAccountableRule],
-        warningRules: [
-          emptyTaskRule,
-          missingAccountableRule,
-          missingResponsibleRule,
-          conflictingMarkersRule,
-          tooManyResponsibleRule
-        ]
-      },
-      daci: {
-        alphabet: ["D", "A", "C", "I"],
-        errorRules: [daciMultiDriverRule, daciMultiAccountableRule],
-        warningRules: [
-          emptyTaskRule,
-          daciMissingDriverRule,
-          daciMissingAccountableRule,
-          conflictingMarkersRule
-        ]
-      }
-    };
+    ];
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js
-function normalizeName(input) {
-  return input.normalize("NFC").replace(WHITESPACE_RUN_RE, " ").trim().toLocaleLowerCase("en-US");
-}
-function displayName(input) {
-  return input.normalize("NFC").trim();
-}
-var WHITESPACE_RUN_RE;
-var init_chunk_NOTA6TEI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NOTA6TEI.js"() {
-    WHITESPACE_RUN_RE = /\s+/gu;
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RRX4Z4TH.js
+function validateLabelCharacters(label, lineNumber) {
+  const out = [];
+  if (label.includes("->") || label.includes("~>")) {
+    out.push(
+      makeDgmoError(
+        lineNumber,
+        'Arrow symbols (-> or ~>) are not allowed inside a label. Move the label after the arrow: "A -> B: uses -> to chain". See "In-Arrow Message Labels" \u2192 Forbidden.',
+        "error",
+        ARROW_DIAGNOSTIC_CODES.ARROW_SUBSTRING_IN_LABEL
+      )
+    );
   }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GG7TK3IA.js
-function parseRoleAssignmentLine(trimmed) {
-  const colonMatch = trimmed.match(ROLE_ASSIGNMENT_RE);
-  if (colonMatch) {
-    return {
-      // Capture groups [1] and [2] guaranteed by ROLE_ASSIGNMENT_RE shape.
-      rawRole: colonMatch[1].trim(),
-      markersBlob: colonMatch[2].trim()
-    };
-  }
-  const tokens = trimmed.split(/\s+/).filter((t3) => t3.length > 0);
-  if (tokens.length < 2) return null;
-  const isAllMarkers = (tok) => {
-    if (tok.length === 0) return false;
-    for (const ch of tok) {
-      if (!ALL_MARKERS.has(ch)) return false;
-    }
-    return true;
-  };
-  let firstMarkerIdx = -1;
-  for (let j2 = 0; j2 < tokens.length; j2++) {
-    if (isAllMarkers(tokens[j2])) {
-      firstMarkerIdx = j2;
+  for (const ch of label) {
+    const cp = ch.codePointAt(0);
+    const isC0 = cp >= 0 && cp <= 31 && cp !== 9;
+    const isDel = cp === 127;
+    if (isC0 || isDel) {
+      const hex2 = cp.toString(16).toUpperCase().padStart(4, "0");
+      out.push(
+        makeDgmoError(
+          lineNumber,
+          `Label contains a control character (U+${hex2}). Remove it and use plain text.`,
+          "error",
+          ARROW_DIAGNOSTIC_CODES.CONTROL_CHAR_IN_LABEL
+        )
+      );
       break;
     }
   }
-  if (firstMarkerIdx <= 0) return null;
-  return {
-    rawRole: tokens.slice(0, firstMarkerIdx).join(" "),
-    markersBlob: tokens.slice(firstMarkerIdx).join(" ")
-  };
+  return out;
 }
-function parseRaci(content, palette) {
-  const options = {};
+function parseInArrowLabel(rawLabel, lineNumber) {
+  const trimmed = rawLabel.trim();
+  if (trimmed.length === 0) {
+    return { label: void 0, diagnostics: [] };
+  }
+  const diagnostics = validateLabelCharacters(trimmed, lineNumber);
+  return { label: trimmed, diagnostics };
+}
+function parseArrow(line) {
+  if (BIDI_SYNC_RE.test(line) || BIDI_ASYNC_RE.test(line)) {
+    return {
+      error: "Bidirectional arrows are no longer supported. Use two separate lines: 'A -msg-> B' and 'B -msg-> A'"
+    };
+  }
+  if (RETURN_SYNC_LABELED_RE.test(line) || RETURN_ASYNC_LABELED_RE.test(line)) {
+    const m = line.match(RETURN_SYNC_LABELED_RE) ?? line.match(RETURN_ASYNC_LABELED_RE);
+    const from = m[3];
+    const to = m[1];
+    const label = m[2].trim();
+    return {
+      error: `Left-pointing arrows are no longer supported. Write '${from} -${label}-> ${to}' instead`
+    };
+  }
+  const patterns = [
+    { re: SYNC_LABELED_RE, async: false },
+    { re: ASYNC_LABELED_RE, async: true }
+  ];
+  for (const { re: re3, async: isAsync } of patterns) {
+    const m = line.match(re3);
+    if (!m) continue;
+    const label = m[2].trim();
+    if (!label) return null;
+    return {
+      from: m[1],
+      to: m[3],
+      label,
+      async: isAsync
+    };
+  }
+  return null;
+}
+var ARROW_DIAGNOSTIC_CODES, SYNC_LABELED_RE, ASYNC_LABELED_RE, RETURN_SYNC_LABELED_RE, RETURN_ASYNC_LABELED_RE, BIDI_SYNC_RE, BIDI_ASYNC_RE;
+var init_chunk_RRX4Z4TH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RRX4Z4TH.js"() {
+    init_chunk_OLMWTJVU();
+    ARROW_DIAGNOSTIC_CODES = {
+      /** Active: label contains `->` or `~>` substring (TD-13). */
+      ARROW_SUBSTRING_IN_LABEL: "E_ARROW_SUBSTRING_IN_LABEL",
+      /** Active: label contains a forbidden control character (TD-14). */
+      CONTROL_CHAR_IN_LABEL: "E_CONTROL_CHAR_IN_LABEL"
+    };
+    SYNC_LABELED_RE = /^(.+?)\s*-(.+)->\s*(.+)$/;
+    ASYNC_LABELED_RE = /^(.+?)\s*~(.+)~>\s*(.+)$/;
+    RETURN_SYNC_LABELED_RE = /^(.+?)\s*<-(.+)-\s*(.+)$/;
+    RETURN_ASYNC_LABELED_RE = /^(.+?)\s*<~(.+)~\s*(.+)$/;
+    BIDI_SYNC_RE = /^(.+?)\s*<-(.+)->\s*(.+)$/;
+    BIDI_ASYNC_RE = /^(.+?)\s*<~(.+)~>\s*(.+)$/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-USFZQPJ2.js
+function isSketchShapeKind(value) {
+  return SKETCH_SHAPE_KINDS.includes(value);
+}
+function parseSketch(content, palette) {
+  const options = {
+    noLegend: false,
+    legendInline: false,
+    fillMode: void 0,
+    noDescriptions: false
+  };
   const result = {
-    type: "raci",
-    variant: "raci",
-    roles: [],
-    roleDisplayNames: [],
-    roleColors: [],
-    phases: [],
-    tasksWithoutPhase: [],
+    type: "sketch",
+    title: null,
+    titleLineNumber: null,
+    nodes: [],
+    edges: [],
+    boxes: [],
+    tagGroups: [],
     options,
     diagnostics: [],
     error: null
   };
   const fail = makeFail(result);
+  const pushError = (line, message, code) => {
+    result.diagnostics.push(makeDgmoError(line, message, "error", code));
+  };
   const warn = (line, message, code) => {
     result.diagnostics.push(makeDgmoError(line, message, "warning", code));
-  };
-  const errorAt = (line, message, code) => {
-    result.diagnostics.push(makeDgmoError(line, message, "error", code));
   };
   if (!content?.trim()) {
     return fail(0, "No content provided");
   }
   const lines = content.split("\n");
-  let i = 0;
-  for (; i < lines.length; i++) {
-    const trimmed = lines[i].trim();
-    if (!trimmed || trimmed.startsWith("//")) continue;
-    const firstLine = parseFirstLine(trimmed);
-    if (firstLine?.chartType !== "raci") {
-      return fail(i + 1, 'Expected chart type "raci" on the first line.');
-    }
-    if (firstLine.title) {
-      result.title = firstLine.title;
-      result.titleLineNumber = i + 1;
-    }
-    i++;
-    break;
-  }
-  let bodyStarted = false;
-  const roleStore = /* @__PURE__ */ new Map();
-  const taskStore = /* @__PURE__ */ new Map();
-  let rolesExplicit = false;
-  let currentPhase = null;
-  let currentTask = null;
-  let taskIndent = 0;
-  let taskHasRoleAssignment = false;
-  const getOrAddRole = (label, line, color2) => {
-    const display = displayName(label);
-    if (!display) {
-      errorAt(line, "Role name is empty.");
+  const nodes = [];
+  const boxes = [];
+  const nodeById = /* @__PURE__ */ new Map();
+  const aliasIndex = /* @__PURE__ */ new Map();
+  const labelIndex = /* @__PURE__ */ new Map();
+  const boxByNorm = /* @__PURE__ */ new Map();
+  const pendingEdges = [];
+  const tagAliasMap = /* @__PURE__ */ new Map();
+  let idCounter = 0;
+  const registryFor = () => withTagAliases(SKETCH_REGISTRY, new Set(tagAliasMap.keys()));
+  const parseAt2 = (raw, lineNumber) => {
+    if (raw === void 0) return null;
+    const m = raw.trim().match(AT_VALUE_RE);
+    if (!m) {
+      warn(
+        lineNumber,
+        `Invalid at: value "${raw}" \u2014 expected two integers (at: C R); shape will flow-place`
+      );
       return null;
     }
-    const key = normalizeName(display);
-    const existing = roleStore.get(key);
-    if (existing) {
-      if (existing.displayName !== display) {
+    const c = parseInt(m[1], 10);
+    const r = parseInt(m[2], 10);
+    if (!Number.isSafeInteger(c) || !Number.isSafeInteger(r) || Math.abs(c) > SKETCH_AT_MAX || Math.abs(r) > SKETCH_AT_MAX) {
+      warn(
+        lineNumber,
+        `at: coordinate "${raw}" is out of range \u2014 half-slot coords must be whole numbers within \xB1${SKETCH_AT_MAX}; shape will flow-place`,
+        SKETCH_DIAGNOSTIC_CODES.AT_OUT_OF_RANGE
+      );
+      return null;
+    }
+    return { c, r };
+  };
+  const liftReserved = (meta, lineNumber) => {
+    let shape = "rectangle";
+    const shapeRaw = meta["shape"];
+    if (shapeRaw !== void 0) {
+      const kind = shapeRaw.trim().toLowerCase();
+      if (kind === "rectangle" || isSketchShapeKind(kind)) {
+        shape = kind;
+      } else {
         warn(
-          line,
+          lineNumber,
+          `Unknown shape "${shapeRaw}" \u2014 rendered as a rectangle (valid: database, queue, person, document, note)`,
+          SKETCH_DIAGNOSTIC_CODES.UNKNOWN_SHAPE
+        );
+      }
+      delete meta["shape"];
+    }
+    const at2 = parseAt2(meta["at"], lineNumber);
+    delete meta["at"];
+    delete meta["collapsed"];
+    return { shape, at: at2 };
+  };
+  const addShape = (trimmed, lineNumber, box) => {
+    const snm = splitNameAndMeta(
+      trimmed,
+      registryFor(),
+      tagAliasMap,
+      palette,
+      result.diagnostics,
+      lineNumber
+    );
+    let label = stripQuotes(snm.name.trim()).trim();
+    if (snm.color) label = `${label} ${snm.color}`.trim();
+    if (!label) {
+      warn(lineNumber, `Shape line has no name \u2014 ignored`);
+      return null;
+    }
+    const meta = { ...snm.meta };
+    warnUnknownMetaKeys(
+      meta,
+      registryFor(),
+      (m) => warn(lineNumber, m),
+      snm.name
+    );
+    const { shape, at: at2 } = liftReserved(meta, lineNumber);
+    const norm = normalizeName(label);
+    if (snm.alias !== void 0 && aliasIndex.has(snm.alias)) {
+      warn(
+        lineNumber,
+        `Duplicate alias "${snm.alias}" \u2014 the first declaration keeps it`
+      );
+    }
+    const alias = snm.alias !== void 0 && !aliasIndex.has(snm.alias) ? snm.alias : void 0;
+    if (alias === void 0 && snm.alias === void 0) {
+      const existing = labelIndex.get(norm);
+      if (existing && existing.length > 0) {
+        const first = nodeById.get(existing[0]);
+        for (const [k2, v2] of Object.entries(meta)) {
+          if (!(k2 in first.metadata)) first.metadata[k2] = v2;
+        }
+        if (first.at === null && at2 !== null) first.at = at2;
+        if (first.shape === "rectangle" && shape !== "rectangle") {
+          first.shape = shape;
+        }
+        warn(
+          lineNumber,
           nameMergedMessage({
-            incomingDisplay: display,
-            incomingLine: line,
-            existingDisplay: existing.displayName,
-            existingLine: existing.declaredLine
+            incomingDisplay: label,
+            incomingLine: lineNumber,
+            existingDisplay: first.label,
+            existingLine: first.lineNumber
           }),
           NAME_DIAGNOSTIC_CODES.NAME_MERGED
         );
+        return first;
       }
-      if (color2 !== void 0) {
-        const idx = result.roles.indexOf(key);
-        if (idx >= 0) result.roleColors[idx] = color2;
-      }
-      return key;
     }
-    roleStore.set(key, { displayName: display, declaredLine: line });
-    result.roles.push(key);
-    result.roleDisplayNames.push(display);
-    result.roleColors.push(color2);
-    return key;
+    const id = `sketch-node-${++idCounter}`;
+    const node = {
+      id,
+      label,
+      ...alias !== void 0 && { alias },
+      shape,
+      at: at2,
+      metadata: meta,
+      ...box !== null && { boxLabel: box.label },
+      lineNumber
+    };
+    nodes.push(node);
+    nodeById.set(id, node);
+    if (alias !== void 0) aliasIndex.set(alias, id);
+    const list = labelIndex.get(norm);
+    if (list) list.push(id);
+    else labelIndex.set(norm, [id]);
+    if (box !== null) box.children.push(id);
+    return node;
   };
-  const registerTask = (display, line) => {
-    const key = normalizeName(display);
-    const existing = taskStore.get(key);
+  const parseBoxTail = (tail, lineNumber) => {
+    let rest = tail.trim();
+    let alias;
+    const aliasMatch = rest.match(BOX_TAIL_ALIAS_RE);
+    if (aliasMatch) {
+      alias = aliasMatch[1];
+      rest = rest.slice(aliasMatch[0].length);
+    }
+    let collapsed = false;
+    rest = rest.replace(/(^|,|\s)collapsed(?=\s|,|$)/i, (_m, pre) => {
+      collapsed = true;
+      return pre === "," ? "," : pre;
+    });
+    const meta = {};
+    let at2 = null;
+    for (const seg of rest.split(",")) {
+      const t3 = seg.trim();
+      if (!t3) continue;
+      const colonIdx = t3.indexOf(":");
+      if (colonIdx < 0) {
+        warn(lineNumber, `Unrecognized box metadata "${t3}" \u2014 ignored`);
+        continue;
+      }
+      const rawKey = t3.slice(0, colonIdx).trim().toLowerCase();
+      const value = t3.slice(colonIdx + 1).trim();
+      if (rawKey === "at") {
+        at2 = parseAt2(value, lineNumber);
+      } else if (value) {
+        meta[tagAliasMap.get(rawKey) ?? rawKey] = value;
+      }
+    }
+    return { ...alias !== void 0 && { alias }, at: at2, collapsed, meta };
+  };
+  const openBox = (label, tail, lineNumber) => {
+    const norm = normalizeName(label);
+    const existing = boxByNorm.get(norm);
+    const { alias, at: at2, collapsed, meta } = parseBoxTail(tail, lineNumber);
     if (existing) {
-      if (existing.displayName !== display) {
+      warn(
+        lineNumber,
+        `Box "${label}" already declared on line ${existing.lineNumber} \u2014 shapes are added to it`
+      );
+      return existing;
+    }
+    const box = {
+      id: `[${norm}]`,
+      label: label.trim(),
+      ...alias !== void 0 && { alias },
+      at: at2,
+      metadata: meta,
+      collapsed,
+      children: [],
+      lineNumber
+    };
+    boxes.push(box);
+    boxByNorm.set(norm, box);
+    if (alias !== void 0) {
+      if (aliasIndex.has(alias)) {
         warn(
-          line,
-          nameMergedMessage({
-            incomingDisplay: display,
-            incomingLine: line,
-            existingDisplay: existing.displayName,
-            existingLine: existing.declaredLine
-          }),
-          NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          lineNumber,
+          `Duplicate alias "${alias}" \u2014 the first declaration keeps it`
         );
+      } else {
+        aliasIndex.set(alias, box.id);
       }
-    } else {
-      taskStore.set(key, { displayName: display, declaredLine: line });
     }
-    return key;
+    return box;
   };
-  const finalizeTask = (uptoLineExclusive) => {
-    if (!currentTask) return;
-    let end = uptoLineExclusive - 1;
-    while (end > currentTask.lineNumber && !lines[end - 1].trim()) end--;
-    currentTask.endLineNumber = end;
-    if (currentPhase) currentPhase.endLineNumber = end;
-    currentTask = null;
-    taskHasRoleAssignment = false;
-  };
-  const finalizePhase = (uptoLineExclusive) => {
-    if (currentTask) finalizeTask(uptoLineExclusive);
-    if (currentPhase) {
-      let end = uptoLineExclusive - 1;
-      while (end > currentPhase.lineNumber && !lines[end - 1].trim()) end--;
-      currentPhase.endLineNumber = Math.max(currentPhase.endLineNumber, end);
-      currentPhase = null;
+  const addEdge = (trimmed, lineNumber, sourceId) => {
+    for (const form of EDGE_FORMS) {
+      const m = trimmed.match(form.re);
+      if (!m) continue;
+      let label;
+      let targetRegion;
+      if (form.labeled) {
+        const labelResult = parseInArrowLabel(m[1], lineNumber);
+        result.diagnostics.push(...labelResult.diagnostics);
+        label = labelResult.label;
+        targetRegion = m[2];
+      } else {
+        targetRegion = m[1];
+      }
+      const snm = splitNameAndMeta(
+        targetRegion.trim(),
+        registryFor(),
+        tagAliasMap,
+        palette,
+        result.diagnostics,
+        lineNumber,
+        { peelAlias: false }
+      );
+      let targetRaw = snm.name.trim();
+      if (snm.color) targetRaw = `${targetRaw} ${snm.color}`.trim();
+      const meta = { ...snm.meta };
+      delete meta["at"];
+      delete meta["shape"];
+      warnUnknownMetaKeys(meta, registryFor(), (msg) => warn(lineNumber, msg));
+      if (!targetRaw) {
+        warn(lineNumber, `Edge has no target \u2014 ignored`);
+        return;
+      }
+      pendingEdges.push({
+        sourceId,
+        targetRaw,
+        ...label !== void 0 && { label },
+        heads: form.heads,
+        dashed: form.dashed,
+        metadata: meta,
+        lineNumber
+      });
+      return;
     }
+    if (LEFT_ARROW_RE.test(trimmed)) {
+      pushError(
+        lineNumber,
+        `Left-pointing arrows are not supported \u2014 write the edge from the other side (B -> A instead of A <- B)`
+      );
+      return;
+    }
+    warn(lineNumber, `Malformed edge "${trimmed}" \u2014 ignored`);
   };
-  for (; i < lines.length; i++) {
+  let firstLineConsumed = false;
+  let contentStarted = false;
+  let currentTagGroup = null;
+  let currentBox = null;
+  let currentShape = null;
+  for (let i = 0; i < lines.length; i++) {
     const raw = lines[i];
     const lineNumber = i + 1;
     const trimmed = raw.trim();
-    const indent = measureIndent(raw);
-    if (!trimmed) continue;
+    if (!trimmed) {
+      currentTagGroup = null;
+      continue;
+    }
     if (trimmed.startsWith("//")) continue;
-    if (!bodyStarted && indent === 0 && !PHASE_RE.test(trimmed)) {
-      if (trimmed.toLowerCase() === "roles") {
-        rolesExplicit = true;
-        let j2 = i + 1;
-        for (; j2 < lines.length; j2++) {
-          const next = lines[j2];
-          const nextTrim = next.trim();
-          if (!nextTrim) continue;
-          if (nextTrim.startsWith("//")) continue;
-          if (next.length > 0 && next[0] !== " " && next[0] !== "	") break;
-          const stripped = nextTrim.replace(/,\s*$/, "");
-          const split = splitNameAndMeta(
-            stripped,
-            RACI_REGISTRY,
-            /* @__PURE__ */ new Map(),
-            void 0,
-            result.diagnostics,
-            j2 + 1
-          );
-          warnUnknownMetaKeys(
-            split.meta,
-            RACI_REGISTRY,
-            (msg) => warn(j2 + 1, msg),
-            split.name
-          );
-          const roleLabel = split.name;
-          let roleColor;
-          const colorRaw = split.color ?? split.meta["color"];
-          if (colorRaw) {
-            roleColor = resolveColorWithDiagnostic(
-              colorRaw,
-              j2 + 1,
-              result.diagnostics,
-              palette
-            );
-          }
-          if (roleLabel) getOrAddRole(roleLabel, j2 + 1, roleColor);
-        }
-        i = j2 - 1;
-        continue;
+    const indent = measureIndent(raw);
+    if (!firstLineConsumed) {
+      firstLineConsumed = true;
+      const firstLine = parseFirstLine(trimmed);
+      if (firstLine?.chartType !== "sketch") {
+        let msg = `Expected chart type "sketch", got "${firstLine?.chartType ?? trimmed.split(/\s+/)[0]}"`;
+        const hint = suggest(firstLine?.chartType ?? "", ["sketch"]);
+        if (hint) msg += `. ${hint}`;
+        return fail(lineNumber, msg);
       }
-      const lower2 = trimmed.toLowerCase();
-      const removedMsg = REMOVED_BOOLEANS[lower2];
-      if (removedMsg) {
-        warn(lineNumber, removedMsg);
-        continue;
-      }
-      if (KNOWN_BOOLEANS2.has(lower2)) {
-        options[lower2] = "on";
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, options)) continue;
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch) {
-        const key = optMatch[1].trim().toLowerCase();
-        if (KNOWN_OPTIONS2.has(key)) {
-          const value = optMatch[2].trim();
-          if (key === "roles") {
-            rolesExplicit = true;
-            const declared = value.split(",").map((s) => s.trim()).filter((s) => s.length > 0);
-            for (const rawRole of declared) {
-              getOrAddRole(rawRole, lineNumber);
-            }
-          } else {
-            options[key] = value;
-          }
-          continue;
-        }
-      }
+      result.title = firstLine.title ?? null;
+      result.titleLineNumber = lineNumber;
+      continue;
     }
     if (indent === 0) {
-      const phaseMatch = trimmed.match(PHASE_RE);
-      if (phaseMatch) {
-        bodyStarted = true;
-        finalizePhase(lineNumber);
-        const label = phaseMatch[1].trim();
-        const display = displayName(label);
-        if (!display) {
-          errorAt(lineNumber, "Phase label is empty.");
+      const tagBlockMatch = matchTagBlockHeading(trimmed);
+      if (tagBlockMatch) {
+        if (contentStarted) {
+          pushError(
+            lineNumber,
+            "Tag groups must appear before sketch content",
+            "E_TAG_DECLARED_AFTER_CONTENT"
+          );
           continue;
         }
-        let phaseColor;
-        const tail = (phaseMatch[2] ?? "").trim();
-        const colorMatch = tail.match(PHASE_PALETTE_COLOR_RE);
-        if (colorMatch) {
-          phaseColor = resolveColorWithDiagnostic(
-            colorMatch[1],
-            lineNumber,
-            result.diagnostics,
-            palette
+        currentTagGroup = {
+          name: tagBlockMatch.name,
+          ...tagBlockMatch.alias !== void 0 && {
+            alias: tagBlockMatch.alias
+          },
+          entries: [],
+          lineNumber
+        };
+        if (tagBlockMatch.alias) {
+          tagAliasMap.set(
+            tagBlockMatch.alias.toLowerCase(),
+            tagAttrKey(tagBlockMatch.name)
           );
         }
-        currentPhase = {
-          id: normalizeName(display),
-          displayName: display,
-          ...phaseColor !== void 0 && { color: phaseColor },
-          tasks: [],
-          lineNumber,
-          endLineNumber: lineNumber
-        };
-        result.phases.push(currentPhase);
+        tagAliasMap.set(
+          tagAttrKey(tagBlockMatch.name),
+          tagAttrKey(tagBlockMatch.name)
+        );
+        if (tagBlockMatch.inlineValues) {
+          for (const entry of tagBlockMatch.inlineValues) {
+            const { text: cleanEntry, isDefault } = stripDefaultModifier(entry);
+            const { label, color: color2 } = extractColor(
+              cleanEntry,
+              palette,
+              result.diagnostics,
+              lineNumber
+            );
+            if (isDefault) currentTagGroup.defaultValue = label;
+            currentTagGroup.entries.push({
+              value: label,
+              color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+              // When a color resolved, the recognized name is the entry's last
+              // token — keep it so a reparse can tell authored from auto.
+              ...color2 !== void 0 && {
+                authoredColor: cleanEntry.trim().split(/\s+/).pop()
+              },
+              lineNumber
+            });
+          }
+        }
+        result.tagGroups.push(currentTagGroup);
         continue;
       }
     }
-    const startTask = () => {
-      const display = displayName(trimmed);
-      if (!display) {
-        errorAt(lineNumber, "Task name is empty.");
-        return;
-      }
-      const taskId = registerTask(display, lineNumber);
-      const task = {
-        id: taskId,
-        displayName: display,
-        description: "",
-        roleAssignments: [],
-        lineNumber,
-        endLineNumber: lineNumber
-      };
-      if (currentPhase) {
-        currentPhase.tasks.push(task);
+    if (currentTagGroup && indent > 0) {
+      const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
+      const { label, color: color2 } = extractColor(
+        cleanEntry,
+        palette,
+        result.diagnostics,
+        lineNumber
+      );
+      if (isDefault) currentTagGroup.defaultValue = label;
+      currentTagGroup.entries.push({
+        value: label,
+        color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+        // When a color resolved, the recognized name is the entry's last token
+        // — keep it so a reparse can tell authored from auto.
+        ...color2 !== void 0 && {
+          authoredColor: cleanEntry.trim().split(/\s+/).pop()
+        },
+        lineNumber
+      });
+      continue;
+    }
+    currentTagGroup = null;
+    if (indent === 0 && /^legend-inline\s*$/i.test(trimmed)) {
+      options.legendInline = true;
+      continue;
+    }
+    if (indent === 0 && /^no-legend\s*$/i.test(trimmed)) {
+      options.noLegend = true;
+      continue;
+    }
+    if (indent === 0 && fillModeFromToken(trimmed) !== null) {
+      const fm = fillModeFromToken(trimmed);
+      options.fillMode = fm === "tint" ? void 0 : fm;
+      continue;
+    }
+    if (indent === 0 && /^no-descriptions\s*$/i.test(trimmed)) {
+      options.noDescriptions = true;
+      continue;
+    }
+    contentStarted = true;
+    if (trimmed.startsWith(">")) {
+      const descLine = trimmed.slice(1).replace(/^ /, "");
+      if (indent > 0 && currentShape && indent > currentShape.indent) {
+        const node2 = nodeById.get(currentShape.id);
+        if (node2) {
+          node2.description = node2.description === void 0 ? descLine : `${node2.description}
+${descLine}`;
+        }
       } else {
-        result.tasksWithoutPhase.push(task);
-      }
-      currentTask = task;
-      taskIndent = indent;
-      taskHasRoleAssignment = false;
-    };
-    if (indent === 0 && !currentPhase) {
-      bodyStarted = true;
-      finalizeTask(lineNumber);
-      startTask();
-      continue;
-    }
-    if (indent === 0 && currentPhase) {
-      bodyStarted = true;
-      finalizePhase(lineNumber);
-      startTask();
-      continue;
-    }
-    if (currentPhase && indent > 0 && (!currentTask || indent <= taskIndent)) {
-      bodyStarted = true;
-      finalizeTask(lineNumber);
-      startTask();
-      continue;
-    }
-    if (currentTask && indent > taskIndent) {
-      const task = currentTask;
-      const parsedAssign = parseRoleAssignmentLine(trimmed);
-      if (parsedAssign) {
-        const { rawRole, markersBlob } = parsedAssign;
-        const markers = [];
-        const tokens = [];
-        for (const tok of markersBlob.split(/\s+/)) {
-          if (!tok) continue;
-          for (const ch of tok) tokens.push(ch);
-        }
-        for (const tok of tokens) {
-          if (ALL_MARKERS.has(tok)) {
-            markers.push(tok);
-          } else {
-            result.diagnostics.push(
-              emit(RACI_DX.INVALID_MARKER, lineNumber, { marker: tok })
-            );
-          }
-        }
-        const roleId = getOrAddRole(rawRole, lineNumber);
-        if (roleId === null) continue;
-        if (rolesExplicit) {
-          const entry = roleStore.get(roleId);
-          if (entry?.declaredLine === lineNumber) {
-            const candidates = result.roleDisplayNames.filter(
-              (n) => n !== entry.displayName
-            );
-            const hint = suggest(rawRole, candidates);
-            result.diagnostics.push(
-              emit(RACI_DX.UNKNOWN_ROLE, lineNumber, {
-                role: rawRole,
-                hint: hint ?? ""
-              })
-            );
-          }
-        }
-        const assignment = {
-          id: roleId,
-          displayName: roleStore.get(roleId).displayName,
-          markers,
+        warn(
           lineNumber,
-          endLineNumber: lineNumber
-        };
-        task.roleAssignments.push(assignment);
-        task.endLineNumber = lineNumber;
-        taskHasRoleAssignment = true;
-        continue;
+          `Description "${trimmed}" has no shape \u2014 indent it under the shape it describes`
+        );
       }
-      if (!taskHasRoleAssignment) {
-        task.description = task.description ? task.description + "\n" + trimmed : trimmed;
-        task.endLineNumber = lineNumber;
-        continue;
-      }
-      result.diagnostics.push(
-        emit(RACI_DX.UNEXPECTED_LINE, lineNumber, { task: task.displayName })
-      );
       continue;
     }
-    if (bodyStarted) {
-      errorAt(
-        lineNumber,
-        `Unexpected line: '${trimmed}'. In the body expect a '[Phase]' header, an indented task name, or an assignment 'Role: A R C I' under a task. (\xA724A)`
-      );
+    if (EDGE_START_RE.test(trimmed)) {
+      if (indent > 0 && currentShape && indent > currentShape.indent) {
+        addEdge(trimmed, lineNumber, currentShape.id);
+      } else if (indent > 0 && currentBox && indent > currentBox.indent) {
+        addEdge(trimmed, lineNumber, currentBox.box.id);
+      } else {
+        warn(
+          lineNumber,
+          `Edge "${trimmed}" has no source shape \u2014 indent it under the shape it leaves from`
+        );
+      }
+      continue;
+    }
+    const boxMatch = trimmed.match(BOX_RE);
+    if (boxMatch) {
+      const label = boxMatch[1].trim();
+      if (!label) {
+        warn(lineNumber, "Box has no label \u2014 ignored");
+        continue;
+      }
+      if (indent > 0 && currentBox && indent > currentBox.indent) {
+        pushError(
+          lineNumber,
+          `Box "${label}" is nested inside "${currentBox.box.label}" \u2014 sketch boxes are one level only; its shapes join the outer box`,
+          SKETCH_DIAGNOSTIC_CODES.NESTED_BOX
+        );
+        continue;
+      }
+      currentBox = {
+        box: openBox(label, boxMatch[2] ?? "", lineNumber),
+        indent
+      };
+      currentShape = null;
+      continue;
+    }
+    if (indent === 0) {
+      currentBox = null;
+      const node2 = addShape(trimmed, lineNumber, null);
+      currentShape = node2 ? { id: node2.id, indent } : null;
+      continue;
+    }
+    if (currentBox && indent > currentBox.indent) {
+      const node2 = addShape(trimmed, lineNumber, currentBox.box);
+      currentShape = node2 ? { id: node2.id, indent } : currentShape;
+      continue;
+    }
+    warn(
+      lineNumber,
+      `Indented line "${trimmed}" has no parent box \u2014 treated as a top-level shape`
+    );
+    const node = addShape(trimmed, lineNumber, null);
+    currentShape = node ? { id: node.id, indent } : currentShape;
+  }
+  const allTargets = [
+    ...aliasIndex.keys(),
+    ...nodes.map((n) => n.label),
+    ...boxes.map((b) => b.label)
+  ];
+  for (const pe2 of pendingEdges) {
+    let targetId;
+    const bracketMatch = pe2.targetRaw.match(/^\[([^\]]*)\]$/);
+    if (bracketMatch) {
+      targetId = boxByNorm.get(normalizeName(bracketMatch[1]))?.id ?? null;
+    } else if (aliasIndex.has(pe2.targetRaw)) {
+      targetId = aliasIndex.get(pe2.targetRaw);
     } else {
-      warn(lineNumber, `Unrecognized directive: '${trimmed}'.`);
+      const norm = normalizeName(stripQuotes(pe2.targetRaw).trim());
+      const labelHits = labelIndex.get(norm) ?? [];
+      if (labelHits.length > 1) {
+        pushError(
+          pe2.lineNumber,
+          `Edge target "${pe2.targetRaw}" matches more than one shape \u2014 give each duplicate an alias (as x) and target the alias`,
+          SKETCH_DIAGNOSTIC_CODES.AMBIGUOUS_TARGET
+        );
+        continue;
+      }
+      targetId = labelHits[0] ?? boxByNorm.get(norm)?.id ?? null;
     }
-  }
-  finalizePhase(lines.length + 1);
-  const usedMarkers = [];
-  for (const task of allTasks(result)) {
-    for (const a of task.roleAssignments) {
-      for (const m of a.markers) usedMarkers.push(m);
+    if (targetId === null) {
+      let msg = `Unknown edge target "${pe2.targetRaw}"`;
+      const hint = suggest(pe2.targetRaw, allTargets);
+      if (hint) msg += `. ${hint}`;
+      warn(pe2.lineNumber, msg);
+      continue;
     }
+    if (targetId === pe2.sourceId) {
+      warn(pe2.lineNumber, `Edge from "${pe2.targetRaw}" to itself \u2014 ignored`);
+      continue;
+    }
+    result.edges.push({
+      sourceId: pe2.sourceId,
+      targetId,
+      ...pe2.label !== void 0 && { label: pe2.label },
+      heads: pe2.heads,
+      dashed: pe2.dashed,
+      metadata: pe2.metadata,
+      lineNumber: pe2.lineNumber
+    });
   }
-  const inferred = inferVariant(usedMarkers);
-  if (inferred === null) {
-    const titleLine = result.titleLineNumber ?? 1;
-    result.diagnostics.push(emit(RACI_DX.MIXED_VARIANTS, titleLine));
-    result.variant = "rasci";
-  } else {
-    result.variant = inferred;
-  }
-  const resolvedAlphabet = VARIANTS[result.variant].alphabet;
-  for (const task of allTasks(result)) {
-    for (const a of task.roleAssignments) {
-      const kept = [];
-      for (const m of a.markers) {
-        if (resolvedAlphabet.includes(m)) {
-          kept.push(m);
-        } else {
-          result.diagnostics.push(
-            emit(RACI_DX.INVALID_MARKER, a.lineNumber, {
-              marker: m,
-              variant: result.variant.toUpperCase(),
-              alphabet: resolvedAlphabet.join(" ")
-            })
-          );
+  finalizeAutoTagColors(result.tagGroups, palette);
+  if (result.tagGroups.length > 0) {
+    const tagKeys = result.tagGroups.map((g) => tagAttrKey(g.name));
+    for (const box of boxes) {
+      for (const childId of box.children) {
+        const child = nodeById.get(childId);
+        if (!child) continue;
+        for (const k2 of tagKeys) {
+          if (!(k2 in child.metadata) && box.metadata[k2] !== void 0) {
+            child.metadata[k2] = box.metadata[k2];
+          }
         }
       }
-      a.markers = kept;
     }
-  }
-  const variantRules = VARIANTS[result.variant];
-  for (const task of allTasks(result)) {
-    for (const rule of variantRules.errorRules) {
-      result.diagnostics.push(...rule(task));
-    }
-    for (const rule of variantRules.warningRules) {
-      result.diagnostics.push(...rule(task));
-    }
-  }
-  const usedRoleIds = /* @__PURE__ */ new Set();
-  for (const task of allTasks(result)) {
-    for (const a of task.roleAssignments) {
-      if (a.markers.length > 0) usedRoleIds.add(a.id);
-    }
-  }
-  for (let i2 = 0; i2 < result.roles.length; i2++) {
-    const roleId = result.roles[i2];
-    if (usedRoleIds.has(roleId)) continue;
-    const declared = roleStore.get(roleId);
-    const displayName2 = result.roleDisplayNames[i2] ?? roleId;
-    result.diagnostics.push(
-      emit(RACI_DX.ORPHAN_ROLE, declared?.declaredLine ?? 1, {
-        role: displayName2
-      })
+    injectDefaultTagMetadata(
+      [...nodes, ...boxes],
+      result.tagGroups
     );
+    validateTagValues(
+      [...nodes, ...boxes, ...result.edges],
+      result.tagGroups,
+      (line, message) => warn(line, message),
+      suggest
+    );
+    validateTagGroupNames(
+      result.tagGroups,
+      (line, message) => warn(line, message)
+    );
+  }
+  result.nodes = nodes;
+  result.boxes = boxes;
+  if (nodes.length === 0 && boxes.length === 0 && !result.error) {
+    const diag = makeDgmoError(1, "No shapes found in sketch");
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
   }
   return result;
 }
-function* allTasks(parsed) {
-  for (const t3 of parsed.tasksWithoutPhase) yield t3;
-  for (const phase of parsed.phases) {
-    for (const t3 of phase.tasks) yield t3;
-  }
-}
-var KNOWN_OPTIONS2, KNOWN_BOOLEANS2, REMOVED_BOOLEANS, PHASE_RE, PHASE_PALETTE_COLOR_RE, ROLE_ASSIGNMENT_RE;
-var init_chunk_GG7TK3IA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GG7TK3IA.js"() {
-    init_chunk_I55PVEIX();
+var SKETCH_SHAPE_KINDS, EDGE_FORMS, EDGE_START_RE, LEFT_ARROW_RE, BOX_RE, BOX_TAIL_ALIAS_RE, AT_VALUE_RE, SKETCH_AT_MAX;
+var init_chunk_USFZQPJ2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-USFZQPJ2.js"() {
+    init_chunk_RT7ACF77();
+    init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
+    init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
-    init_chunk_EXNKNJ65();
     init_chunk_OLMWTJVU();
-    KNOWN_OPTIONS2 = /* @__PURE__ */ new Set(["roles", "palette", "theme", "active-tag"]);
-    KNOWN_BOOLEANS2 = /* @__PURE__ */ new Set(["no-title"]);
-    REMOVED_BOOLEANS = {
-      "no-rule-enforcement": '"no-rule-enforcement" has been removed \u2014 RACI validation is always active.'
-    };
-    PHASE_RE = /^\[(.+?)\]\s*(.*)$/;
-    PHASE_PALETTE_COLOR_RE = /^(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white)\b/;
-    ROLE_ASSIGNMENT_RE = /^([^:]+):\s*(.*)$/;
+    SKETCH_SHAPE_KINDS = [
+      "rectangle",
+      "database",
+      "queue",
+      "person",
+      "document",
+      "note"
+    ];
+    EDGE_FORMS = [
+      { re: /^<-(.+?)->\s*(.+)$/, heads: "both", dashed: false, labeled: true },
+      { re: /^<~(.+?)~>\s*(.+)$/, heads: "both", dashed: true, labeled: true },
+      { re: /^<->\s*(.+)$/, heads: "both", dashed: false, labeled: false },
+      { re: /^<~>\s*(.+)$/, heads: "both", dashed: true, labeled: false },
+      { re: /^-(.+?)->\s*(.+)$/, heads: "one", dashed: false, labeled: true },
+      { re: /^~(.+?)~>\s*(.+)$/, heads: "one", dashed: true, labeled: true },
+      { re: /^->\s*(.+)$/, heads: "one", dashed: false, labeled: false },
+      { re: /^~>\s*(.+)$/, heads: "one", dashed: true, labeled: false },
+      { re: /^--\s+(.+)$/, heads: "none", dashed: false, labeled: false },
+      { re: /^~~\s+(.+)$/, heads: "none", dashed: true, labeled: false },
+      { re: /^-(.+?)-\s+(.+)$/, heads: "none", dashed: false, labeled: true },
+      { re: /^~(.+?)~\s+(.+)$/, heads: "none", dashed: true, labeled: true }
+    ];
+    EDGE_START_RE = /^[<\-~]/;
+    LEFT_ARROW_RE = /^<[-~](?![-~]?>)/;
+    BOX_RE = /^\[([^\]]*)\]\s*(.*)$/;
+    BOX_TAIL_ALIAS_RE = /^as\s+([A-Za-z][A-Za-z0-9_]{0,11})(?=\s|,|$)\s*,?\s*/;
+    AT_VALUE_RE = /^(-?\d+)\s+(-?\d+)$/;
+    SKETCH_AT_MAX = 2e3;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5VLUAAAE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5VLUAAAE.js
 function normKey(label) {
   return label.trim().replace(/\s+/g, " ").toLowerCase();
 }
@@ -10704,7 +11576,7 @@ function parseSwimlane(content, palette) {
 }
 var SWIMLANE_DX, SWIMLANE_DIAGNOSTICS, ARROW_RE;
 var init_chunk_5VLUAAAE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5VLUAAAE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5VLUAAAE.js"() {
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
@@ -10791,7 +11663,7 @@ L
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js
 function buildCoupleQuotient(persons, unions) {
   const uf = new UnionFind();
   for (const id of persons.keys()) uf.add(id);
@@ -10896,7 +11768,7 @@ function rankClasses(q2) {
 }
 var UnionFind;
 var init_chunk_QQJUTGQH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QQJUTGQH.js"() {
     UnionFind = class {
       constructor() {
         __publicField(this, "parent", /* @__PURE__ */ new Map());
@@ -10928,7 +11800,7 @@ var init_chunk_QQJUTGQH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES3MUYRX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ES3MUYRX.js
 function normKey2(label) {
   return label.trim().replace(/\s+/g, " ").toLowerCase();
 }
@@ -11371,7 +12243,7 @@ function parseFamily(content, palette) {
 }
 var FAMILY_DX, FAMILY_DIAGNOSTICS;
 var init_chunk_ES3MUYRX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES3MUYRX.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ES3MUYRX.js"() {
     init_chunk_QQJUTGQH();
     init_chunk_NOTA6TEI();
     init_chunk_D5FANMSG();
@@ -11469,7 +12341,7 @@ Anne + Bob`
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KF575IXC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-KF575IXC.js
 function parseMindmap(content, palette) {
   const options = {};
   const result = {
@@ -11759,7 +12631,7 @@ function findMetadataParent(indent, indentStack) {
 }
 var KNOWN_OPTIONS3;
 var init_chunk_KF575IXC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KF575IXC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-KF575IXC.js"() {
     init_chunk_IYULMRBE();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -11768,7 +12640,7 @@ var init_chunk_KF575IXC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CXI6X54X.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CXI6X54X.js
 function parseTechRadar(content) {
   const result = {
     type: "tech-radar",
@@ -12067,7 +12939,7 @@ function assignGlobalNumbers(result) {
 }
 var VALID_POSITIONS, VALID_TRENDS, POSITION_ORDER, KNOWN_OPTIONS4, KNOWN_BOOLEANS3;
 var init_chunk_CXI6X54X = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CXI6X54X.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CXI6X54X.js"() {
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
     VALID_POSITIONS = [
@@ -12098,7 +12970,7 @@ var init_chunk_CXI6X54X = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MB4UOT5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4MB4UOT5.js
 function parseCycle(content) {
   const options = {};
   const result = {
@@ -12357,7 +13229,7 @@ function parseCycle(content) {
 }
 var BARE_EDGE_RE, LABELED_EDGE_RE;
 var init_chunk_4MB4UOT5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MB4UOT5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4MB4UOT5.js"() {
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
     BARE_EDGE_RE = /^->\s*(.*)?$/;
@@ -12365,7 +13237,7 @@ var init_chunk_4MB4UOT5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RQGNELB3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RQGNELB3.js
 function parseJourneyMap(content, palette) {
   const options = {};
   const result = {
@@ -12727,7 +13599,7 @@ function parseStepLine(trimmed, lineNumber, counter, aliasMap, warn, diagnostics
 }
 var PHASE_RE2, ANNOTATION_RE, KNOWN_OPTIONS5, KNOWN_BOOLEANS4;
 var init_chunk_RQGNELB3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RQGNELB3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RQGNELB3.js"() {
     init_chunk_IYULMRBE();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -12747,127 +13619,949 @@ var init_chunk_RQGNELB3 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MGLJA5TK.js
-function parsePyramid(content) {
-  const options = {};
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4MJOBVY7.js
+function parseDateWithOptionalTime(input, ctx) {
+  const res = parseDateToken(input, { dateOrder: ctx?.order });
+  if (!res) return null;
+  const { token, consumed } = res;
+  const internal = ctx?.resolve ? ctx.resolve(token).internal : toInternal(
+    token,
+    token.year ?? ctx?.currentYear ?? (/* @__PURE__ */ new Date()).getFullYear()
+  );
+  return {
+    date: internal,
+    rest: input.slice(consumed),
+    timeValid: !token.invalidTime,
+    invalidTime: token.invalidTime
+  };
+}
+function extractDatePrefix(line, ctx) {
+  const startResult = parseDateWithOptionalTime(line, ctx);
+  if (!startResult) return null;
+  const { date: startDate } = startResult;
+  let { rest } = startResult;
+  const arrowMatch = rest.match(ARROW_RE2);
+  if (arrowMatch) {
+    rest = rest.slice(arrowMatch[0].length);
+    const endResult = parseDateWithOptionalTime(rest, ctx);
+    if (endResult) {
+      let uncertain = false;
+      let afterEnd = endResult.rest;
+      if (afterEnd.startsWith("?")) {
+        uncertain = true;
+        afterEnd = afterEnd.slice(1);
+      }
+      const remainder2 = afterEnd.trimStart();
+      return {
+        startDate,
+        endDate: endResult.date,
+        uncertain,
+        remainder: remainder2,
+        startTimeValid: startResult.timeValid,
+        endTimeValid: endResult.timeValid,
+        invalidStartTime: startResult.invalidTime,
+        invalidEndTime: endResult.invalidTime
+      };
+    }
+    return null;
+  }
+  const remainder = rest.trimStart();
+  if (!remainder) {
+    return {
+      startDate,
+      endDate: null,
+      uncertain: false,
+      remainder: "",
+      startTimeValid: startResult.timeValid,
+      endTimeValid: true,
+      invalidStartTime: startResult.invalidTime,
+      invalidEndTime: void 0
+    };
+  }
+  return {
+    startDate,
+    endDate: null,
+    uncertain: false,
+    remainder,
+    startTimeValid: startResult.timeValid,
+    endTimeValid: true,
+    invalidStartTime: startResult.invalidTime,
+    invalidEndTime: void 0
+  };
+}
+function splitDateParts(input) {
+  let s = input;
+  let sign3 = 1;
+  if (s.startsWith("-")) {
+    sign3 = -1;
+    s = s.slice(1);
+  }
+  const spaceIdx = s.indexOf(" ");
+  let datePart = s;
+  let hour = 0;
+  let minute = 0;
+  let second = 0;
+  let hasTime = false;
+  if (spaceIdx !== -1) {
+    datePart = s.slice(0, spaceIdx);
+    const tp = s.slice(spaceIdx + 1).split(":");
+    if (tp.length >= 2) {
+      hasTime = true;
+      hour = parseInt(tp[0], 10) || 0;
+      minute = parseInt(tp[1], 10) || 0;
+      second = tp.length >= 3 ? parseInt(tp[2], 10) || 0 : 0;
+    }
+  }
+  const parts = datePart.split("-").map((p2) => parseInt(p2, 10));
+  const granularity = parts.length >= 3 ? 3 : parts.length === 2 ? 2 : 1;
+  return {
+    sign: sign3,
+    year: parts[0],
+    month: parts.length >= 2 ? parts[1] : 1,
+    day: parts.length >= 3 ? parts[2] : 1,
+    hour,
+    minute,
+    second,
+    granularity,
+    hasTime
+  };
+}
+function addDurationToDate(startDate, amount, unit2) {
+  const p2 = splitDateParts(startDate);
+  const signedYear = p2.sign * p2.year;
+  const date = new Date(2e3, p2.month - 1, p2.day, p2.hour, p2.minute, p2.second);
+  date.setFullYear(signedYear);
+  switch (unit2) {
+    case "d":
+      date.setDate(date.getDate() + Math.round(amount));
+      break;
+    case "w":
+      date.setDate(date.getDate() + Math.round(amount * 7));
+      break;
+    case "m": {
+      const wholeMonths = Math.floor(amount);
+      const fractionalDays = Math.round((amount - wholeMonths) * 30);
+      date.setMonth(date.getMonth() + wholeMonths);
+      if (fractionalDays > 0) {
+        date.setDate(date.getDate() + fractionalDays);
+      }
+      break;
+    }
+    case "y": {
+      const wholeYears = Math.floor(amount);
+      const fractionalMonths = Math.round((amount - wholeYears) * 12);
+      date.setFullYear(date.getFullYear() + wholeYears);
+      if (fractionalMonths > 0) {
+        date.setMonth(date.getMonth() + fractionalMonths);
+      }
+      break;
+    }
+    case "h":
+      date.setTime(date.getTime() + amount * 36e5);
+      break;
+    case "min":
+      date.setTime(date.getTime() + amount * 6e4);
+      break;
+    case "s":
+      date.setTime(date.getTime() + amount * 1e3);
+      break;
+  }
+  const outYear = date.getFullYear();
+  const neg = outYear < 0 ? "-" : "";
+  const endYear = Math.abs(outYear);
+  const endMonth = String(date.getMonth() + 1).padStart(2, "0");
+  const endDay = String(date.getDate()).padStart(2, "0");
+  const endHour = String(date.getHours()).padStart(2, "0");
+  const endMinute = String(date.getMinutes()).padStart(2, "0");
+  const endSecond = String(date.getSeconds()).padStart(2, "0");
+  const hasTime = unit2 === "h" || unit2 === "min" || unit2 === "s" || p2.hasTime;
+  const showSeconds = unit2 === "s" || p2.second !== 0 || date.getSeconds() !== 0;
+  if (p2.granularity === 1) {
+    return `${neg}${endYear}`;
+  } else if (p2.granularity === 2) {
+    return `${neg}${endYear}-${endMonth}`;
+  } else if (hasTime && (date.getHours() !== 0 || date.getMinutes() !== 0 || date.getSeconds() !== 0)) {
+    const time = showSeconds ? `${endHour}:${endMinute}:${endSecond}` : `${endHour}:${endMinute}`;
+    return `${neg}${endYear}-${endMonth}-${endDay} ${time}`;
+  } else {
+    return `${neg}${endYear}-${endMonth}-${endDay}`;
+  }
+}
+function parseTimelineDate(s) {
+  const p2 = splitDateParts(s);
+  const yearBase = p2.sign * p2.year;
+  return yearBase + (p2.month - 1) / 12 + (p2.day - 1) / 365 + p2.hour / 8760 + p2.minute / 525600 + p2.second / 31536e3;
+}
+function parseTimelineEventLine(line, lineNumber, currentGroup, groupMetadata, aliasMap, registry, dateCtx) {
+  const diagnostics = [];
+  const prefix = extractDatePrefix(line, dateCtx);
+  if (!prefix) {
+    if (/^\d/.test(line)) {
+      const firstToken = line.split(/\s/)[0];
+      if (!/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/.test(firstToken)) {
+        diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            `Expected date format YYYY, YYYY-MM, or YYYY-MM-DD. Got '${firstToken}'.`,
+            "warning"
+          )
+        );
+        return { event: null, diagnostics };
+      }
+    }
+    return null;
+  }
+  if (!prefix.startTimeValid && prefix.invalidStartTime) {
+    diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        `Invalid time '${prefix.invalidStartTime}'. Hours must be 0-23, minutes 0-59.`,
+        "warning"
+      )
+    );
+  }
+  if (!prefix.endTimeValid && prefix.invalidEndTime) {
+    diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        `Invalid time '${prefix.invalidEndTime}'. Hours must be 0-23, minutes 0-59.`,
+        "warning"
+      )
+    );
+  }
+  if (!prefix.remainder) {
+    diagnostics.push(
+      makeDgmoError(lineNumber, "Event needs a name after the date.", "warning")
+    );
+    return { event: null, diagnostics };
+  }
+  const tlRegistry = registry ?? withTagAliases(
+    TIMELINE_REGISTRY,
+    /* @__PURE__ */ new Set([...aliasMap.keys(), ...aliasMap.values()])
+  );
+  const split = splitNameAndMeta(prefix.remainder, tlRegistry, aliasMap);
+  warnUnknownMetaKeys(
+    split.meta,
+    tlRegistry,
+    (msg) => diagnostics.push(makeDgmoError(lineNumber, msg, "warning"))
+  );
+  const name = split.name;
+  let endDate = prefix.endDate;
+  let uncertain = prefix.uncertain;
+  const metadata = { ...split.meta };
+  let duration = null;
+  if (metadata["duration"]) {
+    const durStr = metadata["duration"];
+    const uncertainMatch = durStr.match(/^(.+)\?$/);
+    const cleanDur = uncertainMatch ? uncertainMatch[1] : durStr;
+    if (uncertainMatch) uncertain = true;
+    const durMatch = cleanDur.match(TIMELINE_DURATION_RE);
+    if (durMatch) {
+      duration = {
+        amount: parseFloat(durMatch[1]),
+        unit: durMatch[2]
+      };
+    } else {
+      diagnostics.push(
+        makeDgmoError(
+          lineNumber,
+          `Invalid duration '${durStr}'. Expected format like "30d", "2w", "1.5m", "1y", "2h", "30min", "45s".`,
+          "warning"
+        )
+      );
+    }
+    delete metadata["duration"];
+  }
+  if (endDate && duration) {
+    diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        "Event has both an end date and duration. End date takes precedence.",
+        "warning"
+      )
+    );
+  }
+  if (!endDate && duration) {
+    endDate = addDurationToDate(
+      prefix.startDate,
+      duration.amount,
+      duration.unit
+    );
+  }
+  let label = name;
+  if (split.color !== void 0) {
+    label = `${label} ${split.color}`;
+  }
+  const mergedMetadata = {
+    ...groupMetadata,
+    ...metadata
+  };
+  if (split.color) {
+    mergedMetadata["color"] = split.color;
+  }
+  const eventMeta = { ...mergedMetadata };
+  if (split.color) delete eventMeta["color"];
+  const event = {
+    date: prefix.startDate,
+    endDate,
+    label,
+    group: currentGroup,
+    metadata: eventMeta,
+    lineNumber,
+    ...uncertain ? { uncertain: true } : {}
+  };
+  return { event, diagnostics };
+}
+var TIMELINE_DURATION_RE, ARROW_RE2;
+var init_chunk_4MJOBVY7 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4MJOBVY7.js"() {
+    init_chunk_DAOFNU6J();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
+    TIMELINE_DURATION_RE = /^(\d+(?:\.\d{1,2})?)(min|[dwmyhs])(\?)?$/;
+    ARROW_RE2 = /^\s*(?:->|–>)\s*/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-XBTJJLAU.js
+function parseEventLine(content, palette) {
+  const options = {
+    scale: true,
+    side: "alternate",
+    noTitle: false,
+    noBox: false,
+    noLegend: false,
+    fillMode: void 0
+  };
   const result = {
-    type: "pyramid",
-    title: "",
-    titleLineNumber: 0,
-    layers: [],
-    inverted: false,
+    type: "event-line",
+    title: null,
+    titleLineNumber: null,
+    events: [],
+    eras: [],
+    now: null,
+    tagGroups: [],
     options,
     diagnostics: [],
     error: null
   };
-  const lines = content.split("\n");
-  let headerParsed = false;
-  let currentLayer = null;
   const fail = makeFail(result);
-  const warn = (line, message, severity = "warning") => {
-    result.diagnostics.push(makeDgmoError(line, message, severity));
+  const pushWarning = (line, message, code) => {
+    result.diagnostics.push(makeDgmoError(line, message, "warning", code));
   };
-  const flushLayer = () => {
-    if (currentLayer) {
-      result.layers.push(currentLayer);
-      currentLayer = null;
+  const pushError = (line, message, code) => {
+    const diag = makeDgmoError(line, message, "error", code);
+    result.diagnostics.push(diag);
+    if (!result.error) result.error = formatDgmoError(diag);
+  };
+  if (!content?.trim()) return fail(0, "No content provided");
+  const lines = content.split("\n");
+  let dateOrder = "mdy";
+  let noCurrentYear = false;
+  let directiveYear = null;
+  for (const raw of lines) {
+    const t3 = raw.trim().toLowerCase();
+    if (t3 === "no-current-year") noCurrentYear = true;
+    else if (t3 === "date-order dmy") dateOrder = "dmy";
+    else if (t3 === "date-order mdy") dateOrder = "mdy";
+    else {
+      const ym = t3.match(/^year\s+(\d{1,4})$/);
+      if (ym) directiveYear = parseInt(ym[1], 10);
     }
+  }
+  let prescan = null;
+  for (const raw of lines) {
+    const t3 = raw.trim();
+    if (!t3) continue;
+    const p2 = parseDateToken(t3, { dateOrder });
+    if (p2?.token.year != null) {
+      prescan = p2.token.sign * p2.token.year;
+      break;
+    }
+  }
+  const yearCtx = makeYearContext({
+    order: dateOrder,
+    directiveYear,
+    prescanYear: prescan,
+    noCurrentYear
+  });
+  const dateCtx = {
+    order: dateOrder,
+    resolve: (tok) => resolveTokenYear(tok, yearCtx)
   };
+  const isDateDirective = (t3) => t3 === "no-current-year" || t3 === "date-order dmy" || t3 === "date-order mdy" || /^year\s+\d{1,4}$/.test(t3);
+  let contentStarted = false;
+  let headerParsed = false;
+  const sharedOptions = {};
+  let currentTagGroup = null;
+  let currentEvent = null;
+  let currentEra = null;
+  let eraIndent = -1;
+  let currentEventIndent = 0;
+  let pendingDescBreak = false;
+  const aliasMap = /* @__PURE__ */ new Map();
   for (let i = 0; i < lines.length; i++) {
-    const lineNum = i + 1;
-    const raw = lines[i];
-    const trimmed = raw.trim();
-    if (!trimmed || trimmed.startsWith("//")) continue;
-    const indent = measureIndent(raw);
+    const line = lines[i];
+    const lineNumber = i + 1;
+    const trimmed = line.trim();
+    if (!trimmed) {
+      currentTagGroup = null;
+      pendingDescBreak = true;
+      continue;
+    }
+    if (trimmed.startsWith("//")) continue;
+    const indent = measureIndent(line);
     if (!headerParsed) {
-      const firstLineResult = parseFirstLine(trimmed);
-      if (firstLineResult?.chartType === "pyramid") {
-        result.title = firstLineResult.title ?? "";
-        result.titleLineNumber = lineNum;
+      const firstLine = parseFirstLine(trimmed);
+      if (firstLine?.chartType === "event-line") {
+        result.title = firstLine.title ?? null;
+        result.titleLineNumber = lineNumber;
         headerParsed = true;
         continue;
       }
-      return fail(lineNum, 'Expected "pyramid [Title]" as the first line.');
+      let msg = 'Expected "event-line [Title]" as the first line.';
+      const hint = suggest(firstLine?.chartType ?? trimmed, ["event-line"]);
+      if (hint) msg += ` ${hint}`;
+      return fail(lineNumber, msg);
     }
-    if (indent === 0 && trimmed.toLowerCase() === "inverted") {
-      result.inverted = true;
+    const tagBlockMatch = matchTagBlockHeading(trimmed);
+    if (tagBlockMatch) {
+      if (contentStarted) {
+        pushError(
+          lineNumber,
+          "Tag groups must appear before event-line content",
+          "E_TAG_DECLARED_AFTER_CONTENT"
+        );
+        continue;
+      }
+      currentTagGroup = {
+        name: tagBlockMatch.name,
+        ...tagBlockMatch.alias !== void 0 && {
+          alias: tagBlockMatch.alias
+        },
+        entries: [],
+        lineNumber
+      };
+      if (tagBlockMatch.alias) {
+        aliasMap.set(
+          tagBlockMatch.alias.toLowerCase(),
+          tagAttrKey(tagBlockMatch.name)
+        );
+      }
+      aliasMap.set(
+        tagAttrKey(tagBlockMatch.name),
+        tagAttrKey(tagBlockMatch.name)
+      );
+      result.tagGroups.push(currentTagGroup);
       continue;
     }
-    if (indent === 0 && tryParseSharedOption(trimmed, options)) {
+    if (currentTagGroup && !contentStarted && indent > 0) {
+      const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
+      const { label, color: color2 } = extractColor(
+        cleanEntry,
+        palette,
+        result.diagnostics,
+        lineNumber
+      );
+      if (isDefault || currentTagGroup.entries.length === 0) {
+        currentTagGroup.defaultValue = label;
+      }
+      currentTagGroup.entries.push({
+        value: label,
+        color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+        lineNumber
+      });
+      continue;
+    }
+    if (currentEvent && indent > currentEventIndent) {
+      if (pendingDescBreak && currentEvent.description.length > 0)
+        currentEvent.description.push("");
+      pendingDescBreak = false;
+      const descLine = trimmed.startsWith("- ") ? `\u2022 ${trimmed.substring(2)}` : trimmed;
+      currentEvent.description.push(descLine);
+      continue;
+    }
+    const eraMatch = trimmed.match(ERA_RE2);
+    if (eraMatch) {
+      contentStarted = true;
+      currentTagGroup = null;
+      currentEvent = null;
+      const name = eraMatch[1].trim();
+      let rest = (eraMatch[2] ?? "").trim();
+      let collapsed = false;
+      const cm = rest.match(ERA_COLLAPSED_RE);
+      if (cm) {
+        collapsed = cm[1].toLowerCase() === "true";
+        rest = (rest.slice(0, cm.index) + rest.slice(cm.index + cm[0].length)).trim();
+      } else {
+        const bare = rest.match(/(?:^|\s)collapsed(?=\s|$)/);
+        if (bare) {
+          collapsed = true;
+          rest = (rest.slice(0, bare.index) + " " + rest.slice(bare.index + bare[0].length)).trim();
+        }
+      }
+      let color2 = null;
+      if (rest) {
+        const token = rest.split(/\s+/).pop();
+        const ex = extractColor(
+          `x ${token}`,
+          palette,
+          result.diagnostics,
+          lineNumber
+        );
+        if (ex.color !== void 0) color2 = token;
+      }
+      const era = { name, color: color2, collapsed, lineNumber };
+      result.eras.push(era);
+      currentEra = name;
+      eraIndent = indent;
       continue;
     }
     if (indent === 0) {
-      flushLayer();
-      const split = splitNameAndMeta(
-        trimmed,
-        PYRAMID_REGISTRY,
-        /* @__PURE__ */ new Map(),
-        void 0,
-        result.diagnostics,
-        lineNum
-      );
-      warnUnknownMetaKeys(
-        split.meta,
-        PYRAMID_REGISTRY,
-        (msg) => warn(lineNum, msg),
-        split.name
-      );
-      const label = split.name;
-      const restMeta = { ...split.meta };
-      const color2 = split.color ?? restMeta["color"];
-      delete restMeta["color"];
-      const description = [];
-      const descFromMeta = restMeta["description"];
-      if (descFromMeta) description.push(descFromMeta);
-      delete restMeta["description"];
-      if (!label) {
-        warn(lineNum, "Empty layer label.");
+      currentTagGroup = null;
+      if (isDateDirective(trimmed.toLowerCase())) {
         continue;
       }
-      currentLayer = {
-        label,
-        lineNumber: lineNum,
-        ...color2 !== void 0 && { color: color2 },
-        description,
-        metadata: restMeta
-      };
-      continue;
+      if (trimmed.toLowerCase() === "no-scale") {
+        options.scale = false;
+        continue;
+      }
+      const sideMatch = trimmed.match(SIDE_RE);
+      if (sideMatch) {
+        options.side = sideMatch[1].toLowerCase();
+        continue;
+      }
+      if (trimmed.toLowerCase() === "no-box") {
+        options.noBox = true;
+        continue;
+      }
+      if (trimmed.toLowerCase() === "no-legend") {
+        options.noLegend = true;
+        continue;
+      }
+      if (trimmed.toLowerCase() === "legend-inline") {
+        options.legendInline = true;
+        continue;
+      }
+      {
+        const nowMatch = trimmed.match(NOW_RE);
+        if (nowMatch) {
+          const rest = nowMatch[1].trim();
+          if (!rest) {
+            result.now = {
+              computed: true,
+              date: null,
+              dateValue: null,
+              label: "now",
+              lineNumber
+            };
+          } else {
+            const prefix = extractDatePrefix(rest, dateCtx);
+            if (prefix) {
+              const label = prefix.remainder?.trim() || "now";
+              result.now = {
+                computed: false,
+                date: prefix.startDate,
+                dateValue: parseTimelineDate(prefix.startDate),
+                label,
+                lineNumber
+              };
+            } else {
+              result.diagnostics.push(
+                emit(EVENT_LINE_DX.BAD_DATE, lineNumber, {
+                  token: rest.split(/\s+/)[0]
+                })
+              );
+            }
+          }
+          continue;
+        }
+      }
+      {
+        const fm = fillModeFromToken(trimmed);
+        if (fm !== null) {
+          options.fillMode = fm === "tint" ? void 0 : fm;
+          continue;
+        }
+      }
+      if (/^direction-lr$/i.test(trimmed)) continue;
+      if (/^direction-tb$/i.test(trimmed)) {
+        result.diagnostics.push(
+          emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
+            reason: "event-line is horizontal-only in v1; `direction-tb` (vertical orientation) is a fast-follow."
+          })
+        );
+        continue;
+      }
+      const dirMatch = trimmed.match(DIRECTION_RE);
+      if (dirMatch) {
+        const dir = dirMatch[1].toUpperCase();
+        if (dir !== "LR") {
+          result.diagnostics.push(
+            emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
+              reason: `event-line is horizontal-only in v1; \`direction ${dir}\` (vertical orientation) is a fast-follow.`
+            })
+          );
+        }
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, sharedOptions)) continue;
+      if (SECTION_SEAM_RE.test(trimmed)) {
+        result.diagnostics.push(
+          emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
+            reason: "Group events with `[Name]` era brackets (\xA728.6a), not `section`."
+          })
+        );
+        continue;
+      }
     }
-    if (!currentLayer) {
-      warn(
-        lineNum,
-        `Indented description "${trimmed}" has no layer above it \u2014 add a layer name on a non-indented line first. (\xA723)`
-      );
-      continue;
-    }
-    const descLine = trimmed.startsWith("- ") ? `\u2022 ${trimmed.substring(2)}` : trimmed;
-    currentLayer.description.push(descLine);
-  }
-  flushLayer();
-  if (result.layers.length < 2) {
-    return fail(
-      result.titleLineNumber || 1,
-      "pyramid requires at least 2 layers."
+    const inEra = currentEra !== null && indent > eraIndent;
+    if (!inEra) currentEra = null;
+    contentStarted = true;
+    const event = parseEventHeader(
+      trimmed,
+      lineNumber,
+      currentEra,
+      aliasMap,
+      result.diagnostics,
+      pushWarning,
+      dateCtx
     );
+    result.events.push(event);
+    currentEvent = event;
+    currentEventIndent = indent;
   }
-  if (result.layers.length > MAX_LAYERS2) {
-    return fail(
-      result.titleLineNumber || 1,
-      `pyramid supports at most ${MAX_LAYERS2} layers; got ${result.layers.length}.`
+  options.noTitle = sharedOptions["no-title"] === "on";
+  resolveFutureEvents(result.events);
+  finalizeAutoTagColors(result.tagGroups, palette);
+  if (result.tagGroups.length > 0) {
+    validateTagValues(result.events, result.tagGroups, pushWarning, suggest);
+    validateTagGroupNames(result.tagGroups, pushWarning);
+    injectDefaultTagMetadata(result.events, result.tagGroups);
+  }
+  if (result.events.length === 0 && !result.error) {
+    const diag = emit(EVENT_LINE_DX.NO_EVENTS, result.titleLineNumber ?? 1);
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+  }
+  const eraFlaggedLines = /* @__PURE__ */ new Set();
+  if (options.scale) {
+    validateEraDateOrder(result.events, result.eras, (err) => {
+      eraFlaggedLines.add(err.line);
+      result.diagnostics.push(err);
+    });
+  }
+  validateEventDateOrder(result.events, eraFlaggedLines, result.diagnostics);
+  if (result.now && !options.scale) {
+    result.diagnostics.push(
+      emit(EVENT_LINE_DX.UNSUPPORTED, result.now.lineNumber, {
+        reason: "the `now` marker needs a to-scale axis; it is ignored under `no-scale`."
+      })
     );
   }
   return result;
 }
-var MAX_LAYERS2;
-var init_chunk_MGLJA5TK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MGLJA5TK.js"() {
+function resolveFutureEvents(events) {
+  const realVals = events.filter((e) => !e.future && e.dateValue !== null).map((e) => e.dateValue);
+  if (realVals.length === 0) return;
+  const hiAll = Math.max(...realVals);
+  const loAll = Math.min(...realVals);
+  const pad3 = hiAll > loAll ? (hiAll - loAll) * 0.15 : 1;
+  const prevReal = [];
+  let carry = null;
+  for (const e of events) {
+    prevReal.push(carry);
+    if (!e.future && e.dateValue !== null) carry = e.dateValue;
+  }
+  const nextReal = new Array(events.length).fill(null);
+  carry = null;
+  for (let i2 = events.length - 1; i2 >= 0; i2--) {
+    nextReal[i2] = carry;
+    const e = events[i2];
+    if (!e.future && e.dateValue !== null) carry = e.dateValue;
+  }
+  let i = 0;
+  while (i < events.length) {
+    if (!events[i].future) {
+      i++;
+      continue;
+    }
+    const lo = prevReal[i];
+    const hi = nextReal[i];
+    let j2 = i;
+    while (j2 < events.length && events[j2].future && prevReal[j2] === lo && nextReal[j2] === hi)
+      j2++;
+    const group = events.slice(i, j2);
+    const g = group.length;
+    if (lo !== null && hi !== null) {
+      group.forEach((e, k2) => {
+        e.dateValue = lo + (hi - lo) * (k2 + 1) / (g + 1);
+        e.futureSpan = [lo, hi];
+      });
+    } else if (lo === null && hi !== null) {
+      const left2 = hi - pad3;
+      group.forEach((e, k2) => {
+        e.dateValue = left2 + (hi - left2) * (k2 + 1) / (g + 1);
+        e.futureSpan = [left2, hi];
+      });
+    } else {
+      group.forEach((e, k2) => {
+        e.dateValue = hiAll + pad3 * (k2 + 1);
+        e.futureSpan = null;
+      });
+    }
+    i = j2;
+  }
+}
+function validateEventDateOrder(events, skipLines, diagnostics) {
+  let prev = null;
+  for (const ev of events) {
+    if (ev.future || ev.dateValue === null) continue;
+    if (prev && ev.dateValue < prev.dateValue && !skipLines.has(ev.lineNumber)) {
+      diagnostics.push(
+        emit(EVENT_LINE_DX.DATE_ORDER, ev.lineNumber, {
+          label: ev.label,
+          date: ev.date,
+          prevLabel: prev.label,
+          prevDate: prev.date
+        })
+      );
+    }
+    prev = ev;
+  }
+}
+function validateEraDateOrder(events, eras, emitWarn) {
+  if (eras.length < 2) return;
+  const order = new Map(eras.map((e, i) => [e.name, i]));
+  const dated = events.filter(
+    (e) => !e.future && e.dateValue !== null && e.era !== null && order.has(e.era)
+  );
+  if (dated.length === 0) return;
+  const perEra = /* @__PURE__ */ new Map();
+  for (const ev of dated) {
+    const idx = order.get(ev.era);
+    const cur = perEra.get(idx);
+    if (!cur) {
+      perEra.set(idx, { min: ev, max: ev });
+    } else {
+      if (ev.dateValue < cur.min.dateValue) cur.min = ev;
+      if (ev.dateValue > cur.max.dateValue) cur.max = ev;
+    }
+  }
+  const n = eras.length;
+  const prefixMax = new Array(n).fill(null);
+  const suffixMin = new Array(n).fill(null);
+  for (let k2 = 1; k2 < n; k2++) {
+    const prev = perEra.get(k2 - 1)?.max ?? null;
+    const carried = prefixMax[k2 - 1] ?? null;
+    prefixMax[k2] = prev && (!carried || prev.dateValue > carried.dateValue) ? prev : carried;
+  }
+  for (let k2 = n - 2; k2 >= 0; k2--) {
+    const next = perEra.get(k2 + 1)?.min ?? null;
+    const carried = suffixMin[k2 + 1] ?? null;
+    suffixMin[k2] = next && (!carried || next.dateValue < carried.dateValue) ? next : carried;
+  }
+  for (const ev of dated) {
+    const k2 = order.get(ev.era);
+    const ahead = suffixMin[k2];
+    const behind = prefixMax[k2];
+    if (ahead && ev.dateValue > ahead.dateValue) {
+      emitWarn(
+        emit(EVENT_LINE_DX.ERA_DATE_ORDER, ev.lineNumber, {
+          label: ev.label,
+          date: ev.date,
+          era: ev.era,
+          rel: "after",
+          otherEra: ahead.era,
+          edge: "begins",
+          otherDate: ahead.date
+        })
+      );
+    } else if (behind && ev.dateValue < behind.dateValue) {
+      emitWarn(
+        emit(EVENT_LINE_DX.ERA_DATE_ORDER, ev.lineNumber, {
+          label: ev.label,
+          date: ev.date,
+          era: ev.era,
+          rel: "before",
+          otherEra: behind.era,
+          edge: "ends",
+          otherDate: behind.date
+        })
+      );
+    }
+  }
+}
+function parseEventHeader(trimmed, lineNumber, era, aliasMap, diagnostics, pushWarning, dateCtx) {
+  let date = null;
+  let dateValue = null;
+  let future = false;
+  let remainder = trimmed;
+  const tbdMatch = trimmed.match(TBD_RE);
+  if (tbdMatch) {
+    date = "TBD";
+    future = true;
+    remainder = trimmed.slice(tbdMatch[0].length).trimStart();
+  }
+  const prefix = future ? null : extractDatePrefix(trimmed, dateCtx);
+  if (prefix) {
+    date = prefix.startDate;
+    dateValue = parseTimelineDate(prefix.startDate);
+    remainder = prefix.remainder || "";
+    if (prefix.endDate) {
+      diagnostics.push(
+        emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
+          reason: "event-line events are points; a date range (`->`) is not supported \u2014 using the start date."
+        })
+      );
+    }
+  } else if (!future && NON_ISO_DATE_RE.test(trimmed)) {
+    const firstToken = trimmed.split(/\s+/)[0];
+    diagnostics.push(
+      emit(EVENT_LINE_DX.BAD_DATE, lineNumber, { token: firstToken })
+    );
+  }
+  const registry = withTagAliases(
+    EVENT_LINE_REGISTRY,
+    new Set(aliasMap.keys())
+  );
+  const split = splitNameAndMeta(
+    remainder,
+    registry,
+    aliasMap,
+    void 0,
+    diagnostics,
+    lineNumber
+  );
+  warnUnknownMetaKeys(
+    split.meta,
+    registry,
+    (msg) => pushWarning(lineNumber, msg),
+    split.name
+  );
+  const metadata = { ...split.meta };
+  if (split.color !== void 0) metadata["color"] = split.color;
+  return {
+    label: split.name || remainder.trim(),
+    lineNumber,
+    date,
+    dateValue,
+    future,
+    futureSpan: null,
+    metadata,
+    description: [],
+    era
+  };
+}
+var EVENT_LINE_DX, EVENT_LINE_DIAGNOSTICS, NON_ISO_DATE_RE, TBD_RE, SIDE_RE, ERA_RE2, ERA_COLLAPSED_RE, NOW_RE, SECTION_SEAM_RE, DIRECTION_RE;
+var init_chunk_XBTJJLAU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-XBTJJLAU.js"() {
+    init_chunk_4MJOBVY7();
+    init_chunk_DAOFNU6J();
+    init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
-    MAX_LAYERS2 = 15;
+    EVENT_LINE_DX = {
+      // parser.ts: 'event-line has no events.'
+      NO_EVENTS: {
+        code: "E_EVENT_LINE_NO_EVENTS",
+        severity: "error",
+        chartType: "event-line",
+        title: "No events",
+        message: "event-line has no events.",
+        hint: "Add at least one event line (e.g. `2020 Something happened`) below the header.",
+        example: `event-line Empty`
+      },
+      // parser.ts parseEventHeader:
+      //   `Use ISO dates (YYYY, YYYY-MM, or YYYY-MM-DD). Got '${firstToken}'.`
+      BAD_DATE: {
+        code: "E_EVENT_LINE_BAD_DATE",
+        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
+        severity: "warning",
+        chartType: "event-line",
+        title: "Non-ISO date",
+        message: (p2) => `Use ISO dates (YYYY, YYYY-MM, or YYYY-MM-DD). Got '${p2.token ?? "7/16/1969"}'.`,
+        hint: "Write dates as YYYY, YYYY-MM, or YYYY-MM-DD \u2014 slash and dot separators are not parsed.",
+        example: `event-line X
+
+7/16/1969 Liftoff
+  Departs.`
+      },
+      // parser.ts emits three wordings under this one code (each passes the full
+      // wording as `reason`):
+      //   directive handler: `event-line is horizontal-only in v1; \`direction-tb\`
+      //                        (vertical orientation) is a fast-follow.` (the
+      //                        legacy key+value form words it as \`direction ${dir}\`)
+      //   `section` seam:     'Group events with `[Name]` era brackets (§28.6a), not `section`.'
+      //   parseEventHeader:   'event-line events are points; a date range (`->`) is not
+      //                        supported — using the start date.'
+      UNSUPPORTED: {
+        code: "E_EVENT_LINE_UNSUPPORTED",
+        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
+        severity: "warning",
+        chartType: "event-line",
+        title: "Unsupported construct",
+        message: (p2) => typeof p2.reason === "string" && p2.reason ? p2.reason : "event-line is horizontal-only in v1; `direction-tb` (vertical orientation) is a fast-follow.",
+        hint: "Only horizontal (`direction-lr`) is supported; use `[Name]` era brackets (not `section`); events are single points, not date ranges (`->`).",
+        example: `event-line X
+direction-tb
+
+2020 A
+  one`
+      },
+      // parser.ts validateEraDateOrder, two wordings switched by `rel`/`edge`:
+      //   `… but dated after era "${ahead.era}" begins (${ahead.date}). …`   rel=after,  edge=begins
+      //   `… but dated before era "${behind.era}" ends (${behind.date}). …`  rel=before, edge=ends
+      ERA_DATE_ORDER: {
+        code: "E_EVENT_LINE_ERA_DATE_ORDER",
+        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
+        severity: "warning",
+        chartType: "event-line",
+        title: "Event breaks era chronology",
+        message: (p2) => `"${p2.label ?? "Sean Curtis CTO"}" (${p2.date ?? "2025-04-15"}) is in era "${p2.era ?? "Curtis"}" but dated ${p2.rel ?? "after"} era "${p2.otherEra ?? "Vasanth"}" ${p2.edge ?? "begins"} (${p2.otherDate ?? "2025-05-09"}). event-line eras run left-to-right by date \u2014 fix the date or move it to the right era, or their brackets will overlap.`,
+        hint: "Eras render as date-spanning brackets; keep every event dated within its era, or move it to the era that covers its date.",
+        example: `event-line X
+
+[Vasanth]
+  2025-04-01 Opening Day Outage
+  2025-05-09 Fire Kevin C
+
+[Curtis]
+  2025-04-15 Sean Curtis CTO
+  2025-09-01 The incident`
+      },
+      // parser.ts validateEventDateOrder:
+      //   `"${ev.label}" (${ev.date}) is out of order — it is dated before
+      //    "${prev.label}" (${prev.date}) listed above it. event-line reads
+      //    left-to-right by date; list events chronologically.`
+      DATE_ORDER: {
+        code: "E_EVENT_LINE_DATE_ORDER",
+        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
+        severity: "warning",
+        chartType: "event-line",
+        title: "Events out of chronological order",
+        message: (p2) => `"${p2.label ?? "C"}" (${p2.date ?? "2022"}) is out of order \u2014 it is dated before "${p2.prevLabel ?? "B"}" (${p2.prevDate ?? "2024"}) listed above it. event-line reads left-to-right by date; list events chronologically.`,
+        hint: "List dated events chronologically top-to-bottom; a later-listed event dated before the one above it is almost always a slip.",
+        example: `event-line X
+
+2020 A
+2024 B
+2022 C`
+      }
+    };
+    EVENT_LINE_DIAGNOSTICS = Object.values(EVENT_LINE_DX);
+    NON_ISO_DATE_RE = /^\d{1,4}[/.]\d/;
+    TBD_RE = /^TBD\b/i;
+    SIDE_RE = /^side\s+(above|below|alternate)\b/i;
+    ERA_RE2 = /^\[([^\]]+)\]\s*(.*)$/;
+    ERA_COLLAPSED_RE = /\bcollapsed:\s*(true|false)\b/i;
+    NOW_RE = /^now\b\s*(.*)$/i;
+    SECTION_SEAM_RE = /^section\b/i;
+    DIRECTION_RE = /^direction\s+(\w+)/i;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D64FRGKU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-D64FRGKU.js
 function parseVersionControl(content, palette) {
   const options = {
     direction: "LR",
@@ -13320,7 +15014,7 @@ function peelMeta(s) {
 }
 var VERSION_CONTROL_DX, VERSION_CONTROL_DIAGNOSTICS;
 var init_chunk_D64FRGKU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D64FRGKU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-D64FRGKU.js"() {
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
     VERSION_CONTROL_DX = {
@@ -13365,7 +15059,7 @@ var init_chunk_D64FRGKU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-X32RDWT5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-X32RDWT5.js
 function parseKanban(content, palette) {
   const options = {};
   const result = {
@@ -13703,7 +15397,7 @@ function parseCardLine(trimmed, lineNumber, counter, metaAliasMap, _palette, dia
 }
 var COLUMN_RE, PALETTE_COLOR_WORD_RE, AS_ALIAS_TOKEN_RE, KNOWN_OPTIONS6, KNOWN_BOOLEANS5, REMOVED_BOOLEANS2;
 var init_chunk_X32RDWT5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-X32RDWT5.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-X32RDWT5.js"() {
     init_chunk_NOTA6TEI();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -13726,7 +15420,7 @@ var init_chunk_X32RDWT5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js
 function inferParticipantType(name) {
   for (const rule of PARTICIPANT_RULES) {
     if (rule.pattern.test(name)) {
@@ -13737,7 +15431,7 @@ function inferParticipantType(name) {
 }
 var PARTICIPANT_RULES, RULE_COUNT;
 var init_chunk_C3Z4DX3V = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-C3Z4DX3V.js"() {
     PARTICIPANT_RULES = [
       // ── 0. Conflict overrides ────────────────────────────────
       // Names that would incorrectly match general patterns in later groups
@@ -13838,99 +15532,7 @@ var init_chunk_C3Z4DX3V = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RRX4Z4TH.js
-function validateLabelCharacters(label, lineNumber) {
-  const out = [];
-  if (label.includes("->") || label.includes("~>")) {
-    out.push(
-      makeDgmoError(
-        lineNumber,
-        'Arrow symbols (-> or ~>) are not allowed inside a label. Move the label after the arrow: "A -> B: uses -> to chain". See "In-Arrow Message Labels" \u2192 Forbidden.',
-        "error",
-        ARROW_DIAGNOSTIC_CODES.ARROW_SUBSTRING_IN_LABEL
-      )
-    );
-  }
-  for (const ch of label) {
-    const cp = ch.codePointAt(0);
-    const isC0 = cp >= 0 && cp <= 31 && cp !== 9;
-    const isDel = cp === 127;
-    if (isC0 || isDel) {
-      const hex2 = cp.toString(16).toUpperCase().padStart(4, "0");
-      out.push(
-        makeDgmoError(
-          lineNumber,
-          `Label contains a control character (U+${hex2}). Remove it and use plain text.`,
-          "error",
-          ARROW_DIAGNOSTIC_CODES.CONTROL_CHAR_IN_LABEL
-        )
-      );
-      break;
-    }
-  }
-  return out;
-}
-function parseInArrowLabel(rawLabel, lineNumber) {
-  const trimmed = rawLabel.trim();
-  if (trimmed.length === 0) {
-    return { label: void 0, diagnostics: [] };
-  }
-  const diagnostics = validateLabelCharacters(trimmed, lineNumber);
-  return { label: trimmed, diagnostics };
-}
-function parseArrow(line) {
-  if (BIDI_SYNC_RE.test(line) || BIDI_ASYNC_RE.test(line)) {
-    return {
-      error: "Bidirectional arrows are no longer supported. Use two separate lines: 'A -msg-> B' and 'B -msg-> A'"
-    };
-  }
-  if (RETURN_SYNC_LABELED_RE.test(line) || RETURN_ASYNC_LABELED_RE.test(line)) {
-    const m = line.match(RETURN_SYNC_LABELED_RE) ?? line.match(RETURN_ASYNC_LABELED_RE);
-    const from = m[3];
-    const to = m[1];
-    const label = m[2].trim();
-    return {
-      error: `Left-pointing arrows are no longer supported. Write '${from} -${label}-> ${to}' instead`
-    };
-  }
-  const patterns = [
-    { re: SYNC_LABELED_RE, async: false },
-    { re: ASYNC_LABELED_RE, async: true }
-  ];
-  for (const { re: re3, async: isAsync } of patterns) {
-    const m = line.match(re3);
-    if (!m) continue;
-    const label = m[2].trim();
-    if (!label) return null;
-    return {
-      from: m[1],
-      to: m[3],
-      label,
-      async: isAsync
-    };
-  }
-  return null;
-}
-var ARROW_DIAGNOSTIC_CODES, SYNC_LABELED_RE, ASYNC_LABELED_RE, RETURN_SYNC_LABELED_RE, RETURN_ASYNC_LABELED_RE, BIDI_SYNC_RE, BIDI_ASYNC_RE;
-var init_chunk_RRX4Z4TH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RRX4Z4TH.js"() {
-    init_chunk_OLMWTJVU();
-    ARROW_DIAGNOSTIC_CODES = {
-      /** Active: label contains `->` or `~>` substring (TD-13). */
-      ARROW_SUBSTRING_IN_LABEL: "E_ARROW_SUBSTRING_IN_LABEL",
-      /** Active: label contains a forbidden control character (TD-14). */
-      CONTROL_CHAR_IN_LABEL: "E_CONTROL_CHAR_IN_LABEL"
-    };
-    SYNC_LABELED_RE = /^(.+?)\s*-(.+)->\s*(.+)$/;
-    ASYNC_LABELED_RE = /^(.+?)\s*~(.+)~>\s*(.+)$/;
-    RETURN_SYNC_LABELED_RE = /^(.+?)\s*<-(.+)-\s*(.+)$/;
-    RETURN_ASYNC_LABELED_RE = /^(.+?)\s*<~(.+)~\s*(.+)$/;
-    BIDI_SYNC_RE = /^(.+?)\s*<-(.+)->\s*(.+)$/;
-    BIDI_ASYNC_RE = /^(.+?)\s*<~(.+)~>\s*(.+)$/;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FCA2UGJT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NIUE5VWY.js
 function participantTypeToC4Shape(pType) {
   switch (pType) {
     case "database":
@@ -14662,11 +16264,11 @@ function validateDeploymentRefs(result, knownNames, pushWarning) {
   walkDeploy(result.deployment);
 }
 var CONTAINER_RE, ELEMENT_RE, IS_A_RE, C4_IS_A_RE, RELATIONSHIP_RE, C4_LABELED_SYNC_RE, C4_LABELED_ASYNC_RE, C4_LABELED_BIDI_SYNC_RE, C4_LABELED_BIDI_ASYNC_RE, SECTION_HEADER_RE, CONTAINER_REF_RE, METADATA_RE, VALID_ELEMENT_TYPES, VALID_SHAPES, KNOWN_C4_OPTIONS, KNOWN_C4_BOOLEANS, ALL_CHART_TYPES2;
-var init_chunk_FCA2UGJT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FCA2UGJT.js"() {
-    init_chunk_IYULMRBE();
+var init_chunk_NIUE5VWY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NIUE5VWY.js"() {
     init_chunk_C3Z4DX3V();
     init_chunk_RRX4Z4TH();
+    init_chunk_IYULMRBE();
     init_chunk_NOTA6TEI();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -14729,10 +16331,10 @@ var init_chunk_FCA2UGJT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js
 var GRAPH_DX, GRAPH_DIAGNOSTICS;
 var init_chunk_7TF3QOOD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7TF3QOOD.js"() {
     GRAPH_DX = {
       INFRA_NO_ENTRY: {
         // src/infra/parser.ts:1094 — makeDgmoError(..., 'warning', 'W_INFRA_NO_ENTRY')
@@ -14812,7 +16414,7 @@ B
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FXVPSTDT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-MXDT446P.js
 function nodeId(name) {
   return normalizeName(name);
 }
@@ -15689,11 +17291,11 @@ function extractSymbols2(docText) {
   return { kind: "infra", entities };
 }
 var INFRA_BEHAVIOR_KEYS, EDGE_ONLY_KEYS, CONNECTION_RE, SIMPLE_CONNECTION_RE, ASYNC_CONNECTION_RE, ASYNC_SIMPLE_CONNECTION_RE, DEPRECATED_FANOUT_RE, GROUP_RE, TAG_VALUE_RE, COMPONENT_RE, PIPE_META_RE, SAMELINE_META_RE, PROPERTY_RE, PERCENT_RE, RANGE_RE, EDGE_NODE_NAMES, INFRA_TOP_LEVEL_OPTIONS, TOP_LEVEL_OPTIONS, UNPARSED_SPLIT_RE;
-var init_chunk_FXVPSTDT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FXVPSTDT.js"() {
+var init_chunk_MXDT446P = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-MXDT446P.js"() {
     init_chunk_7TF3QOOD();
-    init_chunk_IYULMRBE();
     init_chunk_RRX4Z4TH();
+    init_chunk_IYULMRBE();
     init_chunk_NOTA6TEI();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -15721,7 +17323,7 @@ var init_chunk_FXVPSTDT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js
 function isWorkday(date, workweek, holidaySet) {
   const dayName = JS_DAY_TO_WEEKDAY[date.getDay()];
   if (!workweek.includes(dayName)) return false;
@@ -15901,7 +17503,7 @@ function parseGanttDate(s) {
 }
 var JS_DAY_TO_WEEKDAY;
 var init_chunk_EQW6HOP4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-EQW6HOP4.js"() {
     JS_DAY_TO_WEEKDAY = [
       "sun",
       "mon",
@@ -15914,7 +17516,7 @@ var init_chunk_EQW6HOP4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-42IT4BG2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-42IT4BG2.js
 function hexToHSL(hex2) {
   const cached = HEX_TO_HSL_CACHE.get(hex2);
   if (cached) return { ...cached };
@@ -16128,7 +17730,7 @@ function politicalTints(palette, count2, isDark) {
 }
 var HEX_TO_HSL_CACHE, HEX_TO_HSL_CACHE_MAX, MIX_CACHE, MIX_CACHE_MAX, POLITICAL_TINT_BANDS;
 var init_chunk_42IT4BG2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-42IT4BG2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-42IT4BG2.js"() {
     init_chunk_EXNKNJ65();
     HEX_TO_HSL_CACHE = /* @__PURE__ */ new Map();
     HEX_TO_HSL_CACHE_MAX = 5e3;
@@ -16141,7 +17743,7 @@ var init_chunk_42IT4BG2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-Y2L2LET6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ADKDIWCW.js
 function prescanGanttYear(lines, order) {
   for (const raw of lines) {
     let cand = raw.trim();
@@ -17416,14 +19018,14 @@ function hasSprintDurationUnit(nodes) {
   return false;
 }
 var GROUP_RE2, DEPENDENCY_RE, COMMENT_RE, WORKWEEK_RE, OFFSET_PREFIX_RE, DURATION_TOKEN_RE, LAG_ARROW_RE, LEAD_ARROW_RE, BASIC_ARROW_RE, ERA_OFFSET_RE, MARKER_OFFSET_RE, WEEKDAY_MAP, GANTT_KNOWN_OPTIONS, KNOWN_OPTIONS7, GANTT_KNOWN_BOOLEANS, KNOWN_BOOLEANS6;
-var init_chunk_Y2L2LET6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-Y2L2LET6.js"() {
+var init_chunk_ADKDIWCW = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ADKDIWCW.js"() {
     init_chunk_EQW6HOP4();
     init_chunk_DAOFNU6J();
-    init_chunk_42IT4BG2();
     init_chunk_NOTA6TEI();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_42IT4BG2();
     init_chunk_OLMWTJVU();
     GROUP_RE2 = /^\[(.+?)\]\s*(.*)$/;
     DEPENDENCY_RE = /^(?:-(.+?))?->\s*(.+)$/;
@@ -17459,7 +19061,7 @@ var init_chunk_Y2L2LET6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WOMXS5R7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-WOMXS5R7.js
 function looksLikeMap(content) {
   for (const raw of content.split("\n")) {
     const t3 = stripInlineComment(raw).trim();
@@ -18062,7 +19664,7 @@ function poiName(pos) {
 }
 var COORD_RE, NUMERIC_LEAD_RE, SCOPE_RE, ARROW_TOKENS, ARROW_SPLIT, HUB_RE, LEG_ARROW_RE, AT_RE, CHANNEL_FOREIGN, CHANNEL_HINT, MAP_DIRECTIVE_SET, DIRECTIVE_SET;
 var init_chunk_WOMXS5R7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WOMXS5R7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-WOMXS5R7.js"() {
     init_chunk_RRX4Z4TH();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
@@ -18090,7 +19692,7 @@ var init_chunk_WOMXS5R7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ST3ZNEUQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ST3ZNEUQ.js
 function parseNoteHeader(rest) {
   const t3 = rest.trim();
   const quoted = t3.match(/^"([^"]+)"\s*(.*)$/);
@@ -18154,13 +19756,13 @@ function tryCollectNote(lines, index, indent, palette, diagnostics) {
   };
 }
 var init_chunk_ST3ZNEUQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ST3ZNEUQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ST3ZNEUQ.js"() {
     init_chunk_3KOPPSUQ();
     init_chunk_OLMWTJVU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7NK42OIB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7NK42OIB.js
 function resolveNotes(notes, targets, diagnostics) {
   const byNodeId = /* @__PURE__ */ new Map();
   if (notes.length === 0) return byNodeId;
@@ -18216,13 +19818,13 @@ function resolveNotes(notes, targets, diagnostics) {
   return byNodeId;
 }
 var init_chunk_7NK42OIB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-7NK42OIB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7NK42OIB.js"() {
     init_chunk_NOTA6TEI();
     init_chunk_OLMWTJVU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NHZAYL2X.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NHZAYL2X.js
 function looksLikeBoxesAndLines(_content) {
   return false;
 }
@@ -19015,7 +20617,7 @@ function parseEdgeLine(trimmed, lineNum, metaAliasMap, diagnostics, nameAliasMap
 }
 var MAX_GROUP_DEPTH;
 var init_chunk_NHZAYL2X = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NHZAYL2X.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NHZAYL2X.js"() {
     init_chunk_ST3ZNEUQ();
     init_chunk_7NK42OIB();
     init_chunk_RRX4Z4TH();
@@ -19027,6544 +20629,7 @@ var init_chunk_NHZAYL2X = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js
-var SKETCH_DIAGNOSTIC_CODES, SKETCH_DIAGNOSTICS;
-var init_chunk_RT7ACF77 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RT7ACF77.js"() {
-    SKETCH_DIAGNOSTIC_CODES = {
-      NESTED_BOX: "E_SKETCH_NESTED_BOX",
-      AMBIGUOUS_TARGET: "E_SKETCH_AMBIGUOUS_TARGET",
-      UNKNOWN_SHAPE: "W_SKETCH_UNKNOWN_SHAPE",
-      OVERLAP_RESOLVED: "W_SKETCH_OVERLAP_RESOLVED",
-      AT_OUT_OF_RANGE: "W_SKETCH_AT_OUT_OF_RANGE"
-    };
-    SKETCH_DIAGNOSTICS = [
-      {
-        code: SKETCH_DIAGNOSTIC_CODES.NESTED_BOX,
-        severity: "error",
-        chartType: "sketch",
-        title: "Nested box",
-        message: (p2) => `Box "${String(p2.label ?? "?")}" is nested inside another box \u2014 sketch boxes are one level only; its shapes join the outer box`,
-        hint: "Move the inner [Box] to the top level.",
-        example: "sketch\n[Outer]\n  [Inner]\n    Shape"
-      },
-      {
-        code: SKETCH_DIAGNOSTIC_CODES.AMBIGUOUS_TARGET,
-        severity: "error",
-        chartType: "sketch",
-        title: "Ambiguous edge target",
-        message: (p2) => `Edge target "${String(p2.target ?? "?")}" matches more than one shape \u2014 give each duplicate an alias (as x) and target the alias`,
-        hint: "Alias duplicate-label shapes and reference the alias.",
-        example: "sketch\nCache as c1\nCache as c2\nApp\n  -> c1"
-      },
-      {
-        code: SKETCH_DIAGNOSTIC_CODES.UNKNOWN_SHAPE,
-        severity: "warning",
-        chartType: "sketch",
-        title: "Unknown shape",
-        message: (p2) => `Unknown shape "${String(p2.shape ?? "?")}" \u2014 rendered as a rectangle (valid: database, queue, person, document, note)`,
-        hint: "Use one of the closed shape kinds, or drop shape: for a rectangle.",
-        example: "sketch\nStore shape: database"
-      },
-      {
-        code: SKETCH_DIAGNOSTIC_CODES.OVERLAP_RESOLVED,
-        severity: "warning",
-        chartType: "sketch",
-        title: "Overlapping shapes auto-resolved",
-        message: (p2) => `Shape "${String(p2.label ?? "?")}" overlapped another at its authored position \u2014 moved to the nearest free slot`,
-        hint: "Keep shapes at least 2 half-slots apart on one axis, or omit at: to flow-place.",
-        example: "sketch\nA at: 0 0\nB at: 0 0"
-      },
-      {
-        code: SKETCH_DIAGNOSTIC_CODES.AT_OUT_OF_RANGE,
-        severity: "warning",
-        chartType: "sketch",
-        title: "at: coordinate out of range",
-        message: (p2) => `at: coordinate "${String(p2.raw ?? "?")}" is out of range \u2014 half-slot coords must be whole numbers within \xB1${String(p2.max ?? "?")}; shape will flow-place`,
-        hint: "Use small integer half-slot coordinates near the origin, or omit at: to flow-place.",
-        example: "sketch\nA at: 2 0"
-      }
-    ];
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-USFZQPJ2.js
-function isSketchShapeKind(value) {
-  return SKETCH_SHAPE_KINDS.includes(value);
-}
-function parseSketch(content, palette) {
-  const options = {
-    noLegend: false,
-    legendInline: false,
-    fillMode: void 0,
-    noDescriptions: false
-  };
-  const result = {
-    type: "sketch",
-    title: null,
-    titleLineNumber: null,
-    nodes: [],
-    edges: [],
-    boxes: [],
-    tagGroups: [],
-    options,
-    diagnostics: [],
-    error: null
-  };
-  const fail = makeFail(result);
-  const pushError = (line, message, code) => {
-    result.diagnostics.push(makeDgmoError(line, message, "error", code));
-  };
-  const warn = (line, message, code) => {
-    result.diagnostics.push(makeDgmoError(line, message, "warning", code));
-  };
-  if (!content?.trim()) {
-    return fail(0, "No content provided");
-  }
-  const lines = content.split("\n");
-  const nodes = [];
-  const boxes = [];
-  const nodeById = /* @__PURE__ */ new Map();
-  const aliasIndex = /* @__PURE__ */ new Map();
-  const labelIndex = /* @__PURE__ */ new Map();
-  const boxByNorm = /* @__PURE__ */ new Map();
-  const pendingEdges = [];
-  const tagAliasMap = /* @__PURE__ */ new Map();
-  let idCounter = 0;
-  const registryFor = () => withTagAliases(SKETCH_REGISTRY, new Set(tagAliasMap.keys()));
-  const parseAt2 = (raw, lineNumber) => {
-    if (raw === void 0) return null;
-    const m = raw.trim().match(AT_VALUE_RE);
-    if (!m) {
-      warn(
-        lineNumber,
-        `Invalid at: value "${raw}" \u2014 expected two integers (at: C R); shape will flow-place`
-      );
-      return null;
-    }
-    const c = parseInt(m[1], 10);
-    const r = parseInt(m[2], 10);
-    if (!Number.isSafeInteger(c) || !Number.isSafeInteger(r) || Math.abs(c) > SKETCH_AT_MAX || Math.abs(r) > SKETCH_AT_MAX) {
-      warn(
-        lineNumber,
-        `at: coordinate "${raw}" is out of range \u2014 half-slot coords must be whole numbers within \xB1${SKETCH_AT_MAX}; shape will flow-place`,
-        SKETCH_DIAGNOSTIC_CODES.AT_OUT_OF_RANGE
-      );
-      return null;
-    }
-    return { c, r };
-  };
-  const liftReserved = (meta, lineNumber) => {
-    let shape = "rectangle";
-    const shapeRaw = meta["shape"];
-    if (shapeRaw !== void 0) {
-      const kind = shapeRaw.trim().toLowerCase();
-      if (kind === "rectangle" || isSketchShapeKind(kind)) {
-        shape = kind;
-      } else {
-        warn(
-          lineNumber,
-          `Unknown shape "${shapeRaw}" \u2014 rendered as a rectangle (valid: database, queue, person, document, note)`,
-          SKETCH_DIAGNOSTIC_CODES.UNKNOWN_SHAPE
-        );
-      }
-      delete meta["shape"];
-    }
-    const at2 = parseAt2(meta["at"], lineNumber);
-    delete meta["at"];
-    delete meta["collapsed"];
-    return { shape, at: at2 };
-  };
-  const addShape = (trimmed, lineNumber, box) => {
-    const snm = splitNameAndMeta(
-      trimmed,
-      registryFor(),
-      tagAliasMap,
-      palette,
-      result.diagnostics,
-      lineNumber
-    );
-    let label = stripQuotes(snm.name.trim()).trim();
-    if (snm.color) label = `${label} ${snm.color}`.trim();
-    if (!label) {
-      warn(lineNumber, `Shape line has no name \u2014 ignored`);
-      return null;
-    }
-    const meta = { ...snm.meta };
-    warnUnknownMetaKeys(
-      meta,
-      registryFor(),
-      (m) => warn(lineNumber, m),
-      snm.name
-    );
-    const { shape, at: at2 } = liftReserved(meta, lineNumber);
-    const norm = normalizeName(label);
-    if (snm.alias !== void 0 && aliasIndex.has(snm.alias)) {
-      warn(
-        lineNumber,
-        `Duplicate alias "${snm.alias}" \u2014 the first declaration keeps it`
-      );
-    }
-    const alias = snm.alias !== void 0 && !aliasIndex.has(snm.alias) ? snm.alias : void 0;
-    if (alias === void 0 && snm.alias === void 0) {
-      const existing = labelIndex.get(norm);
-      if (existing && existing.length > 0) {
-        const first = nodeById.get(existing[0]);
-        for (const [k2, v2] of Object.entries(meta)) {
-          if (!(k2 in first.metadata)) first.metadata[k2] = v2;
-        }
-        if (first.at === null && at2 !== null) first.at = at2;
-        if (first.shape === "rectangle" && shape !== "rectangle") {
-          first.shape = shape;
-        }
-        warn(
-          lineNumber,
-          nameMergedMessage({
-            incomingDisplay: label,
-            incomingLine: lineNumber,
-            existingDisplay: first.label,
-            existingLine: first.lineNumber
-          }),
-          NAME_DIAGNOSTIC_CODES.NAME_MERGED
-        );
-        return first;
-      }
-    }
-    const id = `sketch-node-${++idCounter}`;
-    const node = {
-      id,
-      label,
-      ...alias !== void 0 && { alias },
-      shape,
-      at: at2,
-      metadata: meta,
-      ...box !== null && { boxLabel: box.label },
-      lineNumber
-    };
-    nodes.push(node);
-    nodeById.set(id, node);
-    if (alias !== void 0) aliasIndex.set(alias, id);
-    const list = labelIndex.get(norm);
-    if (list) list.push(id);
-    else labelIndex.set(norm, [id]);
-    if (box !== null) box.children.push(id);
-    return node;
-  };
-  const parseBoxTail = (tail, lineNumber) => {
-    let rest = tail.trim();
-    let alias;
-    const aliasMatch = rest.match(BOX_TAIL_ALIAS_RE);
-    if (aliasMatch) {
-      alias = aliasMatch[1];
-      rest = rest.slice(aliasMatch[0].length);
-    }
-    let collapsed = false;
-    rest = rest.replace(/(^|,|\s)collapsed(?=\s|,|$)/i, (_m, pre) => {
-      collapsed = true;
-      return pre === "," ? "," : pre;
-    });
-    const meta = {};
-    let at2 = null;
-    for (const seg of rest.split(",")) {
-      const t3 = seg.trim();
-      if (!t3) continue;
-      const colonIdx = t3.indexOf(":");
-      if (colonIdx < 0) {
-        warn(lineNumber, `Unrecognized box metadata "${t3}" \u2014 ignored`);
-        continue;
-      }
-      const rawKey = t3.slice(0, colonIdx).trim().toLowerCase();
-      const value = t3.slice(colonIdx + 1).trim();
-      if (rawKey === "at") {
-        at2 = parseAt2(value, lineNumber);
-      } else if (value) {
-        meta[tagAliasMap.get(rawKey) ?? rawKey] = value;
-      }
-    }
-    return { ...alias !== void 0 && { alias }, at: at2, collapsed, meta };
-  };
-  const openBox = (label, tail, lineNumber) => {
-    const norm = normalizeName(label);
-    const existing = boxByNorm.get(norm);
-    const { alias, at: at2, collapsed, meta } = parseBoxTail(tail, lineNumber);
-    if (existing) {
-      warn(
-        lineNumber,
-        `Box "${label}" already declared on line ${existing.lineNumber} \u2014 shapes are added to it`
-      );
-      return existing;
-    }
-    const box = {
-      id: `[${norm}]`,
-      label: label.trim(),
-      ...alias !== void 0 && { alias },
-      at: at2,
-      metadata: meta,
-      collapsed,
-      children: [],
-      lineNumber
-    };
-    boxes.push(box);
-    boxByNorm.set(norm, box);
-    if (alias !== void 0) {
-      if (aliasIndex.has(alias)) {
-        warn(
-          lineNumber,
-          `Duplicate alias "${alias}" \u2014 the first declaration keeps it`
-        );
-      } else {
-        aliasIndex.set(alias, box.id);
-      }
-    }
-    return box;
-  };
-  const addEdge = (trimmed, lineNumber, sourceId) => {
-    for (const form of EDGE_FORMS) {
-      const m = trimmed.match(form.re);
-      if (!m) continue;
-      let label;
-      let targetRegion;
-      if (form.labeled) {
-        const labelResult = parseInArrowLabel(m[1], lineNumber);
-        result.diagnostics.push(...labelResult.diagnostics);
-        label = labelResult.label;
-        targetRegion = m[2];
-      } else {
-        targetRegion = m[1];
-      }
-      const snm = splitNameAndMeta(
-        targetRegion.trim(),
-        registryFor(),
-        tagAliasMap,
-        palette,
-        result.diagnostics,
-        lineNumber,
-        { peelAlias: false }
-      );
-      let targetRaw = snm.name.trim();
-      if (snm.color) targetRaw = `${targetRaw} ${snm.color}`.trim();
-      const meta = { ...snm.meta };
-      delete meta["at"];
-      delete meta["shape"];
-      warnUnknownMetaKeys(meta, registryFor(), (msg) => warn(lineNumber, msg));
-      if (!targetRaw) {
-        warn(lineNumber, `Edge has no target \u2014 ignored`);
-        return;
-      }
-      pendingEdges.push({
-        sourceId,
-        targetRaw,
-        ...label !== void 0 && { label },
-        heads: form.heads,
-        dashed: form.dashed,
-        metadata: meta,
-        lineNumber
-      });
-      return;
-    }
-    if (LEFT_ARROW_RE.test(trimmed)) {
-      pushError(
-        lineNumber,
-        `Left-pointing arrows are not supported \u2014 write the edge from the other side (B -> A instead of A <- B)`
-      );
-      return;
-    }
-    warn(lineNumber, `Malformed edge "${trimmed}" \u2014 ignored`);
-  };
-  let firstLineConsumed = false;
-  let contentStarted = false;
-  let currentTagGroup = null;
-  let currentBox = null;
-  let currentShape = null;
-  for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i];
-    const lineNumber = i + 1;
-    const trimmed = raw.trim();
-    if (!trimmed) {
-      currentTagGroup = null;
-      continue;
-    }
-    if (trimmed.startsWith("//")) continue;
-    const indent = measureIndent(raw);
-    if (!firstLineConsumed) {
-      firstLineConsumed = true;
-      const firstLine = parseFirstLine(trimmed);
-      if (firstLine?.chartType !== "sketch") {
-        let msg = `Expected chart type "sketch", got "${firstLine?.chartType ?? trimmed.split(/\s+/)[0]}"`;
-        const hint = suggest(firstLine?.chartType ?? "", ["sketch"]);
-        if (hint) msg += `. ${hint}`;
-        return fail(lineNumber, msg);
-      }
-      result.title = firstLine.title ?? null;
-      result.titleLineNumber = lineNumber;
-      continue;
-    }
-    if (indent === 0) {
-      const tagBlockMatch = matchTagBlockHeading(trimmed);
-      if (tagBlockMatch) {
-        if (contentStarted) {
-          pushError(
-            lineNumber,
-            "Tag groups must appear before sketch content",
-            "E_TAG_DECLARED_AFTER_CONTENT"
-          );
-          continue;
-        }
-        currentTagGroup = {
-          name: tagBlockMatch.name,
-          ...tagBlockMatch.alias !== void 0 && {
-            alias: tagBlockMatch.alias
-          },
-          entries: [],
-          lineNumber
-        };
-        if (tagBlockMatch.alias) {
-          tagAliasMap.set(
-            tagBlockMatch.alias.toLowerCase(),
-            tagAttrKey(tagBlockMatch.name)
-          );
-        }
-        tagAliasMap.set(
-          tagAttrKey(tagBlockMatch.name),
-          tagAttrKey(tagBlockMatch.name)
-        );
-        if (tagBlockMatch.inlineValues) {
-          for (const entry of tagBlockMatch.inlineValues) {
-            const { text: cleanEntry, isDefault } = stripDefaultModifier(entry);
-            const { label, color: color2 } = extractColor(
-              cleanEntry,
-              palette,
-              result.diagnostics,
-              lineNumber
-            );
-            if (isDefault) currentTagGroup.defaultValue = label;
-            currentTagGroup.entries.push({
-              value: label,
-              color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-              // When a color resolved, the recognized name is the entry's last
-              // token — keep it so a reparse can tell authored from auto.
-              ...color2 !== void 0 && {
-                authoredColor: cleanEntry.trim().split(/\s+/).pop()
-              },
-              lineNumber
-            });
-          }
-        }
-        result.tagGroups.push(currentTagGroup);
-        continue;
-      }
-    }
-    if (currentTagGroup && indent > 0) {
-      const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
-      const { label, color: color2 } = extractColor(
-        cleanEntry,
-        palette,
-        result.diagnostics,
-        lineNumber
-      );
-      if (isDefault) currentTagGroup.defaultValue = label;
-      currentTagGroup.entries.push({
-        value: label,
-        color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-        // When a color resolved, the recognized name is the entry's last token
-        // — keep it so a reparse can tell authored from auto.
-        ...color2 !== void 0 && {
-          authoredColor: cleanEntry.trim().split(/\s+/).pop()
-        },
-        lineNumber
-      });
-      continue;
-    }
-    currentTagGroup = null;
-    if (indent === 0 && /^legend-inline\s*$/i.test(trimmed)) {
-      options.legendInline = true;
-      continue;
-    }
-    if (indent === 0 && /^no-legend\s*$/i.test(trimmed)) {
-      options.noLegend = true;
-      continue;
-    }
-    if (indent === 0 && fillModeFromToken(trimmed) !== null) {
-      const fm = fillModeFromToken(trimmed);
-      options.fillMode = fm === "tint" ? void 0 : fm;
-      continue;
-    }
-    if (indent === 0 && /^no-descriptions\s*$/i.test(trimmed)) {
-      options.noDescriptions = true;
-      continue;
-    }
-    contentStarted = true;
-    if (trimmed.startsWith(">")) {
-      const descLine = trimmed.slice(1).replace(/^ /, "");
-      if (indent > 0 && currentShape && indent > currentShape.indent) {
-        const node2 = nodeById.get(currentShape.id);
-        if (node2) {
-          node2.description = node2.description === void 0 ? descLine : `${node2.description}
-${descLine}`;
-        }
-      } else {
-        warn(
-          lineNumber,
-          `Description "${trimmed}" has no shape \u2014 indent it under the shape it describes`
-        );
-      }
-      continue;
-    }
-    if (EDGE_START_RE.test(trimmed)) {
-      if (indent > 0 && currentShape && indent > currentShape.indent) {
-        addEdge(trimmed, lineNumber, currentShape.id);
-      } else if (indent > 0 && currentBox && indent > currentBox.indent) {
-        addEdge(trimmed, lineNumber, currentBox.box.id);
-      } else {
-        warn(
-          lineNumber,
-          `Edge "${trimmed}" has no source shape \u2014 indent it under the shape it leaves from`
-        );
-      }
-      continue;
-    }
-    const boxMatch = trimmed.match(BOX_RE);
-    if (boxMatch) {
-      const label = boxMatch[1].trim();
-      if (!label) {
-        warn(lineNumber, "Box has no label \u2014 ignored");
-        continue;
-      }
-      if (indent > 0 && currentBox && indent > currentBox.indent) {
-        pushError(
-          lineNumber,
-          `Box "${label}" is nested inside "${currentBox.box.label}" \u2014 sketch boxes are one level only; its shapes join the outer box`,
-          SKETCH_DIAGNOSTIC_CODES.NESTED_BOX
-        );
-        continue;
-      }
-      currentBox = {
-        box: openBox(label, boxMatch[2] ?? "", lineNumber),
-        indent
-      };
-      currentShape = null;
-      continue;
-    }
-    if (indent === 0) {
-      currentBox = null;
-      const node2 = addShape(trimmed, lineNumber, null);
-      currentShape = node2 ? { id: node2.id, indent } : null;
-      continue;
-    }
-    if (currentBox && indent > currentBox.indent) {
-      const node2 = addShape(trimmed, lineNumber, currentBox.box);
-      currentShape = node2 ? { id: node2.id, indent } : currentShape;
-      continue;
-    }
-    warn(
-      lineNumber,
-      `Indented line "${trimmed}" has no parent box \u2014 treated as a top-level shape`
-    );
-    const node = addShape(trimmed, lineNumber, null);
-    currentShape = node ? { id: node.id, indent } : currentShape;
-  }
-  const allTargets = [
-    ...aliasIndex.keys(),
-    ...nodes.map((n) => n.label),
-    ...boxes.map((b) => b.label)
-  ];
-  for (const pe2 of pendingEdges) {
-    let targetId;
-    const bracketMatch = pe2.targetRaw.match(/^\[([^\]]*)\]$/);
-    if (bracketMatch) {
-      targetId = boxByNorm.get(normalizeName(bracketMatch[1]))?.id ?? null;
-    } else if (aliasIndex.has(pe2.targetRaw)) {
-      targetId = aliasIndex.get(pe2.targetRaw);
-    } else {
-      const norm = normalizeName(stripQuotes(pe2.targetRaw).trim());
-      const labelHits = labelIndex.get(norm) ?? [];
-      if (labelHits.length > 1) {
-        pushError(
-          pe2.lineNumber,
-          `Edge target "${pe2.targetRaw}" matches more than one shape \u2014 give each duplicate an alias (as x) and target the alias`,
-          SKETCH_DIAGNOSTIC_CODES.AMBIGUOUS_TARGET
-        );
-        continue;
-      }
-      targetId = labelHits[0] ?? boxByNorm.get(norm)?.id ?? null;
-    }
-    if (targetId === null) {
-      let msg = `Unknown edge target "${pe2.targetRaw}"`;
-      const hint = suggest(pe2.targetRaw, allTargets);
-      if (hint) msg += `. ${hint}`;
-      warn(pe2.lineNumber, msg);
-      continue;
-    }
-    if (targetId === pe2.sourceId) {
-      warn(pe2.lineNumber, `Edge from "${pe2.targetRaw}" to itself \u2014 ignored`);
-      continue;
-    }
-    result.edges.push({
-      sourceId: pe2.sourceId,
-      targetId,
-      ...pe2.label !== void 0 && { label: pe2.label },
-      heads: pe2.heads,
-      dashed: pe2.dashed,
-      metadata: pe2.metadata,
-      lineNumber: pe2.lineNumber
-    });
-  }
-  finalizeAutoTagColors(result.tagGroups, palette);
-  if (result.tagGroups.length > 0) {
-    const tagKeys = result.tagGroups.map((g) => tagAttrKey(g.name));
-    for (const box of boxes) {
-      for (const childId of box.children) {
-        const child = nodeById.get(childId);
-        if (!child) continue;
-        for (const k2 of tagKeys) {
-          if (!(k2 in child.metadata) && box.metadata[k2] !== void 0) {
-            child.metadata[k2] = box.metadata[k2];
-          }
-        }
-      }
-    }
-    injectDefaultTagMetadata(
-      [...nodes, ...boxes],
-      result.tagGroups
-    );
-    validateTagValues(
-      [...nodes, ...boxes, ...result.edges],
-      result.tagGroups,
-      (line, message) => warn(line, message),
-      suggest
-    );
-    validateTagGroupNames(
-      result.tagGroups,
-      (line, message) => warn(line, message)
-    );
-  }
-  result.nodes = nodes;
-  result.boxes = boxes;
-  if (nodes.length === 0 && boxes.length === 0 && !result.error) {
-    const diag = makeDgmoError(1, "No shapes found in sketch");
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  return result;
-}
-var SKETCH_SHAPE_KINDS, EDGE_FORMS, EDGE_START_RE, LEFT_ARROW_RE, BOX_RE, BOX_TAIL_ALIAS_RE, AT_VALUE_RE, SKETCH_AT_MAX;
-var init_chunk_USFZQPJ2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-USFZQPJ2.js"() {
-    init_chunk_RT7ACF77();
-    init_chunk_RRX4Z4TH();
-    init_chunk_NOTA6TEI();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    SKETCH_SHAPE_KINDS = [
-      "rectangle",
-      "database",
-      "queue",
-      "person",
-      "document",
-      "note"
-    ];
-    EDGE_FORMS = [
-      { re: /^<-(.+?)->\s*(.+)$/, heads: "both", dashed: false, labeled: true },
-      { re: /^<~(.+?)~>\s*(.+)$/, heads: "both", dashed: true, labeled: true },
-      { re: /^<->\s*(.+)$/, heads: "both", dashed: false, labeled: false },
-      { re: /^<~>\s*(.+)$/, heads: "both", dashed: true, labeled: false },
-      { re: /^-(.+?)->\s*(.+)$/, heads: "one", dashed: false, labeled: true },
-      { re: /^~(.+?)~>\s*(.+)$/, heads: "one", dashed: true, labeled: true },
-      { re: /^->\s*(.+)$/, heads: "one", dashed: false, labeled: false },
-      { re: /^~>\s*(.+)$/, heads: "one", dashed: true, labeled: false },
-      { re: /^--\s+(.+)$/, heads: "none", dashed: false, labeled: false },
-      { re: /^~~\s+(.+)$/, heads: "none", dashed: true, labeled: false },
-      { re: /^-(.+?)-\s+(.+)$/, heads: "none", dashed: false, labeled: true },
-      { re: /^~(.+?)~\s+(.+)$/, heads: "none", dashed: true, labeled: true }
-    ];
-    EDGE_START_RE = /^[<\-~]/;
-    LEFT_ARROW_RE = /^<[-~](?![-~]?>)/;
-    BOX_RE = /^\[([^\]]*)\]\s*(.*)$/;
-    BOX_TAIL_ALIAS_RE = /^as\s+([A-Za-z][A-Za-z0-9_]{0,11})(?=\s|,|$)\s*,?\s*/;
-    AT_VALUE_RE = /^(-?\d+)\s+(-?\d+)$/;
-    SKETCH_AT_MAX = 2e3;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LV5BFA24.js
-function nodeId2(shape, label) {
-  return `${shape}:${normalizeName(label)}`;
-}
-function parseNodeRef(text) {
-  const t3 = text.trim();
-  if (!t3) return null;
-  let m = t3.match(/^\[\[([^\]]+)\]\]$/);
-  if (m) {
-    const label = m[1].trim();
-    return { id: nodeId2("subroutine", label), label, shape: "subroutine" };
-  }
-  m = t3.match(/^\[([^\]]+)~\]$/);
-  if (m) {
-    const label = m[1].trim();
-    return { id: nodeId2("document", label), label, shape: "document" };
-  }
-  m = t3.match(/^\[([^\]]+)\]$/);
-  if (m) {
-    const label = m[1].trim();
-    return { id: nodeId2("process", label), label, shape: "process" };
-  }
-  m = t3.match(/^\((.+)\)$/);
-  if (m) {
-    const label = m[1].trim();
-    return { id: nodeId2("terminal", label), label, shape: "terminal" };
-  }
-  m = t3.match(/^<([^>]+)>$/);
-  if (m) {
-    const label = m[1].trim();
-    return { id: nodeId2("decision", label), label, shape: "decision" };
-  }
-  m = t3.match(/^\/([^/]+)\/$/);
-  if (m) {
-    const label = m[1].trim();
-    return { id: nodeId2("io", label), label, shape: "io" };
-  }
-  return null;
-}
-function parseNodeRefLoose(text) {
-  const t3 = text.trim();
-  const shapeRe = /^(\[\[.+?\]\]|\[.+?~\]|\[.+?\]|\(.+?\)|<.+?>|\/.+?\/)\s+(\S.*)$/;
-  const m = t3.match(shapeRe);
-  if (!m) return null;
-  const ref = parseNodeRef(m[1]);
-  if (!ref) return null;
-  return { ref, trailing: m[2].trim() };
-}
-function splitArrows(line) {
-  const segments = [];
-  const arrowPositions = [];
-  let searchFrom = 0;
-  let scanFloor = 0;
-  while (searchFrom < line.length) {
-    const idx = line.indexOf("->", searchFrom);
-    if (idx === -1) break;
-    let runStart = idx;
-    while (runStart > scanFloor && line[runStart - 1] === "-") runStart--;
-    const arrowEnd = idx + 2;
-    let arrowStart;
-    let label;
-    let openingStart = -1;
-    for (let i = scanFloor; i < runStart; i++) {
-      if (line[i] !== "-") continue;
-      const prevIsWsOrFloor = i === 0 || i === scanFloor || /\s/.test(line.charAt(i - 1));
-      if (prevIsWsOrFloor) {
-        openingStart = i;
-        break;
-      }
-    }
-    if (openingStart !== -1) {
-      let openingEnd = openingStart;
-      while (openingEnd < runStart && line[openingEnd] === "-") openingEnd++;
-      const labelPart = line.substring(openingEnd, runStart).trim();
-      if (labelPart) label = labelPart;
-      arrowStart = openingStart;
-    } else {
-      arrowStart = runStart;
-    }
-    arrowPositions.push({
-      start: arrowStart,
-      end: arrowEnd,
-      ...label !== void 0 && { label }
-    });
-    searchFrom = arrowEnd;
-    scanFloor = arrowEnd;
-  }
-  if (arrowPositions.length === 0) {
-    return [line];
-  }
-  let lastIndex = 0;
-  for (let i = 0; i < arrowPositions.length; i++) {
-    const arrow = arrowPositions[i];
-    const beforeText = line.substring(lastIndex, arrow.start).trim();
-    if (beforeText || i === 0) {
-      segments.push(beforeText);
-    }
-    const arrowToken = arrow.label ? `-${arrow.label}->` : "->";
-    segments.push(arrowToken);
-    lastIndex = arrow.end;
-  }
-  const remaining = line.substring(lastIndex).trim();
-  if (remaining) {
-    segments.push(remaining);
-  }
-  return segments;
-}
-function parseArrowToken(token, _palette, lineNumber, diagnostics) {
-  if (token === "->") return {};
-  const m = token.match(/^-(.+?)->$/);
-  if (m) {
-    const rawLabel = m[1] ?? "";
-    const labelResult = parseInArrowLabel(rawLabel, lineNumber);
-    diagnostics.push(...labelResult.diagnostics);
-    return {
-      ...labelResult.label !== void 0 && { label: labelResult.label }
-    };
-  }
-  return {};
-}
-function parseFlowchart(content, palette) {
-  const lines = content.split("\n");
-  const options = {};
-  const result = {
-    type: "flowchart",
-    direction: "TB",
-    nodes: [],
-    edges: [],
-    options,
-    diagnostics: [],
-    error: null
-  };
-  const fail = (line, message) => {
-    const diag = makeDgmoError(line, message);
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-    return result;
-  };
-  const nodeMap = /* @__PURE__ */ new Map();
-  const indentStack = [];
-  const notes = [];
-  let contentStarted = false;
-  let firstLineParsed = false;
-  let prevLineLastNodeId = null;
-  const nameAliasMap = /* @__PURE__ */ new Map();
-  function peelAlias2(seg) {
-    const trimmed = seg.trim();
-    const m = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
-    if (!m) return { seg: trimmed };
-    return { seg: m[1].trim(), alias: m[2] };
-  }
-  const suffixWarnedLines = /* @__PURE__ */ new Set();
-  function warnUnsupportedSuffix(lineNumber, trailing) {
-    if (suffixWarnedLines.has(lineNumber)) return;
-    suffixWarnedLines.add(lineNumber);
-    result.diagnostics.push(
-      emit(GRAPH_DX.FLOWCHART_NODE_SUFFIX, lineNumber, { trailing })
-    );
-  }
-  function getOrCreateNode(ref, lineNumber) {
-    const key = ref.id;
-    const existing = nodeMap.get(key);
-    if (existing) {
-      const incomingDisplay = displayName(ref.label);
-      const existingDisplay = displayName(existing.label);
-      if (incomingDisplay !== existingDisplay) {
-        result.diagnostics.push(
-          makeDgmoError(
-            lineNumber,
-            nameMergedMessage({
-              incomingDisplay,
-              incomingLine: lineNumber,
-              existingDisplay,
-              existingLine: existing.lineNumber
-            }),
-            "warning",
-            NAME_DIAGNOSTIC_CODES.NAME_MERGED
-          )
-        );
-      }
-      return existing;
-    }
-    const node = {
-      id: key,
-      label: ref.label,
-      shape: ref.shape,
-      lineNumber,
-      ...ref.color && { color: ref.color }
-    };
-    nodeMap.set(key, node);
-    result.nodes.push(node);
-    return node;
-  }
-  function addEdge(sourceId, targetId, lineNumber, label) {
-    const edge = {
-      source: sourceId,
-      target: targetId,
-      lineNumber,
-      ...label && { label }
-    };
-    result.edges.push(edge);
-  }
-  function processContentLine(trimmed, lineNumber, indent) {
-    contentStarted = true;
-    while (indentStack.length > 0) {
-      const top2 = indentStack[indentStack.length - 1];
-      if (top2.indent >= indent) {
-        indentStack.pop();
-      } else {
-        break;
-      }
-    }
-    const implicitSourceId = indentStack.length > 0 ? (
-      // In-bounds: length > 0 guarded by ternary.
-      indentStack[indentStack.length - 1].nodeId
-    ) : null;
-    const segments = splitArrows(trimmed);
-    const startsWithArrow = segments.length >= 2 && segments[0].trim() === "";
-    const effectiveSource = implicitSourceId ?? (startsWithArrow ? prevLineLastNodeId : null);
-    if (segments.length === 1) {
-      const peeled = peelAlias2(segments[0]);
-      const ref = parseNodeRef(peeled.seg);
-      if (ref) {
-        const node = getOrCreateNode(ref, lineNumber);
-        if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
-        indentStack.push({ nodeId: node.id, indent });
-        return node.id;
-      }
-      const loose = parseNodeRefLoose(peeled.seg);
-      if (loose) {
-        warnUnsupportedSuffix(lineNumber, loose.trailing);
-        const node = getOrCreateNode(loose.ref, lineNumber);
-        indentStack.push({ nodeId: node.id, indent });
-        return node.id;
-      }
-      const aliasResolved = nameAliasMap.get(peeled.seg.trim());
-      if (aliasResolved !== void 0) {
-        indentStack.push({ nodeId: aliasResolved, indent });
-        return aliasResolved;
-      }
-      return null;
-    }
-    let lastNodeId = null;
-    let pendingArrow = null;
-    for (let i = 0; i < segments.length; i++) {
-      const seg = segments[i];
-      if (seg === "->" || /^-.+->$/.test(seg)) {
-        pendingArrow = parseArrowToken(
-          seg,
-          palette,
-          lineNumber,
-          result.diagnostics
-        );
-        continue;
-      }
-      const peeled = peelAlias2(seg);
-      let ref = parseNodeRef(peeled.seg);
-      if (!ref) {
-        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
-        if (aliasResolved !== void 0) {
-          const existing = nodeMap.get(aliasResolved);
-          if (existing) {
-            ref = {
-              id: aliasResolved,
-              label: existing.label,
-              shape: existing.shape
-            };
-          }
-        }
-      }
-      if (!ref) {
-        const loose = parseNodeRefLoose(peeled.seg);
-        if (loose) {
-          warnUnsupportedSuffix(lineNumber, loose.trailing);
-          ref = loose.ref;
-        }
-      }
-      if (!ref) continue;
-      const node = getOrCreateNode(ref, lineNumber);
-      if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
-      if (pendingArrow !== null) {
-        const sourceId = lastNodeId ?? effectiveSource;
-        if (sourceId) {
-          addEdge(sourceId, node.id, lineNumber, pendingArrow.label);
-        }
-        pendingArrow = null;
-      } else if (lastNodeId === null && effectiveSource === null) {
-      }
-      lastNodeId = node.id;
-    }
-    if (pendingArrow !== null && lastNodeId === null && implicitSourceId) {
-    }
-    if (segments.length >= 2 && segments[0] === "" && implicitSourceId && lastNodeId) {
-    }
-    if (lastNodeId) {
-      indentStack.push({ nodeId: lastNodeId, indent });
-    }
-    return lastNodeId;
-  }
-  for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i];
-    const trimmed = raw.trim();
-    const lineNumber = i + 1;
-    const indent = measureIndent(raw);
-    if (!trimmed) continue;
-    if (trimmed.startsWith("//")) continue;
-    if (!firstLineParsed && !contentStarted) {
-      const firstLineResult = parseFirstLine(trimmed);
-      if (firstLineResult) {
-        firstLineParsed = true;
-        if (firstLineResult.chartType !== "flowchart") {
-          const allTypes = Array.from(ALL_CHART_TYPES);
-          let msg = `Expected chart type "flowchart", got "${firstLineResult.chartType}"`;
-          const hint = suggest(firstLineResult.chartType, allTypes);
-          if (hint) msg += `. ${hint}`;
-          return fail(lineNumber, msg);
-        }
-        if (firstLineResult.title) {
-          result.title = firstLineResult.title;
-          result.titleLineNumber = lineNumber;
-        }
-        continue;
-      }
-    }
-    const noteResult = tryCollectNote(
-      lines,
-      i,
-      indent,
-      palette,
-      result.diagnostics
-    );
-    if (noteResult) {
-      if (noteResult.note) notes.push(noteResult.note);
-      i = noteResult.lastIndex;
-      continue;
-    }
-    if (!contentStarted) {
-      const dirMatch = trimmed.match(/^direction[-\s]+(lr|tb)$/i);
-      if (dirMatch) {
-        result.direction = dirMatch[1].toUpperCase();
-        continue;
-      }
-      if (FILL_FAMILY_TOKENS.has(trimmed.toLowerCase())) {
-        for (const t3 of FILL_FAMILY_TOKENS) delete options[t3];
-        if (trimmed.toLowerCase() !== "fill-tint")
-          options[trimmed.toLowerCase()] = "on";
-        continue;
-      }
-      if (/^no-color$/i.test(trimmed)) {
-        result.diagnostics.push(
-          makeDgmoError(lineNumber, '"no-color" has been removed.', "warning")
-        );
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, options)) {
-        continue;
-      }
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch && !trimmed.includes("->")) {
-        const key = optMatch[1].toLowerCase();
-        const value = optMatch[2].trim();
-        if (key === "no-color") {
-          result.diagnostics.push(
-            makeDgmoError(
-              lineNumber,
-              '"no-color" was removed \u2014 node colors are assigned automatically by shape; delete this line.',
-              "warning"
-            )
-          );
-          continue;
-        }
-        options[key] = value;
-        continue;
-      }
-    }
-    const lastId = processContentLine(trimmed, lineNumber, indent);
-    if (lastId) prevLineLastNodeId = lastId;
-  }
-  if (result.nodes.length === 0 && !result.error) {
-    const diag = makeDgmoError(
-      1,
-      "No nodes found. Add flowchart content with shape syntax like [Process] or (Start)."
-    );
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  if (notes.length > 0) {
-    result.notes = notes;
-    resolveNotes(notes, result.nodes, result.diagnostics);
-  }
-  if (result.nodes.length >= 2 && result.edges.length >= 1 && !result.error) {
-    const connectedIds = /* @__PURE__ */ new Set();
-    for (const edge of result.edges) {
-      connectedIds.add(edge.source);
-      connectedIds.add(edge.target);
-    }
-    for (const node of result.nodes) {
-      if (!connectedIds.has(node.id)) {
-        result.diagnostics.push(
-          makeDgmoError(
-            node.lineNumber,
-            `Node "${node.label}" is not connected to any other node`,
-            "warning"
-          )
-        );
-      }
-    }
-  }
-  return result;
-}
-function looksLikeFlowchart(content) {
-  if (!content.includes("->")) return false;
-  const hasShapeDelimiter = /\[[^\]]+\]/.test(content) || /\([^)]+\)/.test(content) || /<[^>]+>/.test(content) || /\/[^/]+\//.test(content);
-  if (!hasShapeDelimiter) return false;
-  const shapeNearArrow = /[\])][ \t]*-.*->/.test(content) || // shape ] or ) followed by arrow
-  /->[ \t]*[[(</]/.test(content);
-  return shapeNearArrow;
-}
-function extractSymbols3(docText) {
-  const entities = [];
-  let inMetadata = true;
-  for (const rawLine of docText.split("\n")) {
-    const line = rawLine.trim();
-    if (inMetadata && (/^[a-z-]+\s*:/i.test(line) || /^[a-z-]+\s+\S/i.test(line)))
-      continue;
-    inMetadata = false;
-    if (line.length === 0 || /^\s/.test(rawLine)) continue;
-    const m = NODE_ID_RE.exec(line);
-    if (m && !entities.includes(m[1])) entities.push(m[1]);
-  }
-  return { kind: "flowchart", entities };
-}
-var NODE_ID_RE;
-var init_chunk_LV5BFA24 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LV5BFA24.js"() {
-    init_chunk_7TF3QOOD();
-    init_chunk_ST3ZNEUQ();
-    init_chunk_7NK42OIB();
-    init_chunk_RRX4Z4TH();
-    init_chunk_NOTA6TEI();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    NODE_ID_RE = /^([a-zA-Z_][\w-]*)[\s([</{]/;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-APD52YJV.js
-function splitArrows2(line) {
-  const segments = [];
-  const arrowPositions = [];
-  let searchFrom = 0;
-  let scanFloor = 0;
-  while (searchFrom < line.length) {
-    const idx = line.indexOf("->", searchFrom);
-    if (idx === -1) break;
-    let runStart = idx;
-    while (runStart > scanFloor && line[runStart - 1] === "-") runStart--;
-    const arrowEnd = idx + 2;
-    let arrowStart;
-    let label;
-    let openingStart = -1;
-    for (let i = scanFloor; i < runStart; i++) {
-      if (line[i] !== "-") continue;
-      const prevIsWsOrFloor = i === 0 || i === scanFloor || /\s/.test(line.charAt(i - 1));
-      if (prevIsWsOrFloor) {
-        openingStart = i;
-        break;
-      }
-    }
-    if (openingStart !== -1) {
-      let openingEnd = openingStart;
-      while (openingEnd < runStart && line[openingEnd] === "-") openingEnd++;
-      const labelPart = line.substring(openingEnd, runStart).trim();
-      if (labelPart) label = labelPart;
-      arrowStart = openingStart;
-    } else {
-      arrowStart = runStart;
-    }
-    arrowPositions.push({
-      start: arrowStart,
-      end: arrowEnd,
-      ...label !== void 0 && { label }
-    });
-    searchFrom = arrowEnd;
-    scanFloor = arrowEnd;
-  }
-  if (arrowPositions.length === 0) return [line];
-  let lastIndex = 0;
-  for (let i = 0; i < arrowPositions.length; i++) {
-    const arrow = arrowPositions[i];
-    const beforeText = line.substring(lastIndex, arrow.start).trim();
-    if (beforeText || i === 0) segments.push(beforeText);
-    const arrowToken = arrow.label ? `-${arrow.label}->` : "->";
-    segments.push(arrowToken);
-    lastIndex = arrow.end;
-  }
-  const remaining = line.substring(lastIndex).trim();
-  if (remaining) segments.push(remaining);
-  return segments;
-}
-function parseArrowToken2(token, _palette, lineNumber, diagnostics) {
-  if (token === "->") return {};
-  const m = token.match(/^-(.+?)->$/);
-  if (m) {
-    const rawLabel = m[1] ?? "";
-    const labelResult = parseInArrowLabel(rawLabel, lineNumber);
-    diagnostics.push(...labelResult.diagnostics);
-    return {
-      ...labelResult.label !== void 0 && { label: labelResult.label }
-    };
-  }
-  return {};
-}
-function parseStateNodeRef(text) {
-  const t3 = text.trim();
-  if (!t3) return null;
-  if (t3 === "[*]") {
-    return {
-      id: PSEUDOSTATE_ID,
-      label: PSEUDOSTATE_LABEL,
-      shape: "pseudostate"
-    };
-  }
-  const label = t3;
-  if (!label) return null;
-  return {
-    id: `state:${normalizeName(label)}`,
-    label,
-    shape: "state"
-  };
-}
-function parseState(content, palette) {
-  const lines = content.split("\n");
-  const options = {};
-  const result = {
-    type: "state",
-    direction: "LR",
-    nodes: [],
-    edges: [],
-    tagGroups: [],
-    options,
-    diagnostics: [],
-    error: null
-  };
-  const fail = (line, message) => {
-    const diag = makeDgmoError(line, message);
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-    return result;
-  };
-  const nodeMap = /* @__PURE__ */ new Map();
-  const indentStack = [];
-  const notes = [];
-  let currentGroup = null;
-  let groupIndent = -1;
-  const groups = [];
-  let contentStarted = false;
-  let firstLineParsed = false;
-  const tagGroups = result.tagGroups;
-  let currentTagGroup = null;
-  const metaAliasMap = /* @__PURE__ */ new Map();
-  let registry = STATE_REGISTRY;
-  const refreshRegistry = () => {
-    registry = withTagAliases(STATE_REGISTRY, new Set(metaAliasMap.keys()));
-  };
-  function peelStateMeta(text) {
-    if (metaAliasMap.size === 0) return { text, meta: {} };
-    const cut = cutUnionMetadata(text, registry);
-    if (cut === -1) return { text, meta: {} };
-    return {
-      text: text.substring(0, cut).trimEnd(),
-      meta: parseMetadataRegion(text.substring(cut), metaAliasMap)
-    };
-  }
-  const nameAliasMap = /* @__PURE__ */ new Map();
-  function peelAlias2(seg) {
-    const trimmed = seg.trim();
-    const m = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
-    if (!m) return { seg: trimmed };
-    return { seg: m[1].trim(), alias: m[2] };
-  }
-  function getOrCreateNode(ref, lineNumber, meta) {
-    const key = ref.id;
-    const existing = nodeMap.get(key);
-    if (existing) {
-      if (meta && Object.keys(meta).length > 0) {
-        existing.metadata = { ...existing.metadata ?? {}, ...meta };
-      }
-      const incomingDisplay = displayName(ref.label);
-      const existingDisplay = displayName(existing.label);
-      if (incomingDisplay !== existingDisplay) {
-        result.diagnostics.push(
-          makeDgmoError(
-            lineNumber,
-            nameMergedMessage({
-              incomingDisplay,
-              incomingLine: lineNumber,
-              existingDisplay,
-              existingLine: existing.lineNumber
-            }),
-            "warning",
-            NAME_DIAGNOSTIC_CODES.NAME_MERGED
-          )
-        );
-      }
-      return existing;
-    }
-    const node = {
-      id: key,
-      label: ref.label,
-      shape: ref.shape,
-      lineNumber,
-      ...ref.color && { color: ref.color },
-      ...currentGroup && { group: currentGroup.id },
-      ...meta && Object.keys(meta).length > 0 && { metadata: { ...meta } }
-    };
-    nodeMap.set(key, node);
-    result.nodes.push(node);
-    if (currentGroup && !currentGroup.nodeIds.includes(key)) {
-      currentGroup.nodeIds.push(key);
-    }
-    return node;
-  }
-  function addEdge(sourceId, targetId, lineNumber, label) {
-    result.edges.push({
-      source: sourceId,
-      target: targetId,
-      lineNumber,
-      ...label && { label }
-    });
-  }
-  for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i];
-    const trimmed = raw.trim();
-    const lineNumber = i + 1;
-    const indent = measureIndent(raw);
-    if (!trimmed) {
-      currentTagGroup = null;
-      continue;
-    }
-    if (trimmed.startsWith("//")) continue;
-    if (!firstLineParsed && !contentStarted) {
-      const firstLineResult = parseFirstLine(trimmed);
-      if (firstLineResult) {
-        firstLineParsed = true;
-        if (firstLineResult.chartType !== "state") {
-          const allTypes = Array.from(ALL_CHART_TYPES);
-          let msg = `Expected chart type "state", got "${firstLineResult.chartType}"`;
-          const hint = suggest(firstLineResult.chartType, allTypes);
-          if (hint) msg += `. ${hint}`;
-          return fail(lineNumber, msg);
-        }
-        if (firstLineResult.title) {
-          result.title = firstLineResult.title;
-          result.titleLineNumber = lineNumber;
-        }
-        continue;
-      }
-    }
-    if (!contentStarted) {
-      const tagBlockMatch = matchTagBlockHeading(trimmed);
-      if (tagBlockMatch) {
-        currentTagGroup = {
-          name: tagBlockMatch.name,
-          ...tagBlockMatch.alias !== void 0 && {
-            alias: tagBlockMatch.alias
-          },
-          entries: [],
-          lineNumber
-        };
-        if (tagBlockMatch.alias) {
-          metaAliasMap.set(
-            normalizeName(tagBlockMatch.alias),
-            tagAttrKey(tagBlockMatch.name)
-          );
-        }
-        metaAliasMap.set(
-          normalizeName(tagBlockMatch.name),
-          tagAttrKey(tagBlockMatch.name)
-        );
-        refreshRegistry();
-        tagGroups.push(currentTagGroup);
-        continue;
-      }
-      if (currentTagGroup && indent > 0) {
-        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
-        const { label, color: color2 } = extractColor(
-          cleanEntry,
-          palette,
-          result.diagnostics,
-          lineNumber
-        );
-        if (isDefault || currentTagGroup.entries.length === 0) {
-          currentTagGroup.defaultValue = label;
-        }
-        currentTagGroup.entries.push({
-          value: label,
-          // Bare value → sentinel; finalizeAutoTagColors assigns a
-          // deterministic palette color after the parse.
-          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-          lineNumber
-        });
-        continue;
-      }
-      currentTagGroup = null;
-    }
-    const noteResult = tryCollectNote(
-      lines,
-      i,
-      indent,
-      palette,
-      result.diagnostics
-    );
-    if (noteResult) {
-      if (noteResult.note) notes.push(noteResult.note);
-      i = noteResult.lastIndex;
-      continue;
-    }
-    const groupMatch = trimmed.match(GROUP_BRACKET_RE);
-    if (groupMatch && groupMatch[1].trim() !== "*") {
-      const groupLabel = groupMatch[1].trim();
-      const groupColorName = groupMatch[2]?.trim();
-      const groupColor = groupColorName ? resolveColorWithDiagnostic(
-        groupColorName,
-        lineNumber,
-        result.diagnostics,
-        palette
-      ) : void 0;
-      const groupCollapsed = groupMatch[3] !== void 0 && (groupMatch[4] === void 0 || groupMatch[4].toLowerCase() === "true");
-      currentGroup = {
-        id: `group:${groupLabel.toLowerCase()}`,
-        label: groupLabel,
-        nodeIds: [],
-        lineNumber,
-        ...groupColor && { color: groupColor },
-        ...groupCollapsed && { collapsed: true }
-      };
-      groupIndent = indent;
-      groups.push(currentGroup);
-      continue;
-    }
-    if (!contentStarted) {
-      const dirBool = trimmed.match(/^direction-(lr|tb)$/i);
-      if (dirBool) {
-        result.direction = dirBool[1].toUpperCase();
-        continue;
-      }
-      if (FILL_FAMILY_TOKENS.has(trimmed.toLowerCase())) {
-        for (const t3 of FILL_FAMILY_TOKENS) delete options[t3];
-        if (trimmed.toLowerCase() !== "fill-tint")
-          options[trimmed.toLowerCase()] = "on";
-        continue;
-      }
-      if (/^no-color$/i.test(trimmed)) {
-        result.diagnostics.push(
-          makeDgmoError(lineNumber, '"no-color" has been removed.', "warning")
-        );
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, options)) {
-        continue;
-      }
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      const carriesTagMeta = metaAliasMap.size > 0 && cutUnionMetadata(trimmed, registry) !== -1;
-      if (optMatch && !trimmed.includes("->") && !carriesTagMeta) {
-        const key = optMatch[1].toLowerCase();
-        const value = optMatch[2].trim();
-        if (key === "no-color") {
-          result.diagnostics.push(
-            makeDgmoError(
-              lineNumber,
-              '"no-color" was removed \u2014 state colors are assigned automatically; delete this line.',
-              "warning"
-            )
-          );
-          continue;
-        }
-        options[key] = value;
-        continue;
-      }
-    }
-    contentStarted = true;
-    if (currentGroup && indent <= groupIndent) {
-      currentGroup = null;
-      groupIndent = -1;
-    }
-    while (indentStack.length > 0) {
-      const top2 = indentStack[indentStack.length - 1];
-      if (top2.indent >= indent) {
-        indentStack.pop();
-      } else {
-        break;
-      }
-    }
-    const implicitSourceId = indentStack.length > 0 ? (
-      // In-bounds by length check above.
-      indentStack[indentStack.length - 1].nodeId
-    ) : null;
-    const segments = splitArrows2(trimmed);
-    if (segments.length === 1) {
-      const withMeta = peelStateMeta(segments[0]);
-      const peeled = peelAlias2(withMeta.text);
-      const ref = parseStateNodeRef(peeled.seg);
-      if (ref) {
-        const node = getOrCreateNode(ref, lineNumber, withMeta.meta);
-        if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
-        node.lineNumber = lineNumber;
-        indentStack.push({ nodeId: node.id, indent });
-      } else {
-        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
-        if (aliasResolved !== void 0) {
-          indentStack.push({ nodeId: aliasResolved, indent });
-        }
-      }
-      continue;
-    }
-    let lastNodeId = null;
-    let pendingArrow = null;
-    for (let j2 = 0; j2 < segments.length; j2++) {
-      const seg = segments[j2];
-      if (seg === "->" || /^-.+->$/.test(seg)) {
-        pendingArrow = parseArrowToken2(
-          seg,
-          palette,
-          lineNumber,
-          result.diagnostics
-        );
-        continue;
-      }
-      const peeled = peelAlias2(seg);
-      let ref = parseStateNodeRef(peeled.seg);
-      if (!ref) {
-        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
-        if (aliasResolved !== void 0) {
-          const existing = nodeMap.get(aliasResolved);
-          if (existing) {
-            const shape = existing.shape;
-            ref = {
-              id: aliasResolved,
-              label: existing.label,
-              shape
-            };
-          }
-        }
-      }
-      if (!ref) continue;
-      const node = getOrCreateNode(ref, lineNumber);
-      if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
-      if (pendingArrow !== null) {
-        const sourceId = lastNodeId ?? implicitSourceId;
-        if (sourceId) {
-          addEdge(sourceId, node.id, lineNumber, pendingArrow.label);
-        }
-        pendingArrow = null;
-      }
-      lastNodeId = node.id;
-    }
-    if (lastNodeId) {
-      indentStack.push({ nodeId: lastNodeId, indent });
-    }
-  }
-  if (tagGroups.length > 0) {
-    finalizeAutoTagColors(tagGroups, palette);
-    const defaults = [];
-    for (const group of tagGroups) {
-      if (group.defaultValue) {
-        defaults.push({
-          key: tagAttrKey(group.name),
-          value: group.defaultValue
-        });
-      }
-    }
-    const taggable = result.nodes.filter(
-      (n) => n.shape !== "pseudostate"
-    );
-    for (const node of taggable) {
-      const meta = { ...node.metadata ?? {} };
-      for (const { key, value } of defaults) {
-        if (!(key in meta)) meta[key] = value;
-      }
-      node.metadata = meta;
-    }
-    validateTagValues(
-      taggable.map((n) => ({
-        metadata: n.metadata ?? {},
-        lineNumber: n.lineNumber
-      })),
-      tagGroups,
-      (line, message) => result.diagnostics.push(makeDgmoError(line, message, "warning")),
-      suggest
-    );
-    validateTagGroupNames(
-      tagGroups,
-      (line, message) => result.diagnostics.push(makeDgmoError(line, message, "warning")),
-      (line, message) => {
-        const diag = makeDgmoError(line, message);
-        result.diagnostics.push(diag);
-        if (!result.error) result.error = formatDgmoError(diag);
-      }
-    );
-  }
-  if (groups.length > 0) result.groups = groups;
-  if (notes.length > 0) {
-    result.notes = notes;
-    resolveNotes(notes, result.nodes, result.diagnostics);
-  }
-  if (result.nodes.length === 0 && !result.error) {
-    const diag = makeDgmoError(
-      1,
-      "No states found. Add state transitions like: Idle -> Active"
-    );
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  if (result.nodes.length >= 2 && result.edges.length >= 1 && !result.error) {
-    const connectedIds = /* @__PURE__ */ new Set();
-    for (const edge of result.edges) {
-      connectedIds.add(edge.source);
-      connectedIds.add(edge.target);
-    }
-    for (const node of result.nodes) {
-      if (!connectedIds.has(node.id)) {
-        result.diagnostics.push(
-          makeDgmoError(
-            node.lineNumber,
-            `State "${node.label}" is not connected to any other state`,
-            "warning"
-          )
-        );
-      }
-    }
-  }
-  return result;
-}
-function looksLikeState(content) {
-  return content.includes("[*]") && content.includes("->");
-}
-var PSEUDOSTATE_ID, PSEUDOSTATE_LABEL, GROUP_BRACKET_RE;
-var init_chunk_APD52YJV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-APD52YJV.js"() {
-    init_chunk_ST3ZNEUQ();
-    init_chunk_7NK42OIB();
-    init_chunk_RRX4Z4TH();
-    init_chunk_NOTA6TEI();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_EXNKNJ65();
-    init_chunk_OLMWTJVU();
-    PSEUDOSTATE_ID = "pseudostate:[*]";
-    PSEUDOSTATE_LABEL = "[*]";
-    GROUP_BRACKET_RE = /^\[([^\]]+)\](?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:,?\s+(collapsed)(?::\s*(\S+))?)?\s*$/;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VYEQPPS6.js
-function classId(name) {
-  return normalizeName(name);
-}
-function parseVisibility(prefix) {
-  switch (prefix) {
-    case "-":
-      return "private";
-    case "#":
-      return "protected";
-    default:
-      return "public";
-  }
-}
-function parseMember(line, lineNumber, isEnum) {
-  let text = line.trim();
-  if (!text) return null;
-  if (isEnum) {
-    return {
-      name: text,
-      visibility: "public",
-      isStatic: false,
-      isMethod: false,
-      lineNumber
-    };
-  }
-  let visibility = "public";
-  const visMatch = text.match(VISIBILITY_RE);
-  if (visMatch) {
-    visibility = parseVisibility(visMatch[1]);
-    text = text.substring(visMatch[0].length);
-  }
-  let isStatic = false;
-  if (STATIC_SUFFIX_RE.test(text)) {
-    isStatic = true;
-    text = text.replace(STATIC_SUFFIX_RE, "").trim();
-  }
-  const methodMatch = text.match(METHOD_RE);
-  if (methodMatch) {
-    const methodType = methodMatch[3]?.trim();
-    return {
-      name: methodMatch[1].trim(),
-      params: methodMatch[2].trim(),
-      ...methodType !== void 0 && { type: methodType },
-      visibility,
-      isStatic,
-      isMethod: true,
-      lineNumber
-    };
-  }
-  const fieldMatch = text.match(FIELD_RE);
-  if (fieldMatch) {
-    return {
-      name: fieldMatch[1].trim(),
-      type: fieldMatch[2].trim(),
-      visibility,
-      isStatic,
-      isMethod: false,
-      lineNumber
-    };
-  }
-  return {
-    name: text,
-    visibility,
-    isStatic,
-    isMethod: false,
-    lineNumber
-  };
-}
-function parseClassDiagram(content, palette) {
-  const lines = content.split("\n");
-  const options = {};
-  const result = {
-    type: "class",
-    classes: [],
-    relationships: [],
-    options,
-    diagnostics: [],
-    error: null
-  };
-  const classMap = /* @__PURE__ */ new Map();
-  const notes = [];
-  const nameAliasMap = /* @__PURE__ */ new Map();
-  function resolveAliasName(token) {
-    if (!token) return token;
-    const trimmed = token.trim();
-    const hit = nameAliasMap.get(trimmed);
-    if (hit !== void 0) {
-      for (const [, node] of classMap) {
-        if (classId(node.name) === hit) return node.name;
-      }
-    }
-    return token;
-  }
-  let currentClass = null;
-  let contentStarted = false;
-  function getOrCreateClass(name, lineNumber) {
-    const key = classId(name);
-    const existing = classMap.get(key);
-    if (existing) {
-      const incomingDisplay = displayName(name);
-      const existingDisplay = displayName(existing.name);
-      if (incomingDisplay !== existingDisplay) {
-        result.diagnostics.push(
-          makeDgmoError(
-            lineNumber,
-            nameMergedMessage({
-              incomingDisplay,
-              incomingLine: lineNumber,
-              existingDisplay,
-              existingLine: existing.lineNumber
-            }),
-            "warning",
-            NAME_DIAGNOSTIC_CODES.NAME_MERGED
-          )
-        );
-      }
-      return existing;
-    }
-    const node = {
-      id: key,
-      name,
-      members: [],
-      lineNumber
-    };
-    classMap.set(key, node);
-    result.classes.push(node);
-    return node;
-  }
-  for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i];
-    const trimmed = raw.trim();
-    const lineNumber = i + 1;
-    const indent = measureIndent(raw);
-    if (!trimmed) {
-      if (indent === 0) currentClass = null;
-      continue;
-    }
-    if (trimmed.startsWith("//")) continue;
-    if (indent === 0) {
-      const noteResult = tryCollectNote(
-        lines,
-        i,
-        indent,
-        palette,
-        result.diagnostics
-      );
-      if (noteResult) {
-        currentClass = null;
-        contentStarted = true;
-        if (noteResult.note) notes.push(noteResult.note);
-        i = noteResult.lastIndex;
-        continue;
-      }
-    }
-    if (!contentStarted && indent === 0 && i === 0) {
-      const firstLine = parseFirstLine(trimmed);
-      if (firstLine?.chartType === "class") {
-        if (firstLine.title) {
-          result.title = firstLine.title;
-          result.titleLineNumber = lineNumber;
-        }
-        continue;
-      }
-    }
-    if (!contentStarted && indent === 0 && /^[a-z]/.test(trimmed)) {
-      if (trimmed.toLowerCase() === "no-auto-color") {
-        result.diagnostics.push(
-          makeDgmoError(
-            lineNumber,
-            '"no-auto-color" was removed \u2014 colors are always auto-assigned from the palette; delete this line.',
-            "warning"
-          )
-        );
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, options)) {
-        continue;
-      }
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch) {
-        const key = optMatch[1].toLowerCase();
-        const value = optMatch[2].trim();
-        if (key !== "abstract" && key !== "interface" && key !== "enum") {
-          options[key] = value;
-          continue;
-        }
-      }
-    }
-    if (indent > 0 && currentClass) {
-      const indentRel = trimmed.match(INDENT_REL_ARROW_RE);
-      if (indentRel) {
-        const arrow = indentRel[1];
-        const rawTarget = (indentRel[2] ?? indentRel[3] ?? "").trim();
-        const targetName = resolveAliasName(rawTarget) ?? rawTarget;
-        const label = indentRel[4]?.trim();
-        getOrCreateClass(targetName, lineNumber);
-        if (label) {
-          result.diagnostics.push(
-            ...validateLabelCharacters(label, lineNumber)
-          );
-        }
-        result.relationships.push({
-          source: currentClass.id,
-          target: classId(targetName),
-          // INDENT_REL_ARROW_RE only matches arrows present in ARROW_TO_TYPE.
-          type: ARROW_TO_TYPE[arrow],
-          ...label && { label },
-          lineNumber
-        });
-        continue;
-      }
-      const member = parseMember(
-        trimmed,
-        lineNumber,
-        currentClass.modifier === "enum"
-      );
-      if (member) {
-        currentClass.members.push(member);
-      }
-      continue;
-    }
-    currentClass = null;
-    contentStarted = true;
-    const relArrow = trimmed.match(REL_ARROW_RE);
-    if (relArrow) {
-      const sourceName = (relArrow[1] ?? relArrow[2] ?? "").trim();
-      const arrow = relArrow[3];
-      const targetName = (relArrow[4] ?? relArrow[5] ?? "").trim();
-      result.diagnostics.push(
-        makeDgmoError(
-          lineNumber,
-          `Relationship "${sourceName} ${arrow} ${targetName}" must be indented under the source class "${sourceName}"`,
-          "warning"
-        )
-      );
-      continue;
-    }
-    const classDecl = trimmed.match(CLASS_DECL_RE);
-    if (classDecl) {
-      const prefixModifier = classDecl[1];
-      const name = (classDecl[2] ?? classDecl[3] ?? "").trim();
-      const extendsRaw = classDecl[4] ?? classDecl[5];
-      const extendsParent = extendsRaw ? extendsRaw.trim() : void 0;
-      const implementsRaw = classDecl[6] ?? classDecl[7];
-      const implementsInterface = implementsRaw ? implementsRaw.trim() : void 0;
-      const bracketModifier = classDecl[8];
-      const modifier = prefixModifier ?? bracketModifier;
-      const colorName = classDecl[9]?.trim();
-      const color2 = colorName ? resolveColorWithDiagnostic(
-        colorName,
-        lineNumber,
-        result.diagnostics,
-        palette
-      ) : void 0;
-      const aliasLiteral = classDecl[10];
-      const node = getOrCreateClass(name, lineNumber);
-      if (modifier) node.modifier = modifier;
-      if (color2) node.color = color2;
-      if (aliasLiteral) nameAliasMap.set(aliasLiteral, classId(name));
-      node.lineNumber = lineNumber;
-      if (extendsParent) {
-        const ext = resolveAliasName(extendsParent) ?? extendsParent;
-        getOrCreateClass(ext, lineNumber);
-        result.relationships.push({
-          source: classId(name),
-          target: classId(ext),
-          type: "extends",
-          lineNumber
-        });
-      }
-      if (implementsInterface) {
-        const impl = resolveAliasName(implementsInterface) ?? implementsInterface;
-        getOrCreateClass(impl, lineNumber);
-        result.relationships.push({
-          source: classId(name),
-          target: classId(impl),
-          type: "implements",
-          lineNumber
-        });
-      }
-      currentClass = node;
-      continue;
-    }
-    result.diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        `Unexpected line: '${trimmed}'. Classes start uppercase at indent 0 ('Ship'); members are indented and colon-typed ('+ name: string', '+ sail(): void'); relationships are indented arrows ('--|> Vessel'). (\xA710)`,
-        "warning"
-      )
-    );
-  }
-  if (notes.length > 0) {
-    result.notes = notes;
-    resolveNotes(
-      notes,
-      result.classes.map((c) => ({ id: c.id, label: c.name })),
-      result.diagnostics
-    );
-  }
-  if (result.classes.length === 0 && !result.error) {
-    const diag = makeDgmoError(
-      1,
-      'No classes found. Add class declarations like "ClassName" or "ClassName [interface]".'
-    );
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  if (result.classes.length >= 2 && result.relationships.length >= 1 && !result.error) {
-    const connectedIds = /* @__PURE__ */ new Set();
-    for (const rel of result.relationships) {
-      connectedIds.add(rel.source);
-      connectedIds.add(rel.target);
-    }
-    for (const cls of result.classes) {
-      if (!connectedIds.has(cls.id)) {
-        result.diagnostics.push(
-          makeDgmoError(
-            cls.lineNumber,
-            `Class "${cls.name}" is not connected to any other class`,
-            "warning"
-          )
-        );
-      }
-    }
-  }
-  return result;
-}
-function looksLikeClassDiagram(content) {
-  const lines = content.split("\n");
-  let hasModifier = false;
-  let hasRelationship = false;
-  let hasIndentedMember = false;
-  let hasClassDecl = false;
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("//")) continue;
-    if (/^(chart|title)\s*:/i.test(trimmed)) continue;
-    if (/^class(\s|$)/i.test(trimmed)) continue;
-    const indent = measureIndent(line);
-    if (indent === 0) {
-      if (/^(abstract|interface|enum)\s+[A-Z][A-Za-z0-9_]*/i.test(trimmed)) {
-        hasModifier = true;
-        hasClassDecl = true;
-      }
-      if (/^[A-Z][A-Za-z0-9_]*\s+\[(abstract|interface|enum)\]/i.test(trimmed)) {
-        hasModifier = true;
-        hasClassDecl = true;
-      }
-      if (/^[A-Z][A-Za-z0-9_]*\s+(extends|implements)\s+[A-Z]/.test(trimmed)) {
-        hasRelationship = true;
-        hasClassDecl = true;
-      }
-      if (REL_ARROW_RE.test(trimmed)) {
-        hasRelationship = true;
-      }
-      if (CLASS_DECL_RE.test(trimmed)) {
-        hasClassDecl = true;
-      }
-    } else {
-      if (/^[+\-#]?\s*\w+.*[:(]/.test(trimmed)) {
-        hasIndentedMember = true;
-      }
-      if (INDENT_REL_ARROW_RE.test(trimmed)) {
-        hasRelationship = true;
-      }
-    }
-  }
-  if (hasModifier) return true;
-  if (hasRelationship && hasClassDecl && hasIndentedMember) return true;
-  return false;
-}
-function extractSymbols4(docText) {
-  const entities = [];
-  let inMetadata = true;
-  for (const rawLine of docText.split("\n")) {
-    const line = rawLine.trim();
-    if (inMetadata && (/^[a-z-]+\s*:/i.test(line) || /^class(\s|$)/i.test(line)))
-      continue;
-    if (inMetadata && line.toLowerCase() === "no-auto-color") continue;
-    if (inMetadata && /^[a-z]/.test(line) && OPTION_NOCOLON_RE.test(line)) {
-      const key = line.match(OPTION_NOCOLON_RE)[1].toLowerCase();
-      if (key !== "abstract" && key !== "interface" && key !== "enum") continue;
-    }
-    inMetadata = false;
-    if (line.length === 0 || /^\s/.test(rawLine)) continue;
-    const m = CLASS_DECL_RE.exec(line);
-    if (m) {
-      const name = (m[2] ?? m[3] ?? "").trim();
-      if (name && !entities.includes(name)) entities.push(name);
-    }
-  }
-  return {
-    kind: "class",
-    entities
-  };
-}
-var CLASS_DECL_RE, INDENT_REL_ARROW_RE, REL_ARROW_RE, VISIBILITY_RE, STATIC_SUFFIX_RE, METHOD_RE, FIELD_RE, ARROW_TO_TYPE;
-var init_chunk_VYEQPPS6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VYEQPPS6.js"() {
-    init_chunk_ST3ZNEUQ();
-    init_chunk_7NK42OIB();
-    init_chunk_RRX4Z4TH();
-    init_chunk_NOTA6TEI();
-    init_chunk_3KOPPSUQ();
-    init_chunk_EXNKNJ65();
-    init_chunk_OLMWTJVU();
-    CLASS_DECL_RE = /^(?:(abstract|interface|enum)\s+)?(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+extends\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+implements\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+\[(abstract|interface|enum)\])?(?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11}))?\s*$/;
-    INDENT_REL_ARROW_RE = /^(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Za-z][^":]*?))(?:\s+:?\s*(.+))?$/;
-    REL_ARROW_RE = /^(?:"([^"]+)"|([A-Z][^":]*?))\s*(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+:?\s*(.+))?$/;
-    VISIBILITY_RE = /^([+\-#])\s*/;
-    STATIC_SUFFIX_RE = /\{static\}\s*$/;
-    METHOD_RE = /^(.+?)\(([^)]*)\)(?:\s*:\s*(.+))?$/;
-    FIELD_RE = /^(.+?)\s*:\s*(.+)$/;
-    ARROW_TO_TYPE = {
-      "--|>": "extends",
-      "..|>": "implements",
-      "*--": "composes",
-      "o--": "aggregates",
-      "..>": "depends",
-      "->": "associates"
-    };
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULR3BVNH.js
-function tableId(name) {
-  return normalizeName(name);
-}
-function parseCardSide(token) {
-  if (token === "1" || token === "*" || token === "?") return token;
-  return null;
-}
-function parseRelationship(trimmed, lineNumber, pushError) {
-  const sym = trimmed.match(REL_SYMBOLIC_RE);
-  if (sym) {
-    const fromCard = parseCardSide(sym[3]);
-    const toCard = parseCardSide(sym[4]);
-    if (fromCard && toCard) {
-      const sourceName = (sym[1] ?? sym[2] ?? "").trim();
-      const targetName = (sym[5] ?? sym[6] ?? "").trim();
-      const label = sym[7]?.trim();
-      if (label) {
-        validateLabelCharacters(label, lineNumber).forEach(
-          (d) => pushError(d.line, d.message)
-        );
-      }
-      return {
-        source: tableId(sourceName),
-        target: tableId(targetName),
-        from: fromCard,
-        to: toCard,
-        ...label !== void 0 && { label }
-      };
-    }
-  }
-  const kw = trimmed.match(REL_KEYWORD_RE);
-  if (kw) {
-    const sourceName = (kw[1] ?? kw[2] ?? "").trim();
-    const targetName = (kw[5] ?? kw[6] ?? "").trim();
-    const fromKw = kw[3];
-    const toKw = kw[4];
-    const fromSym = KEYWORD_TO_SYMBOL[fromKw.toLowerCase()] ?? fromKw;
-    const toSym = KEYWORD_TO_SYMBOL[toKw.toLowerCase()] ?? toKw;
-    pushError(
-      lineNumber,
-      `Use symbolic cardinality (1--*, ?--1, *--*) instead of "${fromKw}-to-${toKw}". Example: ${sourceName} ${fromSym}--${toSym} ${targetName}`
-    );
-    return null;
-  }
-  return null;
-}
-function parseColumn(trimmed) {
-  const rawTokens = tokenizeQuoteAware(trimmed);
-  if (rawTokens.length === 0) return null;
-  const firstRaw = rawTokens[0];
-  const wasQuoted = firstRaw.startsWith('"') || firstRaw.startsWith("'");
-  const name = stripQuotes(firstRaw);
-  if (!wasQuoted && !/^\w+$/.test(name)) return null;
-  const constraints = [];
-  let type;
-  for (let i = 1; i < rawTokens.length; i++) {
-    const tok = stripQuotes(rawTokens[i]);
-    const lower2 = tok.toLowerCase();
-    const constraint = CONSTRAINT_MAP[lower2];
-    if (constraint) {
-      constraints.push(constraint);
-    } else if (type === void 0) {
-      type = tok;
-    } else {
-      return null;
-    }
-  }
-  return { name, ...type !== void 0 && { type }, constraints };
-}
-function parseERDiagram(content, palette) {
-  const lines = content.split("\n");
-  const options = {};
-  const result = {
-    type: "er",
-    options,
-    tables: [],
-    relationships: [],
-    tagGroups: [],
-    diagnostics: [],
-    error: null
-  };
-  const pushError = (line, message) => {
-    const diag = makeDgmoError(line, message);
-    result.diagnostics.push(diag);
-    if (!result.error) result.error = formatDgmoError(diag);
-  };
-  const tableMap = /* @__PURE__ */ new Map();
-  const tableMetadataMap = /* @__PURE__ */ new Map();
-  let currentTable = null;
-  const notes = [];
-  let contentStarted = false;
-  let currentTagGroup = null;
-  const metaAliasMap = /* @__PURE__ */ new Map();
-  const nameAliasMap = /* @__PURE__ */ new Map();
-  function peelAlias2(label) {
-    const trimmed = label.trim();
-    const m = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
-    if (!m) return { label: trimmed };
-    return { label: m[1].trim(), alias: m[2] };
-  }
-  function resolveAliasName(token) {
-    return nameAliasMap.get(token.trim()) ?? token;
-  }
-  let firstLineParsed = false;
-  function getOrCreateTable(name, lineNumber) {
-    const key = tableId(name);
-    const existing = tableMap.get(key);
-    if (existing) {
-      const incomingDisplay = displayName(name);
-      const existingDisplay = displayName(existing.name);
-      if (incomingDisplay !== existingDisplay) {
-        result.diagnostics.push(
-          makeDgmoError(
-            lineNumber,
-            nameMergedMessage({
-              incomingDisplay,
-              incomingLine: lineNumber,
-              existingDisplay,
-              existingLine: existing.lineNumber
-            }),
-            "warning",
-            NAME_DIAGNOSTIC_CODES.NAME_MERGED
-          )
-        );
-      }
-      return existing;
-    }
-    const metadata = {};
-    const table = {
-      id: key,
-      name,
-      columns: [],
-      metadata,
-      lineNumber
-    };
-    tableMap.set(key, table);
-    tableMetadataMap.set(key, metadata);
-    result.tables.push(table);
-    return table;
-  }
-  for (let i = 0; i < lines.length; i++) {
-    const raw = lines[i];
-    const trimmed = raw.trim();
-    const lineNumber = i + 1;
-    const indent = measureIndent(raw);
-    if (!trimmed) {
-      if (indent === 0) currentTable = null;
-      continue;
-    }
-    if (trimmed.startsWith("//")) continue;
-    if (!firstLineParsed && indent === 0) {
-      const firstLineResult = parseFirstLine(trimmed);
-      if (firstLineResult?.chartType === "er") {
-        firstLineParsed = true;
-        if (firstLineResult.title) {
-          result.title = firstLineResult.title;
-          result.titleLineNumber = lineNumber;
-        }
-        continue;
-      }
-      firstLineParsed = true;
-    }
-    if (!contentStarted && indent === 0) {
-      const tagBlockMatch = matchTagBlockHeading(trimmed);
-      if (tagBlockMatch) {
-        currentTagGroup = {
-          name: tagBlockMatch.name,
-          ...tagBlockMatch.alias !== void 0 && {
-            alias: tagBlockMatch.alias
-          },
-          entries: [],
-          lineNumber
-        };
-        if (tagBlockMatch.alias) {
-          metaAliasMap.set(
-            normalizeName(tagBlockMatch.alias),
-            tagBlockMatch.name.toLowerCase()
-          );
-        }
-        metaAliasMap.set(
-          normalizeName(tagBlockMatch.name),
-          tagBlockMatch.name.toLowerCase()
-        );
-        result.tagGroups.push(currentTagGroup);
-        continue;
-      }
-    }
-    if (currentTagGroup && !contentStarted && indent > 0) {
-      const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
-      const { label, color: color2 } = extractColor(
-        cleanEntry,
-        palette,
-        result.diagnostics,
-        lineNumber
-      );
-      if (isDefault) {
-        currentTagGroup.defaultValue = label;
-      } else if (currentTagGroup.entries.length === 0) {
-        currentTagGroup.defaultValue = label;
-      }
-      currentTagGroup.entries.push({
-        value: label,
-        color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-        lineNumber
-      });
-      continue;
-    }
-    if (currentTagGroup && indent === 0) {
-      currentTagGroup = null;
-    }
-    if (!contentStarted && indent === 0) {
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch) {
-        const key = optMatch[1].toLowerCase();
-        const value = optMatch[2].trim();
-        if (KNOWN_OPTIONS8.has(key)) {
-          options[key] = value.toLowerCase();
-          continue;
-        }
-      }
-      if (trimmed.toLowerCase() === "no-semantic-colors") {
-        options["no-semantic-colors"] = "on";
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, options)) {
-        continue;
-      }
-    }
-    if (indent > 0 && currentTable) {
-      const indentRel = trimmed.match(INDENT_REL_RE);
-      if (indentRel) {
-        const fromCard = parseCardSide(indentRel[1]);
-        const toCard = parseCardSide(indentRel[3]);
-        if (fromCard && toCard) {
-          const rawTarget = (indentRel[4] ?? indentRel[5] ?? "").trim();
-          const targetName = resolveAliasName(rawTarget);
-          getOrCreateTable(targetName, lineNumber);
-          const rawLabel = indentRel[2]?.trim();
-          if (rawLabel) {
-            result.diagnostics.push(
-              ...validateLabelCharacters(rawLabel, lineNumber)
-            );
-          }
-          result.relationships.push({
-            source: currentTable.id,
-            target: tableId(targetName),
-            cardinality: { from: fromCard, to: toCard },
-            ...rawLabel && { label: rawLabel },
-            lineNumber
-          });
-        }
-        continue;
-      }
-      const colResult = parseColumn(trimmed);
-      if (colResult) {
-        currentTable.columns.push({
-          name: colResult.name,
-          ...colResult.type && { type: colResult.type },
-          constraints: colResult.constraints,
-          lineNumber
-        });
-      }
-      continue;
-    }
-    currentTable = null;
-    contentStarted = true;
-    const noteResult = tryCollectNote(
-      lines,
-      i,
-      indent,
-      palette,
-      result.diagnostics
-    );
-    if (noteResult) {
-      if (noteResult.note) notes.push(noteResult.note);
-      i = noteResult.lastIndex;
-      continue;
-    }
-    const rel = parseRelationship(trimmed, lineNumber, pushError);
-    if (rel) {
-      result.diagnostics.push(
-        makeDgmoError(
-          lineNumber,
-          `Relationship "${rel.source} \u2192 ${rel.target}" must be indented under the source table "${rel.source}"`,
-          "warning"
-        )
-      );
-      continue;
-    }
-    const registry = withTagAliases(ER_REGISTRY, new Set(metaAliasMap.keys()));
-    const split = splitNameAndMeta(
-      trimmed,
-      registry,
-      metaAliasMap,
-      void 0,
-      result.diagnostics,
-      lineNumber
-    );
-    warnUnknownMetaKeys(
-      split.meta,
-      registry,
-      (msg) => result.diagnostics.push(makeDgmoError(lineNumber, msg, "warning")),
-      split.name
-    );
-    const tableDecl = split.name.match(TABLE_DECL_RE);
-    if (tableDecl) {
-      const rawName = (tableDecl[1] ?? tableDecl[2] ?? "").trim();
-      const peeled = peelAlias2(rawName);
-      const name = peeled.label;
-      if (peeled.alias) nameAliasMap.set(peeled.alias, name);
-      const colorName = split.color ?? tableDecl[3]?.trim();
-      const color2 = colorName ? resolveColorWithDiagnostic(
-        colorName,
-        lineNumber,
-        result.diagnostics,
-        palette
-      ) : void 0;
-      const table = getOrCreateTable(name, lineNumber);
-      if (color2) table.color = color2;
-      table.lineNumber = lineNumber;
-      if (Object.keys(split.meta).length > 0) {
-        const mutableMeta = tableMetadataMap.get(table.id);
-        if (mutableMeta) Object.assign(mutableMeta, split.meta);
-      }
-      currentTable = table;
-      continue;
-    }
-    result.diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        `Unexpected line: '${trimmed}'. A table is a bare name at indent 0 ('users'); columns are indented and SPACE-separated, no colon ('id int pk'); relationships are indented ('1--* orders'). (\xA79)`,
-        "warning"
-      )
-    );
-  }
-  if (result.tables.length === 0 && !result.error) {
-    const diag = makeDgmoError(
-      1,
-      'No tables found. Add table declarations like "users" or "orders blue".'
-    );
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  finalizeAutoTagColors(result.tagGroups, palette);
-  if (result.tagGroups.length > 0) {
-    const tagEntities = result.tables.map((t3) => ({
-      metadata: t3.metadata,
-      lineNumber: t3.lineNumber
-    }));
-    validateTagValues(
-      tagEntities,
-      result.tagGroups,
-      (line, msg) => result.diagnostics.push(makeDgmoError(line, msg, "warning")),
-      suggest
-    );
-    validateTagGroupNames(
-      result.tagGroups,
-      (line, msg) => result.diagnostics.push(makeDgmoError(line, msg, "warning"))
-    );
-    for (const group of result.tagGroups) {
-      if (!group.defaultValue) continue;
-      const key = tagAttrKey(group.name);
-      for (const table of result.tables) {
-        if (!table.metadata[key]) {
-          const mutableMeta = tableMetadataMap.get(table.id);
-          if (mutableMeta) mutableMeta[key] = group.defaultValue;
-        }
-      }
-    }
-  }
-  if (notes.length > 0) {
-    result.notes = notes;
-    resolveNotes(
-      notes,
-      result.tables.map((t3) => ({ id: t3.id, label: t3.name })),
-      result.diagnostics
-    );
-  }
-  if (result.tables.length >= 2 && result.relationships.length >= 1 && !result.error) {
-    const connectedIds = /* @__PURE__ */ new Set();
-    for (const rel of result.relationships) {
-      connectedIds.add(rel.source);
-      connectedIds.add(rel.target);
-    }
-    for (const table of result.tables) {
-      if (!connectedIds.has(table.id)) {
-        result.diagnostics.push(
-          makeDgmoError(
-            table.lineNumber,
-            `Table "${table.name}" is not connected to any other table`,
-            "warning"
-          )
-        );
-      }
-    }
-  }
-  return result;
-}
-function looksLikeERDiagram(content) {
-  const lines = content.split("\n");
-  let hasConstraint = false;
-  let hasTableDecl = false;
-  let hasRelationship = false;
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("//")) continue;
-    if (/^(er|notation)\s/i.test(trimmed) || /^er$/i.test(trimmed)) continue;
-    const indent = measureIndent(line);
-    if (indent > 0) {
-      if (CONSTRAINT_KEYWORD_RE.test(trimmed)) {
-        hasConstraint = true;
-      }
-      if (INDENT_REL_RE.test(trimmed)) {
-        hasRelationship = true;
-      }
-    } else {
-      if (TABLE_DECL_RE.test(trimmed)) {
-        hasTableDecl = true;
-      }
-      if (REL_SYMBOLIC_RE.test(trimmed)) {
-        hasRelationship = true;
-      }
-    }
-  }
-  if (hasConstraint && hasTableDecl) return true;
-  if (hasRelationship && hasTableDecl) return true;
-  return false;
-}
-function extractSymbols5(docText) {
-  const entities = [];
-  let inMetadata = true;
-  for (const rawLine of docText.split("\n")) {
-    const line = rawLine.trim();
-    if (inMetadata && /^er(\s|$)/i.test(line)) continue;
-    if (/^\s/.test(rawLine)) continue;
-    if (line.length === 0) continue;
-    const m = TABLE_DECL_RE.exec(line);
-    if (m) {
-      const name = (m[1] ?? m[2] ?? "").trim();
-      if (name) {
-        inMetadata = false;
-        entities.push(name);
-        continue;
-      }
-    }
-    if (inMetadata && OPTION_NOCOLON_RE.test(line)) continue;
-    inMetadata = false;
-  }
-  return {
-    kind: "er",
-    entities
-  };
-}
-var TABLE_DECL_RE, INDENT_REL_RE, CONSTRAINT_MAP, KNOWN_OPTIONS8, REL_SYMBOLIC_RE, REL_KEYWORD_RE, KEYWORD_TO_SYMBOL, CONSTRAINT_KEYWORD_RE;
-var init_chunk_ULR3BVNH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULR3BVNH.js"() {
-    init_chunk_ST3ZNEUQ();
-    init_chunk_7NK42OIB();
-    init_chunk_RRX4Z4TH();
-    init_chunk_NOTA6TEI();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_EXNKNJ65();
-    init_chunk_OLMWTJVU();
-    TABLE_DECL_RE = /^(?:"([^"]+)"|([a-zA-Z_][^|":(]*?))(?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:\s*\|(.+))?$/;
-    INDENT_REL_RE = /^([1*?])-{1,2}(?:(.+?)-{1,2})?([1*?])\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s*$/;
-    CONSTRAINT_MAP = {
-      pk: "pk",
-      fk: "fk",
-      unique: "unique",
-      nullable: "nullable"
-    };
-    KNOWN_OPTIONS8 = /* @__PURE__ */ new Set(["notation", "active-tag"]);
-    REL_SYMBOLIC_RE = /^(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s+([1*?])\s*-{1,2}\s*([1*?])\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))(?:\s+(.+))?$/;
-    REL_KEYWORD_RE = /^(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s+(one|many|zero)[- ]to[- ](one|many|zero)\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))(?:\s+(.+))?$/i;
-    KEYWORD_TO_SYMBOL = {
-      one: "1",
-      many: "*",
-      zero: "?"
-    };
-    CONSTRAINT_KEYWORD_RE = /\b(pk|fk)\b/i;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PFG3EVRD.js
-function looksLikeOrg(content) {
-  for (const line of content.split("\n")) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("//")) continue;
-    if (isTagBlockHeading(trimmed)) return true;
-  }
-  return false;
-}
-function parseOrg(content, palette) {
-  const options = {};
-  const result = {
-    title: null,
-    titleLineNumber: null,
-    roots: [],
-    tagGroups: [],
-    options,
-    direction: "TB",
-    diagnostics: [],
-    error: null
-  };
-  const fail = makeFail(result);
-  const pushError = (line, message) => {
-    const diag = makeDgmoError(line, message);
-    result.diagnostics.push(diag);
-    if (!result.error) result.error = formatDgmoError(diag);
-  };
-  const pushWarning = (line, message) => {
-    result.diagnostics.push(makeDgmoError(line, message, "warning"));
-  };
-  if (!content?.trim()) {
-    return fail(0, "No content provided");
-  }
-  const lines = content.split("\n");
-  let contentStarted = false;
-  let nodeCounter = 0;
-  let containerCounter = 0;
-  let currentTagGroup = null;
-  const metaAliasMap = /* @__PURE__ */ new Map();
-  const nameAliasMap = /* @__PURE__ */ new Map();
-  const indentStack = [];
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const lineNumber = i + 1;
-    const trimmed = line.trim();
-    if (!trimmed) {
-      if (currentTagGroup) {
-        currentTagGroup = null;
-      }
-      continue;
-    }
-    if (trimmed.startsWith("//")) continue;
-    if (!contentStarted) {
-      const firstLine = parseFirstLine(trimmed);
-      if (firstLine) {
-        if (firstLine.chartType !== "org") {
-          const allTypes = [
-            "org",
-            "class",
-            "flowchart",
-            "sequence",
-            "er",
-            "bar",
-            "line",
-            "pie",
-            "scatter",
-            "sankey",
-            "venn",
-            "timeline",
-            "arc",
-            "slope"
-          ];
-          let msg = `Expected chart type "org", got "${firstLine.chartType}"`;
-          const hint = suggest(firstLine.chartType, allTypes);
-          if (hint) msg += `. ${hint}`;
-          return fail(lineNumber, msg);
-        }
-        if (firstLine.title) {
-          result.title = firstLine.title;
-          result.titleLineNumber = lineNumber;
-        }
-        continue;
-      }
-    }
-    const tagBlockMatch = matchTagBlockHeading(trimmed);
-    if (tagBlockMatch) {
-      if (contentStarted) {
-        pushError(lineNumber, "Tag groups must appear before org content");
-        continue;
-      }
-      currentTagGroup = {
-        name: tagBlockMatch.name,
-        ...tagBlockMatch.alias !== void 0 && {
-          alias: tagBlockMatch.alias
-        },
-        entries: [],
-        lineNumber
-      };
-      if (tagBlockMatch.alias) {
-        metaAliasMap.set(
-          normalizeName(tagBlockMatch.alias),
-          tagAttrKey(tagBlockMatch.name)
-        );
-      }
-      metaAliasMap.set(
-        normalizeName(tagBlockMatch.name),
-        tagAttrKey(tagBlockMatch.name)
-      );
-      result.tagGroups.push(currentTagGroup);
-      continue;
-    }
-    if (!contentStarted && !currentTagGroup && measureIndent(line) === 0) {
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch) {
-        const key = optMatch[1].trim().toLowerCase();
-        if (KNOWN_OPTIONS9.has(key)) {
-          options[key] = optMatch[2].trim();
-          continue;
-        }
-      }
-      if (KNOWN_BOOLEANS7.has(trimmed.toLowerCase())) {
-        const boolKey = trimmed.toLowerCase();
-        if (boolKey === "direction-lr" || boolKey === "direction-tb") {
-          delete options["direction-lr"];
-          delete options["direction-tb"];
-        }
-        options[boolKey] = "on";
-        continue;
-      }
-    }
-    if (currentTagGroup && !contentStarted) {
-      const indent2 = measureIndent(line);
-      if (indent2 > 0) {
-        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
-        const { label, color: color2 } = extractColor(
-          cleanEntry,
-          palette,
-          result.diagnostics,
-          lineNumber
-        );
-        if (isDefault) {
-          currentTagGroup.defaultValue = label;
-        } else if (currentTagGroup.entries.length === 0) {
-          currentTagGroup.defaultValue = label;
-        }
-        currentTagGroup.entries.push({
-          value: label,
-          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-          lineNumber
-        });
-        continue;
-      }
-      currentTagGroup = null;
-    }
-    contentStarted = true;
-    currentTagGroup = null;
-    const indent = measureIndent(line);
-    const containerMatch = trimmed.match(CONTAINER_RE2);
-    const metadataMatch = (() => {
-      if (trimmed.includes("|")) return null;
-      const m = trimmed.match(METADATA_RE2);
-      if (!m) return null;
-      const keyRegion = m[1].trim();
-      if (/\s/.test(keyRegion)) return null;
-      return m;
-    })();
-    if (containerMatch) {
-      const rawLabel = containerMatch[1].trim();
-      const asMatch = rawLabel.match(
-        /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
-      );
-      const label = asMatch ? asMatch[1].trim() : rawLabel;
-      containerCounter++;
-      const containerId = `container-${containerCounter}`;
-      if (asMatch) nameAliasMap.set(asMatch[2], containerId);
-      const node = {
-        id: containerId,
-        label,
-        metadata: {},
-        children: [],
-        parentId: null,
-        isContainer: true,
-        lineNumber
-      };
-      attachNode3(node, indent, indentStack, result);
-    } else if (metadataMatch && indentStack.length > 0) {
-      const rawKey = metadataMatch[1].trim().toLowerCase();
-      const key = metaAliasMap.get(rawKey) ?? rawKey;
-      const value = metadataMatch[2].trim();
-      const parent = findMetadataParent2(indent, indentStack);
-      if (!parent) {
-        pushError(
-          lineNumber,
-          "Metadata 'key: value' must be indented under a node \u2014 no node precedes it."
-        );
-      } else {
-        parent.metadata = { ...parent.metadata, [key]: value };
-      }
-    } else if (metadataMatch && indentStack.length === 0) {
-      if (indent === 0) {
-        const node = parseNodeLabel(
-          trimmed,
-          indent,
-          lineNumber,
-          palette,
-          ++nodeCounter,
-          metaAliasMap,
-          result.diagnostics,
-          nameAliasMap
-        );
-        attachNode3(node, indent, indentStack, result);
-      } else {
-        pushError(
-          lineNumber,
-          "Metadata 'key: value' must be indented under a node \u2014 no node precedes it."
-        );
-      }
-    } else {
-      const node = parseNodeLabel(
-        trimmed,
-        indent,
-        lineNumber,
-        palette,
-        ++nodeCounter,
-        metaAliasMap,
-        result.diagnostics,
-        nameAliasMap
-      );
-      attachNode3(node, indent, indentStack, result);
-    }
-  }
-  finalizeAutoTagColors(result.tagGroups, palette);
-  if (result.tagGroups.length > 0) {
-    const allNodes = [];
-    const collectAll = (nodes) => {
-      for (const node of nodes) {
-        allNodes.push(node);
-        collectAll(node.children);
-      }
-    };
-    collectAll(result.roots);
-    validateTagValues(allNodes, result.tagGroups, pushWarning, suggest);
-    validateTagGroupNames(result.tagGroups, pushWarning, pushError);
-  }
-  if (result.roots.length === 0 && result.tagGroups.length === 0 && !result.error) {
-    const diag = makeDgmoError(1, "No nodes found in org chart");
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  result.direction = options["direction-lr"] ? "LR" : "TB";
-  return result;
-}
-function parseNodeLabel(trimmed, _indent, lineNumber, _palette, counter, metaAliasMap = /* @__PURE__ */ new Map(), diagnostics, nameAliasMap) {
-  const registry = withTagAliases(ORG_REGISTRY, new Set(metaAliasMap.keys()));
-  const id = `node-${counter}`;
-  const split = splitNameAndMeta(
-    trimmed,
-    registry,
-    metaAliasMap,
-    void 0,
-    diagnostics,
-    lineNumber
-  );
-  warnUnknownMetaKeys(
-    split.meta,
-    registry,
-    (msg) => diagnostics?.push(makeDgmoError(lineNumber, msg, "warning")),
-    split.name
-  );
-  const label = split.color !== void 0 ? `${split.name} ${split.color}` : split.name;
-  if (split.alias) {
-    nameAliasMap?.set(normalizeName(split.alias), id);
-  }
-  const metadata = { ...split.meta };
-  return {
-    id,
-    label,
-    metadata,
-    children: [],
-    parentId: null,
-    isContainer: false,
-    lineNumber
-  };
-}
-function attachNode3(node, indent, indentStack, result) {
-  while (indentStack.length > 0) {
-    const top2 = indentStack[indentStack.length - 1];
-    if (top2.indent < indent) break;
-    indentStack.pop();
-  }
-  if (indentStack.length > 0) {
-    const parent = indentStack[indentStack.length - 1].node;
-    node.parentId = parent.id;
-    parent.children.push(node);
-  } else {
-    result.roots.push(node);
-  }
-  indentStack.push({ node, indent });
-}
-function findMetadataParent2(indent, indentStack) {
-  for (let i = indentStack.length - 1; i >= 0; i--) {
-    const entry = indentStack[i];
-    if (entry.indent < indent) {
-      return entry.node;
-    }
-  }
-  if (indentStack.length > 0) {
-    return indentStack[indentStack.length - 1].node;
-  }
-  return null;
-}
-var CONTAINER_RE2, METADATA_RE2, KNOWN_OPTIONS9, KNOWN_BOOLEANS7;
-var init_chunk_PFG3EVRD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PFG3EVRD.js"() {
-    init_chunk_NOTA6TEI();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    CONTAINER_RE2 = /^\[([^\]]+)\]$/;
-    METADATA_RE2 = /^([^:]+):\s*(.+)$/;
-    KNOWN_OPTIONS9 = /* @__PURE__ */ new Set([
-      "sub-node-label",
-      "hide",
-      "show-sub-node-count",
-      "active-tag"
-    ]);
-    KNOWN_BOOLEANS7 = /* @__PURE__ */ new Set([
-      "show-sub-node-count",
-      "direction-tb",
-      "direction-lr",
-      "fill-tint",
-      "fill-solid",
-      "fill-outline",
-      "no-title",
-      "no-legend"
-    ]);
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OHBIN74X.js
-function parseArrowLine(trimmed, _palette, _lineNumber, _diagnostics) {
-  const bareMatch = trimmed.match(BARE_ARROW_RE);
-  if (bareMatch) {
-    const rawTarget = bareMatch[1].trim();
-    const groupMatch = rawTarget.match(/^\[(.+)\]$/);
-    return {
-      target: groupMatch ? groupMatch[1].trim() : rawTarget,
-      targetIsGroup: !!groupMatch
-    };
-  }
-  const arrowMatch = trimmed.match(ARROW_RE2);
-  if (arrowMatch) {
-    const label = arrowMatch[1]?.trim() || void 0;
-    const rawTarget = arrowMatch[2].trim();
-    const groupMatch = rawTarget.match(/^\[(.+)\]$/);
-    return {
-      ...label !== void 0 && { label },
-      target: groupMatch ? groupMatch[1].trim() : rawTarget,
-      targetIsGroup: !!groupMatch
-    };
-  }
-  return null;
-}
-function looksLikeSitemap(content) {
-  const lines = content.split("\n");
-  let hasArrow = false;
-  let hasContainer = false;
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("//")) continue;
-    if (parseFirstLine(trimmed)) continue;
-    if (isTagBlockHeading(trimmed)) continue;
-    if (/^-.*->\s*.+/.test(trimmed) || /^->\s*.+/.test(trimmed)) {
-      hasArrow = true;
-    }
-    if (CONTAINER_RE3.test(trimmed)) {
-      hasContainer = true;
-    }
-  }
-  if (!hasArrow || !hasContainer) return false;
-  const hasFlowchartShapes = /[\])][ \t]*-.*->/.test(content) || /->[ \t]*[[(</]/.test(content);
-  return !hasFlowchartShapes;
-}
-function parseSitemap(content, palette) {
-  const options = {};
-  const result = {
-    title: null,
-    titleLineNumber: null,
-    direction: "LR",
-    roots: [],
-    edges: [],
-    tagGroups: [],
-    options,
-    diagnostics: [],
-    error: null
-  };
-  const fail = makeFail(result);
-  const pushError = (line, message) => {
-    const diag = makeDgmoError(line, message);
-    result.diagnostics.push(diag);
-    if (!result.error) result.error = formatDgmoError(diag);
-  };
-  const pushWarning = (line, message) => {
-    result.diagnostics.push(makeDgmoError(line, message, "warning"));
-  };
-  if (!content?.trim()) {
-    return fail(0, "No content provided");
-  }
-  const lines = content.split("\n");
-  let contentStarted = false;
-  let nodeCounter = 0;
-  let containerCounter = 0;
-  let firstLineParsed = false;
-  let currentTagGroup = null;
-  const metaAliasMap = /* @__PURE__ */ new Map();
-  const nameAliasMap = /* @__PURE__ */ new Map();
-  const indentStack = [];
-  const labelToNode = /* @__PURE__ */ new Map();
-  const labelToContainer = /* @__PURE__ */ new Map();
-  const deferredArrows = [];
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const lineNumber = i + 1;
-    const trimmed = line.trim();
-    if (!trimmed) {
-      if (currentTagGroup) {
-        currentTagGroup = null;
-      }
-      continue;
-    }
-    if (trimmed.startsWith("//")) continue;
-    if (!firstLineParsed && !contentStarted) {
-      const firstLineResult = parseFirstLine(trimmed);
-      if (firstLineResult) {
-        firstLineParsed = true;
-        if (firstLineResult.chartType !== "sitemap") {
-          const allTypes = Array.from(ALL_CHART_TYPES);
-          let msg = `Expected chart type "sitemap", got "${firstLineResult.chartType}"`;
-          const hint = suggest(firstLineResult.chartType, allTypes);
-          if (hint) msg += `. ${hint}`;
-          return fail(lineNumber, msg);
-        }
-        if (firstLineResult.title) {
-          result.title = firstLineResult.title;
-          result.titleLineNumber = lineNumber;
-        }
-        continue;
-      }
-    }
-    const tagBlockMatch = matchTagBlockHeading(trimmed);
-    if (tagBlockMatch) {
-      if (contentStarted) {
-        pushError(lineNumber, "Tag groups must appear before sitemap content");
-        continue;
-      }
-      const newTagGroup = {
-        name: tagBlockMatch.name,
-        ...tagBlockMatch.alias !== void 0 && {
-          alias: tagBlockMatch.alias
-        },
-        entries: [],
-        lineNumber
-      };
-      currentTagGroup = newTagGroup;
-      if (tagBlockMatch.alias) {
-        metaAliasMap.set(
-          normalizeName(tagBlockMatch.alias),
-          tagAttrKey(tagBlockMatch.name)
-        );
-      }
-      metaAliasMap.set(
-        normalizeName(tagBlockMatch.name),
-        tagAttrKey(tagBlockMatch.name)
-      );
-      result.tagGroups.push(newTagGroup);
-      continue;
-    }
-    if (!contentStarted && !currentTagGroup && measureIndent(line) === 0 && !trimmed.includes("|") && !trimmed.includes("->") && !trimmed.includes(":")) {
-      const dirBool = trimmed.match(/^direction-(lr|tb)$/i);
-      if (dirBool) {
-        result.direction = dirBool[1].toUpperCase();
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, options)) {
-        continue;
-      }
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch) {
-        const key = optMatch[1].trim().toLowerCase();
-        options[key] = optMatch[2].trim();
-        continue;
-      }
-    }
-    if (currentTagGroup && !contentStarted) {
-      const indent2 = measureIndent(line);
-      if (indent2 > 0) {
-        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
-        const { label, color: color2 } = extractColor(
-          cleanEntry,
-          palette,
-          result.diagnostics,
-          lineNumber
-        );
-        currentTagGroup.entries.push({
-          value: label,
-          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-          lineNumber
-        });
-        if (isDefault) {
-          currentTagGroup.defaultValue = label;
-        } else if (currentTagGroup.entries.length === 1) {
-          currentTagGroup.defaultValue = label;
-        }
-        continue;
-      }
-      currentTagGroup = null;
-    }
-    contentStarted = true;
-    currentTagGroup = null;
-    const indent = measureIndent(line);
-    const arrowInfo = parseArrowLine(
-      trimmed,
-      palette,
-      lineNumber,
-      result.diagnostics
-    );
-    if (arrowInfo) {
-      const source = findParentNode(indent, indentStack);
-      if (!source) {
-        pushError(
-          lineNumber,
-          "Arrow '-> target' must be indented under its source page \u2014 no page precedes it."
-        );
-      } else {
-        deferredArrows.push({
-          sourceNode: source,
-          targetLabel: arrowInfo.target,
-          targetIsGroup: arrowInfo.targetIsGroup,
-          ...arrowInfo.label !== void 0 && { label: arrowInfo.label },
-          lineNumber
-        });
-      }
-      continue;
-    }
-    const containerMatch = trimmed.match(CONTAINER_RE3);
-    const metadataMatch = (() => {
-      if (trimmed.includes("|")) return null;
-      const m = trimmed.match(METADATA_RE3);
-      if (!m) return null;
-      const keyRegion = m[1].trim();
-      if (/\s/.test(keyRegion)) return null;
-      return m;
-    })();
-    if (containerMatch) {
-      const rawLabel = containerMatch[1].trim();
-      const asMatch = rawLabel.match(
-        /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
-      );
-      const label = asMatch ? asMatch[1].trim() : rawLabel;
-      const tail = (containerMatch[2] ?? "").trim();
-      const containerMetadata = {};
-      if (tail.length > 0) {
-        Object.assign(
-          containerMetadata,
-          parseSitemapMetaTail(tail, metaAliasMap)
-        );
-      }
-      containerCounter++;
-      const containerId = `container-${containerCounter}`;
-      if (asMatch) nameAliasMap.set(asMatch[2], containerId);
-      const node = {
-        id: containerId,
-        label,
-        metadata: containerMetadata,
-        children: [],
-        parentId: null,
-        isContainer: true,
-        lineNumber
-      };
-      attachNode4(node, indent, indentStack, result);
-      const key = normalizeName(label);
-      labelToContainer.set(key, node);
-    } else if (metadataMatch && indentStack.length > 0) {
-      const rawKey = metadataMatch[1].trim().toLowerCase();
-      const key = metaAliasMap.get(rawKey) ?? rawKey;
-      const value = metadataMatch[2].trim();
-      const parent = findParentNode(indent, indentStack);
-      if (!parent) {
-        pushError(
-          lineNumber,
-          "Metadata 'key: value' must be indented under a page \u2014 no page precedes it."
-        );
-      } else {
-        parent.metadata = { ...parent.metadata, [key]: value };
-      }
-    } else if (metadataMatch && indentStack.length === 0) {
-      if (indent === 0) {
-        const node = parseNodeLabel2(
-          trimmed,
-          lineNumber,
-          palette,
-          ++nodeCounter,
-          metaAliasMap,
-          pushWarning,
-          result.diagnostics,
-          nameAliasMap
-        );
-        attachNode4(node, indent, indentStack, result);
-        const key = normalizeName(node.label);
-        labelToNode.set(key, node);
-      } else {
-        pushError(
-          lineNumber,
-          "Metadata 'key: value' must be indented under a page \u2014 no page precedes it."
-        );
-      }
-    } else {
-      const descResult = tryStripDescriptionKeyword(trimmed);
-      if (descResult.isKeyword && !descResult.needsColon && indentStack.length > 0) {
-        const parent = findParentNode(indent, indentStack);
-        if (parent) {
-          parent.description = [
-            ...parent.description ?? [],
-            descResult.text.trim()
-          ];
-          continue;
-        }
-      }
-      const enclosingContainer = nestedPageInsideContainer(indent, indentStack);
-      if (enclosingContainer) {
-        pushError(
-          lineNumber,
-          `Pages inside container '[${enclosingContainer}]' cannot have indented sub-pages. Containers hold a flat list of pages.`
-        );
-        continue;
-      }
-      const node = parseNodeLabel2(
-        trimmed,
-        lineNumber,
-        palette,
-        ++nodeCounter,
-        metaAliasMap,
-        pushWarning,
-        result.diagnostics,
-        nameAliasMap
-      );
-      attachNode4(node, indent, indentStack, result);
-      const key = normalizeName(node.label);
-      labelToNode.set(key, node);
-    }
-  }
-  for (const arrow of deferredArrows) {
-    const aliasHit = nameAliasMap.get(arrow.targetLabel.trim());
-    if (aliasHit !== void 0) {
-      result.edges.push({
-        sourceId: arrow.sourceNode.id,
-        targetId: aliasHit,
-        ...arrow.label !== void 0 && { label: arrow.label },
-        lineNumber: arrow.lineNumber
-      });
-      continue;
-    }
-    const targetKey = normalizeName(arrow.targetLabel);
-    if (arrow.targetIsGroup) {
-      const targetContainer = labelToContainer.get(targetKey);
-      if (!targetContainer) {
-        const allLabels = Array.from(labelToContainer.keys());
-        let msg = `Group '[${arrow.targetLabel}]' not found`;
-        const hint = suggest(targetKey, allLabels);
-        if (hint) msg += `. ${hint}`;
-        pushError(arrow.lineNumber, msg);
-        continue;
-      }
-      result.edges.push({
-        sourceId: arrow.sourceNode.id,
-        targetId: targetContainer.id,
-        ...arrow.label !== void 0 && { label: arrow.label },
-        lineNumber: arrow.lineNumber
-      });
-    } else {
-      const targetNode = labelToNode.get(targetKey);
-      if (!targetNode) {
-        const allLabels = Array.from(labelToNode.keys());
-        let msg = `Arrow target "${arrow.targetLabel}" not found`;
-        const hint = suggest(targetKey, allLabels);
-        if (hint) msg += `. ${hint}`;
-        pushError(arrow.lineNumber, msg);
-        continue;
-      }
-      result.edges.push({
-        sourceId: arrow.sourceNode.id,
-        targetId: targetNode.id,
-        ...arrow.label !== void 0 && { label: arrow.label },
-        lineNumber: arrow.lineNumber
-      });
-    }
-  }
-  finalizeAutoTagColors(result.tagGroups, palette);
-  if (result.tagGroups.length > 0) {
-    const allNodes = [];
-    const collectAll = (nodes) => {
-      for (const node of nodes) {
-        allNodes.push(node);
-        collectAll(node.children);
-      }
-    };
-    collectAll(result.roots);
-    validateTagValues(allNodes, result.tagGroups, pushWarning, suggest);
-    validateTagGroupNames(result.tagGroups, pushWarning, pushError);
-  }
-  if (result.roots.length === 0 && result.tagGroups.length === 0 && !result.error) {
-    const diag = makeDgmoError(1, "No pages found in sitemap");
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  return result;
-}
-function parseNodeLabel2(trimmed, lineNumber, _palette, counter, metaAliasMap = /* @__PURE__ */ new Map(), warnFn, _diagnostics, nameAliasMap) {
-  const registry = withTagAliases(
-    SITEMAP_REGISTRY,
-    new Set(metaAliasMap.keys())
-  );
-  const id = `node-${counter}`;
-  const split = splitNameAndMeta(
-    trimmed,
-    registry,
-    metaAliasMap,
-    void 0,
-    _diagnostics,
-    lineNumber
-  );
-  if (warnFn) {
-    warnUnknownMetaKeys(
-      split.meta,
-      registry,
-      (msg) => warnFn(lineNumber, msg),
-      split.name
-    );
-  }
-  const label = split.name;
-  if (split.alias) nameAliasMap?.set(normalizeName(split.alias), id);
-  const metadata = { ...split.meta };
-  if (split.color !== void 0) metadata["color"] = split.color;
-  let description;
-  if ("description" in metadata) {
-    const descVal = metadata["description"].trim();
-    if (descVal) {
-      description = [descVal];
-    }
-    delete metadata["description"];
-  }
-  return {
-    id,
-    label,
-    metadata,
-    ...description !== void 0 && { description },
-    children: [],
-    parentId: null,
-    isContainer: false,
-    lineNumber
-  };
-}
-function parseSitemapMetaTail(tail, metaAliasMap) {
-  const trimmed = tail.trim();
-  if (!trimmed?.includes(":")) return {};
-  const registry = withTagAliases(
-    SITEMAP_REGISTRY,
-    new Set(metaAliasMap.keys())
-  );
-  const split = splitNameAndMeta(
-    `color: __smph, ${trimmed}`,
-    registry,
-    metaAliasMap
-  );
-  const meta = split.meta;
-  if (meta["color"] === "__smph") delete meta["color"];
-  return meta;
-}
-function attachNode4(node, indent, indentStack, result) {
-  while (indentStack.length > 0) {
-    const top2 = indentStack[indentStack.length - 1];
-    if (top2.indent < indent) break;
-    indentStack.pop();
-  }
-  if (indentStack.length > 0) {
-    const parent = indentStack[indentStack.length - 1].node;
-    node.parentId = parent.id;
-    if (parent.isContainer && Object.keys(parent.metadata).length > 0 && !node.isContainer) {
-      node.metadata = { ...parent.metadata, ...node.metadata };
-    }
-    parent.children.push(node);
-  } else {
-    result.roots.push(node);
-  }
-  indentStack.push({ node, indent });
-}
-function nestedPageInsideContainer(indent, indentStack) {
-  let idx = indentStack.length - 1;
-  while (idx >= 0 && indentStack[idx].indent >= indent) idx--;
-  if (idx < 0) return null;
-  if (indentStack[idx].node.isContainer) return null;
-  for (let k2 = idx - 1; k2 >= 0; k2--) {
-    if (indentStack[k2].node.isContainer) return indentStack[k2].node.label;
-  }
-  return null;
-}
-function findParentNode(indent, indentStack) {
-  for (let i = indentStack.length - 1; i >= 0; i--) {
-    if (indentStack[i].indent < indent) {
-      return indentStack[i].node;
-    }
-  }
-  if (indentStack.length > 0) {
-    return indentStack[indentStack.length - 1].node;
-  }
-  return null;
-}
-var CONTAINER_RE3, METADATA_RE3, ARROW_RE2, BARE_ARROW_RE;
-var init_chunk_OHBIN74X = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OHBIN74X.js"() {
-    init_chunk_IYULMRBE();
-    init_chunk_NOTA6TEI();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    CONTAINER_RE3 = /^\[([^\]]+)\]\s*(.*)$/;
-    METADATA_RE3 = /^([^:]+):\s*(.+)$/;
-    ARROW_RE2 = /^-([^>][^>]*?)?\s*->\s*(.+)$/;
-    BARE_ARROW_RE = /^->\s*(.+)$/;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js
-function resolveConfidence(value) {
-  const trimmed = value.trim().toLowerCase();
-  if (trimmed in CONFIDENCE_TABLE) {
-    return CONFIDENCE_TABLE[trimmed];
-  }
-  const factorMatch = trimmed.match(/^(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)$/);
-  if (factorMatch) {
-    const oFactor = parseFloat(factorMatch[1]);
-    const pFactor = parseFloat(factorMatch[2]);
-    if (oFactor > 0 && pFactor > 0) return { oFactor, pFactor };
-  }
-  return null;
-}
-function unitToDays(unit2) {
-  return UNIT_TO_DAYS_LOCAL[unit2];
-}
-function parseLocalISODate(iso) {
-  if (!ISO_DATE_RE.test(iso)) return null;
-  const date = parseGanttDate(iso);
-  if (formatDateKey(date) !== iso) return null;
-  return date;
-}
-function formatLocalISODate(date) {
-  return formatDateKey(date);
-}
-function addCalendarDays(iso, days) {
-  const start = parseLocalISODate(iso);
-  if (!start) return iso;
-  const whole = Math.sign(days) * Math.round(Math.abs(days));
-  const result = new Date(
-    start.getFullYear(),
-    start.getMonth(),
-    start.getDate() + whole,
-    start.getHours(),
-    start.getMinutes()
-  );
-  return formatLocalISODate(result);
-}
-function formatDuration(value, unit2, nullLabel) {
-  if (value === null) return nullLabel ?? "?";
-  const rounded = Math.round(value * 100) / 100;
-  const display = rounded.toFixed(2).replace(/\.?0+$/, "");
-  return `${display}${unit2}`;
-}
-function formatScheduleValue(value, projectStart, unit2, nullLabel) {
-  if (value === null) return nullLabel ?? "?";
-  if (projectStart === null) return formatDuration(value, unit2, nullLabel);
-  return addCalendarDays(projectStart, value * unitToDays(unit2));
-}
-function formatSprintCell(value, sprintNumber, nullLabel) {
-  if (value === null) return nullLabel ?? "?";
-  const rounded = Math.round(value);
-  return `S${sprintNumber + rounded}`;
-}
-function formatSlackValue(value, projectStart, unit2, nullLabel) {
-  if (value === null) return nullLabel ?? "?";
-  if (projectStart === null) return formatDuration(value, unit2, nullLabel);
-  const days = value * unitToDays(unit2);
-  const rounded = Math.round(days * 100) / 100;
-  const display = rounded.toFixed(2).replace(/\.?0+$/, "");
-  return `${display}d`;
-}
-var CONFIDENCE_TABLE, UNIT_TO_DAYS_LOCAL, ISO_DATE_RE;
-var init_chunk_3TYUXC7D = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js"() {
-    init_chunk_EQW6HOP4();
-    CONFIDENCE_TABLE = {
-      high: { oFactor: 0.9, pFactor: 1.5 },
-      medium: { oFactor: 0.75, pFactor: 3 },
-      low: { oFactor: 0.5, pFactor: 4 }
-    };
-    UNIT_TO_DAYS_LOCAL = {
-      min: 1 / (60 * 24),
-      h: 1 / 24,
-      d: 1,
-      bd: 1,
-      // PERT has no calendar; bd ≈ d for analytical purposes
-      w: 7,
-      m: 30,
-      q: 90,
-      y: 365,
-      s: 14
-      // sprint (14 calendar days) — not seconds
-    };
-    ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DIKIHU52.js
-function parseEdgeLabel(label, defaultUnit) {
-  const trimmed = label.trim();
-  if (trimmed === "") return null;
-  const m = trimmed.match(/^(fs|ss|ff|sf)?([+-]?\d+(?:\.\d+)?)?\s*([a-z]+)?$/i);
-  if (!m) return null;
-  const typeRaw = m[1];
-  const numRaw = m[2];
-  const unitRaw = m[3];
-  if (!typeRaw && !numRaw) return null;
-  if (unitRaw && !numRaw) return null;
-  const type = typeRaw ? typeRaw.toUpperCase() : "FS";
-  let lag = null;
-  if (numRaw) {
-    const amount = parseFloat(numRaw);
-    if (amount !== 0) {
-      const unitLow = unitRaw?.toLowerCase();
-      const unit2 = unitLow ? unitLow === "sp" ? "s" : unitLow : defaultUnit;
-      if (!isValidDurationUnit(unit2)) return null;
-      lag = { amount, unit: unit2 };
-    }
-  }
-  return { type, lag };
-}
-function isValidDurationUnit(u) {
-  return VALID_DURATION_UNITS.has(u);
-}
-function deriveTrials(activityCount) {
-  const t3 = Math.round(1e3 * Math.sqrt(Math.max(activityCount, 1)));
-  return Math.max(5e3, Math.min(2e4, t3));
-}
-function deriveSeed(s) {
-  let h = 2166136261;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 1;
-}
-function stripTrailingComment(line) {
-  const m = line.match(/^(.*?)\s+#.*$/);
-  return (m ? m[1] : line).trimEnd();
-}
-function peelAlias(text) {
-  const trimmed = text.trim();
-  const m = trimmed.match(ALIAS_SUFFIX_RE);
-  if (!m) return { head: trimmed };
-  const alias = m[1];
-  return {
-    head: trimmed.slice(0, m.index).trim(),
-    ...alias !== void 0 && { alias }
-  };
-}
-function tokenizeActivityLine(line, diagnostics, lineNumber, metaAliasMap) {
-  let body = line;
-  let pipeMetadata;
-  if (metaAliasMap !== void 0) {
-    const registry = withTagAliases(
-      PERT_REGISTRY,
-      new Set(metaAliasMap.keys())
-    );
-    const split = splitNameAndMeta(
-      body,
-      registry,
-      metaAliasMap,
-      void 0,
-      diagnostics,
-      lineNumber
-    );
-    if (diagnostics && lineNumber != null) {
-      warnUnknownMetaKeys(
-        split.meta,
-        registry,
-        (msg) => diagnostics.push(makeDgmoError(lineNumber, msg, "warning")),
-        split.name
-      );
-    }
-    if (Object.keys(split.meta).length > 0) {
-      let restored = split.name;
-      if (split.color) restored = `${restored} ${split.color}`;
-      if (split.alias) restored = `${restored} as ${split.alias}`;
-      body = restored;
-      const merged = Object.entries(split.meta).map(([k2, v2]) => `${k2}: ${v2}`).join(", ");
-      pipeMetadata = pipeMetadata ? `${pipeMetadata}, ${merged}` : merged;
-    }
-  }
-  const peeled = peelAlias(body);
-  const rawTokens = peeled.head.split(/[,\s]+/).map((t3) => t3.trim()).filter(Boolean);
-  let firstNumIdx = -1;
-  for (let i = 0; i < rawTokens.length; i++) {
-    if (ESTIMATE_TOKEN_RE.test(rawTokens[i])) {
-      firstNumIdx = i;
-      break;
-    }
-  }
-  let name;
-  let durationTokens;
-  if (firstNumIdx === -1) {
-    name = peeled.head;
-    durationTokens = [];
-  } else {
-    name = rawTokens.slice(0, firstNumIdx).join(" ").trim();
-    durationTokens = rawTokens.slice(firstNumIdx);
-  }
-  return {
-    name,
-    durationTokens,
-    ...peeled.alias !== void 0 && { alias: peeled.alias },
-    ...pipeMetadata !== void 0 && { pipeMetadata }
-  };
-}
-function parseEstimateToken(token, defaultUnit) {
-  const m = token.match(ESTIMATE_TOKEN_RE);
-  if (!m) return null;
-  const amount = parseFloat(m[1]);
-  if (!Number.isFinite(amount)) return null;
-  const unit2 = (m[2] === "sp" ? "s" : m[2]) ?? defaultUnit;
-  if (unit2 === "s") {
-    return { amount, unit: defaultUnit };
-  }
-  const round = parseDuration(`${amount}${unit2}`);
-  return round ?? { amount, unit: unit2 };
-}
-function buildEstimate(tokens, defaultUnit, diagnose) {
-  if (tokens.length === 0) return null;
-  if (tokens.length === 2) {
-    diagnose(
-      `Expected 1 (M) or 3 (O M P) durations; got 2 (${tokens.join(" ")}). Did you mean '${tokens[0]} ${(parseFloat(tokens[0]) + parseFloat(tokens[1])) / 2} ${tokens[1]}'?`
-    );
-    return null;
-  }
-  if (tokens.length !== 1 && tokens.length !== 3) {
-    diagnose(
-      `Expected 1 (M) or 3 (O M P) durations; got ${tokens.length} (${tokens.join(" ")}).`
-    );
-    return null;
-  }
-  const parsed = [];
-  for (const t3 of tokens) {
-    const dur = parseEstimateToken(t3, defaultUnit);
-    if (!dur) {
-      diagnose(`Invalid duration token '${t3}'.`);
-      return null;
-    }
-    if (dur.amount < 0) {
-      diagnose(`Duration must be \u2265 0; got '${t3}'.`);
-      return null;
-    }
-    parsed.push(dur);
-  }
-  if (parsed.length === 1) {
-    return { o: parsed[0], m: parsed[0], p: parsed[0], mOnly: true };
-  }
-  const [o, m, p2] = parsed;
-  const sameUnit = o.unit === m.unit && m.unit === p2.unit;
-  if (sameUnit && !(o.amount <= m.amount && m.amount <= p2.amount)) {
-    diagnose(
-      `Invalid estimate (${tokens.join(" ")}): expected O \u2264 M \u2264 P. Did you mean (${[o.amount, m.amount, p2.amount].sort((a, b) => a - b).join(" ")})?`
-    );
-    return null;
-  }
-  return { o, m, p: p2, mOnly: false };
-}
-function parsePipeMetadata(raw, aliasMap = /* @__PURE__ */ new Map()) {
-  const out = {};
-  for (const part of raw.split(",")) {
-    const trimmed = part.trim();
-    if (!trimmed) continue;
-    const idx = trimmed.indexOf(":");
-    if (idx <= 0) continue;
-    const rawKey = trimmed.slice(0, idx).trim().toLowerCase();
-    const key = aliasMap.get(rawKey) ?? rawKey;
-    const value = trimmed.slice(idx + 1).trim();
-    out[key] = value;
-  }
-  return out;
-}
-function prescanPertYear(lines, order) {
-  for (const raw of lines) {
-    const m = raw.trim().match(/^(?:start-date|end-date|sprint-start)\s+(.+)$/i);
-    if (!m) continue;
-    const res = parseDateToken(m[1].trim(), { dateOrder: order });
-    if (res?.token.year != null) return res.token.sign * res.token.year;
-  }
-  return null;
-}
-function parsePert(content, parseOpts = {}) {
-  const lines = content.split("\n");
-  const diagnostics = [];
-  const error = (line, msg, code) => {
-    diagnostics.push(makeDgmoError(line, msg, "error", code));
-  };
-  const warn = (line, msg, code) => {
-    diagnostics.push(makeDgmoError(line, msg, "warning", code));
-  };
-  const today = formatLocalISODate(parseOpts.now ?? /* @__PURE__ */ new Date());
-  let dateOrder = "mdy";
-  let directiveYear = null;
-  let noCurrentYear = false;
-  for (const raw of lines) {
-    const t3 = raw.trim();
-    const dm = t3.match(/^date-order\s+(mdy|dmy)$/i);
-    if (dm) dateOrder = dm[1].toLowerCase();
-    const ym = t3.match(/^year\s+(\d{1,4})$/i);
-    if (ym) directiveYear = parseInt(ym[1], 10);
-    if (t3.toLowerCase() === "no-current-year") noCurrentYear = true;
-  }
-  const currentYear = parseInt(today.slice(0, 4), 10);
-  const baseYear = directiveYear ?? prescanPertYear(lines, dateOrder);
-  const options = { ...DEFAULT_OPTIONS, today };
-  let title = null;
-  let firstAnchorLine = null;
-  let firstAnchorKey = null;
-  const declarationsByName = /* @__PURE__ */ new Map();
-  const declarationsByAlias = /* @__PURE__ */ new Map();
-  const allDeclarations = [];
-  const sitesByName = /* @__PURE__ */ new Map();
-  const references = [];
-  const groups = [];
-  const tagGroups = [];
-  let currentTagGroup = null;
-  let contentStarted = false;
-  const metaAliasMap = /* @__PURE__ */ new Map();
-  const groupStack = [];
-  const currentGroupId = () => groupStack.length > 0 ? (
-    // In-bounds by length check.
-    groupStack[groupStack.length - 1].groupId
-  ) : void 0;
-  let currentSourceName = null;
-  let currentSourceIndent = -1;
-  let currentSourceSite = null;
-  let pastFirstLine = false;
-  for (let i = 0; i < lines.length; i++) {
-    const rawLine = lines[i];
-    const lineNumber = i + 1;
-    const trimmed = stripTrailingComment(rawLine).trim();
-    if (!trimmed) continue;
-    if (trimmed.startsWith("#") || trimmed.startsWith("//")) continue;
-    const indent = measureIndent(rawLine);
-    while (groupStack.length > 0) {
-      const top2 = groupStack[groupStack.length - 1];
-      if (indent <= top2.indent) groupStack.pop();
-      else break;
-    }
-    if (currentSourceIndent >= 0 && indent <= currentSourceIndent && !trimmed.startsWith("-")) {
-      currentSourceName = null;
-      currentSourceIndent = -1;
-      currentSourceSite = null;
-    }
-    if (!pastFirstLine) {
-      pastFirstLine = true;
-      const tokens = trimmed.split(/\s+/);
-      const head = tokens[0].toLowerCase();
-      if (head === "pert") {
-        if (tokens.length > 1) title = tokens.slice(1).join(" ");
-        continue;
-      }
-    }
-    if (!contentStarted) {
-      const tagBlockMatch = matchTagBlockHeading(trimmed);
-      if (tagBlockMatch) {
-        currentTagGroup = {
-          name: tagBlockMatch.name,
-          ...tagBlockMatch.alias !== void 0 && {
-            alias: tagBlockMatch.alias
-          },
-          entries: [],
-          lineNumber
-        };
-        if (tagBlockMatch.alias) {
-          metaAliasMap.set(
-            tagBlockMatch.alias.toLowerCase(),
-            tagAttrKey(tagBlockMatch.name)
-          );
-        }
-        metaAliasMap.set(
-          normalizeName(tagBlockMatch.name),
-          tagAttrKey(tagBlockMatch.name)
-        );
-        tagGroups.push(currentTagGroup);
-        if (tagBlockMatch.inlineValues) {
-          for (const raw of tagBlockMatch.inlineValues) {
-            const { text, isDefault } = stripDefaultModifier(raw);
-            const { label, color: color2 } = extractColor(
-              text,
-              parseOpts.palette,
-              diagnostics,
-              lineNumber
-            );
-            if (isDefault || currentTagGroup.entries.length === 0) {
-              currentTagGroup.defaultValue = label;
-            }
-            currentTagGroup.entries.push({
-              value: label,
-              color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-              lineNumber
-            });
-          }
-        }
-        continue;
-      }
-      if (currentTagGroup && indent > 0) {
-        const { text, isDefault } = stripDefaultModifier(trimmed);
-        const { label, color: color2 } = extractColor(
-          text,
-          parseOpts.palette,
-          diagnostics,
-          lineNumber
-        );
-        if (isDefault || currentTagGroup.entries.length === 0) {
-          currentTagGroup.defaultValue = label;
-        }
-        currentTagGroup.entries.push({
-          value: label,
-          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-          lineNumber
-        });
-        continue;
-      }
-      currentTagGroup = null;
-    } else if (matchTagBlockHeading(trimmed)) {
-      error(
-        lineNumber,
-        `'tag' declarations must appear before activities and groups.`
-      );
-      continue;
-    }
-    const groupMatch = trimmed.match(GROUP_HEADER_RE);
-    if (groupMatch) {
-      contentStarted = true;
-      currentTagGroup = null;
-      const name = groupMatch[1].trim();
-      let tail = (groupMatch[2] ?? "").trim();
-      let bareCollapsed = false;
-      const barePeel = peelTrailingCollapsedFlag(tail);
-      if (barePeel.collapsed) {
-        bareCollapsed = true;
-        tail = barePeel.rest;
-      }
-      const meta = tail ? parsePipeMetadata(tail, metaAliasMap) : {};
-      const id = `[${normalizeName(name)}]`;
-      const tags = {};
-      for (const [k2, v2] of Object.entries(meta)) {
-        if (!RESERVED_PIPE_KEYS.has(k2)) tags[k2] = v2;
-      }
-      groups.push({
-        id,
-        name,
-        activityIds: [],
-        collapsed: bareCollapsed || meta["collapsed"] === "true",
-        lineNumber,
-        ...Object.keys(tags).length > 0 && { tags }
-      });
-      groupStack.push({ groupId: id, indent });
-      currentSourceName = null;
-      currentSourceIndent = -1;
-      currentSourceSite = null;
-      continue;
-    }
-    if (trimmed.startsWith("-")) {
-      contentStarted = true;
-      currentTagGroup = null;
-      let arrowTargetText;
-      let edgeType = "FS";
-      let edgeLag = null;
-      const bareMatch = trimmed.match(ARROW_RE3);
-      if (bareMatch) {
-        arrowTargetText = bareMatch[1];
-      } else {
-        const labeledMatch = trimmed.match(LABELED_ARROW_RE);
-        if (!labeledMatch) {
-          error(lineNumber, `Malformed arrow line: '${trimmed}'.`);
-          continue;
-        }
-        const parsedLabel = parseEdgeLabel(labeledMatch[1], options.timeUnit);
-        if (!parsedLabel) {
-          error(
-            lineNumber,
-            `Invalid edge label '${labeledMatch[1]}' in '${trimmed}'. Expected a dependency type (FS/SS/FF/SF) and/or lag (e.g. '+2d', '-1d').`
-          );
-          continue;
-        }
-        arrowTargetText = labeledMatch[2];
-        edgeType = parsedLabel.type;
-        edgeLag = parsedLabel.lag;
-      }
-      if (!currentSourceName) {
-        error(
-          lineNumber,
-          `'-> ${arrowTargetText}' has no source \u2014 declare an activity above on a non-indented line.`
-        );
-        continue;
-      }
-      const tok = tokenizeActivityLine(
-        arrowTargetText,
-        diagnostics,
-        lineNumber,
-        metaAliasMap
-      );
-      const targetName = tok.name;
-      if (!targetName) {
-        error(lineNumber, `'-> \u2026' is missing a target name.`);
-        continue;
-      }
-      if (tok.durationTokens.length > 0 || tok.alias !== void 0 || tok.pipeMetadata !== void 0) {
-        const extras = [];
-        if (tok.durationTokens.length > 0) {
-          extras.push(`'${tok.durationTokens.join(" ")}'`);
-        }
-        if (tok.alias !== void 0) extras.push(`'as ${tok.alias}'`);
-        if (tok.pipeMetadata !== void 0) {
-          extras.push(`'${tok.pipeMetadata}'`);
-        }
-        const durHint = tok.durationTokens.length > 0 ? ` ${tok.durationTokens.join(" ")}` : "";
-        error(
-          lineNumber,
-          `Inline forward-declaration not allowed on '-> ${arrowTargetText}' (${extras.join(", ")}). Move attributes to a source-line: '${targetName}${durHint}' then '-> ${targetName}'.`
-        );
-        continue;
-      }
-      references.push({
-        sourceName: currentSourceName,
-        sourceLineNumber: -1,
-        // resolved in Pass 2 from declarations
-        targetName,
-        targetLineNumber: lineNumber,
-        type: edgeType,
-        lag: edgeLag
-      });
-      continue;
-    }
-    if (currentSourceSite) {
-      const metaMatch = trimmed.match(INDENTED_META_RE);
-      if (metaMatch) {
-        const rawKey = metaMatch[1];
-        const key = rawKey.toLowerCase();
-        const resolvedKey = metaAliasMap.get(key) ?? key;
-        if (RESERVED_PIPE_KEYS.has(resolvedKey) || metaAliasMap.has(key)) {
-          contentStarted = true;
-          currentTagGroup = null;
-          const entry = `${rawKey}: ${metaMatch[2].trim()}`;
-          currentSourceSite.pipeMetadata = currentSourceSite.pipeMetadata ? `${currentSourceSite.pipeMetadata}, ${entry}` : entry;
-          continue;
-        }
-      }
-    }
-    {
-      const firstSpace = trimmed.indexOf(" ");
-      const head = firstSpace === -1 ? trimmed.toLowerCase() : trimmed.slice(0, firstSpace).toLowerCase();
-      if (DIRECTIVE_KEYS.has(head)) {
-        const value = firstSpace === -1 ? "" : trimmed.slice(firstSpace + 1).trim();
-        if (head === "start-date" || head === "end-date") {
-          const hadAnchor = options.anchor !== null;
-          applyAnchorDirective(
-            head,
-            value,
-            lineNumber,
-            options,
-            diagnostics,
-            firstAnchorLine,
-            firstAnchorKey,
-            { order: dateOrder, baseYear, currentYear, noCurrentYear }
-          );
-          if (!hadAnchor && options.anchor !== null) {
-            firstAnchorLine = lineNumber;
-            firstAnchorKey = head;
-          } else if (hadAnchor && options.anchor === null) {
-            firstAnchorLine = null;
-            firstAnchorKey = null;
-          }
-          continue;
-        }
-        applyDirective(head, value, lineNumber, options, error, warn, {
-          order: dateOrder,
-          baseYear,
-          currentYear,
-          noCurrentYear
-        });
-        continue;
-      }
-    }
-    {
-      const firstSpace = trimmed.indexOf(" ");
-      if (firstSpace > 0) {
-        const head = trimmed.slice(0, firstSpace).toLowerCase();
-        const value = trimmed.slice(firstSpace + 1).trim();
-        const hint = NEAR_DIRECTIVE_HINTS.find((h) => h.stem === head);
-        if (hint?.matches.test(value)) {
-          diagnostics.push(
-            emit(PERT_DX.NEAR_DIRECTIVE, lineNumber, {
-              head,
-              canonical: hint.canonical
-            })
-          );
-          continue;
-        }
-      }
-    }
-    if (/^milestone(\s|$)/i.test(trimmed)) {
-      error(lineNumber, `Unknown keyword 'milestone'.`);
-      continue;
-    }
-    {
-      const tok = tokenizeActivityLine(
-        trimmed,
-        diagnostics,
-        lineNumber,
-        metaAliasMap
-      );
-      if (!tok.name) {
-        error(lineNumber, `Empty activity name: '${trimmed}'.`);
-        continue;
-      }
-      contentStarted = true;
-      currentTagGroup = null;
-      const isBareSource = tok.durationTokens.length === 0 && tok.alias === void 0 && tok.pipeMetadata === void 0;
-      if (isBareSource && declarationsByAlias.has(tok.name)) {
-        const existing = declarationsByAlias.get(tok.name);
-        currentSourceName = existing.name;
-        currentSourceIndent = indent;
-        currentSourceSite = existing;
-        continue;
-      }
-      const groupHint = currentGroupId();
-      const site = {
-        name: tok.name,
-        ...tok.alias !== void 0 && { alias: tok.alias },
-        durationTokens: tok.durationTokens,
-        ...tok.pipeMetadata !== void 0 && {
-          pipeMetadata: tok.pipeMetadata
-        },
-        lineNumber,
-        ...groupHint !== void 0 && { groupHint }
-      };
-      registerSite(site);
-      currentSourceName = tok.name;
-      currentSourceIndent = indent;
-      currentSourceSite = site;
-      continue;
-    }
-  }
-  function registerSite(site) {
-    allDeclarations.push(site);
-    const key = normalizeName(site.name);
-    const bucket = sitesByName.get(key);
-    if (bucket) bucket.push(site);
-    else sitesByName.set(key, [site]);
-    if (!declarationsByName.has(key)) {
-      declarationsByName.set(key, site);
-    }
-    if (site.alias && !declarationsByAlias.has(site.alias)) {
-      declarationsByAlias.set(site.alias, site);
-    }
-  }
-  if (options.anchor !== null) {
-    if (options.timeUnit === "bd") {
-      diagnostics.push(emit(PERT_DX.BD_WITH_ANCHOR, 0));
-    } else if (options.timeUnit === "min" || options.timeUnit === "h") {
-      diagnostics.push(emit(PERT_DX.SUBDAY_WITH_ANCHOR, 0));
-    }
-  }
-  for (const [key, sites] of sitesByName) {
-    if (sites.length < 2) continue;
-    const explicit = sites.filter((s) => s.durationTokens.length > 0);
-    if (explicit.length < 2) continue;
-    const fingerprints = new Set(
-      explicit.map((s) => s.durationTokens.join(" "))
-    );
-    if (fingerprints.size > 1) {
-      const lineList = explicit.map((s) => `line ${s.lineNumber} (${s.durationTokens.join(" ")})`).join(" and ");
-      error(
-        explicit[0].lineNumber,
-        `Conflicting estimates for "${declarationsByName.get(key).name}" on ${lineList}. Keep one declaration site.`
-      );
-    }
-  }
-  const idMap = {};
-  for (const [, decl] of declarationsByName) {
-    const id = canonicalIdFromDeclaration(decl);
-    idMap[normalizeName(decl.name)] = id;
-    idMap[decl.name.toLowerCase()] = id;
-  }
-  for (const [aliasLiteral, decl] of declarationsByAlias) {
-    idMap[aliasLiteral] = canonicalIdFromDeclaration(decl);
-  }
-  function canonicalIdFromDeclaration(decl) {
-    return normalizeName(decl.name);
-  }
-  function resolveTargetId(token, lineNumber) {
-    const trimmed = token.trim();
-    if (declarationsByAlias.has(trimmed)) {
-      return canonicalIdFromDeclaration(declarationsByAlias.get(trimmed));
-    }
-    const norm = normalizeName(trimmed);
-    if (declarationsByName.has(norm)) {
-      return canonicalIdFromDeclaration(declarationsByName.get(norm));
-    }
-    const candidates = [
-      ...declarationsByAlias.keys(),
-      ...[...declarationsByName.values()].map((d) => d.name)
-    ];
-    const hint = suggest(trimmed, candidates);
-    error(
-      lineNumber,
-      `Unknown activity '${trimmed}'.${hint ? ` ${hint}` : ""}`
-    );
-    return null;
-  }
-  const bestDeclByName = /* @__PURE__ */ new Map();
-  for (const decl of allDeclarations) {
-    const key = normalizeName(decl.name);
-    const existing = bestDeclByName.get(key);
-    if (!existing) {
-      bestDeclByName.set(key, decl);
-      continue;
-    }
-    const existingHasInfo = existing.durationTokens.length > 0 || existing.alias !== void 0;
-    const incomingHasInfo = decl.durationTokens.length > 0 || decl.alias !== void 0;
-    if (!existingHasInfo && incomingHasInfo) {
-      bestDeclByName.set(key, decl);
-    }
-  }
-  const activitiesById = /* @__PURE__ */ new Map();
-  for (const [id, decl] of bestDeclByName) {
-    const estimate = buildEstimate(
-      decl.durationTokens,
-      options.timeUnit,
-      (msg) => error(decl.lineNumber, msg)
-    );
-    const meta = decl.pipeMetadata ? parsePipeMetadata(decl.pipeMetadata, metaAliasMap) : {};
-    const tags = {};
-    for (const [k2, v2] of Object.entries(meta)) {
-      if (!RESERVED_PIPE_KEYS.has(k2)) tags[k2] = v2;
-    }
-    const isMilestone = estimate !== null && estimate.o.amount === 0 && estimate.m.amount === 0 && estimate.p.amount === 0;
-    activitiesById.set(id, {
-      id,
-      name: decl.name,
-      ...decl.alias !== void 0 && { alias: decl.alias },
-      duration: estimate,
-      ...meta["confidence"] && { confidence: meta["confidence"] },
-      ...decl.groupHint !== void 0 && { groupId: decl.groupHint },
-      lineNumber: decl.lineNumber,
-      isMilestone,
-      ...Object.keys(tags).length > 0 && { tags }
-    });
-  }
-  const edges = [];
-  for (const ref of references) {
-    const sourceId = resolveTargetId(ref.sourceName, ref.targetLineNumber);
-    const targetId = resolveTargetId(ref.targetName, ref.targetLineNumber);
-    if (!sourceId || !targetId) continue;
-    edges.push({
-      source: sourceId,
-      target: targetId,
-      lineNumber: ref.targetLineNumber,
-      type: ref.type,
-      lag: ref.lag
-    });
-  }
-  for (const group of groups) {
-    group.activityIds = [...activitiesById.values()].filter((a) => a.groupId === group.id).map((a) => a.id);
-    group.classification = classifyGroup(group, edges);
-  }
-  const seen = /* @__PURE__ */ new Set();
-  const activities = [];
-  for (const decl of allDeclarations) {
-    const id = canonicalIdFromDeclaration(decl);
-    if (seen.has(id)) continue;
-    seen.add(id);
-    const a = activitiesById.get(id);
-    if (a) activities.push(a);
-  }
-  if (options.trials === -1) {
-    options.trials = deriveTrials(activities.length);
-  }
-  if (options.seed === -1) {
-    const seedSource = title || activities.map((a) => a.name).sort().join("\n") || "pert";
-    options.seed = deriveSeed(seedSource);
-  }
-  const hasSprintOption = options.sprintLength !== null || options.sprintNumber !== null || options.sprintStart !== null;
-  const hasSprintUnit = options.timeUnit === "s" || activities.some(
-    (a) => a.duration !== null && (a.duration.o.unit === "s" || a.duration.m.unit === "s" || a.duration.p.unit === "s")
-  );
-  if (hasSprintOption) {
-    options.sprintMode = "explicit";
-  } else if (hasSprintUnit) {
-    options.sprintMode = "auto";
-  }
-  if (options.sprintMode) {
-    if (!options.sprintLength) {
-      options.sprintLength = { amount: 2, unit: "w" };
-    }
-    if (options.sprintNumber === null) {
-      options.sprintNumber = 1;
-    }
-  }
-  finalizeAutoTagColors(tagGroups, parseOpts.palette);
-  if (tagGroups.length > 0) {
-    validateTagGroupNames(
-      tagGroups.map((g) => ({
-        name: g.name,
-        alias: g.alias ?? null,
-        lineNumber: g.lineNumber
-      })),
-      warn,
-      error
-    );
-    const ensureTags = (entity) => {
-      if (!entity.tags) entity.tags = {};
-      return {
-        metadata: entity.tags,
-        lineNumber: entity.lineNumber
-      };
-    };
-    const activityShells = activities.map(ensureTags);
-    const groupShells = groups.map(ensureTags);
-    validateTagValues(
-      [...activityShells, ...groupShells],
-      tagGroups,
-      warn,
-      suggest
-    );
-    injectDefaultTagMetadata(activityShells, tagGroups);
-    for (const a of activities) {
-      if (a.tags && Object.keys(a.tags).length === 0) delete a.tags;
-    }
-    for (const g of groups) {
-      if (g.tags && Object.keys(g.tags).length === 0) delete g.tags;
-    }
-  }
-  const firstFatal2 = diagnostics.find((d) => d.severity === "error");
-  return {
-    title,
-    options,
-    activities,
-    edges,
-    groups,
-    tagGroups,
-    idMap,
-    diagnostics,
-    error: firstFatal2 ? firstFatal2.message : null
-  };
-}
-function applyDirective(key, value, lineNumber, options, error, warn, dateCfg) {
-  switch (key) {
-    // Universal date directives (§ BL-121) — captured in the parsePert prescan;
-    // consumed here so they don't warn as unknown.
-    case "year":
-    case "date-order":
-    case "no-current-year":
-      return;
-    case "time-unit": {
-      const normalized = value === "sp" ? "s" : value;
-      const valid = [
-        "min",
-        "h",
-        "d",
-        "bd",
-        "w",
-        "m",
-        "q",
-        "y",
-        "s"
-      ];
-      if (!valid.includes(normalized)) {
-        const shown = valid.map((u) => u === "s" ? "sp" : u);
-        error(
-          lineNumber,
-          `Unknown time-unit '${value}'. Expected one of ${shown.join(", ")}.`
-        );
-        return;
-      }
-      options.timeUnit = normalized;
-      return;
-    }
-    case "default-confidence": {
-      options.confidence = value || "medium";
-      return;
-    }
-    case "no-title": {
-      options.noTitle = true;
-      return;
-    }
-    case "no-legend": {
-      options.noLegend = true;
-      return;
-    }
-    case "legend-inline": {
-      options.legendInline = true;
-      return;
-    }
-    case "fill-solid": {
-      options.fillMode = "solid";
-      return;
-    }
-    case "fill-outline": {
-      options.fillMode = "outline";
-      return;
-    }
-    case "fill-tint": {
-      delete options.fillMode;
-      return;
-    }
-    case "active-tag": {
-      options.activeTag = value;
-      return;
-    }
-    case "sprint-length": {
-      const dur = parseDuration(value);
-      if (!dur) {
-        warn(
-          lineNumber,
-          `Invalid sprint-length value: "${value}". Expected a duration like "2w" or "10d".`
-        );
-      } else if (dur.unit !== "d" && dur.unit !== "w") {
-        warn(
-          lineNumber,
-          `sprint-length only accepts "d" or "w" units, got "${dur.unit}".`
-        );
-      } else if (dur.amount <= 0) {
-        warn(lineNumber, `sprint-length must be greater than 0.`);
-      } else if (!Number.isInteger(dur.amount * (dur.unit === "w" ? 7 : 1))) {
-        warn(
-          lineNumber,
-          `sprint-length must resolve to a whole number of days.`
-        );
-      } else {
-        options.sprintLength = dur;
-      }
-      return;
-    }
-    case "sprint-number": {
-      const n = Number(value);
-      if (!Number.isFinite(n) || !Number.isInteger(n) || n <= 0) {
-        warn(
-          lineNumber,
-          `sprint-number must be a positive integer, got "${value}".`
-        );
-      } else {
-        options.sprintNumber = n;
-      }
-      return;
-    }
-    case "sprint-start": {
-      const res = parseDateToken(value.trim(), { dateOrder: dateCfg.order });
-      const yr = res?.token.year ?? dateCfg.baseYear ?? dateCfg.currentYear;
-      const iso = res?.consumed === value.trim().length && !res.token.invalidTime && res.token.grain >= 3 && !res.token.hasTime ? toInternal(res.token, yr) : null;
-      if (!iso) {
-        warn(
-          lineNumber,
-          `sprint-start requires a full date (e.g. YYYY-MM-DD, 7/4, or Jul 4), got "${value}".`
-        );
-      } else if (Number.isNaN((/* @__PURE__ */ new Date(iso + "T00:00:00")).getTime())) {
-        warn(lineNumber, `sprint-start is not a valid date: "${value}".`);
-      } else {
-        options.sprintStart = iso;
-      }
-      return;
-    }
-    case "direction": {
-      const upper = value.toUpperCase();
-      if (upper !== "LR" && upper !== "TB") {
-        error(lineNumber, `Unknown direction '${value}'. Expected LR or TB.`);
-        return;
-      }
-      options.direction = upper;
-      return;
-    }
-    case "direction-lr": {
-      options.direction = "LR";
-      return;
-    }
-    case "direction-tb": {
-      options.direction = "TB";
-      return;
-    }
-    case "node-detail": {
-      if (value !== "compact" && value !== "full") {
-        error(
-          lineNumber,
-          `Unknown node-detail '${value}'. Expected compact or full.`
-        );
-        return;
-      }
-      options.nodeDetail = value;
-      return;
-    }
-    case "no-analysis": {
-      options.noAnalysis = true;
-      return;
-    }
-    case "trials": {
-      const n = parseInt(value, 10);
-      if (!Number.isFinite(n) || n < 1) {
-        error(
-          lineNumber,
-          `'trials' expects a positive integer; got '${value}'.`
-        );
-        return;
-      }
-      options.trials = n;
-      return;
-    }
-    case "seed": {
-      const n = parseInt(value, 10);
-      if (!Number.isFinite(n)) {
-        error(lineNumber, `'seed' expects an integer; got '${value}'.`);
-        return;
-      }
-      options.seed = n;
-      return;
-    }
-    case "scrubber-trials": {
-      const n = parseInt(value, 10);
-      if (!Number.isFinite(n) || n < 1) {
-        error(
-          lineNumber,
-          `'scrubber-trials' expects a positive integer; got '${value}'.`
-        );
-        return;
-      }
-      if (n < 100) {
-        warn(
-          lineNumber,
-          `'scrubber-trials ${n}' is below the floor of 100; analyzer will still degrade if needed.`
-        );
-      }
-      options.scrubberTrials = n;
-      return;
-    }
-    case "start-date":
-    case "end-date": {
-      error(
-        lineNumber,
-        `internal error: anchor directive '${key}' reached generic dispatch`
-      );
-      return;
-    }
-  }
-}
-function applyAnchorDirective(key, value, lineNumber, options, diagnostics, firstAnchorLine, firstAnchorKey, dateCfg) {
-  if (options.anchor !== null) {
-    diagnostics.push(
-      emit(PERT_DX.BOTH_ANCHORS, lineNumber, {
-        firstAnchorKey,
-        firstAnchorLine
-      })
-    );
-    options.anchor = null;
-    return;
-  }
-  const trimmed = value.trim();
-  if (trimmed.length === 0) {
-    diagnostics.push(
-      emit(PERT_DX.INVALID_DATE, lineNumber, { empty: true, key, value })
-    );
-    return;
-  }
-  if (trimmed.toLowerCase() === "now") {
-    if (key === "end-date") {
-      diagnostics.push(emit(PERT_DX.END_DATE_NOW, lineNumber));
-      return;
-    }
-    options.anchor = { kind: "forward", date: options.today };
-    return;
-  }
-  const res = parseDateToken(trimmed, { dateOrder: dateCfg.order });
-  if (res?.consumed !== trimmed.length || res.token.invalidTime || res.token.grain < 3) {
-    diagnostics.push(emit(PERT_DX.INVALID_DATE, lineNumber, { trimmed, key }));
-    return;
-  }
-  let year = res.token.year;
-  if (year == null) {
-    if (dateCfg.baseYear == null && dateCfg.noCurrentYear) {
-      diagnostics.push(
-        emit(PERT_DX.INVALID_DATE, lineNumber, { trimmed, key })
-      );
-      return;
-    }
-    year = dateCfg.baseYear ?? dateCfg.currentYear;
-  }
-  const probe = new Date(year, res.token.month - 1, res.token.day);
-  if (probe.getFullYear() !== year || probe.getMonth() !== res.token.month - 1 || probe.getDate() !== res.token.day) {
-    diagnostics.push(emit(PERT_DX.INVALID_DATE, lineNumber, { trimmed, key }));
-    return;
-  }
-  const iso = toInternal(res.token, year);
-  options.anchor = key === "start-date" ? { kind: "forward", date: iso } : { kind: "backward", date: iso };
-}
-function classifyGroup(group, edges) {
-  const members = new Set(group.activityIds);
-  if (members.size === 0) return "cluster";
-  const entries = /* @__PURE__ */ new Set();
-  const exits = /* @__PURE__ */ new Set();
-  for (const id of members) {
-    const incoming = edges.filter((e) => e.target === id);
-    const outgoing = edges.filter((e) => e.source === id);
-    const hasInsideIn = incoming.some((e) => members.has(e.source));
-    const hasOutsideIn = incoming.some((e) => !members.has(e.source));
-    const hasInsideOut = outgoing.some((e) => members.has(e.target));
-    const hasOutsideOut = outgoing.some((e) => !members.has(e.target));
-    if (hasOutsideIn || !hasInsideIn && incoming.length === 0)
-      entries.add(id);
-    if (hasOutsideOut || !hasInsideOut && outgoing.length === 0)
-      exits.add(id);
-  }
-  return entries.size === 1 && exits.size === 1 ? "hammock" : "cluster";
-}
-function extractPertSymbols(docText) {
-  const parsed = parsePert(docText);
-  const entities = [];
-  for (const a of parsed.activities) {
-    if (!entities.includes(a.name)) entities.push(a.name);
-    if (a.alias && !entities.includes(a.alias)) entities.push(a.alias);
-  }
-  for (const g of parsed.groups) {
-    if (!entities.includes(g.name)) entities.push(g.name);
-  }
-  return {
-    kind: "pert",
-    entities
-  };
-}
-function looksLikePert(content) {
-  for (const raw of content.split("\n")) {
-    const line = raw.trim();
-    if (!line || line.startsWith("//") || line.startsWith("#")) continue;
-    if (/^analysis\s+monte-carlo\b/i.test(line)) return true;
-  }
-  return false;
-}
-var PERT_DX, PERT_DIAGNOSTICS, DIRECTIVE_KEYS, RESERVED_PIPE_KEYS, NEAR_DIRECTIVE_HINTS, GROUP_HEADER_RE, ARROW_RE3, INDENTED_META_RE, LABELED_ARROW_RE, VALID_DURATION_UNITS, ALIAS_SUFFIX_RE, ESTIMATE_TOKEN_RE, DEFAULT_OPTIONS;
-var init_chunk_DIKIHU52 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DIKIHU52.js"() {
-    init_chunk_3TYUXC7D();
-    init_chunk_EQW6HOP4();
-    init_chunk_DAOFNU6J();
-    init_chunk_NOTA6TEI();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    PERT_DX = {
-      BOTH_ANCHORS: {
-        code: "E_PERT_BOTH_ANCHORS",
-        severity: "error",
-        // Runtime: error() @ parser.ts ~1508
-        chartType: "pert",
-        title: "Both start-date and end-date set",
-        // Message interpolates an optional `priorRef` suffix referencing the
-        // first anchor's kind + line. Builder tolerates `{}` (suffix omitted).
-        message: (p2) => {
-          const kind = p2.firstAnchorKey;
-          const line = p2.firstAnchorLine;
-          const priorRef = kind && line ? ` Conflicts with \`${String(kind)}\` declared on line ${String(line)}.` : "";
-          return `Specify \`start-date\` or \`end-date\`, not both. Use one anchor \u2014 both directives are discarded; re-author one to recover.${priorRef}`;
-        },
-        hint: "Pick a single anchor: either `start-date` (forward) or `end-date` (backward).",
-        example: "pert\nstart-date 2026-06-01\nend-date 2026-09-15\nA 1 2 3\n"
-      },
-      END_DATE_NOW: {
-        code: "E_PERT_END_DATE_NOW",
-        severity: "error",
-        // Runtime: error() @ parser.ts ~1530
-        chartType: "pert",
-        title: "`end-date now` not allowed",
-        message: "`end-date` requires an explicit YYYY-MM-DD; `now` is only valid for `start-date`.",
-        hint: "Give `end-date` a literal date, or use `start-date now` if you want today.",
-        example: "pert\nend-date now\nA 1 2 3\n"
-      },
-      INVALID_DATE: {
-        code: "E_PERT_INVALID_DATE",
-        severity: "error",
-        // Runtime: error() @ parser.ts ~1519 and ~1545
-        chartType: "pert",
-        title: "Invalid anchor date",
-        // Emitted from TWO sites with different wording:
-        //  (a) empty value @ ~1519:  "`${key}` requires a full date (YYYY-MM-DD), got '${value}'."
-        //  (b) unparseable  @ ~1545:  "Invalid date '${trimmed}' for ${key}. Expected YYYY-MM-DD."
-        // The builder reproduces BOTH: pass `empty: true` + `value`/`key` for
-        // variant (a); pass `trimmed`/`key` for variant (b). The `{}` default
-        // shows variant (b)'s representative wording.
-        message: (p2) => {
-          const key = p2.key ?? "start-date";
-          if (p2.empty) {
-            return `\`${String(key)}\` requires a full date (YYYY-MM-DD), got '${String(p2.value ?? "")}'.`;
-          }
-          const date = p2.trimmed ?? p2.value;
-          return date ? `Invalid date '${String(date)}' for ${String(key)}. Expected YYYY-MM-DD.` : `Invalid date for ${String(key)}. Expected YYYY-MM-DD.`;
-        },
-        hint: "Use a calendar-valid date \u2014 ISO (`2026-06-01`), slash (`6/1/2026`), or month-name (`Jun 1, 2026`).",
-        example: "pert\nstart-date 2026-13-99\nA 1 2 3\n"
-      },
-      NEAR_DIRECTIVE: {
-        code: "E_PERT_NEAR_DIRECTIVE",
-        severity: "error",
-        // Runtime: error() @ parser.ts ~938
-        chartType: "pert",
-        title: "Near-miss directive typo",
-        // Interpolates the mistyped head + the suggested canonical directive.
-        message: (p2) => {
-          const head = p2.head ?? "start";
-          const canonical = p2.canonical ?? "start-date";
-          return `Unknown directive '${String(head)}'. Did you mean '${String(canonical)}'?`;
-        },
-        hint: "Use the full directive name (`start-date`, `end-date`, `default-confidence`, `time-unit`).",
-        example: "pert\nstart 2026-06-01\nA 1 2 3\n"
-      },
-      BD_WITH_ANCHOR: {
-        code: "W_PERT_BD_WITH_ANCHOR",
-        severity: "warning",
-        // Runtime: warn() @ parser.ts ~1024
-        chartType: "pert",
-        title: "Business days with date anchor",
-        message: "`bd` (business days) is treated as calendar days when `start-date`/`end-date` is set. For business-day scheduling with weekend/holiday awareness, use Gantt.",
-        hint: "Drop the date anchor, or switch to Gantt for weekend/holiday-aware scheduling.",
-        example: "pert\ntime-unit bd\nstart-date 2026-06-01\nA 1 2 3\n"
-      },
-      SUBDAY_WITH_ANCHOR: {
-        code: "W_PERT_SUBDAY_WITH_ANCHOR",
-        severity: "warning",
-        // Runtime: warn() @ parser.ts ~1030
-        chartType: "pert",
-        title: "Sub-day time-unit with date anchor",
-        message: "Date display rounds to whole days; sub-day `time-unit` ('h'/'min') will lose precision when `start-date`/`end-date` is set. For honest output use `time-unit d`.",
-        hint: "Use `time-unit d` when anchoring to dates, or remove the anchor.",
-        example: "pert\ntime-unit h\nstart-date 2026-06-01\nA 1 2 3\n"
-      }
-    };
-    PERT_DIAGNOSTICS = Object.values(PERT_DX);
-    DIRECTIVE_KEYS = /* @__PURE__ */ new Set([
-      "time-unit",
-      "default-confidence",
-      // Canonical booleans (§1.9, last one wins); key+value `direction LR|TB`
-      // accepted legacy.
-      "direction",
-      "direction-lr",
-      "direction-tb",
-      "node-detail",
-      "no-analysis",
-      "trials",
-      "seed",
-      "scrubber-trials",
-      "start-date",
-      "end-date",
-      "no-title",
-      "no-legend",
-      "legend-inline",
-      "fill-tint",
-      "fill-solid",
-      "fill-outline",
-      "sprint-length",
-      "sprint-number",
-      "sprint-start",
-      "active-tag",
-      // Universal date directives (§ BL-121); effect captured in the prescan.
-      "year",
-      "date-order",
-      "no-current-year"
-    ]);
-    RESERVED_PIPE_KEYS = /* @__PURE__ */ new Set([
-      "confidence",
-      "collapsed"
-    ]);
-    NEAR_DIRECTIVE_HINTS = [
-      {
-        stem: "confidence",
-        canonical: "default-confidence",
-        matches: /^(low|medium|high)$/i
-      },
-      {
-        // ISO, numeric slash (§ BL-121), or `now`. Month-name forms are omitted
-        // to avoid flagging activities like `start the engines`.
-        stem: "start",
-        canonical: "start-date",
-        matches: /^(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}(?:\/\d{2,4})?|now)$/i
-      },
-      {
-        stem: "end",
-        canonical: "end-date",
-        matches: /^(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}(?:\/\d{2,4})?)$/
-      },
-      {
-        stem: "time",
-        canonical: "time-unit",
-        matches: /^(d|w|m|q|y|h|min|bd|sp|s)$/i
-      }
-    ];
-    GROUP_HEADER_RE = /^\[([^\]]+)\]\s*(.*)$/;
-    ARROW_RE3 = /^->\s*(.+?)\s*$/;
-    INDENTED_META_RE = /^([A-Za-z][\w-]*)\s*:\s*(.+)$/;
-    LABELED_ARROW_RE = /^-(.+?)->\s*(.+?)\s*$/;
-    VALID_DURATION_UNITS = /* @__PURE__ */ new Set([
-      "min",
-      "h",
-      "d",
-      "bd",
-      "w",
-      "m",
-      "q",
-      "y",
-      "s"
-    ]);
-    ALIAS_SUFFIX_RE = /\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/;
-    ESTIMATE_TOKEN_RE = /^(\d+(?:\.\d+)?)(min|bd|sp|d|w|m|q|y|h|s)?$/;
-    DEFAULT_OPTIONS = {
-      timeUnit: "d",
-      direction: "LR",
-      nodeDetail: "compact",
-      confidence: "medium",
-      trials: -1,
-      seed: -1,
-      scrubberTrials: 300,
-      anchor: null,
-      sprintLength: null,
-      sprintNumber: null,
-      sprintStart: null,
-      sprintMode: null,
-      today: ""
-    };
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MJOBVY7.js
-function parseDateWithOptionalTime(input, ctx) {
-  const res = parseDateToken(input, { dateOrder: ctx?.order });
-  if (!res) return null;
-  const { token, consumed } = res;
-  const internal = ctx?.resolve ? ctx.resolve(token).internal : toInternal(
-    token,
-    token.year ?? ctx?.currentYear ?? (/* @__PURE__ */ new Date()).getFullYear()
-  );
-  return {
-    date: internal,
-    rest: input.slice(consumed),
-    timeValid: !token.invalidTime,
-    invalidTime: token.invalidTime
-  };
-}
-function extractDatePrefix(line, ctx) {
-  const startResult = parseDateWithOptionalTime(line, ctx);
-  if (!startResult) return null;
-  const { date: startDate } = startResult;
-  let { rest } = startResult;
-  const arrowMatch = rest.match(ARROW_RE4);
-  if (arrowMatch) {
-    rest = rest.slice(arrowMatch[0].length);
-    const endResult = parseDateWithOptionalTime(rest, ctx);
-    if (endResult) {
-      let uncertain = false;
-      let afterEnd = endResult.rest;
-      if (afterEnd.startsWith("?")) {
-        uncertain = true;
-        afterEnd = afterEnd.slice(1);
-      }
-      const remainder2 = afterEnd.trimStart();
-      return {
-        startDate,
-        endDate: endResult.date,
-        uncertain,
-        remainder: remainder2,
-        startTimeValid: startResult.timeValid,
-        endTimeValid: endResult.timeValid,
-        invalidStartTime: startResult.invalidTime,
-        invalidEndTime: endResult.invalidTime
-      };
-    }
-    return null;
-  }
-  const remainder = rest.trimStart();
-  if (!remainder) {
-    return {
-      startDate,
-      endDate: null,
-      uncertain: false,
-      remainder: "",
-      startTimeValid: startResult.timeValid,
-      endTimeValid: true,
-      invalidStartTime: startResult.invalidTime,
-      invalidEndTime: void 0
-    };
-  }
-  return {
-    startDate,
-    endDate: null,
-    uncertain: false,
-    remainder,
-    startTimeValid: startResult.timeValid,
-    endTimeValid: true,
-    invalidStartTime: startResult.invalidTime,
-    invalidEndTime: void 0
-  };
-}
-function splitDateParts(input) {
-  let s = input;
-  let sign3 = 1;
-  if (s.startsWith("-")) {
-    sign3 = -1;
-    s = s.slice(1);
-  }
-  const spaceIdx = s.indexOf(" ");
-  let datePart = s;
-  let hour = 0;
-  let minute = 0;
-  let second = 0;
-  let hasTime = false;
-  if (spaceIdx !== -1) {
-    datePart = s.slice(0, spaceIdx);
-    const tp = s.slice(spaceIdx + 1).split(":");
-    if (tp.length >= 2) {
-      hasTime = true;
-      hour = parseInt(tp[0], 10) || 0;
-      minute = parseInt(tp[1], 10) || 0;
-      second = tp.length >= 3 ? parseInt(tp[2], 10) || 0 : 0;
-    }
-  }
-  const parts = datePart.split("-").map((p2) => parseInt(p2, 10));
-  const granularity = parts.length >= 3 ? 3 : parts.length === 2 ? 2 : 1;
-  return {
-    sign: sign3,
-    year: parts[0],
-    month: parts.length >= 2 ? parts[1] : 1,
-    day: parts.length >= 3 ? parts[2] : 1,
-    hour,
-    minute,
-    second,
-    granularity,
-    hasTime
-  };
-}
-function addDurationToDate(startDate, amount, unit2) {
-  const p2 = splitDateParts(startDate);
-  const signedYear = p2.sign * p2.year;
-  const date = new Date(2e3, p2.month - 1, p2.day, p2.hour, p2.minute, p2.second);
-  date.setFullYear(signedYear);
-  switch (unit2) {
-    case "d":
-      date.setDate(date.getDate() + Math.round(amount));
-      break;
-    case "w":
-      date.setDate(date.getDate() + Math.round(amount * 7));
-      break;
-    case "m": {
-      const wholeMonths = Math.floor(amount);
-      const fractionalDays = Math.round((amount - wholeMonths) * 30);
-      date.setMonth(date.getMonth() + wholeMonths);
-      if (fractionalDays > 0) {
-        date.setDate(date.getDate() + fractionalDays);
-      }
-      break;
-    }
-    case "y": {
-      const wholeYears = Math.floor(amount);
-      const fractionalMonths = Math.round((amount - wholeYears) * 12);
-      date.setFullYear(date.getFullYear() + wholeYears);
-      if (fractionalMonths > 0) {
-        date.setMonth(date.getMonth() + fractionalMonths);
-      }
-      break;
-    }
-    case "h":
-      date.setTime(date.getTime() + amount * 36e5);
-      break;
-    case "min":
-      date.setTime(date.getTime() + amount * 6e4);
-      break;
-    case "s":
-      date.setTime(date.getTime() + amount * 1e3);
-      break;
-  }
-  const outYear = date.getFullYear();
-  const neg = outYear < 0 ? "-" : "";
-  const endYear = Math.abs(outYear);
-  const endMonth = String(date.getMonth() + 1).padStart(2, "0");
-  const endDay = String(date.getDate()).padStart(2, "0");
-  const endHour = String(date.getHours()).padStart(2, "0");
-  const endMinute = String(date.getMinutes()).padStart(2, "0");
-  const endSecond = String(date.getSeconds()).padStart(2, "0");
-  const hasTime = unit2 === "h" || unit2 === "min" || unit2 === "s" || p2.hasTime;
-  const showSeconds = unit2 === "s" || p2.second !== 0 || date.getSeconds() !== 0;
-  if (p2.granularity === 1) {
-    return `${neg}${endYear}`;
-  } else if (p2.granularity === 2) {
-    return `${neg}${endYear}-${endMonth}`;
-  } else if (hasTime && (date.getHours() !== 0 || date.getMinutes() !== 0 || date.getSeconds() !== 0)) {
-    const time = showSeconds ? `${endHour}:${endMinute}:${endSecond}` : `${endHour}:${endMinute}`;
-    return `${neg}${endYear}-${endMonth}-${endDay} ${time}`;
-  } else {
-    return `${neg}${endYear}-${endMonth}-${endDay}`;
-  }
-}
-function parseTimelineDate(s) {
-  const p2 = splitDateParts(s);
-  const yearBase = p2.sign * p2.year;
-  return yearBase + (p2.month - 1) / 12 + (p2.day - 1) / 365 + p2.hour / 8760 + p2.minute / 525600 + p2.second / 31536e3;
-}
-function parseTimelineEventLine(line, lineNumber, currentGroup, groupMetadata, aliasMap, registry, dateCtx) {
-  const diagnostics = [];
-  const prefix = extractDatePrefix(line, dateCtx);
-  if (!prefix) {
-    if (/^\d/.test(line)) {
-      const firstToken = line.split(/\s/)[0];
-      if (!/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/.test(firstToken)) {
-        diagnostics.push(
-          makeDgmoError(
-            lineNumber,
-            `Expected date format YYYY, YYYY-MM, or YYYY-MM-DD. Got '${firstToken}'.`,
-            "warning"
-          )
-        );
-        return { event: null, diagnostics };
-      }
-    }
-    return null;
-  }
-  if (!prefix.startTimeValid && prefix.invalidStartTime) {
-    diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        `Invalid time '${prefix.invalidStartTime}'. Hours must be 0-23, minutes 0-59.`,
-        "warning"
-      )
-    );
-  }
-  if (!prefix.endTimeValid && prefix.invalidEndTime) {
-    diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        `Invalid time '${prefix.invalidEndTime}'. Hours must be 0-23, minutes 0-59.`,
-        "warning"
-      )
-    );
-  }
-  if (!prefix.remainder) {
-    diagnostics.push(
-      makeDgmoError(lineNumber, "Event needs a name after the date.", "warning")
-    );
-    return { event: null, diagnostics };
-  }
-  const tlRegistry = registry ?? withTagAliases(
-    TIMELINE_REGISTRY,
-    /* @__PURE__ */ new Set([...aliasMap.keys(), ...aliasMap.values()])
-  );
-  const split = splitNameAndMeta(prefix.remainder, tlRegistry, aliasMap);
-  warnUnknownMetaKeys(
-    split.meta,
-    tlRegistry,
-    (msg) => diagnostics.push(makeDgmoError(lineNumber, msg, "warning"))
-  );
-  const name = split.name;
-  let endDate = prefix.endDate;
-  let uncertain = prefix.uncertain;
-  const metadata = { ...split.meta };
-  let duration = null;
-  if (metadata["duration"]) {
-    const durStr = metadata["duration"];
-    const uncertainMatch = durStr.match(/^(.+)\?$/);
-    const cleanDur = uncertainMatch ? uncertainMatch[1] : durStr;
-    if (uncertainMatch) uncertain = true;
-    const durMatch = cleanDur.match(TIMELINE_DURATION_RE);
-    if (durMatch) {
-      duration = {
-        amount: parseFloat(durMatch[1]),
-        unit: durMatch[2]
-      };
-    } else {
-      diagnostics.push(
-        makeDgmoError(
-          lineNumber,
-          `Invalid duration '${durStr}'. Expected format like "30d", "2w", "1.5m", "1y", "2h", "30min", "45s".`,
-          "warning"
-        )
-      );
-    }
-    delete metadata["duration"];
-  }
-  if (endDate && duration) {
-    diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        "Event has both an end date and duration. End date takes precedence.",
-        "warning"
-      )
-    );
-  }
-  if (!endDate && duration) {
-    endDate = addDurationToDate(
-      prefix.startDate,
-      duration.amount,
-      duration.unit
-    );
-  }
-  let label = name;
-  if (split.color !== void 0) {
-    label = `${label} ${split.color}`;
-  }
-  const mergedMetadata = {
-    ...groupMetadata,
-    ...metadata
-  };
-  if (split.color) {
-    mergedMetadata["color"] = split.color;
-  }
-  const eventMeta = { ...mergedMetadata };
-  if (split.color) delete eventMeta["color"];
-  const event = {
-    date: prefix.startDate,
-    endDate,
-    label,
-    group: currentGroup,
-    metadata: eventMeta,
-    lineNumber,
-    ...uncertain ? { uncertain: true } : {}
-  };
-  return { event, diagnostics };
-}
-var TIMELINE_DURATION_RE, ARROW_RE4;
-var init_chunk_4MJOBVY7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4MJOBVY7.js"() {
-    init_chunk_DAOFNU6J();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    TIMELINE_DURATION_RE = /^(\d+(?:\.\d{1,2})?)(min|[dwmyhs])(\?)?$/;
-    ARROW_RE4 = /^\s*(?:->|–>)\s*/;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WFX6AUQO.js
-function parseEventLine(content, palette) {
-  const options = {
-    scale: true,
-    side: "alternate",
-    noTitle: false,
-    noBox: false,
-    noLegend: false,
-    fillMode: void 0
-  };
-  const result = {
-    type: "event-line",
-    title: null,
-    titleLineNumber: null,
-    events: [],
-    eras: [],
-    now: null,
-    tagGroups: [],
-    options,
-    diagnostics: [],
-    error: null
-  };
-  const fail = makeFail(result);
-  const pushWarning = (line, message, code) => {
-    result.diagnostics.push(makeDgmoError(line, message, "warning", code));
-  };
-  const pushError = (line, message, code) => {
-    const diag = makeDgmoError(line, message, "error", code);
-    result.diagnostics.push(diag);
-    if (!result.error) result.error = formatDgmoError(diag);
-  };
-  if (!content?.trim()) return fail(0, "No content provided");
-  const lines = content.split("\n");
-  let dateOrder = "mdy";
-  let noCurrentYear = false;
-  let directiveYear = null;
-  for (const raw of lines) {
-    const t3 = raw.trim().toLowerCase();
-    if (t3 === "no-current-year") noCurrentYear = true;
-    else if (t3 === "date-order dmy") dateOrder = "dmy";
-    else if (t3 === "date-order mdy") dateOrder = "mdy";
-    else {
-      const ym = t3.match(/^year\s+(\d{1,4})$/);
-      if (ym) directiveYear = parseInt(ym[1], 10);
-    }
-  }
-  let prescan = null;
-  for (const raw of lines) {
-    const t3 = raw.trim();
-    if (!t3) continue;
-    const p2 = parseDateToken(t3, { dateOrder });
-    if (p2?.token.year != null) {
-      prescan = p2.token.sign * p2.token.year;
-      break;
-    }
-  }
-  const yearCtx = makeYearContext({
-    order: dateOrder,
-    directiveYear,
-    prescanYear: prescan,
-    noCurrentYear
-  });
-  const dateCtx = {
-    order: dateOrder,
-    resolve: (tok) => resolveTokenYear(tok, yearCtx)
-  };
-  const isDateDirective = (t3) => t3 === "no-current-year" || t3 === "date-order dmy" || t3 === "date-order mdy" || /^year\s+\d{1,4}$/.test(t3);
-  let contentStarted = false;
-  let headerParsed = false;
-  const sharedOptions = {};
-  let currentTagGroup = null;
-  let currentEvent = null;
-  let currentEra = null;
-  let eraIndent = -1;
-  let currentEventIndent = 0;
-  const aliasMap = /* @__PURE__ */ new Map();
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const lineNumber = i + 1;
-    const trimmed = line.trim();
-    if (!trimmed) {
-      currentTagGroup = null;
-      continue;
-    }
-    if (trimmed.startsWith("//")) continue;
-    const indent = measureIndent(line);
-    if (!headerParsed) {
-      const firstLine = parseFirstLine(trimmed);
-      if (firstLine?.chartType === "event-line") {
-        result.title = firstLine.title ?? null;
-        result.titleLineNumber = lineNumber;
-        headerParsed = true;
-        continue;
-      }
-      let msg = 'Expected "event-line [Title]" as the first line.';
-      const hint = suggest(firstLine?.chartType ?? trimmed, ["event-line"]);
-      if (hint) msg += ` ${hint}`;
-      return fail(lineNumber, msg);
-    }
-    const tagBlockMatch = matchTagBlockHeading(trimmed);
-    if (tagBlockMatch) {
-      if (contentStarted) {
-        pushError(
-          lineNumber,
-          "Tag groups must appear before event-line content",
-          "E_TAG_DECLARED_AFTER_CONTENT"
-        );
-        continue;
-      }
-      currentTagGroup = {
-        name: tagBlockMatch.name,
-        ...tagBlockMatch.alias !== void 0 && {
-          alias: tagBlockMatch.alias
-        },
-        entries: [],
-        lineNumber
-      };
-      if (tagBlockMatch.alias) {
-        aliasMap.set(
-          tagBlockMatch.alias.toLowerCase(),
-          tagAttrKey(tagBlockMatch.name)
-        );
-      }
-      aliasMap.set(
-        tagAttrKey(tagBlockMatch.name),
-        tagAttrKey(tagBlockMatch.name)
-      );
-      result.tagGroups.push(currentTagGroup);
-      continue;
-    }
-    if (currentTagGroup && !contentStarted && indent > 0) {
-      const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
-      const { label, color: color2 } = extractColor(
-        cleanEntry,
-        palette,
-        result.diagnostics,
-        lineNumber
-      );
-      if (isDefault || currentTagGroup.entries.length === 0) {
-        currentTagGroup.defaultValue = label;
-      }
-      currentTagGroup.entries.push({
-        value: label,
-        color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-        lineNumber
-      });
-      continue;
-    }
-    if (currentEvent && indent > currentEventIndent) {
-      const descLine = trimmed.startsWith("- ") ? `\u2022 ${trimmed.substring(2)}` : trimmed;
-      currentEvent.description.push(descLine);
-      continue;
-    }
-    const eraMatch = trimmed.match(ERA_RE2);
-    if (eraMatch) {
-      contentStarted = true;
-      currentTagGroup = null;
-      currentEvent = null;
-      const name = eraMatch[1].trim();
-      let rest = (eraMatch[2] ?? "").trim();
-      let collapsed = false;
-      const cm = rest.match(ERA_COLLAPSED_RE);
-      if (cm) {
-        collapsed = cm[1].toLowerCase() === "true";
-        rest = (rest.slice(0, cm.index) + rest.slice(cm.index + cm[0].length)).trim();
-      } else {
-        const bare = rest.match(/(?:^|\s)collapsed(?=\s|$)/);
-        if (bare) {
-          collapsed = true;
-          rest = (rest.slice(0, bare.index) + " " + rest.slice(bare.index + bare[0].length)).trim();
-        }
-      }
-      let color2 = null;
-      if (rest) {
-        const token = rest.split(/\s+/).pop();
-        const ex = extractColor(
-          `x ${token}`,
-          palette,
-          result.diagnostics,
-          lineNumber
-        );
-        if (ex.color !== void 0) color2 = token;
-      }
-      const era = { name, color: color2, collapsed, lineNumber };
-      result.eras.push(era);
-      currentEra = name;
-      eraIndent = indent;
-      continue;
-    }
-    if (indent === 0) {
-      currentTagGroup = null;
-      if (isDateDirective(trimmed.toLowerCase())) {
-        continue;
-      }
-      if (trimmed.toLowerCase() === "no-scale") {
-        options.scale = false;
-        continue;
-      }
-      const sideMatch = trimmed.match(SIDE_RE);
-      if (sideMatch) {
-        options.side = sideMatch[1].toLowerCase();
-        continue;
-      }
-      if (trimmed.toLowerCase() === "no-box") {
-        options.noBox = true;
-        continue;
-      }
-      if (trimmed.toLowerCase() === "no-legend") {
-        options.noLegend = true;
-        continue;
-      }
-      if (trimmed.toLowerCase() === "legend-inline") {
-        options.legendInline = true;
-        continue;
-      }
-      {
-        const nowMatch = trimmed.match(NOW_RE);
-        if (nowMatch) {
-          const rest = nowMatch[1].trim();
-          if (!rest) {
-            result.now = {
-              computed: true,
-              date: null,
-              dateValue: null,
-              label: "now",
-              lineNumber
-            };
-          } else {
-            const prefix = extractDatePrefix(rest, dateCtx);
-            if (prefix) {
-              const label = prefix.remainder?.trim() || "now";
-              result.now = {
-                computed: false,
-                date: prefix.startDate,
-                dateValue: parseTimelineDate(prefix.startDate),
-                label,
-                lineNumber
-              };
-            } else {
-              result.diagnostics.push(
-                emit(EVENT_LINE_DX.BAD_DATE, lineNumber, {
-                  token: rest.split(/\s+/)[0]
-                })
-              );
-            }
-          }
-          continue;
-        }
-      }
-      {
-        const fm = fillModeFromToken(trimmed);
-        if (fm !== null) {
-          options.fillMode = fm === "tint" ? void 0 : fm;
-          continue;
-        }
-      }
-      if (/^direction-lr$/i.test(trimmed)) continue;
-      if (/^direction-tb$/i.test(trimmed)) {
-        result.diagnostics.push(
-          emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
-            reason: "event-line is horizontal-only in v1; `direction-tb` (vertical orientation) is a fast-follow."
-          })
-        );
-        continue;
-      }
-      const dirMatch = trimmed.match(DIRECTION_RE);
-      if (dirMatch) {
-        const dir = dirMatch[1].toUpperCase();
-        if (dir !== "LR") {
-          result.diagnostics.push(
-            emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
-              reason: `event-line is horizontal-only in v1; \`direction ${dir}\` (vertical orientation) is a fast-follow.`
-            })
-          );
-        }
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, sharedOptions)) continue;
-      if (SECTION_SEAM_RE.test(trimmed)) {
-        result.diagnostics.push(
-          emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
-            reason: "Group events with `[Name]` era brackets (\xA728.6a), not `section`."
-          })
-        );
-        continue;
-      }
-    }
-    const inEra = currentEra !== null && indent > eraIndent;
-    if (!inEra) currentEra = null;
-    contentStarted = true;
-    const event = parseEventHeader(
-      trimmed,
-      lineNumber,
-      currentEra,
-      aliasMap,
-      result.diagnostics,
-      pushWarning,
-      dateCtx
-    );
-    result.events.push(event);
-    currentEvent = event;
-    currentEventIndent = indent;
-  }
-  options.noTitle = sharedOptions["no-title"] === "on";
-  resolveFutureEvents(result.events);
-  finalizeAutoTagColors(result.tagGroups, palette);
-  if (result.tagGroups.length > 0) {
-    validateTagValues(result.events, result.tagGroups, pushWarning, suggest);
-    validateTagGroupNames(result.tagGroups, pushWarning);
-    injectDefaultTagMetadata(result.events, result.tagGroups);
-  }
-  if (result.events.length === 0 && !result.error) {
-    const diag = emit(EVENT_LINE_DX.NO_EVENTS, result.titleLineNumber ?? 1);
-    result.diagnostics.push(diag);
-    result.error = formatDgmoError(diag);
-  }
-  const eraFlaggedLines = /* @__PURE__ */ new Set();
-  if (options.scale) {
-    validateEraDateOrder(result.events, result.eras, (err) => {
-      eraFlaggedLines.add(err.line);
-      result.diagnostics.push(err);
-    });
-  }
-  validateEventDateOrder(result.events, eraFlaggedLines, result.diagnostics);
-  if (result.now && !options.scale) {
-    result.diagnostics.push(
-      emit(EVENT_LINE_DX.UNSUPPORTED, result.now.lineNumber, {
-        reason: "the `now` marker needs a to-scale axis; it is ignored under `no-scale`."
-      })
-    );
-  }
-  return result;
-}
-function resolveFutureEvents(events) {
-  const realVals = events.filter((e) => !e.future && e.dateValue !== null).map((e) => e.dateValue);
-  if (realVals.length === 0) return;
-  const hiAll = Math.max(...realVals);
-  const loAll = Math.min(...realVals);
-  const pad3 = hiAll > loAll ? (hiAll - loAll) * 0.15 : 1;
-  const prevReal = [];
-  let carry = null;
-  for (const e of events) {
-    prevReal.push(carry);
-    if (!e.future && e.dateValue !== null) carry = e.dateValue;
-  }
-  const nextReal = new Array(events.length).fill(null);
-  carry = null;
-  for (let i2 = events.length - 1; i2 >= 0; i2--) {
-    nextReal[i2] = carry;
-    const e = events[i2];
-    if (!e.future && e.dateValue !== null) carry = e.dateValue;
-  }
-  let i = 0;
-  while (i < events.length) {
-    if (!events[i].future) {
-      i++;
-      continue;
-    }
-    const lo = prevReal[i];
-    const hi = nextReal[i];
-    let j2 = i;
-    while (j2 < events.length && events[j2].future && prevReal[j2] === lo && nextReal[j2] === hi)
-      j2++;
-    const group = events.slice(i, j2);
-    const g = group.length;
-    if (lo !== null && hi !== null) {
-      group.forEach((e, k2) => {
-        e.dateValue = lo + (hi - lo) * (k2 + 1) / (g + 1);
-        e.futureSpan = [lo, hi];
-      });
-    } else if (lo === null && hi !== null) {
-      const left2 = hi - pad3;
-      group.forEach((e, k2) => {
-        e.dateValue = left2 + (hi - left2) * (k2 + 1) / (g + 1);
-        e.futureSpan = [left2, hi];
-      });
-    } else {
-      group.forEach((e, k2) => {
-        e.dateValue = hiAll + pad3 * (k2 + 1);
-        e.futureSpan = null;
-      });
-    }
-    i = j2;
-  }
-}
-function validateEventDateOrder(events, skipLines, diagnostics) {
-  let prev = null;
-  for (const ev of events) {
-    if (ev.future || ev.dateValue === null) continue;
-    if (prev && ev.dateValue < prev.dateValue && !skipLines.has(ev.lineNumber)) {
-      diagnostics.push(
-        emit(EVENT_LINE_DX.DATE_ORDER, ev.lineNumber, {
-          label: ev.label,
-          date: ev.date,
-          prevLabel: prev.label,
-          prevDate: prev.date
-        })
-      );
-    }
-    prev = ev;
-  }
-}
-function validateEraDateOrder(events, eras, emitWarn) {
-  if (eras.length < 2) return;
-  const order = new Map(eras.map((e, i) => [e.name, i]));
-  const dated = events.filter(
-    (e) => !e.future && e.dateValue !== null && e.era !== null && order.has(e.era)
-  );
-  if (dated.length === 0) return;
-  const perEra = /* @__PURE__ */ new Map();
-  for (const ev of dated) {
-    const idx = order.get(ev.era);
-    const cur = perEra.get(idx);
-    if (!cur) {
-      perEra.set(idx, { min: ev, max: ev });
-    } else {
-      if (ev.dateValue < cur.min.dateValue) cur.min = ev;
-      if (ev.dateValue > cur.max.dateValue) cur.max = ev;
-    }
-  }
-  const n = eras.length;
-  const prefixMax = new Array(n).fill(null);
-  const suffixMin = new Array(n).fill(null);
-  for (let k2 = 1; k2 < n; k2++) {
-    const prev = perEra.get(k2 - 1)?.max ?? null;
-    const carried = prefixMax[k2 - 1] ?? null;
-    prefixMax[k2] = prev && (!carried || prev.dateValue > carried.dateValue) ? prev : carried;
-  }
-  for (let k2 = n - 2; k2 >= 0; k2--) {
-    const next = perEra.get(k2 + 1)?.min ?? null;
-    const carried = suffixMin[k2 + 1] ?? null;
-    suffixMin[k2] = next && (!carried || next.dateValue < carried.dateValue) ? next : carried;
-  }
-  for (const ev of dated) {
-    const k2 = order.get(ev.era);
-    const ahead = suffixMin[k2];
-    const behind = prefixMax[k2];
-    if (ahead && ev.dateValue > ahead.dateValue) {
-      emitWarn(
-        emit(EVENT_LINE_DX.ERA_DATE_ORDER, ev.lineNumber, {
-          label: ev.label,
-          date: ev.date,
-          era: ev.era,
-          rel: "after",
-          otherEra: ahead.era,
-          edge: "begins",
-          otherDate: ahead.date
-        })
-      );
-    } else if (behind && ev.dateValue < behind.dateValue) {
-      emitWarn(
-        emit(EVENT_LINE_DX.ERA_DATE_ORDER, ev.lineNumber, {
-          label: ev.label,
-          date: ev.date,
-          era: ev.era,
-          rel: "before",
-          otherEra: behind.era,
-          edge: "ends",
-          otherDate: behind.date
-        })
-      );
-    }
-  }
-}
-function parseEventHeader(trimmed, lineNumber, era, aliasMap, diagnostics, pushWarning, dateCtx) {
-  let date = null;
-  let dateValue = null;
-  let future = false;
-  let remainder = trimmed;
-  const tbdMatch = trimmed.match(TBD_RE);
-  if (tbdMatch) {
-    date = "TBD";
-    future = true;
-    remainder = trimmed.slice(tbdMatch[0].length).trimStart();
-  }
-  const prefix = future ? null : extractDatePrefix(trimmed, dateCtx);
-  if (prefix) {
-    date = prefix.startDate;
-    dateValue = parseTimelineDate(prefix.startDate);
-    remainder = prefix.remainder || "";
-    if (prefix.endDate) {
-      diagnostics.push(
-        emit(EVENT_LINE_DX.UNSUPPORTED, lineNumber, {
-          reason: "event-line events are points; a date range (`->`) is not supported \u2014 using the start date."
-        })
-      );
-    }
-  } else if (!future && NON_ISO_DATE_RE.test(trimmed)) {
-    const firstToken = trimmed.split(/\s+/)[0];
-    diagnostics.push(
-      emit(EVENT_LINE_DX.BAD_DATE, lineNumber, { token: firstToken })
-    );
-  }
-  const registry = withTagAliases(
-    EVENT_LINE_REGISTRY,
-    new Set(aliasMap.keys())
-  );
-  const split = splitNameAndMeta(
-    remainder,
-    registry,
-    aliasMap,
-    void 0,
-    diagnostics,
-    lineNumber
-  );
-  warnUnknownMetaKeys(
-    split.meta,
-    registry,
-    (msg) => pushWarning(lineNumber, msg),
-    split.name
-  );
-  const metadata = { ...split.meta };
-  if (split.color !== void 0) metadata["color"] = split.color;
-  return {
-    label: split.name || remainder.trim(),
-    lineNumber,
-    date,
-    dateValue,
-    future,
-    futureSpan: null,
-    metadata,
-    description: [],
-    era
-  };
-}
-var EVENT_LINE_DX, EVENT_LINE_DIAGNOSTICS, NON_ISO_DATE_RE, TBD_RE, SIDE_RE, ERA_RE2, ERA_COLLAPSED_RE, NOW_RE, SECTION_SEAM_RE, DIRECTION_RE;
-var init_chunk_WFX6AUQO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WFX6AUQO.js"() {
-    init_chunk_4MJOBVY7();
-    init_chunk_DAOFNU6J();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    EVENT_LINE_DX = {
-      // parser.ts: 'event-line has no events.'
-      NO_EVENTS: {
-        code: "E_EVENT_LINE_NO_EVENTS",
-        severity: "error",
-        chartType: "event-line",
-        title: "No events",
-        message: "event-line has no events.",
-        hint: "Add at least one event line (e.g. `2020 Something happened`) below the header.",
-        example: `event-line Empty`
-      },
-      // parser.ts parseEventHeader:
-      //   `Use ISO dates (YYYY, YYYY-MM, or YYYY-MM-DD). Got '${firstToken}'.`
-      BAD_DATE: {
-        code: "E_EVENT_LINE_BAD_DATE",
-        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
-        severity: "warning",
-        chartType: "event-line",
-        title: "Non-ISO date",
-        message: (p2) => `Use ISO dates (YYYY, YYYY-MM, or YYYY-MM-DD). Got '${p2.token ?? "7/16/1969"}'.`,
-        hint: "Write dates as YYYY, YYYY-MM, or YYYY-MM-DD \u2014 slash and dot separators are not parsed.",
-        example: `event-line X
-
-7/16/1969 Liftoff
-  Departs.`
-      },
-      // parser.ts emits three wordings under this one code (each passes the full
-      // wording as `reason`):
-      //   directive handler: `event-line is horizontal-only in v1; \`direction-tb\`
-      //                        (vertical orientation) is a fast-follow.` (the
-      //                        legacy key+value form words it as \`direction ${dir}\`)
-      //   `section` seam:     'Group events with `[Name]` era brackets (§28.6a), not `section`.'
-      //   parseEventHeader:   'event-line events are points; a date range (`->`) is not
-      //                        supported — using the start date.'
-      UNSUPPORTED: {
-        code: "E_EVENT_LINE_UNSUPPORTED",
-        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
-        severity: "warning",
-        chartType: "event-line",
-        title: "Unsupported construct",
-        message: (p2) => typeof p2.reason === "string" && p2.reason ? p2.reason : "event-line is horizontal-only in v1; `direction-tb` (vertical orientation) is a fast-follow.",
-        hint: "Only horizontal (`direction-lr`) is supported; use `[Name]` era brackets (not `section`); events are single points, not date ranges (`->`).",
-        example: `event-line X
-direction-tb
-
-2020 A
-  one`
-      },
-      // parser.ts validateEraDateOrder, two wordings switched by `rel`/`edge`:
-      //   `… but dated after era "${ahead.era}" begins (${ahead.date}). …`   rel=after,  edge=begins
-      //   `… but dated before era "${behind.era}" ends (${behind.date}). …`  rel=before, edge=ends
-      ERA_DATE_ORDER: {
-        code: "E_EVENT_LINE_ERA_DATE_ORDER",
-        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
-        severity: "warning",
-        chartType: "event-line",
-        title: "Event breaks era chronology",
-        message: (p2) => `"${p2.label ?? "Sean Curtis CTO"}" (${p2.date ?? "2025-04-15"}) is in era "${p2.era ?? "Curtis"}" but dated ${p2.rel ?? "after"} era "${p2.otherEra ?? "Vasanth"}" ${p2.edge ?? "begins"} (${p2.otherDate ?? "2025-05-09"}). event-line eras run left-to-right by date \u2014 fix the date or move it to the right era, or their brackets will overlap.`,
-        hint: "Eras render as date-spanning brackets; keep every event dated within its era, or move it to the era that covers its date.",
-        example: `event-line X
-
-[Vasanth]
-  2025-04-01 Opening Day Outage
-  2025-05-09 Fire Kevin C
-
-[Curtis]
-  2025-04-15 Sean Curtis CTO
-  2025-09-01 The incident`
-      },
-      // parser.ts validateEventDateOrder:
-      //   `"${ev.label}" (${ev.date}) is out of order — it is dated before
-      //    "${prev.label}" (${prev.date}) listed above it. event-line reads
-      //    left-to-right by date; list events chronologically.`
-      DATE_ORDER: {
-        code: "E_EVENT_LINE_DATE_ORDER",
-        // Runtime: emitted at `warning` despite the E_ prefix (see registry allowlist).
-        severity: "warning",
-        chartType: "event-line",
-        title: "Events out of chronological order",
-        message: (p2) => `"${p2.label ?? "C"}" (${p2.date ?? "2022"}) is out of order \u2014 it is dated before "${p2.prevLabel ?? "B"}" (${p2.prevDate ?? "2024"}) listed above it. event-line reads left-to-right by date; list events chronologically.`,
-        hint: "List dated events chronologically top-to-bottom; a later-listed event dated before the one above it is almost always a slip.",
-        example: `event-line X
-
-2020 A
-2024 B
-2022 C`
-      }
-    };
-    EVENT_LINE_DIAGNOSTICS = Object.values(EVENT_LINE_DX);
-    NON_ISO_DATE_RE = /^\d{1,4}[/.]\d/;
-    TBD_RE = /^TBD\b/i;
-    SIDE_RE = /^side\s+(above|below|alternate)\b/i;
-    ERA_RE2 = /^\[([^\]]+)\]\s*(.*)$/;
-    ERA_COLLAPSED_RE = /\bcollapsed:\s*(true|false)\b/i;
-    NOW_RE = /^now\b\s*(.*)$/i;
-    SECTION_SEAM_RE = /^section\b/i;
-    DIRECTION_RE = /^direction\s+(\w+)/i;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js
-var chartTypes;
-var init_chunk_TGOMHUOV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js"() {
-    chartTypes = [
-      // ── Tier 1 — Narrative / architecture diagrams ────────────
-      {
-        id: "journey-map",
-        description: "User experience flow with emotion scores, phases, and annotations"
-      },
-      {
-        id: "c4",
-        description: "System architecture (context, container, component, deployment)"
-      },
-      {
-        id: "er",
-        description: "Database schemas and relationships"
-      },
-      {
-        id: "class",
-        description: "UML class hierarchies"
-      },
-      {
-        id: "sequence",
-        description: "Message request and response interaction flows",
-        fallback: true
-      },
-      {
-        id: "state",
-        description: "State machine / lifecycle transitions"
-      },
-      {
-        id: "infra",
-        description: "Infrastructure traffic flow with RPS computation"
-      },
-      {
-        id: "gantt",
-        description: "Project scheduling with task dependencies and milestones"
-      },
-      {
-        id: "pert",
-        description: "Project network with three-point estimates, critical path, and uncertainty (Beta-PERT, Monte Carlo)"
-      },
-      {
-        id: "swimlane",
-        description: "Cross-functional process flow with lanes, phases and gateways (BPMN-style)"
-      },
-      {
-        id: "version-control",
-        description: "Git / version-control branch-and-merge graph: commits, branches, merges, rebase, HEAD and remote-tracking (gitGraph-style)"
-      },
-      // ── Tier 2 — Specialized structural diagrams ──────────────
-      {
-        id: "timeline",
-        description: "Events, eras, and date ranges"
-      },
-      {
-        id: "event-line",
-        description: "Annotated narrative timeline \u2014 events on a horizontal line with descriptions (not the date-scaled timeline)"
-      },
-      {
-        id: "body",
-        description: "Human anatomy figure annotated by muscle/bone/joint name \u2014 for medical, exercise, and educational diagrams"
-      },
-      {
-        id: "org",
-        description: "Reporting hierarchy"
-      },
-      {
-        id: "family",
-        description: "Family tree / genealogy: unions (couples), children, remarriage, adoption, and GEDCOM-style metadata"
-      },
-      {
-        id: "sitemap",
-        description: "Site / app navigation structure"
-      },
-      {
-        id: "bracket",
-        description: "Single-elimination tournament bracket: winners auto-advance up a tree; seed the field for a day-0 skeleton or list results for a casual bracket, with two sides mirroring inward to a championship"
-      },
-      {
-        id: "kanban",
-        description: "Task board columns"
-      },
-      {
-        id: "raci",
-        description: "Tasks \xD7 roles responsibility matrix with constraint linting"
-      },
-      {
-        id: "tech-radar",
-        description: "Technology adoption quadrants (adopt/trial/assess/hold)"
-      },
-      {
-        id: "mindmap",
-        description: "Radial hierarchy of ideas branching from a central topic"
-      },
-      {
-        id: "wireframe",
-        description: "Low-fidelity UI layout with panels, controls, and annotations"
-      },
-      {
-        id: "cycle",
-        description: "Cyclical process visualization (PDCA, OODA, DevOps loops)"
-      },
-      {
-        id: "pyramid",
-        description: "Stacked hierarchy of layers with descriptions (Maslow, DIKW)"
-      },
-      {
-        id: "ring",
-        description: "Concentric rings showing nested or hierarchical categories (read core-out)"
-      },
-      {
-        id: "treemap",
-        description: "Nested rectangles sized by value \u2014 show a hierarchy\u2019s proportions (budgets, disk usage, portfolios) with color by category, value heatmap, or branch"
-      },
-      {
-        id: "block",
-        description: "Block diagram: an author-controlled grid of rectangular blocks with nested, collapsible containers \u2014 system/hardware/architecture layouts where the 2-D arrangement is the meaning"
-      },
-      {
-        id: "sketch",
-        description: "GUI-first constrained canvas: uniformly-sized shapes placed freely on a snap grid, arrows between them, meaning through tags \u2014 the markup is generated by the canvas editor"
-      },
-      {
-        id: "goal",
-        description: "Single progress-toward-a-target value (now vs target) as a progress bar, thermometer, or gauge \u2014 KPIs, fundraising, quotas, completion"
-      },
-      {
-        id: "countdown",
-        description: 'Live "N days until X" that ticks every second and is accurate on every load \u2014 trip dates, launches, deadlines; the only dynamic chart type'
-      },
-      {
-        id: "clock",
-        description: "Live world-clock board: current time for people/places across time zones, ticking every second, with optional working-hours status and sundown line"
-      },
-      {
-        id: "map",
-        description: "Geographic concept map: highlight/score regions, drop points of interest, connect with routes or edges"
-      },
-      // ── Tier 3 — Specialized analytical charts ────────────────
-      {
-        id: "quadrant",
-        description: "2x2 positioning matrix"
-      },
-      {
-        id: "venn",
-        description: "Set overlaps"
-      },
-      {
-        id: "funnel",
-        description: "Conversion pipeline"
-      },
-      {
-        id: "slope",
-        description: "Change between 2 time periods"
-      },
-      {
-        id: "sankey",
-        description: "Flow / allocation visualization"
-      },
-      {
-        id: "arc",
-        description: "Network relationships (linear or circular via `layout`)"
-      },
-      {
-        id: "wordcloud",
-        description: "Term frequency visualization"
-      },
-      {
-        id: "heatmap",
-        description: "Matrix intensity visualization"
-      },
-      {
-        id: "function",
-        description: "Mathematical expressions"
-      },
-      // ── Tier 4 — General-purpose data charts ──────────────────
-      {
-        id: "bar",
-        description: "Categorical comparisons for 3 - 5 figures",
-        fallback: true
-      },
-      {
-        id: "line",
-        description: "Trends over time",
-        fallback: true
-      },
-      {
-        id: "pie",
-        description: "Part-to-whole proportions"
-      },
-      {
-        id: "radar",
-        description: "Multi-dimensional metrics"
-      },
-      {
-        id: "polar-area",
-        description: "Radial bar chart"
-      },
-      {
-        id: "scatter",
-        description: "2D data points or bubble chart"
-      },
-      // ── Tier 5 — Generic catch-alls (listed last on purpose) ──
-      {
-        id: "flowchart",
-        description: "Decision trees and process flows",
-        fallback: true
-      },
-      {
-        id: "boxes-and-lines",
-        description: "General-purpose node-edge diagrams with groups and tags",
-        fallback: true
-      }
-    ];
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FZECLCCU.js
-function genId(lineNumber, indent, suffix = "") {
-  return `wf-${lineNumber}-${indent}${suffix ? "-" + suffix : ""}`;
-}
-function resetWireframeIds() {
-}
-function makeElement(type, label, lineNumber, indent) {
-  return {
-    id: genId(lineNumber, indent),
-    type,
-    label,
-    children: [],
-    metadata: {},
-    states: [],
-    annotations: [],
-    lineNumber,
-    indent,
-    isContainer: false,
-    orientation: "vertical",
-    isSkeleton: false
-  };
-}
-function peelTrailingFlags(label) {
-  const tokens = label.split(/\s+/).filter(Boolean);
-  const states = [];
-  while (tokens.length > 0) {
-    const last = tokens[tokens.length - 1];
-    if (last !== last.toLowerCase()) break;
-    if (!STATE_KEYWORDS.has(last)) break;
-    states.unshift(last);
-    tokens.pop();
-  }
-  return { label: tokens.join(" "), states };
-}
-function parseWireframeMetadata(raw) {
-  const states = [];
-  const annotations = [];
-  const metadata = {};
-  const parts = raw.split(",").map((s) => s.trim()).filter(Boolean);
-  for (const part of parts) {
-    const lower2 = part.toLowerCase();
-    if (STATE_KEYWORDS.has(lower2)) {
-      states.push(lower2);
-    } else if (part.includes(":")) {
-      const [key, ...rest] = part.split(":");
-      metadata[key.trim()] = rest.join(":").trim();
-    } else {
-      annotations.push(part);
-    }
-  }
-  return { states, annotations, metadata };
-}
-function applyTrailingMeta(el, rawTail) {
-  if (!rawTail) return;
-  const trimmed = rawTail.trim();
-  if (!trimmed) return;
-  if (trimmed.startsWith("|")) {
-    applyMetadata(el, trimmed.substring(1).trim());
-    return;
-  }
-  const tokens = trimmed.split(/\s+/);
-  if (tokens.every((t3) => t3 === t3.toLowerCase() && STATE_KEYWORDS.has(t3))) {
-    applyMetadata(el, tokens.join(", "));
-    return;
-  }
-  applyMetadata(el, trimmed);
-}
-function applyMetadata(el, metaStr) {
-  if (!metaStr) return;
-  const { states, annotations, metadata } = parseWireframeMetadata(metaStr);
-  el.states.push(...states);
-  el.annotations.push(...annotations);
-  Object.assign(el.metadata, metadata);
-  if (el.type === "textInput") {
-    if (states.includes("password")) el.fieldVariant = "password";
-    if (states.includes("textarea")) el.fieldVariant = "textarea";
-  }
-  for (const s of states) {
-    if (GROUP_ONLY_METADATA.has(s)) {
-      el.isContainer = true;
-      if (s === "horizontal") el.orientation = "horizontal";
-    }
-  }
-}
-function matchKeyword(segment) {
-  const words = segment.split(/\s+/);
-  const first = words[0].toLowerCase();
-  const kw = ELEMENT_KEYWORDS[first];
-  if (!kw) return null;
-  if (words.length === 1) {
-    return { keyword: first, type: first };
-  }
-  const rest = words.slice(1).join(" ");
-  if (first === "modal") {
-    return { keyword: first, type: "modal", param: rest };
-  }
-  if (first === "progress") {
-    const num = parseInt(rest, 10);
-    if (!isNaN(num)) {
-      return { keyword: first, type: "progress", param: rest };
-    }
-    return null;
-  }
-  if (first === "table") {
-    if (TABLE_SKELETON_RE.test(segment)) {
-      return { keyword: first, type: "table", param: rest };
-    }
-    return { keyword: first, type: "table" };
-  }
-  if (kw.params) {
-    if (kw.params.has(rest.toLowerCase())) {
-      return {
-        keyword: first,
-        type: first,
-        param: rest.toLowerCase()
-      };
-    }
-    return null;
-  }
-  return null;
-}
-function parseSegment(segment, lineNumber, indent, diagnostics) {
-  const trimmed = segment.trim();
-  if (!trimmed) return null;
-  const headingMatch = trimmed.match(HEADING_RE);
-  if (headingMatch) {
-    const level = headingMatch[1].length;
-    const el = makeElement(
-      "heading",
-      headingMatch[2].trim(),
-      lineNumber,
-      indent
-    );
-    el.headingLevel = level;
-    return el;
-  }
-  if (DIVIDER_RE.test(trimmed)) {
-    return makeElement("divider", "", lineNumber, indent);
-  }
-  if (CHECKBOX_CHECKED_RE.test(trimmed)) {
-    const el = makeElement("checkbox", "", lineNumber, indent);
-    el.checked = true;
-    return el;
-  }
-  if (CHECKBOX_UNCHECKED_RE.test(trimmed)) {
-    const el = makeElement("checkbox", "", lineNumber, indent);
-    el.checked = false;
-    return el;
-  }
-  const radioSelMatch = trimmed.match(RADIO_SELECTED_RE);
-  if (radioSelMatch) {
-    const el = makeElement(
-      "radio",
-      // In-bounds: regex has one capture group; matched group is defined.
-      radioSelMatch[1].trim(),
-      lineNumber,
-      indent
-    );
-    el.selected = true;
-    return el;
-  }
-  const radioUnselMatch = trimmed.match(RADIO_UNSELECTED_RE);
-  if (radioUnselMatch) {
-    const el = makeElement(
-      "radio",
-      // In-bounds: regex has one capture group; matched group is defined.
-      radioUnselMatch[1].trim(),
-      lineNumber,
-      indent
-    );
-    el.selected = false;
-    return el;
-  }
-  const checkLabelMatch = trimmed.match(/^(<\s*x?\s*>)\s+(.+)$/i);
-  if (checkLabelMatch) {
-    const isChecked = /x/i.test(checkLabelMatch[1]);
-    const labelPart = checkLabelMatch[2];
-    const pipeSplit = labelPart.split(/\s*\|\s*/);
-    const baseLabel = pipeSplit[0].trim();
-    const peeled = peelTrailingFlags(baseLabel);
-    const el = makeElement("checkbox", peeled.label, lineNumber, indent);
-    el.checked = isChecked;
-    if (peeled.states.length > 0) {
-      applyMetadata(el, peeled.states.join(", "));
-    }
-    if (pipeSplit.length > 1) {
-      applyMetadata(el, pipeSplit.slice(1).join(", "));
-    }
-    return el;
-  }
-  const dropdownMatch = trimmed.match(DROPDOWN_RE);
-  if (dropdownMatch) {
-    const options = dropdownMatch[1].split("|").map((s) => s.trim()).filter(Boolean);
-    const el = makeElement("dropdown", options[0] || "", lineNumber, indent);
-    el.options = options;
-    applyTrailingMeta(el, dropdownMatch[2]);
-    return el;
-  }
-  const parenPipeMatch = trimmed.match(/^\(([^)]*\|[^)]*)\)\s*$/);
-  if (parenPipeMatch) {
-    diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        // In-bounds: regex has one capture group; matched group is defined.
-        `Did you mean a dropdown? Use braces: {${parenPipeMatch[1]}} instead of (${parenPipeMatch[1]})`,
-        "warning"
-      )
-    );
-    const options = parenPipeMatch[1].split("|").map((s) => s.trim()).filter(Boolean);
-    const el = makeElement("dropdown", options[0] || "", lineNumber, indent);
-    el.options = options;
-    return el;
-  }
-  const buttonMatch = trimmed.match(BUTTON_RE);
-  if (buttonMatch) {
-    const el = makeElement(
-      "button",
-      buttonMatch[1].trim(),
-      lineNumber,
-      indent
-    );
-    applyTrailingMeta(el, buttonMatch[2]);
-    return el;
-  }
-  const bracketMatch = trimmed.match(BRACKET_RE);
-  if (bracketMatch) {
-    const el = makeElement(
-      "group",
-      bracketMatch[1].trim(),
-      lineNumber,
-      indent
-    );
-    applyTrailingMeta(el, bracketMatch[2]);
-    if (!el.isContainer) {
-      el.type = "textInput";
-      if (el.states.includes("password")) el.fieldVariant = "password";
-      if (el.states.includes("textarea")) el.fieldVariant = "textarea";
-    }
-    return el;
-  }
-  const listMatch = trimmed.match(LIST_ITEM_RE);
-  if (listMatch) {
-    return makeElement("listItem", listMatch[1].trim(), lineNumber, indent);
-  }
-  const kwMatch = matchKeyword(trimmed);
-  if (kwMatch) {
-    const el = makeElement(
-      kwMatch.type,
-      kwMatch.param || "",
-      lineNumber,
-      indent
-    );
-    if (kwMatch.type === "image") {
-      el.imageHint = kwMatch.param || "default";
-    } else if (kwMatch.type === "progress") {
-      const val = parseInt(kwMatch.param || "0", 10);
-      el.progressValue = Math.max(0, Math.min(100, isNaN(val) ? 0 : val));
-    } else if (kwMatch.type === "chart") {
-      el.chartHint = kwMatch.param || "line";
-    } else if (kwMatch.type === "table") {
-      const skelMatch = `table ${kwMatch.param || ""}`.match(TABLE_SKELETON_RE);
-      if (skelMatch) {
-        el.tableRows = parseInt(skelMatch[1], 10);
-        el.tableCols = parseInt(skelMatch[2], 10);
-      }
-    }
-    if (ELEMENT_KEYWORDS[kwMatch.keyword]?.block) {
-      el.isContainer = true;
-    }
-    return el;
-  }
-  if (/^\[[^\]]*$/.test(trimmed)) {
-    diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        `Unmatched '[' \u2014 auto-closing bracket`,
-        "warning"
-      )
-    );
-    const label = trimmed.substring(1).trim();
-    return makeElement("textInput", label, lineNumber, indent);
-  }
-  if (/^\([^)]*$/.test(trimmed) && !trimmed.match(/^\(\s*\*?\s*\)/)) {
-    diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        `Unmatched '(' \u2014 auto-closing bracket`,
-        "warning"
-      )
-    );
-    const label = trimmed.substring(1).trim();
-    return makeElement("button", label, lineNumber, indent);
-  }
-  if (/^\{[^}]*$/.test(trimmed)) {
-    diagnostics.push(
-      makeDgmoError(
-        lineNumber,
-        `Unmatched '{' \u2014 auto-closing bracket`,
-        "warning"
-      )
-    );
-    const rawContent = trimmed.substring(1).trim();
-    const options = rawContent.split("|").map((s) => s.trim()).filter(Boolean);
-    const el = makeElement("dropdown", options[0] || "", lineNumber, indent);
-    el.options = options;
-    return el;
-  }
-  const pipeParts = trimmed.split(/\s*\|\s*/);
-  let textContent;
-  let states;
-  let metaStr;
-  if (pipeParts.length > 1) {
-    textContent = pipeParts[0].trim();
-    metaStr = pipeParts.slice(1).join(", ");
-    states = parseWireframeMetadata(metaStr).states;
-  } else {
-    const peeled = peelTrailingFlags(trimmed);
-    textContent = peeled.label;
-    states = peeled.states;
-    metaStr = states.length > 0 ? states.join(", ") : void 0;
-  }
-  const semanticStates = ["warning", "destructive", "success", "info"];
-  const hasSemantic = states.some((s) => semanticStates.includes(s));
-  if (hasSemantic) {
-    const el = makeElement("alert", textContent, lineNumber, indent);
-    el.states = states;
-    return el;
-  }
-  if (metaStr) {
-    const el = makeElement("text", textContent, lineNumber, indent);
-    applyMetadata(el, metaStr);
-    return el;
-  }
-  return makeElement("text", trimmed, lineNumber, indent);
-}
-function splitLineSegments(line) {
-  return line.split(/\s{2,}/).filter(Boolean);
-}
-function parseWireframe(content) {
-  resetWireframeIds();
-  const diagnostics = [];
-  const lines = content.split("\n");
-  let title = null;
-  let titleLineNumber = null;
-  let formFactor = "desktop";
-  const roots = [];
-  const modals = [];
-  const tagGroups = [];
-  const options = {};
-  let phase = "header";
-  let currentTagGroup = null;
-  function pushWarning(line, msg) {
-    diagnostics.push(makeDgmoError(line, msg, "warning"));
-  }
-  function makeTagGroup(trimmed, lineNumber) {
-    const match = matchTagBlockHeading(trimmed);
-    if (!match) return null;
-    return {
-      name: match.name,
-      ...match.alias !== void 0 && { alias: match.alias },
-      entries: [],
-      lineNumber
-    };
-  }
-  const indentStack = [];
-  function findParent(indent) {
-    while (indentStack.length > 0 && // In-bounds by length-check guard above.
-    indentStack[indentStack.length - 1].indent >= indent) {
-      const popped = indentStack.pop();
-      if (popped.node.children.length > 0 && !popped.node.isContainer) {
-        popped.node.isContainer = true;
-        if (popped.node.type === "textInput") {
-          popped.node.type = "group";
-        }
-      }
-    }
-    return indentStack.length > 0 ? (
-      // In-bounds by length-check.
-      indentStack[indentStack.length - 1].node
-    ) : null;
-  }
-  function pushElement(el) {
-    if (el.type === "modal") {
-      modals.push(el);
-      indentStack.push({ node: el, indent: el.indent });
-      return;
-    }
-    findParent(el.indent);
-    if (indentStack.length === 0) {
-      roots.push(el);
-    } else {
-      const parent = indentStack[indentStack.length - 1].node;
-      parent.children.push(el);
-      if (parent.type === "skeleton" || parent.isSkeleton) {
-        el.isSkeleton = true;
-      }
-    }
-    if (el.isContainer || el.type === "group" || el.type === "textInput" || // might become group if children follow
-    el.type === "nav" || el.type === "tabs" || el.type === "table" || el.type === "skeleton" || el.type === "alert") {
-      indentStack.push({ node: el, indent: el.indent });
-    }
-  }
-  function pushInlineRow(segments, lineNumber, indent, diags) {
-    const children2 = [];
-    let lastEl = null;
-    for (const seg of segments) {
-      if (seg.startsWith("|") && lastEl) {
-        applyMetadata(lastEl, seg.substring(1).trim());
-        continue;
-      }
-      const el = parseSegment(seg, lineNumber, indent, diags);
-      if (el) {
-        children2.push(el);
-        lastEl = el;
-      }
-    }
-    if (children2.length === 0) return;
-    if (children2.length === 1) {
-      pushElement(children2[0]);
-      return;
-    }
-    const wrapper = makeElement("group", "", lineNumber, indent);
-    wrapper.id = genId(lineNumber, indent, "row");
-    wrapper.isContainer = true;
-    wrapper.orientation = "horizontal";
-    wrapper.children = children2;
-    const wrapperMetadata = { _inlineRow: "true" };
-    wrapper.metadata = wrapperMetadata;
-    pushElement(wrapper);
-  }
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const lineNumber = i + 1;
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("//")) continue;
-    const indent = measureIndent(line);
-    if (phase === "header") {
-      const firstLineResult = parseFirstLine(trimmed);
-      if (firstLineResult?.chartType === "wireframe") {
-        title = firstLineResult.title || null;
-        titleLineNumber = lineNumber;
-        continue;
-      }
-      if (trimmed === "mobile") {
-        formFactor = "mobile";
-        continue;
-      }
-      if (tryParseSharedOption(trimmed, options)) {
-        continue;
-      }
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch && KNOWN_OPTIONS10.has(optMatch[1].toLowerCase())) {
-        options[optMatch[1]] = optMatch[2] || "";
-        continue;
-      }
-      if (isTagBlockHeading(trimmed)) {
-        const tg = makeTagGroup(trimmed, lineNumber);
-        if (tg) {
-          currentTagGroup = tg;
-          tagGroups.push(tg);
-          phase = "tags";
-          continue;
-        }
-      }
-      phase = "content";
-    }
-    if (phase === "tags") {
-      if (isTagBlockHeading(trimmed)) {
-        const tg = makeTagGroup(trimmed, lineNumber);
-        if (tg) {
-          currentTagGroup = tg;
-          tagGroups.push(tg);
-          continue;
-        }
-      }
-      if (indent > 0 && currentTagGroup) {
-        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
-        const { label, color: color2 } = extractColor(
-          cleanEntry,
-          void 0,
-          diagnostics,
-          lineNumber
-        );
-        currentTagGroup.entries.push({
-          value: label,
-          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
-          lineNumber
-        });
-        if (isDefault) {
-          currentTagGroup.defaultValue = label;
-        } else if (currentTagGroup.entries.length === 1) {
-          currentTagGroup.defaultValue = label;
-        }
-        continue;
-      }
-      phase = "content";
-      currentTagGroup = null;
-    }
-    if (phase !== "content") {
-      phase = "content";
-    }
-    if (indent === 0 && trimmed === "mobile") {
-      formFactor = "mobile";
-      continue;
-    }
-    if (indent === 0) {
-      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
-      if (optMatch && !trimmed.startsWith("#") && !trimmed.startsWith("[") && !trimmed.startsWith("(")) {
-        const key = optMatch[1];
-        if (["palette", "theme", "active-tag"].includes(key)) {
-          options[key] = optMatch[2] || "";
-          continue;
-        }
-      }
-    }
-    if (isTagBlockHeading(trimmed)) {
-      const tg = makeTagGroup(trimmed, lineNumber);
-      if (tg) {
-        currentTagGroup = tg;
-        tagGroups.push(tg);
-        phase = "tags";
-        continue;
-      }
-    }
-    if (indentStack.length > 0) {
-      const topNode = indentStack[indentStack.length - 1].node;
-      if (topNode.type === "table" && indent > topNode.indent) {
-        const cells = parseTableRow(trimmed);
-        if (!topNode.tableHeaders) {
-          if (trimmed.includes(",")) {
-            topNode.tableHeaders = cells;
-          } else {
-            topNode.tableHeaders = cells;
-          }
-        } else {
-          if (!topNode.tableData) topNode.tableData = [];
-          topNode.tableData.push(cells);
-        }
-        continue;
-      }
-    }
-    const segments = splitLineSegments(trimmed);
-    if (segments.length === 1) {
-      const el = parseSegment(segments[0], lineNumber, indent, diagnostics);
-      if (el) pushElement(el);
-    } else if (segments.length === 2) {
-      if (segments[1].startsWith("|")) {
-        const el = parseSegment(segments[0], lineNumber, indent, diagnostics);
-        if (el) {
-          applyMetadata(el, segments[1].substring(1).trim());
-          pushElement(el);
-        }
-      } else {
-        const firstIsBare = isBareText(segments[0]);
-        const secondIsElement = hasBracketMnemonic(segments[1]);
-        if (firstIsBare && secondIsElement) {
-          const fieldEl = parseSegment(
-            segments[1],
-            lineNumber,
-            indent,
-            diagnostics
-          );
-          if (fieldEl) {
-            const labelEl = makeElement(
-              "text",
-              segments[0].trim(),
-              lineNumber,
-              indent
-            );
-            labelEl.id = genId(lineNumber, indent, "lbl");
-            labelEl.labelFor = fieldEl;
-            const wrapper = makeElement("group", "", lineNumber, indent);
-            wrapper.id = genId(lineNumber, indent, "lf");
-            wrapper.isContainer = true;
-            wrapper.orientation = "horizontal";
-            wrapper.children.push(labelEl, fieldEl);
-            const wrapperMetadata = {
-              _labelField: "true"
-            };
-            wrapper.metadata = wrapperMetadata;
-            pushElement(wrapper);
-          }
-        } else {
-          pushInlineRow(segments, lineNumber, indent, diagnostics);
-        }
-      }
-    } else {
-      pushInlineRow(segments, lineNumber, indent, diagnostics);
-    }
-  }
-  while (indentStack.length > 0) {
-    const popped = indentStack.pop();
-    if (popped.node.children.length > 0 && !popped.node.isContainer) {
-      popped.node.isContainer = true;
-      if (popped.node.type === "textInput") {
-        popped.node.type = "group";
-      }
-    }
-  }
-  finalizeAutoTagColors(tagGroups);
-  validateTagGroupNames(tagGroups, pushWarning, (line, msg) => {
-    diagnostics.push(makeDgmoError(line, msg));
-  });
-  const error = diagnostics.find((d) => d.severity === "error") ? formatDgmoError(diagnostics.find((d) => d.severity === "error")) : null;
-  return {
-    title,
-    titleLineNumber,
-    formFactor,
-    roots,
-    modals,
-    tagGroups,
-    options,
-    diagnostics,
-    error
-  };
-}
-function parseTableRow(line) {
-  const cells = [];
-  let current = "";
-  let depth = 0;
-  let escaped = false;
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i];
-    if (escaped) {
-      current += ch;
-      escaped = false;
-      continue;
-    }
-    if (ch === "\\") {
-      escaped = true;
-      continue;
-    }
-    if (ch === "[" || ch === "{" || ch === "(" || ch === "<") depth++;
-    if (ch === "]" || ch === "}" || ch === ")" || ch === ">")
-      depth = Math.max(0, depth - 1);
-    if (ch === "," && depth === 0) {
-      cells.push(current.trim());
-      current = "";
-      continue;
-    }
-    current += ch;
-  }
-  if (current.trim()) {
-    cells.push(current.trim());
-  }
-  return cells;
-}
-function isBareText(segment) {
-  const s = segment.trim();
-  if (!s) return false;
-  if (/^[[\]({<#-]/.test(s)) return false;
-  if (matchKeyword(s)) return false;
-  return true;
-}
-function hasBracketMnemonic(segment) {
-  const s = segment.trim();
-  return /^\[/.test(s) || /^\(/.test(s) || /^\{/.test(s) || /^<\s*x?\s*>/i.test(s);
-}
-var KNOWN_OPTIONS10, GROUP_ONLY_METADATA, STATE_KEYWORDS, ELEMENT_KEYWORDS, BRACKET_RE, BUTTON_RE, DROPDOWN_RE, CHECKBOX_CHECKED_RE, CHECKBOX_UNCHECKED_RE, RADIO_SELECTED_RE, RADIO_UNSELECTED_RE, HEADING_RE, DIVIDER_RE, LIST_ITEM_RE, TABLE_SKELETON_RE;
-var init_chunk_FZECLCCU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FZECLCCU.js"() {
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
-    init_chunk_OLMWTJVU();
-    KNOWN_OPTIONS10 = /* @__PURE__ */ new Set(["palette", "theme", "active-tag"]);
-    GROUP_ONLY_METADATA = /* @__PURE__ */ new Set([
-      "horizontal",
-      "scrollable",
-      "collapsed"
-    ]);
-    STATE_KEYWORDS = /* @__PURE__ */ new Set([
-      "disabled",
-      "active",
-      "selected",
-      "empty",
-      "ghost",
-      "destructive",
-      "success",
-      "warning",
-      "info",
-      "scrollable",
-      "collapsed",
-      "toggle",
-      "password",
-      "textarea",
-      "horizontal",
-      "primary"
-    ]);
-    ELEMENT_KEYWORDS = {
-      nav: { block: true },
-      tabs: { block: true },
-      table: { block: true },
-      image: { block: false, params: /* @__PURE__ */ new Set(["round", "wide"]) },
-      modal: { block: true },
-      skeleton: { block: true },
-      alert: { block: true },
-      progress: { block: false },
-      chart: { block: false, params: /* @__PURE__ */ new Set(["line", "bar", "pie"]) }
-    };
-    BRACKET_RE = /^\[([^\]]*)\](.*)$/;
-    BUTTON_RE = /^\(([^)]+)\)(.*)$/;
-    DROPDOWN_RE = /^\{([^}]+)\}(.*)$/;
-    CHECKBOX_CHECKED_RE = /^<\s*x\s*>$/i;
-    CHECKBOX_UNCHECKED_RE = /^<\s*>$/;
-    RADIO_SELECTED_RE = /^\(\*\)\s+(.+)$/;
-    RADIO_UNSELECTED_RE = /^\(\s*\)\s+(.+)$/;
-    HEADING_RE = /^(#{1,2})\s+(.+)$/;
-    DIVIDER_RE = /^-{3,}$/;
-    LIST_ITEM_RE = /^-\s+(.+)$/;
-    TABLE_SKELETON_RE = /^table\s+(\d+)x(\d+)$/i;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FERE46TP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FERE46TP.js
 function isSequenceBlock(el) {
   return el.kind === "block";
 }
@@ -26536,7 +21601,7 @@ function looksLikeSequence(content) {
 }
 var KNOWN_SEQ_OPTIONS, KNOWN_SEQ_BOOLEANS, NO_PREFIX_ONLY_BOOLEANS, VALID_PARTICIPANT_TYPES, IS_A_PATTERN, COLORED_PARTICIPANT_PATTERN, GROUP_HEADING_PATTERN, GROUP_HEADING_FALLBACK, SECTION_PATTERN, ARROW_PATTERN, NOTE_BARE, NOTE_MULTI;
 var init_chunk_FERE46TP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FERE46TP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FERE46TP.js"() {
     init_chunk_C3Z4DX3V();
     init_chunk_RRX4Z4TH();
     init_chunk_NOTA6TEI();
@@ -26570,7 +21635,4947 @@ var init_chunk_FERE46TP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GDGOVO2I.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LV5BFA24.js
+function nodeId2(shape, label) {
+  return `${shape}:${normalizeName(label)}`;
+}
+function parseNodeRef(text) {
+  const t3 = text.trim();
+  if (!t3) return null;
+  let m = t3.match(/^\[\[([^\]]+)\]\]$/);
+  if (m) {
+    const label = m[1].trim();
+    return { id: nodeId2("subroutine", label), label, shape: "subroutine" };
+  }
+  m = t3.match(/^\[([^\]]+)~\]$/);
+  if (m) {
+    const label = m[1].trim();
+    return { id: nodeId2("document", label), label, shape: "document" };
+  }
+  m = t3.match(/^\[([^\]]+)\]$/);
+  if (m) {
+    const label = m[1].trim();
+    return { id: nodeId2("process", label), label, shape: "process" };
+  }
+  m = t3.match(/^\((.+)\)$/);
+  if (m) {
+    const label = m[1].trim();
+    return { id: nodeId2("terminal", label), label, shape: "terminal" };
+  }
+  m = t3.match(/^<([^>]+)>$/);
+  if (m) {
+    const label = m[1].trim();
+    return { id: nodeId2("decision", label), label, shape: "decision" };
+  }
+  m = t3.match(/^\/([^/]+)\/$/);
+  if (m) {
+    const label = m[1].trim();
+    return { id: nodeId2("io", label), label, shape: "io" };
+  }
+  return null;
+}
+function parseNodeRefLoose(text) {
+  const t3 = text.trim();
+  const shapeRe = /^(\[\[.+?\]\]|\[.+?~\]|\[.+?\]|\(.+?\)|<.+?>|\/.+?\/)\s+(\S.*)$/;
+  const m = t3.match(shapeRe);
+  if (!m) return null;
+  const ref = parseNodeRef(m[1]);
+  if (!ref) return null;
+  return { ref, trailing: m[2].trim() };
+}
+function splitArrows(line) {
+  const segments = [];
+  const arrowPositions = [];
+  let searchFrom = 0;
+  let scanFloor = 0;
+  while (searchFrom < line.length) {
+    const idx = line.indexOf("->", searchFrom);
+    if (idx === -1) break;
+    let runStart = idx;
+    while (runStart > scanFloor && line[runStart - 1] === "-") runStart--;
+    const arrowEnd = idx + 2;
+    let arrowStart;
+    let label;
+    let openingStart = -1;
+    for (let i = scanFloor; i < runStart; i++) {
+      if (line[i] !== "-") continue;
+      const prevIsWsOrFloor = i === 0 || i === scanFloor || /\s/.test(line.charAt(i - 1));
+      if (prevIsWsOrFloor) {
+        openingStart = i;
+        break;
+      }
+    }
+    if (openingStart !== -1) {
+      let openingEnd = openingStart;
+      while (openingEnd < runStart && line[openingEnd] === "-") openingEnd++;
+      const labelPart = line.substring(openingEnd, runStart).trim();
+      if (labelPart) label = labelPart;
+      arrowStart = openingStart;
+    } else {
+      arrowStart = runStart;
+    }
+    arrowPositions.push({
+      start: arrowStart,
+      end: arrowEnd,
+      ...label !== void 0 && { label }
+    });
+    searchFrom = arrowEnd;
+    scanFloor = arrowEnd;
+  }
+  if (arrowPositions.length === 0) {
+    return [line];
+  }
+  let lastIndex = 0;
+  for (let i = 0; i < arrowPositions.length; i++) {
+    const arrow = arrowPositions[i];
+    const beforeText = line.substring(lastIndex, arrow.start).trim();
+    if (beforeText || i === 0) {
+      segments.push(beforeText);
+    }
+    const arrowToken = arrow.label ? `-${arrow.label}->` : "->";
+    segments.push(arrowToken);
+    lastIndex = arrow.end;
+  }
+  const remaining = line.substring(lastIndex).trim();
+  if (remaining) {
+    segments.push(remaining);
+  }
+  return segments;
+}
+function parseArrowToken(token, _palette, lineNumber, diagnostics) {
+  if (token === "->") return {};
+  const m = token.match(/^-(.+?)->$/);
+  if (m) {
+    const rawLabel = m[1] ?? "";
+    const labelResult = parseInArrowLabel(rawLabel, lineNumber);
+    diagnostics.push(...labelResult.diagnostics);
+    return {
+      ...labelResult.label !== void 0 && { label: labelResult.label }
+    };
+  }
+  return {};
+}
+function parseFlowchart(content, palette) {
+  const lines = content.split("\n");
+  const options = {};
+  const result = {
+    type: "flowchart",
+    direction: "TB",
+    nodes: [],
+    edges: [],
+    options,
+    diagnostics: [],
+    error: null
+  };
+  const fail = (line, message) => {
+    const diag = makeDgmoError(line, message);
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+    return result;
+  };
+  const nodeMap = /* @__PURE__ */ new Map();
+  const indentStack = [];
+  const notes = [];
+  let contentStarted = false;
+  let firstLineParsed = false;
+  let prevLineLastNodeId = null;
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias2(seg) {
+    const trimmed = seg.trim();
+    const m = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m) return { seg: trimmed };
+    return { seg: m[1].trim(), alias: m[2] };
+  }
+  const suffixWarnedLines = /* @__PURE__ */ new Set();
+  function warnUnsupportedSuffix(lineNumber, trailing) {
+    if (suffixWarnedLines.has(lineNumber)) return;
+    suffixWarnedLines.add(lineNumber);
+    result.diagnostics.push(
+      emit(GRAPH_DX.FLOWCHART_NODE_SUFFIX, lineNumber, { trailing })
+    );
+  }
+  function getOrCreateNode(ref, lineNumber) {
+    const key = ref.id;
+    const existing = nodeMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(ref.label);
+      const existingDisplay = displayName(existing.label);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
+    const node = {
+      id: key,
+      label: ref.label,
+      shape: ref.shape,
+      lineNumber,
+      ...ref.color && { color: ref.color }
+    };
+    nodeMap.set(key, node);
+    result.nodes.push(node);
+    return node;
+  }
+  function addEdge(sourceId, targetId, lineNumber, label) {
+    const edge = {
+      source: sourceId,
+      target: targetId,
+      lineNumber,
+      ...label && { label }
+    };
+    result.edges.push(edge);
+  }
+  function processContentLine(trimmed, lineNumber, indent) {
+    contentStarted = true;
+    while (indentStack.length > 0) {
+      const top2 = indentStack[indentStack.length - 1];
+      if (top2.indent >= indent) {
+        indentStack.pop();
+      } else {
+        break;
+      }
+    }
+    const implicitSourceId = indentStack.length > 0 ? (
+      // In-bounds: length > 0 guarded by ternary.
+      indentStack[indentStack.length - 1].nodeId
+    ) : null;
+    const segments = splitArrows(trimmed);
+    const startsWithArrow = segments.length >= 2 && segments[0].trim() === "";
+    const effectiveSource = implicitSourceId ?? (startsWithArrow ? prevLineLastNodeId : null);
+    if (segments.length === 1) {
+      const peeled = peelAlias2(segments[0]);
+      const ref = parseNodeRef(peeled.seg);
+      if (ref) {
+        const node = getOrCreateNode(ref, lineNumber);
+        if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
+        indentStack.push({ nodeId: node.id, indent });
+        return node.id;
+      }
+      const loose = parseNodeRefLoose(peeled.seg);
+      if (loose) {
+        warnUnsupportedSuffix(lineNumber, loose.trailing);
+        const node = getOrCreateNode(loose.ref, lineNumber);
+        indentStack.push({ nodeId: node.id, indent });
+        return node.id;
+      }
+      const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+      if (aliasResolved !== void 0) {
+        indentStack.push({ nodeId: aliasResolved, indent });
+        return aliasResolved;
+      }
+      return null;
+    }
+    let lastNodeId = null;
+    let pendingArrow = null;
+    for (let i = 0; i < segments.length; i++) {
+      const seg = segments[i];
+      if (seg === "->" || /^-.+->$/.test(seg)) {
+        pendingArrow = parseArrowToken(
+          seg,
+          palette,
+          lineNumber,
+          result.diagnostics
+        );
+        continue;
+      }
+      const peeled = peelAlias2(seg);
+      let ref = parseNodeRef(peeled.seg);
+      if (!ref) {
+        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+        if (aliasResolved !== void 0) {
+          const existing = nodeMap.get(aliasResolved);
+          if (existing) {
+            ref = {
+              id: aliasResolved,
+              label: existing.label,
+              shape: existing.shape
+            };
+          }
+        }
+      }
+      if (!ref) {
+        const loose = parseNodeRefLoose(peeled.seg);
+        if (loose) {
+          warnUnsupportedSuffix(lineNumber, loose.trailing);
+          ref = loose.ref;
+        }
+      }
+      if (!ref) continue;
+      const node = getOrCreateNode(ref, lineNumber);
+      if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
+      if (pendingArrow !== null) {
+        const sourceId = lastNodeId ?? effectiveSource;
+        if (sourceId) {
+          addEdge(sourceId, node.id, lineNumber, pendingArrow.label);
+        }
+        pendingArrow = null;
+      } else if (lastNodeId === null && effectiveSource === null) {
+      }
+      lastNodeId = node.id;
+    }
+    if (pendingArrow !== null && lastNodeId === null && implicitSourceId) {
+    }
+    if (segments.length >= 2 && segments[0] === "" && implicitSourceId && lastNodeId) {
+    }
+    if (lastNodeId) {
+      indentStack.push({ nodeId: lastNodeId, indent });
+    }
+    return lastNodeId;
+  }
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    const trimmed = raw.trim();
+    const lineNumber = i + 1;
+    const indent = measureIndent(raw);
+    if (!trimmed) continue;
+    if (trimmed.startsWith("//")) continue;
+    if (!firstLineParsed && !contentStarted) {
+      const firstLineResult = parseFirstLine(trimmed);
+      if (firstLineResult) {
+        firstLineParsed = true;
+        if (firstLineResult.chartType !== "flowchart") {
+          const allTypes = Array.from(ALL_CHART_TYPES);
+          let msg = `Expected chart type "flowchart", got "${firstLineResult.chartType}"`;
+          const hint = suggest(firstLineResult.chartType, allTypes);
+          if (hint) msg += `. ${hint}`;
+          return fail(lineNumber, msg);
+        }
+        if (firstLineResult.title) {
+          result.title = firstLineResult.title;
+          result.titleLineNumber = lineNumber;
+        }
+        continue;
+      }
+    }
+    const noteResult = tryCollectNote(
+      lines,
+      i,
+      indent,
+      palette,
+      result.diagnostics
+    );
+    if (noteResult) {
+      if (noteResult.note) notes.push(noteResult.note);
+      i = noteResult.lastIndex;
+      continue;
+    }
+    if (!contentStarted) {
+      const dirMatch = trimmed.match(/^direction[-\s]+(lr|tb)$/i);
+      if (dirMatch) {
+        result.direction = dirMatch[1].toUpperCase();
+        continue;
+      }
+      if (FILL_FAMILY_TOKENS.has(trimmed.toLowerCase())) {
+        for (const t3 of FILL_FAMILY_TOKENS) delete options[t3];
+        if (trimmed.toLowerCase() !== "fill-tint")
+          options[trimmed.toLowerCase()] = "on";
+        continue;
+      }
+      if (/^no-color$/i.test(trimmed)) {
+        result.diagnostics.push(
+          makeDgmoError(lineNumber, '"no-color" has been removed.', "warning")
+        );
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) {
+        continue;
+      }
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch && !trimmed.includes("->")) {
+        const key = optMatch[1].toLowerCase();
+        const value = optMatch[2].trim();
+        if (key === "no-color") {
+          result.diagnostics.push(
+            makeDgmoError(
+              lineNumber,
+              '"no-color" was removed \u2014 node colors are assigned automatically by shape; delete this line.',
+              "warning"
+            )
+          );
+          continue;
+        }
+        options[key] = value;
+        continue;
+      }
+    }
+    const lastId = processContentLine(trimmed, lineNumber, indent);
+    if (lastId) prevLineLastNodeId = lastId;
+  }
+  if (result.nodes.length === 0 && !result.error) {
+    const diag = makeDgmoError(
+      1,
+      "No nodes found. Add flowchart content with shape syntax like [Process] or (Start)."
+    );
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+  }
+  if (notes.length > 0) {
+    result.notes = notes;
+    resolveNotes(notes, result.nodes, result.diagnostics);
+  }
+  if (result.nodes.length >= 2 && result.edges.length >= 1 && !result.error) {
+    const connectedIds = /* @__PURE__ */ new Set();
+    for (const edge of result.edges) {
+      connectedIds.add(edge.source);
+      connectedIds.add(edge.target);
+    }
+    for (const node of result.nodes) {
+      if (!connectedIds.has(node.id)) {
+        result.diagnostics.push(
+          makeDgmoError(
+            node.lineNumber,
+            `Node "${node.label}" is not connected to any other node`,
+            "warning"
+          )
+        );
+      }
+    }
+  }
+  return result;
+}
+function looksLikeFlowchart(content) {
+  if (!content.includes("->")) return false;
+  const hasShapeDelimiter = /\[[^\]]+\]/.test(content) || /\([^)]+\)/.test(content) || /<[^>]+>/.test(content) || /\/[^/]+\//.test(content);
+  if (!hasShapeDelimiter) return false;
+  const shapeNearArrow = /[\])][ \t]*-.*->/.test(content) || // shape ] or ) followed by arrow
+  /->[ \t]*[[(</]/.test(content);
+  return shapeNearArrow;
+}
+function extractSymbols3(docText) {
+  const entities = [];
+  let inMetadata = true;
+  for (const rawLine of docText.split("\n")) {
+    const line = rawLine.trim();
+    if (inMetadata && (/^[a-z-]+\s*:/i.test(line) || /^[a-z-]+\s+\S/i.test(line)))
+      continue;
+    inMetadata = false;
+    if (line.length === 0 || /^\s/.test(rawLine)) continue;
+    const m = NODE_ID_RE.exec(line);
+    if (m && !entities.includes(m[1])) entities.push(m[1]);
+  }
+  return { kind: "flowchart", entities };
+}
+var NODE_ID_RE;
+var init_chunk_LV5BFA24 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LV5BFA24.js"() {
+    init_chunk_7TF3QOOD();
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
+    init_chunk_NOTA6TEI();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
+    NODE_ID_RE = /^([a-zA-Z_][\w-]*)[\s([</{]/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-APD52YJV.js
+function splitArrows2(line) {
+  const segments = [];
+  const arrowPositions = [];
+  let searchFrom = 0;
+  let scanFloor = 0;
+  while (searchFrom < line.length) {
+    const idx = line.indexOf("->", searchFrom);
+    if (idx === -1) break;
+    let runStart = idx;
+    while (runStart > scanFloor && line[runStart - 1] === "-") runStart--;
+    const arrowEnd = idx + 2;
+    let arrowStart;
+    let label;
+    let openingStart = -1;
+    for (let i = scanFloor; i < runStart; i++) {
+      if (line[i] !== "-") continue;
+      const prevIsWsOrFloor = i === 0 || i === scanFloor || /\s/.test(line.charAt(i - 1));
+      if (prevIsWsOrFloor) {
+        openingStart = i;
+        break;
+      }
+    }
+    if (openingStart !== -1) {
+      let openingEnd = openingStart;
+      while (openingEnd < runStart && line[openingEnd] === "-") openingEnd++;
+      const labelPart = line.substring(openingEnd, runStart).trim();
+      if (labelPart) label = labelPart;
+      arrowStart = openingStart;
+    } else {
+      arrowStart = runStart;
+    }
+    arrowPositions.push({
+      start: arrowStart,
+      end: arrowEnd,
+      ...label !== void 0 && { label }
+    });
+    searchFrom = arrowEnd;
+    scanFloor = arrowEnd;
+  }
+  if (arrowPositions.length === 0) return [line];
+  let lastIndex = 0;
+  for (let i = 0; i < arrowPositions.length; i++) {
+    const arrow = arrowPositions[i];
+    const beforeText = line.substring(lastIndex, arrow.start).trim();
+    if (beforeText || i === 0) segments.push(beforeText);
+    const arrowToken = arrow.label ? `-${arrow.label}->` : "->";
+    segments.push(arrowToken);
+    lastIndex = arrow.end;
+  }
+  const remaining = line.substring(lastIndex).trim();
+  if (remaining) segments.push(remaining);
+  return segments;
+}
+function parseArrowToken2(token, _palette, lineNumber, diagnostics) {
+  if (token === "->") return {};
+  const m = token.match(/^-(.+?)->$/);
+  if (m) {
+    const rawLabel = m[1] ?? "";
+    const labelResult = parseInArrowLabel(rawLabel, lineNumber);
+    diagnostics.push(...labelResult.diagnostics);
+    return {
+      ...labelResult.label !== void 0 && { label: labelResult.label }
+    };
+  }
+  return {};
+}
+function parseStateNodeRef(text) {
+  const t3 = text.trim();
+  if (!t3) return null;
+  if (t3 === "[*]") {
+    return {
+      id: PSEUDOSTATE_ID,
+      label: PSEUDOSTATE_LABEL,
+      shape: "pseudostate"
+    };
+  }
+  const label = t3;
+  if (!label) return null;
+  return {
+    id: `state:${normalizeName(label)}`,
+    label,
+    shape: "state"
+  };
+}
+function parseState(content, palette) {
+  const lines = content.split("\n");
+  const options = {};
+  const result = {
+    type: "state",
+    direction: "LR",
+    nodes: [],
+    edges: [],
+    tagGroups: [],
+    options,
+    diagnostics: [],
+    error: null
+  };
+  const fail = (line, message) => {
+    const diag = makeDgmoError(line, message);
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+    return result;
+  };
+  const nodeMap = /* @__PURE__ */ new Map();
+  const indentStack = [];
+  const notes = [];
+  let currentGroup = null;
+  let groupIndent = -1;
+  const groups = [];
+  let contentStarted = false;
+  let firstLineParsed = false;
+  const tagGroups = result.tagGroups;
+  let currentTagGroup = null;
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  let registry = STATE_REGISTRY;
+  const refreshRegistry = () => {
+    registry = withTagAliases(STATE_REGISTRY, new Set(metaAliasMap.keys()));
+  };
+  function peelStateMeta(text) {
+    if (metaAliasMap.size === 0) return { text, meta: {} };
+    const cut = cutUnionMetadata(text, registry);
+    if (cut === -1) return { text, meta: {} };
+    return {
+      text: text.substring(0, cut).trimEnd(),
+      meta: parseMetadataRegion(text.substring(cut), metaAliasMap)
+    };
+  }
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias2(seg) {
+    const trimmed = seg.trim();
+    const m = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m) return { seg: trimmed };
+    return { seg: m[1].trim(), alias: m[2] };
+  }
+  function getOrCreateNode(ref, lineNumber, meta) {
+    const key = ref.id;
+    const existing = nodeMap.get(key);
+    if (existing) {
+      if (meta && Object.keys(meta).length > 0) {
+        existing.metadata = { ...existing.metadata ?? {}, ...meta };
+      }
+      const incomingDisplay = displayName(ref.label);
+      const existingDisplay = displayName(existing.label);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
+    const node = {
+      id: key,
+      label: ref.label,
+      shape: ref.shape,
+      lineNumber,
+      ...ref.color && { color: ref.color },
+      ...currentGroup && { group: currentGroup.id },
+      ...meta && Object.keys(meta).length > 0 && { metadata: { ...meta } }
+    };
+    nodeMap.set(key, node);
+    result.nodes.push(node);
+    if (currentGroup && !currentGroup.nodeIds.includes(key)) {
+      currentGroup.nodeIds.push(key);
+    }
+    return node;
+  }
+  function addEdge(sourceId, targetId, lineNumber, label) {
+    result.edges.push({
+      source: sourceId,
+      target: targetId,
+      lineNumber,
+      ...label && { label }
+    });
+  }
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    const trimmed = raw.trim();
+    const lineNumber = i + 1;
+    const indent = measureIndent(raw);
+    if (!trimmed) {
+      currentTagGroup = null;
+      continue;
+    }
+    if (trimmed.startsWith("//")) continue;
+    if (!firstLineParsed && !contentStarted) {
+      const firstLineResult = parseFirstLine(trimmed);
+      if (firstLineResult) {
+        firstLineParsed = true;
+        if (firstLineResult.chartType !== "state") {
+          const allTypes = Array.from(ALL_CHART_TYPES);
+          let msg = `Expected chart type "state", got "${firstLineResult.chartType}"`;
+          const hint = suggest(firstLineResult.chartType, allTypes);
+          if (hint) msg += `. ${hint}`;
+          return fail(lineNumber, msg);
+        }
+        if (firstLineResult.title) {
+          result.title = firstLineResult.title;
+          result.titleLineNumber = lineNumber;
+        }
+        continue;
+      }
+    }
+    if (!contentStarted) {
+      const tagBlockMatch = matchTagBlockHeading(trimmed);
+      if (tagBlockMatch) {
+        currentTagGroup = {
+          name: tagBlockMatch.name,
+          ...tagBlockMatch.alias !== void 0 && {
+            alias: tagBlockMatch.alias
+          },
+          entries: [],
+          lineNumber
+        };
+        if (tagBlockMatch.alias) {
+          metaAliasMap.set(
+            normalizeName(tagBlockMatch.alias),
+            tagAttrKey(tagBlockMatch.name)
+          );
+        }
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.name),
+          tagAttrKey(tagBlockMatch.name)
+        );
+        refreshRegistry();
+        tagGroups.push(currentTagGroup);
+        continue;
+      }
+      if (currentTagGroup && indent > 0) {
+        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
+        const { label, color: color2 } = extractColor(
+          cleanEntry,
+          palette,
+          result.diagnostics,
+          lineNumber
+        );
+        if (isDefault || currentTagGroup.entries.length === 0) {
+          currentTagGroup.defaultValue = label;
+        }
+        currentTagGroup.entries.push({
+          value: label,
+          // Bare value → sentinel; finalizeAutoTagColors assigns a
+          // deterministic palette color after the parse.
+          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+          lineNumber
+        });
+        continue;
+      }
+      currentTagGroup = null;
+    }
+    const noteResult = tryCollectNote(
+      lines,
+      i,
+      indent,
+      palette,
+      result.diagnostics
+    );
+    if (noteResult) {
+      if (noteResult.note) notes.push(noteResult.note);
+      i = noteResult.lastIndex;
+      continue;
+    }
+    const groupMatch = trimmed.match(GROUP_BRACKET_RE);
+    if (groupMatch && groupMatch[1].trim() !== "*") {
+      const groupLabel = groupMatch[1].trim();
+      const groupColorName = groupMatch[2]?.trim();
+      const groupColor = groupColorName ? resolveColorWithDiagnostic(
+        groupColorName,
+        lineNumber,
+        result.diagnostics,
+        palette
+      ) : void 0;
+      const groupCollapsed = groupMatch[3] !== void 0 && (groupMatch[4] === void 0 || groupMatch[4].toLowerCase() === "true");
+      currentGroup = {
+        id: `group:${groupLabel.toLowerCase()}`,
+        label: groupLabel,
+        nodeIds: [],
+        lineNumber,
+        ...groupColor && { color: groupColor },
+        ...groupCollapsed && { collapsed: true }
+      };
+      groupIndent = indent;
+      groups.push(currentGroup);
+      continue;
+    }
+    if (!contentStarted) {
+      const dirBool = trimmed.match(/^direction-(lr|tb)$/i);
+      if (dirBool) {
+        result.direction = dirBool[1].toUpperCase();
+        continue;
+      }
+      if (FILL_FAMILY_TOKENS.has(trimmed.toLowerCase())) {
+        for (const t3 of FILL_FAMILY_TOKENS) delete options[t3];
+        if (trimmed.toLowerCase() !== "fill-tint")
+          options[trimmed.toLowerCase()] = "on";
+        continue;
+      }
+      if (/^no-color$/i.test(trimmed)) {
+        result.diagnostics.push(
+          makeDgmoError(lineNumber, '"no-color" has been removed.', "warning")
+        );
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) {
+        continue;
+      }
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      const carriesTagMeta = metaAliasMap.size > 0 && cutUnionMetadata(trimmed, registry) !== -1;
+      if (optMatch && !trimmed.includes("->") && !carriesTagMeta) {
+        const key = optMatch[1].toLowerCase();
+        const value = optMatch[2].trim();
+        if (key === "no-color") {
+          result.diagnostics.push(
+            makeDgmoError(
+              lineNumber,
+              '"no-color" was removed \u2014 state colors are assigned automatically; delete this line.',
+              "warning"
+            )
+          );
+          continue;
+        }
+        options[key] = value;
+        continue;
+      }
+    }
+    contentStarted = true;
+    if (currentGroup && indent <= groupIndent) {
+      currentGroup = null;
+      groupIndent = -1;
+    }
+    while (indentStack.length > 0) {
+      const top2 = indentStack[indentStack.length - 1];
+      if (top2.indent >= indent) {
+        indentStack.pop();
+      } else {
+        break;
+      }
+    }
+    const implicitSourceId = indentStack.length > 0 ? (
+      // In-bounds by length check above.
+      indentStack[indentStack.length - 1].nodeId
+    ) : null;
+    const segments = splitArrows2(trimmed);
+    if (segments.length === 1) {
+      const withMeta = peelStateMeta(segments[0]);
+      const peeled = peelAlias2(withMeta.text);
+      const ref = parseStateNodeRef(peeled.seg);
+      if (ref) {
+        const node = getOrCreateNode(ref, lineNumber, withMeta.meta);
+        if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
+        node.lineNumber = lineNumber;
+        indentStack.push({ nodeId: node.id, indent });
+      } else {
+        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+        if (aliasResolved !== void 0) {
+          indentStack.push({ nodeId: aliasResolved, indent });
+        }
+      }
+      continue;
+    }
+    let lastNodeId = null;
+    let pendingArrow = null;
+    for (let j2 = 0; j2 < segments.length; j2++) {
+      const seg = segments[j2];
+      if (seg === "->" || /^-.+->$/.test(seg)) {
+        pendingArrow = parseArrowToken2(
+          seg,
+          palette,
+          lineNumber,
+          result.diagnostics
+        );
+        continue;
+      }
+      const peeled = peelAlias2(seg);
+      let ref = parseStateNodeRef(peeled.seg);
+      if (!ref) {
+        const aliasResolved = nameAliasMap.get(peeled.seg.trim());
+        if (aliasResolved !== void 0) {
+          const existing = nodeMap.get(aliasResolved);
+          if (existing) {
+            const shape = existing.shape;
+            ref = {
+              id: aliasResolved,
+              label: existing.label,
+              shape
+            };
+          }
+        }
+      }
+      if (!ref) continue;
+      const node = getOrCreateNode(ref, lineNumber);
+      if (peeled.alias) nameAliasMap.set(peeled.alias, node.id);
+      if (pendingArrow !== null) {
+        const sourceId = lastNodeId ?? implicitSourceId;
+        if (sourceId) {
+          addEdge(sourceId, node.id, lineNumber, pendingArrow.label);
+        }
+        pendingArrow = null;
+      }
+      lastNodeId = node.id;
+    }
+    if (lastNodeId) {
+      indentStack.push({ nodeId: lastNodeId, indent });
+    }
+  }
+  if (tagGroups.length > 0) {
+    finalizeAutoTagColors(tagGroups, palette);
+    const defaults = [];
+    for (const group of tagGroups) {
+      if (group.defaultValue) {
+        defaults.push({
+          key: tagAttrKey(group.name),
+          value: group.defaultValue
+        });
+      }
+    }
+    const taggable = result.nodes.filter(
+      (n) => n.shape !== "pseudostate"
+    );
+    for (const node of taggable) {
+      const meta = { ...node.metadata ?? {} };
+      for (const { key, value } of defaults) {
+        if (!(key in meta)) meta[key] = value;
+      }
+      node.metadata = meta;
+    }
+    validateTagValues(
+      taggable.map((n) => ({
+        metadata: n.metadata ?? {},
+        lineNumber: n.lineNumber
+      })),
+      tagGroups,
+      (line, message) => result.diagnostics.push(makeDgmoError(line, message, "warning")),
+      suggest
+    );
+    validateTagGroupNames(
+      tagGroups,
+      (line, message) => result.diagnostics.push(makeDgmoError(line, message, "warning")),
+      (line, message) => {
+        const diag = makeDgmoError(line, message);
+        result.diagnostics.push(diag);
+        if (!result.error) result.error = formatDgmoError(diag);
+      }
+    );
+  }
+  if (groups.length > 0) result.groups = groups;
+  if (notes.length > 0) {
+    result.notes = notes;
+    resolveNotes(notes, result.nodes, result.diagnostics);
+  }
+  if (result.nodes.length === 0 && !result.error) {
+    const diag = makeDgmoError(
+      1,
+      "No states found. Add state transitions like: Idle -> Active"
+    );
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+  }
+  if (result.nodes.length >= 2 && result.edges.length >= 1 && !result.error) {
+    const connectedIds = /* @__PURE__ */ new Set();
+    for (const edge of result.edges) {
+      connectedIds.add(edge.source);
+      connectedIds.add(edge.target);
+    }
+    for (const node of result.nodes) {
+      if (!connectedIds.has(node.id)) {
+        result.diagnostics.push(
+          makeDgmoError(
+            node.lineNumber,
+            `State "${node.label}" is not connected to any other state`,
+            "warning"
+          )
+        );
+      }
+    }
+  }
+  return result;
+}
+function looksLikeState(content) {
+  return content.includes("[*]") && content.includes("->");
+}
+var PSEUDOSTATE_ID, PSEUDOSTATE_LABEL, GROUP_BRACKET_RE;
+var init_chunk_APD52YJV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-APD52YJV.js"() {
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
+    init_chunk_NOTA6TEI();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
+    PSEUDOSTATE_ID = "pseudostate:[*]";
+    PSEUDOSTATE_LABEL = "[*]";
+    GROUP_BRACKET_RE = /^\[([^\]]+)\](?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:,?\s+(collapsed)(?::\s*(\S+))?)?\s*$/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VYEQPPS6.js
+function classId(name) {
+  return normalizeName(name);
+}
+function parseVisibility(prefix) {
+  switch (prefix) {
+    case "-":
+      return "private";
+    case "#":
+      return "protected";
+    default:
+      return "public";
+  }
+}
+function parseMember(line, lineNumber, isEnum) {
+  let text = line.trim();
+  if (!text) return null;
+  if (isEnum) {
+    return {
+      name: text,
+      visibility: "public",
+      isStatic: false,
+      isMethod: false,
+      lineNumber
+    };
+  }
+  let visibility = "public";
+  const visMatch = text.match(VISIBILITY_RE);
+  if (visMatch) {
+    visibility = parseVisibility(visMatch[1]);
+    text = text.substring(visMatch[0].length);
+  }
+  let isStatic = false;
+  if (STATIC_SUFFIX_RE.test(text)) {
+    isStatic = true;
+    text = text.replace(STATIC_SUFFIX_RE, "").trim();
+  }
+  const methodMatch = text.match(METHOD_RE);
+  if (methodMatch) {
+    const methodType = methodMatch[3]?.trim();
+    return {
+      name: methodMatch[1].trim(),
+      params: methodMatch[2].trim(),
+      ...methodType !== void 0 && { type: methodType },
+      visibility,
+      isStatic,
+      isMethod: true,
+      lineNumber
+    };
+  }
+  const fieldMatch = text.match(FIELD_RE);
+  if (fieldMatch) {
+    return {
+      name: fieldMatch[1].trim(),
+      type: fieldMatch[2].trim(),
+      visibility,
+      isStatic,
+      isMethod: false,
+      lineNumber
+    };
+  }
+  return {
+    name: text,
+    visibility,
+    isStatic,
+    isMethod: false,
+    lineNumber
+  };
+}
+function parseClassDiagram(content, palette) {
+  const lines = content.split("\n");
+  const options = {};
+  const result = {
+    type: "class",
+    classes: [],
+    relationships: [],
+    options,
+    diagnostics: [],
+    error: null
+  };
+  const classMap = /* @__PURE__ */ new Map();
+  const notes = [];
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function resolveAliasName(token) {
+    if (!token) return token;
+    const trimmed = token.trim();
+    const hit = nameAliasMap.get(trimmed);
+    if (hit !== void 0) {
+      for (const [, node] of classMap) {
+        if (classId(node.name) === hit) return node.name;
+      }
+    }
+    return token;
+  }
+  let currentClass = null;
+  let contentStarted = false;
+  function getOrCreateClass(name, lineNumber) {
+    const key = classId(name);
+    const existing = classMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(name);
+      const existingDisplay = displayName(existing.name);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
+    const node = {
+      id: key,
+      name,
+      members: [],
+      lineNumber
+    };
+    classMap.set(key, node);
+    result.classes.push(node);
+    return node;
+  }
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    const trimmed = raw.trim();
+    const lineNumber = i + 1;
+    const indent = measureIndent(raw);
+    if (!trimmed) {
+      if (indent === 0) currentClass = null;
+      continue;
+    }
+    if (trimmed.startsWith("//")) continue;
+    if (indent === 0) {
+      const noteResult = tryCollectNote(
+        lines,
+        i,
+        indent,
+        palette,
+        result.diagnostics
+      );
+      if (noteResult) {
+        currentClass = null;
+        contentStarted = true;
+        if (noteResult.note) notes.push(noteResult.note);
+        i = noteResult.lastIndex;
+        continue;
+      }
+    }
+    if (!contentStarted && indent === 0 && i === 0) {
+      const firstLine = parseFirstLine(trimmed);
+      if (firstLine?.chartType === "class") {
+        if (firstLine.title) {
+          result.title = firstLine.title;
+          result.titleLineNumber = lineNumber;
+        }
+        continue;
+      }
+    }
+    if (!contentStarted && indent === 0 && /^[a-z]/.test(trimmed)) {
+      if (trimmed.toLowerCase() === "no-auto-color") {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            '"no-auto-color" was removed \u2014 colors are always auto-assigned from the palette; delete this line.',
+            "warning"
+          )
+        );
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) {
+        continue;
+      }
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch) {
+        const key = optMatch[1].toLowerCase();
+        const value = optMatch[2].trim();
+        if (key !== "abstract" && key !== "interface" && key !== "enum") {
+          options[key] = value;
+          continue;
+        }
+      }
+    }
+    if (indent > 0 && currentClass) {
+      const indentRel = trimmed.match(INDENT_REL_ARROW_RE);
+      if (indentRel) {
+        const arrow = indentRel[1];
+        const rawTarget = (indentRel[2] ?? indentRel[3] ?? "").trim();
+        const targetName = resolveAliasName(rawTarget) ?? rawTarget;
+        const label = indentRel[4]?.trim();
+        getOrCreateClass(targetName, lineNumber);
+        if (label) {
+          result.diagnostics.push(
+            ...validateLabelCharacters(label, lineNumber)
+          );
+        }
+        result.relationships.push({
+          source: currentClass.id,
+          target: classId(targetName),
+          // INDENT_REL_ARROW_RE only matches arrows present in ARROW_TO_TYPE.
+          type: ARROW_TO_TYPE[arrow],
+          ...label && { label },
+          lineNumber
+        });
+        continue;
+      }
+      const member = parseMember(
+        trimmed,
+        lineNumber,
+        currentClass.modifier === "enum"
+      );
+      if (member) {
+        currentClass.members.push(member);
+      }
+      continue;
+    }
+    currentClass = null;
+    contentStarted = true;
+    const relArrow = trimmed.match(REL_ARROW_RE);
+    if (relArrow) {
+      const sourceName = (relArrow[1] ?? relArrow[2] ?? "").trim();
+      const arrow = relArrow[3];
+      const targetName = (relArrow[4] ?? relArrow[5] ?? "").trim();
+      result.diagnostics.push(
+        makeDgmoError(
+          lineNumber,
+          `Relationship "${sourceName} ${arrow} ${targetName}" must be indented under the source class "${sourceName}"`,
+          "warning"
+        )
+      );
+      continue;
+    }
+    const classDecl = trimmed.match(CLASS_DECL_RE);
+    if (classDecl) {
+      const prefixModifier = classDecl[1];
+      const name = (classDecl[2] ?? classDecl[3] ?? "").trim();
+      const extendsRaw = classDecl[4] ?? classDecl[5];
+      const extendsParent = extendsRaw ? extendsRaw.trim() : void 0;
+      const implementsRaw = classDecl[6] ?? classDecl[7];
+      const implementsInterface = implementsRaw ? implementsRaw.trim() : void 0;
+      const bracketModifier = classDecl[8];
+      const modifier = prefixModifier ?? bracketModifier;
+      const colorName = classDecl[9]?.trim();
+      const color2 = colorName ? resolveColorWithDiagnostic(
+        colorName,
+        lineNumber,
+        result.diagnostics,
+        palette
+      ) : void 0;
+      const aliasLiteral = classDecl[10];
+      const node = getOrCreateClass(name, lineNumber);
+      if (modifier) node.modifier = modifier;
+      if (color2) node.color = color2;
+      if (aliasLiteral) nameAliasMap.set(aliasLiteral, classId(name));
+      node.lineNumber = lineNumber;
+      if (extendsParent) {
+        const ext = resolveAliasName(extendsParent) ?? extendsParent;
+        getOrCreateClass(ext, lineNumber);
+        result.relationships.push({
+          source: classId(name),
+          target: classId(ext),
+          type: "extends",
+          lineNumber
+        });
+      }
+      if (implementsInterface) {
+        const impl = resolveAliasName(implementsInterface) ?? implementsInterface;
+        getOrCreateClass(impl, lineNumber);
+        result.relationships.push({
+          source: classId(name),
+          target: classId(impl),
+          type: "implements",
+          lineNumber
+        });
+      }
+      currentClass = node;
+      continue;
+    }
+    result.diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        `Unexpected line: '${trimmed}'. Classes start uppercase at indent 0 ('Ship'); members are indented and colon-typed ('+ name: string', '+ sail(): void'); relationships are indented arrows ('--|> Vessel'). (\xA710)`,
+        "warning"
+      )
+    );
+  }
+  if (notes.length > 0) {
+    result.notes = notes;
+    resolveNotes(
+      notes,
+      result.classes.map((c) => ({ id: c.id, label: c.name })),
+      result.diagnostics
+    );
+  }
+  if (result.classes.length === 0 && !result.error) {
+    const diag = makeDgmoError(
+      1,
+      'No classes found. Add class declarations like "ClassName" or "ClassName [interface]".'
+    );
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+  }
+  if (result.classes.length >= 2 && result.relationships.length >= 1 && !result.error) {
+    const connectedIds = /* @__PURE__ */ new Set();
+    for (const rel of result.relationships) {
+      connectedIds.add(rel.source);
+      connectedIds.add(rel.target);
+    }
+    for (const cls of result.classes) {
+      if (!connectedIds.has(cls.id)) {
+        result.diagnostics.push(
+          makeDgmoError(
+            cls.lineNumber,
+            `Class "${cls.name}" is not connected to any other class`,
+            "warning"
+          )
+        );
+      }
+    }
+  }
+  return result;
+}
+function looksLikeClassDiagram(content) {
+  const lines = content.split("\n");
+  let hasModifier = false;
+  let hasRelationship = false;
+  let hasIndentedMember = false;
+  let hasClassDecl = false;
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    if (/^(chart|title)\s*:/i.test(trimmed)) continue;
+    if (/^class(\s|$)/i.test(trimmed)) continue;
+    const indent = measureIndent(line);
+    if (indent === 0) {
+      if (/^(abstract|interface|enum)\s+[A-Z][A-Za-z0-9_]*/i.test(trimmed)) {
+        hasModifier = true;
+        hasClassDecl = true;
+      }
+      if (/^[A-Z][A-Za-z0-9_]*\s+\[(abstract|interface|enum)\]/i.test(trimmed)) {
+        hasModifier = true;
+        hasClassDecl = true;
+      }
+      if (/^[A-Z][A-Za-z0-9_]*\s+(extends|implements)\s+[A-Z]/.test(trimmed)) {
+        hasRelationship = true;
+        hasClassDecl = true;
+      }
+      if (REL_ARROW_RE.test(trimmed)) {
+        hasRelationship = true;
+      }
+      if (CLASS_DECL_RE.test(trimmed)) {
+        hasClassDecl = true;
+      }
+    } else {
+      if (/^[+\-#]?\s*\w+.*[:(]/.test(trimmed)) {
+        hasIndentedMember = true;
+      }
+      if (INDENT_REL_ARROW_RE.test(trimmed)) {
+        hasRelationship = true;
+      }
+    }
+  }
+  if (hasModifier) return true;
+  if (hasRelationship && hasClassDecl && hasIndentedMember) return true;
+  return false;
+}
+function extractSymbols4(docText) {
+  const entities = [];
+  let inMetadata = true;
+  for (const rawLine of docText.split("\n")) {
+    const line = rawLine.trim();
+    if (inMetadata && (/^[a-z-]+\s*:/i.test(line) || /^class(\s|$)/i.test(line)))
+      continue;
+    if (inMetadata && line.toLowerCase() === "no-auto-color") continue;
+    if (inMetadata && /^[a-z]/.test(line) && OPTION_NOCOLON_RE.test(line)) {
+      const key = line.match(OPTION_NOCOLON_RE)[1].toLowerCase();
+      if (key !== "abstract" && key !== "interface" && key !== "enum") continue;
+    }
+    inMetadata = false;
+    if (line.length === 0 || /^\s/.test(rawLine)) continue;
+    const m = CLASS_DECL_RE.exec(line);
+    if (m) {
+      const name = (m[2] ?? m[3] ?? "").trim();
+      if (name && !entities.includes(name)) entities.push(name);
+    }
+  }
+  return {
+    kind: "class",
+    entities
+  };
+}
+var CLASS_DECL_RE, INDENT_REL_ARROW_RE, REL_ARROW_RE, VISIBILITY_RE, STATIC_SUFFIX_RE, METHOD_RE, FIELD_RE, ARROW_TO_TYPE;
+var init_chunk_VYEQPPS6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VYEQPPS6.js"() {
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
+    init_chunk_NOTA6TEI();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
+    CLASS_DECL_RE = /^(?:(abstract|interface|enum)\s+)?(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+extends\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+implements\s+(?:"([^"]+)"|([A-Z][^":]*?)))?(?:\s+\[(abstract|interface|enum)\])?(?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11}))?\s*$/;
+    INDENT_REL_ARROW_RE = /^(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Za-z][^":]*?))(?:\s+:?\s*(.+))?$/;
+    REL_ARROW_RE = /^(?:"([^"]+)"|([A-Z][^":]*?))\s*(--\|>|\.\.\|>|\*--|o--|\.\.>|->)\s*(?:"([^"]+)"|([A-Z][^":]*?))(?:\s+:?\s*(.+))?$/;
+    VISIBILITY_RE = /^([+\-#])\s*/;
+    STATIC_SUFFIX_RE = /\{static\}\s*$/;
+    METHOD_RE = /^(.+?)\(([^)]*)\)(?:\s*:\s*(.+))?$/;
+    FIELD_RE = /^(.+?)\s*:\s*(.+)$/;
+    ARROW_TO_TYPE = {
+      "--|>": "extends",
+      "..|>": "implements",
+      "*--": "composes",
+      "o--": "aggregates",
+      "..>": "depends",
+      "->": "associates"
+    };
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ULR3BVNH.js
+function tableId(name) {
+  return normalizeName(name);
+}
+function parseCardSide(token) {
+  if (token === "1" || token === "*" || token === "?") return token;
+  return null;
+}
+function parseRelationship(trimmed, lineNumber, pushError) {
+  const sym = trimmed.match(REL_SYMBOLIC_RE);
+  if (sym) {
+    const fromCard = parseCardSide(sym[3]);
+    const toCard = parseCardSide(sym[4]);
+    if (fromCard && toCard) {
+      const sourceName = (sym[1] ?? sym[2] ?? "").trim();
+      const targetName = (sym[5] ?? sym[6] ?? "").trim();
+      const label = sym[7]?.trim();
+      if (label) {
+        validateLabelCharacters(label, lineNumber).forEach(
+          (d) => pushError(d.line, d.message)
+        );
+      }
+      return {
+        source: tableId(sourceName),
+        target: tableId(targetName),
+        from: fromCard,
+        to: toCard,
+        ...label !== void 0 && { label }
+      };
+    }
+  }
+  const kw = trimmed.match(REL_KEYWORD_RE);
+  if (kw) {
+    const sourceName = (kw[1] ?? kw[2] ?? "").trim();
+    const targetName = (kw[5] ?? kw[6] ?? "").trim();
+    const fromKw = kw[3];
+    const toKw = kw[4];
+    const fromSym = KEYWORD_TO_SYMBOL[fromKw.toLowerCase()] ?? fromKw;
+    const toSym = KEYWORD_TO_SYMBOL[toKw.toLowerCase()] ?? toKw;
+    pushError(
+      lineNumber,
+      `Use symbolic cardinality (1--*, ?--1, *--*) instead of "${fromKw}-to-${toKw}". Example: ${sourceName} ${fromSym}--${toSym} ${targetName}`
+    );
+    return null;
+  }
+  return null;
+}
+function parseColumn(trimmed) {
+  const rawTokens = tokenizeQuoteAware(trimmed);
+  if (rawTokens.length === 0) return null;
+  const firstRaw = rawTokens[0];
+  const wasQuoted = firstRaw.startsWith('"') || firstRaw.startsWith("'");
+  const name = stripQuotes(firstRaw);
+  if (!wasQuoted && !/^\w+$/.test(name)) return null;
+  const constraints = [];
+  let type;
+  for (let i = 1; i < rawTokens.length; i++) {
+    const tok = stripQuotes(rawTokens[i]);
+    const lower2 = tok.toLowerCase();
+    const constraint = CONSTRAINT_MAP[lower2];
+    if (constraint) {
+      constraints.push(constraint);
+    } else if (type === void 0) {
+      type = tok;
+    } else {
+      return null;
+    }
+  }
+  return { name, ...type !== void 0 && { type }, constraints };
+}
+function parseERDiagram(content, palette) {
+  const lines = content.split("\n");
+  const options = {};
+  const result = {
+    type: "er",
+    options,
+    tables: [],
+    relationships: [],
+    tagGroups: [],
+    diagnostics: [],
+    error: null
+  };
+  const pushError = (line, message) => {
+    const diag = makeDgmoError(line, message);
+    result.diagnostics.push(diag);
+    if (!result.error) result.error = formatDgmoError(diag);
+  };
+  const tableMap = /* @__PURE__ */ new Map();
+  const tableMetadataMap = /* @__PURE__ */ new Map();
+  let currentTable = null;
+  const notes = [];
+  let contentStarted = false;
+  let currentTagGroup = null;
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  function peelAlias2(label) {
+    const trimmed = label.trim();
+    const m = trimmed.match(/^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/);
+    if (!m) return { label: trimmed };
+    return { label: m[1].trim(), alias: m[2] };
+  }
+  function resolveAliasName(token) {
+    return nameAliasMap.get(token.trim()) ?? token;
+  }
+  let firstLineParsed = false;
+  function getOrCreateTable(name, lineNumber) {
+    const key = tableId(name);
+    const existing = tableMap.get(key);
+    if (existing) {
+      const incomingDisplay = displayName(name);
+      const existingDisplay = displayName(existing.name);
+      if (incomingDisplay !== existingDisplay) {
+        result.diagnostics.push(
+          makeDgmoError(
+            lineNumber,
+            nameMergedMessage({
+              incomingDisplay,
+              incomingLine: lineNumber,
+              existingDisplay,
+              existingLine: existing.lineNumber
+            }),
+            "warning",
+            NAME_DIAGNOSTIC_CODES.NAME_MERGED
+          )
+        );
+      }
+      return existing;
+    }
+    const metadata = {};
+    const table = {
+      id: key,
+      name,
+      columns: [],
+      metadata,
+      lineNumber
+    };
+    tableMap.set(key, table);
+    tableMetadataMap.set(key, metadata);
+    result.tables.push(table);
+    return table;
+  }
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    const trimmed = raw.trim();
+    const lineNumber = i + 1;
+    const indent = measureIndent(raw);
+    if (!trimmed) {
+      if (indent === 0) currentTable = null;
+      continue;
+    }
+    if (trimmed.startsWith("//")) continue;
+    if (!firstLineParsed && indent === 0) {
+      const firstLineResult = parseFirstLine(trimmed);
+      if (firstLineResult?.chartType === "er") {
+        firstLineParsed = true;
+        if (firstLineResult.title) {
+          result.title = firstLineResult.title;
+          result.titleLineNumber = lineNumber;
+        }
+        continue;
+      }
+      firstLineParsed = true;
+    }
+    if (!contentStarted && indent === 0) {
+      const tagBlockMatch = matchTagBlockHeading(trimmed);
+      if (tagBlockMatch) {
+        currentTagGroup = {
+          name: tagBlockMatch.name,
+          ...tagBlockMatch.alias !== void 0 && {
+            alias: tagBlockMatch.alias
+          },
+          entries: [],
+          lineNumber
+        };
+        if (tagBlockMatch.alias) {
+          metaAliasMap.set(
+            normalizeName(tagBlockMatch.alias),
+            tagBlockMatch.name.toLowerCase()
+          );
+        }
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.name),
+          tagBlockMatch.name.toLowerCase()
+        );
+        result.tagGroups.push(currentTagGroup);
+        continue;
+      }
+    }
+    if (currentTagGroup && !contentStarted && indent > 0) {
+      const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
+      const { label, color: color2 } = extractColor(
+        cleanEntry,
+        palette,
+        result.diagnostics,
+        lineNumber
+      );
+      if (isDefault) {
+        currentTagGroup.defaultValue = label;
+      } else if (currentTagGroup.entries.length === 0) {
+        currentTagGroup.defaultValue = label;
+      }
+      currentTagGroup.entries.push({
+        value: label,
+        color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+        lineNumber
+      });
+      continue;
+    }
+    if (currentTagGroup && indent === 0) {
+      currentTagGroup = null;
+    }
+    if (!contentStarted && indent === 0) {
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch) {
+        const key = optMatch[1].toLowerCase();
+        const value = optMatch[2].trim();
+        if (KNOWN_OPTIONS8.has(key)) {
+          options[key] = value.toLowerCase();
+          continue;
+        }
+      }
+      if (trimmed.toLowerCase() === "no-semantic-colors") {
+        options["no-semantic-colors"] = "on";
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) {
+        continue;
+      }
+    }
+    if (indent > 0 && currentTable) {
+      const indentRel = trimmed.match(INDENT_REL_RE);
+      if (indentRel) {
+        const fromCard = parseCardSide(indentRel[1]);
+        const toCard = parseCardSide(indentRel[3]);
+        if (fromCard && toCard) {
+          const rawTarget = (indentRel[4] ?? indentRel[5] ?? "").trim();
+          const targetName = resolveAliasName(rawTarget);
+          getOrCreateTable(targetName, lineNumber);
+          const rawLabel = indentRel[2]?.trim();
+          if (rawLabel) {
+            result.diagnostics.push(
+              ...validateLabelCharacters(rawLabel, lineNumber)
+            );
+          }
+          result.relationships.push({
+            source: currentTable.id,
+            target: tableId(targetName),
+            cardinality: { from: fromCard, to: toCard },
+            ...rawLabel && { label: rawLabel },
+            lineNumber
+          });
+        }
+        continue;
+      }
+      const colResult = parseColumn(trimmed);
+      if (colResult) {
+        currentTable.columns.push({
+          name: colResult.name,
+          ...colResult.type && { type: colResult.type },
+          constraints: colResult.constraints,
+          lineNumber
+        });
+      }
+      continue;
+    }
+    currentTable = null;
+    contentStarted = true;
+    const noteResult = tryCollectNote(
+      lines,
+      i,
+      indent,
+      palette,
+      result.diagnostics
+    );
+    if (noteResult) {
+      if (noteResult.note) notes.push(noteResult.note);
+      i = noteResult.lastIndex;
+      continue;
+    }
+    const rel = parseRelationship(trimmed, lineNumber, pushError);
+    if (rel) {
+      result.diagnostics.push(
+        makeDgmoError(
+          lineNumber,
+          `Relationship "${rel.source} \u2192 ${rel.target}" must be indented under the source table "${rel.source}"`,
+          "warning"
+        )
+      );
+      continue;
+    }
+    const registry = withTagAliases(ER_REGISTRY, new Set(metaAliasMap.keys()));
+    const split = splitNameAndMeta(
+      trimmed,
+      registry,
+      metaAliasMap,
+      void 0,
+      result.diagnostics,
+      lineNumber
+    );
+    warnUnknownMetaKeys(
+      split.meta,
+      registry,
+      (msg) => result.diagnostics.push(makeDgmoError(lineNumber, msg, "warning")),
+      split.name
+    );
+    const tableDecl = split.name.match(TABLE_DECL_RE);
+    if (tableDecl) {
+      const rawName = (tableDecl[1] ?? tableDecl[2] ?? "").trim();
+      const peeled = peelAlias2(rawName);
+      const name = peeled.label;
+      if (peeled.alias) nameAliasMap.set(peeled.alias, name);
+      const colorName = split.color ?? tableDecl[3]?.trim();
+      const color2 = colorName ? resolveColorWithDiagnostic(
+        colorName,
+        lineNumber,
+        result.diagnostics,
+        palette
+      ) : void 0;
+      const table = getOrCreateTable(name, lineNumber);
+      if (color2) table.color = color2;
+      table.lineNumber = lineNumber;
+      if (Object.keys(split.meta).length > 0) {
+        const mutableMeta = tableMetadataMap.get(table.id);
+        if (mutableMeta) Object.assign(mutableMeta, split.meta);
+      }
+      currentTable = table;
+      continue;
+    }
+    result.diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        `Unexpected line: '${trimmed}'. A table is a bare name at indent 0 ('users'); columns are indented and SPACE-separated, no colon ('id int pk'); relationships are indented ('1--* orders'). (\xA79)`,
+        "warning"
+      )
+    );
+  }
+  if (result.tables.length === 0 && !result.error) {
+    const diag = makeDgmoError(
+      1,
+      'No tables found. Add table declarations like "users" or "orders blue".'
+    );
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+  }
+  finalizeAutoTagColors(result.tagGroups, palette);
+  if (result.tagGroups.length > 0) {
+    const tagEntities = result.tables.map((t3) => ({
+      metadata: t3.metadata,
+      lineNumber: t3.lineNumber
+    }));
+    validateTagValues(
+      tagEntities,
+      result.tagGroups,
+      (line, msg) => result.diagnostics.push(makeDgmoError(line, msg, "warning")),
+      suggest
+    );
+    validateTagGroupNames(
+      result.tagGroups,
+      (line, msg) => result.diagnostics.push(makeDgmoError(line, msg, "warning"))
+    );
+    for (const group of result.tagGroups) {
+      if (!group.defaultValue) continue;
+      const key = tagAttrKey(group.name);
+      for (const table of result.tables) {
+        if (!table.metadata[key]) {
+          const mutableMeta = tableMetadataMap.get(table.id);
+          if (mutableMeta) mutableMeta[key] = group.defaultValue;
+        }
+      }
+    }
+  }
+  if (notes.length > 0) {
+    result.notes = notes;
+    resolveNotes(
+      notes,
+      result.tables.map((t3) => ({ id: t3.id, label: t3.name })),
+      result.diagnostics
+    );
+  }
+  if (result.tables.length >= 2 && result.relationships.length >= 1 && !result.error) {
+    const connectedIds = /* @__PURE__ */ new Set();
+    for (const rel of result.relationships) {
+      connectedIds.add(rel.source);
+      connectedIds.add(rel.target);
+    }
+    for (const table of result.tables) {
+      if (!connectedIds.has(table.id)) {
+        result.diagnostics.push(
+          makeDgmoError(
+            table.lineNumber,
+            `Table "${table.name}" is not connected to any other table`,
+            "warning"
+          )
+        );
+      }
+    }
+  }
+  return result;
+}
+function looksLikeERDiagram(content) {
+  const lines = content.split("\n");
+  let hasConstraint = false;
+  let hasTableDecl = false;
+  let hasRelationship = false;
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    if (/^(er|notation)\s/i.test(trimmed) || /^er$/i.test(trimmed)) continue;
+    const indent = measureIndent(line);
+    if (indent > 0) {
+      if (CONSTRAINT_KEYWORD_RE.test(trimmed)) {
+        hasConstraint = true;
+      }
+      if (INDENT_REL_RE.test(trimmed)) {
+        hasRelationship = true;
+      }
+    } else {
+      if (TABLE_DECL_RE.test(trimmed)) {
+        hasTableDecl = true;
+      }
+      if (REL_SYMBOLIC_RE.test(trimmed)) {
+        hasRelationship = true;
+      }
+    }
+  }
+  if (hasConstraint && hasTableDecl) return true;
+  if (hasRelationship && hasTableDecl) return true;
+  return false;
+}
+function extractSymbols5(docText) {
+  const entities = [];
+  let inMetadata = true;
+  for (const rawLine of docText.split("\n")) {
+    const line = rawLine.trim();
+    if (inMetadata && /^er(\s|$)/i.test(line)) continue;
+    if (/^\s/.test(rawLine)) continue;
+    if (line.length === 0) continue;
+    const m = TABLE_DECL_RE.exec(line);
+    if (m) {
+      const name = (m[1] ?? m[2] ?? "").trim();
+      if (name) {
+        inMetadata = false;
+        entities.push(name);
+        continue;
+      }
+    }
+    if (inMetadata && OPTION_NOCOLON_RE.test(line)) continue;
+    inMetadata = false;
+  }
+  return {
+    kind: "er",
+    entities
+  };
+}
+var TABLE_DECL_RE, INDENT_REL_RE, CONSTRAINT_MAP, KNOWN_OPTIONS8, REL_SYMBOLIC_RE, REL_KEYWORD_RE, KEYWORD_TO_SYMBOL, CONSTRAINT_KEYWORD_RE;
+var init_chunk_ULR3BVNH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ULR3BVNH.js"() {
+    init_chunk_ST3ZNEUQ();
+    init_chunk_7NK42OIB();
+    init_chunk_RRX4Z4TH();
+    init_chunk_NOTA6TEI();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_EXNKNJ65();
+    init_chunk_OLMWTJVU();
+    TABLE_DECL_RE = /^(?:"([^"]+)"|([a-zA-Z_][^|":(]*?))(?:\s+(red|orange|yellow|green|blue|purple|teal|cyan|gray|black|white))?(?:\s*\|(.+))?$/;
+    INDENT_REL_RE = /^([1*?])-{1,2}(?:(.+?)-{1,2})?([1*?])\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s*$/;
+    CONSTRAINT_MAP = {
+      pk: "pk",
+      fk: "fk",
+      unique: "unique",
+      nullable: "nullable"
+    };
+    KNOWN_OPTIONS8 = /* @__PURE__ */ new Set(["notation", "active-tag"]);
+    REL_SYMBOLIC_RE = /^(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s+([1*?])\s*-{1,2}\s*([1*?])\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))(?:\s+(.+))?$/;
+    REL_KEYWORD_RE = /^(?:"([^"]+)"|([a-zA-Z_][^":]*?))\s+(one|many|zero)[- ]to[- ](one|many|zero)\s+(?:"([^"]+)"|([a-zA-Z_][^":]*?))(?:\s+(.+))?$/i;
+    KEYWORD_TO_SYMBOL = {
+      one: "1",
+      many: "*",
+      zero: "?"
+    };
+    CONSTRAINT_KEYWORD_RE = /\b(pk|fk)\b/i;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PFG3EVRD.js
+function looksLikeOrg(content) {
+  for (const line of content.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    if (isTagBlockHeading(trimmed)) return true;
+  }
+  return false;
+}
+function parseOrg(content, palette) {
+  const options = {};
+  const result = {
+    title: null,
+    titleLineNumber: null,
+    roots: [],
+    tagGroups: [],
+    options,
+    direction: "TB",
+    diagnostics: [],
+    error: null
+  };
+  const fail = makeFail(result);
+  const pushError = (line, message) => {
+    const diag = makeDgmoError(line, message);
+    result.diagnostics.push(diag);
+    if (!result.error) result.error = formatDgmoError(diag);
+  };
+  const pushWarning = (line, message) => {
+    result.diagnostics.push(makeDgmoError(line, message, "warning"));
+  };
+  if (!content?.trim()) {
+    return fail(0, "No content provided");
+  }
+  const lines = content.split("\n");
+  let contentStarted = false;
+  let nodeCounter = 0;
+  let containerCounter = 0;
+  let currentTagGroup = null;
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  const indentStack = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const lineNumber = i + 1;
+    const trimmed = line.trim();
+    if (!trimmed) {
+      if (currentTagGroup) {
+        currentTagGroup = null;
+      }
+      continue;
+    }
+    if (trimmed.startsWith("//")) continue;
+    if (!contentStarted) {
+      const firstLine = parseFirstLine(trimmed);
+      if (firstLine) {
+        if (firstLine.chartType !== "org") {
+          const allTypes = [
+            "org",
+            "class",
+            "flowchart",
+            "sequence",
+            "er",
+            "bar",
+            "line",
+            "pie",
+            "scatter",
+            "sankey",
+            "venn",
+            "timeline",
+            "arc",
+            "slope"
+          ];
+          let msg = `Expected chart type "org", got "${firstLine.chartType}"`;
+          const hint = suggest(firstLine.chartType, allTypes);
+          if (hint) msg += `. ${hint}`;
+          return fail(lineNumber, msg);
+        }
+        if (firstLine.title) {
+          result.title = firstLine.title;
+          result.titleLineNumber = lineNumber;
+        }
+        continue;
+      }
+    }
+    const tagBlockMatch = matchTagBlockHeading(trimmed);
+    if (tagBlockMatch) {
+      if (contentStarted) {
+        pushError(lineNumber, "Tag groups must appear before org content");
+        continue;
+      }
+      currentTagGroup = {
+        name: tagBlockMatch.name,
+        ...tagBlockMatch.alias !== void 0 && {
+          alias: tagBlockMatch.alias
+        },
+        entries: [],
+        lineNumber
+      };
+      if (tagBlockMatch.alias) {
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.alias),
+          tagAttrKey(tagBlockMatch.name)
+        );
+      }
+      metaAliasMap.set(
+        normalizeName(tagBlockMatch.name),
+        tagAttrKey(tagBlockMatch.name)
+      );
+      result.tagGroups.push(currentTagGroup);
+      continue;
+    }
+    if (!contentStarted && !currentTagGroup && measureIndent(line) === 0) {
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch) {
+        const key = optMatch[1].trim().toLowerCase();
+        if (KNOWN_OPTIONS9.has(key)) {
+          options[key] = optMatch[2].trim();
+          continue;
+        }
+      }
+      if (KNOWN_BOOLEANS7.has(trimmed.toLowerCase())) {
+        const boolKey = trimmed.toLowerCase();
+        if (boolKey === "direction-lr" || boolKey === "direction-tb") {
+          delete options["direction-lr"];
+          delete options["direction-tb"];
+        }
+        options[boolKey] = "on";
+        continue;
+      }
+    }
+    if (currentTagGroup && !contentStarted) {
+      const indent2 = measureIndent(line);
+      if (indent2 > 0) {
+        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
+        const { label, color: color2 } = extractColor(
+          cleanEntry,
+          palette,
+          result.diagnostics,
+          lineNumber
+        );
+        if (isDefault) {
+          currentTagGroup.defaultValue = label;
+        } else if (currentTagGroup.entries.length === 0) {
+          currentTagGroup.defaultValue = label;
+        }
+        currentTagGroup.entries.push({
+          value: label,
+          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+          lineNumber
+        });
+        continue;
+      }
+      currentTagGroup = null;
+    }
+    contentStarted = true;
+    currentTagGroup = null;
+    const indent = measureIndent(line);
+    const containerMatch = trimmed.match(CONTAINER_RE2);
+    const metadataMatch = (() => {
+      if (trimmed.includes("|")) return null;
+      const m = trimmed.match(METADATA_RE2);
+      if (!m) return null;
+      const keyRegion = m[1].trim();
+      if (/\s/.test(keyRegion)) return null;
+      return m;
+    })();
+    if (containerMatch) {
+      const rawLabel = containerMatch[1].trim();
+      const asMatch = rawLabel.match(
+        /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
+      );
+      const label = asMatch ? asMatch[1].trim() : rawLabel;
+      containerCounter++;
+      const containerId = `container-${containerCounter}`;
+      if (asMatch) nameAliasMap.set(asMatch[2], containerId);
+      const node = {
+        id: containerId,
+        label,
+        metadata: {},
+        children: [],
+        parentId: null,
+        isContainer: true,
+        lineNumber
+      };
+      attachNode3(node, indent, indentStack, result);
+    } else if (metadataMatch && indentStack.length > 0) {
+      const rawKey = metadataMatch[1].trim().toLowerCase();
+      const key = metaAliasMap.get(rawKey) ?? rawKey;
+      const value = metadataMatch[2].trim();
+      const parent = findMetadataParent2(indent, indentStack);
+      if (!parent) {
+        pushError(
+          lineNumber,
+          "Metadata 'key: value' must be indented under a node \u2014 no node precedes it."
+        );
+      } else {
+        parent.metadata = { ...parent.metadata, [key]: value };
+      }
+    } else if (metadataMatch && indentStack.length === 0) {
+      if (indent === 0) {
+        const node = parseNodeLabel(
+          trimmed,
+          indent,
+          lineNumber,
+          palette,
+          ++nodeCounter,
+          metaAliasMap,
+          result.diagnostics,
+          nameAliasMap
+        );
+        attachNode3(node, indent, indentStack, result);
+      } else {
+        pushError(
+          lineNumber,
+          "Metadata 'key: value' must be indented under a node \u2014 no node precedes it."
+        );
+      }
+    } else {
+      const node = parseNodeLabel(
+        trimmed,
+        indent,
+        lineNumber,
+        palette,
+        ++nodeCounter,
+        metaAliasMap,
+        result.diagnostics,
+        nameAliasMap
+      );
+      attachNode3(node, indent, indentStack, result);
+    }
+  }
+  finalizeAutoTagColors(result.tagGroups, palette);
+  if (result.tagGroups.length > 0) {
+    const allNodes = [];
+    const collectAll = (nodes) => {
+      for (const node of nodes) {
+        allNodes.push(node);
+        collectAll(node.children);
+      }
+    };
+    collectAll(result.roots);
+    validateTagValues(allNodes, result.tagGroups, pushWarning, suggest);
+    validateTagGroupNames(result.tagGroups, pushWarning, pushError);
+  }
+  if (result.roots.length === 0 && result.tagGroups.length === 0 && !result.error) {
+    const diag = makeDgmoError(1, "No nodes found in org chart");
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+  }
+  result.direction = options["direction-lr"] ? "LR" : "TB";
+  return result;
+}
+function parseNodeLabel(trimmed, _indent, lineNumber, _palette, counter, metaAliasMap = /* @__PURE__ */ new Map(), diagnostics, nameAliasMap) {
+  const registry = withTagAliases(ORG_REGISTRY, new Set(metaAliasMap.keys()));
+  const id = `node-${counter}`;
+  const split = splitNameAndMeta(
+    trimmed,
+    registry,
+    metaAliasMap,
+    void 0,
+    diagnostics,
+    lineNumber
+  );
+  warnUnknownMetaKeys(
+    split.meta,
+    registry,
+    (msg) => diagnostics?.push(makeDgmoError(lineNumber, msg, "warning")),
+    split.name
+  );
+  const label = split.color !== void 0 ? `${split.name} ${split.color}` : split.name;
+  if (split.alias) {
+    nameAliasMap?.set(normalizeName(split.alias), id);
+  }
+  const metadata = { ...split.meta };
+  return {
+    id,
+    label,
+    metadata,
+    children: [],
+    parentId: null,
+    isContainer: false,
+    lineNumber
+  };
+}
+function attachNode3(node, indent, indentStack, result) {
+  while (indentStack.length > 0) {
+    const top2 = indentStack[indentStack.length - 1];
+    if (top2.indent < indent) break;
+    indentStack.pop();
+  }
+  if (indentStack.length > 0) {
+    const parent = indentStack[indentStack.length - 1].node;
+    node.parentId = parent.id;
+    parent.children.push(node);
+  } else {
+    result.roots.push(node);
+  }
+  indentStack.push({ node, indent });
+}
+function findMetadataParent2(indent, indentStack) {
+  for (let i = indentStack.length - 1; i >= 0; i--) {
+    const entry = indentStack[i];
+    if (entry.indent < indent) {
+      return entry.node;
+    }
+  }
+  if (indentStack.length > 0) {
+    return indentStack[indentStack.length - 1].node;
+  }
+  return null;
+}
+var CONTAINER_RE2, METADATA_RE2, KNOWN_OPTIONS9, KNOWN_BOOLEANS7;
+var init_chunk_PFG3EVRD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PFG3EVRD.js"() {
+    init_chunk_NOTA6TEI();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
+    CONTAINER_RE2 = /^\[([^\]]+)\]$/;
+    METADATA_RE2 = /^([^:]+):\s*(.+)$/;
+    KNOWN_OPTIONS9 = /* @__PURE__ */ new Set([
+      "sub-node-label",
+      "hide",
+      "show-sub-node-count",
+      "active-tag"
+    ]);
+    KNOWN_BOOLEANS7 = /* @__PURE__ */ new Set([
+      "show-sub-node-count",
+      "direction-tb",
+      "direction-lr",
+      "fill-tint",
+      "fill-solid",
+      "fill-outline",
+      "no-title",
+      "no-legend"
+    ]);
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OHBIN74X.js
+function parseArrowLine(trimmed, _palette, _lineNumber, _diagnostics) {
+  const bareMatch = trimmed.match(BARE_ARROW_RE);
+  if (bareMatch) {
+    const rawTarget = bareMatch[1].trim();
+    const groupMatch = rawTarget.match(/^\[(.+)\]$/);
+    return {
+      target: groupMatch ? groupMatch[1].trim() : rawTarget,
+      targetIsGroup: !!groupMatch
+    };
+  }
+  const arrowMatch = trimmed.match(ARROW_RE3);
+  if (arrowMatch) {
+    const label = arrowMatch[1]?.trim() || void 0;
+    const rawTarget = arrowMatch[2].trim();
+    const groupMatch = rawTarget.match(/^\[(.+)\]$/);
+    return {
+      ...label !== void 0 && { label },
+      target: groupMatch ? groupMatch[1].trim() : rawTarget,
+      targetIsGroup: !!groupMatch
+    };
+  }
+  return null;
+}
+function looksLikeSitemap(content) {
+  const lines = content.split("\n");
+  let hasArrow = false;
+  let hasContainer = false;
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    if (parseFirstLine(trimmed)) continue;
+    if (isTagBlockHeading(trimmed)) continue;
+    if (/^-.*->\s*.+/.test(trimmed) || /^->\s*.+/.test(trimmed)) {
+      hasArrow = true;
+    }
+    if (CONTAINER_RE3.test(trimmed)) {
+      hasContainer = true;
+    }
+  }
+  if (!hasArrow || !hasContainer) return false;
+  const hasFlowchartShapes = /[\])][ \t]*-.*->/.test(content) || /->[ \t]*[[(</]/.test(content);
+  return !hasFlowchartShapes;
+}
+function parseSitemap(content, palette) {
+  const options = {};
+  const result = {
+    title: null,
+    titleLineNumber: null,
+    direction: "LR",
+    roots: [],
+    edges: [],
+    tagGroups: [],
+    options,
+    diagnostics: [],
+    error: null
+  };
+  const fail = makeFail(result);
+  const pushError = (line, message) => {
+    const diag = makeDgmoError(line, message);
+    result.diagnostics.push(diag);
+    if (!result.error) result.error = formatDgmoError(diag);
+  };
+  const pushWarning = (line, message) => {
+    result.diagnostics.push(makeDgmoError(line, message, "warning"));
+  };
+  if (!content?.trim()) {
+    return fail(0, "No content provided");
+  }
+  const lines = content.split("\n");
+  let contentStarted = false;
+  let nodeCounter = 0;
+  let containerCounter = 0;
+  let firstLineParsed = false;
+  let currentTagGroup = null;
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const nameAliasMap = /* @__PURE__ */ new Map();
+  const indentStack = [];
+  const labelToNode = /* @__PURE__ */ new Map();
+  const labelToContainer = /* @__PURE__ */ new Map();
+  const deferredArrows = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const lineNumber = i + 1;
+    const trimmed = line.trim();
+    if (!trimmed) {
+      if (currentTagGroup) {
+        currentTagGroup = null;
+      }
+      continue;
+    }
+    if (trimmed.startsWith("//")) continue;
+    if (!firstLineParsed && !contentStarted) {
+      const firstLineResult = parseFirstLine(trimmed);
+      if (firstLineResult) {
+        firstLineParsed = true;
+        if (firstLineResult.chartType !== "sitemap") {
+          const allTypes = Array.from(ALL_CHART_TYPES);
+          let msg = `Expected chart type "sitemap", got "${firstLineResult.chartType}"`;
+          const hint = suggest(firstLineResult.chartType, allTypes);
+          if (hint) msg += `. ${hint}`;
+          return fail(lineNumber, msg);
+        }
+        if (firstLineResult.title) {
+          result.title = firstLineResult.title;
+          result.titleLineNumber = lineNumber;
+        }
+        continue;
+      }
+    }
+    const tagBlockMatch = matchTagBlockHeading(trimmed);
+    if (tagBlockMatch) {
+      if (contentStarted) {
+        pushError(lineNumber, "Tag groups must appear before sitemap content");
+        continue;
+      }
+      const newTagGroup = {
+        name: tagBlockMatch.name,
+        ...tagBlockMatch.alias !== void 0 && {
+          alias: tagBlockMatch.alias
+        },
+        entries: [],
+        lineNumber
+      };
+      currentTagGroup = newTagGroup;
+      if (tagBlockMatch.alias) {
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.alias),
+          tagAttrKey(tagBlockMatch.name)
+        );
+      }
+      metaAliasMap.set(
+        normalizeName(tagBlockMatch.name),
+        tagAttrKey(tagBlockMatch.name)
+      );
+      result.tagGroups.push(newTagGroup);
+      continue;
+    }
+    if (!contentStarted && !currentTagGroup && measureIndent(line) === 0 && !trimmed.includes("|") && !trimmed.includes("->") && !trimmed.includes(":")) {
+      const dirBool = trimmed.match(/^direction-(lr|tb)$/i);
+      if (dirBool) {
+        result.direction = dirBool[1].toUpperCase();
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) {
+        continue;
+      }
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch) {
+        const key = optMatch[1].trim().toLowerCase();
+        options[key] = optMatch[2].trim();
+        continue;
+      }
+    }
+    if (currentTagGroup && !contentStarted) {
+      const indent2 = measureIndent(line);
+      if (indent2 > 0) {
+        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
+        const { label, color: color2 } = extractColor(
+          cleanEntry,
+          palette,
+          result.diagnostics,
+          lineNumber
+        );
+        currentTagGroup.entries.push({
+          value: label,
+          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+          lineNumber
+        });
+        if (isDefault) {
+          currentTagGroup.defaultValue = label;
+        } else if (currentTagGroup.entries.length === 1) {
+          currentTagGroup.defaultValue = label;
+        }
+        continue;
+      }
+      currentTagGroup = null;
+    }
+    contentStarted = true;
+    currentTagGroup = null;
+    const indent = measureIndent(line);
+    const arrowInfo = parseArrowLine(
+      trimmed,
+      palette,
+      lineNumber,
+      result.diagnostics
+    );
+    if (arrowInfo) {
+      const source = findParentNode(indent, indentStack);
+      if (!source) {
+        pushError(
+          lineNumber,
+          "Arrow '-> target' must be indented under its source page \u2014 no page precedes it."
+        );
+      } else {
+        deferredArrows.push({
+          sourceNode: source,
+          targetLabel: arrowInfo.target,
+          targetIsGroup: arrowInfo.targetIsGroup,
+          ...arrowInfo.label !== void 0 && { label: arrowInfo.label },
+          lineNumber
+        });
+      }
+      continue;
+    }
+    const containerMatch = trimmed.match(CONTAINER_RE3);
+    const metadataMatch = (() => {
+      if (trimmed.includes("|")) return null;
+      const m = trimmed.match(METADATA_RE3);
+      if (!m) return null;
+      const keyRegion = m[1].trim();
+      if (/\s/.test(keyRegion)) return null;
+      return m;
+    })();
+    if (containerMatch) {
+      const rawLabel = containerMatch[1].trim();
+      const asMatch = rawLabel.match(
+        /^(.*?)\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/
+      );
+      const label = asMatch ? asMatch[1].trim() : rawLabel;
+      const tail = (containerMatch[2] ?? "").trim();
+      const containerMetadata = {};
+      if (tail.length > 0) {
+        Object.assign(
+          containerMetadata,
+          parseSitemapMetaTail(tail, metaAliasMap)
+        );
+      }
+      containerCounter++;
+      const containerId = `container-${containerCounter}`;
+      if (asMatch) nameAliasMap.set(asMatch[2], containerId);
+      const node = {
+        id: containerId,
+        label,
+        metadata: containerMetadata,
+        children: [],
+        parentId: null,
+        isContainer: true,
+        lineNumber
+      };
+      attachNode4(node, indent, indentStack, result);
+      const key = normalizeName(label);
+      labelToContainer.set(key, node);
+    } else if (metadataMatch && indentStack.length > 0) {
+      const rawKey = metadataMatch[1].trim().toLowerCase();
+      const key = metaAliasMap.get(rawKey) ?? rawKey;
+      const value = metadataMatch[2].trim();
+      const parent = findParentNode(indent, indentStack);
+      if (!parent) {
+        pushError(
+          lineNumber,
+          "Metadata 'key: value' must be indented under a page \u2014 no page precedes it."
+        );
+      } else {
+        parent.metadata = { ...parent.metadata, [key]: value };
+      }
+    } else if (metadataMatch && indentStack.length === 0) {
+      if (indent === 0) {
+        const node = parseNodeLabel2(
+          trimmed,
+          lineNumber,
+          palette,
+          ++nodeCounter,
+          metaAliasMap,
+          pushWarning,
+          result.diagnostics,
+          nameAliasMap
+        );
+        attachNode4(node, indent, indentStack, result);
+        const key = normalizeName(node.label);
+        labelToNode.set(key, node);
+      } else {
+        pushError(
+          lineNumber,
+          "Metadata 'key: value' must be indented under a page \u2014 no page precedes it."
+        );
+      }
+    } else {
+      const descResult = tryStripDescriptionKeyword(trimmed);
+      if (descResult.isKeyword && !descResult.needsColon && indentStack.length > 0) {
+        const parent = findParentNode(indent, indentStack);
+        if (parent) {
+          parent.description = [
+            ...parent.description ?? [],
+            descResult.text.trim()
+          ];
+          continue;
+        }
+      }
+      const enclosingContainer = nestedPageInsideContainer(indent, indentStack);
+      if (enclosingContainer) {
+        pushError(
+          lineNumber,
+          `Pages inside container '[${enclosingContainer}]' cannot have indented sub-pages. Containers hold a flat list of pages.`
+        );
+        continue;
+      }
+      const node = parseNodeLabel2(
+        trimmed,
+        lineNumber,
+        palette,
+        ++nodeCounter,
+        metaAliasMap,
+        pushWarning,
+        result.diagnostics,
+        nameAliasMap
+      );
+      attachNode4(node, indent, indentStack, result);
+      const key = normalizeName(node.label);
+      labelToNode.set(key, node);
+    }
+  }
+  for (const arrow of deferredArrows) {
+    const aliasHit = nameAliasMap.get(arrow.targetLabel.trim());
+    if (aliasHit !== void 0) {
+      result.edges.push({
+        sourceId: arrow.sourceNode.id,
+        targetId: aliasHit,
+        ...arrow.label !== void 0 && { label: arrow.label },
+        lineNumber: arrow.lineNumber
+      });
+      continue;
+    }
+    const targetKey = normalizeName(arrow.targetLabel);
+    if (arrow.targetIsGroup) {
+      const targetContainer = labelToContainer.get(targetKey);
+      if (!targetContainer) {
+        const allLabels = Array.from(labelToContainer.keys());
+        let msg = `Group '[${arrow.targetLabel}]' not found`;
+        const hint = suggest(targetKey, allLabels);
+        if (hint) msg += `. ${hint}`;
+        pushError(arrow.lineNumber, msg);
+        continue;
+      }
+      result.edges.push({
+        sourceId: arrow.sourceNode.id,
+        targetId: targetContainer.id,
+        ...arrow.label !== void 0 && { label: arrow.label },
+        lineNumber: arrow.lineNumber
+      });
+    } else {
+      const targetNode = labelToNode.get(targetKey);
+      if (!targetNode) {
+        const allLabels = Array.from(labelToNode.keys());
+        let msg = `Arrow target "${arrow.targetLabel}" not found`;
+        const hint = suggest(targetKey, allLabels);
+        if (hint) msg += `. ${hint}`;
+        pushError(arrow.lineNumber, msg);
+        continue;
+      }
+      result.edges.push({
+        sourceId: arrow.sourceNode.id,
+        targetId: targetNode.id,
+        ...arrow.label !== void 0 && { label: arrow.label },
+        lineNumber: arrow.lineNumber
+      });
+    }
+  }
+  finalizeAutoTagColors(result.tagGroups, palette);
+  if (result.tagGroups.length > 0) {
+    const allNodes = [];
+    const collectAll = (nodes) => {
+      for (const node of nodes) {
+        allNodes.push(node);
+        collectAll(node.children);
+      }
+    };
+    collectAll(result.roots);
+    validateTagValues(allNodes, result.tagGroups, pushWarning, suggest);
+    validateTagGroupNames(result.tagGroups, pushWarning, pushError);
+  }
+  if (result.roots.length === 0 && result.tagGroups.length === 0 && !result.error) {
+    const diag = makeDgmoError(1, "No pages found in sitemap");
+    result.diagnostics.push(diag);
+    result.error = formatDgmoError(diag);
+  }
+  return result;
+}
+function parseNodeLabel2(trimmed, lineNumber, _palette, counter, metaAliasMap = /* @__PURE__ */ new Map(), warnFn, _diagnostics, nameAliasMap) {
+  const registry = withTagAliases(
+    SITEMAP_REGISTRY,
+    new Set(metaAliasMap.keys())
+  );
+  const id = `node-${counter}`;
+  const split = splitNameAndMeta(
+    trimmed,
+    registry,
+    metaAliasMap,
+    void 0,
+    _diagnostics,
+    lineNumber
+  );
+  if (warnFn) {
+    warnUnknownMetaKeys(
+      split.meta,
+      registry,
+      (msg) => warnFn(lineNumber, msg),
+      split.name
+    );
+  }
+  const label = split.name;
+  if (split.alias) nameAliasMap?.set(normalizeName(split.alias), id);
+  const metadata = { ...split.meta };
+  if (split.color !== void 0) metadata["color"] = split.color;
+  let description;
+  if ("description" in metadata) {
+    const descVal = metadata["description"].trim();
+    if (descVal) {
+      description = [descVal];
+    }
+    delete metadata["description"];
+  }
+  return {
+    id,
+    label,
+    metadata,
+    ...description !== void 0 && { description },
+    children: [],
+    parentId: null,
+    isContainer: false,
+    lineNumber
+  };
+}
+function parseSitemapMetaTail(tail, metaAliasMap) {
+  const trimmed = tail.trim();
+  if (!trimmed?.includes(":")) return {};
+  const registry = withTagAliases(
+    SITEMAP_REGISTRY,
+    new Set(metaAliasMap.keys())
+  );
+  const split = splitNameAndMeta(
+    `color: __smph, ${trimmed}`,
+    registry,
+    metaAliasMap
+  );
+  const meta = split.meta;
+  if (meta["color"] === "__smph") delete meta["color"];
+  return meta;
+}
+function attachNode4(node, indent, indentStack, result) {
+  while (indentStack.length > 0) {
+    const top2 = indentStack[indentStack.length - 1];
+    if (top2.indent < indent) break;
+    indentStack.pop();
+  }
+  if (indentStack.length > 0) {
+    const parent = indentStack[indentStack.length - 1].node;
+    node.parentId = parent.id;
+    if (parent.isContainer && Object.keys(parent.metadata).length > 0 && !node.isContainer) {
+      node.metadata = { ...parent.metadata, ...node.metadata };
+    }
+    parent.children.push(node);
+  } else {
+    result.roots.push(node);
+  }
+  indentStack.push({ node, indent });
+}
+function nestedPageInsideContainer(indent, indentStack) {
+  let idx = indentStack.length - 1;
+  while (idx >= 0 && indentStack[idx].indent >= indent) idx--;
+  if (idx < 0) return null;
+  if (indentStack[idx].node.isContainer) return null;
+  for (let k2 = idx - 1; k2 >= 0; k2--) {
+    if (indentStack[k2].node.isContainer) return indentStack[k2].node.label;
+  }
+  return null;
+}
+function findParentNode(indent, indentStack) {
+  for (let i = indentStack.length - 1; i >= 0; i--) {
+    if (indentStack[i].indent < indent) {
+      return indentStack[i].node;
+    }
+  }
+  if (indentStack.length > 0) {
+    return indentStack[indentStack.length - 1].node;
+  }
+  return null;
+}
+var CONTAINER_RE3, METADATA_RE3, ARROW_RE3, BARE_ARROW_RE;
+var init_chunk_OHBIN74X = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OHBIN74X.js"() {
+    init_chunk_IYULMRBE();
+    init_chunk_NOTA6TEI();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
+    CONTAINER_RE3 = /^\[([^\]]+)\]\s*(.*)$/;
+    METADATA_RE3 = /^([^:]+):\s*(.+)$/;
+    ARROW_RE3 = /^-([^>][^>]*?)?\s*->\s*(.+)$/;
+    BARE_ARROW_RE = /^->\s*(.+)$/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js
+function resolveConfidence(value) {
+  const trimmed = value.trim().toLowerCase();
+  if (trimmed in CONFIDENCE_TABLE) {
+    return CONFIDENCE_TABLE[trimmed];
+  }
+  const factorMatch = trimmed.match(/^(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)$/);
+  if (factorMatch) {
+    const oFactor = parseFloat(factorMatch[1]);
+    const pFactor = parseFloat(factorMatch[2]);
+    if (oFactor > 0 && pFactor > 0) return { oFactor, pFactor };
+  }
+  return null;
+}
+function unitToDays(unit2) {
+  return UNIT_TO_DAYS_LOCAL[unit2];
+}
+function parseLocalISODate(iso) {
+  if (!ISO_DATE_RE.test(iso)) return null;
+  const date = parseGanttDate(iso);
+  if (formatDateKey(date) !== iso) return null;
+  return date;
+}
+function formatLocalISODate(date) {
+  return formatDateKey(date);
+}
+function addCalendarDays(iso, days) {
+  const start = parseLocalISODate(iso);
+  if (!start) return iso;
+  const whole = Math.sign(days) * Math.round(Math.abs(days));
+  const result = new Date(
+    start.getFullYear(),
+    start.getMonth(),
+    start.getDate() + whole,
+    start.getHours(),
+    start.getMinutes()
+  );
+  return formatLocalISODate(result);
+}
+function formatDuration(value, unit2, nullLabel) {
+  if (value === null) return nullLabel ?? "?";
+  const rounded = Math.round(value * 100) / 100;
+  const display = rounded.toFixed(2).replace(/\.?0+$/, "");
+  return `${display}${unit2}`;
+}
+function formatScheduleValue(value, projectStart, unit2, nullLabel) {
+  if (value === null) return nullLabel ?? "?";
+  if (projectStart === null) return formatDuration(value, unit2, nullLabel);
+  return addCalendarDays(projectStart, value * unitToDays(unit2));
+}
+function formatSprintCell(value, sprintNumber, nullLabel) {
+  if (value === null) return nullLabel ?? "?";
+  const rounded = Math.round(value);
+  return `S${sprintNumber + rounded}`;
+}
+function formatSlackValue(value, projectStart, unit2, nullLabel) {
+  if (value === null) return nullLabel ?? "?";
+  if (projectStart === null) return formatDuration(value, unit2, nullLabel);
+  const days = value * unitToDays(unit2);
+  const rounded = Math.round(days * 100) / 100;
+  const display = rounded.toFixed(2).replace(/\.?0+$/, "");
+  return `${display}d`;
+}
+var CONFIDENCE_TABLE, UNIT_TO_DAYS_LOCAL, ISO_DATE_RE;
+var init_chunk_3TYUXC7D = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3TYUXC7D.js"() {
+    init_chunk_EQW6HOP4();
+    CONFIDENCE_TABLE = {
+      high: { oFactor: 0.9, pFactor: 1.5 },
+      medium: { oFactor: 0.75, pFactor: 3 },
+      low: { oFactor: 0.5, pFactor: 4 }
+    };
+    UNIT_TO_DAYS_LOCAL = {
+      min: 1 / (60 * 24),
+      h: 1 / 24,
+      d: 1,
+      bd: 1,
+      // PERT has no calendar; bd ≈ d for analytical purposes
+      w: 7,
+      m: 30,
+      q: 90,
+      y: 365,
+      s: 14
+      // sprint (14 calendar days) — not seconds
+    };
+    ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DIKIHU52.js
+function parseEdgeLabel(label, defaultUnit) {
+  const trimmed = label.trim();
+  if (trimmed === "") return null;
+  const m = trimmed.match(/^(fs|ss|ff|sf)?([+-]?\d+(?:\.\d+)?)?\s*([a-z]+)?$/i);
+  if (!m) return null;
+  const typeRaw = m[1];
+  const numRaw = m[2];
+  const unitRaw = m[3];
+  if (!typeRaw && !numRaw) return null;
+  if (unitRaw && !numRaw) return null;
+  const type = typeRaw ? typeRaw.toUpperCase() : "FS";
+  let lag = null;
+  if (numRaw) {
+    const amount = parseFloat(numRaw);
+    if (amount !== 0) {
+      const unitLow = unitRaw?.toLowerCase();
+      const unit2 = unitLow ? unitLow === "sp" ? "s" : unitLow : defaultUnit;
+      if (!isValidDurationUnit(unit2)) return null;
+      lag = { amount, unit: unit2 };
+    }
+  }
+  return { type, lag };
+}
+function isValidDurationUnit(u) {
+  return VALID_DURATION_UNITS.has(u);
+}
+function deriveTrials(activityCount) {
+  const t3 = Math.round(1e3 * Math.sqrt(Math.max(activityCount, 1)));
+  return Math.max(5e3, Math.min(2e4, t3));
+}
+function deriveSeed(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 1;
+}
+function stripTrailingComment(line) {
+  const m = line.match(/^(.*?)\s+#.*$/);
+  return (m ? m[1] : line).trimEnd();
+}
+function peelAlias(text) {
+  const trimmed = text.trim();
+  const m = trimmed.match(ALIAS_SUFFIX_RE);
+  if (!m) return { head: trimmed };
+  const alias = m[1];
+  return {
+    head: trimmed.slice(0, m.index).trim(),
+    ...alias !== void 0 && { alias }
+  };
+}
+function tokenizeActivityLine(line, diagnostics, lineNumber, metaAliasMap) {
+  let body = line;
+  let pipeMetadata;
+  if (metaAliasMap !== void 0) {
+    const registry = withTagAliases(
+      PERT_REGISTRY,
+      new Set(metaAliasMap.keys())
+    );
+    const split = splitNameAndMeta(
+      body,
+      registry,
+      metaAliasMap,
+      void 0,
+      diagnostics,
+      lineNumber
+    );
+    if (diagnostics && lineNumber != null) {
+      warnUnknownMetaKeys(
+        split.meta,
+        registry,
+        (msg) => diagnostics.push(makeDgmoError(lineNumber, msg, "warning")),
+        split.name
+      );
+    }
+    if (Object.keys(split.meta).length > 0) {
+      let restored = split.name;
+      if (split.color) restored = `${restored} ${split.color}`;
+      if (split.alias) restored = `${restored} as ${split.alias}`;
+      body = restored;
+      const merged = Object.entries(split.meta).map(([k2, v2]) => `${k2}: ${v2}`).join(", ");
+      pipeMetadata = pipeMetadata ? `${pipeMetadata}, ${merged}` : merged;
+    }
+  }
+  const peeled = peelAlias(body);
+  const rawTokens = peeled.head.split(/[,\s]+/).map((t3) => t3.trim()).filter(Boolean);
+  let firstNumIdx = -1;
+  for (let i = 0; i < rawTokens.length; i++) {
+    if (ESTIMATE_TOKEN_RE.test(rawTokens[i])) {
+      firstNumIdx = i;
+      break;
+    }
+  }
+  let name;
+  let durationTokens;
+  if (firstNumIdx === -1) {
+    name = peeled.head;
+    durationTokens = [];
+  } else {
+    name = rawTokens.slice(0, firstNumIdx).join(" ").trim();
+    durationTokens = rawTokens.slice(firstNumIdx);
+  }
+  return {
+    name,
+    durationTokens,
+    ...peeled.alias !== void 0 && { alias: peeled.alias },
+    ...pipeMetadata !== void 0 && { pipeMetadata }
+  };
+}
+function parseEstimateToken(token, defaultUnit) {
+  const m = token.match(ESTIMATE_TOKEN_RE);
+  if (!m) return null;
+  const amount = parseFloat(m[1]);
+  if (!Number.isFinite(amount)) return null;
+  const unit2 = (m[2] === "sp" ? "s" : m[2]) ?? defaultUnit;
+  if (unit2 === "s") {
+    return { amount, unit: defaultUnit };
+  }
+  const round = parseDuration(`${amount}${unit2}`);
+  return round ?? { amount, unit: unit2 };
+}
+function buildEstimate(tokens, defaultUnit, diagnose) {
+  if (tokens.length === 0) return null;
+  if (tokens.length === 2) {
+    diagnose(
+      `Expected 1 (M) or 3 (O M P) durations; got 2 (${tokens.join(" ")}). Did you mean '${tokens[0]} ${(parseFloat(tokens[0]) + parseFloat(tokens[1])) / 2} ${tokens[1]}'?`
+    );
+    return null;
+  }
+  if (tokens.length !== 1 && tokens.length !== 3) {
+    diagnose(
+      `Expected 1 (M) or 3 (O M P) durations; got ${tokens.length} (${tokens.join(" ")}).`
+    );
+    return null;
+  }
+  const parsed = [];
+  for (const t3 of tokens) {
+    const dur = parseEstimateToken(t3, defaultUnit);
+    if (!dur) {
+      diagnose(`Invalid duration token '${t3}'.`);
+      return null;
+    }
+    if (dur.amount < 0) {
+      diagnose(`Duration must be \u2265 0; got '${t3}'.`);
+      return null;
+    }
+    parsed.push(dur);
+  }
+  if (parsed.length === 1) {
+    return { o: parsed[0], m: parsed[0], p: parsed[0], mOnly: true };
+  }
+  const [o, m, p2] = parsed;
+  const sameUnit = o.unit === m.unit && m.unit === p2.unit;
+  if (sameUnit && !(o.amount <= m.amount && m.amount <= p2.amount)) {
+    diagnose(
+      `Invalid estimate (${tokens.join(" ")}): expected O \u2264 M \u2264 P. Did you mean (${[o.amount, m.amount, p2.amount].sort((a, b) => a - b).join(" ")})?`
+    );
+    return null;
+  }
+  return { o, m, p: p2, mOnly: false };
+}
+function parsePipeMetadata(raw, aliasMap = /* @__PURE__ */ new Map()) {
+  const out = {};
+  for (const part of raw.split(",")) {
+    const trimmed = part.trim();
+    if (!trimmed) continue;
+    const idx = trimmed.indexOf(":");
+    if (idx <= 0) continue;
+    const rawKey = trimmed.slice(0, idx).trim().toLowerCase();
+    const key = aliasMap.get(rawKey) ?? rawKey;
+    const value = trimmed.slice(idx + 1).trim();
+    out[key] = value;
+  }
+  return out;
+}
+function prescanPertYear(lines, order) {
+  for (const raw of lines) {
+    const m = raw.trim().match(/^(?:start-date|end-date|sprint-start)\s+(.+)$/i);
+    if (!m) continue;
+    const res = parseDateToken(m[1].trim(), { dateOrder: order });
+    if (res?.token.year != null) return res.token.sign * res.token.year;
+  }
+  return null;
+}
+function parsePert(content, parseOpts = {}) {
+  const lines = content.split("\n");
+  const diagnostics = [];
+  const error = (line, msg, code) => {
+    diagnostics.push(makeDgmoError(line, msg, "error", code));
+  };
+  const warn = (line, msg, code) => {
+    diagnostics.push(makeDgmoError(line, msg, "warning", code));
+  };
+  const today = formatLocalISODate(parseOpts.now ?? /* @__PURE__ */ new Date());
+  let dateOrder = "mdy";
+  let directiveYear = null;
+  let noCurrentYear = false;
+  for (const raw of lines) {
+    const t3 = raw.trim();
+    const dm = t3.match(/^date-order\s+(mdy|dmy)$/i);
+    if (dm) dateOrder = dm[1].toLowerCase();
+    const ym = t3.match(/^year\s+(\d{1,4})$/i);
+    if (ym) directiveYear = parseInt(ym[1], 10);
+    if (t3.toLowerCase() === "no-current-year") noCurrentYear = true;
+  }
+  const currentYear = parseInt(today.slice(0, 4), 10);
+  const baseYear = directiveYear ?? prescanPertYear(lines, dateOrder);
+  const options = { ...DEFAULT_OPTIONS, today };
+  let title = null;
+  let firstAnchorLine = null;
+  let firstAnchorKey = null;
+  const declarationsByName = /* @__PURE__ */ new Map();
+  const declarationsByAlias = /* @__PURE__ */ new Map();
+  const allDeclarations = [];
+  const sitesByName = /* @__PURE__ */ new Map();
+  const references = [];
+  const groups = [];
+  const tagGroups = [];
+  let currentTagGroup = null;
+  let contentStarted = false;
+  const metaAliasMap = /* @__PURE__ */ new Map();
+  const groupStack = [];
+  const currentGroupId = () => groupStack.length > 0 ? (
+    // In-bounds by length check.
+    groupStack[groupStack.length - 1].groupId
+  ) : void 0;
+  let currentSourceName = null;
+  let currentSourceIndent = -1;
+  let currentSourceSite = null;
+  let pastFirstLine = false;
+  for (let i = 0; i < lines.length; i++) {
+    const rawLine = lines[i];
+    const lineNumber = i + 1;
+    const trimmed = stripTrailingComment(rawLine).trim();
+    if (!trimmed) continue;
+    if (trimmed.startsWith("#") || trimmed.startsWith("//")) continue;
+    const indent = measureIndent(rawLine);
+    while (groupStack.length > 0) {
+      const top2 = groupStack[groupStack.length - 1];
+      if (indent <= top2.indent) groupStack.pop();
+      else break;
+    }
+    if (currentSourceIndent >= 0 && indent <= currentSourceIndent && !trimmed.startsWith("-")) {
+      currentSourceName = null;
+      currentSourceIndent = -1;
+      currentSourceSite = null;
+    }
+    if (!pastFirstLine) {
+      pastFirstLine = true;
+      const tokens = trimmed.split(/\s+/);
+      const head = tokens[0].toLowerCase();
+      if (head === "pert") {
+        if (tokens.length > 1) title = tokens.slice(1).join(" ");
+        continue;
+      }
+    }
+    if (!contentStarted) {
+      const tagBlockMatch = matchTagBlockHeading(trimmed);
+      if (tagBlockMatch) {
+        currentTagGroup = {
+          name: tagBlockMatch.name,
+          ...tagBlockMatch.alias !== void 0 && {
+            alias: tagBlockMatch.alias
+          },
+          entries: [],
+          lineNumber
+        };
+        if (tagBlockMatch.alias) {
+          metaAliasMap.set(
+            tagBlockMatch.alias.toLowerCase(),
+            tagAttrKey(tagBlockMatch.name)
+          );
+        }
+        metaAliasMap.set(
+          normalizeName(tagBlockMatch.name),
+          tagAttrKey(tagBlockMatch.name)
+        );
+        tagGroups.push(currentTagGroup);
+        if (tagBlockMatch.inlineValues) {
+          for (const raw of tagBlockMatch.inlineValues) {
+            const { text, isDefault } = stripDefaultModifier(raw);
+            const { label, color: color2 } = extractColor(
+              text,
+              parseOpts.palette,
+              diagnostics,
+              lineNumber
+            );
+            if (isDefault || currentTagGroup.entries.length === 0) {
+              currentTagGroup.defaultValue = label;
+            }
+            currentTagGroup.entries.push({
+              value: label,
+              color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+              lineNumber
+            });
+          }
+        }
+        continue;
+      }
+      if (currentTagGroup && indent > 0) {
+        const { text, isDefault } = stripDefaultModifier(trimmed);
+        const { label, color: color2 } = extractColor(
+          text,
+          parseOpts.palette,
+          diagnostics,
+          lineNumber
+        );
+        if (isDefault || currentTagGroup.entries.length === 0) {
+          currentTagGroup.defaultValue = label;
+        }
+        currentTagGroup.entries.push({
+          value: label,
+          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+          lineNumber
+        });
+        continue;
+      }
+      currentTagGroup = null;
+    } else if (matchTagBlockHeading(trimmed)) {
+      error(
+        lineNumber,
+        `'tag' declarations must appear before activities and groups.`
+      );
+      continue;
+    }
+    const groupMatch = trimmed.match(GROUP_HEADER_RE);
+    if (groupMatch) {
+      contentStarted = true;
+      currentTagGroup = null;
+      const name = groupMatch[1].trim();
+      let tail = (groupMatch[2] ?? "").trim();
+      let bareCollapsed = false;
+      const barePeel = peelTrailingCollapsedFlag(tail);
+      if (barePeel.collapsed) {
+        bareCollapsed = true;
+        tail = barePeel.rest;
+      }
+      const meta = tail ? parsePipeMetadata(tail, metaAliasMap) : {};
+      const id = `[${normalizeName(name)}]`;
+      const tags = {};
+      for (const [k2, v2] of Object.entries(meta)) {
+        if (!RESERVED_PIPE_KEYS.has(k2)) tags[k2] = v2;
+      }
+      groups.push({
+        id,
+        name,
+        activityIds: [],
+        collapsed: bareCollapsed || meta["collapsed"] === "true",
+        lineNumber,
+        ...Object.keys(tags).length > 0 && { tags }
+      });
+      groupStack.push({ groupId: id, indent });
+      currentSourceName = null;
+      currentSourceIndent = -1;
+      currentSourceSite = null;
+      continue;
+    }
+    if (trimmed.startsWith("-")) {
+      contentStarted = true;
+      currentTagGroup = null;
+      let arrowTargetText;
+      let edgeType = "FS";
+      let edgeLag = null;
+      const bareMatch = trimmed.match(ARROW_RE4);
+      if (bareMatch) {
+        arrowTargetText = bareMatch[1];
+      } else {
+        const labeledMatch = trimmed.match(LABELED_ARROW_RE);
+        if (!labeledMatch) {
+          error(lineNumber, `Malformed arrow line: '${trimmed}'.`);
+          continue;
+        }
+        const parsedLabel = parseEdgeLabel(labeledMatch[1], options.timeUnit);
+        if (!parsedLabel) {
+          error(
+            lineNumber,
+            `Invalid edge label '${labeledMatch[1]}' in '${trimmed}'. Expected a dependency type (FS/SS/FF/SF) and/or lag (e.g. '+2d', '-1d').`
+          );
+          continue;
+        }
+        arrowTargetText = labeledMatch[2];
+        edgeType = parsedLabel.type;
+        edgeLag = parsedLabel.lag;
+      }
+      if (!currentSourceName) {
+        error(
+          lineNumber,
+          `'-> ${arrowTargetText}' has no source \u2014 declare an activity above on a non-indented line.`
+        );
+        continue;
+      }
+      const tok = tokenizeActivityLine(
+        arrowTargetText,
+        diagnostics,
+        lineNumber,
+        metaAliasMap
+      );
+      const targetName = tok.name;
+      if (!targetName) {
+        error(lineNumber, `'-> \u2026' is missing a target name.`);
+        continue;
+      }
+      if (tok.durationTokens.length > 0 || tok.alias !== void 0 || tok.pipeMetadata !== void 0) {
+        const extras = [];
+        if (tok.durationTokens.length > 0) {
+          extras.push(`'${tok.durationTokens.join(" ")}'`);
+        }
+        if (tok.alias !== void 0) extras.push(`'as ${tok.alias}'`);
+        if (tok.pipeMetadata !== void 0) {
+          extras.push(`'${tok.pipeMetadata}'`);
+        }
+        const durHint = tok.durationTokens.length > 0 ? ` ${tok.durationTokens.join(" ")}` : "";
+        error(
+          lineNumber,
+          `Inline forward-declaration not allowed on '-> ${arrowTargetText}' (${extras.join(", ")}). Move attributes to a source-line: '${targetName}${durHint}' then '-> ${targetName}'.`
+        );
+        continue;
+      }
+      references.push({
+        sourceName: currentSourceName,
+        sourceLineNumber: -1,
+        // resolved in Pass 2 from declarations
+        targetName,
+        targetLineNumber: lineNumber,
+        type: edgeType,
+        lag: edgeLag
+      });
+      continue;
+    }
+    if (currentSourceSite) {
+      const metaMatch = trimmed.match(INDENTED_META_RE);
+      if (metaMatch) {
+        const rawKey = metaMatch[1];
+        const key = rawKey.toLowerCase();
+        const resolvedKey = metaAliasMap.get(key) ?? key;
+        if (RESERVED_PIPE_KEYS.has(resolvedKey) || metaAliasMap.has(key)) {
+          contentStarted = true;
+          currentTagGroup = null;
+          const entry = `${rawKey}: ${metaMatch[2].trim()}`;
+          currentSourceSite.pipeMetadata = currentSourceSite.pipeMetadata ? `${currentSourceSite.pipeMetadata}, ${entry}` : entry;
+          continue;
+        }
+      }
+    }
+    {
+      const firstSpace = trimmed.indexOf(" ");
+      const head = firstSpace === -1 ? trimmed.toLowerCase() : trimmed.slice(0, firstSpace).toLowerCase();
+      if (DIRECTIVE_KEYS.has(head)) {
+        const value = firstSpace === -1 ? "" : trimmed.slice(firstSpace + 1).trim();
+        if (head === "start-date" || head === "end-date") {
+          const hadAnchor = options.anchor !== null;
+          applyAnchorDirective(
+            head,
+            value,
+            lineNumber,
+            options,
+            diagnostics,
+            firstAnchorLine,
+            firstAnchorKey,
+            { order: dateOrder, baseYear, currentYear, noCurrentYear }
+          );
+          if (!hadAnchor && options.anchor !== null) {
+            firstAnchorLine = lineNumber;
+            firstAnchorKey = head;
+          } else if (hadAnchor && options.anchor === null) {
+            firstAnchorLine = null;
+            firstAnchorKey = null;
+          }
+          continue;
+        }
+        applyDirective(head, value, lineNumber, options, error, warn, {
+          order: dateOrder,
+          baseYear,
+          currentYear,
+          noCurrentYear
+        });
+        continue;
+      }
+    }
+    {
+      const firstSpace = trimmed.indexOf(" ");
+      if (firstSpace > 0) {
+        const head = trimmed.slice(0, firstSpace).toLowerCase();
+        const value = trimmed.slice(firstSpace + 1).trim();
+        const hint = NEAR_DIRECTIVE_HINTS.find((h) => h.stem === head);
+        if (hint?.matches.test(value)) {
+          diagnostics.push(
+            emit(PERT_DX.NEAR_DIRECTIVE, lineNumber, {
+              head,
+              canonical: hint.canonical
+            })
+          );
+          continue;
+        }
+      }
+    }
+    if (/^milestone(\s|$)/i.test(trimmed)) {
+      error(lineNumber, `Unknown keyword 'milestone'.`);
+      continue;
+    }
+    {
+      const tok = tokenizeActivityLine(
+        trimmed,
+        diagnostics,
+        lineNumber,
+        metaAliasMap
+      );
+      if (!tok.name) {
+        error(lineNumber, `Empty activity name: '${trimmed}'.`);
+        continue;
+      }
+      contentStarted = true;
+      currentTagGroup = null;
+      const isBareSource = tok.durationTokens.length === 0 && tok.alias === void 0 && tok.pipeMetadata === void 0;
+      if (isBareSource && declarationsByAlias.has(tok.name)) {
+        const existing = declarationsByAlias.get(tok.name);
+        currentSourceName = existing.name;
+        currentSourceIndent = indent;
+        currentSourceSite = existing;
+        continue;
+      }
+      const groupHint = currentGroupId();
+      const site = {
+        name: tok.name,
+        ...tok.alias !== void 0 && { alias: tok.alias },
+        durationTokens: tok.durationTokens,
+        ...tok.pipeMetadata !== void 0 && {
+          pipeMetadata: tok.pipeMetadata
+        },
+        lineNumber,
+        ...groupHint !== void 0 && { groupHint }
+      };
+      registerSite(site);
+      currentSourceName = tok.name;
+      currentSourceIndent = indent;
+      currentSourceSite = site;
+      continue;
+    }
+  }
+  function registerSite(site) {
+    allDeclarations.push(site);
+    const key = normalizeName(site.name);
+    const bucket = sitesByName.get(key);
+    if (bucket) bucket.push(site);
+    else sitesByName.set(key, [site]);
+    if (!declarationsByName.has(key)) {
+      declarationsByName.set(key, site);
+    }
+    if (site.alias && !declarationsByAlias.has(site.alias)) {
+      declarationsByAlias.set(site.alias, site);
+    }
+  }
+  if (options.anchor !== null) {
+    if (options.timeUnit === "bd") {
+      diagnostics.push(emit(PERT_DX.BD_WITH_ANCHOR, 0));
+    } else if (options.timeUnit === "min" || options.timeUnit === "h") {
+      diagnostics.push(emit(PERT_DX.SUBDAY_WITH_ANCHOR, 0));
+    }
+  }
+  for (const [key, sites] of sitesByName) {
+    if (sites.length < 2) continue;
+    const explicit = sites.filter((s) => s.durationTokens.length > 0);
+    if (explicit.length < 2) continue;
+    const fingerprints = new Set(
+      explicit.map((s) => s.durationTokens.join(" "))
+    );
+    if (fingerprints.size > 1) {
+      const lineList = explicit.map((s) => `line ${s.lineNumber} (${s.durationTokens.join(" ")})`).join(" and ");
+      error(
+        explicit[0].lineNumber,
+        `Conflicting estimates for "${declarationsByName.get(key).name}" on ${lineList}. Keep one declaration site.`
+      );
+    }
+  }
+  const idMap = {};
+  for (const [, decl] of declarationsByName) {
+    const id = canonicalIdFromDeclaration(decl);
+    idMap[normalizeName(decl.name)] = id;
+    idMap[decl.name.toLowerCase()] = id;
+  }
+  for (const [aliasLiteral, decl] of declarationsByAlias) {
+    idMap[aliasLiteral] = canonicalIdFromDeclaration(decl);
+  }
+  function canonicalIdFromDeclaration(decl) {
+    return normalizeName(decl.name);
+  }
+  function resolveTargetId(token, lineNumber) {
+    const trimmed = token.trim();
+    if (declarationsByAlias.has(trimmed)) {
+      return canonicalIdFromDeclaration(declarationsByAlias.get(trimmed));
+    }
+    const norm = normalizeName(trimmed);
+    if (declarationsByName.has(norm)) {
+      return canonicalIdFromDeclaration(declarationsByName.get(norm));
+    }
+    const candidates = [
+      ...declarationsByAlias.keys(),
+      ...[...declarationsByName.values()].map((d) => d.name)
+    ];
+    const hint = suggest(trimmed, candidates);
+    error(
+      lineNumber,
+      `Unknown activity '${trimmed}'.${hint ? ` ${hint}` : ""}`
+    );
+    return null;
+  }
+  const bestDeclByName = /* @__PURE__ */ new Map();
+  for (const decl of allDeclarations) {
+    const key = normalizeName(decl.name);
+    const existing = bestDeclByName.get(key);
+    if (!existing) {
+      bestDeclByName.set(key, decl);
+      continue;
+    }
+    const existingHasInfo = existing.durationTokens.length > 0 || existing.alias !== void 0;
+    const incomingHasInfo = decl.durationTokens.length > 0 || decl.alias !== void 0;
+    if (!existingHasInfo && incomingHasInfo) {
+      bestDeclByName.set(key, decl);
+    }
+  }
+  const activitiesById = /* @__PURE__ */ new Map();
+  for (const [id, decl] of bestDeclByName) {
+    const estimate = buildEstimate(
+      decl.durationTokens,
+      options.timeUnit,
+      (msg) => error(decl.lineNumber, msg)
+    );
+    const meta = decl.pipeMetadata ? parsePipeMetadata(decl.pipeMetadata, metaAliasMap) : {};
+    const tags = {};
+    for (const [k2, v2] of Object.entries(meta)) {
+      if (!RESERVED_PIPE_KEYS.has(k2)) tags[k2] = v2;
+    }
+    const isMilestone = estimate !== null && estimate.o.amount === 0 && estimate.m.amount === 0 && estimate.p.amount === 0;
+    activitiesById.set(id, {
+      id,
+      name: decl.name,
+      ...decl.alias !== void 0 && { alias: decl.alias },
+      duration: estimate,
+      ...meta["confidence"] && { confidence: meta["confidence"] },
+      ...decl.groupHint !== void 0 && { groupId: decl.groupHint },
+      lineNumber: decl.lineNumber,
+      isMilestone,
+      ...Object.keys(tags).length > 0 && { tags }
+    });
+  }
+  const edges = [];
+  for (const ref of references) {
+    const sourceId = resolveTargetId(ref.sourceName, ref.targetLineNumber);
+    const targetId = resolveTargetId(ref.targetName, ref.targetLineNumber);
+    if (!sourceId || !targetId) continue;
+    edges.push({
+      source: sourceId,
+      target: targetId,
+      lineNumber: ref.targetLineNumber,
+      type: ref.type,
+      lag: ref.lag
+    });
+  }
+  for (const group of groups) {
+    group.activityIds = [...activitiesById.values()].filter((a) => a.groupId === group.id).map((a) => a.id);
+    group.classification = classifyGroup(group, edges);
+  }
+  const seen = /* @__PURE__ */ new Set();
+  const activities = [];
+  for (const decl of allDeclarations) {
+    const id = canonicalIdFromDeclaration(decl);
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const a = activitiesById.get(id);
+    if (a) activities.push(a);
+  }
+  if (options.trials === -1) {
+    options.trials = deriveTrials(activities.length);
+  }
+  if (options.seed === -1) {
+    const seedSource = title || activities.map((a) => a.name).sort().join("\n") || "pert";
+    options.seed = deriveSeed(seedSource);
+  }
+  const hasSprintOption = options.sprintLength !== null || options.sprintNumber !== null || options.sprintStart !== null;
+  const hasSprintUnit = options.timeUnit === "s" || activities.some(
+    (a) => a.duration !== null && (a.duration.o.unit === "s" || a.duration.m.unit === "s" || a.duration.p.unit === "s")
+  );
+  if (hasSprintOption) {
+    options.sprintMode = "explicit";
+  } else if (hasSprintUnit) {
+    options.sprintMode = "auto";
+  }
+  if (options.sprintMode) {
+    if (!options.sprintLength) {
+      options.sprintLength = { amount: 2, unit: "w" };
+    }
+    if (options.sprintNumber === null) {
+      options.sprintNumber = 1;
+    }
+  }
+  finalizeAutoTagColors(tagGroups, parseOpts.palette);
+  if (tagGroups.length > 0) {
+    validateTagGroupNames(
+      tagGroups.map((g) => ({
+        name: g.name,
+        alias: g.alias ?? null,
+        lineNumber: g.lineNumber
+      })),
+      warn,
+      error
+    );
+    const ensureTags = (entity) => {
+      if (!entity.tags) entity.tags = {};
+      return {
+        metadata: entity.tags,
+        lineNumber: entity.lineNumber
+      };
+    };
+    const activityShells = activities.map(ensureTags);
+    const groupShells = groups.map(ensureTags);
+    validateTagValues(
+      [...activityShells, ...groupShells],
+      tagGroups,
+      warn,
+      suggest
+    );
+    injectDefaultTagMetadata(activityShells, tagGroups);
+    for (const a of activities) {
+      if (a.tags && Object.keys(a.tags).length === 0) delete a.tags;
+    }
+    for (const g of groups) {
+      if (g.tags && Object.keys(g.tags).length === 0) delete g.tags;
+    }
+  }
+  const firstFatal2 = diagnostics.find((d) => d.severity === "error");
+  return {
+    title,
+    options,
+    activities,
+    edges,
+    groups,
+    tagGroups,
+    idMap,
+    diagnostics,
+    error: firstFatal2 ? firstFatal2.message : null
+  };
+}
+function applyDirective(key, value, lineNumber, options, error, warn, dateCfg) {
+  switch (key) {
+    // Universal date directives (§ BL-121) — captured in the parsePert prescan;
+    // consumed here so they don't warn as unknown.
+    case "year":
+    case "date-order":
+    case "no-current-year":
+      return;
+    case "time-unit": {
+      const normalized = value === "sp" ? "s" : value;
+      const valid = [
+        "min",
+        "h",
+        "d",
+        "bd",
+        "w",
+        "m",
+        "q",
+        "y",
+        "s"
+      ];
+      if (!valid.includes(normalized)) {
+        const shown = valid.map((u) => u === "s" ? "sp" : u);
+        error(
+          lineNumber,
+          `Unknown time-unit '${value}'. Expected one of ${shown.join(", ")}.`
+        );
+        return;
+      }
+      options.timeUnit = normalized;
+      return;
+    }
+    case "default-confidence": {
+      options.confidence = value || "medium";
+      return;
+    }
+    case "no-title": {
+      options.noTitle = true;
+      return;
+    }
+    case "no-legend": {
+      options.noLegend = true;
+      return;
+    }
+    case "legend-inline": {
+      options.legendInline = true;
+      return;
+    }
+    case "fill-solid": {
+      options.fillMode = "solid";
+      return;
+    }
+    case "fill-outline": {
+      options.fillMode = "outline";
+      return;
+    }
+    case "fill-tint": {
+      delete options.fillMode;
+      return;
+    }
+    case "active-tag": {
+      options.activeTag = value;
+      return;
+    }
+    case "sprint-length": {
+      const dur = parseDuration(value);
+      if (!dur) {
+        warn(
+          lineNumber,
+          `Invalid sprint-length value: "${value}". Expected a duration like "2w" or "10d".`
+        );
+      } else if (dur.unit !== "d" && dur.unit !== "w") {
+        warn(
+          lineNumber,
+          `sprint-length only accepts "d" or "w" units, got "${dur.unit}".`
+        );
+      } else if (dur.amount <= 0) {
+        warn(lineNumber, `sprint-length must be greater than 0.`);
+      } else if (!Number.isInteger(dur.amount * (dur.unit === "w" ? 7 : 1))) {
+        warn(
+          lineNumber,
+          `sprint-length must resolve to a whole number of days.`
+        );
+      } else {
+        options.sprintLength = dur;
+      }
+      return;
+    }
+    case "sprint-number": {
+      const n = Number(value);
+      if (!Number.isFinite(n) || !Number.isInteger(n) || n <= 0) {
+        warn(
+          lineNumber,
+          `sprint-number must be a positive integer, got "${value}".`
+        );
+      } else {
+        options.sprintNumber = n;
+      }
+      return;
+    }
+    case "sprint-start": {
+      const res = parseDateToken(value.trim(), { dateOrder: dateCfg.order });
+      const yr = res?.token.year ?? dateCfg.baseYear ?? dateCfg.currentYear;
+      const iso = res?.consumed === value.trim().length && !res.token.invalidTime && res.token.grain >= 3 && !res.token.hasTime ? toInternal(res.token, yr) : null;
+      if (!iso) {
+        warn(
+          lineNumber,
+          `sprint-start requires a full date (e.g. YYYY-MM-DD, 7/4, or Jul 4), got "${value}".`
+        );
+      } else if (Number.isNaN((/* @__PURE__ */ new Date(iso + "T00:00:00")).getTime())) {
+        warn(lineNumber, `sprint-start is not a valid date: "${value}".`);
+      } else {
+        options.sprintStart = iso;
+      }
+      return;
+    }
+    case "direction": {
+      const upper = value.toUpperCase();
+      if (upper !== "LR" && upper !== "TB") {
+        error(lineNumber, `Unknown direction '${value}'. Expected LR or TB.`);
+        return;
+      }
+      options.direction = upper;
+      return;
+    }
+    case "direction-lr": {
+      options.direction = "LR";
+      return;
+    }
+    case "direction-tb": {
+      options.direction = "TB";
+      return;
+    }
+    case "node-detail": {
+      if (value !== "compact" && value !== "full") {
+        error(
+          lineNumber,
+          `Unknown node-detail '${value}'. Expected compact or full.`
+        );
+        return;
+      }
+      options.nodeDetail = value;
+      return;
+    }
+    case "no-analysis": {
+      options.noAnalysis = true;
+      return;
+    }
+    case "trials": {
+      const n = parseInt(value, 10);
+      if (!Number.isFinite(n) || n < 1) {
+        error(
+          lineNumber,
+          `'trials' expects a positive integer; got '${value}'.`
+        );
+        return;
+      }
+      options.trials = n;
+      return;
+    }
+    case "seed": {
+      const n = parseInt(value, 10);
+      if (!Number.isFinite(n)) {
+        error(lineNumber, `'seed' expects an integer; got '${value}'.`);
+        return;
+      }
+      options.seed = n;
+      return;
+    }
+    case "scrubber-trials": {
+      const n = parseInt(value, 10);
+      if (!Number.isFinite(n) || n < 1) {
+        error(
+          lineNumber,
+          `'scrubber-trials' expects a positive integer; got '${value}'.`
+        );
+        return;
+      }
+      if (n < 100) {
+        warn(
+          lineNumber,
+          `'scrubber-trials ${n}' is below the floor of 100; analyzer will still degrade if needed.`
+        );
+      }
+      options.scrubberTrials = n;
+      return;
+    }
+    case "start-date":
+    case "end-date": {
+      error(
+        lineNumber,
+        `internal error: anchor directive '${key}' reached generic dispatch`
+      );
+      return;
+    }
+  }
+}
+function applyAnchorDirective(key, value, lineNumber, options, diagnostics, firstAnchorLine, firstAnchorKey, dateCfg) {
+  if (options.anchor !== null) {
+    diagnostics.push(
+      emit(PERT_DX.BOTH_ANCHORS, lineNumber, {
+        firstAnchorKey,
+        firstAnchorLine
+      })
+    );
+    options.anchor = null;
+    return;
+  }
+  const trimmed = value.trim();
+  if (trimmed.length === 0) {
+    diagnostics.push(
+      emit(PERT_DX.INVALID_DATE, lineNumber, { empty: true, key, value })
+    );
+    return;
+  }
+  if (trimmed.toLowerCase() === "now") {
+    if (key === "end-date") {
+      diagnostics.push(emit(PERT_DX.END_DATE_NOW, lineNumber));
+      return;
+    }
+    options.anchor = { kind: "forward", date: options.today };
+    return;
+  }
+  const res = parseDateToken(trimmed, { dateOrder: dateCfg.order });
+  if (res?.consumed !== trimmed.length || res.token.invalidTime || res.token.grain < 3) {
+    diagnostics.push(emit(PERT_DX.INVALID_DATE, lineNumber, { trimmed, key }));
+    return;
+  }
+  let year = res.token.year;
+  if (year == null) {
+    if (dateCfg.baseYear == null && dateCfg.noCurrentYear) {
+      diagnostics.push(
+        emit(PERT_DX.INVALID_DATE, lineNumber, { trimmed, key })
+      );
+      return;
+    }
+    year = dateCfg.baseYear ?? dateCfg.currentYear;
+  }
+  const probe = new Date(year, res.token.month - 1, res.token.day);
+  if (probe.getFullYear() !== year || probe.getMonth() !== res.token.month - 1 || probe.getDate() !== res.token.day) {
+    diagnostics.push(emit(PERT_DX.INVALID_DATE, lineNumber, { trimmed, key }));
+    return;
+  }
+  const iso = toInternal(res.token, year);
+  options.anchor = key === "start-date" ? { kind: "forward", date: iso } : { kind: "backward", date: iso };
+}
+function classifyGroup(group, edges) {
+  const members = new Set(group.activityIds);
+  if (members.size === 0) return "cluster";
+  const entries = /* @__PURE__ */ new Set();
+  const exits = /* @__PURE__ */ new Set();
+  for (const id of members) {
+    const incoming = edges.filter((e) => e.target === id);
+    const outgoing = edges.filter((e) => e.source === id);
+    const hasInsideIn = incoming.some((e) => members.has(e.source));
+    const hasOutsideIn = incoming.some((e) => !members.has(e.source));
+    const hasInsideOut = outgoing.some((e) => members.has(e.target));
+    const hasOutsideOut = outgoing.some((e) => !members.has(e.target));
+    if (hasOutsideIn || !hasInsideIn && incoming.length === 0)
+      entries.add(id);
+    if (hasOutsideOut || !hasInsideOut && outgoing.length === 0)
+      exits.add(id);
+  }
+  return entries.size === 1 && exits.size === 1 ? "hammock" : "cluster";
+}
+function extractPertSymbols(docText) {
+  const parsed = parsePert(docText);
+  const entities = [];
+  for (const a of parsed.activities) {
+    if (!entities.includes(a.name)) entities.push(a.name);
+    if (a.alias && !entities.includes(a.alias)) entities.push(a.alias);
+  }
+  for (const g of parsed.groups) {
+    if (!entities.includes(g.name)) entities.push(g.name);
+  }
+  return {
+    kind: "pert",
+    entities
+  };
+}
+function looksLikePert(content) {
+  for (const raw of content.split("\n")) {
+    const line = raw.trim();
+    if (!line || line.startsWith("//") || line.startsWith("#")) continue;
+    if (/^analysis\s+monte-carlo\b/i.test(line)) return true;
+  }
+  return false;
+}
+var PERT_DX, PERT_DIAGNOSTICS, DIRECTIVE_KEYS, RESERVED_PIPE_KEYS, NEAR_DIRECTIVE_HINTS, GROUP_HEADER_RE, ARROW_RE4, INDENTED_META_RE, LABELED_ARROW_RE, VALID_DURATION_UNITS, ALIAS_SUFFIX_RE, ESTIMATE_TOKEN_RE, DEFAULT_OPTIONS;
+var init_chunk_DIKIHU52 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DIKIHU52.js"() {
+    init_chunk_3TYUXC7D();
+    init_chunk_EQW6HOP4();
+    init_chunk_DAOFNU6J();
+    init_chunk_NOTA6TEI();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
+    PERT_DX = {
+      BOTH_ANCHORS: {
+        code: "E_PERT_BOTH_ANCHORS",
+        severity: "error",
+        // Runtime: error() @ parser.ts ~1508
+        chartType: "pert",
+        title: "Both start-date and end-date set",
+        // Message interpolates an optional `priorRef` suffix referencing the
+        // first anchor's kind + line. Builder tolerates `{}` (suffix omitted).
+        message: (p2) => {
+          const kind = p2.firstAnchorKey;
+          const line = p2.firstAnchorLine;
+          const priorRef = kind && line ? ` Conflicts with \`${String(kind)}\` declared on line ${String(line)}.` : "";
+          return `Specify \`start-date\` or \`end-date\`, not both. Use one anchor \u2014 both directives are discarded; re-author one to recover.${priorRef}`;
+        },
+        hint: "Pick a single anchor: either `start-date` (forward) or `end-date` (backward).",
+        example: "pert\nstart-date 2026-06-01\nend-date 2026-09-15\nA 1 2 3\n"
+      },
+      END_DATE_NOW: {
+        code: "E_PERT_END_DATE_NOW",
+        severity: "error",
+        // Runtime: error() @ parser.ts ~1530
+        chartType: "pert",
+        title: "`end-date now` not allowed",
+        message: "`end-date` requires an explicit YYYY-MM-DD; `now` is only valid for `start-date`.",
+        hint: "Give `end-date` a literal date, or use `start-date now` if you want today.",
+        example: "pert\nend-date now\nA 1 2 3\n"
+      },
+      INVALID_DATE: {
+        code: "E_PERT_INVALID_DATE",
+        severity: "error",
+        // Runtime: error() @ parser.ts ~1519 and ~1545
+        chartType: "pert",
+        title: "Invalid anchor date",
+        // Emitted from TWO sites with different wording:
+        //  (a) empty value @ ~1519:  "`${key}` requires a full date (YYYY-MM-DD), got '${value}'."
+        //  (b) unparseable  @ ~1545:  "Invalid date '${trimmed}' for ${key}. Expected YYYY-MM-DD."
+        // The builder reproduces BOTH: pass `empty: true` + `value`/`key` for
+        // variant (a); pass `trimmed`/`key` for variant (b). The `{}` default
+        // shows variant (b)'s representative wording.
+        message: (p2) => {
+          const key = p2.key ?? "start-date";
+          if (p2.empty) {
+            return `\`${String(key)}\` requires a full date (YYYY-MM-DD), got '${String(p2.value ?? "")}'.`;
+          }
+          const date = p2.trimmed ?? p2.value;
+          return date ? `Invalid date '${String(date)}' for ${String(key)}. Expected YYYY-MM-DD.` : `Invalid date for ${String(key)}. Expected YYYY-MM-DD.`;
+        },
+        hint: "Use a calendar-valid date \u2014 ISO (`2026-06-01`), slash (`6/1/2026`), or month-name (`Jun 1, 2026`).",
+        example: "pert\nstart-date 2026-13-99\nA 1 2 3\n"
+      },
+      NEAR_DIRECTIVE: {
+        code: "E_PERT_NEAR_DIRECTIVE",
+        severity: "error",
+        // Runtime: error() @ parser.ts ~938
+        chartType: "pert",
+        title: "Near-miss directive typo",
+        // Interpolates the mistyped head + the suggested canonical directive.
+        message: (p2) => {
+          const head = p2.head ?? "start";
+          const canonical = p2.canonical ?? "start-date";
+          return `Unknown directive '${String(head)}'. Did you mean '${String(canonical)}'?`;
+        },
+        hint: "Use the full directive name (`start-date`, `end-date`, `default-confidence`, `time-unit`).",
+        example: "pert\nstart 2026-06-01\nA 1 2 3\n"
+      },
+      BD_WITH_ANCHOR: {
+        code: "W_PERT_BD_WITH_ANCHOR",
+        severity: "warning",
+        // Runtime: warn() @ parser.ts ~1024
+        chartType: "pert",
+        title: "Business days with date anchor",
+        message: "`bd` (business days) is treated as calendar days when `start-date`/`end-date` is set. For business-day scheduling with weekend/holiday awareness, use Gantt.",
+        hint: "Drop the date anchor, or switch to Gantt for weekend/holiday-aware scheduling.",
+        example: "pert\ntime-unit bd\nstart-date 2026-06-01\nA 1 2 3\n"
+      },
+      SUBDAY_WITH_ANCHOR: {
+        code: "W_PERT_SUBDAY_WITH_ANCHOR",
+        severity: "warning",
+        // Runtime: warn() @ parser.ts ~1030
+        chartType: "pert",
+        title: "Sub-day time-unit with date anchor",
+        message: "Date display rounds to whole days; sub-day `time-unit` ('h'/'min') will lose precision when `start-date`/`end-date` is set. For honest output use `time-unit d`.",
+        hint: "Use `time-unit d` when anchoring to dates, or remove the anchor.",
+        example: "pert\ntime-unit h\nstart-date 2026-06-01\nA 1 2 3\n"
+      }
+    };
+    PERT_DIAGNOSTICS = Object.values(PERT_DX);
+    DIRECTIVE_KEYS = /* @__PURE__ */ new Set([
+      "time-unit",
+      "default-confidence",
+      // Canonical booleans (§1.9, last one wins); key+value `direction LR|TB`
+      // accepted legacy.
+      "direction",
+      "direction-lr",
+      "direction-tb",
+      "node-detail",
+      "no-analysis",
+      "trials",
+      "seed",
+      "scrubber-trials",
+      "start-date",
+      "end-date",
+      "no-title",
+      "no-legend",
+      "legend-inline",
+      "fill-tint",
+      "fill-solid",
+      "fill-outline",
+      "sprint-length",
+      "sprint-number",
+      "sprint-start",
+      "active-tag",
+      // Universal date directives (§ BL-121); effect captured in the prescan.
+      "year",
+      "date-order",
+      "no-current-year"
+    ]);
+    RESERVED_PIPE_KEYS = /* @__PURE__ */ new Set([
+      "confidence",
+      "collapsed"
+    ]);
+    NEAR_DIRECTIVE_HINTS = [
+      {
+        stem: "confidence",
+        canonical: "default-confidence",
+        matches: /^(low|medium|high)$/i
+      },
+      {
+        // ISO, numeric slash (§ BL-121), or `now`. Month-name forms are omitted
+        // to avoid flagging activities like `start the engines`.
+        stem: "start",
+        canonical: "start-date",
+        matches: /^(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}(?:\/\d{2,4})?|now)$/i
+      },
+      {
+        stem: "end",
+        canonical: "end-date",
+        matches: /^(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}(?:\/\d{2,4})?)$/
+      },
+      {
+        stem: "time",
+        canonical: "time-unit",
+        matches: /^(d|w|m|q|y|h|min|bd|sp|s)$/i
+      }
+    ];
+    GROUP_HEADER_RE = /^\[([^\]]+)\]\s*(.*)$/;
+    ARROW_RE4 = /^->\s*(.+?)\s*$/;
+    INDENTED_META_RE = /^([A-Za-z][\w-]*)\s*:\s*(.+)$/;
+    LABELED_ARROW_RE = /^-(.+?)->\s*(.+?)\s*$/;
+    VALID_DURATION_UNITS = /* @__PURE__ */ new Set([
+      "min",
+      "h",
+      "d",
+      "bd",
+      "w",
+      "m",
+      "q",
+      "y",
+      "s"
+    ]);
+    ALIAS_SUFFIX_RE = /\s+as\s+([A-Za-z][A-Za-z0-9_]{0,11})\s*$/;
+    ESTIMATE_TOKEN_RE = /^(\d+(?:\.\d+)?)(min|bd|sp|d|w|m|q|y|h|s)?$/;
+    DEFAULT_OPTIONS = {
+      timeUnit: "d",
+      direction: "LR",
+      nodeDetail: "compact",
+      confidence: "medium",
+      trials: -1,
+      seed: -1,
+      scrubberTrials: 300,
+      anchor: null,
+      sprintLength: null,
+      sprintNumber: null,
+      sprintStart: null,
+      sprintMode: null,
+      today: ""
+    };
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js
+var chartTypes;
+var init_chunk_TGOMHUOV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-TGOMHUOV.js"() {
+    chartTypes = [
+      // ── Tier 1 — Narrative / architecture diagrams ────────────
+      {
+        id: "journey-map",
+        description: "User experience flow with emotion scores, phases, and annotations"
+      },
+      {
+        id: "c4",
+        description: "System architecture (context, container, component, deployment)"
+      },
+      {
+        id: "er",
+        description: "Database schemas and relationships"
+      },
+      {
+        id: "class",
+        description: "UML class hierarchies"
+      },
+      {
+        id: "sequence",
+        description: "Message request and response interaction flows",
+        fallback: true
+      },
+      {
+        id: "state",
+        description: "State machine / lifecycle transitions"
+      },
+      {
+        id: "infra",
+        description: "Infrastructure traffic flow with RPS computation"
+      },
+      {
+        id: "gantt",
+        description: "Project scheduling with task dependencies and milestones"
+      },
+      {
+        id: "pert",
+        description: "Project network with three-point estimates, critical path, and uncertainty (Beta-PERT, Monte Carlo)"
+      },
+      {
+        id: "swimlane",
+        description: "Cross-functional process flow with lanes, phases and gateways (BPMN-style)"
+      },
+      {
+        id: "version-control",
+        description: "Git / version-control branch-and-merge graph: commits, branches, merges, rebase, HEAD and remote-tracking (gitGraph-style)"
+      },
+      // ── Tier 2 — Specialized structural diagrams ──────────────
+      {
+        id: "timeline",
+        description: "Events, eras, and date ranges"
+      },
+      {
+        id: "event-line",
+        description: "Annotated narrative timeline \u2014 events on a horizontal line with descriptions (not the date-scaled timeline)"
+      },
+      {
+        id: "body",
+        description: "Human anatomy figure annotated by muscle/bone/joint name \u2014 for medical, exercise, and educational diagrams"
+      },
+      {
+        id: "org",
+        description: "Reporting hierarchy"
+      },
+      {
+        id: "family",
+        description: "Family tree / genealogy: unions (couples), children, remarriage, adoption, and GEDCOM-style metadata"
+      },
+      {
+        id: "sitemap",
+        description: "Site / app navigation structure"
+      },
+      {
+        id: "bracket",
+        description: "Single-elimination tournament bracket: winners auto-advance up a tree; seed the field for a day-0 skeleton or list results for a casual bracket, with two sides mirroring inward to a championship"
+      },
+      {
+        id: "kanban",
+        description: "Task board columns"
+      },
+      {
+        id: "raci",
+        description: "Tasks \xD7 roles responsibility matrix with constraint linting"
+      },
+      {
+        id: "tech-radar",
+        description: "Technology adoption quadrants (adopt/trial/assess/hold)"
+      },
+      {
+        id: "mindmap",
+        description: "Radial hierarchy of ideas branching from a central topic"
+      },
+      {
+        id: "wireframe",
+        description: "Low-fidelity UI layout with panels, controls, and annotations"
+      },
+      {
+        id: "cycle",
+        description: "Cyclical process visualization (PDCA, OODA, DevOps loops)"
+      },
+      {
+        id: "pyramid",
+        description: "Stacked hierarchy of layers with descriptions (Maslow, DIKW)"
+      },
+      {
+        id: "ring",
+        description: "Concentric rings showing nested or hierarchical categories (read core-out)"
+      },
+      {
+        id: "treemap",
+        description: "Nested rectangles sized by value \u2014 show a hierarchy\u2019s proportions (budgets, disk usage, portfolios) with color by category, value heatmap, or branch"
+      },
+      {
+        id: "block",
+        description: "Block diagram: an author-controlled grid of rectangular blocks with nested, collapsible containers \u2014 system/hardware/architecture layouts where the 2-D arrangement is the meaning"
+      },
+      {
+        id: "sketch",
+        description: "GUI-first constrained canvas: uniformly-sized shapes placed freely on a snap grid, arrows between them, meaning through tags \u2014 the markup is generated by the canvas editor"
+      },
+      {
+        id: "goal",
+        description: "Single progress-toward-a-target value (now vs target) as a progress bar, thermometer, or gauge \u2014 KPIs, fundraising, quotas, completion"
+      },
+      {
+        id: "countdown",
+        description: 'Live "N days until X" that ticks every second and is accurate on every load \u2014 trip dates, launches, deadlines; the only dynamic chart type'
+      },
+      {
+        id: "clock",
+        description: "Live world-clock board: current time for people/places across time zones, ticking every second, with optional working-hours status and sundown line"
+      },
+      {
+        id: "map",
+        description: "Geographic concept map: highlight/score regions, drop points of interest, connect with routes or edges"
+      },
+      // ── Tier 3 — Specialized analytical charts ────────────────
+      {
+        id: "quadrant",
+        description: "2x2 positioning matrix"
+      },
+      {
+        id: "venn",
+        description: "Set overlaps"
+      },
+      {
+        id: "funnel",
+        description: "Conversion pipeline"
+      },
+      {
+        id: "slope",
+        description: "Change between 2 time periods"
+      },
+      {
+        id: "sankey",
+        description: "Flow / allocation visualization"
+      },
+      {
+        id: "arc",
+        description: "Network relationships (linear or circular via `layout`)"
+      },
+      {
+        id: "wordcloud",
+        description: "Term frequency visualization"
+      },
+      {
+        id: "heatmap",
+        description: "Matrix intensity visualization"
+      },
+      {
+        id: "function",
+        description: "Mathematical expressions"
+      },
+      // ── Tier 4 — General-purpose data charts ──────────────────
+      {
+        id: "bar",
+        description: "Categorical comparisons for 3 - 5 figures",
+        fallback: true
+      },
+      {
+        id: "line",
+        description: "Trends over time",
+        fallback: true
+      },
+      {
+        id: "pie",
+        description: "Part-to-whole proportions"
+      },
+      {
+        id: "radar",
+        description: "Multi-dimensional metrics"
+      },
+      {
+        id: "polar-area",
+        description: "Radial bar chart"
+      },
+      {
+        id: "scatter",
+        description: "2D data points or bubble chart"
+      },
+      // ── Tier 5 — Generic catch-alls (listed last on purpose) ──
+      {
+        id: "flowchart",
+        description: "Decision trees and process flows",
+        fallback: true
+      },
+      {
+        id: "boxes-and-lines",
+        description: "General-purpose node-edge diagrams with groups and tags",
+        fallback: true
+      }
+    ];
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FZECLCCU.js
+function genId(lineNumber, indent, suffix = "") {
+  return `wf-${lineNumber}-${indent}${suffix ? "-" + suffix : ""}`;
+}
+function resetWireframeIds() {
+}
+function makeElement(type, label, lineNumber, indent) {
+  return {
+    id: genId(lineNumber, indent),
+    type,
+    label,
+    children: [],
+    metadata: {},
+    states: [],
+    annotations: [],
+    lineNumber,
+    indent,
+    isContainer: false,
+    orientation: "vertical",
+    isSkeleton: false
+  };
+}
+function peelTrailingFlags(label) {
+  const tokens = label.split(/\s+/).filter(Boolean);
+  const states = [];
+  while (tokens.length > 0) {
+    const last = tokens[tokens.length - 1];
+    if (last !== last.toLowerCase()) break;
+    if (!STATE_KEYWORDS.has(last)) break;
+    states.unshift(last);
+    tokens.pop();
+  }
+  return { label: tokens.join(" "), states };
+}
+function parseWireframeMetadata(raw) {
+  const states = [];
+  const annotations = [];
+  const metadata = {};
+  const parts = raw.split(",").map((s) => s.trim()).filter(Boolean);
+  for (const part of parts) {
+    const lower2 = part.toLowerCase();
+    if (STATE_KEYWORDS.has(lower2)) {
+      states.push(lower2);
+    } else if (part.includes(":")) {
+      const [key, ...rest] = part.split(":");
+      metadata[key.trim()] = rest.join(":").trim();
+    } else {
+      annotations.push(part);
+    }
+  }
+  return { states, annotations, metadata };
+}
+function applyTrailingMeta(el, rawTail) {
+  if (!rawTail) return;
+  const trimmed = rawTail.trim();
+  if (!trimmed) return;
+  if (trimmed.startsWith("|")) {
+    applyMetadata(el, trimmed.substring(1).trim());
+    return;
+  }
+  const tokens = trimmed.split(/\s+/);
+  if (tokens.every((t3) => t3 === t3.toLowerCase() && STATE_KEYWORDS.has(t3))) {
+    applyMetadata(el, tokens.join(", "));
+    return;
+  }
+  applyMetadata(el, trimmed);
+}
+function applyMetadata(el, metaStr) {
+  if (!metaStr) return;
+  const { states, annotations, metadata } = parseWireframeMetadata(metaStr);
+  el.states.push(...states);
+  el.annotations.push(...annotations);
+  Object.assign(el.metadata, metadata);
+  if (el.type === "textInput") {
+    if (states.includes("password")) el.fieldVariant = "password";
+    if (states.includes("textarea")) el.fieldVariant = "textarea";
+  }
+  for (const s of states) {
+    if (GROUP_ONLY_METADATA.has(s)) {
+      el.isContainer = true;
+      if (s === "horizontal") el.orientation = "horizontal";
+    }
+  }
+}
+function matchKeyword(segment) {
+  const words = segment.split(/\s+/);
+  const first = words[0].toLowerCase();
+  const kw = ELEMENT_KEYWORDS[first];
+  if (!kw) return null;
+  if (words.length === 1) {
+    return { keyword: first, type: first };
+  }
+  const rest = words.slice(1).join(" ");
+  if (first === "modal") {
+    return { keyword: first, type: "modal", param: rest };
+  }
+  if (first === "progress") {
+    const num = parseInt(rest, 10);
+    if (!isNaN(num)) {
+      return { keyword: first, type: "progress", param: rest };
+    }
+    return null;
+  }
+  if (first === "table") {
+    if (TABLE_SKELETON_RE.test(segment)) {
+      return { keyword: first, type: "table", param: rest };
+    }
+    return { keyword: first, type: "table" };
+  }
+  if (kw.params) {
+    if (kw.params.has(rest.toLowerCase())) {
+      return {
+        keyword: first,
+        type: first,
+        param: rest.toLowerCase()
+      };
+    }
+    return null;
+  }
+  return null;
+}
+function parseSegment(segment, lineNumber, indent, diagnostics) {
+  const trimmed = segment.trim();
+  if (!trimmed) return null;
+  const headingMatch = trimmed.match(HEADING_RE);
+  if (headingMatch) {
+    const level = headingMatch[1].length;
+    const el = makeElement(
+      "heading",
+      headingMatch[2].trim(),
+      lineNumber,
+      indent
+    );
+    el.headingLevel = level;
+    return el;
+  }
+  if (DIVIDER_RE.test(trimmed)) {
+    return makeElement("divider", "", lineNumber, indent);
+  }
+  if (CHECKBOX_CHECKED_RE.test(trimmed)) {
+    const el = makeElement("checkbox", "", lineNumber, indent);
+    el.checked = true;
+    return el;
+  }
+  if (CHECKBOX_UNCHECKED_RE.test(trimmed)) {
+    const el = makeElement("checkbox", "", lineNumber, indent);
+    el.checked = false;
+    return el;
+  }
+  const radioSelMatch = trimmed.match(RADIO_SELECTED_RE);
+  if (radioSelMatch) {
+    const el = makeElement(
+      "radio",
+      // In-bounds: regex has one capture group; matched group is defined.
+      radioSelMatch[1].trim(),
+      lineNumber,
+      indent
+    );
+    el.selected = true;
+    return el;
+  }
+  const radioUnselMatch = trimmed.match(RADIO_UNSELECTED_RE);
+  if (radioUnselMatch) {
+    const el = makeElement(
+      "radio",
+      // In-bounds: regex has one capture group; matched group is defined.
+      radioUnselMatch[1].trim(),
+      lineNumber,
+      indent
+    );
+    el.selected = false;
+    return el;
+  }
+  const checkLabelMatch = trimmed.match(/^(<\s*x?\s*>)\s+(.+)$/i);
+  if (checkLabelMatch) {
+    const isChecked = /x/i.test(checkLabelMatch[1]);
+    const labelPart = checkLabelMatch[2];
+    const pipeSplit = labelPart.split(/\s*\|\s*/);
+    const baseLabel = pipeSplit[0].trim();
+    const peeled = peelTrailingFlags(baseLabel);
+    const el = makeElement("checkbox", peeled.label, lineNumber, indent);
+    el.checked = isChecked;
+    if (peeled.states.length > 0) {
+      applyMetadata(el, peeled.states.join(", "));
+    }
+    if (pipeSplit.length > 1) {
+      applyMetadata(el, pipeSplit.slice(1).join(", "));
+    }
+    return el;
+  }
+  const dropdownMatch = trimmed.match(DROPDOWN_RE);
+  if (dropdownMatch) {
+    const options = dropdownMatch[1].split("|").map((s) => s.trim()).filter(Boolean);
+    const el = makeElement("dropdown", options[0] || "", lineNumber, indent);
+    el.options = options;
+    applyTrailingMeta(el, dropdownMatch[2]);
+    return el;
+  }
+  const parenPipeMatch = trimmed.match(/^\(([^)]*\|[^)]*)\)\s*$/);
+  if (parenPipeMatch) {
+    diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        // In-bounds: regex has one capture group; matched group is defined.
+        `Did you mean a dropdown? Use braces: {${parenPipeMatch[1]}} instead of (${parenPipeMatch[1]})`,
+        "warning"
+      )
+    );
+    const options = parenPipeMatch[1].split("|").map((s) => s.trim()).filter(Boolean);
+    const el = makeElement("dropdown", options[0] || "", lineNumber, indent);
+    el.options = options;
+    return el;
+  }
+  const buttonMatch = trimmed.match(BUTTON_RE);
+  if (buttonMatch) {
+    const el = makeElement(
+      "button",
+      buttonMatch[1].trim(),
+      lineNumber,
+      indent
+    );
+    applyTrailingMeta(el, buttonMatch[2]);
+    return el;
+  }
+  const bracketMatch = trimmed.match(BRACKET_RE);
+  if (bracketMatch) {
+    const el = makeElement(
+      "group",
+      bracketMatch[1].trim(),
+      lineNumber,
+      indent
+    );
+    applyTrailingMeta(el, bracketMatch[2]);
+    if (!el.isContainer) {
+      el.type = "textInput";
+      if (el.states.includes("password")) el.fieldVariant = "password";
+      if (el.states.includes("textarea")) el.fieldVariant = "textarea";
+    }
+    return el;
+  }
+  const listMatch = trimmed.match(LIST_ITEM_RE);
+  if (listMatch) {
+    return makeElement("listItem", listMatch[1].trim(), lineNumber, indent);
+  }
+  const kwMatch = matchKeyword(trimmed);
+  if (kwMatch) {
+    const el = makeElement(
+      kwMatch.type,
+      kwMatch.param || "",
+      lineNumber,
+      indent
+    );
+    if (kwMatch.type === "image") {
+      el.imageHint = kwMatch.param || "default";
+    } else if (kwMatch.type === "progress") {
+      const val = parseInt(kwMatch.param || "0", 10);
+      el.progressValue = Math.max(0, Math.min(100, isNaN(val) ? 0 : val));
+    } else if (kwMatch.type === "chart") {
+      el.chartHint = kwMatch.param || "line";
+    } else if (kwMatch.type === "table") {
+      const skelMatch = `table ${kwMatch.param || ""}`.match(TABLE_SKELETON_RE);
+      if (skelMatch) {
+        el.tableRows = parseInt(skelMatch[1], 10);
+        el.tableCols = parseInt(skelMatch[2], 10);
+      }
+    }
+    if (ELEMENT_KEYWORDS[kwMatch.keyword]?.block) {
+      el.isContainer = true;
+    }
+    return el;
+  }
+  if (/^\[[^\]]*$/.test(trimmed)) {
+    diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        `Unmatched '[' \u2014 auto-closing bracket`,
+        "warning"
+      )
+    );
+    const label = trimmed.substring(1).trim();
+    return makeElement("textInput", label, lineNumber, indent);
+  }
+  if (/^\([^)]*$/.test(trimmed) && !trimmed.match(/^\(\s*\*?\s*\)/)) {
+    diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        `Unmatched '(' \u2014 auto-closing bracket`,
+        "warning"
+      )
+    );
+    const label = trimmed.substring(1).trim();
+    return makeElement("button", label, lineNumber, indent);
+  }
+  if (/^\{[^}]*$/.test(trimmed)) {
+    diagnostics.push(
+      makeDgmoError(
+        lineNumber,
+        `Unmatched '{' \u2014 auto-closing bracket`,
+        "warning"
+      )
+    );
+    const rawContent = trimmed.substring(1).trim();
+    const options = rawContent.split("|").map((s) => s.trim()).filter(Boolean);
+    const el = makeElement("dropdown", options[0] || "", lineNumber, indent);
+    el.options = options;
+    return el;
+  }
+  const pipeParts = trimmed.split(/\s*\|\s*/);
+  let textContent;
+  let states;
+  let metaStr;
+  if (pipeParts.length > 1) {
+    textContent = pipeParts[0].trim();
+    metaStr = pipeParts.slice(1).join(", ");
+    states = parseWireframeMetadata(metaStr).states;
+  } else {
+    const peeled = peelTrailingFlags(trimmed);
+    textContent = peeled.label;
+    states = peeled.states;
+    metaStr = states.length > 0 ? states.join(", ") : void 0;
+  }
+  const semanticStates = ["warning", "destructive", "success", "info"];
+  const hasSemantic = states.some((s) => semanticStates.includes(s));
+  if (hasSemantic) {
+    const el = makeElement("alert", textContent, lineNumber, indent);
+    el.states = states;
+    return el;
+  }
+  if (metaStr) {
+    const el = makeElement("text", textContent, lineNumber, indent);
+    applyMetadata(el, metaStr);
+    return el;
+  }
+  return makeElement("text", trimmed, lineNumber, indent);
+}
+function splitLineSegments(line) {
+  return line.split(/\s{2,}/).filter(Boolean);
+}
+function parseWireframe(content) {
+  resetWireframeIds();
+  const diagnostics = [];
+  const lines = content.split("\n");
+  let title = null;
+  let titleLineNumber = null;
+  let formFactor = "desktop";
+  const roots = [];
+  const modals = [];
+  const tagGroups = [];
+  const options = {};
+  let phase = "header";
+  let currentTagGroup = null;
+  function pushWarning(line, msg) {
+    diagnostics.push(makeDgmoError(line, msg, "warning"));
+  }
+  function makeTagGroup(trimmed, lineNumber) {
+    const match = matchTagBlockHeading(trimmed);
+    if (!match) return null;
+    return {
+      name: match.name,
+      ...match.alias !== void 0 && { alias: match.alias },
+      entries: [],
+      lineNumber
+    };
+  }
+  const indentStack = [];
+  function findParent(indent) {
+    while (indentStack.length > 0 && // In-bounds by length-check guard above.
+    indentStack[indentStack.length - 1].indent >= indent) {
+      const popped = indentStack.pop();
+      if (popped.node.children.length > 0 && !popped.node.isContainer) {
+        popped.node.isContainer = true;
+        if (popped.node.type === "textInput") {
+          popped.node.type = "group";
+        }
+      }
+    }
+    return indentStack.length > 0 ? (
+      // In-bounds by length-check.
+      indentStack[indentStack.length - 1].node
+    ) : null;
+  }
+  function pushElement(el) {
+    if (el.type === "modal") {
+      modals.push(el);
+      indentStack.push({ node: el, indent: el.indent });
+      return;
+    }
+    findParent(el.indent);
+    if (indentStack.length === 0) {
+      roots.push(el);
+    } else {
+      const parent = indentStack[indentStack.length - 1].node;
+      parent.children.push(el);
+      if (parent.type === "skeleton" || parent.isSkeleton) {
+        el.isSkeleton = true;
+      }
+    }
+    if (el.isContainer || el.type === "group" || el.type === "textInput" || // might become group if children follow
+    el.type === "nav" || el.type === "tabs" || el.type === "table" || el.type === "skeleton" || el.type === "alert") {
+      indentStack.push({ node: el, indent: el.indent });
+    }
+  }
+  function pushInlineRow(segments, lineNumber, indent, diags) {
+    const children2 = [];
+    let lastEl = null;
+    for (const seg of segments) {
+      if (seg.startsWith("|") && lastEl) {
+        applyMetadata(lastEl, seg.substring(1).trim());
+        continue;
+      }
+      const el = parseSegment(seg, lineNumber, indent, diags);
+      if (el) {
+        children2.push(el);
+        lastEl = el;
+      }
+    }
+    if (children2.length === 0) return;
+    if (children2.length === 1) {
+      pushElement(children2[0]);
+      return;
+    }
+    const wrapper = makeElement("group", "", lineNumber, indent);
+    wrapper.id = genId(lineNumber, indent, "row");
+    wrapper.isContainer = true;
+    wrapper.orientation = "horizontal";
+    wrapper.children = children2;
+    const wrapperMetadata = { _inlineRow: "true" };
+    wrapper.metadata = wrapperMetadata;
+    pushElement(wrapper);
+  }
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const lineNumber = i + 1;
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("//")) continue;
+    const indent = measureIndent(line);
+    if (phase === "header") {
+      const firstLineResult = parseFirstLine(trimmed);
+      if (firstLineResult?.chartType === "wireframe") {
+        title = firstLineResult.title || null;
+        titleLineNumber = lineNumber;
+        continue;
+      }
+      if (trimmed === "mobile") {
+        formFactor = "mobile";
+        continue;
+      }
+      if (tryParseSharedOption(trimmed, options)) {
+        continue;
+      }
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch && KNOWN_OPTIONS10.has(optMatch[1].toLowerCase())) {
+        options[optMatch[1]] = optMatch[2] || "";
+        continue;
+      }
+      if (isTagBlockHeading(trimmed)) {
+        const tg = makeTagGroup(trimmed, lineNumber);
+        if (tg) {
+          currentTagGroup = tg;
+          tagGroups.push(tg);
+          phase = "tags";
+          continue;
+        }
+      }
+      phase = "content";
+    }
+    if (phase === "tags") {
+      if (isTagBlockHeading(trimmed)) {
+        const tg = makeTagGroup(trimmed, lineNumber);
+        if (tg) {
+          currentTagGroup = tg;
+          tagGroups.push(tg);
+          continue;
+        }
+      }
+      if (indent > 0 && currentTagGroup) {
+        const { text: cleanEntry, isDefault } = stripDefaultModifier(trimmed);
+        const { label, color: color2 } = extractColor(
+          cleanEntry,
+          void 0,
+          diagnostics,
+          lineNumber
+        );
+        currentTagGroup.entries.push({
+          value: label,
+          color: color2 ?? AUTO_TAG_COLOR_SENTINEL,
+          lineNumber
+        });
+        if (isDefault) {
+          currentTagGroup.defaultValue = label;
+        } else if (currentTagGroup.entries.length === 1) {
+          currentTagGroup.defaultValue = label;
+        }
+        continue;
+      }
+      phase = "content";
+      currentTagGroup = null;
+    }
+    if (phase !== "content") {
+      phase = "content";
+    }
+    if (indent === 0 && trimmed === "mobile") {
+      formFactor = "mobile";
+      continue;
+    }
+    if (indent === 0) {
+      const optMatch = trimmed.match(OPTION_NOCOLON_RE);
+      if (optMatch && !trimmed.startsWith("#") && !trimmed.startsWith("[") && !trimmed.startsWith("(")) {
+        const key = optMatch[1];
+        if (["palette", "theme", "active-tag"].includes(key)) {
+          options[key] = optMatch[2] || "";
+          continue;
+        }
+      }
+    }
+    if (isTagBlockHeading(trimmed)) {
+      const tg = makeTagGroup(trimmed, lineNumber);
+      if (tg) {
+        currentTagGroup = tg;
+        tagGroups.push(tg);
+        phase = "tags";
+        continue;
+      }
+    }
+    if (indentStack.length > 0) {
+      const topNode = indentStack[indentStack.length - 1].node;
+      if (topNode.type === "table" && indent > topNode.indent) {
+        const cells = parseTableRow(trimmed);
+        if (!topNode.tableHeaders) {
+          if (trimmed.includes(",")) {
+            topNode.tableHeaders = cells;
+          } else {
+            topNode.tableHeaders = cells;
+          }
+        } else {
+          if (!topNode.tableData) topNode.tableData = [];
+          topNode.tableData.push(cells);
+        }
+        continue;
+      }
+    }
+    const segments = splitLineSegments(trimmed);
+    if (segments.length === 1) {
+      const el = parseSegment(segments[0], lineNumber, indent, diagnostics);
+      if (el) pushElement(el);
+    } else if (segments.length === 2) {
+      if (segments[1].startsWith("|")) {
+        const el = parseSegment(segments[0], lineNumber, indent, diagnostics);
+        if (el) {
+          applyMetadata(el, segments[1].substring(1).trim());
+          pushElement(el);
+        }
+      } else {
+        const firstIsBare = isBareText(segments[0]);
+        const secondIsElement = hasBracketMnemonic(segments[1]);
+        if (firstIsBare && secondIsElement) {
+          const fieldEl = parseSegment(
+            segments[1],
+            lineNumber,
+            indent,
+            diagnostics
+          );
+          if (fieldEl) {
+            const labelEl = makeElement(
+              "text",
+              segments[0].trim(),
+              lineNumber,
+              indent
+            );
+            labelEl.id = genId(lineNumber, indent, "lbl");
+            labelEl.labelFor = fieldEl;
+            const wrapper = makeElement("group", "", lineNumber, indent);
+            wrapper.id = genId(lineNumber, indent, "lf");
+            wrapper.isContainer = true;
+            wrapper.orientation = "horizontal";
+            wrapper.children.push(labelEl, fieldEl);
+            const wrapperMetadata = {
+              _labelField: "true"
+            };
+            wrapper.metadata = wrapperMetadata;
+            pushElement(wrapper);
+          }
+        } else {
+          pushInlineRow(segments, lineNumber, indent, diagnostics);
+        }
+      }
+    } else {
+      pushInlineRow(segments, lineNumber, indent, diagnostics);
+    }
+  }
+  while (indentStack.length > 0) {
+    const popped = indentStack.pop();
+    if (popped.node.children.length > 0 && !popped.node.isContainer) {
+      popped.node.isContainer = true;
+      if (popped.node.type === "textInput") {
+        popped.node.type = "group";
+      }
+    }
+  }
+  finalizeAutoTagColors(tagGroups);
+  validateTagGroupNames(tagGroups, pushWarning, (line, msg) => {
+    diagnostics.push(makeDgmoError(line, msg));
+  });
+  const error = diagnostics.find((d) => d.severity === "error") ? formatDgmoError(diagnostics.find((d) => d.severity === "error")) : null;
+  return {
+    title,
+    titleLineNumber,
+    formFactor,
+    roots,
+    modals,
+    tagGroups,
+    options,
+    diagnostics,
+    error
+  };
+}
+function parseTableRow(line) {
+  const cells = [];
+  let current = "";
+  let depth = 0;
+  let escaped = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (escaped) {
+      current += ch;
+      escaped = false;
+      continue;
+    }
+    if (ch === "\\") {
+      escaped = true;
+      continue;
+    }
+    if (ch === "[" || ch === "{" || ch === "(" || ch === "<") depth++;
+    if (ch === "]" || ch === "}" || ch === ")" || ch === ">")
+      depth = Math.max(0, depth - 1);
+    if (ch === "," && depth === 0) {
+      cells.push(current.trim());
+      current = "";
+      continue;
+    }
+    current += ch;
+  }
+  if (current.trim()) {
+    cells.push(current.trim());
+  }
+  return cells;
+}
+function isBareText(segment) {
+  const s = segment.trim();
+  if (!s) return false;
+  if (/^[[\]({<#-]/.test(s)) return false;
+  if (matchKeyword(s)) return false;
+  return true;
+}
+function hasBracketMnemonic(segment) {
+  const s = segment.trim();
+  return /^\[/.test(s) || /^\(/.test(s) || /^\{/.test(s) || /^<\s*x?\s*>/i.test(s);
+}
+var KNOWN_OPTIONS10, GROUP_ONLY_METADATA, STATE_KEYWORDS, ELEMENT_KEYWORDS, BRACKET_RE, BUTTON_RE, DROPDOWN_RE, CHECKBOX_CHECKED_RE, CHECKBOX_UNCHECKED_RE, RADIO_SELECTED_RE, RADIO_UNSELECTED_RE, HEADING_RE, DIVIDER_RE, LIST_ITEM_RE, TABLE_SKELETON_RE;
+var init_chunk_FZECLCCU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FZECLCCU.js"() {
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
+    init_chunk_OLMWTJVU();
+    KNOWN_OPTIONS10 = /* @__PURE__ */ new Set(["palette", "theme", "active-tag"]);
+    GROUP_ONLY_METADATA = /* @__PURE__ */ new Set([
+      "horizontal",
+      "scrollable",
+      "collapsed"
+    ]);
+    STATE_KEYWORDS = /* @__PURE__ */ new Set([
+      "disabled",
+      "active",
+      "selected",
+      "empty",
+      "ghost",
+      "destructive",
+      "success",
+      "warning",
+      "info",
+      "scrollable",
+      "collapsed",
+      "toggle",
+      "password",
+      "textarea",
+      "horizontal",
+      "primary"
+    ]);
+    ELEMENT_KEYWORDS = {
+      nav: { block: true },
+      tabs: { block: true },
+      table: { block: true },
+      image: { block: false, params: /* @__PURE__ */ new Set(["round", "wide"]) },
+      modal: { block: true },
+      skeleton: { block: true },
+      alert: { block: true },
+      progress: { block: false },
+      chart: { block: false, params: /* @__PURE__ */ new Set(["line", "bar", "pie"]) }
+    };
+    BRACKET_RE = /^\[([^\]]*)\](.*)$/;
+    BUTTON_RE = /^\(([^)]+)\)(.*)$/;
+    DROPDOWN_RE = /^\{([^}]+)\}(.*)$/;
+    CHECKBOX_CHECKED_RE = /^<\s*x\s*>$/i;
+    CHECKBOX_UNCHECKED_RE = /^<\s*>$/;
+    RADIO_SELECTED_RE = /^\(\*\)\s+(.+)$/;
+    RADIO_UNSELECTED_RE = /^\(\s*\)\s+(.+)$/;
+    HEADING_RE = /^(#{1,2})\s+(.+)$/;
+    DIVIDER_RE = /^-{3,}$/;
+    LIST_ITEM_RE = /^-\s+(.+)$/;
+    TABLE_SKELETON_RE = /^table\s+(\d+)x(\d+)$/i;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VYCV5WKH.js
 function parseVisualization(content, palette) {
   return parseVisualizationFull(content, palette);
 }
@@ -28085,10 +28090,12 @@ function detectEmptyContent(content) {
   return [];
 }
 var DEFAULT_CLOUD_OPTIONS, STOP_WORDS, CHART_TYPE_REGISTRY, REGISTRY_BY_ID, GANTT_DURATION_RE, GANTT_DATE_RE, C4_TYPE_RE, CHART_TYPE_DESCRIPTIONS, chartTypeParsers, knownChartTypeIds, PARSER_BY_ID, ALL_KNOWN_TYPES;
-var init_chunk_GDGOVO2I = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GDGOVO2I.js"() {
+var init_chunk_VYCV5WKH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VYCV5WKH.js"() {
+    init_chunk_BQLJAYVB();
     init_chunk_EEKGMS63();
     init_chunk_CY5KE2P5();
+    init_chunk_MGLJA5TK();
     init_chunk_RV2N7COG();
     init_chunk_VSFAJUEF();
     init_chunk_5J2RQGFG();
@@ -28096,22 +28103,23 @@ var init_chunk_GDGOVO2I = __esm({
     init_chunk_QWUYFUNO();
     init_chunk_YNAHUNMA();
     init_chunk_NFAHDPCG();
-    init_chunk_GG7TK3IA();
+    init_chunk_USFZQPJ2();
     init_chunk_5VLUAAAE();
     init_chunk_ES3MUYRX();
     init_chunk_KF575IXC();
     init_chunk_CXI6X54X();
     init_chunk_4MB4UOT5();
     init_chunk_RQGNELB3();
-    init_chunk_MGLJA5TK();
+    init_chunk_XBTJJLAU();
+    init_chunk_4MJOBVY7();
     init_chunk_D64FRGKU();
     init_chunk_X32RDWT5();
-    init_chunk_FCA2UGJT();
-    init_chunk_FXVPSTDT();
-    init_chunk_Y2L2LET6();
+    init_chunk_NIUE5VWY();
+    init_chunk_MXDT446P();
+    init_chunk_ADKDIWCW();
     init_chunk_WOMXS5R7();
     init_chunk_NHZAYL2X();
-    init_chunk_USFZQPJ2();
+    init_chunk_FERE46TP();
     init_chunk_LV5BFA24();
     init_chunk_APD52YJV();
     init_chunk_VYEQPPS6();
@@ -28119,12 +28127,9 @@ var init_chunk_GDGOVO2I = __esm({
     init_chunk_PFG3EVRD();
     init_chunk_OHBIN74X();
     init_chunk_DIKIHU52();
-    init_chunk_WFX6AUQO();
-    init_chunk_4MJOBVY7();
     init_chunk_DAOFNU6J();
     init_chunk_TGOMHUOV();
     init_chunk_FZECLCCU();
-    init_chunk_FERE46TP();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
@@ -28452,7 +28457,7 @@ var init_chunk_GDGOVO2I = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js
 function extendWidth(acc, text, fontSize) {
   let w2 = acc;
   for (let i = 0; i < text.length; i++) {
@@ -28540,7 +28545,7 @@ function wrapTextToWidth(text, fontSize, maxWidth, opts) {
 }
 var CHAR_W, DEFAULT_W, CHAR_WIDTH_RATIO, MEASURE_CACHE, MEASURE_CACHE_MAX;
 var init_chunk_4ASYQ347 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4ASYQ347.js"() {
     CHAR_W = {
       " ": 0.28,
       "!": 0.28,
@@ -28635,10 +28640,10 @@ var init_chunk_4ASYQ347 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js
 var MAP_DX, MAP_DIAGNOSTICS;
 var init_chunk_4B5YISOR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4B5YISOR.js"() {
     MAP_DX = {
       // Runtime severity: 'error' (matches E_ prefix). ONE code, THREE distinct
       // emit sites in resolver.ts. The builder switches on params:
@@ -28796,7 +28801,7 @@ var init_chunk_4B5YISOR = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js
 function rectsOverlap(a, b) {
   return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
 }
@@ -29008,12 +29013,12 @@ function computeQuadrantPointLabels(points, chartBounds, obstacles, pointRadius,
   return results;
 }
 var init_chunk_VHO3YBTB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VHO3YBTB.js"() {
     init_chunk_4ASYQ347();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NZ5QVASG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NZ5QVASG.js
 function escapeAttributeAngleBrackets(svg) {
   return svg.replace(
     // ` name="value"` / ` xlink:href="value"` — attribute names in SVG may carry
@@ -29029,14 +29034,14 @@ function serializeSvg(svgEl) {
   return escapeAttributeAngleBrackets(svgEl.outerHTML);
 }
 var init_chunk_NZ5QVASG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NZ5QVASG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NZ5QVASG.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js
 var TITLE_FONT_SIZE, TITLE_FONT_WEIGHT, TITLE_Y, TITLE_OFFSET, CAPTION_FONT_SIZE, CAPTION_FONT_WEIGHT, CAPTION_LINE_HEIGHT, CAPTION_TOP_GAP, CAPTION_BOX_PADDING_X, CAPTION_BOX_PADDING_Y;
 var init_chunk_A4GOY3PE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-A4GOY3PE.js"() {
     TITLE_FONT_SIZE = 20;
     TITLE_FONT_WEIGHT = "700";
     TITLE_Y = 30;
@@ -30094,7 +30099,7 @@ var init_src = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js
 function isValidHex(value) {
   return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value);
 }
@@ -30139,7 +30144,7 @@ function getAvailablePalettes() {
 }
 var PALETTE_REGISTRY, DEFAULT_PALETTE_ID, COLOR_KEYS, SEMANTIC_KEYS, atlasPalette, blueprintPalette, catppuccinPalette, nordPalette, slatePalette, tidewaterPalette, tokyoNightPalette, palettes;
 var init_chunk_R3XI2VC7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-R3XI2VC7.js"() {
     PALETTE_REGISTRY = /* @__PURE__ */ new Map();
     DEFAULT_PALETTE_ID = "slate";
     COLOR_KEYS = [
@@ -30868,7 +30873,7 @@ var init_chunk_R3XI2VC7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/palettes-WO3VA6NU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/palettes-WO3VA6NU.js
 var palettes_WO3VA6NU_exports = {};
 __export(palettes_WO3VA6NU_exports, {
   atlasPalette: () => atlasPalette,
@@ -30896,13 +30901,13 @@ __export(palettes_WO3VA6NU_exports, {
   tokyoNightPalette: () => tokyoNightPalette
 });
 var init_palettes_WO3VA6NU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/palettes-WO3VA6NU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/palettes-WO3VA6NU.js"() {
     init_chunk_R3XI2VC7();
     init_chunk_42IT4BG2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQ7Y3O67.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CQ7Y3O67.js
 function renderChartTitle(svg, title, titleLineNumber, width, textColor, onClickItem) {
   if (!title) return;
   const titleEl = svg.append("text").attr("class", "chart-title").attr("x", width / 2).attr("y", TITLE_Y).attr("text-anchor", "middle").attr("fill", textColor).attr("font-size", TITLE_FONT_SIZE).attr("font-weight", TITLE_FONT_WEIGHT).style("cursor", onClickItem && titleLineNumber ? "pointer" : "default").text(title);
@@ -31005,7 +31010,7 @@ function finalizeSvgExport(container, theme, palette) {
 }
 var EXPORT_WIDTH, EXPORT_HEIGHT;
 var init_chunk_CQ7Y3O67 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQ7Y3O67.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CQ7Y3O67.js"() {
     init_chunk_NZ5QVASG();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
@@ -31016,7 +31021,7 @@ var init_chunk_CQ7Y3O67 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SCJ7CAJF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SCJ7CAJF.js
 function legendChromeColors(palette, isDark) {
   return {
     groupBg: isDark ? mix(palette.surface, palette.bg, 50) : mix(palette.surface, palette.textMuted, 98),
@@ -31025,7 +31030,7 @@ function legendChromeColors(palette, isDark) {
 }
 var LEGEND_HEIGHT, LEGEND_PILL_PAD, LEGEND_PILL_FONT_SIZE, LEGEND_CAPSULE_PAD, LEGEND_DOT_R, LEGEND_ENTRY_FONT_SIZE, LEGEND_ENTRY_DOT_GAP, LEGEND_ENTRY_TRAIL, LEGEND_GROUP_GAP, LEGEND_EYE_SIZE, LEGEND_EYE_GAP, LEGEND_ICON_W, LEGEND_MAX_ENTRY_ROWS, measureLegendText, truncateLegendText, EYE_OPEN_PATH, EYE_CLOSED_PATH, CONTROLS_ICON_PATH, LEGEND_TOGGLE_DOT_R, LEGEND_TOGGLE_OFF_OPACITY, LEGEND_GEAR_PILL_W;
 var init_chunk_SCJ7CAJF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SCJ7CAJF.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SCJ7CAJF.js"() {
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
     LEGEND_HEIGHT = 28;
@@ -31052,7 +31057,7 @@ var init_chunk_SCJ7CAJF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6VJCURWU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6VJCURWU.js
 function legendInlineSupported(type) {
   return LEGEND_INLINE_SUPPORTED.has(type.toLowerCase());
 }
@@ -31092,7 +31097,7 @@ function layoutInlineHeader(input) {
 }
 var LEGEND_INLINE_SUPPORTED, INLINE_HEADER_PAD, INLINE_HEADER_GAP, BOLD_WIDTH_FACTOR, MIN_INLINE_LEGEND_W;
 var init_chunk_6VJCURWU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6VJCURWU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6VJCURWU.js"() {
     init_chunk_A4GOY3PE();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
@@ -31130,7 +31135,7 @@ var init_chunk_6VJCURWU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES66QH6J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ES66QH6J.js
 function compactNumber(n) {
   if (!Number.isFinite(n)) return String(n);
   const abs3 = Math.abs(n);
@@ -31661,7 +31666,7 @@ function getLegendExtent(config, state, containerWidth) {
 }
 var CONTROL_PILL_PAD, CONTROL_FONT_SIZE, CONTROL_ICON_GAP, CONTROL_GAP, RAMP_LEGEND_W, RAMP_LEGEND_H, RAMP_LABEL_GAP;
 var init_chunk_ES66QH6J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ES66QH6J.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ES66QH6J.js"() {
     init_chunk_SCJ7CAJF();
     CONTROL_PILL_PAD = 16;
     CONTROL_FONT_SIZE = 11;
@@ -34367,7 +34372,7 @@ var init_src9 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BR2VSKHI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OFEUXZPI.js
 function esc(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -36162,8 +36167,8 @@ function renderInto(s, content, palette, isDark, width, height, textColor, muted
   }
 }
 var AXIS_LABEL_FONT, TICK_FONT, VALUE_FONT, LABEL_FONT, RINGS, PAD2, MARGIN, FILL_OPACITY, DEFAULT_SIZE, LABEL_FONT2, SIZEVAL_FONT, SIZEVAL_LINE, SIZEVAL_LABEL_FONT, SIZEVAL_LABEL_LINE, SIZEVAL_BOLD_FACTOR, NODE_W, NODE_GAP, RIBBON_FILL_OPACITY, FUNCS, Parser, SAMPLES, STANDARD, EXTENDED, D3_DATA_CHART_TYPES, INLINE_LEGEND_TYPES;
-var init_chunk_BR2VSKHI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BR2VSKHI.js"() {
+var init_chunk_OFEUXZPI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OFEUXZPI.js"() {
     init_chunk_VHO3YBTB();
     init_chunk_CQ7Y3O67();
     init_chunk_6VJCURWU();
@@ -36172,10 +36177,10 @@ var init_chunk_BR2VSKHI = __esm({
     init_chunk_6KFWC4CO();
     init_chunk_CY5KE2P5();
     init_chunk_2CW5ZTNH();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_src7();
     init_src3();
     init_src7();
@@ -36333,7 +36338,7 @@ var init_chunk_BR2VSKHI = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js
 function fractionalYearToDate(frac) {
   const year = Math.floor(frac);
   const remainder = frac - year;
@@ -36501,7 +36506,7 @@ function computeTimeTicks(domainMin, domainMax, scale, boundaryStart, boundaryEn
 }
 var MONTH_ABBR2;
 var init_chunk_YRYKTYMQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-YRYKTYMQ.js"() {
     MONTH_ABBR2 = [
       "Jan",
       "Feb",
@@ -36519,10 +36524,10 @@ var init_chunk_YRYKTYMQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js
 var DEFAULT_MIN_SCALE_FACTOR, TEXT_FLOOR, ScaleContext;
 var init_chunk_YYVTBZZC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-YYVTBZZC.js"() {
     DEFAULT_MIN_SCALE_FACTOR = 0.5;
     TEXT_FLOOR = 9;
     ScaleContext = class _ScaleContext {
@@ -36581,7 +36586,7 @@ var init_chunk_YYVTBZZC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QDOYT6UW.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-44GBBTMU.js
 function centerText(sel) {
   return sel.attr("dy", LEGEND_TEXT_DY);
 }
@@ -36839,13 +36844,13 @@ function renderIntegratedLegend(container, opts) {
   );
 }
 var LEGEND_TEXT_DY, DEFAULT_POSITION;
-var init_chunk_QDOYT6UW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QDOYT6UW.js"() {
+var init_chunk_44GBBTMU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-44GBBTMU.js"() {
     init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     LEGEND_TEXT_DY = "0.32em";
     DEFAULT_POSITION = {
       placement: "top-center",
@@ -36854,7 +36859,7 @@ var init_chunk_QDOYT6UW = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HIMDUQT7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-KRKU6WRS.js
 function getEraColors(palette) {
   return [
     palette.colors.blue,
@@ -38472,17 +38477,17 @@ function renderTimeline(container, parsed, palette, isDark, onClickItem, exportD
   );
 }
 var timelineCollapseState, tlBandClipCounter;
-var init_chunk_HIMDUQT7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HIMDUQT7.js"() {
+var init_chunk_KRKU6WRS = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-KRKU6WRS.js"() {
     init_chunk_YRYKTYMQ();
     init_chunk_YYVTBZZC();
     init_chunk_CQ7Y3O67();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_6KFWC4CO();
     init_chunk_4MJOBVY7();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_src7();
     init_src();
     timelineCollapseState = /* @__PURE__ */ new WeakMap();
@@ -38863,9 +38868,9 @@ var require_d3_cloud = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dgmo-router-GSWUPLP2.js
-var dgmo_router_GSWUPLP2_exports = {};
-__export(dgmo_router_GSWUPLP2_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/dgmo-router-PMEKTIJ7.js
+var dgmo_router_PMEKTIJ7_exports = {};
+__export(dgmo_router_PMEKTIJ7_exports, {
   CHART_TYPE_DESCRIPTIONS: () => CHART_TYPE_DESCRIPTIONS,
   chartTypeParsers: () => chartTypeParsers,
   getAllChartTypes: () => getAllChartTypes,
@@ -38877,37 +38882,37 @@ __export(dgmo_router_GSWUPLP2_exports, {
   parseDgmo: () => parseDgmo,
   parseDgmoChartType: () => parseDgmoChartType
 });
-var init_dgmo_router_GSWUPLP2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dgmo-router-GSWUPLP2.js"() {
-    init_chunk_GDGOVO2I();
+var init_dgmo_router_PMEKTIJ7 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/dgmo-router-PMEKTIJ7.js"() {
+    init_chunk_VYCV5WKH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/charts-d3-D67V6KHE.js
-var charts_d3_D67V6KHE_exports = {};
-__export(charts_d3_D67V6KHE_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/charts-d3-Z6FOKUAL.js
+var charts_d3_Z6FOKUAL_exports = {};
+__export(charts_d3_Z6FOKUAL_exports, {
   D3_DATA_CHART_TYPES: () => D3_DATA_CHART_TYPES,
   renderDataChartD3: () => renderDataChartD3,
   supportsD3DataChart: () => supportsD3DataChart
 });
-var init_charts_d3_D67V6KHE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/charts-d3-D67V6KHE.js"() {
-    init_chunk_BR2VSKHI();
+var init_charts_d3_Z6FOKUAL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/charts-d3-Z6FOKUAL.js"() {
+    init_chunk_OFEUXZPI();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-GGCDY65M.js
-var parser_GGCDY65M_exports = {};
-__export(parser_GGCDY65M_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-DTXM5ROT.js
+var parser_DTXM5ROT_exports = {};
+__export(parser_DTXM5ROT_exports, {
   parseEventLine: () => parseEventLine
 });
-var init_parser_GGCDY65M = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-GGCDY65M.js"() {
-    init_chunk_WFX6AUQO();
+var init_parser_DTXM5ROT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-DTXM5ROT.js"() {
+    init_chunk_XBTJJLAU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js
 function renderNodeCard(container, opts) {
   const rect2 = container.append("rect").attr("x", 0).attr("y", 0).attr("width", opts.width).attr("height", opts.height).attr("rx", opts.rx).attr("fill", opts.fill).attr("stroke", opts.stroke).attr("stroke-width", opts.strokeWidth);
   if (opts.dashed) {
@@ -38945,12 +38950,34 @@ function renderCollapseBar(container, opts) {
   container.append("rect").attr("x", opts.inset).attr("y", opts.height - opts.barHeight).attr("width", opts.width - opts.inset * 2).attr("height", opts.barHeight).attr("fill", opts.fill).attr("clip-path", `url(#${opts.clipId})`).attr("class", opts.className);
 }
 var init_chunk_H3HFC3SQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-H3HFC3SQ.js"() {
     init_chunk_4ASYQ347();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js
+var NODE_STROKE_WIDTH, EDGE_STROKE_WIDTH, CARD_RADIUS, CONTAINER_RADIUS, COLLAPSE_BAR_INSET, HEADER_HEIGHT, LABEL_FONT_SIZE, META_FONT_SIZE, META_LINE_HEIGHT, SEPARATOR_GAP, COLLAPSE_BAR_HEIGHT, CONTAINER_HEADER_HEIGHT, CONTAINER_LABEL_FONT_SIZE, CONTAINER_META_FONT_SIZE, CONTAINER_META_LINE_HEIGHT;
+var init_chunk_3CIOJ5YJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js"() {
+    NODE_STROKE_WIDTH = 1.5;
+    EDGE_STROKE_WIDTH = 1.5;
+    CARD_RADIUS = 6;
+    CONTAINER_RADIUS = 8;
+    COLLAPSE_BAR_INSET = 0;
+    HEADER_HEIGHT = 28;
+    LABEL_FONT_SIZE = 13;
+    META_FONT_SIZE = 11;
+    META_LINE_HEIGHT = 16;
+    SEPARATOR_GAP = 6;
+    COLLAPSE_BAR_HEIGHT = 6;
+    CONTAINER_HEADER_HEIGHT = 28;
+    CONTAINER_LABEL_FONT_SIZE = 13;
+    CONTAINER_META_FONT_SIZE = 11;
+    CONTAINER_META_LINE_HEIGHT = 16;
+  }
+});
+
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-WGC42WJU.js
 function safeHref(url) {
   if (typeof url !== "string") return null;
   const trimmed = url.replace(LEADING_TRIM_RE, "");
@@ -38998,6 +39025,12 @@ function truncateBareUrl(url) {
   if (stripped.length <= BARE_URL_MAX_DISPLAY) return stripped;
   return stripped.slice(0, BARE_URL_MAX_DISPLAY - 1) + "\u2026";
 }
+function stripInlineMarkdown(text) {
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1").replace(
+    /https?:\/\/[^\s)>\]]+|www\.[^\s)>\]]+/g,
+    (u) => truncateBareUrl(u)
+  ).replace(/\*\*|__|[*_`]/g, "");
+}
 function renderInlineText(textEl, text, palette, fontSize) {
   const spans = parseInlineMarkdown(text);
   for (const span of spans) {
@@ -39023,8 +39056,8 @@ function renderInlineText(textEl, text, palette, fontSize) {
   }
 }
 var ALLOWED_SCHEMES, SCHEME_RE, LEADING_TRIM_RE, BARE_URL_MAX_DISPLAY;
-var init_chunk_3HDBAXF5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3HDBAXF5.js"() {
+var init_chunk_WGC42WJU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-WGC42WJU.js"() {
     ALLOWED_SCHEMES = ["http", "https", "mailto"];
     SCHEME_RE = /^([a-z][a-z0-9+.-]*):/i;
     LEADING_TRIM_RE = /^[\x00-\x20]+/;
@@ -39032,43 +39065,68 @@ var init_chunk_3HDBAXF5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js
-var NODE_STROKE_WIDTH, EDGE_STROKE_WIDTH, CARD_RADIUS, CONTAINER_RADIUS, COLLAPSE_BAR_INSET, HEADER_HEIGHT, LABEL_FONT_SIZE, META_FONT_SIZE, META_LINE_HEIGHT, SEPARATOR_GAP, COLLAPSE_BAR_HEIGHT, CONTAINER_HEADER_HEIGHT, CONTAINER_LABEL_FONT_SIZE, CONTAINER_META_FONT_SIZE, CONTAINER_META_LINE_HEIGHT;
-var init_chunk_3CIOJ5YJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3CIOJ5YJ.js"() {
-    NODE_STROKE_WIDTH = 1.5;
-    EDGE_STROKE_WIDTH = 1.5;
-    CARD_RADIUS = 6;
-    CONTAINER_RADIUS = 8;
-    COLLAPSE_BAR_INSET = 0;
-    HEADER_HEIGHT = 28;
-    LABEL_FONT_SIZE = 13;
-    META_FONT_SIZE = 11;
-    META_LINE_HEIGHT = 16;
-    SEPARATOR_GAP = 6;
-    COLLAPSE_BAR_HEIGHT = 6;
-    CONTAINER_HEADER_HEIGHT = 28;
-    CONTAINER_LABEL_FONT_SIZE = 13;
-    CONTAINER_META_FONT_SIZE = 11;
-    CONTAINER_META_LINE_HEIGHT = 16;
-  }
-});
-
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js
-function wrapDescriptionLines(lines, charsPerLine, lengthFn = (s) => s.length) {
-  const result = [];
-  for (const line of lines) {
-    if (!line.startsWith(BULLET_PREFIX)) {
-      const wrapped2 = wrapPlainLine(line, charsPerLine, lengthFn);
-      for (const w2 of wrapped2) result.push({ text: w2, kind: "plain" });
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NCT22MOD.js
+function reflowDescriptionLines(lines) {
+  const blocks = [];
+  let open = null;
+  let gapPending = false;
+  let breakPending = false;
+  const openBlock = (kind, text) => {
+    const block = {
+      kind,
+      segments: [text],
+      gapBefore: gapPending && blocks.length > 0
+    };
+    blocks.push(block);
+    gapPending = false;
+    return block;
+  };
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line) {
+      open = null;
+      breakPending = false;
+      gapPending = blocks.length > 0;
       continue;
     }
-    const body = line.slice(BULLET_PREFIX.length);
+    const hard = line.endsWith(HARD_BREAK);
+    const text = hard ? line.slice(0, -1).trimEnd() : line;
+    if (!text) {
+      breakPending = hard;
+      continue;
+    }
+    if (text.startsWith(BULLET_PREFIX)) {
+      open = openBlock("bullet", text.slice(BULLET_PREFIX.length));
+    } else if (open) {
+      if (breakPending) open.segments.push(text);
+      else open.segments[open.segments.length - 1] += ` ${text}`;
+    } else {
+      open = openBlock("plain", text);
+    }
+    breakPending = hard;
+  }
+  return blocks;
+}
+function wrapDescriptionLines(lines, charsPerLine, lengthFn = (s) => s.length) {
+  const measure = (s) => lengthFn(stripInlineMarkdown(s));
+  const result = [];
+  for (const block of reflowDescriptionLines(lines)) {
+    if (block.gapBefore && result.length > 0)
+      result.push({ text: "", kind: "plain" });
+    if (block.kind === "plain") {
+      for (const segment of block.segments)
+        for (const w2 of wrapPlainLine(segment, charsPerLine, measure))
+          result.push({ text: w2, kind: "plain" });
+      continue;
+    }
     const bodyLimit = Math.max(8, charsPerLine - BULLET_INDENT_CHARS);
-    const wrapped = wrapPlainLine(body, bodyLimit, lengthFn);
-    wrapped.forEach((w2, i) => {
-      result.push({ text: w2, kind: i === 0 ? "bullet-first" : "bullet-cont" });
-    });
+    let first = true;
+    for (const segment of block.segments) {
+      for (const w2 of wrapPlainLine(segment, bodyLimit, measure)) {
+        result.push({ text: w2, kind: first ? "bullet-first" : "bullet-cont" });
+        first = false;
+      }
+    }
   }
   return result;
 }
@@ -39088,15 +39146,17 @@ function wrapPlainLine(line, charsPerLine, lengthFn) {
   if (current) result.push(current);
   return result;
 }
-var BULLET_PREFIX, BULLET_INDENT_CHARS;
-var init_chunk_BMR4CIEO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BMR4CIEO.js"() {
+var BULLET_PREFIX, BULLET_INDENT_CHARS, HARD_BREAK;
+var init_chunk_NCT22MOD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-NCT22MOD.js"() {
+    init_chunk_WGC42WJU();
     BULLET_PREFIX = "\u2022 ";
     BULLET_INDENT_CHARS = 2;
+    HARD_BREAK = "\\";
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YG5KQ55U.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VS7DGDT3.js
 function renderEventLine(container, parsed, palette, isDark, onClickItem, exportDims, tagOverride, nowDate) {
   if (parsed.events.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -40115,15 +40175,7 @@ function axisBreakPaths(cx, cy) {
   return [wave(cx - BREAK_GAP / 2), wave(cx + BREAK_GAP / 2)];
 }
 function wrapDescription(lines, charsPerLine) {
-  const out = [];
-  for (const line of lines) {
-    if (line === "") {
-      out.push({ text: "", kind: "plain" });
-      continue;
-    }
-    out.push(...wrapDescriptionLines([line], charsPerLine));
-  }
-  return out;
+  return wrapDescriptionLines([...lines], charsPerLine);
 }
 function renderBody(cardG, lines, bodyColor, palette, startBaseline = CARD_BODY_TOP + DESC_FONT, bulletColors = [], bulletMeta = []) {
   let y2 = startBaseline;
@@ -40156,22 +40208,22 @@ function renderBody(cardG, lines, bodyColor, palette, startBaseline = CARD_BODY_
   }
 }
 var CARD_W, H_MARGIN, TITLE_AREA, LEGEND_BAND, LEADER_ABOVE, LEADER_BELOW, DESC_FONT, DESC_LINE_H, CARD_PAD, CARD_BODY_TOP, TITLE_LINE_H, TITLE_MAX_W, DOT_R, MIN_SPACING, LANE_GAP, NEUTRAL_TAG, CARD_INSET, FAN_GAP, DATE_SUBTITLE_H, DATE_SUBTITLE_FONT, SHELF_TINT, SHELF_EDGE, SHELF_EDGE_STYLE, SHELF_LIP, ERA_BLOCK, ERA_BRACKET_CAP, ERA_BRACKET_PAD, ERA_SEAM_GAP, BREAK_HALF_H, BREAK_AMP, BREAK_GAP, ERA_LEG, ERA_LABEL_FONT, HL, DIM, ERA_HL, COLLAPSED, OFF, HIDDEN_ATTR, HOVER_CSS, DIMMABLE_SEL, PIN_ATTR;
-var init_chunk_YG5KQ55U = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YG5KQ55U.js"() {
+var init_chunk_VS7DGDT3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VS7DGDT3.js"() {
     init_chunk_H3HFC3SQ();
-    init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
-    init_chunk_BMR4CIEO();
-    init_chunk_HIMDUQT7();
+    init_chunk_NCT22MOD();
+    init_chunk_WGC42WJU();
+    init_chunk_KRKU6WRS();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_4MJOBVY7();
+    init_chunk_D5FANMSG();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_chunk_EXNKNJ65();
     init_src();
     CARD_W = 210;
@@ -40219,33 +40271,33 @@ var init_chunk_YG5KQ55U = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YVCD55ZX.js
-var renderer_YVCD55ZX_exports = {};
-__export(renderer_YVCD55ZX_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-BZZKS7KQ.js
+var renderer_BZZKS7KQ_exports = {};
+__export(renderer_BZZKS7KQ_exports, {
   clearEventLineMuted: () => clearEventLineMuted,
   focusEventLine: () => focusEventLine,
   renderEventLine: () => renderEventLine,
   renderEventLineForExport: () => renderEventLineForExport
 });
-var init_renderer_YVCD55ZX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YVCD55ZX.js"() {
-    init_chunk_YG5KQ55U();
+var init_renderer_BZZKS7KQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-BZZKS7KQ.js"() {
+    init_chunk_VS7DGDT3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-RBNOWHGM.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-RBNOWHGM.js
 var parser_RBNOWHGM_exports = {};
 __export(parser_RBNOWHGM_exports, {
   extractSymbols: () => extractSymbols,
   parseBody: () => parseBody
 });
 var init_parser_RBNOWHGM = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-RBNOWHGM.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-RBNOWHGM.js"() {
     init_chunk_EEKGMS63();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3BWDEYN.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-U3DGAE7L.js
 function pathStartX(d) {
   const m = d.match(/[Mm]\s*(-?[\d.]+)/);
   return m ? parseFloat(m[1]) : 0;
@@ -40540,13 +40592,13 @@ function renderBodyForExport(container, parsed, palette, isDark, exportDims, tag
   );
 }
 var esc2, TITLE_H, LEGEND_SCALE, LEGEND_BAND2, TITLE_PAD, BOTTOM_PAD, PAGE_MARGIN, OUTER_MARGIN, CENTER_COL, LABEL_FONT3, NOTE_FONT;
-var init_chunk_C3BWDEYN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-C3BWDEYN.js"() {
-    init_chunk_QDOYT6UW();
+var init_chunk_U3DGAE7L = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-U3DGAE7L.js"() {
+    init_chunk_44GBBTMU();
     init_chunk_6KFWC4CO();
     init_chunk_BDXC7MDK();
-    init_chunk_42IT4BG2();
     init_chunk_D5FANMSG();
+    init_chunk_42IT4BG2();
     init_chunk_EXNKNJ65();
     init_src();
     esc2 = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -40563,30 +40615,30 @@ var init_chunk_C3BWDEYN = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-M6AFKVLS.js
-var renderer_M6AFKVLS_exports = {};
-__export(renderer_M6AFKVLS_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-Q6TJ52B4.js
+var renderer_Q6TJ52B4_exports = {};
+__export(renderer_Q6TJ52B4_exports, {
   renderBody: () => renderBody2,
   renderBodyForExport: () => renderBodyForExport
 });
-var init_renderer_M6AFKVLS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-M6AFKVLS.js"() {
-    init_chunk_C3BWDEYN();
+var init_renderer_Q6TJ52B4 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-Q6TJ52B4.js"() {
+    init_chunk_U3DGAE7L();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4TX6U4ZU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-4TX6U4ZU.js
 var parser_4TX6U4ZU_exports = {};
 __export(parser_4TX6U4ZU_exports, {
   parseVersionControl: () => parseVersionControl
 });
 var init_parser_4TX6U4ZU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4TX6U4ZU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-4TX6U4ZU.js"() {
     init_chunk_D64FRGKU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IMXG673Y.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-IMXG673Y.js
 function clip(s, max3) {
   return s.length > max3 ? s.slice(0, max3 - 1) + "\u2026" : s;
 }
@@ -40998,7 +41050,7 @@ function renderVersionControlForExport(container, parsed, palette, isDark, expor
 }
 var LINE, DOT, CORNER, STACK, CIRCLED, TITLE_AREA2, SHELF_TINT2, SHELF_EDGE2, SHELF_LIP2, SHELF_PAD, SHELF_H, LEADER_GAP, ROW_GAP;
 var init_chunk_IMXG673Y = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IMXG673Y.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-IMXG673Y.js"() {
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_42IT4BG2();
@@ -41020,26 +41072,26 @@ var init_chunk_IMXG673Y = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-RJT3MOUU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-RJT3MOUU.js
 var renderer_RJT3MOUU_exports = {};
 __export(renderer_RJT3MOUU_exports, {
   renderVersionControl: () => renderVersionControl,
   renderVersionControlForExport: () => renderVersionControlForExport
 });
 var init_renderer_RJT3MOUU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-RJT3MOUU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-RJT3MOUU.js"() {
     init_chunk_IMXG673Y();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-CCAUZLYI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-CCAUZLYI.js
 var parser_CCAUZLYI_exports = {};
 __export(parser_CCAUZLYI_exports, {
   looksLikeOrg: () => looksLikeOrg,
   parseOrg: () => parseOrg
 });
 var init_parser_CCAUZLYI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-CCAUZLYI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-CCAUZLYI.js"() {
     init_chunk_PFG3EVRD();
   }
 });
@@ -41725,7 +41777,7 @@ var init_src10 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RBIX3HQQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PKFW6GJD.js
 function countDescendantNodes(node, hiddenCounts) {
   let count2 = 0;
   for (const child of node.children) {
@@ -42551,12 +42603,12 @@ function layoutOrg(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, expan
   };
 }
 var LABEL_FONT_SIZE2, META_FONT_SIZE2, META_LINE_HEIGHT2, HEADER_HEIGHT2, SEPARATOR_GAP2, CARD_H_PAD, CARD_V_PAD, MIN_CARD_WIDTH, H_GAP, V_GAP, MARGIN2, CONTAINER_PAD_X, CONTAINER_PAD_BOTTOM, CONTAINER_LABEL_HEIGHT, CONTAINER_META_LINE_HEIGHT2, STACK_V_GAP;
-var init_chunk_RBIX3HQQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RBIX3HQQ.js"() {
-    init_chunk_SCJ7CAJF();
-    init_chunk_4ASYQ347();
+var init_chunk_PKFW6GJD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PKFW6GJD.js"() {
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_SCJ7CAJF();
+    init_chunk_4ASYQ347();
     init_src10();
     LABEL_FONT_SIZE2 = 13;
     META_FONT_SIZE2 = 11;
@@ -42577,18 +42629,18 @@ var init_chunk_RBIX3HQQ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-WDXNSQQF.js
-var layout_WDXNSQQF_exports = {};
-__export(layout_WDXNSQQF_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-AQXLQVAJ.js
+var layout_AQXLQVAJ_exports = {};
+__export(layout_AQXLQVAJ_exports, {
   layoutOrg: () => layoutOrg
 });
-var init_layout_WDXNSQQF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-WDXNSQQF.js"() {
-    init_chunk_RBIX3HQQ();
+var init_layout_AQXLQVAJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-AQXLQVAJ.js"() {
+    init_chunk_PKFW6GJD();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js
 function countDescendants2(node, shape) {
   let count2 = 0;
   for (const child of shape.getChildren(node)) {
@@ -42634,11 +42686,11 @@ function collectTreeIds(roots, shape) {
   return ids;
 }
 var init_chunk_BS7SV7C3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BS7SV7C3.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js
 function cloneNode(node) {
   return {
     id: node.id,
@@ -42707,7 +42759,7 @@ function focusOrgTree(original, focusNodeId) {
 }
 var ORG_SHAPE;
 var init_chunk_UJ4FJLBF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UJ4FJLBF.js"() {
     init_chunk_BS7SV7C3();
     ORG_SHAPE = {
       getId: (node) => node.id,
@@ -42721,19 +42773,19 @@ var init_chunk_UJ4FJLBF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js
 var collapse_CLPJD2RL_exports = {};
 __export(collapse_CLPJD2RL_exports, {
   collapseOrgTree: () => collapseOrgTree,
   focusOrgTree: () => focusOrgTree
 });
 var init_collapse_CLPJD2RL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/collapse-CLPJD2RL.js"() {
     init_chunk_UJ4FJLBF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-L43KTQTW.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-L43KTQTW.js
 function runInExportContainer(width, height, fn2) {
   const container = document.createElement("div");
   container.style.width = `${width}px`;
@@ -42761,13 +42813,13 @@ function extractExportSvg(container, theme, palette) {
   return serializeSvg(svgEl);
 }
 var init_chunk_L43KTQTW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-L43KTQTW.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-L43KTQTW.js"() {
     init_chunk_NZ5QVASG();
     init_chunk_6KFWC4CO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HKKPUUNK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-A6XELFU6.js
 function nodeFill(palette, isDark, nodeColor2, fillMode) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, { mode: fillMode });
@@ -43169,23 +43221,23 @@ function renderOrgForExport(content, theme, palette) {
   });
 }
 var DIAGRAM_PADDING, MAX_SCALE, TITLE_HEIGHT, ANCESTOR_DOT_R, ANCESTOR_LABEL_FONT_SIZE, ANCESTOR_ROW_HEIGHT, ANCESTOR_TRAIL_BOTTOM_GAP, LEGEND_FIXED_GAP;
-var init_chunk_HKKPUUNK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HKKPUUNK.js"() {
+var init_chunk_A6XELFU6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-A6XELFU6.js"() {
     init_chunk_L43KTQTW();
     init_chunk_H3HFC3SQ();
     init_chunk_3CIOJ5YJ();
-    init_chunk_RBIX3HQQ();
+    init_chunk_PKFW6GJD();
     init_chunk_YYVTBZZC();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_PFG3EVRD();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
     init_src();
     DIAGRAM_PADDING = 20;
     MAX_SCALE = 3;
@@ -43198,26 +43250,26 @@ var init_chunk_HKKPUUNK = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5MMVCGN.js
-var renderer_J5MMVCGN_exports = {};
-__export(renderer_J5MMVCGN_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LNOBG226.js
+var renderer_LNOBG226_exports = {};
+__export(renderer_LNOBG226_exports, {
   renderOrg: () => renderOrg,
   renderOrgForExport: () => renderOrgForExport
 });
-var init_renderer_J5MMVCGN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5MMVCGN.js"() {
-    init_chunk_HKKPUUNK();
+var init_renderer_LNOBG226 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LNOBG226.js"() {
+    init_chunk_A6XELFU6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-5UZWYSIV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-5UZWYSIV.js
 var parser_5UZWYSIV_exports = {};
 __export(parser_5UZWYSIV_exports, {
   looksLikeSitemap: () => looksLikeSitemap,
   parseSitemap: () => parseSitemap
 });
 var init_parser_5UZWYSIV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-5UZWYSIV.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-5UZWYSIV.js"() {
     init_chunk_OHBIN74X();
   }
 });
@@ -44878,7 +44930,7 @@ var init_dagre_esm = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KIGV66SP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-57RE4N22.js
 function clipToRectBorder(cx, cy, w2, h, tx, ty) {
   const dx = tx - cx;
   const dy = ty - cy;
@@ -45454,11 +45506,11 @@ function layoutSitemap(parsed, hiddenCounts, activeTagGroup, hiddenAttributes, e
   };
 }
 var LABEL_FONT_SIZE3, META_FONT_SIZE3, CONTAINER_LABEL_FONT_SIZE2, META_LINE_HEIGHT3, HEADER_HEIGHT3, SEPARATOR_GAP3, CARD_H_PAD2, CARD_V_PAD2, MIN_CARD_WIDTH2, MARGIN3, CONTAINER_PAD_X2, CONTAINER_PAD_TOP, CONTAINER_PAD_BOTTOM2, CONTAINER_LABEL_HEIGHT2, CONTAINER_META_LINE_HEIGHT3, OVERLAP_GAP;
-var init_chunk_KIGV66SP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KIGV66SP.js"() {
+var init_chunk_57RE4N22 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-57RE4N22.js"() {
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
-    init_chunk_D5FANMSG();
     init_dagre_esm();
     LABEL_FONT_SIZE3 = 13;
     META_FONT_SIZE3 = 11;
@@ -45479,18 +45531,18 @@ var init_chunk_KIGV66SP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-A5UVXINF.js
-var layout_A5UVXINF_exports = {};
-__export(layout_A5UVXINF_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-EQTOVNEE.js
+var layout_EQTOVNEE_exports = {};
+__export(layout_EQTOVNEE_exports, {
   layoutSitemap: () => layoutSitemap
 });
-var init_layout_A5UVXINF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-A5UVXINF.js"() {
-    init_chunk_KIGV66SP();
+var init_layout_EQTOVNEE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-EQTOVNEE.js"() {
+    init_chunk_57RE4N22();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js
 function buildParentMap(roots, shape) {
   const map2 = /* @__PURE__ */ new Map();
   const walk = (nodes) => {
@@ -45589,7 +45641,7 @@ function collapseSitemapTree(original, collapsedIds) {
 }
 var SITEMAP_SHAPE, SITEMAP_EDGE_SHAPE;
 var init_chunk_UNCCZ3NU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UNCCZ3NU.js"() {
     init_chunk_BS7SV7C3();
     SITEMAP_SHAPE = {
       getId: (node) => node.id,
@@ -45612,18 +45664,18 @@ var init_chunk_UNCCZ3NU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js
 var collapse_ZWUFFCK2_exports = {};
 __export(collapse_ZWUFFCK2_exports, {
   collapseSitemapTree: () => collapseSitemapTree
 });
 var init_collapse_ZWUFFCK2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/collapse-ZWUFFCK2.js"() {
     init_chunk_UNCCZ3NU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W2I2EXSC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LZX3RLRP.js
 function nodeFill2(palette, isDark, nodeColor2, fillMode) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, { mode: fillMode });
@@ -45990,7 +46042,7 @@ function renderLegend(parent, legendGroups, palette, isDark, activeTagGroup, fix
 }
 async function renderSitemapForExport(content, theme, palette) {
   const { parseSitemap: parseSitemap2 } = await Promise.resolve().then(() => (init_parser_5UZWYSIV(), parser_5UZWYSIV_exports));
-  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_A5UVXINF(), layout_A5UVXINF_exports));
+  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_EQTOVNEE(), layout_EQTOVNEE_exports));
   const { getPalette: getPalette2 } = await Promise.resolve().then(() => (init_palettes_WO3VA6NU(), palettes_WO3VA6NU_exports));
   const isDark = theme === "dark";
   const effectivePalette = palette ?? (isDark ? getPalette2("nord").dark : getPalette2("nord").light);
@@ -46036,24 +46088,24 @@ async function renderSitemapForExport(content, theme, palette) {
   return svgHtml;
 }
 var DIAGRAM_PADDING2, MAX_SCALE2, TITLE_HEIGHT2, ARROWHEAD_W, ARROWHEAD_H, EDGE_LABEL_FONT_SIZE, LEGEND_FIXED_GAP2, lineGenerator, lineGeneratorLinear;
-var init_chunk_W2I2EXSC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W2I2EXSC.js"() {
+var init_chunk_LZX3RLRP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LZX3RLRP.js"() {
     init_chunk_H3HFC3SQ();
-    init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
     init_chunk_NZ5QVASG();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_IYULMRBE();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     DIAGRAM_PADDING2 = 20;
@@ -46068,19 +46120,19 @@ var init_chunk_W2I2EXSC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CRAIC4ER.js
-var renderer_CRAIC4ER_exports = {};
-__export(renderer_CRAIC4ER_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-XSZ5MUIF.js
+var renderer_XSZ5MUIF_exports = {};
+__export(renderer_XSZ5MUIF_exports, {
   renderSitemap: () => renderSitemap,
   renderSitemapForExport: () => renderSitemapForExport
 });
-var init_renderer_CRAIC4ER = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CRAIC4ER.js"() {
-    init_chunk_W2I2EXSC();
+var init_renderer_XSZ5MUIF = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-XSZ5MUIF.js"() {
+    init_chunk_LZX3RLRP();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/legend-constants-QQU3QYBF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/legend-constants-QQU3QYBF.js
 var legend_constants_QQU3QYBF_exports = {};
 __export(legend_constants_QQU3QYBF_exports, {
   CONTROLS_ICON_PATH: () => CONTROLS_ICON_PATH,
@@ -46107,23 +46159,23 @@ __export(legend_constants_QQU3QYBF_exports, {
   truncateLegendText: () => truncateLegendText
 });
 var init_legend_constants_QQU3QYBF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/legend-constants-QQU3QYBF.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/legend-constants-QQU3QYBF.js"() {
     init_chunk_SCJ7CAJF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-IPBEW2DG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-IPBEW2DG.js
 var parser_IPBEW2DG_exports = {};
 __export(parser_IPBEW2DG_exports, {
   parseKanban: () => parseKanban
 });
 var init_parser_IPBEW2DG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-IPBEW2DG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-IPBEW2DG.js"() {
     init_chunk_X32RDWT5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4DAZO3U.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3G7BCZ4J.js
 function isArchiveColumn(name) {
   return name.toLowerCase() === ARCHIVE_COLUMN_NAME;
 }
@@ -46847,22 +46899,22 @@ function renderSwimlaneCard(parent, cardLayout, tagGroups, activeTagGroup, palet
   }
 }
 var ARCHIVE_COLUMN_NAME, DIAGRAM_PADDING3, COLUMN_GAP, COLUMN_HEADER_HEIGHT, COLUMN_PADDING, COLUMN_MIN_WIDTH, CARD_HEADER_HEIGHT, CARD_META_LINE_HEIGHT, CARD_SEPARATOR_GAP, CARD_GAP, CARD_PADDING_X, CARD_PADDING_Y, CARD_STROKE_WIDTH, TITLE_HEIGHT3, COLUMN_HEADER_FONT_SIZE, CARD_TITLE_FONT_SIZE, CARD_META_FONT_SIZE, WIP_FONT_SIZE, COLUMN_RADIUS, COLUMN_HEADER_RADIUS, COLLAPSED_COLUMN_WIDTH, COLLAPSED_LANE_HEIGHT, LANE_HEADER_WIDTH, LANE_GAP2;
-var init_chunk_A4DAZO3U = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-A4DAZO3U.js"() {
-    init_chunk_3HDBAXF5();
+var init_chunk_3G7BCZ4J = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3G7BCZ4J.js"() {
     init_chunk_3CIOJ5YJ();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_NZ5QVASG();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_X32RDWT5();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
     init_src();
     ARCHIVE_COLUMN_NAME = "archive";
     DIAGRAM_PADDING3 = 20;
@@ -46891,19 +46943,19 @@ var init_chunk_A4DAZO3U = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5CU6GYF2.js
-var renderer_5CU6GYF2_exports = {};
-__export(renderer_5CU6GYF2_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-3WYLLPQL.js
+var renderer_3WYLLPQL_exports = {};
+__export(renderer_3WYLLPQL_exports, {
   renderKanban: () => renderKanban,
   renderKanbanForExport: () => renderKanbanForExport
 });
-var init_renderer_5CU6GYF2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5CU6GYF2.js"() {
-    init_chunk_A4DAZO3U();
+var init_renderer_3WYLLPQL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-3WYLLPQL.js"() {
+    init_chunk_3G7BCZ4J();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-HMQZPPOK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-HMQZPPOK.js
 var parser_HMQZPPOK_exports = {};
 __export(parser_HMQZPPOK_exports, {
   extractSymbols: () => extractSymbols4,
@@ -46911,15 +46963,15 @@ __export(parser_HMQZPPOK_exports, {
   parseClassDiagram: () => parseClassDiagram
 });
 var init_parser_HMQZPPOK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-HMQZPPOK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-HMQZPPOK.js"() {
     init_chunk_VYEQPPS6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js
 var NOTE_MAX_W, NOTE_FOLD, NOTE_PAD_H, NOTE_PAD_V, NOTE_FONT_SIZE, NOTE_LINE_H, NOTE_GAP, NOTE_BULLET_INDENT;
 var init_chunk_5DH3KYFH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5DH3KYFH.js"() {
     NOTE_MAX_W = 200;
     NOTE_FOLD = 10;
     NOTE_PAD_H = 8;
@@ -46931,7 +46983,7 @@ var init_chunk_5DH3KYFH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js
 function placeNotes(obstacles, requests, direction) {
   const placements = /* @__PURE__ */ new Map();
   const occupied = obstacles.map((p2) => ({
@@ -47036,14 +47088,14 @@ function noteCanvasShift(minX, minY, margin = 20) {
 }
 var NOTE_CLEAR, intersects;
 var init_chunk_6EK55ART = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6EK55ART.js"() {
     init_chunk_5DH3KYFH();
     NOTE_CLEAR = 14;
     intersects = (a, b, pad3) => !(a.right + pad3 <= b.left || b.right + pad3 <= a.left || a.bottom + pad3 <= b.top || b.bottom + pad3 <= a.top);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UU6LUYUH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VJARCVMH.js
 function normalizeBulletLine(line) {
   return line.replace(/^\s*[-*]\s+/, "\u2022 ");
 }
@@ -47073,15 +47125,15 @@ function noteBoxSize(body, opts = {}) {
   const height = Math.max(1, lines.length) * NOTE_LINE_H + NOTE_PAD_V * 2;
   return { width, height, lines };
 }
-var init_chunk_UU6LUYUH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UU6LUYUH.js"() {
+var init_chunk_VJARCVMH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-VJARCVMH.js"() {
     init_chunk_5DH3KYFH();
-    init_chunk_BMR4CIEO();
+    init_chunk_NCT22MOD();
     init_chunk_4ASYQ347();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5HWPEYWB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LDVUPGWC.js
 function buildPlacedNotes(anchors, noteByNode, direction, collapsedNotes) {
   const placed = /* @__PURE__ */ new Map();
   if (noteByNode.size === 0) return placed;
@@ -47142,14 +47194,14 @@ function buildPlacedNotes(anchors, noteByNode, direction, collapsedNotes) {
   }
   return placed;
 }
-var init_chunk_5HWPEYWB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5HWPEYWB.js"() {
+var init_chunk_LDVUPGWC = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LDVUPGWC.js"() {
     init_chunk_6EK55ART();
-    init_chunk_UU6LUYUH();
+    init_chunk_VJARCVMH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D3WTEBGT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-46NVO5UA.js
 function computeNodeDimensions(node) {
   const fields = node.members.filter((m) => !m.isMethod);
   const methods = node.members.filter((m) => m.isMethod);
@@ -47326,9 +47378,9 @@ function layoutClassDiagram(parsed, options) {
   };
 }
 var MIN_WIDTH, PADDING_X, HEADER_BASE, CLASS_FONT_SIZE, MEMBER_FONT_SIZE, MODIFIER_BADGE, MEMBER_LINE_HEIGHT, COMPARTMENT_PADDING_Y, SEPARATOR_HEIGHT;
-var init_chunk_D3WTEBGT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-D3WTEBGT.js"() {
-    init_chunk_5HWPEYWB();
+var init_chunk_46NVO5UA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-46NVO5UA.js"() {
+    init_chunk_LDVUPGWC();
     init_chunk_6EK55ART();
     init_chunk_7NK42OIB();
     init_chunk_4ASYQ347();
@@ -47345,18 +47397,18 @@ var init_chunk_D3WTEBGT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UFZQI6SX.js
-var layout_UFZQI6SX_exports = {};
-__export(layout_UFZQI6SX_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-RIS5VTGL.js
+var layout_RIS5VTGL_exports = {};
+__export(layout_RIS5VTGL_exports, {
   layoutClassDiagram: () => layoutClassDiagram
 });
-var init_layout_UFZQI6SX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UFZQI6SX.js"() {
-    init_chunk_D3WTEBGT();
+var init_layout_RIS5VTGL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-RIS5VTGL.js"() {
+    init_chunk_46NVO5UA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U2BKSEKU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-H52HJ26L.js
 function renderNoteConnector(parent, x12, y12, x22, y2, palette) {
   parent.append("line").attr("x1", x12).attr("y1", y12).attr("x2", x22).attr("y2", y2).attr("stroke", palette.textMuted).attr("stroke-width", NOTE_STROKE_WIDTH).attr("stroke-opacity", NOTE_STROKE_OPACITY).attr("class", "note-connector").style("pointer-events", "none");
 }
@@ -47465,10 +47517,10 @@ function renderNoteBadge(parent, center, palette, opts) {
   return g;
 }
 var NOTE_STROKE_WIDTH, NOTE_STROKE_OPACITY, NOTE_BADGE_RADIUS, NOTE_BADGE_OPACITY;
-var init_chunk_U2BKSEKU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U2BKSEKU.js"() {
+var init_chunk_H52HJ26L = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-H52HJ26L.js"() {
     init_chunk_5DH3KYFH();
-    init_chunk_3HDBAXF5();
+    init_chunk_WGC42WJU();
     init_chunk_42IT4BG2();
     NOTE_STROKE_WIDTH = 0.6;
     NOTE_STROKE_OPACITY = 0.6;
@@ -47477,7 +47529,7 @@ var init_chunk_U2BKSEKU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YJUF2N3C.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-X3ON4M5S.js
 function modifierColor(modifier, palette, colorOff) {
   if (colorOff) return palette.textMuted;
   switch (modifier) {
@@ -47847,23 +47899,23 @@ function renderClassDiagramForExport(content, theme, palette) {
   });
 }
 var DIAGRAM_PADDING4, MAX_SCALE3, CLASS_FONT_SIZE2, MEMBER_FONT_SIZE2, EDGE_LABEL_FONT_SIZE2, MEMBER_LINE_HEIGHT2, COMPARTMENT_PADDING_Y2, MEMBER_PADDING_X, CLASS_TYPE_MAP, CLASS_TYPE_ORDER, LEGEND_GROUP_NAME, lineGenerator2;
-var init_chunk_YJUF2N3C = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YJUF2N3C.js"() {
-    init_chunk_U2BKSEKU();
+var init_chunk_X3ON4M5S = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-X3ON4M5S.js"() {
+    init_chunk_H52HJ26L();
     init_chunk_L43KTQTW();
-    init_chunk_D3WTEBGT();
+    init_chunk_46NVO5UA();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_VYEQPPS6();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     DIAGRAM_PADDING4 = 20;
@@ -47886,19 +47938,19 @@ var init_chunk_YJUF2N3C = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-4VLQKKTV.js
-var renderer_4VLQKKTV_exports = {};
-__export(renderer_4VLQKKTV_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-I2P5FTZ2.js
+var renderer_I2P5FTZ2_exports = {};
+__export(renderer_I2P5FTZ2_exports, {
   renderClassDiagram: () => renderClassDiagram,
   renderClassDiagramForExport: () => renderClassDiagramForExport
 });
-var init_renderer_4VLQKKTV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-4VLQKKTV.js"() {
-    init_chunk_YJUF2N3C();
+var init_renderer_I2P5FTZ2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-I2P5FTZ2.js"() {
+    init_chunk_X3ON4M5S();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q62VR2UJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-Q62VR2UJ.js
 var parser_Q62VR2UJ_exports = {};
 __export(parser_Q62VR2UJ_exports, {
   extractSymbols: () => extractSymbols5,
@@ -47906,12 +47958,12 @@ __export(parser_Q62VR2UJ_exports, {
   parseERDiagram: () => parseERDiagram
 });
 var init_parser_Q62VR2UJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q62VR2UJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-Q62VR2UJ.js"() {
     init_chunk_ULR3BVNH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AN465MXC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SZCZOA2L.js
 function computeNodeDimensions2(table) {
   let maxTextWidth = measureText(table.name, TABLE_FONT_SIZE);
   for (const col of table.columns) {
@@ -48210,9 +48262,9 @@ function layoutERDiagram(parsed, options) {
   };
 }
 var MIN_WIDTH2, PADDING_X2, HEADER_BASE2, TABLE_FONT_SIZE, COLUMN_FONT_SIZE, EDGE_LABEL_FONT_SIZE3, CONSTRAINT_ICON_WIDTH, MEMBER_LINE_HEIGHT3, COMPARTMENT_PADDING_Y3, SEPARATOR_HEIGHT2, HALF_MARGIN, COMP_GAP;
-var init_chunk_AN465MXC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AN465MXC.js"() {
-    init_chunk_5HWPEYWB();
+var init_chunk_SZCZOA2L = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SZCZOA2L.js"() {
+    init_chunk_LDVUPGWC();
     init_chunk_6EK55ART();
     init_chunk_7NK42OIB();
     init_chunk_4ASYQ347();
@@ -48232,18 +48284,18 @@ var init_chunk_AN465MXC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-3XFPPFXI.js
-var layout_3XFPPFXI_exports = {};
-__export(layout_3XFPPFXI_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-TCWNJ2OZ.js
+var layout_TCWNJ2OZ_exports = {};
+__export(layout_TCWNJ2OZ_exports, {
   layoutERDiagram: () => layoutERDiagram
 });
-var init_layout_3XFPPFXI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-3XFPPFXI.js"() {
-    init_chunk_AN465MXC();
+var init_layout_TCWNJ2OZ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-TCWNJ2OZ.js"() {
+    init_chunk_SZCZOA2L();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-N2KO445N.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-M3IYDSI7.js
 function classifyEREntities(tables, relationships) {
   const result = /* @__PURE__ */ new Map();
   if (tables.length === 0) return result;
@@ -48737,24 +48789,24 @@ function renderERDiagramForExport(content, theme, palette) {
   }
 }
 var ROLE_COLORS, ROLE_LABELS, ROLE_ORDER, LOOKUP_NAME_SUFFIXES, DIAGRAM_PADDING5, MAX_SCALE4, TABLE_FONT_SIZE2, COLUMN_FONT_SIZE2, EDGE_LABEL_FONT_SIZE4, MEMBER_LINE_HEIGHT4, COMPARTMENT_PADDING_Y4, MEMBER_PADDING_X2, lineGenerator3;
-var init_chunk_N2KO445N = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-N2KO445N.js"() {
-    init_chunk_U2BKSEKU();
-    init_chunk_AN465MXC();
+var init_chunk_M3IYDSI7 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-M3IYDSI7.js"() {
+    init_chunk_SZCZOA2L();
+    init_chunk_H52HJ26L();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
     init_chunk_NZ5QVASG();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_ULR3BVNH();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     ROLE_COLORS = {
@@ -48800,30 +48852,30 @@ var init_chunk_N2KO445N = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5TL5ZX4.js
-var renderer_J5TL5ZX4_exports = {};
-__export(renderer_J5TL5ZX4_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-HDLM6OY6.js
+var renderer_HDLM6OY6_exports = {};
+__export(renderer_HDLM6OY6_exports, {
   renderERDiagram: () => renderERDiagram,
   renderERDiagramForExport: () => renderERDiagramForExport
 });
-var init_renderer_J5TL5ZX4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-J5TL5ZX4.js"() {
-    init_chunk_N2KO445N();
+var init_renderer_HDLM6OY6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-HDLM6OY6.js"() {
+    init_chunk_M3IYDSI7();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QEWSTNEJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-QEWSTNEJ.js
 var parser_QEWSTNEJ_exports = {};
 __export(parser_QEWSTNEJ_exports, {
   parseSketch: () => parseSketch
 });
 var init_parser_QEWSTNEJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QEWSTNEJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-QEWSTNEJ.js"() {
     init_chunk_USFZQPJ2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6IVXRTXH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6IVXRTXH.js
 function collapseSketch(parsed, collapsedLabels) {
   const collapsed = collapsedLabels ?? new Set(parsed.boxes.filter((b) => b.collapsed).map((b) => b.label));
   if (collapsed.size === 0) {
@@ -49295,7 +49347,7 @@ function layoutSketch(parsed, options = {}) {
 }
 var SKETCH_PHI, SKETCH_GEOMETRY, SKETCH_FOOT_W, SKETCH_FOOT_H, SKETCH_HALF_SLOT_X, SKETCH_HALF_SLOT_Y, SKETCH_SEP, SKETCH_SLOT_X, SKETCH_SLOT_Y;
 var init_chunk_6IVXRTXH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6IVXRTXH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6IVXRTXH.js"() {
     init_chunk_RT7ACF77();
     init_chunk_OLMWTJVU();
     SKETCH_PHI = (1 + Math.sqrt(5)) / 2;
@@ -49327,18 +49379,18 @@ var init_chunk_6IVXRTXH = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-NX37NSRY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-NX37NSRY.js
 var layout_NX37NSRY_exports = {};
 __export(layout_NX37NSRY_exports, {
   layoutSketch: () => layoutSketch
 });
 var init_layout_NX37NSRY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-NX37NSRY.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-NX37NSRY.js"() {
     init_chunk_6IVXRTXH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3R67RRPC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-G3L4GWLA.js
 function segWidth(seg, fontSize) {
   const w2 = measureText(seg.text, fontSize);
   return seg.bold ? w2 * BOLD_WIDTH_FACTOR2 : w2;
@@ -50390,17 +50442,17 @@ function renderSketchForExport(container, parsed, layout, palette, isDark, optio
   });
 }
 var BOLD_WIDTH_FACTOR2, INDENT_PX, BULLET_HANG_PX, ELLIPSIS, BULLET, DIAGRAM_PADDING6, TITLE_Y2, TITLE_FONT_SIZE2, NODE_STROKE_WIDTH2, EDGE_STROKE_WIDTH2, EDGE_HIT_WIDTH, ARROWHEAD_W2, ARROWHEAD_H2, DASH, BAND_LABEL_FONT_SIZE, BAND_LABEL_OPACITY, NOTE_FONT_SIZE2, COLLAPSE_BAR_HEIGHT2, EDGE_LABEL_FONT_SIZE5, CURVE_HANDLE_MIN, CURVE_HANDLE_MAX, CARD_HEADER_H, CARD_LABEL_MAX, CARD_LABEL_MIN, CARD_META_FONT, CARD_TITLE_MAX, SIDES, EDGE_OBSTACLE_INSET, EDGE_SAMPLES, POLY_SAMPLES, HOP_R;
-var init_chunk_3R67RRPC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-3R67RRPC.js"() {
+var init_chunk_G3L4GWLA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-G3L4GWLA.js"() {
     init_chunk_H3HFC3SQ();
     init_chunk_3CIOJ5YJ();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
+    init_chunk_D5FANMSG();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_src();
     BOLD_WIDTH_FACTOR2 = 1.06;
     INDENT_PX = 12;
@@ -50436,32 +50488,32 @@ var init_chunk_3R67RRPC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-DZ5N6BHW.js
-var renderer_DZ5N6BHW_exports = {};
-__export(renderer_DZ5N6BHW_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-FQLFE3TQ.js
+var renderer_FQLFE3TQ_exports = {};
+__export(renderer_FQLFE3TQ_exports, {
   renderSketch: () => renderSketch,
   renderSketchForExport: () => renderSketchForExport,
   sketchEdgeGeometry: () => sketchEdgeGeometry
 });
-var init_renderer_DZ5N6BHW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-DZ5N6BHW.js"() {
-    init_chunk_3R67RRPC();
+var init_renderer_FQLFE3TQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-FQLFE3TQ.js"() {
+    init_chunk_G3L4GWLA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PQXN6SBB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-PQXN6SBB.js
 var parser_PQXN6SBB_exports = {};
 __export(parser_PQXN6SBB_exports, {
   looksLikeBoxesAndLines: () => looksLikeBoxesAndLines,
   parseBoxesAndLines: () => parseBoxesAndLines
 });
 var init_parser_PQXN6SBB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PQXN6SBB.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-PQXN6SBB.js"() {
     init_chunk_NHZAYL2X();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQOC2MD6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ORZQVUGW.js
 function splitCamelCase(word) {
   const parts = [];
   let start = 0;
@@ -50960,7 +51012,7 @@ function renderBoxesAndLines(container, parsed, layout, palette, isDark, options
         maxTextWidth / (sDescFontSize * CHAR_WIDTH_RATIO)
       );
       const descLineH = sDescFontSize * DESC_LINE_HEIGHT;
-      const displayLen2 = (text) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*(.+?)\*\*/g, "$1").replace(/\*(.+?)\*/g, "$1").replace(/`(.+?)`/g, "$1").replace(/https?:\/\/\S+/g, (u) => u.slice(0, 20)).length;
+      const displayLen2 = (text) => stripInlineMarkdown(text).length;
       const normalizedLines = [];
       for (const descLine of desc) {
         let normalized = descLine.startsWith("- ") ? "\u2022 " + descLine.slice(2) : descLine;
@@ -51187,22 +51239,22 @@ function renderBoxesAndLinesForExport(container, parsed, layout, palette, isDark
   });
 }
 var DIAGRAM_PADDING7, NODE_FONT_SIZE, MIN_NODE_FONT_SIZE, EDGE_LABEL_FONT_SIZE6, NODE_RX, COLLAPSE_BAR_HEIGHT3, ARROWHEAD_W3, ARROWHEAD_H3, DESC_FONT_SIZE, DESC_LINE_HEIGHT, MAX_DESC_LINES, NODE_TEXT_PADDING, GROUP_RX, GROUP_LABEL_FONT_SIZE, GROUP_LABEL_ZONE, RAMP_FLOOR, VALUE_FONT_SIZE, lineGeneratorLR, lineGeneratorTB;
-var init_chunk_CQOC2MD6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CQOC2MD6.js"() {
-    init_chunk_U2BKSEKU();
-    init_chunk_3HDBAXF5();
+var init_chunk_ORZQVUGW = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ORZQVUGW.js"() {
+    init_chunk_H52HJ26L();
     init_chunk_3CIOJ5YJ();
-    init_chunk_BMR4CIEO();
+    init_chunk_NCT22MOD();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_4ASYQ347();
-    init_chunk_42IT4BG2();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_4ASYQ347();
+    init_chunk_42IT4BG2();
     init_chunk_EXNKNJ65();
     init_src();
     init_src9();
@@ -51228,29 +51280,29 @@ var init_chunk_CQOC2MD6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-52S6JM5R.js
-var renderer_52S6JM5R_exports = {};
-__export(renderer_52S6JM5R_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-EJ3FETD2.js
+var renderer_EJ3FETD2_exports = {};
+__export(renderer_EJ3FETD2_exports, {
   renderBoxesAndLines: () => renderBoxesAndLines,
   renderBoxesAndLinesForExport: () => renderBoxesAndLinesForExport
 });
-var init_renderer_52S6JM5R = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-52S6JM5R.js"() {
-    init_chunk_CQOC2MD6();
+var init_renderer_EJ3FETD2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-EJ3FETD2.js"() {
+    init_chunk_ORZQVUGW();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WTTIODDV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-WTTIODDV.js
 var PHI, NODE_HEIGHT, NODE_WIDTH;
 var init_chunk_WTTIODDV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WTTIODDV.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-WTTIODDV.js"() {
     PHI = 1.618;
     NODE_HEIGHT = 60;
     NODE_WIDTH = Math.round(NODE_HEIGHT * PHI);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W4EKQ2P6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-W4EKQ2P6.js
 function rng(s) {
   return () => {
     s |= 0;
@@ -51922,7 +51974,7 @@ function groupedTierCandidates(parsed, sizes, opts) {
 }
 var NODESEP, RANKSEP, DUMMY_THICK, MARGIN4, GROUP_PAD, GROUP_LABEL_ZONE2, GROUP_GAP, TIER_GAP, W_REAL_REAL, W_REAL_DUMMY, W_DUMMY_DUMMY;
 var init_chunk_W4EKQ2P6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-W4EKQ2P6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-W4EKQ2P6.js"() {
     init_chunk_WTTIODDV();
     NODESEP = 50;
     RANKSEP = 60;
@@ -51938,9 +51990,9 @@ var init_chunk_W4EKQ2P6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-search-I4VNIRGT.js
-var layout_search_I4VNIRGT_exports = {};
-__export(layout_search_I4VNIRGT_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-search-6CVR2MTZ.js
+var layout_search_6CVR2MTZ_exports = {};
+__export(layout_search_6CVR2MTZ_exports, {
   countEdgeNearMiss: () => countEdgeNearMiss,
   countEdgeNodePierces: () => countEdgeNodePierces,
   countEdgeOverlaps: () => countEdgeOverlaps,
@@ -53691,9 +53743,9 @@ async function layoutBoxesAndLinesSearch(parsed, collapseInfo, opts) {
   return best;
 }
 var NODESEP2, RANKSEP2, DUMMY_THICK2, MARGIN5, W_REAL_REAL2, W_REAL_DUMMY2, W_DUMMY_DUMMY2, GROUP_PAD2, GROUP_LABEL_ZONE3, MARGIN22, MIN_GAP, gid, left, right, top, bottom, DEFAULT_LAMBDA, ESCALATE_THRESHOLD, ESCALATE_MAX_N, ESCALATE_SEEDS, ESCALATE_REFINE, DEFAULT_SEARCH_BUDGET_MS, splineGen, PATH_TOKEN_RE, FLAT_CACHE, GROUP_LABEL_ZONE22;
-var init_layout_search_I4VNIRGT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-search-I4VNIRGT.js"() {
-    init_chunk_R7ECJQTB();
+var init_layout_search_6CVR2MTZ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-search-6CVR2MTZ.js"() {
+    init_chunk_3M6MKHIQ();
     init_chunk_W4EKQ2P6();
     init_chunk_WTTIODDV();
     init_dagre_esm();
@@ -53727,7 +53779,7 @@ var init_layout_search_I4VNIRGT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R7ECJQTB.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3M6MKHIQ.js
 function measureEdgeLabel(label, fontSize = EDGE_LABEL_FONT_SIZE7, maxWidth = LABEL_MAX_WIDTH) {
   let lines = wrapTextToWidth(label, fontSize, maxWidth, { hardBreak: true });
   if (lines.length > MAX_LABEL_LINES) {
@@ -53996,7 +54048,7 @@ function computeNodeSize(node, reserveValueRow) {
   return { width: w2, height: Math.max(NODE_HEIGHT, totalHeight) };
 }
 async function layoutBoxesAndLines(parsed, collapseInfo, layoutOptions) {
-  const { layoutBoxesAndLinesSearch: layoutBoxesAndLinesSearch2 } = await Promise.resolve().then(() => (init_layout_search_I4VNIRGT(), layout_search_I4VNIRGT_exports));
+  const { layoutBoxesAndLinesSearch: layoutBoxesAndLinesSearch2 } = await Promise.resolve().then(() => (init_layout_search_6CVR2MTZ(), layout_search_6CVR2MTZ_exports));
   const searchOpts = {
     ...layoutOptions?.hideDescriptions !== void 0 && {
       hideDescriptions: layoutOptions.hideDescriptions
@@ -54146,10 +54198,10 @@ function applyParallelEdgeOffsets(layout) {
   };
 }
 var EDGE_LABEL_FONT_SIZE7, LABEL_MAX_WIDTH, MAX_LABEL_LINES, LABEL_LINE_HEIGHT, H_PAD, V_PAD, BOX_CLEAR_PAD, PERP_STEP, PERP_MAX, SLIDE_SAMPLES, MARGIN6, MAX_PARALLEL_EDGES, PARALLEL_SPACING, DESC_NODE_WIDTH, DESC_FONT_SIZE2, DESC_LINE_HEIGHT2, DESC_PADDING, SEPARATOR_GAP4, MAX_DESC_LINES2, MAX_LABEL_LINES2, LABEL_LINE_HEIGHT2, LABEL_PAD, VALUE_ROW_FONT, VALUE_ROW_H;
-var init_chunk_R7ECJQTB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-R7ECJQTB.js"() {
+var init_chunk_3M6MKHIQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3M6MKHIQ.js"() {
     init_chunk_WTTIODDV();
-    init_chunk_5HWPEYWB();
+    init_chunk_LDVUPGWC();
     init_chunk_6EK55ART();
     init_chunk_7NK42OIB();
     init_chunk_4ASYQ347();
@@ -54180,30 +54232,30 @@ var init_chunk_R7ECJQTB = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-2BJDECLZ.js
-var layout_2BJDECLZ_exports = {};
-__export(layout_2BJDECLZ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-NU5LQ4UP.js
+var layout_NU5LQ4UP_exports = {};
+__export(layout_NU5LQ4UP_exports, {
   computeNodeSize: () => computeNodeSize,
   layoutBoxesAndLines: () => layoutBoxesAndLines
 });
-var init_layout_2BJDECLZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-2BJDECLZ.js"() {
-    init_chunk_R7ECJQTB();
+var init_layout_NU5LQ4UP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-NU5LQ4UP.js"() {
+    init_chunk_3M6MKHIQ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PEBXIOPX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-PEBXIOPX.js
 var parser_PEBXIOPX_exports = {};
 __export(parser_PEBXIOPX_exports, {
   parseSwimlane: () => parseSwimlane
 });
 var init_parser_PEBXIOPX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-PEBXIOPX.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-PEBXIOPX.js"() {
     init_chunk_5VLUAAAE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-S6QDCFEU.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-S6QDCFEU.js
 function nodeSize(shape) {
   if (shape === "exclusive" || shape === "parallel")
     return { w: DIAMOND, h: DIAMOND };
@@ -54605,7 +54657,7 @@ function layoutSwimlane(parsed) {
 }
 var MARGIN7, COL_GAP, NODE_W2, NODE_H, DIAMOND, TERM_D, INTRA_GAP, LANE_PAD, MIN_LANE, LANE_HEADER, PHASE_HEADER, BACK_CHANNEL, BACK_STEP;
 var init_chunk_S6QDCFEU = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-S6QDCFEU.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-S6QDCFEU.js"() {
     init_chunk_W4EKQ2P6();
     MARGIN7 = 30;
     COL_GAP = 64;
@@ -54623,18 +54675,18 @@ var init_chunk_S6QDCFEU = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-OHAIIXBC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-OHAIIXBC.js
 var layout_OHAIIXBC_exports = {};
 __export(layout_OHAIIXBC_exports, {
   layoutSwimlane: () => layoutSwimlane
 });
 var init_layout_OHAIIXBC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-OHAIIXBC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-OHAIIXBC.js"() {
     init_chunk_S6QDCFEU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js
 function appendArrowheadMarkers(defs, opts) {
   const { idPrefix, width, height, baseFill, colors } = opts;
   const appendMarker = (id, fill2) => {
@@ -54646,11 +54698,11 @@ function appendArrowheadMarkers(defs, opts) {
   }
 }
 var init_chunk_LP7EC4MI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LP7EC4MI.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PECYPUJJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SFVG4AIG.js
 function roundedPolyline(pts, radius) {
   if (pts.length < 3) {
     return pts.map((p2, i) => `${i ? "L" : "M"}${p2.x} ${p2.y}`).join(" ");
@@ -55009,14 +55061,14 @@ function drawCenteredLabel(g, label, cx, cy, fill2, fontSize, tight = false, hal
   });
 }
 var NODE_FONT_SIZE2, LANE_LABEL_FONT, PHASE_LABEL_FONT, EDGE_LABEL_FONT, NODE_RX2, NODE_STROKE, EDGE_STROKE, EDGE_CORNER_R, ARROW_W, ARROW_H, LANE_RADIUS, LANE_INSET;
-var init_chunk_PECYPUJJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PECYPUJJ.js"() {
+var init_chunk_SFVG4AIG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SFVG4AIG.js"() {
     init_chunk_LP7EC4MI();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_42IT4BG2();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_42IT4BG2();
     init_chunk_EXNKNJ65();
     init_src();
     NODE_FONT_SIZE2 = 12;
@@ -55034,29 +55086,29 @@ var init_chunk_PECYPUJJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YWYX6WAI.js
-var renderer_YWYX6WAI_exports = {};
-__export(renderer_YWYX6WAI_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LU4R3BP2.js
+var renderer_LU4R3BP2_exports = {};
+__export(renderer_LU4R3BP2_exports, {
   renderSwimlaneForExport: () => renderSwimlaneForExport
 });
-var init_renderer_YWYX6WAI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-YWYX6WAI.js"() {
-    init_chunk_PECYPUJJ();
+var init_renderer_LU4R3BP2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LU4R3BP2.js"() {
+    init_chunk_SFVG4AIG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-6CM27UPA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-6CM27UPA.js
 var parser_6CM27UPA_exports = {};
 __export(parser_6CM27UPA_exports, {
   parseFamily: () => parseFamily
 });
 var init_parser_6CM27UPA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-6CM27UPA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-6CM27UPA.js"() {
     init_chunk_ES3MUYRX();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js
 function familyDisplayLabel(p2) {
   return !p2.placeholder && p2.metadata["d"] ? `\u2020 ${p2.label}` : p2.label;
 }
@@ -55075,7 +55127,7 @@ function familyCardRows(p2) {
 }
 var LABELED_KEYS;
 var init_chunk_IVKC4GID = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-IVKC4GID.js"() {
     LABELED_KEYS = [
       ["bp", "Born"],
       ["dp", "Died"],
@@ -55088,7 +55140,7 @@ var init_chunk_IVKC4GID = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js
 function birthYear(persons, id) {
   const b = persons.get(id)?.metadata["b"];
   if (b === void 0) return null;
@@ -55549,7 +55601,7 @@ function layoutFamily(parsed, focusId) {
 }
 var MARGIN8, MIN_CARD_W, CARD_H_PAD3, CARD_TEXT_PAD, H_GAP2, ROW_GAP2, KEY_VALUE_GAP, KEY_X, GUTTER_WIDTH;
 var init_chunk_GRM2A4BG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-GRM2A4BG.js"() {
     init_chunk_IVKC4GID();
     init_chunk_3CIOJ5YJ();
     init_chunk_QQJUTGQH();
@@ -55566,19 +55618,19 @@ var init_chunk_GRM2A4BG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js
 var layout_CAAKQX4W_exports = {};
 __export(layout_CAAKQX4W_exports, {
   focusFamily: () => focusFamily,
   layoutFamily: () => layoutFamily
 });
 var init_layout_CAAKQX4W = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-CAAKQX4W.js"() {
     init_chunk_GRM2A4BG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WK3UFCZC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-U4FSWAOJ.js
 function toRoman(n) {
   let out = "";
   let v2 = n;
@@ -55820,21 +55872,21 @@ function renderFamily(container, parsed, layout, palette, isDark, opts = {}) {
   renderFamilyForExport(container, parsed, layout, palette, isDark, opts);
 }
 var KEY_X2, KEY_VALUE_GAP2, BAR_DOT_R, TITLE_RESERVE, DIM_OPACITY, ROMAN;
-var init_chunk_WK3UFCZC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-WK3UFCZC.js"() {
+var init_chunk_U4FSWAOJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-U4FSWAOJ.js"() {
     init_chunk_IVKC4GID();
     init_chunk_3CIOJ5YJ();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_2CW5ZTNH();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
     init_src();
     KEY_X2 = 10;
@@ -55852,30 +55904,30 @@ var init_chunk_WK3UFCZC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CB2DOQ2O.js
-var renderer_CB2DOQ2O_exports = {};
-__export(renderer_CB2DOQ2O_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-W5GF5USI.js
+var renderer_W5GF5USI_exports = {};
+__export(renderer_W5GF5USI_exports, {
   renderFamily: () => renderFamily,
   renderFamilyForExport: () => renderFamilyForExport
 });
-var init_renderer_CB2DOQ2O = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CB2DOQ2O.js"() {
-    init_chunk_WK3UFCZC();
+var init_renderer_W5GF5USI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-W5GF5USI.js"() {
+    init_chunk_U4FSWAOJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-SJ7ECFAP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-SJ7ECFAP.js
 var parser_SJ7ECFAP_exports = {};
 __export(parser_SJ7ECFAP_exports, {
   parseMindmap: () => parseMindmap
 });
 var init_parser_SJ7ECFAP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-SJ7ECFAP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-SJ7ECFAP.js"() {
     init_chunk_KF575IXC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-23THM67F.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3ZONSZOX.js
 function tokenize2(text) {
   const tokens = [];
   const parts = text.split(/(\s+)/);
@@ -56384,12 +56436,12 @@ function populateDepthCache(roots) {
   walk(roots, 0);
 }
 var H_PAD2, MAX_LABEL_LINES3, MAX_DESC_LINES3, ROOT_FONT_SIZE, MIN_FONT_SIZE, FONT_STEP, DESC_FONT_SIZE3, ROOT_WIDTH, DEPTH1_WIDTH, LEAF_WIDTH, SINGLE_LABEL_HEIGHT, LABEL_LINE_HEIGHT3, DESC_LINE_HEIGHT3, NODE_V_PAD, H_GAP3, V_GAP2, MARGIN9, MULTI_ROOT_GAP, nodeDepthCache;
-var init_chunk_23THM67F = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-23THM67F.js"() {
+var init_chunk_3ZONSZOX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3ZONSZOX.js"() {
     init_chunk_YYVTBZZC();
     init_chunk_IYULMRBE();
-    init_chunk_4ASYQ347();
     init_chunk_D5FANMSG();
+    init_chunk_4ASYQ347();
     H_PAD2 = 16;
     MAX_LABEL_LINES3 = 3;
     MAX_DESC_LINES3 = 2;
@@ -56412,18 +56464,18 @@ var init_chunk_23THM67F = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HIK4ZJFQ.js
-var layout_HIK4ZJFQ_exports = {};
-__export(layout_HIK4ZJFQ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-AO3TPZUS.js
+var layout_AO3TPZUS_exports = {};
+__export(layout_AO3TPZUS_exports, {
   layoutMindmap: () => layoutMindmap
 });
-var init_layout_HIK4ZJFQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HIK4ZJFQ.js"() {
-    init_chunk_23THM67F();
+var init_layout_AO3TPZUS = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-AO3TPZUS.js"() {
+    init_chunk_3ZONSZOX();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js
 function cloneNode3(node) {
   return {
     id: node.id,
@@ -56447,7 +56499,7 @@ function collapseMindmapTree(roots, collapsedIds) {
 }
 var MINDMAP_SHAPE;
 var init_chunk_UZ7EZW3B = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UZ7EZW3B.js"() {
     init_chunk_BS7SV7C3();
     MINDMAP_SHAPE = {
       getId: (node) => node.id,
@@ -56461,18 +56513,18 @@ var init_chunk_UZ7EZW3B = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js
 var collapse_SLINJQW6_exports = {};
 __export(collapse_SLINJQW6_exports, {
   collapseMindmapTree: () => collapseMindmapTree
 });
 var init_collapse_SLINJQW6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/collapse-SLINJQW6.js"() {
     init_chunk_UZ7EZW3B();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JXFB3APA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-HBRGNLF5.js
 function nodeFill4(palette, isDark, nodeColor2, fillMode) {
   const color2 = nodeColor2 ?? palette.primary;
   return shapeFill(palette, color2, isDark, { mode: fillMode });
@@ -56820,24 +56872,24 @@ function renderMindmapForExport(content, theme, palette) {
   });
 }
 var DIAGRAM_PADDING8, TITLE_HEIGHT4, SINGLE_LABEL_HEIGHT2, LABEL_LINE_HEIGHT4, DESC_LINE_HEIGHT4, NODE_RADIUS, ROOT_STROKE_WIDTH, DEPTH_COLOR_KEYS;
-var init_chunk_JXFB3APA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JXFB3APA.js"() {
-    init_chunk_23THM67F();
+var init_chunk_HBRGNLF5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-HBRGNLF5.js"() {
+    init_chunk_3ZONSZOX();
     init_chunk_L43KTQTW();
-    init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_KF575IXC();
     init_chunk_IYULMRBE();
-    init_chunk_SCJ7CAJF();
-    init_chunk_42IT4BG2();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_SCJ7CAJF();
+    init_chunk_42IT4BG2();
     init_src();
     DIAGRAM_PADDING8 = 20;
     TITLE_HEIGHT4 = 30;
@@ -56859,19 +56911,19 @@ var init_chunk_JXFB3APA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-3IETIUZB.js
-var renderer_3IETIUZB_exports = {};
-__export(renderer_3IETIUZB_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-IAJMS5U5.js
+var renderer_IAJMS5U5_exports = {};
+__export(renderer_IAJMS5U5_exports, {
   renderMindmap: () => renderMindmap,
   renderMindmapForExport: () => renderMindmapForExport
 });
-var init_renderer_3IETIUZB = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-3IETIUZB.js"() {
-    init_chunk_JXFB3APA();
+var init_renderer_IAJMS5U5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-IAJMS5U5.js"() {
+    init_chunk_HBRGNLF5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-MH62NYKM.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-MH62NYKM.js
 var parser_MH62NYKM_exports = {};
 __export(parser_MH62NYKM_exports, {
   GROUP_ONLY_METADATA: () => GROUP_ONLY_METADATA,
@@ -56880,12 +56932,12 @@ __export(parser_MH62NYKM_exports, {
   resetWireframeIds: () => resetWireframeIds
 });
 var init_parser_MH62NYKM = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-MH62NYKM.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-MH62NYKM.js"() {
     init_chunk_FZECLCCU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js
 function layoutWireframe(parsed, _options, overrideWidth, showGroupLabels = true) {
   GROUP_PADDING_TOP = showGroupLabels ? GROUP_PADDING_TOP_WITH_LABEL : GROUP_PADDING_TOP_NO_LABEL;
   const defaultWidth = parsed.formFactor === "mobile" ? MOBILE_WIDTH : DESKTOP_WIDTH;
@@ -57119,7 +57171,7 @@ function computeFieldAlignX(children2) {
 }
 var DESKTOP_WIDTH, MOBILE_WIDTH, LABEL_PADDING, LABEL_FIELD_FONT_SIZE, ELEMENT_HEIGHTS, SPACING_AFTER, GROUP_PADDING_TOP_WITH_LABEL, GROUP_PADDING_TOP_NO_LABEL, GROUP_PADDING_BOTTOM, GROUP_PADDING_TOP, GROUP_PADDING_X, FRAME_PADDING, TITLE_HEIGHT5, REGION_SIZES, FULL_WIDTH_REGIONS, HEADER_REGION_HEIGHT, FOOTER_REGION_HEIGHT;
 var init_chunk_ODUT5WMC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ODUT5WMC.js"() {
     init_chunk_4ASYQ347();
     DESKTOP_WIDTH = 1200;
     MOBILE_WIDTH = 375;
@@ -57188,18 +57240,18 @@ var init_chunk_ODUT5WMC = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js
 var layout_5XGYNYVT_exports = {};
 __export(layout_5XGYNYVT_exports, {
   layoutWireframe: () => layoutWireframe
 });
 var init_layout_5XGYNYVT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-5XGYNYVT.js"() {
     init_chunk_ODUT5WMC();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HE57UQHL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-TZ72UBOA.js
 function getSemanticColor(state, palette) {
   const fn2 = SEMANTIC_COLORS[state];
   return fn2 ? fn2(palette) : null;
@@ -57720,14 +57772,14 @@ function renderModal(parent, node, ctx) {
   }
 }
 var INPUT_CORNER, BUTTON_CORNER, GROUP_CORNER, SEMANTIC_COLORS;
-var init_chunk_HE57UQHL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HE57UQHL.js"() {
+var init_chunk_TZ72UBOA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-TZ72UBOA.js"() {
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
+    init_chunk_3KOPPSUQ();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_src();
     INPUT_CORNER = 4;
     BUTTON_CORNER = 6;
@@ -57741,29 +57793,29 @@ var init_chunk_HE57UQHL = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-SYT4L7GE.js
-var renderer_SYT4L7GE_exports = {};
-__export(renderer_SYT4L7GE_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-ND7YIUHD.js
+var renderer_ND7YIUHD_exports = {};
+__export(renderer_ND7YIUHD_exports, {
   renderWireframe: () => renderWireframe
 });
-var init_renderer_SYT4L7GE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-SYT4L7GE.js"() {
-    init_chunk_HE57UQHL();
+var init_renderer_ND7YIUHD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-ND7YIUHD.js"() {
+    init_chunk_TZ72UBOA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-VVTCMQWY.js
-var parser_VVTCMQWY_exports = {};
-__export(parser_VVTCMQWY_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-LMNFVTIV.js
+var parser_LMNFVTIV_exports = {};
+__export(parser_LMNFVTIV_exports, {
   parseC4: () => parseC4
 });
-var init_parser_VVTCMQWY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-VVTCMQWY.js"() {
-    init_chunk_FCA2UGJT();
+var init_parser_LMNFVTIV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-LMNFVTIV.js"() {
+    init_chunk_NIUE5VWY();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XN4ZSACM.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PUGUOFM6.js
 function transposeGraph(g) {
   for (const name of g.nodes()) {
     const pos = gNode(g, name);
@@ -59427,12 +59479,12 @@ function layoutC4Deployment(parsed, activeTagGroup) {
   };
 }
 var gNode, gEdge, MIN_NODE_WIDTH, MAX_NODE_WIDTH, TYPE_LABEL_HEIGHT, DIVIDER_GAP, NAME_HEIGHT, NAME_FONT_SIZE, DESC_LINE_HEIGHT5, DESC_FONT_SIZE4, CARD_V_PAD3, CARD_H_PAD4, META_LINE_HEIGHT4, META_FONT_SIZE4, MARGIN10, BOUNDARY_PAD, GROUP_BOUNDARY_PAD, EDGE_NODE_COLLISION_WEIGHT, META_EXCLUDE_KEYS;
-var init_chunk_XN4ZSACM = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-XN4ZSACM.js"() {
-    init_chunk_SCJ7CAJF();
-    init_chunk_4ASYQ347();
+var init_chunk_PUGUOFM6 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PUGUOFM6.js"() {
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_SCJ7CAJF();
+    init_chunk_4ASYQ347();
     init_dagre_esm();
     gNode = (g, name) => g.node(name);
     gEdge = (g, v2, w2) => g.edge(v2, w2);
@@ -59461,9 +59513,9 @@ var init_chunk_XN4ZSACM = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-SNIEAZ2I.js
-var layout_SNIEAZ2I_exports = {};
-__export(layout_SNIEAZ2I_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-WHOOLGPO.js
+var layout_WHOOLGPO_exports = {};
+__export(layout_WHOOLGPO_exports, {
   collectCardMetadata: () => collectCardMetadata,
   computeC4NodeDimensions: () => computeC4NodeDimensions,
   layoutC4Components: () => layoutC4Components,
@@ -59472,13 +59524,13 @@ __export(layout_SNIEAZ2I_exports, {
   layoutC4Deployment: () => layoutC4Deployment,
   rollUpContextRelationships: () => rollUpContextRelationships
 });
-var init_layout_SNIEAZ2I = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-SNIEAZ2I.js"() {
-    init_chunk_XN4ZSACM();
+var init_layout_WHOOLGPO = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-WHOOLGPO.js"() {
+    init_chunk_PUGUOFM6();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YH62K5D4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OYCIVSL3.js
 function typeColor(type, palette, nodeColor2) {
   if (nodeColor2) return nodeColor2;
   switch (type) {
@@ -60428,22 +60480,22 @@ function renderC4DeploymentForExport(content, theme, palette) {
   }
 }
 var DIAGRAM_PADDING9, MAX_SCALE5, TITLE_HEIGHT6, TYPE_FONT_SIZE, NAME_FONT_SIZE2, DESC_FONT_SIZE5, DESC_LINE_HEIGHT6, EDGE_LABEL_FONT_SIZE8, TECH_FONT_SIZE, CARD_H_PAD5, CARD_V_PAD4, TYPE_LABEL_HEIGHT2, DIVIDER_GAP2, NAME_HEIGHT2, BOUNDARY_LABEL_FONT_SIZE, BOUNDARY_STROKE_WIDTH, BOUNDARY_RADIUS, DRILL_BAR_HEIGHT, CYLINDER_RY, PERSON_HEAD_R, PERSON_ARM_SPAN, PERSON_LEG_SPAN, PERSON_ICON_W, PERSON_SW, lineGenerator4;
-var init_chunk_YH62K5D4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YH62K5D4.js"() {
-    init_chunk_XN4ZSACM();
-    init_chunk_3HDBAXF5();
+var init_chunk_OYCIVSL3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-OYCIVSL3.js"() {
+    init_chunk_PUGUOFM6();
     init_chunk_3CIOJ5YJ();
+    init_chunk_WGC42WJU();
     init_chunk_NZ5QVASG();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_FCA2UGJT();
+    init_chunk_NIUE5VWY();
     init_chunk_IYULMRBE();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
     init_src();
     init_src9();
     DIAGRAM_PADDING9 = 20;
@@ -60474,9 +60526,9 @@ var init_chunk_YH62K5D4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-OZIPP7VF.js
-var renderer_OZIPP7VF_exports = {};
-__export(renderer_OZIPP7VF_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-N4V7XVC3.js
+var renderer_N4V7XVC3_exports = {};
+__export(renderer_N4V7XVC3_exports, {
   renderC4ComponentsForExport: () => renderC4ComponentsForExport,
   renderC4Containers: () => renderC4Containers,
   renderC4ContainersForExport: () => renderC4ContainersForExport,
@@ -60485,13 +60537,13 @@ __export(renderer_OZIPP7VF_exports, {
   renderC4Deployment: () => renderC4Deployment,
   renderC4DeploymentForExport: () => renderC4DeploymentForExport
 });
-var init_renderer_OZIPP7VF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-OZIPP7VF.js"() {
-    init_chunk_YH62K5D4();
+var init_renderer_N4V7XVC3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-N4V7XVC3.js"() {
+    init_chunk_OYCIVSL3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-parser-DA3V2SLH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/flowchart-parser-DA3V2SLH.js
 var flowchart_parser_DA3V2SLH_exports = {};
 __export(flowchart_parser_DA3V2SLH_exports, {
   extractSymbols: () => extractSymbols3,
@@ -60499,12 +60551,12 @@ __export(flowchart_parser_DA3V2SLH_exports, {
   parseFlowchart: () => parseFlowchart
 });
 var init_flowchart_parser_DA3V2SLH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-parser-DA3V2SLH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/flowchart-parser-DA3V2SLH.js"() {
     init_chunk_LV5BFA24();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SK7PCW4F.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LSFZDBAP.js
 function computeNodeWidth(label, shape) {
   if (shape === "pseudostate") return 24;
   const base = Math.max(120, label.length * 9 + 40);
@@ -60801,28 +60853,28 @@ function layoutGraph(graph, options) {
   };
 }
 var GROUP_PADDING;
-var init_chunk_SK7PCW4F = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SK7PCW4F.js"() {
+var init_chunk_LSFZDBAP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-LSFZDBAP.js"() {
     init_chunk_6EK55ART();
-    init_chunk_UU6LUYUH();
+    init_chunk_VJARCVMH();
     init_chunk_7NK42OIB();
     init_dagre_esm();
     GROUP_PADDING = 20;
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UXMNKETK.js
-var layout_UXMNKETK_exports = {};
-__export(layout_UXMNKETK_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-5CX27X7I.js
+var layout_5CX27X7I_exports = {};
+__export(layout_5CX27X7I_exports, {
   layoutGraph: () => layoutGraph
 });
-var init_layout_UXMNKETK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-UXMNKETK.js"() {
-    init_chunk_SK7PCW4F();
+var init_layout_5CX27X7I = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-5CX27X7I.js"() {
+    init_chunk_LSFZDBAP();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js
 function fitDiagramToCanvas(p2) {
   const scaleX = (p2.width - p2.padding * 2) / p2.diagramW;
   let scale;
@@ -60849,13 +60901,13 @@ function edgeSplinePath(points) {
 }
 var lineGenerator5;
 var init_chunk_PDKUANDZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PDKUANDZ.js"() {
     init_src9();
     lineGenerator5 = line_default().x((d) => d.x).y((d) => d.y).curve(basis_default2);
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VKN7YW4Q.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-T2VMOWAM.js
 function clipPointToDiamond(cx, cy, halfW, halfH, towardX, towardY) {
   const dx = towardX - cx;
   const dy = towardY - cy;
@@ -61379,21 +61431,21 @@ function renderFlowchartForExport(content, theme, palette) {
   }
 }
 var DIAGRAM_PADDING10, MAX_SCALE6, NODE_FONT_SIZE3, EDGE_LABEL_FONT_SIZE9, ARROWHEAD_W4, ARROWHEAD_H4, IO_SKEW, SUBROUTINE_INSET, DOC_WAVE_HEIGHT;
-var init_chunk_VKN7YW4Q = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VKN7YW4Q.js"() {
+var init_chunk_T2VMOWAM = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-T2VMOWAM.js"() {
     init_chunk_PDKUANDZ();
-    init_chunk_SK7PCW4F();
+    init_chunk_LSFZDBAP();
     init_chunk_LP7EC4MI();
-    init_chunk_U2BKSEKU();
+    init_chunk_H52HJ26L();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_NZ5QVASG();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_LV5BFA24();
+    init_chunk_3KOPPSUQ();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_src();
     DIAGRAM_PADDING10 = 20;
     MAX_SCALE6 = 3;
@@ -61407,32 +61459,32 @@ var init_chunk_VKN7YW4Q = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-UQVXOUW4.js
-var flowchart_renderer_UQVXOUW4_exports = {};
-__export(flowchart_renderer_UQVXOUW4_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-JGLZB5P5.js
+var flowchart_renderer_JGLZB5P5_exports = {};
+__export(flowchart_renderer_JGLZB5P5_exports, {
   renderFlowchart: () => renderFlowchart,
   renderFlowchartForExport: () => renderFlowchartForExport
 });
-var init_flowchart_renderer_UQVXOUW4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-UQVXOUW4.js"() {
-    init_chunk_VKN7YW4Q();
+var init_flowchart_renderer_JGLZB5P5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/flowchart-renderer-JGLZB5P5.js"() {
+    init_chunk_T2VMOWAM();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-JWAGGYLL.js
-var parser_JWAGGYLL_exports = {};
-__export(parser_JWAGGYLL_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-XQNM7BGD.js
+var parser_XQNM7BGD_exports = {};
+__export(parser_XQNM7BGD_exports, {
   INFRA_TOP_LEVEL_OPTIONS: () => INFRA_TOP_LEVEL_OPTIONS,
   extractSymbols: () => extractSymbols2,
   parseInfra: () => parseInfra
 });
-var init_parser_JWAGGYLL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-JWAGGYLL.js"() {
-    init_chunk_FXVPSTDT();
+var init_parser_XQNM7BGD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-XQNM7BGD.js"() {
+    init_chunk_MXDT446P();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js
 function getNumProp(node, key, fallback) {
   const prop = node.properties.find((p2) => p2.key === key);
   if (!prop) return fallback;
@@ -62357,22 +62409,22 @@ function computeInfra(parsed, params = {}) {
   };
 }
 var init_chunk_ICZ7M6IZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-ICZ7M6IZ.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js
 var compute_JAP5E2E4_exports = {};
 __export(compute_JAP5E2E4_exports, {
   computeInfra: () => computeInfra
 });
 var init_compute_JAP5E2E4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/compute-JAP5E2E4.js"() {
     init_chunk_ICZ7M6IZ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js
 function countDisplayProps(node, expanded, options) {
   if (!expanded) return 0;
   let count2 = node.properties.filter((p2) => DISPLAY_KEYS.has(p2.key)).length;
@@ -62899,7 +62951,7 @@ function layoutInfra(computed, expandedNodeIds, collapsedNodes) {
 }
 var MIN_NODE_WIDTH2, NODE_HEADER_HEIGHT, META_LINE_HEIGHT5, NODE_SEPARATOR_GAP, NODE_PAD_BOTTOM, ROLE_DOT_ROW, COLLAPSE_BAR_HEIGHT4, NODE_FONT_SIZE4, META_FONT_SIZE5, EDGE_LABEL_FONT_SIZE10, PADDING_X3, GROUP_PADDING2, GROUP_HEADER_HEIGHT, EDGE_MARGIN, DISPLAY_KEYS, DISPLAY_NAMES, GROUP_GAP2;
 var init_chunk_43E26CDA = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-43E26CDA.js"() {
     init_chunk_4ASYQ347();
     init_dagre_esm();
     MIN_NODE_WIDTH2 = 140;
@@ -62956,7 +63008,7 @@ var init_chunk_43E26CDA = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js
 var layout_HBWT2G23_exports = {};
 __export(layout_HBWT2G23_exports, {
   fixEdgeWaypoints: () => fixEdgeWaypoints,
@@ -62964,12 +63016,12 @@ __export(layout_HBWT2G23_exports, {
   separateGroups: () => separateGroups
 });
 var init_layout_HBWT2G23 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-HBWT2G23.js"() {
     init_chunk_43E26CDA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AMC2OGXF.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UG4MWUXE.js
 function inferRoles(properties) {
   const propKeys = new Set(properties.map((p2) => p2.key));
   const roles = [];
@@ -64402,25 +64454,25 @@ function parseAndLayoutInfra(content) {
   return { parsed, computed, layout };
 }
 var ROLE_RULES, FANOUT_ROLE, NODE_FONT_SIZE5, META_FONT_SIZE6, META_LINE_HEIGHT6, EDGE_LABEL_FONT_SIZE11, GROUP_LABEL_FONT_SIZE2, NODE_BORDER_RADIUS, OVERLOAD_STROKE_WIDTH, ROLE_DOT_RADIUS, NODE_HEADER_HEIGHT2, NODE_SEPARATOR_GAP2, NODE_PAD_BOTTOM2, LEGEND_FIXED_GAP3, SPEED_BADGE_H_PAD, SPEED_BADGE_V_PAD, SPEED_BADGE_GAP, COLOR_HEALTHY, COLOR_WARNING, COLOR_OVERLOADED, FLOW_SPEED_MIN, FLOW_SPEED_MAX, PARTICLE_R, PARTICLE_COUNT_MIN, PARTICLE_COUNT_MAX, NODE_PULSE_SPEED, NODE_PULSE_OVERLOAD, REJECT_DROP_DISTANCE, REJECT_DURATION_MIN, REJECT_DURATION_MAX, REJECT_COUNT_MIN, REJECT_COUNT_MAX, GROUP_PSEUDO_NODE_DEFAULTS, PROP_DISPLAY, DESC_MAX_CHARS, DESC_MAX_WIDTH, RPS_FORMAT_KEYS, MS_FORMAT_KEYS, PCT_FORMAT_KEYS;
-var init_chunk_AMC2OGXF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AMC2OGXF.js"() {
+var init_chunk_UG4MWUXE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-UG4MWUXE.js"() {
     init_chunk_ICZ7M6IZ();
     init_chunk_43E26CDA();
-    init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_FXVPSTDT();
+    init_chunk_MXDT446P();
     init_chunk_IYULMRBE();
+    init_chunk_D5FANMSG();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
-    init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
     init_src();
     init_src9();
@@ -64516,20 +64568,20 @@ var init_chunk_AMC2OGXF = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-P7O6OUYC.js
-var renderer_P7O6OUYC_exports = {};
-__export(renderer_P7O6OUYC_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-BNEO5W3E.js
+var renderer_BNEO5W3E_exports = {};
+__export(renderer_BNEO5W3E_exports, {
   computeInfraLegendGroups: () => computeInfraLegendGroups,
   parseAndLayoutInfra: () => parseAndLayoutInfra,
   renderInfra: () => renderInfra
 });
-var init_renderer_P7O6OUYC = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-P7O6OUYC.js"() {
-    init_chunk_AMC2OGXF();
+var init_renderer_BNEO5W3E = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-BNEO5W3E.js"() {
+    init_chunk_UG4MWUXE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4ZIJDGPG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-4ZIJDGPG.js
 var parser_4ZIJDGPG_exports = {};
 __export(parser_4ZIJDGPG_exports, {
   extractPertSymbols: () => extractPertSymbols,
@@ -64538,12 +64590,12 @@ __export(parser_4ZIJDGPG_exports, {
   parsePert: () => parsePert
 });
 var init_parser_4ZIJDGPG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-4ZIJDGPG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-4ZIJDGPG.js"() {
     init_chunk_DIKIHU52();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CGLBK5Q4.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CGLBK5Q4.js
 function lagDays(lag) {
   return lag === null ? 0 : lag.amount * unitToDays(lag.unit);
 }
@@ -65555,7 +65607,7 @@ function emptyResolved(parsed, diagnostics) {
 }
 var UNIT_TO_DAYS, UNIT_WORDS;
 var init_chunk_CGLBK5Q4 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-CGLBK5Q4.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CGLBK5Q4.js"() {
     init_chunk_3TYUXC7D();
     init_chunk_OLMWTJVU();
     UNIT_TO_DAYS = {
@@ -65586,7 +65638,7 @@ var init_chunk_CGLBK5Q4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/analyzer-HQUXKZ5J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/analyzer-HQUXKZ5J.js
 var analyzer_HQUXKZ5J_exports = {};
 __export(analyzer_HQUXKZ5J_exports, {
   analyzePert: () => analyzePert,
@@ -65594,12 +65646,12 @@ __export(analyzer_HQUXKZ5J_exports, {
   buildSummary: () => buildSummary
 });
 var init_analyzer_HQUXKZ5J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/analyzer-HQUXKZ5J.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/analyzer-HQUXKZ5J.js"() {
     init_chunk_CGLBK5Q4();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js
 function computeNodeSizing(resolved) {
   const unit2 = resolved.options.timeUnit;
   const sprintMode = resolved.options.sprintMode;
@@ -66170,7 +66222,7 @@ function segmentsCross3(a1, a2, b1, b2) {
 }
 var DEFAULT_NODE_HEIGHT, MILESTONE_NODE_HEIGHT, COLLAPSED_GROUP_HEIGHT, DIAGRAM_PADDING11, GROUP_PADDING3, GROUP_TOP_PADDING, SWIMLANE_SLOT_SEP, SWIMLANE_GAP, NODE_CELL_FONT_SIZE, NODE_NAME_FONT_SIZE, MILESTONE_NAME_FONT_SIZE, CELL_PAD_X, NAME_PAD_X, NAME_PIN_WIDTH, MIN_CELL_WIDTH, MIN_NODE_WIDTH3, MAX_NODE_WIDTH2, MIN_MILESTONE_WIDTH, MAX_MILESTONE_WIDTH;
 var init_chunk_QXGACPS2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QXGACPS2.js"() {
     init_chunk_3TYUXC7D();
     init_chunk_4ASYQ347();
     init_dagre_esm();
@@ -66196,7 +66248,7 @@ var init_chunk_QXGACPS2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js
 var layout_AZUPXWSK_exports = {};
 __export(layout_AZUPXWSK_exports, {
   computeNodeSizing: () => computeNodeSizing,
@@ -66204,12 +66256,12 @@ __export(layout_AZUPXWSK_exports, {
   relayoutPert: () => relayoutPert
 });
 var init_layout_AZUPXWSK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-AZUPXWSK.js"() {
     init_chunk_QXGACPS2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5ZDHXS5N.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-J6V3SMR3.js
 function analysisBlockChrome(palette, isDark) {
   const surfaceBg = themeBaseBg(palette, isDark);
   return {
@@ -67894,24 +67946,24 @@ function formatScurveDate(iso) {
   return `${SCURVE_MONTH_NAMES[month]} ${day}`;
 }
 var DIAGRAM_PADDING12, NODE_FONT_SIZE6, NODE_CELL_FONT_SIZE2, NODE_RADIUS2, NODE_TOP_ROW_HEIGHT, NODE_BOTTOM_ROW_HEIGHT, ARROWHEAD_W5, ARROWHEAD_H5, DURATION_FADE_OPACITY, PIN_ICON_W, PIN_ICON_H, LEGEND_PILL_HEIGHT, LEGEND_TOP_GAP, LEGEND_BOTTOM_GAP, FIELD_LEGEND_HEADER_BAND_HEIGHT, FIELD_LEGEND_CELL_VPAD, FIELD_LEGEND_LABEL_FONT_SIZE, FIELD_LEGEND_DESC_FONT_SIZE, FIELD_LEGEND_DESC_LINE_HEIGHT, FIELD_LEGEND_LABEL_DESC_GAP, FIELD_LEGEND_CELLS, lineGenerator6, FIELD_LEGEND_MIN_W, SUB_BULLET_INDENT, CAPTION_HEADER_BAND_HEIGHT, TORNADO_TOP_N, TORNADO_ROW_HEIGHT, TORNADO_NAME_COL_W, TORNADO_BAR_FONT_SIZE, TORNADO_BAR_HEIGHT, SUMMARY_MIN_W, SUMMARY_MAX_W, ANALYSIS_GAP, COL1_VSTACK_GAP, TORNADO_MIN_W, SCURVE_MIN_W, SCURVE_BOX_HEIGHT, SCURVE_PLOT_PADDING_X, SCURVE_PLOT_PADDING_RIGHT, SCURVE_PLOT_PADDING_BOTTOM, SCURVE_TICK_FONT_SIZE, SCURVE_PERCENTILE_RADIUS, DAYS_PER_UNIT, SCURVE_MONTH_NAMES, UNIT_TO_DAYS_LOCAL2;
-var init_chunk_5ZDHXS5N = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-5ZDHXS5N.js"() {
-    init_chunk_CGLBK5Q4();
+var init_chunk_J6V3SMR3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-J6V3SMR3.js"() {
     init_chunk_QXGACPS2();
+    init_chunk_CGLBK5Q4();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
     init_chunk_NZ5QVASG();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_DIKIHU52();
     init_chunk_3TYUXC7D();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_src();
     init_src9();
     DIAGRAM_PADDING12 = 20;
@@ -68020,34 +68072,34 @@ var init_chunk_5ZDHXS5N = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-2NU7M5PN.js
-var renderer_2NU7M5PN_exports = {};
-__export(renderer_2NU7M5PN_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-PLRNQ6T3.js
+var renderer_PLRNQ6T3_exports = {};
+__export(renderer_PLRNQ6T3_exports, {
   measurePertAnalysisBlock: () => measurePertAnalysisBlock,
   renderPert: () => renderPert,
   renderPertAnalysisBlock: () => renderPertAnalysisBlock,
   renderPertForExport: () => renderPertForExport
 });
-var init_renderer_2NU7M5PN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-2NU7M5PN.js"() {
-    init_chunk_5ZDHXS5N();
+var init_renderer_PLRNQ6T3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-PLRNQ6T3.js"() {
+    init_chunk_J6V3SMR3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LNEAHGXF.js
-var parser_LNEAHGXF_exports = {};
-__export(parser_LNEAHGXF_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-5WMH55UA.js
+var parser_5WMH55UA_exports = {};
+__export(parser_5WMH55UA_exports, {
   GANTT_KNOWN_BOOLEANS: () => GANTT_KNOWN_BOOLEANS,
   GANTT_KNOWN_OPTIONS: () => GANTT_KNOWN_OPTIONS,
   parseGantt: () => parseGantt
 });
-var init_parser_LNEAHGXF = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LNEAHGXF.js"() {
-    init_chunk_Y2L2LET6();
+var init_parser_5WMH55UA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-5WMH55UA.js"() {
+    init_chunk_ADKDIWCW();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DUI5SMFX.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DUI5SMFX.js
 function isResolverError(r) {
   return "kind" in r;
 }
@@ -68814,7 +68866,7 @@ function findGroupOffset(nodes, groupPath) {
 }
 var BRACKET_GROUP_RE;
 var init_chunk_DUI5SMFX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DUI5SMFX.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DUI5SMFX.js"() {
     init_chunk_EQW6HOP4();
     init_chunk_NOTA6TEI();
     init_chunk_OLMWTJVU();
@@ -68822,18 +68874,18 @@ var init_chunk_DUI5SMFX = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/calculator-BBKAAQGD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/calculator-BBKAAQGD.js
 var calculator_BBKAAQGD_exports = {};
 __export(calculator_BBKAAQGD_exports, {
   calculateSchedule: () => calculateSchedule
 });
 var init_calculator_BBKAAQGD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/calculator-BBKAAQGD.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/calculator-BBKAAQGD.js"() {
     init_chunk_DUI5SMFX();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HODUM6LY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6PRLPGJB.js
 function computeBarLabel(label, x12, barWidth, innerWidth, textColor, onFillColor, fontSize = 10, labelPad = LABEL_PAD2, labelGap = LABEL_GAP) {
   const textWidth = measureText(label, fontSize);
   const x22 = x12 + barWidth;
@@ -70884,20 +70936,20 @@ function renderTimeScaleHorizontal(g, scale, _innerWidth, innerHeight, textColor
   }
 }
 var BAR_H, ROW_GAP3, GROUP_GAP3, MILESTONE_SIZE, MIN_LEFT_MARGIN, BOTTOM_MARGIN, RIGHT_MARGIN, LABEL_PAD2, LABEL_GAP, BAND_ACCENT_W, BAND_RADIUS, bandClipCounter, JS_DAY_TO_WEEKDAY2, ERA_COLORS, SPRINT_BAND_OPACITY, SPRINT_HOVER_OPACITY, SPRINT_BOUNDARY_OPACITY, FADE_OPACITY;
-var init_chunk_HODUM6LY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HODUM6LY.js"() {
+var init_chunk_6PRLPGJB = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6PRLPGJB.js"() {
     init_chunk_YRYKTYMQ();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
+    init_chunk_NOTA6TEI();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_NOTA6TEI();
-    init_chunk_D5FANMSG();
     init_src7();
     init_src();
     BAR_H = 22;
@@ -70929,31 +70981,31 @@ var init_chunk_HODUM6LY = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-I5MAFUKX.js
-var renderer_I5MAFUKX_exports = {};
-__export(renderer_I5MAFUKX_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-2TEGR3RX.js
+var renderer_2TEGR3RX_exports = {};
+__export(renderer_2TEGR3RX_exports, {
   buildTagLaneRowList: () => buildTagLaneRowList,
   renderGantt: () => renderGantt
 });
-var init_renderer_I5MAFUKX = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-I5MAFUKX.js"() {
-    init_chunk_HODUM6LY();
+var init_renderer_2TEGR3RX = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-2TEGR3RX.js"() {
+    init_chunk_6PRLPGJB();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-parser-NQGVYSM3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/state-parser-NQGVYSM3.js
 var state_parser_NQGVYSM3_exports = {};
 __export(state_parser_NQGVYSM3_exports, {
   looksLikeState: () => looksLikeState,
   parseState: () => parseState
 });
 var init_state_parser_NQGVYSM3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-parser-NQGVYSM3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/state-parser-NQGVYSM3.js"() {
     init_chunk_APD52YJV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RK3Y4WMV.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QMOX5I3G.js
 function stateDefaultColor(palette, colorOff) {
   return colorOff ? palette.textMuted : palette.colors.blue;
 }
@@ -71353,25 +71405,25 @@ function renderStateForExport(content, theme, palette) {
   }
 }
 var DIAGRAM_PADDING13, MAX_SCALE7, NODE_FONT_SIZE7, EDGE_LABEL_FONT_SIZE12, GROUP_LABEL_FONT_SIZE3, ARROWHEAD_W6, ARROWHEAD_H6, PSEUDOSTATE_RADIUS, STATE_CORNER_RADIUS, GROUP_EXTRA_PADDING;
-var init_chunk_RK3Y4WMV = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-RK3Y4WMV.js"() {
+var init_chunk_QMOX5I3G = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-QMOX5I3G.js"() {
     init_chunk_PDKUANDZ();
-    init_chunk_SK7PCW4F();
+    init_chunk_LSFZDBAP();
     init_chunk_LP7EC4MI();
-    init_chunk_U2BKSEKU();
+    init_chunk_H52HJ26L();
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
     init_chunk_NZ5QVASG();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_APD52YJV();
-    init_chunk_4ASYQ347();
-    init_chunk_42IT4BG2();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_4ASYQ347();
+    init_chunk_42IT4BG2();
     init_src();
     DIAGRAM_PADDING13 = 20;
     MAX_SCALE7 = 3;
@@ -71386,19 +71438,19 @@ var init_chunk_RK3Y4WMV = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-renderer-NKV5B3KH.js
-var state_renderer_NKV5B3KH_exports = {};
-__export(state_renderer_NKV5B3KH_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/state-renderer-KSAKMFQ2.js
+var state_renderer_KSAKMFQ2_exports = {};
+__export(state_renderer_KSAKMFQ2_exports, {
   renderState: () => renderState,
   renderStateForExport: () => renderStateForExport
 });
-var init_state_renderer_NKV5B3KH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-renderer-NKV5B3KH.js"() {
-    init_chunk_RK3Y4WMV();
+var init_state_renderer_KSAKMFQ2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/state-renderer-KSAKMFQ2.js"() {
+    init_chunk_QMOX5I3G();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js
 function collapseStateGroups(parsed, collapsedGroups) {
   const originalGroups = parsed.groups ?? [];
   if (collapsedGroups.size === 0 || originalGroups.length === 0) {
@@ -71438,33 +71490,33 @@ function collapseStateGroups(parsed, collapsedGroups) {
   };
 }
 var init_chunk_SQ7IY53Q = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SQ7IY53Q.js"() {
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js
 var state_collapse_HCGD6IVJ_exports = {};
 __export(state_collapse_HCGD6IVJ_exports, {
   collapseStateGroups: () => collapseStateGroups
 });
 var init_state_collapse_HCGD6IVJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/state-collapse-HCGD6IVJ.js"() {
     init_chunk_SQ7IY53Q();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-O5XCVGZG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-O5XCVGZG.js
 var parser_O5XCVGZG_exports = {};
 __export(parser_O5XCVGZG_exports, {
   parseTechRadar: () => parseTechRadar
 });
 var init_parser_O5XCVGZG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-O5XCVGZG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-O5XCVGZG.js"() {
     init_chunk_CXI6X54X();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AOJJSGXE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SADYIA5Q.js
 function getQuadrantArc(position) {
   switch (position) {
     case "top-right":
@@ -72764,16 +72816,16 @@ function renderTechRadarForExport(container, parsed, palette, isDark, exportDims
   );
 }
 var POSITION_ORDER2, BASE_BLIP_RADIUS, MIN_BLIP_RADIUS, DEFAULT_QUADRANT_COLORS, DIM_OPACITY2, TREND_ITEMS, BLIP_RADIUS, BLIP_FONT_SIZE, TITLE_FONT_SIZE3, NARROW_BREAKPOINT, BLIP_RADIUS2, BLIP_FONT_SIZE2, RING_LABEL_FONT_SIZE, QUADRANT_LABEL_FONT_SIZE, TITLE_FONT_SIZE22, LISTING_FONT_SIZE, LISTING_HEADER_FONT_SIZE, LISTING_TOP_MARGIN, LISTING_COL_GAP, LISTING_LINE_HEIGHT, LISTING_BLIP_R;
-var init_chunk_AOJJSGXE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AOJJSGXE.js"() {
-    init_chunk_3HDBAXF5();
+var init_chunk_SADYIA5Q = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SADYIA5Q.js"() {
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
+    init_chunk_3KOPPSUQ();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_src();
     init_src();
     POSITION_ORDER2 = [
@@ -72815,30 +72867,30 @@ var init_chunk_AOJJSGXE = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-QRX7Q2YN.js
-var renderer_QRX7Q2YN_exports = {};
-__export(renderer_QRX7Q2YN_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-W3JK5YVD.js
+var renderer_W3JK5YVD_exports = {};
+__export(renderer_W3JK5YVD_exports, {
   renderTechRadar: () => renderTechRadar,
   renderTechRadarForExport: () => renderTechRadarForExport
 });
-var init_renderer_QRX7Q2YN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-QRX7Q2YN.js"() {
-    init_chunk_AOJJSGXE();
+var init_renderer_W3JK5YVD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-W3JK5YVD.js"() {
+    init_chunk_SADYIA5Q();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-KTVDCWHG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-KTVDCWHG.js
 var parser_KTVDCWHG_exports = {};
 __export(parser_KTVDCWHG_exports, {
   parseJourneyMap: () => parseJourneyMap
 });
 var init_parser_KTVDCWHG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-KTVDCWHG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-KTVDCWHG.js"() {
     init_chunk_RQGNELB3();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VU3DOZ6C.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-D76B4DMV.js
 function scoreToColor(score, palette) {
   const s = Math.max(1, Math.min(5, score));
   const { red, yellow, green } = palette.colors;
@@ -73091,11 +73143,11 @@ function layoutJourneyMap(parsed, palette, options) {
   };
 }
 var PADDING, TITLE_HEIGHT7, PERSONA_HEIGHT, PERSONA_PANEL_WIDTH, HEADER_GAP, CURVE_AREA_HEIGHT, CARD_GAP2, STEP_CARD_WIDTH, CARD_HEADER_HEIGHT2, CARD_META_LINE_HEIGHT2, PHASE_HEADER_HEIGHT, CARD_PADDING_X2, CARD_PADDING_Y2, ANNO_ICON_SIZE, ANNO_ICON_GAP, TAG_STRIP_HEIGHT, PHASE_GAP, COLUMN_PADDING2, FACE_ICON_SIZE, EMOTION_CAPTION_BAND, CURVE_TOP_RESERVE;
-var init_chunk_VU3DOZ6C = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-VU3DOZ6C.js"() {
+var init_chunk_D76B4DMV = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-D76B4DMV.js"() {
+    init_chunk_3KOPPSUQ();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     PADDING = 24;
     TITLE_HEIGHT7 = 36;
     PERSONA_HEIGHT = 48;
@@ -73120,7 +73172,7 @@ var init_chunk_VU3DOZ6C = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HPJITTF7.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7YPSFQFA.js
 function renderJourneyMap(container, parsed, palette, isDark, options) {
   const exportDims = options?.exportDims;
   const onNavigateToLine = options?.onNavigateToLine;
@@ -73897,22 +73949,22 @@ function renderJourneyMapForExport(content, theme, palette) {
   return serializeSvg(svgEl);
 }
 var DIAGRAM_PADDING14, PADDING2, CARD_PADDING_X3, CARD_PADDING_Y3, CARD_HEADER_HEIGHT3, CARD_STROKE_WIDTH2, CARD_META_LINE_HEIGHT3, CARD_GAP_INTERNAL, COLUMN_RADIUS2, COLUMN_HEADER_HEIGHT2, COLUMN_PADDING3, FONT_SIZE_TITLE, FONT_SIZE_PHASE, FONT_SIZE_STEP, FONT_SIZE_META, GRID_LINE_OPACITY, CURVE_STROKE_WIDTH, FACE_RADIUS, CURVE_AREA_BOTTOM_GAP, FACE_HOVER_SCALE, FACE_HOVER_R, DIM_HOVER, TITLE_LINE_HEIGHT, EMOTION_LABEL_MAX_WIDTH, EMOTION_LABEL_FONT_SIZE, ICON_THUMBS_DOWN, ICON_THUMBS_UP, ICON_THOUGHT;
-var init_chunk_HPJITTF7 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HPJITTF7.js"() {
-    init_chunk_VU3DOZ6C();
-    init_chunk_UU6LUYUH();
+var init_chunk_7YPSFQFA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7YPSFQFA.js"() {
+    init_chunk_D76B4DMV();
+    init_chunk_VJARCVMH();
     init_chunk_5DH3KYFH();
-    init_chunk_3HDBAXF5();
     init_chunk_3CIOJ5YJ();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_NZ5QVASG();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_6KFWC4CO();
     init_chunk_RQGNELB3();
-    init_chunk_4ASYQ347();
-    init_chunk_42IT4BG2();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_4ASYQ347();
+    init_chunk_42IT4BG2();
     init_src();
     init_src9();
     DIAGRAM_PADDING14 = 20;
@@ -73956,44 +74008,44 @@ var init_chunk_HPJITTF7 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-O4ECS2BI.js
-var renderer_O4ECS2BI_exports = {};
-__export(renderer_O4ECS2BI_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-AK2X3VRY.js
+var renderer_AK2X3VRY_exports = {};
+__export(renderer_AK2X3VRY_exports, {
   renderJourneyMap: () => renderJourneyMap,
   renderJourneyMapForExport: () => renderJourneyMapForExport
 });
-var init_renderer_O4ECS2BI = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-O4ECS2BI.js"() {
-    init_chunk_HPJITTF7();
+var init_renderer_AK2X3VRY = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-AK2X3VRY.js"() {
+    init_chunk_7YPSFQFA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-QRVYYYZ3.js
-var layout_QRVYYYZ3_exports = {};
-__export(layout_QRVYYYZ3_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-TZKPVXKJ.js
+var layout_TZKPVXKJ_exports = {};
+__export(layout_TZKPVXKJ_exports, {
   TAG_STRIP_HEIGHT: () => TAG_STRIP_HEIGHT,
   layoutJourneyMap: () => layoutJourneyMap,
   scoreToColor: () => scoreToColor,
   scoreToCurveY: () => scoreToCurveY
 });
-var init_layout_QRVYYYZ3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/layout-QRVYYYZ3.js"() {
-    init_chunk_VU3DOZ6C();
+var init_layout_TZKPVXKJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/layout-TZKPVXKJ.js"() {
+    init_chunk_D76B4DMV();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-AYZTKZC3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-AYZTKZC3.js
 var parser_AYZTKZC3_exports = {};
 __export(parser_AYZTKZC3_exports, {
   parseCycle: () => parseCycle
 });
 var init_parser_AYZTKZC3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-AYZTKZC3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-AYZTKZC3.js"() {
     init_chunk_4MB4UOT5();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JE3SMHRZ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-M65UOFJA.js
 function arrowHeadLength(strokeWidth) {
   return BASE_ARROW_SIZE + ARROW_SCALE * Math.sqrt(strokeWidth);
 }
@@ -74883,18 +74935,18 @@ function ensureArrowMarker(defs, color2, strokeWidth) {
   defs.append("marker").attr("id", id).attr("viewBox", `0 0 ${mw} ${mh}`).attr("refX", mw * 0.1).attr("refY", mh / 2).attr("markerWidth", mw).attr("markerHeight", mh).attr("orient", "auto").append("polygon").attr("points", `0,0 ${mw},${mh / 2} 0,${mh}`).attr("fill", color2);
 }
 var DEFAULT_EDGE_WIDTH, MIN_EDGE_WIDTH, BASE_ARROW_SIZE, ARROW_SCALE, MIN_ARC_ANGLE, LABEL_FONT_SIZE4, CIRCLE_LABEL_FONT_SIZE, DESC_FONT_SIZE6, EDGE_LABEL_FONT_SIZE13, MIN_NODE_WIDTH4, MAX_NODE_WIDTH3, DESC_MIN_WIDTH, DESC_WIDTH_STEP, DESC_TARGET_RATIO, PLAIN_NODE_HEIGHT, HEADER_HEIGHT4, DESC_LINE_HEIGHT7, DESC_PAD_Y, NODE_PAD_X, MIN_CIRCLE_RADIUS, CIRCLE_PAD, RENDERER_DESC_FONT, RENDERER_DESC_FONT_MIN, RENDERER_DESC_LINE_H, RENDERER_DESC_LINE_H_MIN, EDGE_LABEL_MAX_WIDTH, NODE_FONT_SIZE8, DESC_FONT_SIZE22, EDGE_LABEL_FONT_SIZE22, DESC_LINE_HEIGHT22, TITLE_AREA_HEIGHT;
-var init_chunk_JE3SMHRZ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-JE3SMHRZ.js"() {
-    init_chunk_3HDBAXF5();
-    init_chunk_BMR4CIEO();
+var init_chunk_M65UOFJA = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-M65UOFJA.js"() {
+    init_chunk_NCT22MOD();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
+    init_chunk_3KOPPSUQ();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
     init_src();
     DEFAULT_EDGE_WIDTH = 3;
@@ -74931,19 +74983,19 @@ var init_chunk_JE3SMHRZ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-JNC6VJMN.js
-var renderer_JNC6VJMN_exports = {};
-__export(renderer_JNC6VJMN_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-5BFS4NBL.js
+var renderer_5BFS4NBL_exports = {};
+__export(renderer_5BFS4NBL_exports, {
   renderCycle: () => renderCycle,
   renderCycleForExport: () => renderCycleForExport
 });
-var init_renderer_JNC6VJMN = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-JNC6VJMN.js"() {
-    init_chunk_JE3SMHRZ();
+var init_renderer_5BFS4NBL = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-5BFS4NBL.js"() {
+    init_chunk_M65UOFJA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-OPOGIKFR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-OPOGIKFR.js
 var parser_OPOGIKFR_exports = {};
 __export(parser_OPOGIKFR_exports, {
   MAP_DIRECTIVE_SET: () => MAP_DIRECTIVE_SET,
@@ -74951,7 +75003,7 @@ __export(parser_OPOGIKFR_exports, {
   parseMap: () => parseMap
 });
 var init_parser_OPOGIKFR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-OPOGIKFR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-OPOGIKFR.js"() {
     init_chunk_WOMXS5R7();
   }
 });
@@ -77188,7 +77240,7 @@ var init_src12 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js
 function geomObject(topo) {
   const key = Object.keys(topo.objects)[0];
   return topo.objects[key];
@@ -77464,7 +77516,7 @@ function unionLongitudes(lons) {
 }
 var fold, adjacencyCache, EDGE_EPS, planarBboxCache, DETACH_GAP_DEG, DETACH_AREA_FRAC;
 var init_chunk_4QV26TEG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-4QV26TEG.js"() {
     init_src11();
     init_src12();
     fold = (s) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().trim();
@@ -77476,7 +77528,7 @@ var init_chunk_4QV26TEG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DNSEG6P2.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DNSEG6P2.js
 function containerOvershoot(span, usOriented) {
   if (usOriented) return CONTAINER_OVERSHOOT_MAX;
   return Math.max(
@@ -78137,7 +78189,7 @@ function firstError(diags) {
 }
 var WORLD_SPAN, MERCATOR_MAX_LAT, PAD_FRACTION, REGION_PAD_FRACTION, WORLD_LAT_SOUTH, WORLD_LAT_NORTH, POI_ZOOM_FLOOR_DEG, CONTAINER_OVERSHOOT_MAX, CONTAINER_OVERSHOOT_MIN, CONTAINER_OVERSHOOT_DECAY, US_NATIONAL_LON_SPAN, CONUS_BBOX, US_SUBNATIONAL_AREA_FRACTION, REGION_ALIASES, US_STATE_POSTAL;
 var init_chunk_DNSEG6P2 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-DNSEG6P2.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-DNSEG6P2.js"() {
     init_chunk_4QV26TEG();
     init_chunk_4B5YISOR();
     init_chunk_A2RUBBVT();
@@ -78235,19 +78287,19 @@ var init_chunk_DNSEG6P2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/resolver-W3WKLWDP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/resolver-W3WKLWDP.js
 var resolver_W3WKLWDP_exports = {};
 __export(resolver_W3WKLWDP_exports, {
   isSubNationalUsExtent: () => isSubNationalUsExtent,
   resolveMap: () => resolveMap
 });
 var init_resolver_W3WKLWDP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/resolver-W3WKLWDP.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/resolver-W3WKLWDP.js"() {
     init_chunk_DNSEG6P2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FWVKPEG3.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FWVKPEG3.js
 function buildSwatches(palette, muted) {
   const bg = palette.bg;
   const day = resolveColor("orange", palette) ?? "#d98a1f";
@@ -78271,13 +78323,13 @@ function buildSwatches(palette, muted) {
   };
 }
 var init_chunk_FWVKPEG3 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-FWVKPEG3.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FWVKPEG3.js"() {
     init_chunk_42IT4BG2();
     init_chunk_EXNKNJ65();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U7ZQTUZT.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5LBCOFA5.js
 function mapLegendGroups(legend) {
   const ramp = legend.ramp;
   const scoreGroup = ramp ? {
@@ -81272,15 +81324,15 @@ function layoutMap(resolvedIn, data, size, opts) {
   };
 }
 var LEGEND_TOP_GAP2, LEGEND_BOTTOM_GAP2, FONT, LINE_HEIGHT, PADX, PADY, WATER_LETTER_SPACING, CONTEXT_PAD, EDGE_CLAMP_MARGIN, EDGE_CLAMP_OVERSHOOT, COUNTRY_FONT_MAX, COUNTRY_SIZE_FRAC_MIN, COUNTRY_SIZE_FRAC_MAX, MAX_COUNTRY_POSITIONS, COUNTRY_POS_GRID, COUNTRY_POS_TOPN_MARGIN, KIND_ORDER, FIT_PAD, PATH_DIGITS, THIN_TOL, ALBERS_SKEW_MAX, RAMP_FLOOR2, R_DEFAULT, R_MIN, R_MAX, POI_FILL_OPACITY_MAX, POI_FILL_OPACITY_MIN, W_MIN, W_MAX, FONT2, WORLD_LABEL_ANCHORS, MAX_CLUSTER_EXTENT_FACTOR, MAX_COLUMN_ROWS, REGION_LABEL_HALO_RATIO, LAND_TINT_LIGHT, LAND_TINT_DARK, TAG_TINT_LIGHT, TAG_TINT_DARK, WATER_TINT_LIGHT, WATER_TINT_DARK, RIVER_WIDTH, COMPACT_WIDTH_PX, RELIEF_MIN_AREA, RELIEF_MIN_DIM, RELIEF_HATCH_SPACING, RELIEF_HATCH_WIDTH, RELIEF_HATCH_STRENGTH, COASTLINE_RING_COUNT, COASTLINE_D0, COASTLINE_STEP, COASTLINE_THICKNESS, COASTLINE_OPACITY_NEAR, COASTLINE_OPACITY_FAR, COASTLINE_MIN_EXTENT, COASTLINE_MIN_EXTENT_GLOBAL, COASTLINE_STROKE_MIX, FOREIGN_TINT_LIGHT, FOREIGN_TINT_DARK, MUTED_FOREIGN_LIGHT, MUTED_FOREIGN_DARK, COLO_R, GOLDEN_ANGLE, STACK_OVERLAP, STACK_RING_MAX, STACK_RING_GAP, FAN_STEP, ARC_CURVE_FRAC, decodeCache, usConusProjection, alaskaProjection, hawaiiProjection, INSET_STATES, inAlaska, inHawaii, FOREIGN_BORDER, US_NON_CONUS, REGION_GEO_MEMO, REGION_GEO_MAX_FITS;
-var init_chunk_U7ZQTUZT = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U7ZQTUZT.js"() {
+var init_chunk_5LBCOFA5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-5LBCOFA5.js"() {
     init_chunk_4QV26TEG();
     init_chunk_VHO3YBTB();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_chunk_EXNKNJ65();
     init_src12();
     init_src11();
@@ -81406,7 +81458,7 @@ var init_chunk_U7ZQTUZT = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AIH6M5J6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PRKPFRC2.js
 function workFromDirectives(d) {
   if (d.clockHours === void 0) return null;
   const src = `clock
@@ -82138,11 +82190,11 @@ function emitText(g, x3, y2, text, anchor, color2, halo, withHalo, fontSize, ita
   return t3;
 }
 var WEEKDAY_ABBR3, clamp, LABEL_FONT4, mapInstanceCounter;
-var init_chunk_AIH6M5J6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-AIH6M5J6.js"() {
+var init_chunk_PRKPFRC2 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-PRKPFRC2.js"() {
     init_chunk_FWVKPEG3();
-    init_chunk_U7ZQTUZT();
-    init_chunk_QDOYT6UW();
+    init_chunk_5LBCOFA5();
+    init_chunk_44GBBTMU();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_YNAHUNMA();
@@ -82157,19 +82209,19 @@ var init_chunk_AIH6M5J6 = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-WWC5VGHH.js
-var renderer_WWC5VGHH_exports = {};
-__export(renderer_WWC5VGHH_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LRQ3OPNJ.js
+var renderer_LRQ3OPNJ_exports = {};
+__export(renderer_LRQ3OPNJ_exports, {
   renderMap: () => renderMap,
   renderMapForExport: () => renderMapForExport
 });
-var init_renderer_WWC5VGHH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-WWC5VGHH.js"() {
-    init_chunk_AIH6M5J6();
+var init_renderer_LRQ3OPNJ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LRQ3OPNJ.js"() {
+    init_chunk_PRKPFRC2();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YWPWRR7W.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-INU6ANOH.js
 function mapContentAspect(resolved, data, ref = REF) {
   const { projection: projection2, fitTarget } = buildMapProjection(resolved, data);
   projection2.fitSize([ref, ref], fitTarget);
@@ -82201,9 +82253,9 @@ function mapExportDimensions(resolved, data, baseWidth = 1200, aspectOverride) {
   return { width, height, preferContain };
 }
 var FIT_PAD2, TITLE_GAP, ASPECT_MAX, ASPECT_MIN, GLOBAL_HEIGHT_BOOST, MIN_MAP_BAND, FALLBACK_ASPECT, REF;
-var init_chunk_YWPWRR7W = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YWPWRR7W.js"() {
-    init_chunk_U7ZQTUZT();
+var init_chunk_INU6ANOH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-INU6ANOH.js"() {
+    init_chunk_5LBCOFA5();
     init_chunk_A4GOY3PE();
     init_src12();
     FIT_PAD2 = 24;
@@ -82217,19 +82269,19 @@ var init_chunk_YWPWRR7W = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dimensions-PLECMFTR.js
-var dimensions_PLECMFTR_exports = {};
-__export(dimensions_PLECMFTR_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/dimensions-XRWIPAFO.js
+var dimensions_XRWIPAFO_exports = {};
+__export(dimensions_XRWIPAFO_exports, {
   mapContentAspect: () => mapContentAspect,
   mapExportDimensions: () => mapExportDimensions
 });
-var init_dimensions_PLECMFTR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/dimensions-PLECMFTR.js"() {
-    init_chunk_YWPWRR7W();
+var init_dimensions_XRWIPAFO = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/dimensions-XRWIPAFO.js"() {
+    init_chunk_INU6ANOH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js
 async function loadNodeBuiltins() {
   const [{ readFile }, { fileURLToPath }, { dirname, resolve }] = await Promise.all([
     import("fs/promises"),
@@ -82327,7 +82379,7 @@ function loadMapData() {
 }
 var import_meta, FILES, CANDIDATE_DIRS, cache;
 var init_chunk_6MTWIQVO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6MTWIQVO.js"() {
     import_meta = {};
     FILES = {
       worldCoarse: "world-coarse.json",
@@ -82351,29 +82403,29 @@ var init_chunk_6MTWIQVO = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js
 var load_data_EHDDZ5ZS_exports = {};
 __export(load_data_EHDDZ5ZS_exports, {
   loadMapData: () => loadMapData
 });
 var init_load_data_EHDDZ5ZS = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/load-data-EHDDZ5ZS.js"() {
     init_chunk_6MTWIQVO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-73YUU35J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-73YUU35J.js
 var parser_73YUU35J_exports = {};
 __export(parser_73YUU35J_exports, {
   parsePyramid: () => parsePyramid
 });
 var init_parser_73YUU35J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-73YUU35J.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-73YUU35J.js"() {
     init_chunk_MGLJA5TK();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YM2ZQIVG.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-Q772PVKH.js
 function renderPyramid(container, parsed, palette, isDark, onClickItem, exportDims) {
   if (parsed.layers.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -82744,30 +82796,22 @@ function wrapDescription2(lines, maxWidth, fontSize) {
   const normalized = lines.map(
     (l) => l.startsWith("- ") ? "\u2022 " + l.slice(2) : l
   );
-  const out = [];
-  for (const line of normalized) {
-    if (line === "") {
-      out.push({ text: "", kind: "plain" });
-      continue;
-    }
-    out.push(...wrapDescriptionLines([line], maxChars));
-  }
-  return out;
+  return wrapDescriptionLines(normalized, maxChars);
 }
 function clamp2(x3, lo, hi) {
   return Math.max(lo, Math.min(hi, x3));
 }
 var TITLE_AREA_HEIGHT2, H_MARGIN_FRAC, V_MARGIN, BASE_WIDTH_FRAC_NO_DESC, PYRAMID_SHARE_WITH_DESC, PYRAMID_SHARE_ALTERNATE, PITCH_RATIO, DESC_GAP, DESC_ACCENT_WIDTH, DESC_ACCENT_GAP, BULLET_BODY_INDENT, LABEL_FONT_MIN, LABEL_FONT_MAX, DESC_FONT_MIN, DESC_FONT_MAX;
-var init_chunk_YM2ZQIVG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-YM2ZQIVG.js"() {
-    init_chunk_3HDBAXF5();
-    init_chunk_BMR4CIEO();
+var init_chunk_Q772PVKH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-Q772PVKH.js"() {
+    init_chunk_NCT22MOD();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
+    init_chunk_3KOPPSUQ();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
     init_src();
     TITLE_AREA_HEIGHT2 = 50;
@@ -82788,30 +82832,30 @@ var init_chunk_YM2ZQIVG = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-KUIZNLAQ.js
-var renderer_KUIZNLAQ_exports = {};
-__export(renderer_KUIZNLAQ_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-JHYUK5TN.js
+var renderer_JHYUK5TN_exports = {};
+__export(renderer_JHYUK5TN_exports, {
   renderPyramid: () => renderPyramid,
   renderPyramidForExport: () => renderPyramidForExport
 });
-var init_renderer_KUIZNLAQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-KUIZNLAQ.js"() {
-    init_chunk_YM2ZQIVG();
+var init_renderer_JHYUK5TN = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-JHYUK5TN.js"() {
+    init_chunk_Q772PVKH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-A6M25MLK.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-A6M25MLK.js
 var parser_A6M25MLK_exports = {};
 __export(parser_A6M25MLK_exports, {
   parseRing: () => parseRing
 });
 var init_parser_A6M25MLK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-A6M25MLK.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-A6M25MLK.js"() {
     init_chunk_RV2N7COG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SOBGK35Z.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3D6LDLIH.js
 function renderRing(container, parsed, palette, isDark, onClickItem, exportDims) {
   if (parsed.layers.length === 0) return;
   select_default2(container).selectAll(":not([data-d3-tooltip])").remove();
@@ -83054,16 +83098,16 @@ function clamp3(x3, lo, hi) {
   return Math.max(lo, Math.min(hi, x3));
 }
 var TITLE_AREA_HEIGHT3, H_MARGIN_FRAC2, V_MARGIN2, RING_AREA_FRAC_NO_DESC, RING_AREA_FRAC_WITH_DESC, DESC_GAP2, DESC_ACCENT_WIDTH2, DESC_ACCENT_GAP2, BULLET_BODY_INDENT2, RING_STROKE_WIDTH, RING_STROKE_OPACITY, DESC_LINE_CAP, LABEL_FONT_MIN2, LABEL_FONT_MAX2, DESC_FONT_MIN2, DESC_FONT_MAX2, MAX_LABEL_ARC;
-var init_chunk_SOBGK35Z = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-SOBGK35Z.js"() {
-    init_chunk_3HDBAXF5();
-    init_chunk_BMR4CIEO();
+var init_chunk_3D6LDLIH = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3D6LDLIH.js"() {
+    init_chunk_NCT22MOD();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
+    init_chunk_3KOPPSUQ();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_chunk_EXNKNJ65();
     init_src();
     TITLE_AREA_HEIGHT3 = 50;
@@ -83086,30 +83130,30 @@ var init_chunk_SOBGK35Z = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-TOKGYFTG.js
-var renderer_TOKGYFTG_exports = {};
-__export(renderer_TOKGYFTG_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-B6XOO6EE.js
+var renderer_B6XOO6EE_exports = {};
+__export(renderer_B6XOO6EE_exports, {
   renderRing: () => renderRing,
   renderRingForExport: () => renderRingForExport
 });
-var init_renderer_TOKGYFTG = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-TOKGYFTG.js"() {
-    init_chunk_SOBGK35Z();
+var init_renderer_B6XOO6EE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-B6XOO6EE.js"() {
+    init_chunk_3D6LDLIH();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q3KNFXQR.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-Q3KNFXQR.js
 var parser_Q3KNFXQR_exports = {};
 __export(parser_Q3KNFXQR_exports, {
   parseTreemap: () => parseTreemap
 });
 var init_parser_Q3KNFXQR = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-Q3KNFXQR.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-Q3KNFXQR.js"() {
     init_chunk_VSFAJUEF();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2UZVMWSQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RB4HOOKP.js
 function depthTint(hue, depth, bg) {
   if (depth <= 1) return hue;
   const keepPct = Math.max(55, 100 - (depth - 1) * 18);
@@ -83265,17 +83309,17 @@ function buildLegend(activeMode, parsed, heat, seriesColors2, colorOffset) {
   return { groups, activeGroup, modeByName };
 }
 var MUTED_FILL;
-var init_chunk_2UZVMWSQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2UZVMWSQ.js"() {
-    init_chunk_42IT4BG2();
+var init_chunk_RB4HOOKP = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-RB4HOOKP.js"() {
     init_chunk_D5FANMSG();
+    init_chunk_42IT4BG2();
     init_chunk_EXNKNJ65();
     init_src7();
     MUTED_FILL = "#cbd5e1";
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KSPCR75O.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CQJ5SE5T.js
 function toDatum(node) {
   if (node.children.length === 0) {
     return {
@@ -83639,16 +83683,16 @@ function clip2(s, maxWidth, fs) {
   return lo <= 0 ? "" : s.slice(0, lo) + "\u2026";
 }
 var PADDING3, LEGEND_POSITION, MIN_LABEL_SWEEP, MIN_LABEL_FS, LABEL_BASE_FS, INK_MIN_CONTRAST;
-var init_chunk_KSPCR75O = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-KSPCR75O.js"() {
-    init_chunk_2UZVMWSQ();
-    init_chunk_QDOYT6UW();
+var init_chunk_CQJ5SE5T = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-CQJ5SE5T.js"() {
+    init_chunk_RB4HOOKP();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_6KFWC4CO();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_src();
     init_src9();
     init_src10();
@@ -83664,19 +83708,19 @@ var init_chunk_KSPCR75O = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-radial-QG644QYY.js
-var renderer_radial_QG644QYY_exports = {};
-__export(renderer_radial_QG644QYY_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-radial-LZAPQVM5.js
+var renderer_radial_LZAPQVM5_exports = {};
+__export(renderer_radial_LZAPQVM5_exports, {
   renderTreemapRadial: () => renderTreemapRadial,
   renderTreemapRadialForExport: () => renderTreemapRadialForExport
 });
-var init_renderer_radial_QG644QYY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-radial-QG644QYY.js"() {
-    init_chunk_KSPCR75O();
+var init_renderer_radial_LZAPQVM5 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-radial-LZAPQVM5.js"() {
+    init_chunk_CQJ5SE5T();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULONXAOD.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-K2GDF2ZR.js
 function toDatum2(node) {
   if (node.children.length === 0) {
     return {
@@ -84050,18 +84094,18 @@ function clipLabel(s, maxWidth, fs) {
   return lo <= 0 ? "" : s.slice(0, lo) + "\u2026";
 }
 var PADDING4, HEADER_H, TITLE_BAND, LEAF_MUTE_PCT, LEGEND_POSITION2;
-var init_chunk_ULONXAOD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ULONXAOD.js"() {
-    init_chunk_2UZVMWSQ();
+var init_chunk_K2GDF2ZR = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-K2GDF2ZR.js"() {
+    init_chunk_RB4HOOKP();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_src();
     init_src10();
     PADDING4 = 12;
@@ -84075,30 +84119,30 @@ var init_chunk_ULONXAOD = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-MLDGFZDW.js
-var renderer_MLDGFZDW_exports = {};
-__export(renderer_MLDGFZDW_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-XKMG3SYD.js
+var renderer_XKMG3SYD_exports = {};
+__export(renderer_XKMG3SYD_exports, {
   renderTreemap: () => renderTreemap,
   renderTreemapForExport: () => renderTreemapForExport
 });
-var init_renderer_MLDGFZDW = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-MLDGFZDW.js"() {
-    init_chunk_ULONXAOD();
+var init_renderer_XKMG3SYD = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-XKMG3SYD.js"() {
+    init_chunk_K2GDF2ZR();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-XWNSCDY6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-XWNSCDY6.js
 var parser_XWNSCDY6_exports = {};
 __export(parser_XWNSCDY6_exports, {
   parseBlock: () => parseBlock
 });
 var init_parser_XWNSCDY6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-XWNSCDY6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-XWNSCDY6.js"() {
     init_chunk_5J2RQGFG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OWLGERJL.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6HSRT6WI.js
 function layoutBlock(grid, opts = {}) {
   const collapsed = opts.collapsed ?? /* @__PURE__ */ new Set();
   const node = layoutGrid(grid, 0, 0, null, collapsed);
@@ -84432,18 +84476,18 @@ function buildBlockLegend(parsed) {
   return { groups: [{ name: tg.name, entries }], activeGroup: tg.name };
 }
 var BLOCK_GAP, BLOCK_PAD, BLOCK_LEAF_H, BLOCK_HEADER_H, BLOCK_COLLAPSED_H, BLOCK_BAR_H, MIN_COL, MAX_COL, LABEL_FS, PADDING5, TITLE_BAND2, MIN_EXPORT_WIDTH, LEGEND_POSITION3, clipCounter;
-var init_chunk_OWLGERJL = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-OWLGERJL.js"() {
+var init_chunk_6HSRT6WI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6HSRT6WI.js"() {
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_XSVWUOUZ();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_src();
     BLOCK_GAP = 12;
     BLOCK_PAD = 10;
@@ -84465,31 +84509,31 @@ var init_chunk_OWLGERJL = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-Q3A7572V.js
-var renderer_Q3A7572V_exports = {};
-__export(renderer_Q3A7572V_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LMLSA457.js
+var renderer_LMLSA457_exports = {};
+__export(renderer_LMLSA457_exports, {
   authoredCollapsedIds: () => authoredCollapsedIds,
   renderBlock: () => renderBlock,
   renderBlockForExport: () => renderBlockForExport
 });
-var init_renderer_Q3A7572V = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-Q3A7572V.js"() {
-    init_chunk_OWLGERJL();
+var init_renderer_LMLSA457 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-LMLSA457.js"() {
+    init_chunk_6HSRT6WI();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-DQ2DGDYO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-DQ2DGDYO.js
 var parser_DQ2DGDYO_exports = {};
 __export(parser_DQ2DGDYO_exports, {
   parseGoal: () => parseGoal
 });
 var init_parser_DQ2DGDYO = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-DQ2DGDYO.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-DQ2DGDYO.js"() {
     init_chunk_5XMDSXZT();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ6L5VQJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3NSOKT7C.js
 function clamp5(x3, lo, hi) {
   return Math.max(lo, Math.min(hi, x3));
 }
@@ -84824,10 +84868,10 @@ function renderGauge(svg, parsed, metrics, paint) {
   };
 }
 var GOAL_TITLE_SIZE;
-var init_chunk_UZ6L5VQJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-UZ6L5VQJ.js"() {
-    init_chunk_2UZVMWSQ();
-    init_chunk_3HDBAXF5();
+var init_chunk_3NSOKT7C = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-3NSOKT7C.js"() {
+    init_chunk_RB4HOOKP();
+    init_chunk_WGC42WJU();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
     init_chunk_42IT4BG2();
@@ -84837,31 +84881,31 @@ var init_chunk_UZ6L5VQJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-53FU55KK.js
-var renderer_53FU55KK_exports = {};
-__export(renderer_53FU55KK_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-TIIHLRMM.js
+var renderer_TIIHLRMM_exports = {};
+__export(renderer_TIIHLRMM_exports, {
   renderGoal: () => renderGoal,
   renderGoalForExport: () => renderGoalForExport
 });
-var init_renderer_53FU55KK = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-53FU55KK.js"() {
-    init_chunk_UZ6L5VQJ();
+var init_renderer_TIIHLRMM = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-TIIHLRMM.js"() {
+    init_chunk_3NSOKT7C();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QN3GJJ3J.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-QN3GJJ3J.js
 var parser_QN3GJJ3J_exports = {};
 __export(parser_QN3GJJ3J_exports, {
   parseCountdown: () => parseCountdown,
   targetToMs: () => targetToMs2
 });
 var init_parser_QN3GJJ3J = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QN3GJJ3J.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-QN3GJJ3J.js"() {
     init_chunk_QWUYFUNO();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NVQXIDLE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BIWMOFSE.js
 function bakedHero(parsed, now) {
   const resolved = parsed.resolvedMs;
   if (resolved === null) return "\u2014";
@@ -85661,7 +85705,7 @@ function renderCountdown(container, parsed, palette, isDark, exportDims) {
     const w2 = estWidth2(t3, base);
     return w2 <= maxW ? base : Math.max(min3, Math.floor(base * maxW / w2));
   };
-  const dispLen = (s) => parseInlineMarkdown(s).reduce((n, sp) => n + sp.text.length, 0);
+  const dispLen = (s) => stripInlineMarkdown(s).length;
   const padX = Math.max(30, Math.round(width * 0.045));
   const padY = Math.max(26, Math.round(width * 0.03));
   const contentW = width - 2 * padX;
@@ -85828,10 +85872,10 @@ function renderCountdownForExport(container, parsed, palette, isDark, exportDims
   renderCountdown(container, parsed, palette, isDark, exportDims);
 }
 var MON_ABBR, WD_ABBR, DAY_START, dayDelta, keyOf, REPEAT_ICON_PATH, MONTH_TARGET_PX;
-var init_chunk_NVQXIDLE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-NVQXIDLE.js"() {
-    init_chunk_3HDBAXF5();
-    init_chunk_BMR4CIEO();
+var init_chunk_BIWMOFSE = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-BIWMOFSE.js"() {
+    init_chunk_NCT22MOD();
+    init_chunk_WGC42WJU();
     init_chunk_6KFWC4CO();
     init_chunk_OQKP2X3D();
     init_chunk_42IT4BG2();
@@ -85866,30 +85910,30 @@ var init_chunk_NVQXIDLE = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-IWNHBIZ6.js
-var renderer_IWNHBIZ6_exports = {};
-__export(renderer_IWNHBIZ6_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-NKVIQA3C.js
+var renderer_NKVIQA3C_exports = {};
+__export(renderer_NKVIQA3C_exports, {
   renderCountdown: () => renderCountdown,
   renderCountdownForExport: () => renderCountdownForExport
 });
-var init_renderer_IWNHBIZ6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-IWNHBIZ6.js"() {
-    init_chunk_NVQXIDLE();
+var init_renderer_NKVIQA3C = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-NKVIQA3C.js"() {
+    init_chunk_BIWMOFSE();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-D7YZX3CH.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-D7YZX3CH.js
 var parser_D7YZX3CH_exports = {};
 __export(parser_D7YZX3CH_exports, {
   parseClock: () => parseClock
 });
 var init_parser_D7YZX3CH = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-D7YZX3CH.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-D7YZX3CH.js"() {
     init_chunk_YNAHUNMA();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MD2KWAXJ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-MD2KWAXJ.js
 function partsFor2(entry, now) {
   return entry.kind === "fixed" ? fixedParts(entry.fixedOffsetMin ?? 0, now) : zoneParts(entry.zone, now);
 }
@@ -86409,7 +86453,7 @@ function renderClockForExport(container, parsed, palette, isDark, exportDims) {
 }
 var PLACE_ACCENTS, clipSeq, WEEKDAY_ABBR4;
 var init_chunk_MD2KWAXJ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-MD2KWAXJ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-MD2KWAXJ.js"() {
     init_chunk_FWVKPEG3();
     init_chunk_6KFWC4CO();
     init_chunk_A2RUBBVT();
@@ -86430,30 +86474,30 @@ var init_chunk_MD2KWAXJ = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-HGWKAXS6.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-HGWKAXS6.js
 var renderer_HGWKAXS6_exports = {};
 __export(renderer_HGWKAXS6_exports, {
   renderClock: () => renderClock,
   renderClockForExport: () => renderClockForExport
 });
 var init_renderer_HGWKAXS6 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-HGWKAXS6.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-HGWKAXS6.js"() {
     init_chunk_MD2KWAXJ();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-WT3DSNPQ.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-WT3DSNPQ.js
 var parser_WT3DSNPQ_exports = {};
 __export(parser_WT3DSNPQ_exports, {
   parseBracket: () => parseBracket
 });
 var init_parser_WT3DSNPQ = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-WT3DSNPQ.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-WT3DSNPQ.js"() {
     init_chunk_NFAHDPCG();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HOPTF3ZP.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-KH74OWHU.js
 function stripInline(s) {
   return s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*|__|\*|_|`/g, "");
 }
@@ -87378,18 +87422,18 @@ function renderBracketForExport(container, parsed, palette, isDark, exportDims) 
   renderBracket(container, parsed, palette, isDark, exportDims);
 }
 var BOX_W, BOX_H, PAIR_GAP, ROW, COL_W, COMMENT_W, HALF_SPAN, PADDING6, TITLE_BAND3, HALF_SPAN2, COMMENT_LH, LEGEND_POSITION4;
-var init_chunk_HOPTF3ZP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-HOPTF3ZP.js"() {
-    init_chunk_3HDBAXF5();
+var init_chunk_KH74OWHU = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-KH74OWHU.js"() {
+    init_chunk_WGC42WJU();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
+    init_chunk_D5FANMSG();
     init_chunk_SCJ7CAJF();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_D5FANMSG();
     init_chunk_EXNKNJ65();
     init_chunk_OLMWTJVU();
     init_src();
@@ -87411,32 +87455,32 @@ var init_chunk_HOPTF3ZP = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-FRBPMKPP.js
-var renderer_FRBPMKPP_exports = {};
-__export(renderer_FRBPMKPP_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-6OFPEBHG.js
+var renderer_6OFPEBHG_exports = {};
+__export(renderer_6OFPEBHG_exports, {
   bracketExportDimensions: () => bracketExportDimensions,
   renderBracket: () => renderBracket,
   renderBracketForExport: () => renderBracketForExport
 });
-var init_renderer_FRBPMKPP = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-FRBPMKPP.js"() {
-    init_chunk_HOPTF3ZP();
+var init_renderer_6OFPEBHG = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-6OFPEBHG.js"() {
+    init_chunk_KH74OWHU();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LQDEU22S.js
-var parser_LQDEU22S_exports = {};
-__export(parser_LQDEU22S_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-IQLLBMBQ.js
+var parser_IQLLBMBQ_exports = {};
+__export(parser_IQLLBMBQ_exports, {
   allTasks: () => allTasks,
   parseRaci: () => parseRaci
 });
-var init_parser_LQDEU22S = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-LQDEU22S.js"() {
-    init_chunk_GG7TK3IA();
+var init_parser_IQLLBMBQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-IQLLBMBQ.js"() {
+    init_chunk_BQLJAYVB();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GUVVQW3Y.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FMPYKUKI.js
 function groupDiagnosticsByTask(parsed) {
   const map2 = /* @__PURE__ */ new Map();
   if (parsed.diagnostics.length === 0) return map2;
@@ -88131,17 +88175,17 @@ function parseQuotedSegments(message) {
   return out;
 }
 var MARKER_LABELS, TITLE_AREA_HEIGHT4, H_MARGIN2, V_MARGIN3, LEGEND_HEIGHT2, LEGEND_CHIP_GAP, LEGEND_CHIP_LABEL_MIN, LEGEND_LETTER_CHIP_W, TITLE_LEGEND_GAP, LEGEND_LABEL_FONT, LEGEND_LETTER_FONT, HEADER_HEIGHT5, ROW_HEIGHT, PHASE_HEIGHT, TASK_LABEL_MIN, TASK_LABEL_MAX, ROLE_COL_MIN, ROLE_COL_MAX, CELL_PAD, VIOLATION_LINE_HEIGHT, STACK_TOP_GAP, DESC_FONT2, COLUMN_RADIUS3, COLUMN_INSET, COLUMN_BOTTOM_PAD, MARKER_FONT, MARKER_FONT_WEIGHT, LABEL_FONT5, ROLE_HEADER_FONT, PHASE_FONT, TINT_PCT, NODE_RADIUS3, AUTO_ACCENTS, SLICE_GAP, NAME_LINE_HEIGHT, DESC_LINE_HEIGHT8;
-var init_chunk_GUVVQW3Y = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-GUVVQW3Y.js"() {
+var init_chunk_FMPYKUKI = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-FMPYKUKI.js"() {
     init_chunk_3CIOJ5YJ();
     init_chunk_YYVTBZZC();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_GG7TK3IA();
+    init_chunk_BQLJAYVB();
     init_chunk_I55PVEIX();
+    init_chunk_3KOPPSUQ();
     init_chunk_4ASYQ347();
     init_chunk_42IT4BG2();
-    init_chunk_3KOPPSUQ();
     init_src();
     MARKER_LABELS = {
       raci: { R: "Responsible", A: "Accountable", C: "Consulted", I: "Informed" },
@@ -88201,20 +88245,20 @@ var init_chunk_GUVVQW3Y = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CL4SAUA5.js
-var renderer_CL4SAUA5_exports = {};
-__export(renderer_CL4SAUA5_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-KXMKAXPQ.js
+var renderer_KXMKAXPQ_exports = {};
+__export(renderer_KXMKAXPQ_exports, {
   MARKER_LABELS: () => MARKER_LABELS,
   renderRaci: () => renderRaci,
   renderRaciForExport: () => renderRaciForExport
 });
-var init_renderer_CL4SAUA5 = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-CL4SAUA5.js"() {
-    init_chunk_GUVVQW3Y();
+var init_renderer_KXMKAXPQ = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-KXMKAXPQ.js"() {
+    init_chunk_FMPYKUKI();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QL2LBPFE.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-QL2LBPFE.js
 var parser_QL2LBPFE_exports = {};
 __export(parser_QL2LBPFE_exports, {
   isSequenceBlock: () => isSequenceBlock,
@@ -88224,12 +88268,12 @@ __export(parser_QL2LBPFE_exports, {
   parseSequenceDgmo: () => parseSequenceDgmo
 });
 var init_parser_QL2LBPFE = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/parser-QL2LBPFE.js"() {
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/parser-QL2LBPFE.js"() {
     init_chunk_FERE46TP();
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-P6XFQVYY.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SQWWYGPT.js
 function applyCollapseProjection(parsed, collapsedGroups) {
   if (collapsedGroups.size === 0) {
     return {
@@ -90042,21 +90086,21 @@ function renderParticipant(svg, participant, cx, cy, palette, isDark, color2, ta
   }
 }
 var PARTICIPANT_GAP, PARTICIPANT_BOX_WIDTH, PARTICIPANT_BOX_HEIGHT, LABEL_FONT_SIZE5, TOP_MARGIN, TITLE_HEIGHT8, PARTICIPANT_Y_OFFSET, MESSAGE_START_OFFSET, LIFELINE_TAIL, ARROWHEAD_SIZE, NOTE_MAX_W2, NOTE_FOLD2, NOTE_PAD_H2, NOTE_PAD_V2, NOTE_FONT_SIZE3, NOTE_LINE_H2, NOTE_GAP2, ACTIVATION_WIDTH, SELF_CALL_HEIGHT, SELF_CALL_WIDTH, ACTOR_LABEL_CLEARANCE, labelTextWidth, fill, stroke, SW, W3, H2;
-var init_chunk_P6XFQVYY = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-P6XFQVYY.js"() {
-    init_chunk_3HDBAXF5();
-    init_chunk_BMR4CIEO();
+var init_chunk_SQWWYGPT = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-SQWWYGPT.js"() {
+    init_chunk_NCT22MOD();
+    init_chunk_WGC42WJU();
     init_chunk_YYVTBZZC();
     init_chunk_6VJCURWU();
-    init_chunk_QDOYT6UW();
+    init_chunk_44GBBTMU();
     init_chunk_ES66QH6J();
     init_chunk_A4GOY3PE();
     init_chunk_6KFWC4CO();
-    init_chunk_4ASYQ347();
-    init_chunk_42IT4BG2();
     init_chunk_FERE46TP();
     init_chunk_D5FANMSG();
     init_chunk_3KOPPSUQ();
+    init_chunk_4ASYQ347();
+    init_chunk_42IT4BG2();
     init_src();
     PARTICIPANT_GAP = 160;
     PARTICIPANT_BOX_WIDTH = 120;
@@ -90088,9 +90132,9 @@ var init_chunk_P6XFQVYY = __esm({
   }
 });
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5G3PORFD.js
-var renderer_5G3PORFD_exports = {};
-__export(renderer_5G3PORFD_exports, {
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-VWBNIZV3.js
+var renderer_VWBNIZV3_exports = {};
+__export(renderer_VWBNIZV3_exports, {
   applyGroupOrdering: () => applyGroupOrdering,
   applyPositionOverrides: () => applyPositionOverrides,
   buildNoteMessageMap: () => buildNoteMessageMap,
@@ -90101,10 +90145,10 @@ __export(renderer_5G3PORFD_exports, {
   renderSequenceDiagram: () => renderSequenceDiagram,
   truncateBareUrl: () => truncateBareUrl
 });
-var init_renderer_5G3PORFD = __esm({
-  "node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/renderer-5G3PORFD.js"() {
-    init_chunk_P6XFQVYY();
-    init_chunk_3HDBAXF5();
+var init_renderer_VWBNIZV3 = __esm({
+  "node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/renderer-VWBNIZV3.js"() {
+    init_chunk_SQWWYGPT();
+    init_chunk_WGC42WJU();
   }
 });
 
@@ -97790,10 +97834,10 @@ var import_obsidian4 = require("obsidian");
 // src/new-diagram.ts
 var import_obsidian = require("obsidian");
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ZMMYCERO.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7Q35X3AL.js
 init_chunk_6KFWC4CO();
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-U7VO6JAA.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-U7VO6JAA.js
 init_chunk_5WRI5ZAA();
 var require_lz_string = __commonJS2({
   "node_modules/.pnpm/lz-string@1.5.0/node_modules/lz-string/libs/lz-string.js"(exports, module2) {
@@ -98288,8 +98332,8 @@ function encodeDiagramUrl(dsl, options) {
   return { url: `${baseUrl}?${hash}#${hash}` };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-ZMMYCERO.js
-init_chunk_GDGOVO2I();
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-7Q35X3AL.js
+init_chunk_VYCV5WKH();
 init_chunk_4ASYQ347();
 var DOCS_BASE = "https://diagrammo.app/docs";
 function docsLink(source) {
@@ -98682,22 +98726,22 @@ function computeBBox(svg) {
   return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/index.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/index.js
 init_chunk_4B5YISOR();
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/chunk-2JMNOEAU.js
-init_chunk_BR2VSKHI();
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/chunk-6DR2GMDM.js
+init_chunk_OFEUXZPI();
 init_chunk_VHO3YBTB();
-init_chunk_HIMDUQT7();
+init_chunk_KRKU6WRS();
 init_chunk_YYVTBZZC();
 init_chunk_CQ7Y3O67();
 init_chunk_6VJCURWU();
 init_chunk_6KFWC4CO();
-init_chunk_GDGOVO2I();
+init_chunk_VYCV5WKH();
+init_chunk_D5FANMSG();
 init_chunk_R3XI2VC7();
 init_chunk_4ASYQ347();
 init_chunk_42IT4BG2();
-init_chunk_D5FANMSG();
 init_chunk_OLMWTJVU();
 init_src7();
 init_src9();
@@ -100498,13 +100542,13 @@ function resolveArcChordOverride(content, detectedType, palette) {
 }
 async function renderForExport(content, theme, palette, viewState, options) {
   const exportMode = options?.exportMode ?? false;
-  const { parseDgmoChartType: parseDgmoChartType2 } = await Promise.resolve().then(() => (init_dgmo_router_GSWUPLP2(), dgmo_router_GSWUPLP2_exports));
+  const { parseDgmoChartType: parseDgmoChartType2 } = await Promise.resolve().then(() => (init_dgmo_router_PMEKTIJ7(), dgmo_router_PMEKTIJ7_exports));
   const detectedTypeRaw = parseDgmoChartType2(content);
   const override = resolveArcChordOverride(content, detectedTypeRaw, palette);
   const renderContent = override?.content ?? content;
   const detectedType = override?.type ?? detectedTypeRaw;
   if (detectedType !== null) {
-    const { supportsD3DataChart: supportsD3DataChart2, renderDataChartD3: renderDataChartD32 } = await Promise.resolve().then(() => (init_charts_d3_D67V6KHE(), charts_d3_D67V6KHE_exports));
+    const { supportsD3DataChart: supportsD3DataChart2, renderDataChartD3: renderDataChartD32 } = await Promise.resolve().then(() => (init_charts_d3_Z6FOKUAL(), charts_d3_Z6FOKUAL_exports));
     if (supportsD3DataChart2(detectedType)) {
       return renderDataChartD32(renderContent, theme, palette);
     }
@@ -100526,8 +100570,8 @@ function ctxTagOverride(ctx) {
 }
 async function exportEventLine(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseEventLine: parseEventLine2 } = await Promise.resolve().then(() => (init_parser_GGCDY65M(), parser_GGCDY65M_exports));
-  const { renderEventLineForExport: renderEventLineForExport2 } = await Promise.resolve().then(() => (init_renderer_YVCD55ZX(), renderer_YVCD55ZX_exports));
+  const { parseEventLine: parseEventLine2 } = await Promise.resolve().then(() => (init_parser_DTXM5ROT(), parser_DTXM5ROT_exports));
+  const { renderEventLineForExport: renderEventLineForExport2 } = await Promise.resolve().then(() => (init_renderer_BZZKS7KQ(), renderer_BZZKS7KQ_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseEventLine2(content, effectivePalette);
   if (parsed.error || parsed.events.length === 0) return "";
@@ -100546,7 +100590,7 @@ async function exportEventLine(ctx) {
 async function exportBody(ctx) {
   const { content, theme, palette } = ctx;
   const { parseBody: parseBody2 } = await Promise.resolve().then(() => (init_parser_RBNOWHGM(), parser_RBNOWHGM_exports));
-  const { renderBodyForExport: renderBodyForExport2 } = await Promise.resolve().then(() => (init_renderer_M6AFKVLS(), renderer_M6AFKVLS_exports));
+  const { renderBodyForExport: renderBodyForExport2 } = await Promise.resolve().then(() => (init_renderer_Q6TJ52B4(), renderer_Q6TJ52B4_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseBody2(content, effectivePalette);
   if (parsed.error) return "";
@@ -100589,9 +100633,9 @@ function unionHiddenAttributes(hideOption, ha) {
 async function exportOrg(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
   const { parseOrg: parseOrg2 } = await Promise.resolve().then(() => (init_parser_CCAUZLYI(), parser_CCAUZLYI_exports));
-  const { layoutOrg: layoutOrg2 } = await Promise.resolve().then(() => (init_layout_WDXNSQQF(), layout_WDXNSQQF_exports));
+  const { layoutOrg: layoutOrg2 } = await Promise.resolve().then(() => (init_layout_AQXLQVAJ(), layout_AQXLQVAJ_exports));
   const { collapseOrgTree: collapseOrgTree2 } = await Promise.resolve().then(() => (init_collapse_CLPJD2RL(), collapse_CLPJD2RL_exports));
-  const { renderOrg: renderOrg2 } = await Promise.resolve().then(() => (init_renderer_J5MMVCGN(), renderer_J5MMVCGN_exports));
+  const { renderOrg: renderOrg2 } = await Promise.resolve().then(() => (init_renderer_LNOBG226(), renderer_LNOBG226_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const orgParsed = parseOrg2(content, effectivePalette);
@@ -100638,9 +100682,9 @@ async function exportOrg(ctx) {
 async function exportSitemap(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
   const { parseSitemap: parseSitemap2 } = await Promise.resolve().then(() => (init_parser_5UZWYSIV(), parser_5UZWYSIV_exports));
-  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_A5UVXINF(), layout_A5UVXINF_exports));
+  const { layoutSitemap: layoutSitemap2 } = await Promise.resolve().then(() => (init_layout_EQTOVNEE(), layout_EQTOVNEE_exports));
   const { collapseSitemapTree: collapseSitemapTree2 } = await Promise.resolve().then(() => (init_collapse_ZWUFFCK2(), collapse_ZWUFFCK2_exports));
-  const { renderSitemap: renderSitemap2 } = await Promise.resolve().then(() => (init_renderer_CRAIC4ER(), renderer_CRAIC4ER_exports));
+  const { renderSitemap: renderSitemap2 } = await Promise.resolve().then(() => (init_renderer_XSZ5MUIF(), renderer_XSZ5MUIF_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const sitemapParsed = parseSitemap2(content, effectivePalette);
@@ -100690,7 +100734,7 @@ async function exportSitemap(ctx) {
 async function exportKanban(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
   const { parseKanban: parseKanban2 } = await Promise.resolve().then(() => (init_parser_IPBEW2DG(), parser_IPBEW2DG_exports));
-  const { renderKanban: renderKanban2 } = await Promise.resolve().then(() => (init_renderer_5CU6GYF2(), renderer_5CU6GYF2_exports));
+  const { renderKanban: renderKanban2 } = await Promise.resolve().then(() => (init_renderer_3WYLLPQL(), renderer_3WYLLPQL_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const kanbanParsed = parseKanban2(content, effectivePalette);
   if (kanbanParsed.error || kanbanParsed.columns.length === 0) return "";
@@ -100722,8 +100766,8 @@ async function exportKanban(ctx) {
 async function exportClass(ctx) {
   const { content, theme, palette, exportMode } = ctx;
   const { parseClassDiagram: parseClassDiagram2 } = await Promise.resolve().then(() => (init_parser_HMQZPPOK(), parser_HMQZPPOK_exports));
-  const { layoutClassDiagram: layoutClassDiagram2 } = await Promise.resolve().then(() => (init_layout_UFZQI6SX(), layout_UFZQI6SX_exports));
-  const { renderClassDiagram: renderClassDiagram2 } = await Promise.resolve().then(() => (init_renderer_4VLQKKTV(), renderer_4VLQKKTV_exports));
+  const { layoutClassDiagram: layoutClassDiagram2 } = await Promise.resolve().then(() => (init_layout_RIS5VTGL(), layout_RIS5VTGL_exports));
+  const { renderClassDiagram: renderClassDiagram2 } = await Promise.resolve().then(() => (init_renderer_I2P5FTZ2(), renderer_I2P5FTZ2_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const classParsed = parseClassDiagram2(content, effectivePalette);
   if (classParsed.error || classParsed.classes.length === 0) return "";
@@ -100749,8 +100793,8 @@ async function exportClass(ctx) {
 async function exportEr(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
   const { parseERDiagram: parseERDiagram2 } = await Promise.resolve().then(() => (init_parser_Q62VR2UJ(), parser_Q62VR2UJ_exports));
-  const { layoutERDiagram: layoutERDiagram2 } = await Promise.resolve().then(() => (init_layout_3XFPPFXI(), layout_3XFPPFXI_exports));
-  const { renderERDiagram: renderERDiagram2 } = await Promise.resolve().then(() => (init_renderer_J5TL5ZX4(), renderer_J5TL5ZX4_exports));
+  const { layoutERDiagram: layoutERDiagram2 } = await Promise.resolve().then(() => (init_layout_TCWNJ2OZ(), layout_TCWNJ2OZ_exports));
+  const { renderERDiagram: renderERDiagram2 } = await Promise.resolve().then(() => (init_renderer_HDLM6OY6(), renderer_HDLM6OY6_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const erParsed = parseERDiagram2(content, effectivePalette);
   if (erParsed.error || erParsed.tables.length === 0) return "";
@@ -100789,7 +100833,7 @@ async function exportSketch(ctx) {
     return "";
   }
   const { layoutSketch: layoutSketch2 } = await Promise.resolve().then(() => (init_layout_NX37NSRY(), layout_NX37NSRY_exports));
-  const { renderSketchForExport: renderSketchForExport2 } = await Promise.resolve().then(() => (init_renderer_DZ5N6BHW(), renderer_DZ5N6BHW_exports));
+  const { renderSketchForExport: renderSketchForExport2 } = await Promise.resolve().then(() => (init_renderer_FQLFE3TQ(), renderer_FQLFE3TQ_exports));
   const collapsedBoxes = viewState?.cg ? new Set(viewState.cg) : void 0;
   const skLayout = layoutSketch2(parsed, {
     ...collapsedBoxes !== void 0 && { collapsedBoxes }
@@ -100827,8 +100871,8 @@ async function exportBoxesAndLines(ctx) {
       blHiddenTagValues.set(k2, new Set(v2));
     }
   }
-  const { renderBoxesAndLinesForExport: renderBoxesAndLinesForExport2 } = await Promise.resolve().then(() => (init_renderer_52S6JM5R(), renderer_52S6JM5R_exports));
-  const { layoutBoxesAndLines: layoutBoxesAndLines2 } = await Promise.resolve().then(() => (init_layout_2BJDECLZ(), layout_2BJDECLZ_exports));
+  const { renderBoxesAndLinesForExport: renderBoxesAndLinesForExport2 } = await Promise.resolve().then(() => (init_renderer_EJ3FETD2(), renderer_EJ3FETD2_exports));
+  const { layoutBoxesAndLines: layoutBoxesAndLines2 } = await Promise.resolve().then(() => (init_layout_NU5LQ4UP(), layout_NU5LQ4UP_exports));
   const blLayout = await layoutBoxesAndLines2(blParsed);
   const PADDING7 = 20;
   const titleOffset = blParsed.title ? 40 : 0;
@@ -100859,7 +100903,7 @@ async function exportSwimlane(ctx) {
   const { content, theme, palette } = ctx;
   const { parseSwimlane: parseSwimlane2 } = await Promise.resolve().then(() => (init_parser_PEBXIOPX(), parser_PEBXIOPX_exports));
   const { layoutSwimlane: layoutSwimlane2 } = await Promise.resolve().then(() => (init_layout_OHAIIXBC(), layout_OHAIIXBC_exports));
-  const { renderSwimlaneForExport: renderSwimlaneForExport2 } = await Promise.resolve().then(() => (init_renderer_YWYX6WAI(), renderer_YWYX6WAI_exports));
+  const { renderSwimlaneForExport: renderSwimlaneForExport2 } = await Promise.resolve().then(() => (init_renderer_LU4R3BP2(), renderer_LU4R3BP2_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const swimParsed = parseSwimlane2(content, effectivePalette);
   if (swimParsed.error || swimParsed.nodes.length === 0) return "";
@@ -100891,7 +100935,7 @@ async function exportFamily(ctx) {
   const { content, theme, palette } = ctx;
   const { parseFamily: parseFamily2 } = await Promise.resolve().then(() => (init_parser_6CM27UPA(), parser_6CM27UPA_exports));
   const { layoutFamily: layoutFamily2 } = await Promise.resolve().then(() => (init_layout_CAAKQX4W(), layout_CAAKQX4W_exports));
-  const { renderFamilyForExport: renderFamilyForExport2 } = await Promise.resolve().then(() => (init_renderer_CB2DOQ2O(), renderer_CB2DOQ2O_exports));
+  const { renderFamilyForExport: renderFamilyForExport2 } = await Promise.resolve().then(() => (init_renderer_W5GF5USI(), renderer_W5GF5USI_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseFamily2(content, effectivePalette);
   if (parsed.error || parsed.persons.size === 0) return "";
@@ -100922,9 +100966,9 @@ async function exportFamily(ctx) {
 async function exportMindmap(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
   const { parseMindmap: parseMindmap2 } = await Promise.resolve().then(() => (init_parser_SJ7ECFAP(), parser_SJ7ECFAP_exports));
-  const { layoutMindmap: layoutMindmap2 } = await Promise.resolve().then(() => (init_layout_HIK4ZJFQ(), layout_HIK4ZJFQ_exports));
+  const { layoutMindmap: layoutMindmap2 } = await Promise.resolve().then(() => (init_layout_AO3TPZUS(), layout_AO3TPZUS_exports));
   const { collapseMindmapTree: collapseMindmapTree2 } = await Promise.resolve().then(() => (init_collapse_SLINJQW6(), collapse_SLINJQW6_exports));
-  const { renderMindmap: renderMindmap2 } = await Promise.resolve().then(() => (init_renderer_3IETIUZB(), renderer_3IETIUZB_exports));
+  const { renderMindmap: renderMindmap2 } = await Promise.resolve().then(() => (init_renderer_IAJMS5U5(), renderer_IAJMS5U5_exports));
   const isDark = ctx.isDark;
   const effectivePalette = await resolveExportPalette(theme, palette);
   const mmParsed = parseMindmap2(content, effectivePalette);
@@ -100976,7 +101020,7 @@ async function exportWireframe(ctx) {
   const { content, theme, palette } = ctx;
   const { parseWireframe: parseWireframe2 } = await Promise.resolve().then(() => (init_parser_MH62NYKM(), parser_MH62NYKM_exports));
   const { layoutWireframe: layoutWireframe2 } = await Promise.resolve().then(() => (init_layout_5XGYNYVT(), layout_5XGYNYVT_exports));
-  const { renderWireframe: renderWireframe2 } = await Promise.resolve().then(() => (init_renderer_SYT4L7GE(), renderer_SYT4L7GE_exports));
+  const { renderWireframe: renderWireframe2 } = await Promise.resolve().then(() => (init_renderer_ND7YIUHD(), renderer_ND7YIUHD_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const wireframeParsed = parseWireframe2(content);
   if (wireframeParsed.error || wireframeParsed.roots.length === 0 && wireframeParsed.modals.length === 0)
@@ -100999,14 +101043,14 @@ async function exportWireframe(ctx) {
 }
 async function exportC4(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseC4: parseC42 } = await Promise.resolve().then(() => (init_parser_VVTCMQWY(), parser_VVTCMQWY_exports));
+  const { parseC4: parseC42 } = await Promise.resolve().then(() => (init_parser_LMNFVTIV(), parser_LMNFVTIV_exports));
   const {
     layoutC4Context: layoutC4Context2,
     layoutC4Containers: layoutC4Containers2,
     layoutC4Components: layoutC4Components2,
     layoutC4Deployment: layoutC4Deployment2
-  } = await Promise.resolve().then(() => (init_layout_SNIEAZ2I(), layout_SNIEAZ2I_exports));
-  const { renderC4Context: renderC4Context2, renderC4Containers: renderC4Containers2 } = await Promise.resolve().then(() => (init_renderer_OZIPP7VF(), renderer_OZIPP7VF_exports));
+  } = await Promise.resolve().then(() => (init_layout_WHOOLGPO(), layout_WHOOLGPO_exports));
+  const { renderC4Context: renderC4Context2, renderC4Containers: renderC4Containers2 } = await Promise.resolve().then(() => (init_renderer_N4V7XVC3(), renderer_N4V7XVC3_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const c4Parsed = parseC42(content, effectivePalette);
   if (c4Parsed.error || c4Parsed.elements.length === 0) return "";
@@ -101041,8 +101085,8 @@ async function exportC4(ctx) {
 async function exportFlowchart(ctx) {
   const { content, theme, palette } = ctx;
   const { parseFlowchart: parseFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_parser_DA3V2SLH(), flowchart_parser_DA3V2SLH_exports));
-  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_UXMNKETK(), layout_UXMNKETK_exports));
-  const { renderFlowchart: renderFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_renderer_UQVXOUW4(), flowchart_renderer_UQVXOUW4_exports));
+  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_5CX27X7I(), layout_5CX27X7I_exports));
+  const { renderFlowchart: renderFlowchart2 } = await Promise.resolve().then(() => (init_flowchart_renderer_JGLZB5P5(), flowchart_renderer_JGLZB5P5_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const fcParsed = parseFlowchart2(content, effectivePalette);
   if (fcParsed.error || fcParsed.nodes.length === 0) return "";
@@ -101061,10 +101105,10 @@ async function exportFlowchart(ctx) {
 }
 async function exportInfra(ctx) {
   const { content, theme, palette, viewState } = ctx;
-  const { parseInfra: parseInfra2 } = await Promise.resolve().then(() => (init_parser_JWAGGYLL(), parser_JWAGGYLL_exports));
+  const { parseInfra: parseInfra2 } = await Promise.resolve().then(() => (init_parser_XQNM7BGD(), parser_XQNM7BGD_exports));
   const { computeInfra: computeInfra2 } = await Promise.resolve().then(() => (init_compute_JAP5E2E4(), compute_JAP5E2E4_exports));
   const { layoutInfra: layoutInfra2 } = await Promise.resolve().then(() => (init_layout_HBWT2G23(), layout_HBWT2G23_exports));
-  const { renderInfra: renderInfra2, computeInfraLegendGroups: computeInfraLegendGroups2 } = await Promise.resolve().then(() => (init_renderer_P7O6OUYC(), renderer_P7O6OUYC_exports));
+  const { renderInfra: renderInfra2, computeInfraLegendGroups: computeInfraLegendGroups2 } = await Promise.resolve().then(() => (init_renderer_BNEO5W3E(), renderer_BNEO5W3E_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const infraParsed = parseInfra2(content);
   if (infraParsed.error || infraParsed.nodes.length === 0) return "";
@@ -101114,7 +101158,7 @@ async function exportPert(ctx) {
   const { parsePert: parsePert2 } = await Promise.resolve().then(() => (init_parser_4ZIJDGPG(), parser_4ZIJDGPG_exports));
   const { analyzePert: analyzePert2 } = await Promise.resolve().then(() => (init_analyzer_HQUXKZ5J(), analyzer_HQUXKZ5J_exports));
   const { layoutPert: layoutPert2 } = await Promise.resolve().then(() => (init_layout_AZUPXWSK(), layout_AZUPXWSK_exports));
-  const { renderPert: renderPert2, measurePertAnalysisBlock: measurePertAnalysisBlock2 } = await Promise.resolve().then(() => (init_renderer_2NU7M5PN(), renderer_2NU7M5PN_exports));
+  const { renderPert: renderPert2, measurePertAnalysisBlock: measurePertAnalysisBlock2 } = await Promise.resolve().then(() => (init_renderer_PLRNQ6T3(), renderer_PLRNQ6T3_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const pertParsed = parsePert2(content, { palette: effectivePalette });
   if (pertParsed.error || pertParsed.activities.length === 0) return "";
@@ -101152,9 +101196,9 @@ async function exportPert(ctx) {
 }
 async function exportGantt(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
-  const { parseGantt: parseGantt2 } = await Promise.resolve().then(() => (init_parser_LNEAHGXF(), parser_LNEAHGXF_exports));
+  const { parseGantt: parseGantt2 } = await Promise.resolve().then(() => (init_parser_5WMH55UA(), parser_5WMH55UA_exports));
   const { calculateSchedule: calculateSchedule2 } = await Promise.resolve().then(() => (init_calculator_BBKAAQGD(), calculator_BBKAAQGD_exports));
-  const { renderGantt: renderGantt2 } = await Promise.resolve().then(() => (init_renderer_I5MAFUKX(), renderer_I5MAFUKX_exports));
+  const { renderGantt: renderGantt2 } = await Promise.resolve().then(() => (init_renderer_2TEGR3RX(), renderer_2TEGR3RX_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const ganttParsed = parseGantt2(content, effectivePalette);
   const resolved = calculateSchedule2(ganttParsed);
@@ -101196,8 +101240,8 @@ async function exportGantt(ctx) {
 async function exportState(ctx) {
   const { content, theme, palette, viewState } = ctx;
   const { parseState: parseState2 } = await Promise.resolve().then(() => (init_state_parser_NQGVYSM3(), state_parser_NQGVYSM3_exports));
-  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_UXMNKETK(), layout_UXMNKETK_exports));
-  const { renderState: renderState2 } = await Promise.resolve().then(() => (init_state_renderer_NKV5B3KH(), state_renderer_NKV5B3KH_exports));
+  const { layoutGraph: layoutGraph2 } = await Promise.resolve().then(() => (init_layout_5CX27X7I(), layout_5CX27X7I_exports));
+  const { renderState: renderState2 } = await Promise.resolve().then(() => (init_state_renderer_KSAKMFQ2(), state_renderer_KSAKMFQ2_exports));
   const { collapseStateGroups: collapseStateGroups2 } = await Promise.resolve().then(() => (init_state_collapse_HCGD6IVJ(), state_collapse_HCGD6IVJ_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const stateParsed = parseState2(content, effectivePalette);
@@ -101235,7 +101279,7 @@ async function exportState(ctx) {
 async function exportTechRadar(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
   const { parseTechRadar: parseTechRadar2 } = await Promise.resolve().then(() => (init_parser_O5XCVGZG(), parser_O5XCVGZG_exports));
-  const { renderTechRadarForExport: renderTechRadarForExport2 } = await Promise.resolve().then(() => (init_renderer_QRX7Q2YN(), renderer_QRX7Q2YN_exports));
+  const { renderTechRadarForExport: renderTechRadarForExport2 } = await Promise.resolve().then(() => (init_renderer_W3JK5YVD(), renderer_W3JK5YVD_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const radarParsed = parseTechRadar2(content);
   if (radarParsed.error || radarParsed.quadrants.length === 0) return "";
@@ -101256,8 +101300,8 @@ async function exportTechRadar(ctx) {
 async function exportJourneyMap(ctx) {
   const { content, theme, palette, exportMode } = ctx;
   const { parseJourneyMap: parseJourneyMap2 } = await Promise.resolve().then(() => (init_parser_KTVDCWHG(), parser_KTVDCWHG_exports));
-  const { renderJourneyMap: renderJourneyMap2 } = await Promise.resolve().then(() => (init_renderer_O4ECS2BI(), renderer_O4ECS2BI_exports));
-  const { layoutJourneyMap: layoutJourneyMap2 } = await Promise.resolve().then(() => (init_layout_QRVYYYZ3(), layout_QRVYYYZ3_exports));
+  const { renderJourneyMap: renderJourneyMap2 } = await Promise.resolve().then(() => (init_renderer_AK2X3VRY(), renderer_AK2X3VRY_exports));
+  const { layoutJourneyMap: layoutJourneyMap2 } = await Promise.resolve().then(() => (init_layout_TZKPVXKJ(), layout_TZKPVXKJ_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const jmParsed = parseJourneyMap2(content, effectivePalette);
   if (jmParsed.error || jmParsed.phases.length === 0 && jmParsed.steps.length === 0)
@@ -101278,7 +101322,7 @@ async function exportJourneyMap(ctx) {
 async function exportCycle(ctx) {
   const { content, theme, palette, viewState, exportMode } = ctx;
   const { parseCycle: parseCycle2 } = await Promise.resolve().then(() => (init_parser_AYZTKZC3(), parser_AYZTKZC3_exports));
-  const { renderCycleForExport: renderCycleForExport2 } = await Promise.resolve().then(() => (init_renderer_JNC6VJMN(), renderer_JNC6VJMN_exports));
+  const { renderCycleForExport: renderCycleForExport2 } = await Promise.resolve().then(() => (init_renderer_5BFS4NBL(), renderer_5BFS4NBL_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const cycleParsed = parseCycle2(content);
   if (cycleParsed.error || cycleParsed.nodes.length === 0) return "";
@@ -101298,8 +101342,8 @@ async function exportMap(ctx) {
   const { content, theme, palette, options } = ctx;
   const { parseMap: parseMap2 } = await Promise.resolve().then(() => (init_parser_OPOGIKFR(), parser_OPOGIKFR_exports));
   const { resolveMap: resolveMap2 } = await Promise.resolve().then(() => (init_resolver_W3WKLWDP(), resolver_W3WKLWDP_exports));
-  const { renderMapForExport: renderMapForExport2 } = await Promise.resolve().then(() => (init_renderer_WWC5VGHH(), renderer_WWC5VGHH_exports));
-  const { mapExportDimensions: mapExportDimensions2 } = await Promise.resolve().then(() => (init_dimensions_PLECMFTR(), dimensions_PLECMFTR_exports));
+  const { renderMapForExport: renderMapForExport2 } = await Promise.resolve().then(() => (init_renderer_LRQ3OPNJ(), renderer_LRQ3OPNJ_exports));
+  const { mapExportDimensions: mapExportDimensions2 } = await Promise.resolve().then(() => (init_dimensions_XRWIPAFO(), dimensions_XRWIPAFO_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const mapParsed = parseMap2(content, effectivePalette);
   let mapData2 = options?.mapData;
@@ -101333,7 +101377,7 @@ async function exportMap(ctx) {
 async function exportPyramid(ctx) {
   const { content, theme, palette } = ctx;
   const { parsePyramid: parsePyramid2 } = await Promise.resolve().then(() => (init_parser_73YUU35J(), parser_73YUU35J_exports));
-  const { renderPyramidForExport: renderPyramidForExport2 } = await Promise.resolve().then(() => (init_renderer_KUIZNLAQ(), renderer_KUIZNLAQ_exports));
+  const { renderPyramidForExport: renderPyramidForExport2 } = await Promise.resolve().then(() => (init_renderer_JHYUK5TN(), renderer_JHYUK5TN_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const pyramidParsed = parsePyramid2(content);
   if (pyramidParsed.error || pyramidParsed.layers.length === 0) return "";
@@ -101350,7 +101394,7 @@ async function exportPyramid(ctx) {
 async function exportRing(ctx) {
   const { content, theme, palette } = ctx;
   const { parseRing: parseRing2 } = await Promise.resolve().then(() => (init_parser_A6M25MLK(), parser_A6M25MLK_exports));
-  const { renderRingForExport: renderRingForExport2 } = await Promise.resolve().then(() => (init_renderer_TOKGYFTG(), renderer_TOKGYFTG_exports));
+  const { renderRingForExport: renderRingForExport2 } = await Promise.resolve().then(() => (init_renderer_B6XOO6EE(), renderer_B6XOO6EE_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const ringParsed = parseRing2(content);
   if (ringParsed.error || ringParsed.layers.length === 0) return "";
@@ -101370,7 +101414,7 @@ async function exportTreemap(ctx) {
   const container = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
   const dims = { width: EXPORT_WIDTH, height: EXPORT_HEIGHT };
   if (treemapParsed.options.radial) {
-    const { renderTreemapRadialForExport: renderTreemapRadialForExport2 } = await Promise.resolve().then(() => (init_renderer_radial_QG644QYY(), renderer_radial_QG644QYY_exports));
+    const { renderTreemapRadialForExport: renderTreemapRadialForExport2 } = await Promise.resolve().then(() => (init_renderer_radial_LZAPQVM5(), renderer_radial_LZAPQVM5_exports));
     renderTreemapRadialForExport2(
       container,
       treemapParsed,
@@ -101379,7 +101423,7 @@ async function exportTreemap(ctx) {
       dims
     );
   } else {
-    const { renderTreemapForExport: renderTreemapForExport2 } = await Promise.resolve().then(() => (init_renderer_MLDGFZDW(), renderer_MLDGFZDW_exports));
+    const { renderTreemapForExport: renderTreemapForExport2 } = await Promise.resolve().then(() => (init_renderer_XKMG3SYD(), renderer_XKMG3SYD_exports));
     renderTreemapForExport2(
       container,
       treemapParsed,
@@ -101393,7 +101437,7 @@ async function exportTreemap(ctx) {
 async function exportBlock(ctx) {
   const { content, theme, palette } = ctx;
   const { parseBlock: parseBlock2 } = await Promise.resolve().then(() => (init_parser_XWNSCDY6(), parser_XWNSCDY6_exports));
-  const { renderBlockForExport: renderBlockForExport2 } = await Promise.resolve().then(() => (init_renderer_Q3A7572V(), renderer_Q3A7572V_exports));
+  const { renderBlockForExport: renderBlockForExport2 } = await Promise.resolve().then(() => (init_renderer_LMLSA457(), renderer_LMLSA457_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const blockParsed = parseBlock2(content, effectivePalette);
   if (blockParsed.error || blockParsed.top.rows.length === 0) return "";
@@ -101407,7 +101451,7 @@ async function exportBlock(ctx) {
 async function exportGoal(ctx) {
   const { content, theme, palette } = ctx;
   const { parseGoal: parseGoal2 } = await Promise.resolve().then(() => (init_parser_DQ2DGDYO(), parser_DQ2DGDYO_exports));
-  const { renderGoalForExport: renderGoalForExport2 } = await Promise.resolve().then(() => (init_renderer_53FU55KK(), renderer_53FU55KK_exports));
+  const { renderGoalForExport: renderGoalForExport2 } = await Promise.resolve().then(() => (init_renderer_TIIHLRMM(), renderer_TIIHLRMM_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseGoal2(content, effectivePalette);
   if (parsed.error) return "";
@@ -101421,7 +101465,7 @@ async function exportGoal(ctx) {
 async function exportCountdown(ctx) {
   const { content, theme, palette } = ctx;
   const { parseCountdown: parseCountdown2 } = await Promise.resolve().then(() => (init_parser_QN3GJJ3J(), parser_QN3GJJ3J_exports));
-  const { renderCountdownForExport: renderCountdownForExport2 } = await Promise.resolve().then(() => (init_renderer_IWNHBIZ6(), renderer_IWNHBIZ6_exports));
+  const { renderCountdownForExport: renderCountdownForExport2 } = await Promise.resolve().then(() => (init_renderer_NKVIQA3C(), renderer_NKVIQA3C_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseCountdown2(content, effectivePalette);
   if (parsed.error) return "";
@@ -101449,7 +101493,7 @@ async function exportClock(ctx) {
 async function exportBracket(ctx) {
   const { content, theme, palette } = ctx;
   const { parseBracket: parseBracket2 } = await Promise.resolve().then(() => (init_parser_WT3DSNPQ(), parser_WT3DSNPQ_exports));
-  const { renderBracketForExport: renderBracketForExport2, bracketExportDimensions: bracketExportDimensions2 } = await Promise.resolve().then(() => (init_renderer_FRBPMKPP(), renderer_FRBPMKPP_exports));
+  const { renderBracketForExport: renderBracketForExport2, bracketExportDimensions: bracketExportDimensions2 } = await Promise.resolve().then(() => (init_renderer_6OFPEBHG(), renderer_6OFPEBHG_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const parsed = parseBracket2(content, effectivePalette);
   if (parsed.error) return "";
@@ -101463,8 +101507,8 @@ async function exportBracket(ctx) {
 }
 async function exportRaci(ctx) {
   const { content, theme, palette } = ctx;
-  const { parseRaci: parseRaci2 } = await Promise.resolve().then(() => (init_parser_LQDEU22S(), parser_LQDEU22S_exports));
-  const { renderRaciForExport: renderRaciForExport2 } = await Promise.resolve().then(() => (init_renderer_CL4SAUA5(), renderer_CL4SAUA5_exports));
+  const { parseRaci: parseRaci2 } = await Promise.resolve().then(() => (init_parser_IQLLBMBQ(), parser_IQLLBMBQ_exports));
+  const { renderRaciForExport: renderRaciForExport2 } = await Promise.resolve().then(() => (init_renderer_KXMKAXPQ(), renderer_KXMKAXPQ_exports));
   const effectivePalette = await resolveExportPalette(theme, palette);
   const raciParsed = parseRaci2(content, effectivePalette);
   if (raciParsed.error) return "";
@@ -101597,7 +101641,7 @@ async function exportVisualization(ctx) {
   const isDark = ctx.isDark;
   const container = createExportContainer(EXPORT_WIDTH, EXPORT_HEIGHT);
   const { parseSequenceDgmo: parseSequenceDgmo2 } = await Promise.resolve().then(() => (init_parser_QL2LBPFE(), parser_QL2LBPFE_exports));
-  const { renderSequenceDiagram: renderSequenceDiagram2 } = await Promise.resolve().then(() => (init_renderer_5G3PORFD(), renderer_5G3PORFD_exports));
+  const { renderSequenceDiagram: renderSequenceDiagram2 } = await Promise.resolve().then(() => (init_renderer_VWBNIZV3(), renderer_VWBNIZV3_exports));
   const seqParsed = parseSequenceDgmo2(content, effectivePalette);
   if (seqParsed.error || seqParsed.participants.length === 0) return "";
   const collapsedSections = viewState?.cs ? new Set(viewState.cs) : void 0;
@@ -102233,19 +102277,19 @@ async function render(content, options) {
   return { svg, diagnostics: withLegendInlineWarning(diagnostics), chartType: chartType ?? void 0 };
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/index.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/index.js
 init_chunk_EEKGMS63();
 init_chunk_VSFAJUEF();
+init_chunk_RT7ACF77();
 init_chunk_5VLUAAAE();
 init_chunk_ES3MUYRX();
+init_chunk_XBTJJLAU();
 init_chunk_D64FRGKU();
-init_chunk_RT7ACF77();
 init_chunk_7TF3QOOD();
+init_chunk_RRX4Z4TH();
 init_chunk_DIKIHU52();
-init_chunk_WFX6AUQO();
 init_chunk_I55PVEIX();
 init_chunk_R3XI2VC7();
-init_chunk_RRX4Z4TH();
 init_chunk_OLMWTJVU();
 var ARROW_DIAGNOSTICS = [
   // --- ACTIVE (TD-13): emitted by validateLabelCharacters ---
@@ -102404,7 +102448,7 @@ function encodeDiagramUrl2(text, options) {
   return "error" in result && result.error ? null : result.url ?? null;
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/block.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/block.js
 init_chunk_OQKP2X3D();
 init_chunk_DAOFNU6J();
 init_chunk_3KOPPSUQ();
@@ -102939,6 +102983,7 @@ function resolveBlockOptions(opts) {
     wrapper: opts.wrapper ?? "figure",
     className: opts.className ?? "dgmo",
     legacyClassNames: opts.legacyClassNames ?? [],
+    dataAttributes: opts.dataAttributes ?? {},
     title: opts.title,
     onWarn: opts.onWarn ?? ((message) => console.warn(message))
   };
@@ -102964,8 +103009,12 @@ function assembleBlock(source, svgsHtml, opts) {
   const showcase = opts.mode === "showcase";
   const variant = showcase ? "showcase" : "diagram";
   const ariaAttr = opts.title ? ` aria-label="${escapeAttr(opts.title)}"` : "";
+  const dataAttrs = dataAttributeString(opts.dataAttributes);
   const sourceHtml = sourceDisclosure(source, opts);
-  return `<${Wrapper} class="${escapeAttr(wrapperClasses(opts, variant))}"${ariaAttr}>` + svgsHtml + sourceHtml + `</${Wrapper}>`;
+  return `<${Wrapper} class="${escapeAttr(wrapperClasses(opts, variant))}"${ariaAttr}${dataAttrs}>` + svgsHtml + sourceHtml + `</${Wrapper}>`;
+}
+function dataAttributeString(attrs) {
+  return Object.entries(attrs).filter(([name]) => /^[a-z][a-z0-9-]*$/.test(name)).map(([name, value]) => ` data-${name}="${escapeAttr(value)}"`).join("");
 }
 var CODE_ICON = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 4.5 4 3.5-4 3.5"/><path d="m6 4.5-4 3.5 4 3.5"/></svg>`;
 var COPY_ICON = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5V3a1.5 1.5 0 0 0-1.5-1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h2.5"/></svg>`;
@@ -103000,11 +103049,11 @@ function highlightedSource(source) {
   return `<pre class="dgmo-pre"><span class="dgmo-code">${inner}</span></pre>`;
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/advanced.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/advanced.js
 init_chunk_DNSEG6P2();
-init_chunk_AIH6M5J6();
-init_chunk_YWPWRR7W();
-init_chunk_GDGOVO2I();
+init_chunk_PRKPFRC2();
+init_chunk_INU6ANOH();
+init_chunk_VYCV5WKH();
 init_chunk_WOMXS5R7();
 var EARTH_R_KM = 6371;
 var DEG = Math.PI / 180;
@@ -103067,7 +103116,7 @@ var import_commands2 = require("@codemirror/commands");
 var import_language3 = require("@codemirror/language");
 var import_highlight2 = require("@lezer/highlight");
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/editor.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/editor.js
 var import_language = require("@codemirror/language");
 var import_lr2 = require("@lezer/lr");
 var import_highlight = require("@lezer/highlight");
@@ -104897,7 +104946,7 @@ function openBlockInEditor(editor, paletteId, isDark) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/countdown.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/countdown.js
 var DAY_MS3 = 864e5;
 var WEEK_MS2 = 7 * DAY_MS3;
 var ZONE_WD2 = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -105459,7 +105508,7 @@ function tickCountdowns(root2 = document) {
   root2.querySelectorAll("[data-dgmo-countdown]").forEach((node) => updateNode(node, now));
 }
 
-// node_modules/.pnpm/@diagrammo+dgmo@0.56.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_eba3a591c86298f88bf19352f30ed8e0/node_modules/@diagrammo/dgmo/dist/clock.js
+// node_modules/.pnpm/@diagrammo+dgmo@0.57.0_@codemirror+language@6.12.4_@codemirror+state@6.7.1_@lezer+commo_297b0ab7a516dcbe2aab621cdfe69e5e/node_modules/@diagrammo/dgmo/dist/clock.js
 var CLOCK_RAMP2 = [
   [0, "#3d478f"],
   [4, "#4a4d8c"],
