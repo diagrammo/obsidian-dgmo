@@ -100,7 +100,7 @@ src/
 
 ### Dependencies
 
-- `@diagrammo/dgmo` `^0.30.0` — diagram parsing and rendering (bundled by esbuild; brings its own transitive rendering deps)
+- `@diagrammo/dgmo` `^0.56.0` — diagram parsing and rendering (bundled by esbuild; brings its own transitive rendering deps)
 - `obsidian` `^1.12.3` — Obsidian plugin API (dev only, externalized)
 
 ### Testing locally
