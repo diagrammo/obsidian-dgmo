@@ -40,6 +40,121 @@ export class Modal {
   onClose(): void {}
 }
 
+/** A settings row. Enough of the real `Setting` for the imperative pre-1.13
+ * path to run and for a `render` definition to be handed something with the
+ * documented element handles. */
+export class Setting {
+  settingEl: HTMLElement;
+  infoEl: HTMLElement;
+  nameEl: HTMLElement;
+  descEl: HTMLElement;
+  controlEl: HTMLElement;
+  constructor(containerEl?: HTMLElement) {
+    const doc = containerEl?.ownerDocument ?? document;
+    this.settingEl = doc.createElement('div');
+    this.settingEl.className = 'setting-item';
+    containerEl?.appendChild(this.settingEl);
+    this.infoEl = this.settingEl.appendChild(doc.createElement('div'));
+    this.nameEl = this.infoEl.appendChild(doc.createElement('div'));
+    this.descEl = this.infoEl.appendChild(doc.createElement('div'));
+    this.controlEl = this.settingEl.appendChild(doc.createElement('div'));
+  }
+  setName(name: string | DocumentFragment): this {
+    if (typeof name === 'string') this.nameEl.textContent = name;
+    else this.nameEl.appendChild(name);
+    return this;
+  }
+  setDesc(desc: string | DocumentFragment): this {
+    if (typeof desc === 'string') this.descEl.textContent = desc;
+    else this.descEl.appendChild(desc);
+    return this;
+  }
+  setHeading(): this {
+    this.settingEl.addClass('setting-item-heading');
+    return this;
+  }
+  addButton(cb: (c: ButtonComponent) => unknown): this {
+    cb(new ButtonComponent());
+    return this;
+  }
+  addToggle(cb: (c: ToggleComponent) => unknown): this {
+    cb(new ToggleComponent());
+    return this;
+  }
+  addDropdown(cb: (c: DropdownComponent) => unknown): this {
+    cb(new DropdownComponent());
+    return this;
+  }
+}
+
+export class ButtonComponent {
+  setButtonText(_t: string): this {
+    return this;
+  }
+  setCta(): this {
+    return this;
+  }
+  onClick(_cb: () => unknown): this {
+    return this;
+  }
+}
+
+export class ToggleComponent {
+  value = false;
+  setValue(v: boolean): this {
+    this.value = v;
+    return this;
+  }
+  onChange(_cb: (v: boolean) => unknown): this {
+    return this;
+  }
+}
+
+export class DropdownComponent {
+  options: Record<string, string> = {};
+  value = '';
+  addOption(value: string, label: string): this {
+    this.options[value] = label;
+    return this;
+  }
+  setValue(v: string): this {
+    this.value = v;
+    return this;
+  }
+  onChange(_cb: (v: string) => unknown): this {
+    return this;
+  }
+}
+
+/** The 1.13 settings-tab contract: `getSettingDefinitions` for the declarative
+ * path, `get/setControlValue` reading the plugin's own settings object. */
+export class PluginSettingTab {
+  app: unknown;
+  plugin: { settings?: unknown };
+  containerEl: HTMLElement = document.createElement('div');
+  settingItems: unknown[] = [];
+  constructor(app: unknown, plugin: { settings?: unknown }) {
+    this.app = app;
+    this.plugin = plugin;
+  }
+  getSettingDefinitions(): unknown[] {
+    return [];
+  }
+  getControlValue(key: string): unknown {
+    return (this.plugin.settings as Record<string, unknown> | undefined)?.[key];
+  }
+  setControlValue(_key: string, _value: unknown): void | Promise<void> {}
+  update(): void {}
+  refreshDomState(): void {}
+  display(): void {}
+  hide(): void {}
+}
+
+/** Renders a lucide glyph in the real app; a marker attribute is enough here. */
+export function setIcon(el: HTMLElement, icon: string): void {
+  el.setAttribute('data-icon', icon);
+}
+
 /** Obsidian's own path cleaner: collapse slashes, strip the leading one. */
 export function normalizePath(path: string): string {
   return path.replace(/\\/g, '/').replace(/\/{2,}/g, '/').replace(/^\//, '');

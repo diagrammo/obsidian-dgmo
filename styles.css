@@ -22,6 +22,15 @@ figure.dgmo {
   margin-bottom: 16px;
 }
 
+/* A declarative `render` row (Obsidian 1.13+) that holds a whole block rather
+ * than a name/control pair — the about panel, the live demo, the icon guide.
+ * The setting-item flex row and its divider get out of the way. */
+.dgmo-settings-block {
+  display: block;
+  border-top: none;
+  padding-top: 0;
+}
+
 .dgmo-settings-about p {
   margin: 6px 0;
 }

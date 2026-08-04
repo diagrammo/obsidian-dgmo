@@ -114,6 +114,23 @@ export function installObsidianDom(win: Window & typeof globalThis): void {
     return el;
   };
 
+  // `empty`, `appendText`, `detach` and `insertAfter` are on Node in the real
+  // API, which matters: a DocumentFragment built for a setting's description
+  // uses them, and a fragment is a Node but not an Element.
+  nodeProto['empty'] = function (this: Node) {
+    (this as ParentNode).replaceChildren();
+  };
+  nodeProto['appendText'] = function (this: Node, val: string) {
+    this.appendChild(ownerDoc(this).createTextNode(val));
+  };
+  nodeProto['detach'] = function (this: Node) {
+    this.parentNode?.removeChild(this);
+  };
+  nodeProto['insertAfter'] = function (this: Node, node: Node, child: Node | null) {
+    this.insertBefore(node, child?.nextSibling ?? null);
+    return node;
+  };
+
   elProto['addClass'] = function (this: Element, ...cls: string[]) {
     this.classList.add(...cls);
   };
@@ -127,14 +144,9 @@ export function installObsidianDom(win: Window & typeof globalThis): void {
   ) {
     for (const c of Array.isArray(cls) ? cls : [cls]) this.classList.toggle(c, value);
   };
-  elProto['setText'] = function (this: Element, text: string) {
-    this.textContent = text;
-  };
-  elProto['empty'] = function (this: Element) {
-    this.replaceChildren();
-  };
-  elProto['appendText'] = function (this: Element, text: string) {
-    this.appendChild(ownerDoc(this).createTextNode(text));
+  elProto['setText'] = function (this: Element, text: string | DocumentFragment) {
+    if (typeof text === 'string') this.textContent = text;
+    else this.replaceChildren(text);
   };
 
   const g = win as unknown as Record<string, unknown>;

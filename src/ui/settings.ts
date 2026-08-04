@@ -1,4 +1,11 @@
-import { App, PluginSettingTab, Setting, setIcon } from 'obsidian';
+import {
+  App,
+  PluginSettingTab,
+  Setting,
+  setIcon,
+  type SettingControl,
+  type SettingDefinitionItem,
+} from 'obsidian';
 import { palettes } from '@diagrammo/dgmo';
 import { renderDgmo } from '../render';
 import type DgmoPlugin from '../main';
@@ -27,6 +34,106 @@ export const DEFAULT_SETTINGS: DgmoSettings = {
   align: 'left',
   maxWidth: 'full',
 };
+
+type ControlKey = keyof DgmoSettings;
+
+/** One persisted setting, described once. */
+interface ControlSpec {
+  key: ControlKey;
+  heading: 'Appearance' | 'Layout';
+  name: string;
+  desc: string;
+  control: SettingControl<ControlKey>;
+}
+
+/**
+ * The five settings, in one table.
+ *
+ * Both rendering paths read this: `getSettingDefinitions()` hands the `control`
+ * objects straight to Obsidian 1.13+, which renders them and — the point of the
+ * exercise — indexes them for the settings search. `display()` builds the same
+ * rows by hand for older versions. Declaring them twice is how the two paths
+ * would drift, so they are declared here instead.
+ *
+ * A function, not a constant: the palette list comes from dgmo at call time.
+ */
+function controlSpecs(): ControlSpec[] {
+  const paletteOptions: Record<string, string> = {};
+  for (const p of Object.values(palettes).sort((a, b) =>
+    a.name.localeCompare(b.name)
+  ))
+    paletteOptions[p.id] = p.name;
+
+  return [
+    {
+      key: 'palette',
+      heading: 'Appearance',
+      name: 'Palette',
+      desc: 'Colour palette used for all dgmo diagrams.',
+      control: {
+        type: 'dropdown',
+        key: 'palette',
+        options: paletteOptions,
+        defaultValue: DEFAULT_SETTINGS.palette,
+      },
+    },
+    {
+      key: 'theme',
+      heading: 'Appearance',
+      name: 'Theme',
+      desc: 'Auto follows Obsidian’s light/dark mode. Override to force one.',
+      control: {
+        type: 'dropdown',
+        key: 'theme',
+        options: {
+          auto: 'Auto (follow Obsidian)',
+          light: 'Light',
+          dark: 'Dark',
+        },
+        defaultValue: DEFAULT_SETTINGS.theme,
+      },
+    },
+    {
+      key: 'transparentBackground',
+      heading: 'Appearance',
+      name: 'Transparent background',
+      desc: 'Let diagrams blend into the note background instead of painting their own. Turn off to give every diagram a solid backdrop.',
+      control: {
+        type: 'toggle',
+        key: 'transparentBackground',
+        defaultValue: DEFAULT_SETTINGS.transparentBackground,
+      },
+    },
+    {
+      key: 'align',
+      heading: 'Layout',
+      name: 'Alignment',
+      desc: 'Where diagrams sit within the note’s width.',
+      control: {
+        type: 'dropdown',
+        key: 'align',
+        options: { left: 'Left', center: 'Center' },
+        defaultValue: DEFAULT_SETTINGS.align,
+      },
+    },
+    {
+      key: 'maxWidth',
+      heading: 'Layout',
+      name: 'Maximum width',
+      desc: 'Cap how wide a diagram can grow. Pair with Center to keep large charts from filling the whole note.',
+      control: {
+        type: 'dropdown',
+        key: 'maxWidth',
+        options: {
+          full: 'Full width',
+          '720': 'Comfortable (720px)',
+          '560': 'Compact (560px)',
+        },
+        defaultValue: DEFAULT_SETTINGS.maxWidth,
+      },
+    },
+  ];
+}
 
 const DOCS_URL = 'https://diagrammo.app/docs';
 const REFERENCE_URL = 'https://diagrammo.app/reference';
@@ -76,6 +183,33 @@ const COMMANDS: Array<{ name: string; desc: string }> = [
   },
 ];
 
+/** "Learn more" rows — name, destination, why you'd go there. Read by both
+ * rendering paths, same as `COMMANDS` and `controlSpecs()`. */
+const RESOURCE_LINKS: Array<[string, string, string]> = [
+  [
+    'Documentation',
+    DOCS_URL,
+    'Guides and per-chart-type docs for every diagram.',
+  ],
+  [
+    'Obsidian setup guide',
+    SETUP_URL,
+    'Install, embed, and syntax basics for this plugin.',
+  ],
+  [
+    'Online editor',
+    EDITOR_URL,
+    'Author diagrams in any browser, nothing to install.',
+  ],
+  ['Desktop app', APP_URL, 'Native editor with export and offline use.'],
+  ['AI & MCP', AI_URL, 'Let AI assistants draft diagrams for you.'],
+  [
+    'Syntax reference',
+    REFERENCE_URL,
+    'The complete DGMO grammar — handy for power users and AI.',
+  ],
+];
+
 const TOOLBAR_ICONS: IconDoc[] = [
   {
     icon: 'code',
@@ -112,6 +246,130 @@ export class DgmoSettingTab extends PluginSettingTab {
     this.plugin = plugin;
   }
 
+  /**
+   * The tab, declared rather than drawn (Obsidian 1.13+).
+   *
+   * This is what puts these settings into the app's settings search: a tab that
+   * only implements `display()` is invisible to it, however good the tab looks.
+   * Returning a non-empty array here means `display()` is never called on 1.13+,
+   * so that method survives only as the fallback for older versions — the two
+   * must stay in step, which is why the controls come from `controlSpecs()` and
+   * the prose blocks from the same private renderers both paths use.
+   */
+  override getSettingDefinitions(): SettingDefinitionItem[] {
+    const specs = controlSpecs();
+    const controls = (heading: ControlSpec['heading']) =>
+      specs
+        .filter((s) => s.heading === heading)
+        .map((s) => ({ name: s.name, desc: s.desc, control: s.control }));
+
+    return [
+      {
+        name: 'About Diagrammo',
+        searchable: false,
+        render: (setting) =>
+          this.asBlock(setting, (el) => this.renderAbout(el)),
+      },
+      {
+        type: 'group',
+        heading: 'Get started',
+        items: [
+          {
+            name: 'Create the example note',
+            desc: this.exampleNoteDesc(),
+            aliases: ['examples', 'chart types', 'sample'],
+            action: () => void this.plugin.createExampleNote(),
+          },
+        ],
+      },
+      {
+        type: 'group',
+        heading: 'Commands',
+        items: [
+          {
+            name: 'How to run these',
+            searchable: false,
+            render: (setting) =>
+              this.asBlock(setting, (el) => this.renderCommandsIntro(el)),
+          },
+          // Each command is a searchable row, so someone typing "gallery" into
+          // settings search finds the command rather than nothing.
+          ...COMMANDS.map((cmd) => ({ name: cmd.name, desc: cmd.desc })),
+        ],
+      },
+      { type: 'group', heading: 'Appearance', items: controls('Appearance') },
+      { type: 'group', heading: 'Layout', items: controls('Layout') },
+      {
+        type: 'group',
+        heading: 'Using diagrams',
+        items: [
+          {
+            name: 'The hover toolbar',
+            aliases: ['source', 'copy', 'expand', 'full screen', 'toolbar'],
+            render: (setting) =>
+              this.asBlock(setting, (el) => this.renderToolbarHelpBody(el)),
+          },
+        ],
+      },
+      {
+        type: 'group',
+        heading: 'Learn more',
+        items: RESOURCE_LINKS.map(([name, href, desc]) => ({
+          name,
+          desc,
+          action: () => window.open(href, '_blank', 'noopener,noreferrer'),
+        })),
+      },
+    ];
+  }
+
+  /** Persist one declarative control. `unknown` in, so each value is checked
+   * against its own union before it reaches the settings object. */
+  override async setControlValue(key: string, value: unknown): Promise<void> {
+    const s = this.plugin.settings;
+    switch (key) {
+      case 'palette':
+        if (typeof value !== 'string') return;
+        s.palette = value;
+        break;
+      case 'theme':
+        if (value !== 'auto' && value !== 'light' && value !== 'dark') return;
+        s.theme = value;
+        break;
+      case 'transparentBackground':
+        if (typeof value !== 'boolean') return;
+        s.transparentBackground = value;
+        break;
+      case 'align':
+        if (value !== 'left' && value !== 'center') return;
+        s.align = value;
+        break;
+      case 'maxWidth':
+        if (value !== 'full' && value !== '720' && value !== '560') return;
+        s.maxWidth = value;
+        break;
+      default:
+        return;
+    }
+    await this.applyChange(key);
+  }
+
+  /** Save, then make the change visible without a note reload. Layout rides on
+   * body-level CSS vars; everything else needs the diagrams redrawn. */
+  private async applyChange(key: ControlKey): Promise<void> {
+    await this.plugin.saveSettings();
+    if (key === 'align' || key === 'maxWidth') this.plugin.applyLayoutVars();
+    else this.plugin.refreshAll();
+  }
+
+  /** Let a `render` row hold a full-width block instead of a name/control pair. */
+  private asBlock(setting: Setting, draw: (el: HTMLElement) => void): void {
+    setting.settingEl.empty();
+    setting.settingEl.addClass('dgmo-settings-block');
+    draw(setting.settingEl);
+  }
+
+  /** Pre-1.13 fallback. Never called on 1.13+ — see getSettingDefinitions. */
   override display(): void {
     const { containerEl } = this;
     containerEl.empty();
@@ -119,26 +377,62 @@ export class DgmoSettingTab extends PluginSettingTab {
     this.renderAbout(containerEl);
     this.renderGetStarted(containerEl);
     this.renderCommands(containerEl);
-    this.renderAppearance(containerEl);
-    this.renderLayout(containerEl);
+    this.renderControls(containerEl, 'Appearance');
+    this.renderControls(containerEl, 'Layout');
     this.renderToolbarHelp(containerEl);
     this.renderResources(containerEl);
+  }
+
+  /** The `controlSpecs()` table, drawn imperatively for pre-1.13 Obsidian. */
+  private renderControls(
+    containerEl: HTMLElement,
+    heading: ControlSpec['heading']
+  ): void {
+    new Setting(containerEl).setName(heading).setHeading();
+
+    for (const spec of controlSpecs()) {
+      if (spec.heading !== heading) continue;
+      const row = new Setting(containerEl)
+        .setName(spec.name)
+        .setDesc(spec.desc);
+      const { control } = spec;
+      if (control.type === 'toggle') {
+        row.addToggle((toggle) => {
+          toggle.setValue(this.plugin.settings[spec.key] === true);
+          toggle.onChange(
+            (value) => void this.setControlValue(spec.key, value)
+          );
+        });
+      } else if (control.type === 'dropdown') {
+        row.addDropdown((dropdown) => {
+          for (const [value, label] of Object.entries(control.options))
+            dropdown.addOption(value, label);
+          dropdown.setValue(String(this.plugin.settings[spec.key]));
+          dropdown.onChange(
+            (value) => void this.setControlValue(spec.key, value)
+          );
+        });
+      }
+    }
   }
 
   // --- Command palette reference ---------------------------------------------
   private renderCommands(containerEl: HTMLElement): void {
     new Setting(containerEl).setName('Commands').setHeading();
+    this.renderCommandsIntro(containerEl);
 
+    for (const cmd of COMMANDS) {
+      new Setting(containerEl).setName(cmd.name).setDesc(cmd.desc);
+    }
+  }
+
+  private renderCommandsIntro(containerEl: HTMLElement): void {
     const p = containerEl.createEl('p', { cls: 'setting-item-description' });
     p.appendText('Open the command palette (');
     p.createEl('kbd', { text: 'Ctrl/Cmd-P' });
     p.appendText(
       ') and search “Diagrammo” to run these. Assign hotkeys under Settings → Hotkeys.'
     );
-
-    for (const cmd of COMMANDS) {
-      new Setting(containerEl).setName(cmd.name).setDesc(cmd.desc);
-    }
   }
 
   // --- Intro -----------------------------------------------------------------
@@ -174,9 +468,7 @@ export class DgmoSettingTab extends PluginSettingTab {
   }
 
   // --- Get started (create example note) -------------------------------------
-  private renderGetStarted(containerEl: HTMLElement): void {
-    new Setting(containerEl).setName('Get started').setHeading();
-
+  private exampleNoteDesc(): DocumentFragment {
     const desc = new DocumentFragment();
     desc.appendText(
       'Adds a “Diagrammo Examples” note to your vault with every chart type rendered from working sample data — the fastest way to see what’s possible and copy a starting point. '
@@ -184,6 +476,13 @@ export class DgmoSettingTab extends PluginSettingTab {
     desc.createEl('span', {
       text: 'You can also run “Diagrammo Diagrams: Create example note with all chart types” from the command palette.',
     });
+    return desc;
+  }
+
+  private renderGetStarted(containerEl: HTMLElement): void {
+    new Setting(containerEl).setName('Get started').setHeading();
+
+    const desc = this.exampleNoteDesc();
 
     new Setting(containerEl)
       .setName('Create the example note')
@@ -196,98 +495,13 @@ export class DgmoSettingTab extends PluginSettingTab {
       );
   }
 
-  // --- Appearance ------------------------------------------------------------
-  private renderAppearance(containerEl: HTMLElement): void {
-    new Setting(containerEl).setName('Appearance').setHeading();
-
-    const paletteList = Object.values(palettes).sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    new Setting(containerEl)
-      .setName('Palette')
-      .setDesc('Colour palette used for all dgmo diagrams.')
-      .addDropdown((dropdown) => {
-        for (const p of paletteList) dropdown.addOption(p.id, p.name);
-        dropdown.setValue(this.plugin.settings.palette);
-        dropdown.onChange(async (value) => {
-          this.plugin.settings.palette = value;
-          await this.plugin.saveSettings();
-          this.plugin.refreshAll();
-        });
-      });
-
-    new Setting(containerEl)
-      .setName('Theme')
-      .setDesc(
-        'Auto follows Obsidian’s light/dark mode. Override to force one.'
-      )
-      .addDropdown((dropdown) => {
-        dropdown.addOption('auto', 'Auto (follow Obsidian)');
-        dropdown.addOption('light', 'Light');
-        dropdown.addOption('dark', 'Dark');
-        dropdown.setValue(this.plugin.settings.theme);
-        dropdown.onChange(async (value) => {
-          this.plugin.settings.theme = value as DgmoSettings['theme'];
-          await this.plugin.saveSettings();
-          this.plugin.refreshAll();
-        });
-      });
-
-    new Setting(containerEl)
-      .setName('Transparent background')
-      .setDesc(
-        'Let diagrams blend into the note background instead of painting their own. Turn off to give every diagram a solid backdrop.'
-      )
-      .addToggle((toggle) => {
-        toggle.setValue(this.plugin.settings.transparentBackground);
-        toggle.onChange(async (value) => {
-          this.plugin.settings.transparentBackground = value;
-          await this.plugin.saveSettings();
-          this.plugin.refreshAll();
-        });
-      });
-  }
-
-  // --- Layout ----------------------------------------------------------------
-  private renderLayout(containerEl: HTMLElement): void {
-    new Setting(containerEl).setName('Layout').setHeading();
-
-    new Setting(containerEl)
-      .setName('Alignment')
-      .setDesc('Where diagrams sit within the note’s width.')
-      .addDropdown((dropdown) => {
-        dropdown.addOption('left', 'Left');
-        dropdown.addOption('center', 'Center');
-        dropdown.setValue(this.plugin.settings.align);
-        dropdown.onChange(async (value) => {
-          this.plugin.settings.align = value as DgmoSettings['align'];
-          await this.plugin.saveSettings();
-          this.plugin.applyLayoutVars();
-        });
-      });
-
-    new Setting(containerEl)
-      .setName('Maximum width')
-      .setDesc(
-        'Cap how wide a diagram can grow. Pair with Center to keep large charts from filling the whole note.'
-      )
-      .addDropdown((dropdown) => {
-        dropdown.addOption('full', 'Full width');
-        dropdown.addOption('720', 'Comfortable (720px)');
-        dropdown.addOption('560', 'Compact (560px)');
-        dropdown.setValue(this.plugin.settings.maxWidth);
-        dropdown.onChange(async (value) => {
-          this.plugin.settings.maxWidth = value as DgmoSettings['maxWidth'];
-          await this.plugin.saveSettings();
-          this.plugin.applyLayoutVars();
-        });
-      });
-  }
-
   // --- Hover toolbar help ----------------------------------------------------
   private renderToolbarHelp(containerEl: HTMLElement): void {
     new Setting(containerEl).setName('Using diagrams').setHeading();
+    this.renderToolbarHelpBody(containerEl);
+  }
 
+  private renderToolbarHelpBody(containerEl: HTMLElement): void {
     const p = containerEl.createEl('p', { cls: 'setting-item-description' });
     p.appendText(
       'Here’s a real diagram — hover it to reveal the slim toolbar that sits beneath every rendered diagram:'
@@ -324,31 +538,7 @@ export class DgmoSettingTab extends PluginSettingTab {
   private renderResources(containerEl: HTMLElement): void {
     new Setting(containerEl).setName('Learn more').setHeading();
 
-    const links: Array<[string, string, string]> = [
-      [
-        'Documentation',
-        DOCS_URL,
-        'Guides and per-chart-type docs for every diagram.',
-      ],
-      [
-        'Obsidian setup guide',
-        SETUP_URL,
-        'Install, embed, and syntax basics for this plugin.',
-      ],
-      [
-        'Online editor',
-        EDITOR_URL,
-        'Author diagrams in any browser, nothing to install.',
-      ],
-      ['Desktop app', APP_URL, 'Native editor with export and offline use.'],
-      ['AI & MCP', AI_URL, 'Let AI assistants draft diagrams for you.'],
-      [
-        'Syntax reference',
-        REFERENCE_URL,
-        'The complete DGMO grammar — handy for power users and AI.',
-      ],
-    ];
-    for (const [name, href, desc] of links) {
+    for (const [name, href, desc] of RESOURCE_LINKS) {
       new Setting(containerEl)
         .setName(name)
         .setDesc(desc)
