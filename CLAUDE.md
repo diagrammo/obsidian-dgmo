@@ -23,6 +23,7 @@ Keep this repo a thin integration layer: language and rendering bugs get fixed u
 
 ## Obsidian-specific constraints
 
+- **`minAppVersion` is `1.5.7`, and that floor is load-bearing** — `Vault#getFileByPath` landed in Obsidian 1.5.7 (API changelog, checked 2026-08-03) and the plugin calls it in the in-block save path and the example-note command. It read `1.5.0` until 2026-08-03, which would have thrown a `TypeError` on 1.5.0–1.5.6. Anything newer than the floor gets the floor raised, never a version guard
 - **No `innerHTML`/`outerHTML`** (plugin review guidelines) — go through `appendBlockHtml` in `src/render.ts` (DOMParser + `importNode`)
 - **`activeDocument` / `el.ownerDocument`, never global `document`** — popout windows
 - **`:has()` is flagged by Obsidian's scorecard.** `scripts/build-styles.mjs` rewrites dgmo's two frame selectors to `.dgmo-has-source` / `.dgmo-source-open` and `[data-theme="dark"]` → `body.theme-dark`; `frameSourcePanel()` mirrors the panel state onto those classes in JS. Edit `src/styles.css` — root `styles.css` is generated

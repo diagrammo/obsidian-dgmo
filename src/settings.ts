@@ -353,7 +353,9 @@ export class DgmoSettingTab extends PluginSettingTab {
         .setName(name)
         .setDesc(desc)
         .addButton((btn) =>
-          btn.setButtonText('Open').onClick(() => window.open(href, '_blank'))
+          btn
+            .setButtonText('Open')
+            .onClick(() => window.open(href, '_blank', 'noopener,noreferrer'))
         );
     }
   }

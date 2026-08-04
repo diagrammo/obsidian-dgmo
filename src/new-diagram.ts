@@ -5,6 +5,7 @@ import {
   Modal,
   Notice,
   TFile,
+  normalizePath,
   type FuzzyMatch,
 } from 'obsidian';
 import { encodeDiagramUrl, resolvePaletteOrFallback } from '@diagrammo/dgmo';
@@ -46,9 +47,10 @@ export async function createDiagramNote(
   tmpl: DiagramTemplate
 ): Promise<void> {
   const base = `${tmpl.name} diagram`;
-  let path = `${base}.md`;
+  let path = normalizePath(`${base}.md`);
   let n = 2;
-  while (app.vault.getAbstractFileByPath(path)) path = `${base} ${n++}.md`;
+  while (app.vault.getAbstractFileByPath(path))
+    path = normalizePath(`${base} ${n++}.md`);
   const file = await app.vault.create(path, fenceFor(tmpl.source));
   if (file instanceof TFile) await app.workspace.getLeaf().openFile(file);
   new Notice(`Created "${path}".`);
@@ -121,12 +123,15 @@ export class DiagramGalleryModal extends Modal {
   }
 
   override onOpen(): void {
-    const { contentEl, modalEl } = this;
+    const { contentEl, modalEl, titleEl } = this;
     modalEl.addClass('dgmo-gallery-modal');
     contentEl.empty();
 
+    // The modal's own title element rather than an `<h2>` of ours — a plugin
+    // that hand-rolls headings is what the review guidelines call out.
+    titleEl.setText('New diagram');
+
     const header = contentEl.createDiv({ cls: 'dgmo-gallery-header' });
-    header.createEl('h2', { text: 'New diagram' });
     this.searchEl = header.createEl('input', {
       cls: 'dgmo-gallery-search',
       attr: { type: 'text', placeholder: 'Search all chart types…' },

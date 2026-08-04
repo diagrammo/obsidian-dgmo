@@ -8,6 +8,9 @@ import interBoldUrl from '../assets/Inter-Bold.woff2';
 
 let loaded = false;
 
+/** The faces this plugin added, so unload can take them back out again. */
+let faces: FontFace[] = [];
+
 /** Register Inter font faces. Idempotent, called on first render. */
 export async function ensureInterFonts(): Promise<void> {
   if (loaded) return;
@@ -23,6 +26,15 @@ export async function ensureInterFonts(): Promise<void> {
   });
 
   await Promise.all([regular.load(), bold.load()]);
-  activeDocument.fonts.add(regular);
-  activeDocument.fonts.add(bold);
+  faces = [regular, bold];
+  for (const face of faces) activeDocument.fonts.add(face);
+}
+
+/** Unregister them again on plugin unload. `document.fonts` belongs to the app,
+ * not to this plugin's DOM, so faces left behind outlive a disable/uninstall —
+ * an "Inter" family the vault never asked for. */
+export function removeInterFonts(): void {
+  for (const face of faces) activeDocument.fonts.delete(face);
+  faces = [];
+  loaded = false;
 }

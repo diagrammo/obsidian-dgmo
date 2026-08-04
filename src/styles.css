@@ -151,10 +151,6 @@ figure.dgmo {
   gap: 16px;
   margin-bottom: 12px;
 }
-.dgmo-gallery-header h2 {
-  margin: 0;
-  flex: 0 0 auto;
-}
 .dgmo-gallery-search {
   flex: 1 1 auto;
   min-width: 0;

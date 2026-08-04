@@ -30,6 +30,7 @@ export class Modal {
   app: unknown;
   contentEl: HTMLElement = document.createElement('div');
   modalEl: HTMLElement = document.createElement('div');
+  titleEl: HTMLElement = document.createElement('div');
   constructor(app: unknown) {
     this.app = app;
   }
@@ -37,6 +38,11 @@ export class Modal {
   close(): void {}
   onOpen(): void {}
   onClose(): void {}
+}
+
+/** Obsidian's own path cleaner: collapse slashes, strip the leading one. */
+export function normalizePath(path: string): string {
+  return path.replace(/\\/g, '/').replace(/\/{2,}/g, '/').replace(/^\//, '');
 }
 
 export class FuzzySuggestModal<T> {

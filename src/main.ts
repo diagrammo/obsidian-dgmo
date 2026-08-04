@@ -4,6 +4,7 @@ import {
   Notice,
   Plugin,
   TFile,
+  normalizePath,
   type MarkdownPostProcessorContext,
 } from 'obsidian';
 import {
@@ -18,7 +19,7 @@ import { renderDgmo, setEmbedBackground } from './render';
 import { tickCountdowns } from '@diagrammo/dgmo/countdown';
 import { tickClocks } from '@diagrammo/dgmo/clock';
 import { containsFence, replaceFencedSource } from './edit';
-import { ensureInterFonts } from './fonts';
+import { ensureInterFonts, removeInterFonts } from './fonts';
 import {
   type DgmoEmbed,
   type DgmoEmbedHost,
@@ -57,8 +58,8 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
     // is on screen.
     this.registerInterval(
       window.setInterval(() => {
-        tickCountdowns(document);
-        tickClocks(document);
+        tickCountdowns(activeDocument);
+        tickClocks(activeDocument);
       }, 1000)
     );
 
@@ -127,6 +128,16 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
     });
   }
 
+  /** Give back the two things this plugin writes outside its own DOM: the
+   * body-level layout vars and the Inter font faces. Everything else — commands,
+   * processors, the interval, vault events — is registered and unwinds itself. */
+  override onunload(): void {
+    const { style } = activeDocument.body;
+    style.removeProperty('--dgmo-margin-inline');
+    style.removeProperty('--dgmo-max-width');
+    removeInterFonts();
+  }
+
   /** Drive `figure.dgmo` alignment + max-width from settings via body-level CSS
    * custom properties (see styles.css). Applied on load and on each change so
    * layout updates live without re-rendering diagrams. */
@@ -143,22 +154,21 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
   }
 
   async createExampleNote(): Promise<void> {
-    const path = 'Diagrammo Examples.md';
-    const existing = this.app.vault.getAbstractFileByPath(path);
-    let file;
+    const path = normalizePath('Diagrammo Examples.md');
+    const existing = this.app.vault.getFileByPath(path);
+    let file: TFile;
     if (existing) {
-      file = await this.app.vault.create(path, EXAMPLE_NOTE).catch(async () => {
-        await this.app.vault.adapter.write(path, EXAMPLE_NOTE);
-        return this.app.vault.getAbstractFileByPath(path);
-      });
+      // Rewrite through the Vault API, not `vault.adapter.write` — the adapter
+      // goes behind Obsidian's back, so the cache and any open view of the note
+      // keep the stale body.
+      await this.app.vault.process(existing, () => EXAMPLE_NOTE);
+      file = existing;
       new Notice(`"${path}" overwritten with latest examples.`);
     } else {
       file = await this.app.vault.create(path, EXAMPLE_NOTE);
       new Notice('Diagrammo examples note created.');
     }
-    if (file instanceof TFile) {
-      await this.app.workspace.getLeaf().openFile(file);
-    }
+    await this.app.workspace.getLeaf().openFile(file);
   }
 
   async loadSettings() {

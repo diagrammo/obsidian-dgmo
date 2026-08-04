@@ -200,7 +200,9 @@ export function enableBlockEditing(
     '&': { fontSize: '0.85em', background: 'transparent' },
     '&.cm-focused': { outline: 'none' },
     '.cm-content': {
-      fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+      // The vault's own monospace font, not a stack of our choosing — this
+      // editor sits inline in a note next to Obsidian's own code blocks.
+      fontFamily: 'var(--font-monospace)',
       padding: '1em',
     },
     '.cm-line': { padding: '0' },
