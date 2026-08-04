@@ -136,21 +136,21 @@ describe('createDgmoEmbedPostProcessor', () => {
     const { host: h } = host((lp) => fileStub(lp));
     const added = run(h, [embedSpan('foo.dgmo')]);
     expect(added).toHaveLength(1);
-    expect(added[0]!.filePath).toBe('foo.dgmo');
+    expect(added[0].filePath).toBe('foo.dgmo');
   });
 
   it('claims a bare name that resolves to a .dgmo file', () => {
     const { host: h } = host(() => fileStub('diagrams/foo.dgmo'));
     const added = run(h, [embedSpan('foo')]);
     expect(added).toHaveLength(1);
-    expect(added[0]!.filePath).toBe('diagrams/foo.dgmo');
+    expect(added[0].filePath).toBe('diagrams/foo.dgmo');
   });
 
   it('claims an unresolved .dgmo target (to show a not-found card)', () => {
     const { host: h } = host(() => null);
     const added = run(h, [embedSpan('missing.dgmo')]);
     expect(added).toHaveLength(1);
-    expect(added[0]!.filePath).toBeNull();
+    expect(added[0].filePath).toBeNull();
   });
 
   it('ignores non-.dgmo embeds (md/img/pdf)', () => {

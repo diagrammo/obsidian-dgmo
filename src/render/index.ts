@@ -183,11 +183,14 @@ function injectExpandButton(block: HTMLElement): void {
   const toolbar = block.querySelector<HTMLElement>('summary.dgmo-toolbar');
   if (!toolbar || toolbar.querySelector('.dgmo-expand')) return;
   const doc = toolbar.ownerDocument;
-  const btn = doc.createElement('button');
-  btn.type = 'button';
-  btn.className = 'dgmo-toolbar-btn dgmo-expand';
-  btn.setAttribute('aria-label', 'View full screen');
-  btn.title = 'Expand';
+  // `createEl`, not `doc.createElement` — Obsidian's helper is what the review
+  // guidelines ask for, and appending to `toolbar` keeps the element in the
+  // toolbar's own document (popout windows included). The insert below moves it
+  // into position within the same parent.
+  const btn = toolbar.createEl('button', {
+    cls: 'dgmo-toolbar-btn dgmo-expand',
+    attr: { type: 'button', 'aria-label': 'View full screen', title: 'Expand' },
+  });
   // No innerHTML (plugin review guidelines): parse the icon and import it.
   const iconDoc = new DOMParser().parseFromString(EXPAND_ICON, 'image/svg+xml');
   const icon = iconDoc.documentElement;
@@ -213,13 +216,16 @@ function injectDocsButton(block: HTMLElement, source: string): void {
   if (!id || !knownChartTypeIds.includes(id)) return;
 
   const doc = toolbar.ownerDocument;
-  const link = doc.createElement('a');
-  link.className = 'dgmo-toolbar-btn dgmo-docs';
-  link.setAttribute('href', `${DOCS_BASE}/chart-${id}`);
-  link.setAttribute('target', '_blank');
-  link.setAttribute('rel', 'noopener noreferrer');
-  link.setAttribute('aria-label', `Open ${id} documentation`);
-  link.title = 'Documentation';
+  const link = toolbar.createEl('a', {
+    cls: 'dgmo-toolbar-btn dgmo-docs',
+    attr: {
+      href: `${DOCS_BASE}/chart-${id}`,
+      target: '_blank',
+      rel: 'noopener noreferrer',
+      'aria-label': `Open ${id} documentation`,
+      title: 'Documentation',
+    },
+  });
   const iconDoc = new DOMParser().parseFromString(DOCS_ICON, 'image/svg+xml');
   const icon = iconDoc.documentElement;
   if (icon) link.appendChild(doc.importNode(icon, true));
@@ -233,8 +239,7 @@ function injectDocsButton(block: HTMLElement, source: string): void {
 function bindToolbar(block: HTMLElement): void {
   block.addEventListener('click', (e) => {
     const target = e.target as Element | null;
-    const btn = (target?.closest('.dgmo-toolbar-btn') ??
-      null) as HTMLElement | null;
+    const btn = target?.closest<HTMLElement>('.dgmo-toolbar-btn') ?? null;
     if (!btn) return;
 
     // The toolbar IS the <summary> of the source <details>; a click on any
@@ -355,7 +360,7 @@ function openDgmoLightbox(block: HTMLElement): void {
     if (win.getComputedStyle(w).display === 'none') continue;
     const found = w.querySelector('svg');
     if (found) {
-      svg = found as SVGSVGElement;
+      svg = found;
       bg = w.getAttribute('data-dgmo-bg');
       break;
     }
@@ -366,28 +371,27 @@ function openDgmoLightbox(block: HTMLElement): void {
   const clone = svg.cloneNode(true) as SVGSVGElement;
   namespaceLightboxSvgIds(clone, `dgmo-lb-${++lightboxIdSeq}-`);
 
-  const dialog = doc.createElement('dialog');
-  dialog.className = 'dgmo-lightbox';
-  dialog.setAttribute('aria-label', 'Diagram, full screen');
+  // Built with Obsidian's `createEl` helpers on `doc.body`, so the dialog belongs
+  // to the block's own document — a diagram expanded in a popout window opens
+  // its lightbox in that window, not the main one.
+  const dialog = doc.body.createEl('dialog', {
+    cls: 'dgmo-lightbox',
+    attr: { 'aria-label': 'Diagram, full screen' },
+  });
 
-  const closeBtn = doc.createElement('button');
-  closeBtn.type = 'button';
-  closeBtn.className = 'dgmo-lightbox-close';
-  closeBtn.setAttribute('aria-label', 'Close full screen');
   // No innerHTML (plugin guidelines): a text glyph, sized by the CSS.
-  closeBtn.textContent = '✕';
+  const closeBtn = dialog.createEl('button', {
+    cls: 'dgmo-lightbox-close',
+    text: '✕',
+    attr: { type: 'button', 'aria-label': 'Close full screen' },
+  });
 
-  const host = doc.createElement('div');
-  host.className = 'dgmo-lightbox-svg';
+  const host = dialog.createDiv({ cls: 'dgmo-lightbox-svg' });
   // Always paint an opaque surface behind the enlarged diagram — transparent
   // embeds strip the chart bg from the SVG, so without this the note shows
   // through the expanded view. Use the block's own palette bg when stashed.
   if (bg) host.style.background = bg;
   host.appendChild(clone);
-
-  dialog.appendChild(closeBtn);
-  dialog.appendChild(host);
-  doc.body.appendChild(dialog);
 
   const close = (): void => {
     if (dialog.open) dialog.close();
@@ -617,9 +621,11 @@ function buildMapSvg(
   const palette = resolvePalette(paletteId)[isDark ? 'dark' : 'light'];
 
   let resolved: ReturnType<typeof resolveMap>;
-  // `activeDocument` (not the global `document`) so map rendering works in
-  // Obsidian popout windows, per the plugin review guidelines.
-  const exportDiv = activeDocument.createElement('div');
+  // Obsidian's `createDiv` helper, and deliberately detached: nothing here is
+  // measured or laid out (dgmo sizes the map from the projection, not the DOM),
+  // so this container has no window affinity to get wrong — the finished SVG is
+  // adopted by whichever document it is appended into, popout or main.
+  const exportDiv = createDiv();
   try {
     resolved = resolveMap(parseMap(source), mapData);
     // Content-aware canvas: height derived from the map's intrinsic projected

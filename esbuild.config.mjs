@@ -30,6 +30,15 @@ const config = {
   format: 'cjs',
   target: 'es2020',
   platform: 'browser',
+  // Squeeze the release bundle under 5 MB. Above that, Obsidian Sync's Standard
+  // plan refuses to sync the file, so a paying user cannot get the plugin onto
+  // their other devices — the bundle was 5.3 MB and the store flags it.
+  // Whitespace and syntax only: identifiers keep their real names, so the
+  // shipped file stays readable and this is nowhere near the "no obfuscated
+  // code" line in Obsidian's developer policy. 5.30 MB → 4.00 MB.
+  // Not in watch mode, where the inline sourcemap is the point.
+  minifyWhitespace: !isWatch,
+  minifySyntax: !isWatch,
   sourcemap: isWatch ? 'inline' : false,
   logLevel: 'info',
   treeShaking: true,

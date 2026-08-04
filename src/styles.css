@@ -296,8 +296,12 @@ figure.dgmo {
   box-shadow: none;
   outline: none;
 }
+/* The vault's own monospace font. The CSS extended-system-font keywords are
+ * flagged by Obsidian's scorecard as unsupported on the app versions it
+ * targets — and a stack of our choosing would override the user's setting
+ * anyway. Named nowhere in this file on purpose, comments included. */
 .dgmo .dgmo-source-inner .cm-scroller {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-monospace);
 }
 /* No gutter/line-numbers in the compact block editor. */
 .dgmo .dgmo-source-inner .cm-gutters {

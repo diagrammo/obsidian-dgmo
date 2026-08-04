@@ -33,7 +33,10 @@ import {
 } from './ui/settings';
 
 export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
-  settings: DgmoSettings = DEFAULT_SETTINGS;
+  /** `Plugin.settings` exists as `unknown` since Obsidian 1.13.0 — narrowing it
+   * here is what lets `PluginSettingTab`'s declarative controls read and write
+   * our settings without a custom storage adapter. */
+  override settings: DgmoSettings = DEFAULT_SETTINGS;
 
   /** Live `![[*.dgmo]]` embeds, so vault `modify` can re-render dependents. */
   private readonly embeds = new Set<DgmoEmbed>();
