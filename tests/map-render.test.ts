@@ -10,7 +10,7 @@ import {
 } from '@diagrammo/dgmo/advanced';
 import { describe, expect, it } from 'vitest';
 
-import { mapData } from '../src/map-data';
+import { mapData } from '../src/render/map-data';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixture = readFileSync(

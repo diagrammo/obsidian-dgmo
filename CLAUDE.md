@@ -21,16 +21,18 @@ Externalized in `esbuild.config.mjs`: `obsidian`, `electron`, `@codemirror/*`, `
 
 Keep this repo a thin integration layer: language and rendering bugs get fixed upstream in `dgmo/`.
 
+`src/` is grouped by what a file does, not flat (reorganised 2026-08-03): **`src/render/`** turns DGMO into mounted DOM (`index.ts` is the block renderer, plus `fonts.ts`, `map-data.ts`, `embed.ts` for `![[foo.dgmo]]`), **`src/ui/`** is everything a person clicks (`settings.ts`, `new-diagram.ts`, `edit.ts`, `templates.ts`), and the root holds `main.ts` plus the four **generated** artifacts the scripts write to fixed paths — `styles.css`, `example-note.md`, `templates.gen.json`, and `examples.ts` which wraps the note. Generated paths are hardcoded in `scripts/*.mjs`, so moving one means editing its generator.
+
 ## Obsidian-specific constraints
 
 - **`minAppVersion` is `1.5.7`, and that floor is load-bearing** — `Vault#getFileByPath` landed in Obsidian 1.5.7 (API changelog, checked 2026-08-03) and the plugin calls it in the in-block save path and the example-note command. It read `1.5.0` until 2026-08-03, which would have thrown a `TypeError` on 1.5.0–1.5.6. Anything newer than the floor gets the floor raised, never a version guard
-- **No `innerHTML`/`outerHTML`** (plugin review guidelines) — go through `appendBlockHtml` in `src/render.ts` (DOMParser + `importNode`)
+- **No `innerHTML`/`outerHTML`** (plugin review guidelines) — go through `appendBlockHtml` in `src/render/index.ts` (DOMParser + `importNode`)
 - **`activeDocument` / `el.ownerDocument`, never global `document`** — popout windows
 - **`:has()` is flagged by Obsidian's scorecard.** `scripts/build-styles.mjs` rewrites dgmo's two frame selectors to `.dgmo-has-source` / `.dgmo-source-open` and `[data-theme="dark"]` → `body.theme-dark`; `frameSourcePanel()` mirrors the panel state onto those classes in JS. Edit `src/styles.css` — root `styles.css` is generated
 - **Maps bypass `render()`.** dgmo's public `render()` loads geo data through Node `fs` and yields an empty SVG here, so `looksLikeMap` branches to the DI pipeline (`parseMap` → `resolveMap` → `renderMapForExport`) with `vendor/map-data` JSON inlined at build time, as the desktop app does
 - `src/example-note.md` and `src/templates.gen.json` are generated from the **sibling `dgmo-content` repo but committed** — the generators no-op when the sibling is absent (CI has no workspace). `main.js` and `styles.css` are likewise tracked build artifacts despite `.gitignore`, so a build dirties the tree
 
-## In-block editing — don't break these (`src/edit.ts`)
+## In-block editing — don't break these (`src/ui/edit.ts`)
 
 Opening the `</>` source panel swaps the static `<pre>` for a live CodeMirror 6 view running dgmo's `dgmoExtension`.
 

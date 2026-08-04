@@ -8,7 +8,7 @@ import {
   isDgmoTarget,
   linkpathOf,
   renderEmbed,
-} from '../src/embed';
+} from '../src/render/embed';
 
 function fileStub(path: string): TFile {
   const ext = path.includes('.') ? path.split('.').pop()! : '';

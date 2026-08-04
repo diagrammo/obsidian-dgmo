@@ -3,8 +3,8 @@ import type { Editor } from 'obsidian';
 import {
   dgmoBlockAtCursor,
   insertDiagramAtCursor,
-} from '../src/new-diagram';
-import type { DiagramTemplate } from '../src/templates';
+} from '../src/ui/new-diagram';
+import type { DiagramTemplate } from '../src/ui/templates';
 
 /** Read-only fake editor for dgmoBlockAtCursor. */
 function readEditor(text: string, cursorLine: number): Editor {

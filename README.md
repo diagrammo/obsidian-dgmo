@@ -124,18 +124,24 @@ The build bundles `@diagrammo/dgmo` and its rendering dependencies into a single
 
 ```
 src/
-├── main.ts            # Plugin lifecycle, code-block processor, commands, settings glue
-├── render.ts          # Renders a block: SVG, hover toolbar, source panel, lightbox
-├── edit.ts            # The in-place CodeMirror editor and its write-back guard
-├── embed.ts           # ![[foo.dgmo]] transclusion
-├── new-diagram.ts     # Fuzzy picker + gallery modal, insert-at-cursor, new note
-├── settings.ts        # Settings tab
-├── templates.ts       # Starter snippets behind the picker and gallery
-├── examples.ts        # The generated example note, as a string
-├── map-data.ts        # Vendored geo data (maps bypass dgmo's Node file loader)
-├── fonts.ts           # Registers the bundled Inter faces, and takes them back on unload
-└── styles.css         # Hand-maintained styles; the root styles.css is generated from it
+├── main.ts              # Plugin lifecycle, code-block processor, commands, settings glue
+├── render/
+│   ├── index.ts         # Renders a block: SVG, hover toolbar, source panel, lightbox
+│   ├── embed.ts         # ![[foo.dgmo]] transclusion
+│   ├── map-data.ts      # Vendored geo data (maps bypass dgmo's Node file loader)
+│   └── fonts.ts         # Registers the bundled Inter faces, and takes them back on unload
+├── ui/
+│   ├── settings.ts      # Settings tab
+│   ├── new-diagram.ts   # Fuzzy picker + gallery modal, insert-at-cursor, new note
+│   ├── edit.ts          # The in-place CodeMirror editor and its write-back guard
+│   └── templates.ts     # Starter snippets behind the picker and gallery
+├── styles.css           # Hand-maintained styles; the root styles.css is generated from it
+├── examples.ts          # The generated example note, as a string
+├── example-note.md      # generated from the sibling dgmo-content repo
+└── templates.gen.json   # generated from the sibling dgmo-content repo
 ```
+
+The four generated artifacts sit at the `src/` root because `scripts/*.mjs` writes to those exact paths — move one and you edit its generator too.
 
 ### Dependencies
 

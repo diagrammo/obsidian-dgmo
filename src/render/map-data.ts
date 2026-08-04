@@ -13,17 +13,17 @@
 // release assets.
 import type { MapData } from '@diagrammo/dgmo/advanced';
 
-import airports from '../vendor/map-data/airports.json';
-import gazetteer from '../vendor/map-data/gazetteer.json';
-import lakes from '../vendor/map-data/lakes.json';
-import mountainRanges from '../vendor/map-data/mountain-ranges.json';
-import naLakes from '../vendor/map-data/na-lakes.json';
-import naLand from '../vendor/map-data/na-land.json';
-import rivers from '../vendor/map-data/rivers.json';
-import usStates from '../vendor/map-data/us-states.json';
-import waterBodies from '../vendor/map-data/water-bodies.json';
-import worldCoarse from '../vendor/map-data/world-coarse.json';
-import worldDetail from '../vendor/map-data/world-detail.json';
+import airports from '../../vendor/map-data/airports.json';
+import gazetteer from '../../vendor/map-data/gazetteer.json';
+import lakes from '../../vendor/map-data/lakes.json';
+import mountainRanges from '../../vendor/map-data/mountain-ranges.json';
+import naLakes from '../../vendor/map-data/na-lakes.json';
+import naLand from '../../vendor/map-data/na-land.json';
+import rivers from '../../vendor/map-data/rivers.json';
+import usStates from '../../vendor/map-data/us-states.json';
+import waterBodies from '../../vendor/map-data/water-bodies.json';
+import worldCoarse from '../../vendor/map-data/world-coarse.json';
+import worldDetail from '../../vendor/map-data/world-detail.json';
 
 /** The assets dgmo's `resolveMap`/`renderMap` consume (DI). */
 export const mapData: MapData = {

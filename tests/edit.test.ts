@@ -14,7 +14,7 @@ import {
   containsFence,
   enableBlockEditing,
   replaceFencedSource,
-} from '../src/edit';
+} from '../src/ui/edit';
 import { renderDgmo, updateDiagram } from '../src/render';
 
 const SOURCE = 'bar chart\nBlack Pearl 42\nQueen Anne 37';

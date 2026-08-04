@@ -13,24 +13,24 @@ import {
   createDiagramNote,
   insertDiagramAtCursor,
   openBlockInEditor,
-} from './new-diagram';
-import { templates } from './templates';
+} from './ui/new-diagram';
+import { templates } from './ui/templates';
 import { renderDgmo, setEmbedBackground } from './render';
 import { tickCountdowns } from '@diagrammo/dgmo/countdown';
 import { tickClocks } from '@diagrammo/dgmo/clock';
-import { containsFence, replaceFencedSource } from './edit';
-import { ensureInterFonts, removeInterFonts } from './fonts';
+import { containsFence, replaceFencedSource } from './ui/edit';
+import { ensureInterFonts, removeInterFonts } from './render/fonts';
 import {
   type DgmoEmbed,
   type DgmoEmbedHost,
   createDgmoEmbedPostProcessor,
-} from './embed';
+} from './render/embed';
 import { EXAMPLE_NOTE } from './examples';
 import {
   type DgmoSettings,
   DEFAULT_SETTINGS,
   DgmoSettingTab,
-} from './settings';
+} from './ui/settings';
 
 export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
   settings: DgmoSettings = DEFAULT_SETTINGS;

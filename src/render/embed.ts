@@ -5,7 +5,7 @@ import {
   type TFile,
 } from 'obsidian';
 import { errorBlockHtml } from '@diagrammo/dgmo/block';
-import { appendBlockHtml, renderDgmo } from './render';
+import { appendBlockHtml, renderDgmo } from './index';
 import { ensureInterFonts } from './fonts';
 
 /**

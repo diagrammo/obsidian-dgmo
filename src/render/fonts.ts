@@ -2,9 +2,9 @@
 // Source TTFs from @diagrammo/dgmo are pre-converted to woff2 (~65% smaller) and
 // committed under assets/ — see scripts/build-fonts.mjs to regenerate.
 // @ts-expect-error — .woff2 imports handled by esbuild dataurl loader
-import interRegularUrl from '../assets/Inter-Regular.woff2';
+import interRegularUrl from '../../assets/Inter-Regular.woff2';
 // @ts-expect-error — .woff2 imports handled by esbuild dataurl loader
-import interBoldUrl from '../assets/Inter-Bold.woff2';
+import interBoldUrl from '../../assets/Inter-Bold.woff2';
 
 let loaded = false;
 

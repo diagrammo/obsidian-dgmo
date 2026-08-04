@@ -1,7 +1,7 @@
 import { App, PluginSettingTab, Setting, setIcon } from 'obsidian';
 import { palettes } from '@diagrammo/dgmo';
-import { renderDgmo } from './render';
-import type DgmoPlugin from './main';
+import { renderDgmo } from '../render';
+import type DgmoPlugin from '../main';
 
 /** Live sample rendered in "Using diagrams" so the toolbar shown is the real
  * block chrome, not a mock. Small + valid; mirrors examples/bar/bar.dgmo. */

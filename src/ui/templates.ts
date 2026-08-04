@@ -1,7 +1,7 @@
 // Chart-type list + per-type starter snippets for the "New diagram" commands.
 // The data is generated from dgmo-content's registry.json at build time
 // (scripts/build-templates.mjs) and inlined by esbuild's JSON loader.
-import rawTemplates from './templates.gen.json';
+import rawTemplates from '../templates.gen.json';
 
 export interface DiagramTemplate {
   id: string;

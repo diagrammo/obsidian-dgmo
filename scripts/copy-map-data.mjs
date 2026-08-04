@@ -1,5 +1,5 @@
 // Copies the map chart-type data JSON out of the installed @diagrammo/dgmo
-// package into ./vendor/map-data so src/map-data.ts can inline it at build time.
+// package into ./vendor/map-data so src/render/map-data.ts can inline it at build time.
 //
 // Why not import straight from the package? dgmo ships these files (its
 // package.json `files` includes `src`), but its `exports` map exposes no data
@@ -20,7 +20,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const srcDir = join(root, 'node_modules', '@diagrammo', 'dgmo', 'dist', 'map-data');
 const outDir = join(root, 'vendor', 'map-data');
 
-// Keep in sync with the imports in src/map-data.ts.
+// Keep in sync with the imports in src/render/map-data.ts.
 const FILES = [
   'airports.json',
   'gazetteer.json',

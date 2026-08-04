@@ -9,8 +9,8 @@ import {
   type FuzzyMatch,
 } from 'obsidian';
 import { encodeDiagramUrl, resolvePaletteOrFallback } from '@diagrammo/dgmo';
-import type DgmoPlugin from './main';
-import { renderDiagramThumbnail } from './render';
+import type DgmoPlugin from '../main';
+import { renderDiagramThumbnail } from '../render';
 import { templatesByFamily, type DiagramTemplate } from './templates';
 
 const EDITOR_BASE = 'https://online.diagrammo.app';

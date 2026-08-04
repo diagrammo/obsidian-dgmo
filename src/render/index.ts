@@ -20,7 +20,7 @@ import {
 
 const DOCS_BASE = 'https://diagrammo.app/docs';
 import { mapData } from './map-data';
-import { enableBlockEditing, type FlushFn } from './edit';
+import { enableBlockEditing, type FlushFn } from '../ui/edit';
 
 function resolvePalette(id: string): PaletteConfig {
   // Silent resolution (no logger) — preserves Obsidian's current no-notice
