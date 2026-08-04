@@ -157,7 +157,10 @@ export function setIcon(el: HTMLElement, icon: string): void {
 
 /** Obsidian's own path cleaner: collapse slashes, strip the leading one. */
 export function normalizePath(path: string): string {
-  return path.replace(/\\/g, '/').replace(/\/{2,}/g, '/').replace(/^\//, '');
+  return path
+    .replace(/\\/g, '/')
+    .replace(/\/{2,}/g, '/')
+    .replace(/^\//, '');
 }
 
 export class FuzzySuggestModal<T> {
@@ -177,4 +180,53 @@ export class FuzzySuggestModal<T> {
   onChooseItem(_t: T): void {}
   open(): void {}
   close(): void {}
+}
+
+/**
+ * `requestUrl` — Obsidian's CORS-free HTTP call, and the plugin's only network
+ * access (live links, BL-144).
+ *
+ * 🔴 The real one **throws on status 400+ unless `throw: false` is passed**, and
+ * its `json` / `text` are **properties, not methods**. Both are modelled here on
+ * purpose: a mock that resolved everything and exposed `json()` would let the
+ * two defects most likely to ship pass every test.
+ *
+ * Tests set `__requestUrlHandler` to decide what comes back.
+ */
+export interface RequestUrlParam {
+  url: string;
+  method?: string;
+  contentType?: string;
+  body?: string | ArrayBuffer;
+  headers?: Record<string, string>;
+  throw?: boolean;
+}
+
+export interface RequestUrlResponse {
+  status: number;
+  headers: Record<string, string>;
+  text: string;
+  json: unknown;
+}
+
+let handler: ((param: RequestUrlParam) => Promise<RequestUrlResponse>) | null =
+  null;
+
+export function __setRequestUrlHandler(
+  fn: ((param: RequestUrlParam) => Promise<RequestUrlResponse>) | null
+): void {
+  handler = fn;
+}
+
+export async function requestUrl(
+  param: RequestUrlParam | string
+): Promise<RequestUrlResponse> {
+  const p: RequestUrlParam = typeof param === 'string' ? { url: param } : param;
+  if (!handler) throw new Error(`no requestUrl handler set for ${p.url}`);
+  const res = await handler(p);
+  // The default that catches people out.
+  if (p.throw !== false && res.status >= 400) {
+    throw new Error(`Request failed, status ${String(res.status)}`);
+  }
+  return res;
 }

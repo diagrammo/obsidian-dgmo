@@ -328,3 +328,22 @@ figure.dgmo {
   background: none;
   cursor: default;
 }
+
+/* Live links (BL-144): the one line that says a diagram is not current.
+   A note is a reading surface, so this is a whisper — not a banner, not a
+   Notice, and never the same weight as the diagram it sits under. */
+.dgmo-live-link-note {
+  font-size: var(--font-smallest);
+  color: var(--text-faint);
+  line-height: 1.4;
+  margin: 0.35em 0 0;
+}
+
+.dgmo-live-link-note a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.dgmo-live-link-note a:hover {
+  color: var(--text-muted);
+}

@@ -15,7 +15,8 @@ import {
   openBlockInEditor,
 } from './ui/new-diagram';
 import { templates } from './ui/templates';
-import { renderDgmo, setEmbedBackground } from './render';
+import { renderDgmo, setEmbedBackground, setLiveLinkRuntime } from './render';
+import { PluginFolderStore } from './render/live-link';
 import { tickCountdowns } from '@diagrammo/dgmo/countdown';
 import { tickClocks } from '@diagrammo/dgmo/clock';
 import { containsFence, replaceFencedSource } from './ui/edit';
@@ -37,6 +38,8 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
    * here is what lets `PluginSettingTab`'s declarative controls read and write
    * our settings without a custom storage adapter. */
   override settings: DgmoSettings = DEFAULT_SETTINGS;
+  /** Built once and reused: it holds the remembered copies in memory. */
+  private liveLinkStore: PluginFolderStore | null = null;
 
   /** Live `![[*.dgmo]]` embeds, so vault `modify` can re-render dependents. */
   private readonly embeds = new Set<DgmoEmbed>();
@@ -178,11 +181,34 @@ export default class DgmoPlugin extends Plugin implements DgmoEmbedHost {
     const loaded = (await this.loadData()) as Partial<DgmoSettings> | null;
     this.settings = { ...DEFAULT_SETTINGS, ...(loaded ?? {}) };
     setEmbedBackground(this.settings.transparentBackground);
+    this.applyLiveLinkRuntime();
   }
 
   async saveSettings() {
     await this.saveData(this.settings);
     setEmbedBackground(this.settings.transparentBackground);
+    this.applyLiveLinkRuntime();
+  }
+
+  /**
+   * Hand the renderer the live-link cache and the on/off switch.
+   *
+   * The cache lives in this plugin's own folder rather than the vault — see the
+   * note on `PluginFolderStore`. 🔴 `PluginManifest.dir` is OPTIONAL, so `null`
+   * here is a real case and not padding: with no folder the store keeps the
+   * session's copies in memory and nothing is written.
+   */
+  private applyLiveLinkRuntime(): void {
+    this.liveLinkStore ??= new PluginFolderStore(
+      this.app.vault.adapter,
+      this.manifest.dir
+        ? normalizePath(`${this.manifest.dir}/live-link-cache.json`)
+        : null
+    );
+    setLiveLinkRuntime({
+      store: this.liveLinkStore,
+      enabled: this.settings.followLiveLinks,
+    });
   }
 
   private resolveIsDark(): boolean {

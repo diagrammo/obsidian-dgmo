@@ -23,6 +23,7 @@ export interface DgmoSettings {
   palette: string;
   theme: 'auto' | 'light' | 'dark';
   transparentBackground: boolean;
+  followLiveLinks: boolean;
   align: 'left' | 'center';
   maxWidth: 'full' | '720' | '560';
 }
@@ -31,6 +32,7 @@ export const DEFAULT_SETTINGS: DgmoSettings = {
   palette: 'slate',
   theme: 'auto',
   transparentBackground: true,
+  followLiveLinks: true,
   align: 'left',
   maxWidth: 'full',
 };
@@ -40,7 +42,7 @@ type ControlKey = keyof DgmoSettings;
 /** One persisted setting, described once. */
 interface ControlSpec {
   key: ControlKey;
-  heading: 'Appearance' | 'Layout';
+  heading: 'Appearance' | 'Layout' | 'Live links';
   name: string;
   desc: string;
   control: SettingControl<ControlKey>;
@@ -102,6 +104,17 @@ function controlSpecs(): ControlSpec[] {
         type: 'toggle',
         key: 'transparentBackground',
         defaultValue: DEFAULT_SETTINGS.transparentBackground,
+      },
+    },
+    {
+      key: 'followLiveLinks',
+      heading: 'Live links',
+      name: 'Keep live links up to date',
+      desc: 'A live link points at a diagram someone published, so you see their current version rather than a copy. Opening a note that holds one contacts api.diagrammo.app to fetch it. Turn this off and live links show a card naming the diagram instead. Nothing about you is sent, and nothing is counted.',
+      control: {
+        type: 'toggle',
+        key: 'followLiveLinks',
+        defaultValue: DEFAULT_SETTINGS.followLiveLinks,
       },
     },
     {
@@ -301,6 +314,11 @@ export class DgmoSettingTab extends PluginSettingTab {
       { type: 'group', heading: 'Layout', items: controls('Layout') },
       {
         type: 'group',
+        heading: 'Live links',
+        items: controls('Live links'),
+      },
+      {
+        type: 'group',
         heading: 'Using diagrams',
         items: [
           {
@@ -339,6 +357,10 @@ export class DgmoSettingTab extends PluginSettingTab {
       case 'transparentBackground':
         if (typeof value !== 'boolean') return;
         s.transparentBackground = value;
+        break;
+      case 'followLiveLinks':
+        if (typeof value !== 'boolean') return;
+        s.followLiveLinks = value;
         break;
       case 'align':
         if (value !== 'left' && value !== 'center') return;
@@ -379,6 +401,7 @@ export class DgmoSettingTab extends PluginSettingTab {
     this.renderCommands(containerEl);
     this.renderControls(containerEl, 'Appearance');
     this.renderControls(containerEl, 'Layout');
+    this.renderControls(containerEl, 'Live links');
     this.renderToolbarHelp(containerEl);
     this.renderResources(containerEl);
   }

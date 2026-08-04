@@ -21,6 +21,7 @@ import {
 const DOCS_BASE = 'https://diagrammo.app/docs';
 import { mapData } from './map-data';
 import { enableBlockEditing, type FlushFn } from '../ui/edit';
+import { liveLinkId, renderLiveLink, type LiveLinkStore } from './live-link';
 
 function resolvePalette(id: string): PaletteConfig {
   // Silent resolution (no logger) — preserves Obsidian's current no-notice
@@ -38,6 +39,25 @@ let embedBackground: 'transparent' | 'opaque' = 'transparent';
 /** Called by the plugin when settings load or change. */
 export function setEmbedBackground(transparent: boolean): void {
   embedBackground = transparent ? 'transparent' : 'opaque';
+}
+
+/**
+ * The cache and the on/off switch a live link needs, set from `main.ts` for the
+ * same reason `embedBackground` is: the render entry points are plain functions
+ * with differing signatures, and threading a plugin handle through all of them
+ * buys nothing.
+ *
+ * Null until the plugin loads — and a null runtime means live links render as
+ * the reference card, which is exactly right for the thumbnail and export paths
+ * that call in without a plugin.
+ */
+let liveLinkRuntime: { store: LiveLinkStore; enabled: boolean } | null = null;
+
+/** Called by the plugin when settings load or change. */
+export function setLiveLinkRuntime(
+  runtime: { store: LiveLinkStore; enabled: boolean } | null
+): void {
+  liveLinkRuntime = runtime;
 }
 
 /**
@@ -452,6 +472,42 @@ export type SaveFn = (next: string) => Promise<void>;
  * in-progress edit must not be lost). Null when the block isn't editable.
  */
 export async function renderDgmo(
+  source: string,
+  container: HTMLElement,
+  isDark: boolean,
+  paletteId = 'nord',
+  onSave?: SaveFn,
+  vimMode = false
+): Promise<FlushFn | null> {
+  // A live link is a pointer, not a drawing: it names a diagram published to
+  // Diagrammo Cloud, and what belongs on screen is the author's current version.
+  // Checked before anything renders, so the pointer's own card is drawn once
+  // rather than drawn and replaced.
+  const runtime = liveLinkRuntime;
+  if (runtime) {
+    const id = liveLinkId(source);
+    if (id !== null) {
+      // 🔴 `onSave` is deliberately dropped. The source panel would otherwise
+      // offer to write the RESOLVED diagram back over the fence, replacing the
+      // pointer with a copy — which is the one edit that destroys the feature.
+      const redraw = (next: string): Promise<FlushFn | null> => {
+        container.replaceChildren();
+        return renderResolved(next, container, isDark, paletteId);
+      };
+      await renderLiveLink(id, container, {
+        store: runtime.store,
+        enabled: runtime.enabled,
+        draw: async (resolved) => void (await redraw(resolved)),
+        drawCard: async () => void (await redraw(source)),
+      });
+      return null;
+    }
+  }
+  return renderResolved(source, container, isDark, paletteId, onSave, vimMode);
+}
+
+/** The ordinary path: source in, diagram on screen. */
+async function renderResolved(
   source: string,
   container: HTMLElement,
   isDark: boolean,

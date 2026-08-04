@@ -33,7 +33,7 @@
     }
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.59.0"
+    "@diagrammo/dgmo": "^0.60.0"
   },
   "devDependencies": {
     "@codemirror/commands": "^6.10.4",

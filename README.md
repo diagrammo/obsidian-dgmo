@@ -12,13 +12,13 @@ Write a `dgmo` code block and it renders as a diagram inline in your notes — r
 
 Every drawing chart type in [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) renders in Obsidian:
 
-| Category | Types |
-|----------|-------|
-| **Data & charts** | arc, bar, function, funnel, goal, heatmap, line, pie, polar-area, radar, sankey, scatter, slope, treemap, wordcloud |
+| Category                    | Types                                                                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Data & charts**           | arc, bar, function, funnel, goal, heatmap, line, pie, polar-area, radar, sankey, scatter, slope, treemap, wordcloud            |
 | **Software & architecture** | block, boxes-and-lines, c4, class, er, flowchart, infra, mindmap, sequence, sitemap, sketch, state, version-control, wireframe |
-| **Project & process** | bracket, countdown, event-line, gantt, kanban, pert, raci (also `rasci` and `daci`), swimlane, timeline |
-| **Business & strategy** | cycle, journey-map, pyramid, quadrant, ring, tech-radar, venn |
-| **People, places & bodies** | body, clock, family, map, org |
+| **Project & process**       | bracket, countdown, event-line, gantt, kanban, pert, raci (also `rasci` and `daci`), swimlane, timeline                        |
+| **Business & strategy**     | cycle, journey-map, pyramid, quadrant, ring, tech-radar, venn                                                                  |
+| **People, places & bodies** | body, clock, family, map, org                                                                                                  |
 
 `countdown` and `clock` tick live in the note — a launch date counts itself down, a world-clock board keeps real time.
 
@@ -43,6 +43,22 @@ Q4 5.9
 
 The diagram renders inline in reading mode and live preview. Hover any rendered diagram to reveal a slim icon toolbar below it, with five things on it: **view source**, **expand** to full screen, **copy source**, **documentation** for that chart type, and **open in the online editor** with this note's palette and theme already applied.
 
+### Live links — a diagram somebody else keeps up to date
+
+A live link is a `dgmo` block that names a diagram published to Diagrammo Cloud instead of carrying its own source, so you see the author's current version rather than a copy that was true the day you pasted it:
+
+````markdown
+```dgmo
+live-link dgm_01KYRFCJZ2BHS18XRBEAZ0Y120
+```
+````
+
+A pasted share link works the same way, and so does `![[live-link:<id>]]`.
+
+The diagram you already have appears immediately and quietly updates if the author has changed it, so opening a note never waits on the network. With no connection you keep seeing your last copy, with one dimmed line saying so. If the author unshares the diagram, the copy is discarded rather than shown — you should not still be reading something someone took back.
+
+This is the only feature that uses the network; see [Network use](#network-use).
+
 ### Editing a diagram in place
 
 View source doesn't just show the text — it opens a real editor, inside the note, with DGMO syntax highlighting and (if your vault runs Vim mode) Vim keybindings. Type, and the diagram redraws as you go. There's no save button: the edit writes back into the note on blur, on closing the panel, and when the block scrolls away. Escape reverts, unless Vim owns it.
@@ -51,12 +67,12 @@ View source doesn't just show the text — it opens a real editor, inside the no
 
 Open the command palette and search "Diagrammo":
 
-| Command | What it does |
-|---------|--------------|
-| **New diagram: pick a chart type** | Fuzzy-search every chart type and insert a starter block at the cursor. The fast everyday path. |
-| **New diagram: browse the gallery** | Visual picker with categories and live thumbnails. Click a tile to insert at the cursor; ⌘/Ctrl-click to create a new note instead. |
-| **Open diagram under cursor in the online editor** | Opens the block your cursor is in at online.diagrammo.app. |
-| **Create example note with all chart types** | Generates the "Diagrammo Examples" note. |
+| Command                                            | What it does                                                                                                                        |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **New diagram: pick a chart type**                 | Fuzzy-search every chart type and insert a starter block at the cursor. The fast everyday path.                                     |
+| **New diagram: browse the gallery**                | Visual picker with categories and live thumbnails. Click a tile to insert at the cursor; ⌘/Ctrl-click to create a new note instead. |
+| **Open diagram under cursor in the online editor** | Opens the block your cursor is in at online.diagrammo.app.                                                                          |
+| **Create example note with all chart types**       | Generates the "Diagrammo Examples" note.                                                                                            |
 
 None of them claim a hotkey — assign your own under Settings → Hotkeys.
 
@@ -74,15 +90,30 @@ This creates a `Diagrammo Examples.md` file in your vault with working examples 
 
 ## Settings
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| **Palette** | Colour palette used for all diagrams — every dgmo palette is offered (Slate, Atlas, Blueprint, Tidewater, Nord, Catppuccin, Tokyo Night) | Slate |
-| **Theme** | Auto follows Obsidian's light/dark mode; override to force one | Auto |
-| **Transparent background** | Let diagrams blend into the note background instead of painting their own | On |
-| **Alignment** | Where diagrams sit within the note's width — left or centre | Left |
-| **Maximum width** | Cap how wide a diagram can grow: full width, comfortable (720px), or compact (560px) | Full width |
+| Setting                        | Description                                                                                                                                                         | Default    |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Palette**                    | Colour palette used for all diagrams — every dgmo palette is offered (Slate, Atlas, Blueprint, Tidewater, Nord, Catppuccin, Tokyo Night)                            | Slate      |
+| **Theme**                      | Auto follows Obsidian's light/dark mode; override to force one                                                                                                      | Auto       |
+| **Transparent background**     | Let diagrams blend into the note background instead of painting their own                                                                                           | On         |
+| **Alignment**                  | Where diagrams sit within the note's width — left or centre                                                                                                         | Left       |
+| **Maximum width**              | Cap how wide a diagram can grow: full width, comfortable (720px), or compact (560px)                                                                                | Full width |
+| **Keep live links up to date** | Fetch the current version of a diagram a live link points at. Turn it off and a live link shows a card naming the diagram instead — see [Network use](#network-use) | On         |
 
 The settings tab also renders a live diagram with the toolbar pinned open, so the icons are explained against the real thing.
+
+## Network use
+
+**Everything except live links works entirely offline**, and that is the plugin's normal state — parsing, layout, rendering, fonts and map data are all bundled and local.
+
+The one exception is the [live links](#live-links--a-diagram-somebody-else-keeps-up-to-date) feature. When you open a note containing a live link, the plugin requests that diagram's current source from **`api.diagrammo.app`**, the Diagrammo Cloud API, so it can draw the author's latest version.
+
+- Only the diagram's public id is sent. It is a plain `GET` and there is no request body.
+- **Nothing about you is sent, and nothing is counted.** No analytics, no telemetry, no identifiers — this plugin reports nothing anywhere, ever.
+- A request happens only for notes that contain a live link, and only when such a note is opened. A vault with no live links makes no requests at all.
+- Only diagrams their author has published are reachable this way; private diagrams cannot be pointed at.
+- The last copy is kept in this plugin's own folder so the diagram still draws offline. Nothing is written into your vault.
+
+Turn it off with **Settings > Diagrammo Diagrams > Live links > Keep live links up to date**. With it off, the plugin makes no network requests whatsoever.
 
 ## Install
 
