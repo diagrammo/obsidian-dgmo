@@ -5,7 +5,7 @@ import {
   type TFile,
 } from 'obsidian';
 import { errorBlockHtml } from '@diagrammo/dgmo/block';
-import { parseCloudReference } from '@diagrammo/dgmo/cloud-reference';
+import { parseCloudReferenceEmbed } from '@diagrammo/dgmo/cloud-reference';
 import { appendBlockHtml, renderDgmo } from './index';
 import { ensureInterFonts } from './fonts';
 
@@ -56,7 +56,7 @@ export function isDgmoTarget(src: string): boolean {
 export function embedLiveLinkId(src: string): string | null {
   const linkpath = linkpathOf(src);
   if (!linkpath) return null;
-  return parseCloudReference(`![[${linkpath}]]`)?.id ?? null;
+  return parseCloudReferenceEmbed(`![[${linkpath}]]`)?.id ?? null;
 }
 
 /** Injected seam so the resolve→read→render wiring is unit-testable. */

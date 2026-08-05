@@ -78,10 +78,17 @@ beforeEach(() => {
 });
 
 describe('liveLinkId — which fences are pointers', () => {
-  it('reads all three spellings', () => {
+  it('reads the keyword form and a pasted share link', () => {
     expect(liveLinkId(`live-link ${ID}`)).toBe(ID);
     expect(liveLinkId(`https://online.diagrammo.app/d/${ID}`)).toBe(ID);
-    expect(liveLinkId(`![[live-link:${ID}]]`)).toBe(ID);
+  });
+
+  it('🔴 does NOT read the note spelling — that is not DGMO source', () => {
+    // `![[…]]` is the host document's markdown, and a fence's content is DGMO.
+    // Accepted for one day (2026-08-04 → 08-05) and withdrawn: markdown nested
+    // in a code fence that is itself in markdown reads as the category error it
+    // is. The note BODY is still its home — `embed.ts` claims it there.
+    expect(liveLinkId(`![[live-link:${ID}]]`)).toBeNull();
   });
 
   it('reads the titled form through its url line', () => {

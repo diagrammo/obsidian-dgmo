@@ -21,7 +21,7 @@
 
 import { requestUrl } from 'obsidian';
 import {
-  parseCloudReference,
+  parseCloudReferenceFence,
   referenceShareUrl,
 } from '@diagrammo/dgmo/cloud-reference';
 import {
@@ -210,9 +210,11 @@ export function liveLinkId(source: string): string | null {
     .map((l) => l.trim())
     .find((l) => l && !l.startsWith('//'));
   if (!firstLine) return null;
-  // The whole-line spellings (a share link, `![[live-link:<id>]]`) and the
-  // fence form all go through the shared parser — never a local regex.
-  const whole = parseCloudReference(firstLine);
+  // 🔴 The FENCE parser. A fence takes the keyword form or a plain link, and
+  // NOT `![[live-link:<id>]]` — that is host markdown, and nesting it inside a
+  // code fence that is itself in markdown is a category error. The note spelling
+  // is claimed by `embed.ts`, where it belongs.
+  const whole = parseCloudReferenceFence(firstLine);
   if (whole) return whole.id;
   // The titled form: `live-link <Title>` + `url <target>`. dgmo's own parser
   // owns that shape; rather than reimplement it, take the `url` line's value
@@ -224,8 +226,8 @@ export function liveLinkId(source: string): string | null {
   if (!urlLine) return null;
   const value = urlLine.replace(/^url\s+/i, '').trim();
   return (
-    parseCloudReference(value)?.id ??
-    parseCloudReference(`live-link ${value}`)?.id ??
+    parseCloudReferenceFence(value)?.id ??
+    parseCloudReferenceFence(`live-link ${value}`)?.id ??
     null
   );
 }

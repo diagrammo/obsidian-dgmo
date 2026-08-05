@@ -53,7 +53,15 @@ live-link dgm_01KYRFCJZ2BHS18XRBEAZ0Y120
 ```
 ````
 
-A pasted share link works the same way, and so does `![[live-link:<id>]]`.
+A share link pasted into the fence works the same way.
+
+There is also a shorter spelling for a note, written on its own line **outside** any fence, alongside Obsidian's other embeds:
+
+```markdown
+![[live-link:dgm_01KYRFCJZ2BHS18XRBEAZ0Y120]]
+```
+
+That one is Obsidian's own transclusion syntax, so it belongs in the note body — not inside a `dgmo` block, where the content is diagram source rather than markdown.
 
 The diagram you already have appears immediately and quietly updates if the author has changed it, so opening a note never waits on the network. With no connection you keep seeing your last copy, with one dimmed line saying so. If the author unshares the diagram, the copy is discarded rather than shown — you should not still be reading something someone took back.
 
