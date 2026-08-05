@@ -5,6 +5,7 @@ import {
   type DgmoEmbedHost,
   type EmbedDeps,
   createDgmoEmbedPostProcessor,
+  embedLiveLinkId,
   isDgmoTarget,
   linkpathOf,
   renderEmbed,
@@ -14,6 +15,8 @@ function fileStub(path: string): TFile {
   const ext = path.includes('.') ? path.split('.').pop()! : '';
   return { path, extension: ext } as unknown as TFile;
 }
+
+const LIVE_ID = 'dgm_01KYRFCJZ2BHS18XRBEAZ0Y120';
 
 describe('linkpathOf', () => {
   it.each([
@@ -167,5 +170,49 @@ describe('createDgmoEmbedPostProcessor', () => {
     const { host: h } = host(() => fileStub('note.md'));
     const added = run(h, [embedSpan('note')]);
     expect(added).toHaveLength(0);
+  });
+
+  // `![[live-link:<id>]]` is the spelling designed FOR Obsidian (spec §38.6),
+  // and until 2026-08-04 it drew Obsidian's ordinary broken-link text: the claim
+  // required a `.dgmo` extension, and a live link names no file at all.
+  it('claims a live link, and never asks the vault to resolve it', () => {
+    const resolve = vi.fn(() => null);
+    const { host: h } = host(resolve);
+    const added = run(h, [embedSpan(`live-link:${LIVE_ID}`)]);
+    expect(added).toHaveLength(1);
+    expect(added[0].filePath).toBeNull();
+    // The lookup is skipped entirely — a live link is not in this vault.
+    expect(resolve).not.toHaveBeenCalled();
+  });
+
+  it('claims a live link carrying a display alias', () => {
+    const { host: h } = host(() => null);
+    const added = run(h, [embedSpan(`live-link:${LIVE_ID}|Platform map`)]);
+    expect(added).toHaveLength(1);
+  });
+
+  it('does not claim a malformed live link', () => {
+    const { host: h } = host(() => null);
+    const added = run(h, [embedSpan('live-link:'), embedSpan('live-link')]);
+    expect(added).toHaveLength(0);
+  });
+});
+
+describe('embedLiveLinkId', () => {
+  it('reads the id Obsidian hands us, which has no brackets', () => {
+    expect(embedLiveLinkId(`live-link:${LIVE_ID}`)).toBe(LIVE_ID);
+    expect(embedLiveLinkId(`live-link:${LIVE_ID}|Alias`)).toBe(LIVE_ID);
+  });
+
+  it('is null for a file embed, so the file path keeps working', () => {
+    expect(embedLiveLinkId('foo.dgmo')).toBeNull();
+    expect(embedLiveLinkId('diagrams/foo.dgmo')).toBeNull();
+    expect(embedLiveLinkId('note.md')).toBeNull();
+  });
+
+  it('is null for a near miss rather than guessing', () => {
+    expect(embedLiveLinkId('live-link:')).toBeNull();
+    expect(embedLiveLinkId('livelink:abc123')).toBeNull();
+    expect(embedLiveLinkId('cloud:abc123')).toBeNull();
   });
 });

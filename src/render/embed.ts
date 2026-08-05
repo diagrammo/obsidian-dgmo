@@ -5,6 +5,7 @@ import {
   type TFile,
 } from 'obsidian';
 import { errorBlockHtml } from '@diagrammo/dgmo/block';
+import { parseCloudReference } from '@diagrammo/dgmo/cloud-reference';
 import { appendBlockHtml, renderDgmo } from './index';
 import { ensureInterFonts } from './fonts';
 
@@ -39,6 +40,23 @@ export function linkpathOf(src: string): string {
 /** Does this embed `src` name a `.dgmo` target by extension? */
 export function isDgmoTarget(src: string): boolean {
   return /\.dgmo$/i.test(linkpathOf(src));
+}
+
+/**
+ * The diagram id when this embed is a live link — `![[live-link:<id>]]`, the
+ * spelling designed for a note (spec §38.6) — or null for anything else.
+ *
+ * 🔴 Obsidian hands us the **inside** of the brackets, so `src` is
+ * `live-link:dgm_7f2a91` with no `![[` and no `]]`. The shared parser matches on
+ * the whole embed spelling, so the brackets are put back rather than a second
+ * regex being written here: one parser owns the id shape, and this file is not
+ * it. An `|alias` suffix is already stripped by `linkpathOf`, so
+ * `![[live-link:<id>|Roadmap]]` resolves like the bare form.
+ */
+export function embedLiveLinkId(src: string): string | null {
+  const linkpath = linkpathOf(src);
+  if (!linkpath) return null;
+  return parseCloudReference(`![[${linkpath}]]`)?.id ?? null;
 }
 
 /** Injected seam so the resolve→read→render wiring is unit-testable. */
@@ -106,7 +124,9 @@ export class DgmoEmbed extends MarkdownRenderChild {
     private readonly node: HTMLElement,
     private readonly file: TFile | null,
     private readonly linkpath: string,
-    private readonly host: DgmoEmbedHost
+    private readonly host: DgmoEmbedHost,
+    /** Set when this is `![[live-link:<id>]]`, which names no file at all. */
+    private readonly liveLinkId: string | null = null
   ) {
     super(node);
   }
@@ -126,6 +146,22 @@ export class DgmoEmbed extends MarkdownRenderChild {
   }
 
   async render(): Promise<void> {
+    // A live link points at a published diagram, not at a file in this vault,
+    // so it skips the read entirely. Handed to `renderDgmo` as the fence
+    // spelling of the same pointer, which is what routes it — one code path,
+    // one cache, one setting, whichever way the reader wrote it.
+    if (this.liveLinkId !== null) {
+      await ensureInterFonts();
+      this.node.replaceChildren();
+      this.node.classList.add('dgmo-embed');
+      await renderDgmo(
+        `live-link ${this.liveLinkId}`,
+        this.node,
+        this.host.isDark(),
+        this.host.getPalette()
+      );
+      return;
+    }
     if (!this.file) {
       showEmbedError(this.node, `File not found: ${this.linkpath}`);
       return;
@@ -157,6 +193,15 @@ export function createDgmoEmbedPostProcessor(
       const src = node.getAttribute('src') ?? '';
       const linkpath = linkpathOf(src);
       if (!linkpath) return;
+      // Ahead of the file lookup on purpose: a live link names no file, so
+      // asking the metadata cache to resolve `live-link:<id>` is a guaranteed
+      // miss. Left after it, this would still work and would spend a lookup per
+      // embed to learn nothing.
+      const liveLink = embedLiveLinkId(src);
+      if (liveLink !== null) {
+        ctx.addChild(new DgmoEmbed(node, null, linkpath, host, liveLink));
+        return;
+      }
       const file = host.app.metadataCache.getFirstLinkpathDest(
         linkpath,
         ctx.sourcePath
