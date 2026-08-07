@@ -44,8 +44,28 @@ interface ControlSpec {
   key: ControlKey;
   heading: 'Appearance' | 'Layout' | 'Live links';
   name: string;
-  desc: string;
+  /** A fragment where the description needs a link; Obsidian indexes its
+   *  textContent for settings search either way. */
+  desc: string | DocumentFragment;
   control: SettingControl<ControlKey>;
+}
+
+/**
+ * The Palette row's description, with somewhere to go and look.
+ *
+ * Named after the palette it actually shows: the dropdown offers every palette
+ * dgmo ships, but only Slate has a page, so a link promising "the palettes"
+ * would be a promise the page does not keep.
+ */
+function paletteDesc(): DocumentFragment {
+  const desc = new DocumentFragment();
+  desc.appendText('Colour palette used for all dgmo diagrams. ');
+  desc.createEl('a', {
+    text: 'See Slate, the default, colour by colour',
+    href: SLATE_URL,
+  });
+  desc.appendText('.');
+  return desc;
 }
 
 /**
@@ -71,7 +91,7 @@ function controlSpecs(): ControlSpec[] {
       key: 'palette',
       heading: 'Appearance',
       name: 'Palette',
-      desc: 'Colour palette used for all dgmo diagrams.',
+      desc: paletteDesc(),
       control: {
         type: 'dropdown',
         key: 'palette',
@@ -150,6 +170,9 @@ function controlSpecs(): ControlSpec[] {
 
 const DOCS_URL = 'https://diagrammo.app/docs';
 const REFERENCE_URL = 'https://diagrammo.app/reference';
+/** Slate's swatches, light and dark, with the hex codes. Was `/palette/` until
+ *  2026-08-06; that path still redirects, but link to the real one. */
+const SLATE_URL = 'https://diagrammo.app/slate/';
 const SETUP_URL = 'https://diagrammo.app/embed#obsidian';
 const EDITOR_URL = 'https://online.diagrammo.app';
 const APP_URL = 'https://diagrammo.app/app';

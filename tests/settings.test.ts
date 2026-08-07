@@ -117,6 +117,23 @@ describe('DgmoSettingTab.getSettingDefinitions', () => {
     );
   });
 
+  it('sends the palette row somewhere to look, and stays searchable', () => {
+    // The description is a fragment rather than a string so it can hold a link.
+    // Obsidian searches a fragment by its textContent, so the words that made
+    // the row findable have to survive the change.
+    const { tab } = makeTab();
+    const palette = controls(tab.getSettingDefinitions()).find(
+      (c) => c.control.key === 'palette'
+    );
+    const desc = palette?.desc;
+    if (!(desc instanceof DocumentFragment)) throw new Error('desc not a fragment');
+
+    expect(desc.textContent).toContain('Colour palette');
+    const link = desc.querySelector('a');
+    expect(link?.getAttribute('href')).toBe('https://diagrammo.app/slate/');
+    expect(link?.textContent).toBeTruthy();
+  });
+
   it('indexes the commands for settings search', () => {
     const { tab } = makeTab();
     const names = flatten(tab.getSettingDefinitions())
