@@ -1,6 +1,6 @@
 {
   "name": "dgmo",
-  "version": "1.26.0",
+  "version": "1.27.0",
   "description": "Render Diagrammo diagrams inline in Obsidian notes",
   "license": "MIT",
   "author": "Diagrammo LLC",
@@ -34,7 +34,7 @@
     }
   },
   "dependencies": {
-    "@diagrammo/dgmo": "^0.62.1"
+    "@diagrammo/dgmo": ">=0.66.0 <1"
   },
   "devDependencies": {
     "@codemirror/commands": "^6.10.4",

@@ -81,7 +81,7 @@
     "name": "Entity Relationship",
     "family": "software",
     "description": "Database schemas and relationships",
-    "source": "er Pirate Fleet\n\nships\n  id int pk\n  name varchar\n  ship_type varchar\n  cannons int\n  1-aboard-* crew_members\n  1-1 captains\n  1-carries-* treasure\n\ncaptains\n  id int pk\n  name varchar\n  ship_id int fk\n  bounty int\n  ?-frequents-1 ports\n  *-has-1 crew_members \n\ncrew_members\n  id int pk\n  name varchar\n  ship_id int fk\n  role varchar nullable\n\ntreasure\n  id int pk\n  name varchar\n  value int\n  ship_id int fk, nullable\n\nports\n  id int pk\n  name varchar\n  region varchar unique\n  1-docks-* ships"
+    "source": "er Pirate Fleet\n\nships\n  id int pk\n  name varchar\n  ship_type varchar\n  cannons int\n  1-aboard-* crew_members\n  1-1 captains\n  1-carries-* treasure\n\ncaptains\n  id int pk\n  name varchar\n  ship_id int fk\n  bounty int\n  ?-frequents-1 ports\n  *-has-1 crew_members \n\ncrew_members\n  id int pk\n  name varchar\n  ship_id int fk\n  role varchar nullable\n\ntreasure\n  id int pk\n  name varchar\n  value int\n  ship_id int fk nullable\n\nports\n  id int pk\n  name varchar\n  region varchar unique\n  1-docks-* ships"
   },
   {
     "id": "event-line",
