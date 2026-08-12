@@ -67,10 +67,18 @@ describe('renderDgmo (standard embed block)', () => {
     await renderDgmo(CHART, container, false, 'nord');
 
     const toolbar = container.querySelector('summary.dgmo-toolbar')!;
-    expect(toolbar.querySelector('button.dgmo-expand')).not.toBeNull();
+    const expand = toolbar.querySelector('button.dgmo-expand');
+    expect(expand).not.toBeNull();
 
     const docs = toolbar.querySelector<HTMLAnchorElement>('a.dgmo-docs');
     expect(docs).not.toBeNull();
+    // No native title attr anywhere in the toolbar — Obsidian tooltips the
+    // aria-label; a title would add a second, laggy OS tooltip on top.
+    expect(toolbar.querySelectorAll('[title]')).toHaveLength(0);
+    // The </> toggle's hover name survives the strip as an aria-label.
+    expect(
+      toolbar.querySelector('.dgmo-toggle')?.getAttribute('aria-label')
+    ).toBe('View DGMO source');
     expect(docs!.getAttribute('href')).toBe(
       'https://diagrammo.app/docs/chart-bar'
     );

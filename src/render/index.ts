@@ -133,6 +133,7 @@ function mountBlock(
   const html = buildDgmoBlockHtml(source, svgsHtml, { mode: 'showcase' });
   const block = appendBlockHtml(container, html);
   if (!block) return null;
+  stripNativeTitles(block);
   frameSourcePanel(block);
   retargetOpenLink(block, source, isDark, paletteId);
   injectExpandButton(block);
@@ -147,6 +148,22 @@ function mountBlock(
     });
   }
   return { block, flush };
+}
+
+/**
+ * Drop native `title` attrs from the block chrome. Obsidian already shows its
+ * own styled tooltip for `aria-label`, so a `title` fires the OS tooltip on
+ * top of it — two labels with different text, and the native one lags the
+ * pointer across the tightly packed icons, reading as a stuck stale label.
+ * Belt-and-braces once the bundled @diagrammo/dgmo stops emitting them.
+ */
+function stripNativeTitles(block: HTMLElement): void {
+  block.querySelectorAll('.dgmo-toolbar [title]').forEach((el) => {
+    if (!el.getAttribute('aria-label')) {
+      el.setAttribute('aria-label', el.getAttribute('title') ?? '');
+    }
+    el.removeAttribute('title');
+  });
 }
 
 /**
@@ -209,7 +226,7 @@ function injectExpandButton(block: HTMLElement): void {
   // into position within the same parent.
   const btn = toolbar.createEl('button', {
     cls: 'dgmo-toolbar-btn dgmo-expand',
-    attr: { type: 'button', 'aria-label': 'View full screen', title: 'Expand' },
+    attr: { type: 'button', 'aria-label': 'View full screen' },
   });
   // No innerHTML (plugin review guidelines): parse the icon and import it.
   const iconDoc = new DOMParser().parseFromString(EXPAND_ICON, 'image/svg+xml');
@@ -243,7 +260,6 @@ function injectDocsButton(block: HTMLElement, source: string): void {
       target: '_blank',
       rel: 'noopener noreferrer',
       'aria-label': `Open ${id} documentation`,
-      title: 'Documentation',
     },
   });
   const iconDoc = new DOMParser().parseFromString(DOCS_ICON, 'image/svg+xml');
