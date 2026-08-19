@@ -459,7 +459,7 @@ London as Quartermaster
 
 ```dgmo
 countdown New Year
-every year on Jan 1
+since 2026-01-01
 on-day 🎉 Happy New Year!
 ```
 
@@ -467,8 +467,7 @@ on-day 🎉 Happy New Year!
 
 ```dgmo
 countdown Wedding Anniversary
-every year on Jun 14
-since 2015
+since 2015-06-14
 since-label Nth Anniversary
 ```
 
