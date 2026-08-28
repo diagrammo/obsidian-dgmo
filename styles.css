@@ -354,10 +354,21 @@ figure.dgmo {
 }
 
 /* @diagrammo/dgmo block — standard embed chrome.
- * Override the body.theme-dark selectors if your site uses .dark or
- * another color-mode convention. */
+ * Dark mode is keyed on a data-theme="dark" attribute (Starlight, Docusaurus)
+ * AND an html.dark class (Tailwind, next-themes, VitePress), so all of those
+ * work as shipped. Add your own selector if your site marks dark a third way.
+ *
+ * No selector is spelled in bracket form anywhere in these comments on
+ * purpose: the adapters that re-key the attribute rules onto another host's
+ * signal match that exact substring, and a mention inside a comment would be
+ * swallowed into a rule they then emit as garbage. */
 
-/* === Color-mode visibility (dual-render) === */
+/* === Color-mode visibility (dual-render) ===
+ * The dark wrapper also carries the "hidden" ATTRIBUTE, so a page that never
+ * loaded this stylesheet shows the light diagram rather than both of them.
+ * Every rule below is author-origin and therefore still overrides it.
+ * Keep the two host conventions in separate rule blocks — the adapters
+ * rewrite by literal replace and a folded rule would half-rewrite. */
 .dgmo-dark {
   display: none;
 }
@@ -365,6 +376,12 @@ body.theme-dark .dgmo-light {
   display: none;
 }
 body.theme-dark .dgmo-dark {
+  display: block;
+}
+html.dark .dgmo-light {
+  display: none;
+}
+html.dark .dgmo-dark {
   display: block;
 }
 
