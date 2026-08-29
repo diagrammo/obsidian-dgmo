@@ -47,15 +47,16 @@ function flatten(items: SettingDefinitionItem[]): SettingDefinitionItem[] {
 
 function controls(items: SettingDefinitionItem[]) {
   return flatten(items).filter(
-    (i): i is SettingDefinitionControl =>
-      'control' in i && i.control != null
+    (i): i is SettingDefinitionControl => 'control' in i && i.control != null
   );
 }
 
 describe('DgmoSettingTab.getSettingDefinitions', () => {
   it('offers every persisted setting exactly once, keyed to a real field', () => {
     const { tab } = makeTab();
-    const keys = controls(tab.getSettingDefinitions()).map((c) => c.control.key);
+    const keys = controls(tab.getSettingDefinitions()).map(
+      (c) => c.control.key
+    );
 
     expect([...keys].sort()).toEqual(Object.keys(DEFAULT_SETTINGS).sort());
     expect(new Set(keys).size).toBe(keys.length);
@@ -69,9 +70,10 @@ describe('DgmoSettingTab.getSettingDefinitions', () => {
     for (const item of items) {
       if (isGroup(item)) {
         expect(item.heading, 'group heading').toBeTruthy();
-        expect(item.items?.length, `items under ${item.heading}`).toBeGreaterThan(
-          0
-        );
+        expect(
+          item.items?.length,
+          `items under ${item.heading}`
+        ).toBeGreaterThan(0);
       } else {
         expect(item.name).toBeTruthy();
       }
@@ -126,7 +128,8 @@ describe('DgmoSettingTab.getSettingDefinitions', () => {
       (c) => c.control.key === 'palette'
     );
     const desc = palette?.desc;
-    if (!(desc instanceof DocumentFragment)) throw new Error('desc not a fragment');
+    if (!(desc instanceof DocumentFragment))
+      throw new Error('desc not a fragment');
 
     expect(desc.textContent).toContain('Colour palette');
     const link = desc.querySelector('a');

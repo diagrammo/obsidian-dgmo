@@ -30,7 +30,7 @@ npm run build     # one-shot production build (esbuild, CJS bundle)
 
 To test in a real vault, symlink or copy the repo into your vault's
 `.obsidian/plugins/dgmo/` folder, then enable the plugin in Obsidian settings.
-With `npm run dev` running, edit a note containing a ```` ```dgmo ```` block —
+With `npm run dev` running, edit a note containing a ` ```dgmo ` block —
 changes rebuild automatically (reload the plugin or the vault to pick them up).
 
 ## Project structure

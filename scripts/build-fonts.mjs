@@ -19,8 +19,13 @@ for (const name of ['Inter-Regular', 'Inter-Bold']) {
   const woff2 = await wawoff.compress(ttf);
   writeFileSync(join(outDir, `${name}.woff2`), Buffer.from(woff2));
   const pct = (100 - (100 * woff2.length) / ttf.length).toFixed(1);
-  console.log(`${name}: ${ttf.length} -> ${woff2.length} bytes (${pct}% smaller)`);
+  console.log(
+    `${name}: ${ttf.length} -> ${woff2.length} bytes (${pct}% smaller)`
+  );
 }
 
-copyFileSync(join(srcDir, 'LICENSE-Inter.txt'), join(outDir, 'LICENSE-Inter.txt'));
+copyFileSync(
+  join(srcDir, 'LICENSE-Inter.txt'),
+  join(outDir, 'LICENSE-Inter.txt')
+);
 console.log('LICENSE-Inter.txt copied.');

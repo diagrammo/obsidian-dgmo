@@ -54,7 +54,9 @@ function makeBlock(): HTMLElement {
 
 /** The mounted CodeMirror view for the block's source panel. */
 function editor(block: HTMLElement): EditorView {
-  const dom = block.querySelector<HTMLElement>('.dgmo-source-inner .cm-editor')!;
+  const dom = block.querySelector<HTMLElement>(
+    '.dgmo-source-inner .cm-editor'
+  )!;
   return EditorView.findFromDOM(dom)!;
 }
 
@@ -256,14 +258,26 @@ describe('renderDgmo edit wiring', () => {
 
   it('source panel is editable only when a save handler is passed', async () => {
     const withSave = document.createElement('div');
-    const flush = await renderDgmo(SOURCE, withSave, false, 'nord', async () => {});
-    expect(withSave.querySelector('.dgmo-source-inner .cm-editor')).not.toBeNull();
+    const flush = await renderDgmo(
+      SOURCE,
+      withSave,
+      false,
+      'nord',
+      async () => {}
+    );
+    expect(
+      withSave.querySelector('.dgmo-source-inner .cm-editor')
+    ).not.toBeNull();
     expect(flush).toBeTypeOf('function');
 
     const withoutSave = document.createElement('div');
     const noFlush = await renderDgmo(SOURCE, withoutSave, false, 'nord');
-    expect(withoutSave.querySelector('.dgmo-source-inner .cm-editor')).toBeNull();
-    expect(withoutSave.querySelector('.dgmo-source-inner pre.dgmo-pre')).not.toBeNull();
+    expect(
+      withoutSave.querySelector('.dgmo-source-inner .cm-editor')
+    ).toBeNull();
+    expect(
+      withoutSave.querySelector('.dgmo-source-inner pre.dgmo-pre')
+    ).not.toBeNull();
     expect(noFlush).toBeNull();
   });
 

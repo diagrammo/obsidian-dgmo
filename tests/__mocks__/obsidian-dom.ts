@@ -38,7 +38,13 @@ function applyInfo(el: HTMLElement | SVGElement, o?: DomElementInfo | string) {
     if (typeof o.text === 'string') el.textContent = o.text;
     else el.appendChild(o.text);
   }
-  for (const key of ['title', 'value', 'type', 'placeholder', 'href'] as const) {
+  for (const key of [
+    'title',
+    'value',
+    'type',
+    'placeholder',
+    'href',
+  ] as const) {
     const v = o[key];
     if (v != null) el.setAttribute(key, String(v));
   }
@@ -65,13 +71,19 @@ function makeEl(
 ) {
   const el = doc.createElement(tag);
   applyInfo(el, o);
-  attach(typeof o === 'object' && o?.parent ? o.parent : parent, el, typeof o === 'object' ? o?.prepend : false);
+  attach(
+    typeof o === 'object' && o?.parent ? o.parent : parent,
+    el,
+    typeof o === 'object' ? o?.prepend : false
+  );
   cb?.(el as never);
   return el;
 }
 
 function ownerDoc(node: Node): Document {
-  return node.nodeType === 9 ? (node as Document) : (node.ownerDocument as Document);
+  return node.nodeType === 9
+    ? (node as Document)
+    : (node.ownerDocument as Document);
 }
 
 /** Patch a window's prototypes plus its globals. Idempotent. */
@@ -107,7 +119,10 @@ export function installObsidianDom(win: Window & typeof globalThis): void {
     o?: DomElementInfo | string,
     cb?: (el: never) => void
   ) {
-    const el = ownerDoc(this).createElementNS('http://www.w3.org/2000/svg', tag);
+    const el = ownerDoc(this).createElementNS(
+      'http://www.w3.org/2000/svg',
+      tag
+    );
     applyInfo(el, o);
     attach(this, el);
     cb?.(el as never);
@@ -126,7 +141,11 @@ export function installObsidianDom(win: Window & typeof globalThis): void {
   nodeProto['detach'] = function (this: Node) {
     this.parentNode?.removeChild(this);
   };
-  nodeProto['insertAfter'] = function (this: Node, node: Node, child: Node | null) {
+  nodeProto['insertAfter'] = function (
+    this: Node,
+    node: Node,
+    child: Node | null
+  ) {
     this.insertBefore(node, child?.nextSibling ?? null);
     return node;
   };
@@ -142,16 +161,23 @@ export function installObsidianDom(win: Window & typeof globalThis): void {
     cls: string | string[],
     value: boolean
   ) {
-    for (const c of Array.isArray(cls) ? cls : [cls]) this.classList.toggle(c, value);
+    for (const c of Array.isArray(cls) ? cls : [cls])
+      this.classList.toggle(c, value);
   };
-  elProto['setText'] = function (this: Element, text: string | DocumentFragment) {
+  elProto['setText'] = function (
+    this: Element,
+    text: string | DocumentFragment
+  ) {
     if (typeof text === 'string') this.textContent = text;
     else this.replaceChildren(text);
   };
 
   const g = win as unknown as Record<string, unknown>;
-  g['createEl'] = (tag: string, o?: DomElementInfo | string, cb?: (el: never) => void) =>
-    makeEl(win.document, null, tag, o, cb);
+  g['createEl'] = (
+    tag: string,
+    o?: DomElementInfo | string,
+    cb?: (el: never) => void
+  ) => makeEl(win.document, null, tag, o, cb);
   g['createDiv'] = (o?: DomElementInfo | string, cb?: (el: never) => void) =>
     makeEl(win.document, null, 'div', o, cb);
   g['createSpan'] = (o?: DomElementInfo | string, cb?: (el: never) => void) =>

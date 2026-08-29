@@ -39,7 +39,9 @@ for (const ent of entities) {
   if (ent.kind !== 'type') continue; // variants surface via search only
   const ex = primaryExample(ent.id);
   if (!ex) {
-    console.warn(`[build-templates] no primary example for "${ent.id}" — skipped`);
+    console.warn(
+      `[build-templates] no primary example for "${ent.id}" — skipped`
+    );
     continue;
   }
   const src = join(contentDir, ex.file);
@@ -58,4 +60,6 @@ for (const ent of entities) {
 
 templates.sort((a, b) => a.name.localeCompare(b.name));
 writeFileSync(out, JSON.stringify(templates, null, 2) + '\n');
-console.log(`[build-templates] wrote ${templates.length} templates to src/templates.gen.json`);
+console.log(
+  `[build-templates] wrote ${templates.length} templates to src/templates.gen.json`
+);
