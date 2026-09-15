@@ -26,7 +26,8 @@
     "check:deadcode": "knip",
     "check:duplication": "jscpd ./src",
     "check:all": "pnpm check:deadcode && pnpm check:duplication",
-    "check:security": "pnpm audit --prod"
+    "check:security": "pnpm audit --prod",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
   },
   "pnpm": {
     "overrides": {
