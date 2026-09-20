@@ -409,6 +409,7 @@ abs          e: Warm-up
 
 ```dgmo
 bracket Grand Line Cup
+
 rounds 
   Skirmish orange 
   Clash green
@@ -1679,24 +1680,33 @@ tag Layer as l
 ### Sketch
 
 ```dgmo
-sketch Plunder Pipeline
+sketch Site Architecture
 
-tag Crew
-  Deck
-  Hold
+tag Status
+  NA gray
+  To Do
+  Doing yellow
+  Done
 
-Spyglass Feed shape: database, at: 0 0, crew: Deck
-  -sightings-> con
+tag Team
+  Other
+  Engineering
+  Infrastructure
 
-[Below Decks] crew: Hold
-  Divvy Service as dvy at: 1 -3
-    -entries-> ledger
-  Captain's Console as con at: -3 0, crew: Deck
-    -orders-> bq
-  Booty Queue as bq shape: queue, at: 0 0
-    ~haul~> dvy
-  Ship Ledger as ledger shape: database, at: 2 0
-  Powder Store at: -6 0
+Vendor as Vendor at: 18 -6, team: Other
+
+Browser as Browser at: 7 -6, status: NA, team: Other
+  -> Web
+
+[Below Decks] as BelowDecks at: 0 0
+  Web as Web at: 11 -6, status: To Do, team: Engineering, shape: database
+    -> API
+  API as API at: 14 -6, status: Done, team: Engineering
+    -orders-> Database
+    -> Vendor
+    -> Observabilit
+  Database as Database at: 11 -2, status: Done, team: Infrastructure, shape: queue
+  Observability as Observabilit at: 14 -2, status: Doing, team: Infrastructure, shape: database
 ```
 
 ---
