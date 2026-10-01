@@ -40,3 +40,17 @@ minimumReleaseAgeExclude:
   - 'fumadocs-dgmo'
   - 'nextra-dgmo'
   - 'vitepress-dgmo'
+
+# Exact versions exempt from `no-downgrade`, never names. All three arrive only
+# through eslint-plugin-obsidianmd 0.4.2 (Obsidian's own lint rules, run here so
+# its release scan finds nothing new), and each is an older line published by
+# its usual maintainer after a newer line began shipping provenance — the shape
+# `no-downgrade` cannot tell from a takeover:
+#   json-schema-validator 5.1.0  2024-04-01  ota-meshi  (pinned exactly by obsidianmd)
+#   semver 6.3.1                 2023-07-10  npm team   (the 6.x maintenance line)
+#   synckit 0.9.3                2025-05-30  jounqin
+# Checked 2026-10-01. Drop an entry once obsidianmd stops resolving it.
+trustPolicyExclude:
+  - 'eslint-plugin-json-schema-validator@5.1.0'
+  - 'semver@6.3.1'
+  - 'synckit@0.9.3'
