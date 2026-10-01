@@ -492,7 +492,7 @@ export class DgmoSettingTab extends PluginSettingTab {
       'image/svg+xml'
     ).documentElement;
     if (svg) logoEl.appendChild(logoEl.ownerDocument.importNode(svg, true));
-    brandEl.createEl('span', {
+    brandEl.createSpan({
       cls: 'dgmo-settings-wordmark',
       text: 'Diagrammo',
     });
@@ -519,7 +519,7 @@ export class DgmoSettingTab extends PluginSettingTab {
     desc.appendText(
       'Adds a “Diagrammo Examples” note to your vault with every chart type rendered from working sample data — the fastest way to see what’s possible and copy a starting point. '
     );
-    desc.createEl('span', {
+    desc.createSpan({
       text: 'You can also run “Diagrammo Diagrams: Create example note with all chart types” from the command palette.',
     });
     return desc;
@@ -569,11 +569,11 @@ export class DgmoSettingTab extends PluginSettingTab {
       const iconEl = row.createDiv({ cls: 'dgmo-icon-guide-icon' });
       setIcon(iconEl, item.icon);
       const textEl = row.createDiv({ cls: 'dgmo-icon-guide-text' });
-      textEl.createEl('span', {
+      textEl.createSpan({
         cls: 'dgmo-icon-guide-name',
         text: item.name,
       });
-      textEl.createEl('span', {
+      textEl.createSpan({
         cls: 'setting-item-description',
         text: item.desc,
       });

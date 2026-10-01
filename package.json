@@ -34,14 +34,17 @@
       "undici": ">=7.28.0 <8"
     }
   },
+  "overrides": {
+    "undici": ">=7.28.0 <8"
+  },
   "dependencies": {
     "@diagrammo/dgmo": ">=0.87.0 <1"
   },
   "devDependencies": {
     "@codemirror/commands": "^6.10.4",
     "@codemirror/language": "^6.12.4",
-    "@codemirror/state": "^6.7.1",
-    "@codemirror/view": "^6.43.6",
+    "@codemirror/state": "6.5.0",
+    "@codemirror/view": "6.38.6",
     "@eslint/js": "^10.0.1",
     "@lezer/highlight": "^1.2.3",
     "@lezer/lr": "^1.4.10",

@@ -383,13 +383,13 @@ body.theme-dark .dgmo-light {
   display: none;
 }
 body.theme-dark .dgmo-dark {
-  display: block !important;
+  display: block;
 }
 html.dark .dgmo-light {
   display: none;
 }
 html.dark .dgmo-dark {
-  display: block !important;
+  display: block;
 }
 
 /* === Diagram sizing ===

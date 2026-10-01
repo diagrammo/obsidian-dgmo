@@ -103,9 +103,9 @@ export function requestUrlFetch(
     });
     // The deadline `requestUrl` cannot enforce. A 504 rather than a throw, so
     // it lands as `unavailable` — a timeout is "not right now", never "gone".
-    let timer: ReturnType<typeof setTimeout> | undefined;
+    let timer: number | undefined;
     const deadline = new Promise<Response>((resolve) => {
-      timer = setTimeout(
+      timer = window.setTimeout(
         () => resolve(new Response('', { status: 504 })),
         timeoutMs
       );
@@ -117,7 +117,7 @@ export function requestUrlFetch(
       ]);
       return r;
     } finally {
-      if (timer !== undefined) clearTimeout(timer);
+      if (timer !== undefined) window.clearTimeout(timer);
     }
   }) as typeof fetch;
 }
