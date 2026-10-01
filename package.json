@@ -38,7 +38,7 @@
     "undici": ">=7.28.0 <8"
   },
   "dependencies": {
-    "@diagrammo/dgmo": ">=0.87.0 <1"
+    "@diagrammo/dgmo": ">=0.88.0 <1"
   },
   "devDependencies": {
     "@codemirror/commands": "^6.10.4",
