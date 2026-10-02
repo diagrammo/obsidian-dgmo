@@ -123,6 +123,10 @@ The one exception is the [live links](#live-links--a-diagram-somebody-else-keeps
 
 Turn it off with **Settings > Diagrammo Diagrams > Live links > Keep live links up to date**. With it off, the plugin makes no network requests whatsoever.
 
+## Clipboard use
+
+The plugin **writes** to the clipboard in one place: the **Copy source** button on a diagram's toolbar, which copies that diagram's DGMO text when you click it. Nothing is copied any other way, and the plugin **never reads** the clipboard.
+
 ## Install
 
 1. Open **Settings > Community Plugins > Browse** in Obsidian

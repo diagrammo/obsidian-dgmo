@@ -14,11 +14,11 @@
     "gen:styles": "node scripts/build-styles.mjs",
     "gen:templates": "node scripts/build-templates.mjs",
     "gen:assets": "node scripts/copy-map-data.mjs && node scripts/copy-example-note.mjs && node scripts/build-templates.mjs && node scripts/build-styles.mjs",
-    "postinstall": "pnpm gen:assets",
-    "build": "pnpm gen:assets && node esbuild.config.mjs",
-    "dev": "pnpm gen:assets && node esbuild.config.mjs --watch",
-    "test": "pnpm gen:assets && vitest run",
-    "typecheck": "pnpm gen:assets && tsc --noEmit",
+    "postinstall": "npm run gen:assets",
+    "build": "npm run gen:assets && node esbuild.config.mjs",
+    "dev": "npm run gen:assets && node esbuild.config.mjs --watch",
+    "test": "npm run gen:assets && vitest run",
+    "typecheck": "npm run gen:assets && tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -31,11 +31,11 @@
   },
   "pnpm": {
     "overrides": {
-      "undici": ">=7.28.0 <8"
+      "undici": ">=7.29.1 <8"
     }
   },
   "overrides": {
-    "undici": ">=7.28.0 <8"
+    "undici": ">=7.29.1 <8"
   },
   "dependencies": {
     "@diagrammo/dgmo": ">=0.88.0 <1"
