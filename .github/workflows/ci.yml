@@ -44,3 +44,27 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+  # Obsidian's directory scan installs with a lockfile-free `npm install` on
+  # npm 10 (Node 22's bundled npm) and no pnpm. If that install fails, the scan
+  # skips every dependency check and rejects the release. 1.38.10 was rejected
+  # this way: npm 10 crashes on vitest → vite → @vitejs/devtools → vitest peer
+  # cycle unless `overrides.vite` pins it (diagrammo/diagrammo#1063). This job
+  # reproduces the scan's install, so the next drift is caught here.
+  npm-install-like-obsidian-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node 22 (bundles npm 10)
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: npm install with no lockfile and no pnpm
+        run: |
+          npm --version
+          test ! -e package-lock.json
+          # PATH cut to node + coreutils so a postinstall that calls pnpm fails here too
+          PATH="$(dirname "$(command -v node)"):/usr/bin:/bin" npm install --no-audit --no-fund
