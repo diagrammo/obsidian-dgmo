@@ -1,3 +1,25 @@
+# 🔴 `packages` and `overrides` are here for Obsidian's release scan, which
+# runs `pnpm install --frozen-lockfile` with whatever pnpm its runner has
+# (obsidianmd/obsidian-workflows, src/deps.ts). pnpm 9 refuses a workspace file
+# with no `packages:`; pnpm >=11 no longer reads `package.json` -> `pnpm.overrides`,
+# so the lockfile's overrides stop matching and the frozen install fails. Keep
+# these overrides identical to BOTH blocks in package.json (`pnpm.overrides` for
+# pnpm 9/10, `overrides` for the npm fallback). CI's
+# `frozen-install-like-obsidian-scan` job checks pnpm 9-12. diagrammo/diagrammo#1079.
+packages:
+  - '.'
+
+overrides:
+  undici: '>=7.29.1 <8'
+  vite: '8.0.16'
+
+# pnpm >=11 makes an unreviewed dependency build script a hard install error
+# (strictDepBuilds). esbuild's postinstall only re-checks its platform binary,
+# which arrives as an optional dependency anyway; it has never run here, so it
+# is reviewed and denied rather than newly allowed.
+allowBuilds:
+  esbuild: false
+
 # Supply-chain hardening, matching diagrammo-app. A malicious npm version is
 # usually caught and unpublished within hours, so refusing anything published
 # in the last day removes most of that window; `no-downgrade` refuses a package

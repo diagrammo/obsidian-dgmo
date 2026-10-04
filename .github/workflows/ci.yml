@@ -45,12 +45,43 @@ jobs:
       - name: Build
         run: pnpm build
 
-  # Obsidian's directory scan installs with a lockfile-free `npm install` on
-  # npm 10 (Node 22's bundled npm) and no pnpm. If that install fails, the scan
-  # skips every dependency check and rejects the release. 1.38.10 was rejected
-  # this way: npm 10 crashes on vitest → vite → @vitejs/devtools → vitest peer
-  # cycle unless `overrides.vite` pins it (diagrammo/diagrammo#1063). This job
-  # reproduces the scan's install, so the next drift is caught here.
+  # Obsidian's directory scan installs dependencies the way
+  # obsidianmd/obsidian-workflows src/deps.ts does: with pnpm-lock.yaml present
+  # it runs `pnpm install --frozen-lockfile` on whatever pnpm the runner has. If
+  # the install fails, the scan skips every dependency check and rejects the
+  # release. 1.38.11 was rejected this way: pnpm >=11 ignores package.json's
+  # `pnpm.overrides`, so the lockfile's overrides stopped matching
+  # (diagrammo/diagrammo#1079). The scanner's pnpm version is not published, so
+  # every major that can read a v9 lockfile is checked.
+  frozen-install-like-obsidian-scan:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pnpm: ['9', '10', '11', '12']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm ${{ matrix.pnpm }}
+        uses: pnpm/action-setup@v5
+        with:
+          version: ${{ matrix.pnpm }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: pnpm install --frozen-lockfile
+        run: |
+          pnpm --version
+          pnpm install --frozen-lockfile
+
+  # Fallback path of the same scan: with no pnpm on the runner it runs a
+  # lockfile-free `npm install`. npm 10 (Node 22's bundled npm) crashes on the
+  # vitest → vite → @vitejs/devtools → vitest peer cycle unless `overrides.vite`
+  # pins it (diagrammo/diagrammo#1063).
   npm-install-like-obsidian-scan:
     runs-on: ubuntu-latest
     steps:
