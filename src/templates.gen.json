@@ -277,7 +277,7 @@
     "name": "Sketch",
     "family": "software",
     "description": "GUI-first constrained canvas — place shapes, connect, tag",
-    "source": "sketch Site Architecture\n\ntag Status\n  NA gray\n  To Do\n  Doing yellow\n  Done\n\ntag Team\n  Other\n  Engineering\n  Infrastructure\n\nVendor as Vendor at: 18 -6, team: Other\n\nBrowser as Browser at: 7 -6, status: NA, team: Other\n  -> Web\n\n[Below Decks] as BelowDecks at: 0 0\n  Web as Web at: 11 -6, status: To Do, team: Engineering, shape: database\n    -> API\n  API as API at: 14 -6, status: Done, team: Engineering\n    -orders-> Database\n    -> Vendor\n    -> Observabilit\n  Database as Database at: 11 -2, status: Done, team: Infrastructure, shape: queue\n  Observability as Observabilit at: 14 -2, status: Doing, team: Infrastructure, shape: database"
+    "source": "sketch Site Architecture\n\ntag Status\n  NA gray\n  To Do\n  Doing yellow\n  Done\n\ntag Team\n  Other\n  Engineering\n  Infrastructure\n\nVendor as Vendor at: 18 -6, team: Other\n\nBrowser as Browser at: 7 -6, status: NA, team: Other\n  -> Web\n\n[Below Decks] as BelowDecks at: 0 0\n  Web as Web at: 11 -6, status: To Do, team: Engineering\n    -> API\n  API as API at: 14 -6, status: Done, team: Engineering\n    -orders-> Database\n    -> Vendor\n    -> Observabilit\n  Database as Database at: 11 -2, status: Done, team: Infrastructure\n  Observability as Observabilit at: 14 -2, status: Doing, team: Infrastructure"
   },
   {
     "id": "slope",
@@ -334,6 +334,13 @@
     "family": "software",
     "description": "",
     "source": "version-control Feature Branch Workflow\n\nmain\n  Initial commit\n  Add README\n\ndevelop from main\n  Set up CI\n  Add test suite\n\nfeature/login from develop\n  Login form\n  Form validation\n\ndevelop\n  merge feature/login\n  Address review notes\n\nmain\n  merge develop tag: v1.0.0\n  Hotfix typo type: highlight"
+  },
+  {
+    "id": "whiteboard",
+    "name": "Whiteboard",
+    "family": "software",
+    "description": "Free-form drawing — ink, simple shapes, text and images",
+    "source": "whiteboard Treasure hunt app — kickoff\ntext MVP — ship by June at: 330 -14, color: red\nink red 3 AJQFJBYEPAAuBzwALAg8AAgB\ntext v2 ideas at: 870 -14, color: gray\nline from: 835 -20, to: 835 450, color: gray, style: dashed\nellipse Players at: 40 80, size: 160 90, color: blue\nrectangle Phone app at: 330 85, size: 180 80, color: teal, fill: solid\nink red 3 APYEvAEeFSQRPg80BTYAVAweCjIYIh4OGAQQABoFEBEYGRY_HkEOIwQ3ADUFLws1FxUNDw8LDwcRARkEDwgRFBccFTQXQA8\narrow taps and digs from: 120 125, to: 420 125, color: blue\nrectangle Map service at: 620 40, size: 170 70, color: purple\narrow where am I? from: 420 125, to: 705 75, color: purple, bend: -30\ndatabase Treasure vault at: 640 190, size: 150 110, color: orange\narrow claim a chest from: 420 125, to: 715 245, color: orange\nqueue Push alerts at: 300 300, size: 210 64, color: cyan\nink green 4 AIgI_AQcICY5Fhs\narrow chest found! from: 715 245, to: 405 332, color: cyan, style: dashed, bend: 40\nellipse Leaderboard at: 40 300, size: 170 90, color: green, fill: outline\narrow from: 405 332, to: 125 345, color: green\narrow bragging rights from: 125 345, to: 120 125, heads: both, style: dashed\nnote Ask legal about digging in parks at: 330 430, size: 200 80, color: red\nnote What if chests move at night? at: 870 30\nnote Kids mode, no ads at: 870 160, color: green\nnote at: 870 290, color: purple\n  Team battles\n  every Friday"
   },
   {
     "id": "wireframe",
