@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@diagrammo/dgmo':
-        specifier: '>=0.89.0 <1'
-        version: 0.89.0(@codemirror/language@6.12.4)(@codemirror/state@6.7.6)(@lezer/common@1.5.2)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.10)
+        specifier: '>=0.90.0 <1'
+        version: 0.90.0(@codemirror/language@6.12.4)(@codemirror/state@6.7.6)(@lezer/common@1.5.2)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.10)
     devDependencies:
       '@codemirror/commands':
         specifier: ^6.10.4
@@ -182,8 +182,8 @@ packages:
   '@dagrejs/graphlib@4.0.5':
     resolution: {integrity: sha512-7xrBTqIts3o+PMUZX97wSc+7TUbW+/rULzGNCTP6yooNVDXbzw4Wutg/H/xOutTB/c/k0YqOAavgPh4/Zk9PFA==}
 
-  '@diagrammo/dgmo@0.89.0':
-    resolution: {integrity: sha512-o7HphL0z6dGAgEdyTRX5Djxf45b4ikJFmx8Teca9N7J/sYazRKpeoKDr1R2a2EBK5Uk7QOa8VqOfCl5GeBvryA==}
+  '@diagrammo/dgmo@0.90.0':
+    resolution: {integrity: sha512-1CgRgA93SaeMy/kXF+/LwAUgCBMfcjDWhPZyeaWGcjHWZPurSGSG97oQAFrteCrIFPx1Z0L+MyEqOCrXIHSGUg==}
     engines: {node: '>=20.6'}
     peerDependencies:
       '@codemirror/language': ^6.12.3
@@ -2139,6 +2139,9 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
+  perfect-freehand@1.2.3:
+    resolution: {integrity: sha512-bHZSfqDHGNlPpgH2yxXgPHlQSPpEbo+qg7li0M78J9vNAi2yjwLeA4x79BEQhX44lEWpCLSFCeRZwpw0niiXPA==}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -2835,7 +2838,7 @@ snapshots:
 
   '@dagrejs/graphlib@4.0.5': {}
 
-  '@diagrammo/dgmo@0.89.0(@codemirror/language@6.12.4)(@codemirror/state@6.7.6)(@lezer/common@1.5.2)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.10)':
+  '@diagrammo/dgmo@0.90.0(@codemirror/language@6.12.4)(@codemirror/state@6.7.6)(@lezer/common@1.5.2)(@lezer/highlight@1.2.3)(@lezer/lr@1.4.10)':
     dependencies:
       '@dagrejs/dagre': 3.1.1
       d3-array: 3.2.4
@@ -2847,6 +2850,7 @@ snapshots:
       d3-shape: 3.2.0
       jsdom: 29.1.1
       lz-string: 1.5.0
+      perfect-freehand: 1.2.3
       topojson-client: 3.1.0
     optionalDependencies:
       '@codemirror/language': 6.12.4
@@ -4941,6 +4945,8 @@ snapshots:
   path-parse@1.0.7: {}
 
   pathe@2.0.3: {}
+
+  perfect-freehand@1.2.3: {}
 
   picocolors@1.1.1: {}
 
