@@ -1699,14 +1699,14 @@ Browser as Browser at: 7 -6, status: NA, team: Other
   -> Web
 
 [Below Decks] as BelowDecks at: 0 0
-  Web as Web at: 11 -6, status: To Do, team: Engineering, shape: database
+  Web as Web at: 11 -6, status: To Do, team: Engineering
     -> API
   API as API at: 14 -6, status: Done, team: Engineering
     -orders-> Database
     -> Vendor
     -> Observabilit
-  Database as Database at: 11 -2, status: Done, team: Infrastructure, shape: queue
-  Observability as Observabilit at: 14 -2, status: Doing, team: Infrastructure, shape: database
+  Database as Database at: 11 -2, status: Done, team: Infrastructure
+  Observability as Observabilit at: 14 -2, status: Doing, team: Infrastructure
 ```
 
 ---
