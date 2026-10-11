@@ -127,3 +127,30 @@ describe('renderDgmo (standard embed block)', () => {
     expect(block!.querySelector('summary.dgmo-toolbar')).not.toBeNull();
   });
 });
+
+// Palette precedence (palette slice 2, #1038): the plugin setting is the
+// surface DEFAULT; a file's own `palette` line beats it.
+describe('renderDgmo palette precedence', () => {
+  const body = 'bar chart\nBlack Pearl 42\nQueen Anne 37';
+  const withLine = `palette nord\n${body}`;
+  const bgOf = (c: HTMLElement): string | undefined =>
+    c.querySelector<HTMLElement>('.dgmo-svg')?.dataset['dgmoBg'];
+
+  beforeAll(() => {
+    (globalThis as { activeDocument?: Document }).activeDocument = document;
+  });
+
+  it("the file's palette line beats the plugin setting", async () => {
+    const withIt = document.createElement('div');
+    await renderDgmo(withLine, withIt, false, 'catppuccin');
+    const without = document.createElement('div');
+    await renderDgmo(body, without, false, 'catppuccin');
+
+    // Same source, nord set as the plugin default: must equal the file's line.
+    const nordDefault = document.createElement('div');
+    await renderDgmo(body, nordDefault, false, 'nord');
+
+    expect(bgOf(withIt)).toBe(bgOf(nordDefault));
+    expect(bgOf(withIt)).not.toBe(bgOf(without));
+  });
+});

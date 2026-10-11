@@ -30,6 +30,18 @@ function resolvePalette(id: string): PaletteConfig {
   return resolvePaletteOrFallback(id);
 }
 
+/**
+ * The background the diagram was actually drawn on. A file's own `palette` line
+ * beats the plugin setting, and dgmo does not export its choice, so read the
+ * answer off the SVG's root `background:` instead of re-deriving the precedence.
+ * Falls back to the setting's palette when the SVG states none.
+ */
+function drawnBackground(svg: string, fallback: string): string {
+  const root = /^\s*<svg\b[^>]*>/.exec(svg)?.[0] ?? '';
+  const m = /\bstyle="[^"]*?\bbackground:\s*([^;"]+)/.exec(root);
+  return m?.[1]?.trim() ?? fallback;
+}
+
 // Mirrors the `transparentBackground` setting so the three embed-normalize call
 // sites don't each need it threaded through their (differing) signatures. Set
 // from main.ts on load and on every settings change. `map` never reaches these
@@ -471,7 +483,7 @@ export async function renderDiagramThumbnail(
     if (!container.isConnected) return;
     appendBlockHtml(
       container,
-      `<div class="dgmo-svg" data-dgmo-bg="${resolvePalette(paletteId)[isDark ? 'dark' : 'light'].bg}">${normalizeSvgForEmbed(result.svg, { background: embedBackground })}</div>`
+      `<div class="dgmo-svg" data-dgmo-bg="${drawnBackground(result.svg, resolvePalette(paletteId)[isDark ? 'dark' : 'light'].bg)}">${normalizeSvgForEmbed(result.svg, { background: embedBackground })}</div>`
     );
   } catch {
     /* thumbnail best-effort — leave the tile label */
@@ -579,7 +591,7 @@ async function renderResolved(
   const mounted = mountBlock(
     container,
     source,
-    `<div class="dgmo-svg" data-dgmo-bg="${resolvePalette(paletteId)[isDark ? 'dark' : 'light'].bg}">${normalizeSvgForEmbed(svg, { background: embedBackground })}</div>`,
+    `<div class="dgmo-svg" data-dgmo-bg="${drawnBackground(svg, resolvePalette(paletteId)[isDark ? 'dark' : 'light'].bg)}">${normalizeSvgForEmbed(svg, { background: embedBackground })}</div>`,
     isDark,
     paletteId,
     onSave,
