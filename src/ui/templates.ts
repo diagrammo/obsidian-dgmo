@@ -20,6 +20,7 @@ export const FAMILY_ORDER = [
   'project',
   'business',
   'life',
+  'freeform',
 ] as const;
 
 export const FAMILY_LABEL: Record<string, string> = {
@@ -28,6 +29,7 @@ export const FAMILY_LABEL: Record<string, string> = {
   project: 'Project',
   business: 'Business',
   life: 'Life',
+  freeform: 'Freeform',
 };
 
 /** Templates grouped by family, in FAMILY_ORDER, each group name-sorted. */

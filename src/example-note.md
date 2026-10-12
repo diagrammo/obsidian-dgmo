@@ -1172,39 +1172,6 @@ marker 1718-05 Rogers Arrives Nassau
 
 ## Software
 
-### Boxes and Lines
-
-```dgmo
-boxes-and-lines Pirate Fleet Command
-
-tag Status as s
-  Operational green
-  Damaged red
-  Building blue default
-
-heat Crew red green
-active-tag Status
-
-Flagship s: Operational, heat: 120
-  -> [Harbor Defenses]
-  -> IntelNetwork
-
-[Harbor Defenses]
-  FortCannon s: Operational, heat: 40
-    -> Watchtower
-  Watchtower s: Operational, heat: 12
-  SeaMines s: Building, heat: 6
-
-IntelNetwork s: Operational, heat: 35
-  -> SpyRing
-  -> SignalFlags
-
-SpyRing s: Operational, heat: 18
-  -> [Harbor Defenses]
-
-SignalFlags s: Damaged, heat: 8
-```
-
 ### C4 Architecture
 
 ```dgmo
@@ -1675,6 +1642,41 @@ tag Layer as l
 
 [Data] l: Data collapsed
   [Postgres] [Redis]
+```
+
+## Freeform
+
+### Boxes and Lines
+
+```dgmo
+boxes-and-lines Pirate Fleet Command
+
+tag Status as s
+  Operational green
+  Damaged red
+  Building blue default
+
+heat Crew red green
+active-tag Status
+
+Flagship s: Operational, heat: 120
+  -> [Harbor Defenses]
+  -> IntelNetwork
+
+[Harbor Defenses]
+  FortCannon s: Operational, heat: 40
+    -> Watchtower
+  Watchtower s: Operational, heat: 12
+  SeaMines s: Building, heat: 6
+
+IntelNetwork s: Operational, heat: 35
+  -> SpyRing
+  -> SignalFlags
+
+SpyRing s: Operational, heat: 18
+  -> [Harbor Defenses]
+
+SignalFlags s: Damaged, heat: 8
 ```
 
 ### Sketch
