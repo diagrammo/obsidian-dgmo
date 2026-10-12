@@ -153,4 +153,28 @@ describe('renderDgmo palette precedence', () => {
     expect(bgOf(withIt)).toBe(bgOf(nordDefault));
     expect(bgOf(withIt)).not.toBe(bgOf(without));
   });
+
+  // Maps take their own path (the bundled geo data). A `palette` line goes at
+  // the bottom of the file, and the map once parsed it as a region: an error
+  // card, `Unknown region "palette nord"`, instead of a map.
+  it("a map's palette line beats the plugin setting", async () => {
+    const mapBg = (c: HTMLElement): string | undefined =>
+      /background:\s*([^;]+)/.exec(
+        c.querySelector('.dgmo-svg svg')?.getAttribute('style') ?? ''
+      )?.[1];
+    const draw = async (src: string, paletteId: string) => {
+      const c = document.createElement('div');
+      await renderDgmo(src, c, false, paletteId);
+      return c;
+    };
+
+    const withIt = await draw(`${mapFixture}\npalette nord\n`, 'catppuccin');
+    const without = await draw(mapFixture, 'catppuccin');
+    const nordDefault = await draw(mapFixture, 'nord');
+
+    expect(withIt.querySelector('.dgmo--error')).toBeNull();
+    expect(mapBg(nordDefault)).toBeTruthy();
+    expect(mapBg(withIt)).toBe(mapBg(nordDefault));
+    expect(mapBg(withIt)).not.toBe(mapBg(without));
+  });
 });

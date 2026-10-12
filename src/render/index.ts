@@ -10,10 +10,6 @@ import {
 import { buildDgmoBlockHtml, errorBlockHtml } from '@diagrammo/dgmo/block';
 import {
   looksLikeMap,
-  parseMap,
-  resolveMap,
-  renderMapForExport,
-  mapExportDimensions,
   parseDgmoChartType,
   knownChartTypeIds,
 } from '@diagrammo/dgmo/advanced';
@@ -455,8 +451,8 @@ function openDgmoLightbox(block: HTMLElement): void {
 /**
  * Render just the diagram SVG (no block chrome, no toolbar, not editable) into
  * `container` — for gallery thumbnails in the "New diagram" picker. Errors
- * render nothing (the tile keeps its label). Maps go through the DI pipeline
- * like the main renderer.
+ * render nothing (the tile keeps its label). Maps go through the bundled
+ * `mapData` like the main renderer.
  */
 export async function renderDiagramThumbnail(
   source: string,
@@ -466,7 +462,7 @@ export async function renderDiagramThumbnail(
 ): Promise<void> {
   container.replaceChildren();
   if (looksLikeMap(source)) {
-    const out = buildMapSvg(source, isDark, paletteId);
+    const out = await buildMapSvg(source, isDark, paletteId);
     if ('error' in out) return;
     container.appendChild(container.ownerDocument.importNode(out.svgEl, true));
     scaleSvgToFit(container);
@@ -616,7 +612,7 @@ export async function updateDiagram(
   if (!slot) return;
 
   if (looksLikeMap(source)) {
-    const out = buildMapSvg(source, isDark, paletteId);
+    const out = await buildMapSvg(source, isDark, paletteId);
     if (!block.isConnected) return;
     slot.replaceChildren();
     if ('error' in out) {
@@ -657,29 +653,29 @@ export async function updateDiagram(
 }
 
 /**
- * Render a `map` diagram via dgmo's dependency-injection pipeline
- * (`parseMap` → `resolveMap` → `renderMapForExport`) with the geo data bundled
- * into the plugin. Mirrors the desktop app's MapPreview; avoids the public
- * `render()`'s Node-only `loadMapData()`, which can't resolve assets in the
- * Obsidian renderer.
+ * Render a `map` diagram through dgmo's public `render()` with the geo data
+ * bundled into the plugin as `mapData` — so `render()` never reaches for Node
+ * `fs`, which cannot resolve assets in the Obsidian renderer. Going through
+ * `render()` rather than `parseMap` → `resolveMap` → `renderMapForExport` is
+ * what lifts a file's own `palette` line out before the map parses it, and
+ * lets that line beat the plugin setting (palette slice 2, #1038).
  */
-function renderMapDgmo(
+async function renderMapDgmo(
   source: string,
   container: HTMLElement,
   isDark: boolean,
   paletteId: string,
   onSave?: SaveFn,
   vimMode = false
-): FlushFn | null {
-  const out = buildMapSvg(source, isDark, paletteId);
+): Promise<FlushFn | null> {
+  const out = await buildMapSvg(source, isDark, paletteId);
   if ('error' in out) {
     showError(container, out.error, source);
     return null;
   }
 
-  // Maps are rendered as live DOM (not an SVG string), so mount the block
-  // chrome with an empty `.dgmo-svg` slot and import the node into it —
-  // serializing a full geo basemap to string and back would be wasteful.
+  // Maps keep their own opaque basemap, so they skip normalizeSvgForEmbed: mount
+  // the block chrome with an empty `.dgmo-svg` slot and import the node into it.
   const mounted = mountBlock(
     container,
     source,
@@ -696,35 +692,31 @@ function renderMapDgmo(
   return mounted?.flush ?? null;
 }
 
-/** Run the map DI pipeline off-DOM; the SVG element or a display error. */
-function buildMapSvg(
+/** Render a map off-DOM; the SVG element or a display error. */
+async function buildMapSvg(
   source: string,
   isDark: boolean,
   paletteId: string
-): { svgEl: SVGSVGElement } | { error: string } {
-  const palette = resolvePalette(paletteId)[isDark ? 'dark' : 'light'];
-
-  let resolved: ReturnType<typeof resolveMap>;
-  // Obsidian's `createDiv` helper, and deliberately detached: nothing here is
-  // measured or laid out (dgmo sizes the map from the projection, not the DOM),
-  // so this container has no window affinity to get wrong — the finished SVG is
-  // adopted by whichever document it is appended into, popout or main.
-  const exportDiv = createDiv();
+): Promise<{ svgEl: SVGSVGElement } | { error: string }> {
+  let result: { svg: string; diagnostics: DgmoError[] };
   try {
-    resolved = resolveMap(parseMap(source), mapData);
-    // Content-aware canvas: height derived from the map's intrinsic projected
-    // aspect (no vertical stretch). The viewBox-derived aspect-ratio set in
-    // scaleSvgToFit makes the embed responsive at width:100%.
-    const dims = mapExportDimensions(resolved, mapData, 1200);
-    renderMapForExport(exportDiv, resolved, mapData, palette, isDark, dims);
+    result = await render(source, {
+      theme: isDark ? 'dark' : 'light',
+      palette: resolvePalette(paletteId),
+      mapData,
+    });
   } catch (err) {
     return { error: err instanceof Error ? err.message : String(err) };
   }
 
-  const firstError = resolved.diagnostics.find((d) => d.severity === 'error');
+  const firstError = result.diagnostics.find((d) => d.severity === 'error');
   if (firstError) return { error: formatDgmoError(firstError) };
+  if (!result.svg) return { error: 'No SVG output from dgmo render().' };
 
-  const svgEl = exportDiv.querySelector('svg');
-  if (!svgEl) return { error: 'No SVG output from dgmo render().' };
+  const doc = new DOMParser().parseFromString(result.svg, 'image/svg+xml');
+  const svgEl = doc.querySelector('svg');
+  if (!svgEl || doc.querySelector('parsererror')) {
+    return { error: 'No SVG output from dgmo render().' };
+  }
   return { svgEl };
 }

@@ -2,8 +2,8 @@
 // `loadMapData()` reads these from disk via Node `fs` (CLI/SSR only) — that
 // path can't work in the Obsidian renderer (the CJS bundle has no usable
 // `import.meta.url`/`__dirname` near the data, and the JSON isn't shipped with
-// the plugin). So we inject them by dependency injection into
-// `resolveMap`/`renderMapForExport` instead, exactly as the desktop app does.
+// the plugin). So we inject them by dependency injection instead, as
+// `render()`'s `mapData` option.
 //
 // Imported from ./vendor/map-data, which scripts/copy-map-data.mjs populates
 // from the installed @diagrammo/dgmo package before typecheck/build (see that
@@ -25,7 +25,7 @@ import waterBodies from '../../vendor/map-data/water-bodies.json';
 import worldCoarse from '../../vendor/map-data/world-coarse.json';
 import worldDetail from '../../vendor/map-data/world-detail.json';
 
-/** The assets dgmo's `resolveMap`/`renderMap` consume (DI). */
+/** The assets dgmo's map renderer consumes (DI, as `render()`'s `mapData`). */
 export const mapData: MapData = {
   worldCoarse,
   worldDetail,
