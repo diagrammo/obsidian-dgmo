@@ -27,6 +27,16 @@ function resolvePalette(id: string): PaletteConfig {
 }
 
 /**
+ * `looksLikeMap`, past a `palette` line. dgmo lifts that line (and its indented
+ * block) out wherever it sits before the chart parses, so a map whose first
+ * line is `palette nord` is still a map — and must still get `mapData`, or it
+ * draws as an error card. Only routing lives here; dgmo decides the palette.
+ */
+function isMapSource(source: string): boolean {
+  return looksLikeMap(source.replace(/^(?:palette\b.*|[ \t]+\S.*)$/gm, ''));
+}
+
+/**
  * The background the diagram was actually drawn on. A file's own `palette` line
  * beats the plugin setting, and dgmo does not export its choice, so read the
  * answer off the SVG's root `background:` instead of re-deriving the precedence.
@@ -41,7 +51,7 @@ function drawnBackground(svg: string, fallback: string): string {
 // Mirrors the `transparentBackground` setting so the three embed-normalize call
 // sites don't each need it threaded through their (differing) signatures. Set
 // from main.ts on load and on every settings change. `map` never reaches these
-// sites — it branches earlier via `looksLikeMap` — so no type-awareness needed.
+// sites — it branches earlier via `isMapSource` — so no type-awareness needed.
 let embedBackground: 'transparent' | 'opaque' = 'transparent';
 
 /** Called by the plugin when settings load or change. */
@@ -461,7 +471,7 @@ export async function renderDiagramThumbnail(
   paletteId: string
 ): Promise<void> {
   container.replaceChildren();
-  if (looksLikeMap(source)) {
+  if (isMapSource(source)) {
     const out = await buildMapSvg(source, isDark, paletteId);
     if ('error' in out) return;
     container.appendChild(container.ownerDocument.importNode(out.svgEl, true));
@@ -542,7 +552,7 @@ async function renderResolved(
   // The map chart type loads its geo data via Node `fs` in the public
   // `render()` — which fails in the Obsidian renderer and yields an empty SVG.
   // Render it through dgmo's DI pipeline with the bundled data instead.
-  if (looksLikeMap(source)) {
+  if (isMapSource(source)) {
     return renderMapDgmo(source, container, isDark, paletteId, onSave, vimMode);
   }
 
@@ -611,7 +621,7 @@ export async function updateDiagram(
   const slot = block.querySelector<HTMLElement>('.dgmo-svg');
   if (!slot) return;
 
-  if (looksLikeMap(source)) {
+  if (isMapSource(source)) {
     const out = await buildMapSvg(source, isDark, paletteId);
     if (!block.isConnected) return;
     slot.replaceChildren();
@@ -713,10 +723,11 @@ async function buildMapSvg(
   if (firstError) return { error: formatDgmoError(firstError) };
   if (!result.svg) return { error: 'No SVG output from dgmo render().' };
 
-  const doc = new DOMParser().parseFromString(result.svg, 'image/svg+xml');
-  const svgEl = doc.querySelector('svg');
-  if (!svgEl || doc.querySelector('parsererror')) {
-    return { error: 'No SVG output from dgmo render().' };
-  }
+  // Parsed as HTML, never strict XML: dgmo serialises with `outerHTML`, which
+  // writes a non-breaking space as `&nbsp;`, an entity XML does not know.
+  const svgEl = new DOMParser()
+    .parseFromString(result.svg, 'text/html')
+    .body.querySelector('svg');
+  if (!svgEl) return { error: 'No SVG output from dgmo render().' };
   return { svgEl };
 }

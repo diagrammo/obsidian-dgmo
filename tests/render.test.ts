@@ -168,13 +168,33 @@ describe('renderDgmo palette precedence', () => {
       return c;
     };
 
-    const withIt = await draw(`${mapFixture}\npalette nord\n`, 'catppuccin');
     const without = await draw(mapFixture, 'catppuccin');
     const nordDefault = await draw(mapFixture, 'nord');
-
-    expect(withIt.querySelector('.dgmo--error')).toBeNull();
     expect(mapBg(nordDefault)).toBeTruthy();
-    expect(mapBg(withIt)).toBe(mapBg(nordDefault));
-    expect(mapBg(withIt)).not.toBe(mapBg(without));
+    expect(mapBg(nordDefault)).not.toBe(mapBg(without));
+
+    // At the bottom, where the reference puts it, and first, which dgmo
+    // accepts as well.
+    for (const src of [
+      `${mapFixture}\npalette nord\n`,
+      `palette nord\n${mapFixture}`,
+    ]) {
+      const withIt = await draw(src, 'catppuccin');
+      expect(withIt.querySelector('.dgmo--error')).toBeNull();
+      expect(mapBg(withIt)).toBe(mapBg(nordDefault));
+    }
+  });
+
+  // dgmo serialises the map with `outerHTML`, which writes U+00A0 as `&nbsp;`.
+  it('a map label holding a non-breaking space still draws', async () => {
+    const c = document.createElement('div');
+    await renderDgmo(
+      mapFixture.replace('label: ATH', 'label: A\u00A0TH'),
+      c,
+      false,
+      'nord'
+    );
+    expect(c.querySelector('.dgmo--error')).toBeNull();
+    expect(c.querySelector('.dgmo-svg svg path')).not.toBeNull();
   });
 });
