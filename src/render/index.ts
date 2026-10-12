@@ -27,13 +27,28 @@ function resolvePalette(id: string): PaletteConfig {
 }
 
 /**
- * `looksLikeMap`, past a `palette` line. dgmo lifts that line (and its indented
- * block) out wherever it sits before the chart parses, so a map whose first
- * line is `palette nord` is still a map — and must still get `mapData`, or it
- * draws as an error card. Only routing lives here; dgmo decides the palette.
+ * `looksLikeMap`, past a `palette` line. dgmo lifts that line, and the indented
+ * block right under it, out wherever it sits before the chart parses — so a map
+ * whose first line is `palette nord` is still a map, and must still get
+ * `mapData` or it draws as an error card. This blanks exactly what dgmo lifts
+ * (its `extractPaletteDirective`, not exported): a `palette` line, then the
+ * indented lines after it, blank lines inside included. Only routing lives
+ * here; dgmo decides the palette.
  */
 function isMapSource(source: string): boolean {
-  return looksLikeMap(source.replace(/^(?:palette\b.*|[ \t]+\S.*)$/gm, ''));
+  let inBlock = false;
+  const rest = source.split('\n').map((raw) => {
+    const line = raw.replace(/\r$/, '');
+    if (/^palette(?:\s+.*)?$/.test(line)) {
+      inBlock = true;
+      return '';
+    }
+    if (line.trim() === '') return line;
+    if (inBlock && /^\s/.test(line)) return '';
+    inBlock = false;
+    return line;
+  });
+  return looksLikeMap(rest.join('\n'));
 }
 
 /**

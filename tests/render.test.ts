@@ -174,10 +174,13 @@ describe('renderDgmo palette precedence', () => {
     expect(mapBg(nordDefault)).not.toBe(mapBg(without));
 
     // At the bottom, where the reference puts it, and first, which dgmo
-    // accepts as well.
+    // accepts as well. An indented header is still a map: only the palette
+    // line and the indented block right under it are lifted.
     for (const src of [
       `${mapFixture}\npalette nord\n`,
       `palette nord\n${mapFixture}`,
+      `palette nord\n\n${mapFixture}`,
+      `${mapFixture.replace('map Go Ahead', '  map Go Ahead')}\npalette nord\n`,
     ]) {
       const withIt = await draw(src, 'catppuccin');
       expect(withIt.querySelector('.dgmo--error')).toBeNull();
