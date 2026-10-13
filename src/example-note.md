@@ -1713,6 +1713,51 @@ Browser as Browser at: 7 -6, status: NA, team: Other
 
 ---
 
+## Live link
+
+A live link points at a diagram someone published to Diagrammo Cloud. The note
+holds the pointer, not a copy, so you always see the author's current version.
+The three fences below are three spellings of the same pointer.
+
+### The keyword and an id
+
+`live-link` and the diagram's id, on one line:
+
+```dgmo
+live-link dgm_01M3PG3DQ6S89W7ZFM5Z06J1CD
+```
+
+### A pasted share link
+
+The link you copy from Share, on a line of its own:
+
+```dgmo
+https://online.diagrammo.app/d/dgm_01M3PG3DQ6S89W7ZFM5Z06J1CD
+```
+
+### A title, and the link on a `url` line
+
+```dgmo
+live-link Checkout — card payment
+url https://online.diagrammo.app/d/dgm_01M3PG3DQ6S89W7ZFM5Z06J1CD
+```
+
+### In the note body — Obsidian only
+
+Outside any fence, on a line of its own:
+
+```markdown
+![[live-link:dgm_01M3PG3DQ6S89W7ZFM5Z06J1CD]]
+```
+
+This is Obsidian's own embed spelling. It works in a note and nowhere else, and
+never inside a `dgmo` fence.
+
+Turn off **Keep live links up to date** in the Diagrammo plugin's settings and
+nothing is fetched: each live link shows a card naming the diagram instead.
+
+---
+
 ### Error state
 
 > This block is **intentionally invalid** — `piechart` isn't a chart type (it
