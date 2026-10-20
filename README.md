@@ -22,6 +22,10 @@ Every drawing chart type in [`@diagrammo/dgmo`](https://github.com/diagrammo/dgm
 
 `countdown` and `clock` tick live in the note — a launch date counts itself down, a world-clock board keeps real time.
 
+### Charts for personal notes
+
+Four chart types are made for a personal note rather than an engineering doc: **countdown** (the days until a trip or a birthday), **clock** (what time it is for a friend in another timezone), **family** (a family tree), and **goal** (progress toward a number). [Charts for Your Notes](https://diagrammo.app/docs/charts-for-notes/) has copy-paste source for each.
+
 Run **Diagrammo Diagrams: Create example note with all chart types** from the command palette to see every chart type rendered with working sample data. Full language reference at [diagrammo.app/reference](https://diagrammo.app/reference). Variants of a chart type are reached with directives rather than their own keyword — `line` + `fill` for an area chart, `line` + a `series` block for multiple lines, `pie` + `hole` for a doughnut, `arc` + `layout chord` for a chord diagram.
 
 ## Usage
