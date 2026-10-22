@@ -4,7 +4,7 @@ Write a `dgmo` code block and it renders as a diagram inline in your notes — r
 
 [Diagrammo](https://diagrammo.app) gives you **50+ chart types** from one small plain-text language: data viz, software architecture, project planning, hierarchies, geographic maps, and more. Because the diagrams are plain text, they're searchable in Obsidian, diffable in git or Sync history, and never go stale the way an exported image does.
 
-📖 **Setup guide:** [diagrammo.app/embed#obsidian](https://diagrammo.app/embed#obsidian)
+📖 **Setup guide:** [diagrammo.app/embed/obsidian](https://diagrammo.app/embed/obsidian/)
 
 ![A geographic map with routes and points of interest, written as plain text in Diagrammo](https://diagrammo.app/readme/map.gif)
 
@@ -24,7 +24,7 @@ Every drawing chart type in [`@diagrammo/dgmo`](https://github.com/diagrammo/dgm
 
 ### Charts for personal notes
 
-Five chart types are made for a personal note rather than an engineering doc: **countdown** (the days until a trip or a birthday), **clock** (whether someone in another timezone is free now), **family** (a family tree), **map** (the route of a trip), and **goal** (progress toward a number). [Charts for Your Notes](https://diagrammo.app/docs/charts-for-notes/) has copy-paste source for each.
+Five chart types are made for a personal note rather than an engineering doc: **countdown** (the days until a trip or a birthday), **clock** (whether someone in another timezone is free now), **family** (a family tree), **map** (the route of a trip), and **goal** (progress toward a number). [Charts for Your Notes](https://diagrammo.app/docs/charts-for-notes/) has copy-paste source for each, and [Five Charts for an Obsidian Note](https://diagrammo.app/blog/charts-for-obsidian-notes/) walks through them in one trip note.
 
 Run **Diagrammo Diagrams: Create example note with all chart types** from the command palette to see every chart type rendered with working sample data. Full language reference at [diagrammo.app/reference](https://diagrammo.app/reference). Variants of a chart type are reached with directives rather than their own keyword — `line` + `fill` for an area chart, `line` + a `series` block for multiple lines, `pie` + `hole` for a doughnut, `arc` + `layout chord` for a chord diagram.
 
