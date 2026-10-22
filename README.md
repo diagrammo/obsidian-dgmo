@@ -6,7 +6,7 @@ Write a `dgmo` code block and it renders as a diagram inline in your notes — r
 
 📖 **Setup guide:** [diagrammo.app/embed/obsidian](https://diagrammo.app/embed/obsidian/)
 
-![A geographic map with routes and points of interest, written as plain text in Diagrammo](https://diagrammo.app/readme/map.gif)
+![An Obsidian note with a sequence diagram of a checkout flow, drawn from a dgmo code block](https://diagrammo.app/readme/obsidian-sequence.png)
 
 ## Supported chart types
 
@@ -23,6 +23,8 @@ Every drawing chart type in [`@diagrammo/dgmo`](https://github.com/diagrammo/dgm
 `countdown` and `clock` tick live in the note — a launch date counts itself down, a world-clock board keeps real time.
 
 ### Charts for personal notes
+
+![An Obsidian note planning a trip, with a live birthday countdown, a travel agent's office-hours clock and a savings thermometer](https://diagrammo.app/readme/obsidian-notes.png)
 
 Five chart types are made for a personal note rather than an engineering doc: **countdown** (the days until a trip or a birthday), **clock** (whether someone in another timezone is free now), **family** (a family tree), **map** (the route of a trip), and **goal** (progress toward a number). [Charts for Your Notes](https://diagrammo.app/docs/charts-for-notes/) has copy-paste source for each, and [Five Charts for an Obsidian Note](https://diagrammo.app/blog/charts-for-obsidian-notes/) walks through them in one trip note.
 
