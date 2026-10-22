@@ -1,0 +1,20 @@
+sequence Checkout
+
+tag Tier as t
+  Client green
+  Service blue
+  Data red
+
+User
+Web t: Client
+API t: Service
+Payments t: Service
+Orders t: Data
+
+User -Place order-> Web
+Web -POST /checkout-> API
+API -charge card-> Payments
+Payments -approved-> API
+API -save order-> Orders
+API -201 Created-> Web
+Web -Order confirmed-> User

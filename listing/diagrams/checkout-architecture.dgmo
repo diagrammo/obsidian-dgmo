@@ -1,0 +1,25 @@
+boxes-and-lines Checkout Architecture
+
+tag Status as s
+  Live green
+  Building yellow
+  Planned red
+
+WebApp s:Live
+  -> API
+
+MobileApp s:Building
+  -> API
+
+[Backend]
+  API s:Live
+    -> Payments
+    -> OrdersDB
+    -> Queue
+
+  Payments s:Live
+  OrdersDB s:Live
+  Queue s:Building
+    -> Emailer
+
+  Emailer s:Planned
