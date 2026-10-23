@@ -53,9 +53,9 @@ The diagram renders inline in reading mode and live preview. Hover any rendered 
 
 A **live link** is a diagram somebody shows on the web from the [Diagrammo app](https://diagrammo.app). The app marks it with an amber globe <img src="https://diagrammo.app/icons/live-link.svg" width="14" height="14" alt="amber globe">. Put its link in a fence and your page draws the diagram as its author last saved it — each time the note is opened.
 
-**Get the link in the app** — either route copies it to your clipboard:
+**Get the link in the app** ([see where in the app](https://diagrammo.app/docs/live-links/#getting-the-link)) — either route copies it to your clipboard:
 
-- Open the diagram and press **Share** on the left rail (or **⌘E** / **Ctrl+E**), then **Show on the web** in the **Live link** row.
+- Open the diagram and press **Share** on the left rail (or **⌘E** / **Ctrl+E**), then **Show on the web** → **Show**.
 - Or right-click the diagram in the file list and choose **Show and copy link**.
 
 To copy it again later, open the diagram and press the lit amber globe on the left rail.
