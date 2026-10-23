@@ -128,7 +128,7 @@ The settings tab also renders a live diagram with the toolbar pinned open, so th
 
 **Everything except live links works entirely offline**, and that is the plugin's normal state — parsing, layout, rendering, fonts and map data are all bundled and local.
 
-The one exception is the [live links](#live-links--a-diagram-somebody-else-keeps-up-to-date) feature. When you open a note containing a live link, the plugin requests that diagram's current source from **`api.diagrammo.app`**, the Diagrammo Cloud API, so it can draw the author's latest version.
+The one exception is the [live links](#-live-links--a-diagram-somebody-else-keeps-up-to-date) feature. When you open a note containing a live link, the plugin requests that diagram's current source from **`api.diagrammo.app`**, the Diagrammo Cloud API, so it can draw the author's latest version.
 
 - Only the diagram's public id is sent. It is a plain `GET` and there is no request body.
 - **Nothing about you is sent, and nothing is counted.** No analytics, no telemetry, no identifiers — this plugin reports nothing anywhere, ever.
