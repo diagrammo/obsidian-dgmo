@@ -49,17 +49,26 @@ Q4 5.9
 
 The diagram renders inline in reading mode and live preview. Hover any rendered diagram to reveal a slim icon toolbar below it, with five things on it: **view source**, **expand** to full screen, **copy source**, **documentation** for that chart type, and **open in the online editor** with this note's palette and theme already applied.
 
-### Live links — a diagram somebody else keeps up to date
+### <img src="https://diagrammo.app/icons/live-link.svg" width="20" height="20" alt=""> Live links — a diagram somebody else keeps up to date
 
-A live link is a `dgmo` block that names a diagram published to Diagrammo Cloud instead of carrying its own source, so you see the author's current version rather than a copy that was true the day you pasted it:
+A **live link** is a diagram somebody shows on the web from the [Diagrammo app](https://diagrammo.app). The app marks it with an amber globe <img src="https://diagrammo.app/icons/live-link.svg" width="14" height="14" alt="amber globe">. Put its link in a fence and your page draws the diagram as its author last saved it — each time the note is opened.
 
-````markdown
+**Get the link in the app** — either route copies it to your clipboard:
+
+- Open the diagram and press **Share** on the left rail (or **⌘E** / **Ctrl+E**), then **Show on the web** in the **Live link** row.
+- Or right-click the diagram in the file list and choose **Show and copy link**.
+
+To copy it again later, open the diagram and press the lit amber globe on the left rail.
+
+**Paste it into a `dgmo` fence**, on a line of its own:
+
+````md
 ```dgmo
-live-link dgm_01KYRFCJZ2BHS18XRBEAZ0Y120
+https://online.diagrammo.app/d/dgm_01M3PG3DQ6S89W7ZFM5Z06J1CD
 ```
 ````
 
-A share link pasted into the fence works the same way.
+Once you know the id, `live-link dgm_01M3PG3DQ6S89W7ZFM5Z06J1CD` inside the fence does the same job. With **Keep live links up to date** switched off in the plugin settings, the block shows a card naming the diagram instead.
 
 There is also a shorter spelling for a note, written on its own line **outside** any fence, alongside Obsidian's other embeds:
 
