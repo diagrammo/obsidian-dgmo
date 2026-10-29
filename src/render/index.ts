@@ -9,6 +9,10 @@ import {
 } from '@diagrammo/dgmo';
 import { buildDgmoBlockHtml, errorBlockHtml } from '@diagrammo/dgmo/block';
 import {
+  canCopyDiagramImage,
+  copyDiagramImage,
+} from '@diagrammo/dgmo/copy-image';
+import {
   looksLikeMap,
   parseDgmoChartType,
   knownChartTypeIds,
@@ -306,6 +310,9 @@ function injectDocsButton(block: HTMLElement, source: string): void {
 
 /** Copy + open handlers for the toolbar (mirrors remark-dgmo's `bindDgmo`). */
 function bindToolbar(block: HTMLElement): void {
+  if (!canCopyDiagramImage(block.ownerDocument.defaultView)) {
+    block.querySelector('.dgmo-copy-image')?.detach();
+  }
   block.addEventListener('click', (e) => {
     const target = e.target as Element | null;
     const btn = target?.closest<HTMLElement>('.dgmo-toolbar-btn') ?? null;
@@ -320,6 +327,18 @@ function bindToolbar(block: HTMLElement): void {
 
     if (btn.matches('button.dgmo-expand')) {
       openDgmoLightbox(block);
+      return;
+    }
+
+    if (btn.matches('button.dgmo-copy-image')) {
+      void copyDiagramImage(btn).then((copied) => {
+        if (!copied) return;
+        btn.classList.add('dgmo-copy--success');
+        window.setTimeout(
+          () => btn.classList.remove('dgmo-copy--success'),
+          1500
+        );
+      });
       return;
     }
 
