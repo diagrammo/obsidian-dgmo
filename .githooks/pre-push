@@ -79,7 +79,10 @@ if [ -x "$GATE_SWEEP" ]; then GATE_PARENT=$WORKSPACE; else GATE_PARENT=${TMPDIR:
 
 gate=
 cleanup() {
-  if [ -x "$GATE_LOCK" ]; then "$GATE_LOCK" release $$ || true; fi
+  # The exit status and the worktree go to the gate ledger (#1588): with no
+  # status a failed gate would record as unknown, and with no worktree, no sha.
+  gate_rc=$?
+  if [ -x "$GATE_LOCK" ]; then "$GATE_LOCK" release $$ "$gate_rc" "$gate" || true; fi
   [ -n "$gate" ] || return 0
   git -C "$REPO_ROOT" worktree remove --force "$gate" >/dev/null 2>&1 || true
   rm -rf "$gate"
