@@ -65,6 +65,14 @@ WORKSPACE=$(dirname "$REPO_ROOT")
 # "<local ref> <local sha> <remote ref> <remote sha>" per ref, readable once.
 refs=$(cat)
 
+# A tag-only push of a commit this hook already passed on this machine is the
+# same gate again: release.sh pushes the branch, then the tag (#1654). The
+# workspace gate ledger decides, and its OUTPUT is the answer — an older copy
+# of the script exits 0 on an action it does not know.
+tag_skip=$(printf '%s\n' "$refs" |
+  "$(dirname "$REPO_ROOT")/scripts/gate-timing.sh" tag-skip "$REPO_ROOT" 2>/dev/null || true)
+case "$tag_skip" in *", skipping"*) printf '%s\n' "$tag_skip"; exit 0 ;; esac
+
 pushed=$(printf '%s\n' "$refs" | awk -v z="$ZERO" '$2 != "" && $2 != z { print $2 }' | sort -u)
 tags=$(printf '%s\n' "$refs" | awk -v z="$ZERO" '$1 ~ /^refs\/tags\// && $2 != z { print $1 }')
 
