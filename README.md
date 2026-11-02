@@ -12,13 +12,13 @@ Write a `dgmo` code block and it renders as a diagram inline in your notes — r
 
 Every drawing chart type in [`@diagrammo/dgmo`](https://github.com/diagrammo/dgmo) renders in Obsidian:
 
-| Category                    | Types                                                                                                                          |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **Data & charts**           | arc, bar, function, funnel, goal, heatmap, line, pie, polar-area, radar, sankey, scatter, slope, treemap, wordcloud            |
-| **Software & architecture** | block, boxes-and-lines, c4, class, er, flowchart, infra, mindmap, sequence, sitemap, sketch, state, version-control, wireframe |
-| **Project & process**       | bracket, countdown, event-line, gantt, kanban, pert, raci (also `rasci` and `daci`), swimlane, timeline                        |
-| **Business & strategy**     | cycle, journey-map, pyramid, quadrant, ring, tech-radar, venn                                                                  |
-| **People, places & bodies** | body, clock, family, map, org                                                                                                  |
+| Category                    | Types                                                                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Data & charts**           | arc, bar, function, funnel, goal, heatmap, line, pie, polar-area, radar, sankey, scatter, slope, treemap, wordcloud    |
+| **Software & architecture** | block, boxes-and-lines, c4, class, er, flowchart, infra, mindmap, sequence, sitemap, state, version-control, wireframe |
+| **Project & process**       | bracket, countdown, event-line, gantt, kanban, pert, raci (also `rasci` and `daci`), swimlane, timeline                |
+| **Business & strategy**     | cycle, journey-map, pyramid, quadrant, ring, tech-radar, venn                                                          |
+| **People, places & bodies** | body, clock, family, map, org                                                                                          |
 
 `countdown` and `clock` tick live in the note — a launch date counts itself down, a world-clock board keeps real time.
 

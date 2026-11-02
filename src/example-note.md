@@ -1679,40 +1679,6 @@ SpyRing s: Operational, heat: 18
 SignalFlags s: Damaged, heat: 8
 ```
 
-### Sketch
-
-```dgmo
-sketch Site Architecture
-
-tag Status
-  NA gray
-  To Do
-  Doing yellow
-  Done
-
-tag Team
-  Other
-  Engineering
-  Infrastructure
-
-Vendor as Vendor at: 18 -6, team: Other
-
-Browser as Browser at: 7 -6, status: NA, team: Other
-  -> Web
-
-[Below Decks] as BelowDecks at: 0 0
-  Web as Web at: 11 -6, status: To Do, team: Engineering
-    -> API
-  API as API at: 14 -6, status: Done, team: Engineering
-    -orders-> Database
-    -> Vendor
-    -> Observabilit
-  Database as Database at: 11 -2, status: Done, team: Infrastructure
-  Observability as Observabilit at: 14 -2, status: Doing, team: Infrastructure
-```
-
----
-
 ## Live link
 
 A live link points at a diagram someone shows on the web from the Diagrammo app,
