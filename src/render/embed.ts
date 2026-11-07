@@ -1,5 +1,6 @@
 import {
   MarkdownRenderChild,
+  Notice,
   type App,
   type MarkdownPostProcessor,
   type TFile,
@@ -169,13 +170,42 @@ export class DgmoEmbed extends MarkdownRenderChild {
     await ensureInterFonts();
     await renderEmbed(this.node, this.file, {
       read: (f) => this.host.app.vault.cachedRead(f),
-      // No save hook → embeds render read-only (no in-block editing).
+      // No save hook → embeds render read-only (no in-block editing). A fold
+      // toggle still writes its `collapsed` marker into the .dgmo file; the
+      // vault `modify` listener then re-renders this embed.
       render: async (source, el, isDark, palette) => {
-        await renderDgmo(source, el, isDark, palette);
+        await renderDgmo(
+          source,
+          el,
+          isDark,
+          palette,
+          undefined,
+          false,
+          (next) => this.saveCollapse(source, next)
+        );
       },
       isDark: () => this.host.isDark(),
       palette: () => this.host.getPalette(),
     });
+  }
+
+  /** Write a fold edit to the embedded file, refusing if it moved since read. */
+  private async saveCollapse(rendered: string, next: string): Promise<void> {
+    const file = this.file;
+    if (!file) return;
+    let stale = false;
+    await this.host.app.vault.process(file, (data) => {
+      if (data !== rendered) {
+        stale = true;
+        return data;
+      }
+      return next;
+    });
+    if (stale) {
+      new Notice(
+        `${file.path} changed since this diagram rendered — try the toggle again.`
+      );
+    }
   }
 }
 

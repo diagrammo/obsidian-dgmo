@@ -21,6 +21,7 @@ import {
 const DOCS_BASE = 'https://diagrammo.app/docs';
 import { mapData } from './map-data';
 import { enableBlockEditing, type FlushFn } from '../ui/edit';
+import { bindCollapseToggles, type CollapseSaveFn } from './collapse';
 import { liveLinkId, renderLiveLink, type LiveLinkStore } from './live-link';
 
 function resolvePalette(id: string): PaletteConfig {
@@ -165,7 +166,8 @@ function mountBlock(
   isDark: boolean,
   paletteId: string,
   onSave?: SaveFn,
-  vimMode = false
+  vimMode = false,
+  onCollapse?: CollapseSaveFn
 ): { block: HTMLElement; flush: FlushFn | null } | null {
   const html = buildDgmoBlockHtml(source, svgsHtml, { mode: 'showcase' });
   const block = appendBlockHtml(container, html);
@@ -176,6 +178,7 @@ function mountBlock(
   injectExpandButton(block);
   injectDocsButton(block, source);
   bindToolbar(block);
+  if (onCollapse) bindCollapseToggles(block, source, onCollapse);
   let flush: FlushFn | null = null;
   if (onSave) {
     flush = enableBlockEditing(block, source, {
@@ -538,6 +541,9 @@ export type SaveFn = (next: string) => Promise<void>;
  * live-editable; the returned flush saves a pending edit and should be called
  * by the host's unload (Live Preview unmounts blocks on scroll — an
  * in-progress edit must not be lost). Null when the block isn't editable.
+ * `onCollapse` writes a fold toggle's edited source back (defaults to
+ * `onSave`); an embed passes it alone, so its file takes folds but its block
+ * stays read-only.
  */
 export async function renderDgmo(
   source: string,
@@ -545,7 +551,8 @@ export async function renderDgmo(
   isDark: boolean,
   paletteId = 'nord',
   onSave?: SaveFn,
-  vimMode = false
+  vimMode = false,
+  onCollapse: CollapseSaveFn | undefined = onSave
 ): Promise<FlushFn | null> {
   // A live link is a pointer, not a drawing: it names a diagram published to
   // Diagrammo Cloud, and what belongs on screen is the author's current version.
@@ -571,7 +578,15 @@ export async function renderDgmo(
       return null;
     }
   }
-  return renderResolved(source, container, isDark, paletteId, onSave, vimMode);
+  return renderResolved(
+    source,
+    container,
+    isDark,
+    paletteId,
+    onSave,
+    vimMode,
+    onCollapse
+  );
 }
 
 /** The ordinary path: source in, diagram on screen. */
@@ -581,7 +596,8 @@ async function renderResolved(
   isDark: boolean,
   paletteId = 'nord',
   onSave?: SaveFn,
-  vimMode = false
+  vimMode = false,
+  onCollapse?: CollapseSaveFn
 ): Promise<FlushFn | null> {
   // The map chart type loads its geo data via Node `fs` in the public
   // `render()` — which fails in the Obsidian renderer and yields an empty SVG.
@@ -635,7 +651,8 @@ async function renderResolved(
     isDark,
     paletteId,
     onSave,
-    vimMode
+    vimMode,
+    onCollapse
   );
   return mounted?.flush ?? null;
 }
