@@ -722,6 +722,35 @@ The Open Sea blue
   flags beyond any captain's reach.
 ```
 
+### SWOT Analysis
+
+```dgmo
+swot Tortuga Rum Co.
+tag Priority as p
+  High red
+  Low gray
+active-tag Priority
+
+strengths
+  Oldest distillery still on the island p: Low
+  Crew of 40 sworn tasters
+    Trained in three ports
+  Secret recipe, aged in cannon-scarred oak
+weaknesses
+  One barrel supplier p: High
+  Thin margins on every cask
+  No presence beyond the Caribbean p: High
+opportunities
+  Navy rum ration contract
+    Open for tender each spring
+  Rising demand for spiced rum in northern ports p: Low
+  Tavern partnerships along the trade routes
+threats
+  Royal Navy blockade p: High
+  Cheap imitations from rival islands
+  Rising cost of sugar cane
+```
+
 ### Swimlane
 
 ```dgmo

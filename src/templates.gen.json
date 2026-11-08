@@ -294,6 +294,13 @@
     "source": "swimlane Weekly Publishing\ndirection-lr\n\nlane Writer gray\n  Draft Post -> Review\n  Revise -> Review\nlane Editor blue\n  <Review>\n    -changes-> Revise\n    -ok-> Schedule\n  Schedule -> Publish\n  Publish -> Promote\nlane Social green\n  Promote"
   },
   {
+    "id": "swot",
+    "name": "SWOT",
+    "family": "business",
+    "description": "Four fixed panels: strengths, weaknesses, opportunities, threats",
+    "source": "swot Tortuga Rum Co.\ntag Priority as p\n  High red\n  Low gray\nactive-tag Priority\n\nstrengths\n  Oldest distillery still on the island p: Low\n  Crew of 40 sworn tasters\n    Trained in three ports\n  Secret recipe, aged in cannon-scarred oak\nweaknesses\n  One barrel supplier p: High\n  Thin margins on every cask\n  No presence beyond the Caribbean p: High\nopportunities\n  Navy rum ration contract\n    Open for tender each spring\n  Rising demand for spiced rum in northern ports p: Low\n  Tavern partnerships along the trade routes\nthreats\n  Royal Navy blockade p: High\n  Cheap imitations from rival islands\n  Rising cost of sugar cane"
+  },
+  {
     "id": "tech-radar",
     "name": "Technology Radar",
     "family": "business",
