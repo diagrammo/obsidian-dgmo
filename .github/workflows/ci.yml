@@ -1,10 +1,21 @@
 name: CI
 
+# Pull requests only, plus a manual run (diagrammo/diagrammo#1821). Every push
+# to main has already passed .githooks/pre-push, which runs the validate job's
+# steps in the same order, so a push-triggered run repeated it and spent the
+# org's free Actions minutes — the org budget hard-stops every workflow once
+# those are gone.
+#
+# What only this workflow proves, kept here on purpose: a clean ubuntu machine
+# and empty store, and the two Obsidian-directory-scan jobs below (pnpm 9-12
+# frozen install, npm 10 with no lockfile). A pull request is where those still
+# earn their minutes: Dependabot's, and dependabot-automerge.yml, which already
+# fires only on a CI run whose event is pull_request. To run them on main
+# before a release, start this workflow by hand (workflow_dispatch).
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
