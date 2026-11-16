@@ -511,7 +511,7 @@ Young Jack + Calico Kate m: 1712
 
 ```dgmo
 goal Doubloons Plundered ($)
-now 6400
+actual 6400
 target 10000
 note
   **Welcome aboard, matey!** The hold's filling nicely — `6.4k` of `10k` doubloons.
@@ -525,7 +525,7 @@ note
 ```dgmo
 goal Voyage Quota (chests)
 gauge
-now 64
+actual 64
 target 100
 ```
 
