@@ -49,6 +49,13 @@
     "source": "c4 Pirate Treasure Map System\n\ntag Scope as sc\n  Crew blue\n  External gray\n\nCaptain is a person description: Commands the fleet and plans raids\n\nTreasureMap is a system description: Tracks buried treasure locations and raid intelligence\n  -Views treasure locations-> Captain\n  -Sends raid alerts [carrier pigeon]-> Lookout\n\n  containers\n    ChartRoom is a container description: Interactive sea chart with treasure markers, tech: Parchment\n      -Queries treasure data [secret code]-> Vault\n\n    Vault is a container description: Encrypted treasure ledger and coordinates, tech: Iron Chest\n      -Reads/writes [quill and ink]-> TreasureLog\n\n    TreasureLog is a container description: \"Stores locations, guard counts, and loot inventories\", tech: Leather-Bound Tome\n\nLookout is an external description: Crow's nest spotter on allied ships, sc: External\n  ~Relays sightings to~> Captain\n\ndeployment\n  Flagship\n    container ChartRoom\n    container Vault\n  SecretCave\n    container TreasureLog"
   },
   {
+    "id": "calendar-heatmap",
+    "name": "Calendar Heatmap",
+    "family": "data",
+    "description": "Daily values as a calendar of squares, one column per week — activity logs, commits, workouts, streaks, habits",
+    "source": "calendar-heatmap Cannon Volleys Fired in 2026\n// Daily log: one `date value` line per day; a missing day is zero.\nyear 2026\nunit volley\n\n01-02 1\n01-03 1\n01-05 3\n01-06 9\n01-08 9\n01-09 1\n01-13 9\n01-14 3\n01-15 2\n01-17 1\n01-21 3\n01-24 1\n02-01 2\n02-03 4\n02-09 9\n02-10 6\n02-11 14\n02-14 6\n02-19 1\n02-23 4\n03-02 14\n03-06 4\n03-07 3\n03-11 9\n03-21 2\n03-22 3\n03-23 2\n03-25 9\n03-29 1\n04-08 3\n04-10 1\n04-11 2\n04-15 3\n04-17 4\n04-21 14\n04-25 1\n05-01 6\n05-02 1\n05-04 1\n05-06 6\n05-08 3\n05-09 6\n05-14 3\n05-17 14\n05-18 1\n05-21 3\n05-24 6\n05-26 3\n05-27 14\n05-28 3\n05-29 1\n05-30 6\n06-01 1\n06-05 2\n06-06 6\n06-07 9\n06-08 1\n06-10 2\n06-11 14\n06-13 14\n06-15 2\n06-16 1\n06-17 2\n06-18 3\n06-20 4\n06-21 3\n06-23 9\n06-25 6\n06-29 2\n06-30 1\n07-05 2\n07-06 1\n07-07 6\n07-09 14\n07-11 1\n07-12 4\n07-13 1\n07-14 1\n07-17 3\n07-19 14\n07-20 3\n07-24 3\n07-26 1\n07-27 6\n07-28 3\n07-29 3\n08-02 6\n08-03 2\n08-05 1\n08-06 14\n08-07 3\n08-08 9\n08-10 9\n08-11 6\n08-12 6\n08-13 14\n08-14 1\n08-15 4\n08-16 1\n08-17 3\n08-19 4\n08-20 2\n08-21 2\n08-26 14\n08-28 1\n08-30 1\n08-31 1\n09-03 3\n09-04 1\n09-05 6\n09-07 4\n09-09 3\n09-12 2\n09-13 4\n09-15 3\n09-16 2\n09-17 1\n09-19 1\n09-21 3\n09-22 3\n09-24 9\n09-26 9\n09-28 3\n09-30 2\n10-03 2\n10-04 4\n10-06 9\n10-10 4\n10-11 2\n10-12 14\n10-13 6\n10-17 4\n10-18 2\n10-19 9\n10-20 4\n10-22 1\n10-23 1\n10-24 1\n10-28 2\n11-04 2\n11-05 9\n11-08 1\n11-14 1\n11-15 6\n11-19 1\n11-23 1\n11-28 14\n11-30 4\n12-01 3\n12-02 14\n12-10 2\n12-15 14\n12-16 4\n12-18 3\n12-24 3\n12-26 14\n12-27 14\n12-28 14"
+  },
+  {
     "id": "class",
     "name": "Class",
     "family": "software",
@@ -74,7 +81,7 @@
     "name": "Cycle",
     "family": "business",
     "description": "Cyclical process visualization (PDCA, OODA, DevOps loops)",
-    "source": "cycle The Pirate Raid Cycle\n\nScout blue\n  Spot merchant vessels from afar\n\nPursue green\n  Raise the colors, trim the sails\n\nBoard orange\n  Swing across and seize the deck\n\nCelebrate red\n  Divide the spoils, then repair"
+    "source": "cycle The Pirate Raid Cycle\n\ncenter RAID\nautonumber\n\nScout blue\n  Spot merchant vessels from afar\n\nPursue green\n  Raise the colors, trim the sails\n\nBoard orange\n  Swing across and seize the deck\n\nCelebrate red\n  Divide the spoils, then repair"
   },
   {
     "id": "er",
@@ -123,14 +130,14 @@
     "name": "Gantt",
     "family": "project",
     "description": "Project scheduling with task dependencies and milestones",
-    "source": " gantt Blackbeard's Blockade — 1718\n\nstart-date 1718-05-01\ntoday-marker 1718-05-15\n\ntag Role as r\n  Command red\n  Crew blue\n  Captives orange\n\nmarker 1718-05-14 Ransom Deadline red\nera 1718-05-08 -> 1718-05-17 Blockade Active blue\n\n[Preparation] r: Command\n  Provision Ship 3d r: Crew, progress: 100\n    -> Anchor Fleet 2d r: Crew, progress: 100\n  Scout Harbor 3d r: Crew, progress: 100\n    -> Position Cannons 3d r: Crew, progress: 100\n  Recruit Hands 5d r: Crew, progress: 100\n\n+7d [Blockade] r: Crew\n  Seize Merchants 4d progress: 100\n    -> Hold Hostages 5d r: Captives, progress: 60\n  Patrol Perimeter 9d progress: 75\n  Demand Medicine 4d r: Command, progress: 100\n    -> Threaten Executions 3d? r: Command, progress: 90\n\n+17d [Resolution] r: Command\n  Receive Ransom 2d r: Captives\n    -> Release Prisoners 1d r: Captives\n      -> Set Sail 0d\n  Burn Evidence 2d r: Crew"
+    "source": "gantt Blackbeard's Blockade — 1718\nstart-date 1718-05-01\ntoday-marker 1718-05-15\ncritical-path\n\ntag Role as r\n  Command red\n  Crew blue\n  Captives orange\n\nera 1718-05-07 -> 1718-05-16 Blockade Active blue\nmarker 1718-05-14 Ransom Deadline red\n\n[Preparation] r: Crew\n  Provision Ship 3d progress: 100\n    -> Anchor Fleet 2d progress: 100\n      -> [Blockade].Seize Merchants\n  Scout Harbor 3d progress: 100\n    -> Position Cannons 3d progress: 100\n      -> [Blockade].Seize Merchants\n  Recruit Hands 5d progress: 100\n    -> [Blockade].Patrol Perimeter\n\n[Blockade] r: Crew\n  Seize Merchants 3d progress: 100\n    -> Demand Medicine 2d r: Command, progress: 100\n      -> Threaten Executions 2d r: Command, progress: 100\n        -> [Resolution].Receive Ransom\n    -> Hold Hostages 6d r: Captives, progress: 80\n      -> [Resolution].Release Prisoners\n  Patrol Perimeter 8d progress: 100\n    -> [Resolution].Set Sail\n\n[Resolution] r: Command\n  Receive Ransom 1d r: Captives, progress: 50\n    -> Release Prisoners 1d r: Captives\n      -> Set Sail 0d\n    -> Burn Evidence 1d r: Crew\n      -> Set Sail"
   },
   {
     "id": "goal",
     "name": "Goal",
     "family": "life",
-    "description": "Single progress-toward-a-target value (now vs target) as a bar, thermometer, or gauge — KPIs, fundraising, quotas",
-    "source": "goal Doubloons Plundered ($)\nnow 6400\ntarget 10000\nnote\n  **Welcome aboard, matey!** The hold's filling nicely — `6.4k` of `10k` doubloons.\n  - *Tortuga* raid — counted and stowed\n  - **Port Royal** — first mate swears it's *almost* tallied\n  The bar rides **orange** at 64%; cross `80%` and she turns green."
+    "description": "Progress toward a target (actual vs target) as a bar, thermometer, or gauge, with optional poor/ok/good bands; several measures make a bullet chart — KPIs, dashboards, fundraising, quotas",
+    "source": "goal Doubloons Plundered ($)\nactual 6400\ntarget 10000\nnote\n  **Welcome aboard, matey!** The hold's filling nicely — `6.4k` of `10k` doubloons.\n  - *Tortuga* raid — counted and stowed\n  - **Port Royal** — first mate swears it's *almost* tallied\n  The bar rides **orange** at 64%; cross `80%` and she turns green."
   },
   {
     "id": "heatmap",
@@ -144,7 +151,7 @@
     "name": "Infrastructure",
     "family": "software",
     "description": "Infrastructure traffic flow with RPS computation",
-    "source": "infra Pirate Communication Network\n\ntag Fleet as f\n  Blackbeard red\n  Bonny purple\n  Rackham blue\n\nEdge\n  rps: 200\n  -> SignalFlags\n\nSignalFlags f: Blackbeard\n  description: Flag semaphore relay — ship-to-ship messaging\n  latency-ms: 30000\n  -> Flagship\n  -> ScoutShip\n\nFlagship f: Blackbeard\n  description: Command vessel — decrypts and routes all intelligence\n  instances: 1\n  max-rps: 50\n  latency-ms: 5000\n  -> CarrierPigeons\n  -> RumRunner\n\nScoutShip f: Bonny\n  description: Fast sloop for reconnaissance\n  instances: 2\n  max-rps: 30\n  latency-ms: 8000\n  -> Flagship\n\nCarrierPigeons f: Rackham\n  description: Long-range bird relay — messages to allied ports\n  buffer: 100\n  drain-rate: 12\n  retention-hours: 72\n  -> TavernNetwork\n\n[Allied Ports]\n  instances: 3\n\n  TavernNetwork f: Rackham\n    description: Dockside tavern informants across the Caribbean\n    max-rps: 20\n    latency-ms: 86400000\n\nRumRunner f: Bonny\n  description: Smuggler supply line — moves coded messages in rum barrels\n  concurrency: 4\n  duration-ms: 172800000\n  -> TavernNetwork"
+    "source": "infra Pirate Communication Network\n\ntag Fleet as f\n  Blackbeard red\n  Bonny purple\n  Rackham blue\n\nEdge\n  rps: 200\n  -> SignalFlags\n\nSignalFlags f: Blackbeard\n  description: Flag semaphore relay — ship-to-ship messaging\n  latency-ms: 3000\n  -> Flagship\n  -> ScoutShip\n\nFlagship f: Blackbeard\n  description: Command vessel — decrypts and routes all intelligence\n  instances: 1\n  max-rps: 50\n  latency-ms: 500\n  -> CarrierPigeons\n  -> RumRunner\n\nScoutShip f: Bonny\n  description: Fast sloop for reconnaissance\n  instances: 2\n  max-rps: 30\n  latency-ms: 800\n  -> Flagship\n\nCarrierPigeons f: Rackham\n  description: Long-range bird relay — messages to allied ports\n  buffer: 100\n  drain-rate: 12\n  retention-hours: 72\n  -> TavernNetwork\n\n[Allied Ports]\n  instances: 3\n\n  TavernNetwork f: Rackham\n    description: Dockside tavern informants across the Caribbean\n    max-rps: 20\n    latency-ms: 9000\n\nRumRunner f: Bonny\n  description: Smuggler supply line — moves coded messages in rum barrels\n  concurrency: 4\n  duration-ms: 12000\n  -> TavernNetwork"
   },
   {
     "id": "journey-map",
@@ -170,7 +177,7 @@
   {
     "id": "map",
     "name": "Map",
-    "family": "business",
+    "family": "data",
     "description": "Geographic concept map: highlight/score regions, drop points of interest, connect with routes or edges",
     "source": "map Follow-the-Sun Support Desk\n\nhours 9-17\nworkweek mon-fri\n\npoi San Francisco clock label: West\npoi Denver US-CO clock label: Central\npoi Miami clock label: East \n\nroute Houston\n  ~> Chicago\n  ~> Washington"
   },
@@ -187,6 +194,13 @@
     "family": "business",
     "description": "Reporting hierarchy",
     "source": "org The Dread Fleet\nactive-tag Rank\nsub-node-label Crew\nshow-sub-node-count\n\ntag Rank as r\n  Sailor blue\n  Captain red\n  FirstMate orange\n  Quartermaster yellow\n  Bosun green\n  Gunner teal\n  Jester cyan\n  Swab purple\n\ntag Ship as s\n  Revenge blue\n  Serpent green\n  Phantom purple\n\ntag Status as st\n  Loyal green\n  Turncoat red\n  NewRecruit yellow\n\nBlackbeard r: Captain, s: Revenge\n  Anne Bonny r: FirstMate\n    [Gun Deck]\n      Cannonball Pete r: Gunner\n      Smokey Jack r: Gunner, st: NewRecruit\n      Powder Meg r: Swab, st: NewRecruit\n    [Boarding Party]\n      Cutlass Jim r: Bosun\n      Red Mary\n      One-Eyed Dan st: Turncoat\n  Calico Rackham r: Quartermaster\n    [Cargo Hold]\n      Barnacle Bob\n      Slippery Sal st: Turncoat\n  Long John r: FirstMate, s: Serpent\n    [Rigging Crew]\n      Monkey Fist r: Bosun\n      Pegleg Pete\n      Crow Jane\n    [Navigation]\n      Stargazer Quinn r: Quartermaster\n      Compass Rose st: NewRecruit"
+  },
+  {
+    "id": "ownership",
+    "name": "Ownership",
+    "family": "business",
+    "description": "Corporate entity structure — parent, subsidiaries and outside owners, with a stake on every line and a jurisdiction on every box",
+    "source": "ownership Dread Fleet Holdings\ntag Jurisdiction as j\n  Tortuga blue\n  Nassau  green\n  Cayman  orange\n\nDread Fleet Holdings  j: Tortuga\n  The parent company\n  100% Revenge Shipping Ltd  j: Tortuga\n    Owns the flagship\n  80% Serpent Salvage Co  j: Nassau\n    Wreck recovery"
   },
   {
     "id": "pert",
@@ -228,7 +242,7 @@
     "name": "RACI Matrix",
     "family": "project",
     "description": "Tasks × roles responsibility matrix with constraint linting",
-    "source": "raci Voyage Operations\nroles\n  Cap  red\n  QM orange\n  Bos  yellow\n  Nav  blue\n  Crew gray\n\n[Departure] teal\n  Plot the course\n    Cap: A\n    Nav: R\n    QM: C\n  Provision the hold\n    QM: A R\n    Cap: C\n    Crew: I\n\n[At Sea] purple\n  Stand the watch\n    Bos: A\n    Crew: R\n  Mend sail damage\n    Bos: A\n    Crew: R\n\n[Landfall] green\n  Negotiate with port\n    Cap: R A\n    QM: C\n  Inventory the take\n    QM: A R\n    Crew: I"
+    "source": "raci Voyage Operations\nroles\n  Captain\n  Quartermaster\n  Boatswain\n  Navigator\n  Crew\n\n[Departure] teal\n  Plot the course\n    Captain: A\n    Navigator: R\n    Quartermaster: C\n  Provision the hold\n    Quartermaster: A R\n    Captain: C\n    Crew: I\n\n[At Sea] purple\n  Stand the watch\n    Boatswain: A\n    Crew: R\n  Mend sail damage\n    Boatswain: A\n    Crew: R\n\n[Landfall] green\n  Negotiate with port\n    Captain: R A\n    Quartermaster: C\n  Inventory the take\n    Quartermaster: A R\n    Crew: I"
   },
   {
     "id": "radar",
@@ -247,7 +261,7 @@
   {
     "id": "sankey",
     "name": "Sankey",
-    "family": "business",
+    "family": "data",
     "description": "Flow / allocation visualization",
     "source": "sankey Rum Supply Chain of the Caribbean\n\n// Source — color the plantation node green\nSugar Plantations green\n  Tortuga Distillery orange 3000\n  Nassau Distillery orange 2500\n  Kingston Distillery orange 2000\n\n// Distribution — indented targets under each distillery\nTortuga Distillery\n  Pirate Taverns red 2000\n  Ship Provisions teal 1000\n\nNassau Distillery\n  Pirate Taverns 1500\n  Black Market purple 1000\n\nKingston Distillery\n  Royal Navy blue 1200\n  Pirate Taverns 800\n\n// Final destinations\nPirate Taverns\n  Crew Morale 3500\n  Bar Fights 800 red\n\nShip Provisions -> Long Voyages 1000"
   },
@@ -352,7 +366,7 @@
   {
     "id": "wordcloud",
     "name": "Word Cloud",
-    "family": "business",
+    "family": "data",
     "description": "Term frequency visualization",
     "source": "wordcloud Pirate Skills\n\n// word weight (higher = larger)\nswordsmanship 100\nnavigation    72\ngunnery       54\nseamanship    46\nplundering    34\nleadership    28\ncartography   24\nintimidation  20\nsailing       17\nknot-tying    14\nlookout       12\ncooking       10\ncarpentry     8\nparley        7\nfishing       6\nrum-rationing 5\nmutiny        4\npatch-sails   4\nswabbing      3\nshanties      3"
   }

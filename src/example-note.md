@@ -203,6 +203,174 @@ South China Sea 1 2 3 2 1 2
 West Africa     3 3 4 3 5 4
 ```
 
+### Calendar Heatmap
+
+```dgmo
+calendar-heatmap Cannon Volleys Fired in 2026
+// Daily log: one `date value` line per day; a missing day is zero.
+year 2026
+unit volley
+
+01-02 1
+01-03 1
+01-05 3
+01-06 9
+01-08 9
+01-09 1
+01-13 9
+01-14 3
+01-15 2
+01-17 1
+01-21 3
+01-24 1
+02-01 2
+02-03 4
+02-09 9
+02-10 6
+02-11 14
+02-14 6
+02-19 1
+02-23 4
+03-02 14
+03-06 4
+03-07 3
+03-11 9
+03-21 2
+03-22 3
+03-23 2
+03-25 9
+03-29 1
+04-08 3
+04-10 1
+04-11 2
+04-15 3
+04-17 4
+04-21 14
+04-25 1
+05-01 6
+05-02 1
+05-04 1
+05-06 6
+05-08 3
+05-09 6
+05-14 3
+05-17 14
+05-18 1
+05-21 3
+05-24 6
+05-26 3
+05-27 14
+05-28 3
+05-29 1
+05-30 6
+06-01 1
+06-05 2
+06-06 6
+06-07 9
+06-08 1
+06-10 2
+06-11 14
+06-13 14
+06-15 2
+06-16 1
+06-17 2
+06-18 3
+06-20 4
+06-21 3
+06-23 9
+06-25 6
+06-29 2
+06-30 1
+07-05 2
+07-06 1
+07-07 6
+07-09 14
+07-11 1
+07-12 4
+07-13 1
+07-14 1
+07-17 3
+07-19 14
+07-20 3
+07-24 3
+07-26 1
+07-27 6
+07-28 3
+07-29 3
+08-02 6
+08-03 2
+08-05 1
+08-06 14
+08-07 3
+08-08 9
+08-10 9
+08-11 6
+08-12 6
+08-13 14
+08-14 1
+08-15 4
+08-16 1
+08-17 3
+08-19 4
+08-20 2
+08-21 2
+08-26 14
+08-28 1
+08-30 1
+08-31 1
+09-03 3
+09-04 1
+09-05 6
+09-07 4
+09-09 3
+09-12 2
+09-13 4
+09-15 3
+09-16 2
+09-17 1
+09-19 1
+09-21 3
+09-22 3
+09-24 9
+09-26 9
+09-28 3
+09-30 2
+10-03 2
+10-04 4
+10-06 9
+10-10 4
+10-11 2
+10-12 14
+10-13 6
+10-17 4
+10-18 2
+10-19 9
+10-20 4
+10-22 1
+10-23 1
+10-24 1
+10-28 2
+11-04 2
+11-05 9
+11-08 1
+11-14 1
+11-15 6
+11-19 1
+11-23 1
+11-28 14
+11-30 4
+12-01 3
+12-02 14
+12-10 2
+12-15 14
+12-16 4
+12-18 3
+12-24 3
+12-26 14
+12-27 14
+12-28 14
+```
+
 ### Line Chart
 
 ```dgmo
@@ -536,6 +704,9 @@ target 100
 ```dgmo
 cycle The Pirate Raid Cycle
 
+center RAID
+autonumber
+
 Scout blue
   Spot merchant vessels from afar
 
@@ -646,6 +817,23 @@ Blackbeard r: Captain, s: Revenge
     [Navigation]
       Stargazer Quinn r: Quartermaster
       Compass Rose st: NewRecruit
+```
+
+### Ownership Chart
+
+```dgmo
+ownership Dread Fleet Holdings
+tag Jurisdiction as j
+  Tortuga blue
+  Nassau  green
+  Cayman  orange
+
+Dread Fleet Holdings  j: Tortuga
+  The parent company
+  100% Revenge Shipping Ltd  j: Tortuga
+    Owns the flagship
+  80% Serpent Salvage Co  j: Nassau
+    Wreck recovery
 ```
 
 ### Pyramid Diagram
@@ -768,6 +956,44 @@ lane Editor blue
   Publish -> Promote
 lane Social green
   Promote
+```
+
+### BPMN process (swimlane pools)
+
+```dgmo
+swimlane Insurance claim
+
+pool Customer
+  ~> Claim received
+
+pool Insurer
+  lane Claims Agent blue
+    (Claim received) message -> Check policy
+    Check policy type: service, store: Policy DB
+      -> <Amount over 5k?>
+    <Amount over 5k?>
+      -yes-> Adjuster review
+      -no-> Auto approve
+    Auto approve type: service, note: Under 5k, no person reviews the claim
+      -> <> as merge
+
+  lane Adjuster orange
+    Adjuster review type: user
+      -> [[Inspect property]]
+      (5 days) timer -> Escalate      // a boundary event: fires if the review takes 5 days
+    [[Inspect property]] -> merge
+    Escalate type: user -> (Escalated)
+
+  lane Finance green
+    merge -> <+> as split
+    split
+      -> Notify customer
+      -> Pay claim
+    Notify customer type: send
+      -> <+> as join
+      ~> Customer
+    Pay claim type: service -> join
+    join -> (Paid)
 ```
 
 ### Tech Radar
@@ -984,38 +1210,45 @@ roles
 ### Gantt Chart
 
 ```dgmo
- gantt Blackbeard's Blockade — 1718
-
+gantt Blackbeard's Blockade — 1718
 start-date 1718-05-01
 today-marker 1718-05-15
+critical-path
 
 tag Role as r
   Command red
   Crew blue
   Captives orange
 
+era 1718-05-07 -> 1718-05-16 Blockade Active blue
 marker 1718-05-14 Ransom Deadline red
-era 1718-05-08 -> 1718-05-17 Blockade Active blue
 
-[Preparation] r: Command
-  Provision Ship 3d r: Crew, progress: 100
-    -> Anchor Fleet 2d r: Crew, progress: 100
-  Scout Harbor 3d r: Crew, progress: 100
-    -> Position Cannons 3d r: Crew, progress: 100
-  Recruit Hands 5d r: Crew, progress: 100
+[Preparation] r: Crew
+  Provision Ship 3d progress: 100
+    -> Anchor Fleet 2d progress: 100
+      -> [Blockade].Seize Merchants
+  Scout Harbor 3d progress: 100
+    -> Position Cannons 3d progress: 100
+      -> [Blockade].Seize Merchants
+  Recruit Hands 5d progress: 100
+    -> [Blockade].Patrol Perimeter
 
-+7d [Blockade] r: Crew
-  Seize Merchants 4d progress: 100
-    -> Hold Hostages 5d r: Captives, progress: 60
-  Patrol Perimeter 9d progress: 75
-  Demand Medicine 4d r: Command, progress: 100
-    -> Threaten Executions 3d? r: Command, progress: 90
+[Blockade] r: Crew
+  Seize Merchants 3d progress: 100
+    -> Demand Medicine 2d r: Command, progress: 100
+      -> Threaten Executions 2d r: Command, progress: 100
+        -> [Resolution].Receive Ransom
+    -> Hold Hostages 6d r: Captives, progress: 80
+      -> [Resolution].Release Prisoners
+  Patrol Perimeter 8d progress: 100
+    -> [Resolution].Set Sail
 
-+17d [Resolution] r: Command
-  Receive Ransom 2d r: Captives
+[Resolution] r: Command
+  Receive Ransom 1d r: Captives, progress: 50
     -> Release Prisoners 1d r: Captives
       -> Set Sail 0d
-  Burn Evidence 2d r: Crew
+    -> Burn Evidence 1d r: Crew
+      -> Set Sail
 ```
 
 ### Kanban Board
@@ -1090,36 +1323,36 @@ divvy shares 1 2 3
 ```dgmo
 raci Voyage Operations
 roles
-  Cap  red
-  QM orange
-  Bos  yellow
-  Nav  blue
-  Crew gray
+  Captain
+  Quartermaster
+  Boatswain
+  Navigator
+  Crew
 
 [Departure] teal
   Plot the course
-    Cap: A
-    Nav: R
-    QM: C
+    Captain: A
+    Navigator: R
+    Quartermaster: C
   Provision the hold
-    QM: A R
-    Cap: C
+    Quartermaster: A R
+    Captain: C
     Crew: I
 
 [At Sea] purple
   Stand the watch
-    Bos: A
+    Boatswain: A
     Crew: R
   Mend sail damage
-    Bos: A
+    Boatswain: A
     Crew: R
 
 [Landfall] green
   Negotiate with port
-    Cap: R A
-    QM: C
+    Captain: R A
+    Quartermaster: C
   Inventory the take
-    QM: A R
+    Quartermaster: A R
     Crew: I
 ```
 
@@ -1337,7 +1570,7 @@ Edge
 
 SignalFlags f: Blackbeard
   description: Flag semaphore relay — ship-to-ship messaging
-  latency-ms: 30000
+  latency-ms: 3000
   -> Flagship
   -> ScoutShip
 
@@ -1345,7 +1578,7 @@ Flagship f: Blackbeard
   description: Command vessel — decrypts and routes all intelligence
   instances: 1
   max-rps: 50
-  latency-ms: 5000
+  latency-ms: 500
   -> CarrierPigeons
   -> RumRunner
 
@@ -1353,7 +1586,7 @@ ScoutShip f: Bonny
   description: Fast sloop for reconnaissance
   instances: 2
   max-rps: 30
-  latency-ms: 8000
+  latency-ms: 800
   -> Flagship
 
 CarrierPigeons f: Rackham
@@ -1369,12 +1602,12 @@ CarrierPigeons f: Rackham
   TavernNetwork f: Rackham
     description: Dockside tavern informants across the Caribbean
     max-rps: 20
-    latency-ms: 86400000
+    latency-ms: 9000
 
 RumRunner f: Bonny
   description: Smuggler supply line — moves coded messages in rum barrels
   concurrency: 4
-  duration-ms: 172800000
+  duration-ms: 12000
   -> TavernNetwork
 ```
 
@@ -1432,6 +1665,40 @@ Dry Goods w: Trifling, h: Cargo
   Silk
   Salt Cod
   Tobacco
+```
+
+### Radial mindmap
+
+```dgmo
+mindmap The Black Gull's Crew
+radial
+
+tag Watch as w
+  Starboard blue
+  Larboard orange
+  Idlers green
+
+Officers w: Idlers
+  Captain
+  Quartermaster
+  Sailing Master
+  Bosun
+Gunners w: Starboard
+  Master Gunner
+  Powder Monkeys
+  Gun Crews
+    Bow Chasers
+    Broadside
+    Stern Chasers
+Deckhands w: Larboard
+  Topmen
+  Lookouts
+  Helmsmen
+  Riggers
+Galley w: Idlers
+  Cook
+  Surgeon
+  Carpenter
 ```
 
 ### Sequence Diagram
