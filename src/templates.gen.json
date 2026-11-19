@@ -11,7 +11,7 @@
     "name": "Bar",
     "family": "data",
     "description": "Categorical comparisons for 3 - 5 figures",
-    "source": "bar Plunder by Voyage\nx-label Voyage\ny-label Doubloons\n\nstack\n  Gold red\n  Silver orange\n  Spices yellow\n  Rum green\n\nSpanish Main     480 320 210 150\nBarbary Coast    360 290 340 180\nWindward Passage 520 410 160 240\nCoral Run        300 260 380 200"
+    "source": "bar Plunder by Voyage\nx-axis Voyage\ny-axis Doubloons\n\nstack\n  Gold red\n  Silver orange\n  Spices yellow\n  Rum green\n\nSpanish Main     480 320 210 150\nBarbary Coast    360 290 340 180\nWindward Passage 520 410 160 240\nCoral Run        300 260 380 200"
   },
   {
     "id": "block",
@@ -26,6 +26,13 @@
     "family": "life",
     "description": "Human anatomy figure — colorable muscle groups over a skin layer",
     "source": "body Powder Monkey Push Day\nmuscle\nfront\n\ntag Effort as e\n  Primary red\n  Secondary orange\n  Warm-up yellow\n\nchest        e: Primary\n  Barbell bench press — 4×8\ndeltoids     e: Primary\n  Overhead press — 3×10\ntriceps      e: Secondary\n  Rope pushdowns — 3×12\nabs          e: Warm-up\n  Plank — 3×45s"
+  },
+  {
+    "id": "boxplot",
+    "name": "Box Plot",
+    "family": "data",
+    "description": "Spread, quartiles and outliers of numbers across groups — cycle times, response times, test scores, quality data",
+    "source": "boxplot Days Between Ports by Ship\ny-axis Days\n\n[Black Pearl]\n4 5 5 6 6 6 7 7 7 7 8 8 8 9 9 10 11 12 19\n\n[Queen Anne's Revenge]\n6 7 8 8 9 9 9 10 10 11 11 12 13 14 15\n\n[Fancy] red\n3 4 4 5 5 5 5 6 6 6 7 7 8 9"
   },
   {
     "id": "boxes-and-lines",
@@ -116,7 +123,7 @@
     "name": "Function Plot",
     "family": "data",
     "description": "Mathematical expressions",
-    "source": "function Ship Roll After a Full Broadside\n\nx-label Seconds after broadside\ny-label Roll (degrees)\nx 0 to 12\n\n// Recoil heels the ship 30° — the roll rings down as the sea damps it.\nRoll blue: 30*exp(-0.25*x)*sin(2*x)\nDecay envelope gray: 30*exp(-0.25*x)\nMirror envelope gray: -30*exp(-0.25*x)"
+    "source": "function Ship Roll After a Full Broadside\n\nx-axis Seconds after broadside 0..12\ny-axis Roll (degrees)\n\n// Recoil heels the ship 30° — the roll rings down as the sea damps it.\nRoll blue: 30*exp(-0.25*x)*sin(2*x)\nDecay envelope gray: 30*exp(-0.25*x)\nMirror envelope gray: -30*exp(-0.25*x)"
   },
   {
     "id": "funnel",
@@ -147,6 +154,13 @@
     "source": "heatmap Pirate Activity by Sea Region\ncolumns Jan, Feb, Mar, Apr, May, Jun\n\n// label value1, value2, ...\nCaribbean       5 4 5 3 4 5\nAtlantic        2 3 2 4 3 2\nMediterranean   3 2 1 2 3 4\nIndian Ocean    4 5 4 5 4 3\nSouth China Sea 1 2 3 2 1 2\nWest Africa     3 3 4 3 5 4"
   },
   {
+    "id": "histogram",
+    "name": "Histogram",
+    "family": "data",
+    "description": "Distribution of raw values counted into bins",
+    "source": "histogram Voyage Length of the Black Pearl\n// Try: change `bin-width 5` to `bins 8`, or drop `median`\nx-axis Days at sea\ny-axis Voyages\nbin-width 5\nmean\nmedian\n\n12 18 21 9 15 27 33 14 19 22\n17 24 8 16 20 31 13 18 25 11\n19 23 29 15 17 21 38 10 14 26\n18 22 16 20 12 34 19 17 23 28\n15 21 13 24 18 30 16 19 22 41"
+  },
+  {
     "id": "infra",
     "name": "Infrastructure",
     "family": "software",
@@ -172,7 +186,7 @@
     "name": "Line",
     "family": "data",
     "description": "",
-    "source": "line Plunder by Crew Over the Voyage\nseries\n  Cutlass Crew blue\n  Powder Monkeys green\n  Rigging Rats orange\nx-label Port of Call\ny-label Doubloons (thousands)\n\nera Nassau -> Port Royal Shakedown Run teal\nera Port Royal -> Kingston Golden Haul orange\n\nNassau       4.2 1.1 0.6\nTortuga      6.5 1.9 0.9\nPort Royal   9.1 3.4 1.7\nIsla Muerta  7.8 4.2 2.3\nKingston    11.4 5.1 3.0"
+    "source": "line Plunder by Crew Over the Voyage\nseries\n  Cutlass Crew blue\n  Powder Monkeys green\n  Rigging Rats orange\nx-axis Port of Call\ny-axis Doubloons (thousands)\n\nera Nassau -> Port Royal Shakedown Run teal\nera Port Royal -> Kingston Golden Haul orange\n\nNassau       4.2 1.1 0.6\nTortuga      6.5 1.9 0.9\nPort Royal   9.1 3.4 1.7\nIsla Muerta  7.8 4.2 2.3\nKingston    11.4 5.1 3.0"
   },
   {
     "id": "map",
@@ -235,7 +249,7 @@
     "name": "Quadrant",
     "family": "business",
     "description": "2x2 positioning matrix",
-    "source": "quadrant Crew Performance Assessment\nx-label Low Skill, High Skill\ny-label Low Loyalty, High Loyalty\n\ntop-right Promote green\ntop-left Train yellow\nbottom-left Maroon red\nbottom-right Watch Closely purple\n\nQuartermaster  0.9 0.95\nNavigator     0.85  0.8\nGunner         0.7  0.6\nSurgeon        0.8 0.75\nBoatswain      0.6 0.85\nCook           0.4  0.9\nNew Recruit    0.2  0.5\nTroublemaker  0.65  0.2\nSpy            0.8  0.1"
+    "source": "quadrant Crew Performance Assessment\nx-axis Low Skill, High Skill\ny-axis Low Loyalty, High Loyalty\n\ntop-right Promote green\ntop-left Train yellow\nbottom-left Maroon red\nbottom-right Watch Closely purple\n\nQuartermaster  0.9 0.95\nNavigator     0.85  0.8\nGunner         0.7  0.6\nSurgeon        0.8 0.75\nBoatswain      0.6 0.85\nCook           0.4  0.9\nNew Recruit    0.2  0.5\nTroublemaker  0.65  0.2\nSpy            0.8  0.1"
   },
   {
     "id": "raci",
@@ -270,7 +284,7 @@
     "name": "Scatter Plot",
     "family": "data",
     "description": "2D data points or bubble chart",
-    "source": "scatter Pirate Fleets of the Caribbean\nx-label Ruthlessness\ny-label Plunder (chests)\nsize-label Crew\n\n[English Pirates] red\n  Blackbeard  90 85 300\n  Calico Jack 55 32 110\n  Anne Bonny  70 28  90\n\n[French Buccaneers] blue\n  L'Olonnais      80 60 220\n  Pierre le Grand 45 25  70\n\n[Welsh Privateers] green\n  Henry Morgan        85 120 470\n  Bartholomew Roberts 88 110 510"
+    "source": "scatter Pirate Fleets of the Caribbean\nx-axis Ruthlessness\ny-axis Plunder (chests)\nsize-label Crew\n\n[English Pirates] red\n  Blackbeard  90 85 300\n  Calico Jack 55 32 110\n  Anne Bonny  70 28  90\n\n[French Buccaneers] blue\n  L'Olonnais      80 60 220\n  Pierre le Grand 45 25  70\n\n[Welsh Privateers] green\n  Henry Morgan        85 120 470\n  Bartholomew Roberts 88 110 510"
   },
   {
     "id": "sequence",

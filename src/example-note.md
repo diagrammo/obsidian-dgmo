@@ -87,8 +87,8 @@ arc Pirate Alliances
 line Tortuga Rum Barrels in Stores
 fill
 series Barrels
-x-label Month
-y-label Barrels in Hold
+x-axis Month
+y-axis Barrels in Hold
 
 era Jan -> Apr Raiding Season red
 era Apr -> Aug Dry Spell blue
@@ -111,8 +111,8 @@ Dec 690
 
 ```dgmo
 bar Plunder by Voyage
-x-label Voyage
-y-label Doubloons
+x-axis Voyage
+y-axis Doubloons
 
 stack
   Gold red
@@ -166,9 +166,8 @@ Navigation Charts  30
 ```dgmo
 function Ship Roll After a Full Broadside
 
-x-label Seconds after broadside
-y-label Roll (degrees)
-x 0 to 12
+x-axis Seconds after broadside 0..12
+y-axis Roll (degrees)
 
 // Recoil heels the ship 30° — the roll rings down as the sea damps it.
 Roll blue: 30*exp(-0.25*x)*sin(2*x)
@@ -371,6 +370,22 @@ unit volley
 12-28 14
 ```
 
+### Box Plot
+
+```dgmo
+boxplot Days Between Ports by Ship
+y-axis Days
+
+[Black Pearl]
+4 5 5 6 6 6 7 7 7 7 8 8 8 9 9 10 11 12 19
+
+[Queen Anne's Revenge]
+6 7 8 8 9 9 9 10 10 11 11 12 13 14 15
+
+[Fancy] red
+3 4 4 5 5 5 5 6 6 6 7 7 8 9
+```
+
 ### Line Chart
 
 ```dgmo
@@ -379,8 +394,8 @@ series
   Cutlass Crew blue
   Powder Monkeys green
   Rigging Rats orange
-x-label Port of Call
-y-label Doubloons (thousands)
+x-axis Port of Call
+y-axis Doubloons (thousands)
 
 era Nassau -> Port Royal Shakedown Run teal
 era Port Royal -> Kingston Golden Haul orange
@@ -470,8 +485,8 @@ Ship Provisions -> Long Voyages 1000
 
 ```dgmo
 scatter Pirate Fleets of the Caribbean
-x-label Ruthlessness
-y-label Plunder (chests)
+x-axis Ruthlessness
+y-axis Plunder (chests)
 size-label Crew
 
 [English Pirates] red
@@ -866,8 +881,8 @@ Powder Monkeys orange
 
 ```dgmo
 quadrant Crew Performance Assessment
-x-label Low Skill, High Skill
-y-label Low Loyalty, High Loyalty
+x-axis Low Skill, High Skill
+y-axis Low Loyalty, High Loyalty
 
 top-right Promote green
 top-left Train yellow
