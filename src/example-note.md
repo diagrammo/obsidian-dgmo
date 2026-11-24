@@ -202,10 +202,10 @@ South China Sea 1 2 3 2 1 2
 West Africa     3 3 4 3 5 4
 ```
 
-### Calendar Heatmap
+### Calendar
 
 ```dgmo
-calendar-heatmap Cannon Volleys Fired in 2026
+calendar Cannon Volleys Fired in 2026
 // Daily log: one `date value` line per day; a missing day is zero.
 year 2026
 unit volley
@@ -386,6 +386,38 @@ y-axis Days
 3 4 4 5 5 5 5 6 6 6 7 7 8 9
 ```
 
+### Waterfall
+
+```dgmo
+waterfall Plunder Bridge, Spring Voyage to Autumn Voyage (doubloons)
+
+Spring Voyage 1200 total
+Merchant Galleons +340
+Port Ransoms 210
+Naval Skirmish Losses -180
+Storm Damage -65
+Midyear Hoard total
+Smuggling Runs +95
+Harbour Bribes -40
+Autumn Voyage total
+```
+
+### Dot
+
+```dgmo
+dot Captain Vane takes the largest share of every haul
+subtitle Median share of plunder by rank, doubloons
+
+Captain 212
+Quartermaster 168
+Sailing Master 141
+Boatswain 118
+Gunner 104
+Carpenter 96
+Cook 71
+Powder Monkey 38
+```
+
 ### Line Chart
 
 ```dgmo
@@ -541,11 +573,11 @@ Provisions t: Stores
   Hardtack 70
 ```
 
-### Sunburst (treemap radial)
+### Sunburst (treemap sunburst)
 
 ```dgmo
 treemap Plunder Spend ($k)
-radial
+sunburst
 
 tag Crew as t
   Deck blue
@@ -554,6 +586,31 @@ tag Crew as t
 
 Sailing & Rigging t: Deck
   Rigging 320
+  Helm 180
+  Lookout 140
+Cannon Battery t: Guns
+  Powder 90
+  Shot 130
+Provisions t: Stores
+  Rum 110
+  Hardtack 70
+```
+
+### Icicle (treemap icicle)
+
+```dgmo
+treemap Plunder Spend ($k)
+icicle
+
+tag Crew as t
+  Deck blue
+  Guns orange
+  Stores green
+
+Sailing & Rigging t: Deck
+  Rigging
+    Lines 200
+    Sails 120
   Helm 180
   Lookout 140
 Cannon Battery t: Guns
